@@ -17,4 +17,5 @@ export const ERROR_MESSAGES = {
   MINIMUM_TWO_CARS_REQUIRED:
     "[ERROR] 경주할 자동차는 2개 이상이여야 진행할 수 있습니다.",
   ATTEMPTS_MUST_BE_NUMERIC: "[ERROR] 시도 횟수는 숫자로 작성해야합니다.",
+  DUPLICATE_CAR_NAMES: "[ERROR] 자동차 이름은 중복될 수 없습니다.",
 };
