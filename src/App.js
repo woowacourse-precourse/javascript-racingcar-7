@@ -6,6 +6,9 @@ class App {
     const inputCarName = await Console.readLineAsync(
       RUN_MESSAGE.INPUT_CAR_NAMES
     );
+    const inputAttemptsNumber = await Console.readLineAsync(
+      RUN_MESSAGE.INPUT_ATTEMPTS_NUMBER
+    );
   }
 }
 
