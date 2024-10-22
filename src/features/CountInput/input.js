@@ -1,7 +1,8 @@
 import { Console } from '@woowacourse/mission-utils';
+import { PROMPT_MSG } from '../../constants/promptMessage.js';
 
 const userInput = async () => {
-  return await Console.readLineAsync('시도할 횟수를 입력해주세요: ');
+  return await Console.readLineAsync(`${PROMPT_MSG.COUNT}\n`);
 };
 
 export default userInput;

@@ -1,9 +1,8 @@
 import { Console } from '@woowacourse/mission-utils';
+import { PROMPT_MSG } from '../../constants/promptMessage.js';
 
 const userInput = async () => {
-  return await Console.readLineAsync(
-    '경주할 자동차 이름을 쉼표를 기준으로 입력해주세요: ',
-  );
+  return await Console.readLineAsync(`${PROMPT_MSG.CARS}\n`);
 };
 
 export default userInput;
