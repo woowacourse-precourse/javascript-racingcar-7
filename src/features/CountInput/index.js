@@ -1,9 +1,9 @@
 import userInput from './input.js';
-import { validateNumber } from './validations.js';
+import validateCount from './validations.js';
 
 const Count = async () => {
   const count = await userInput();
-  validateNumber(count);
+  validateCount(count);
 
   return Number(count);
 };

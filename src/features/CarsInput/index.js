@@ -1,6 +1,6 @@
 import userInput from './input.js';
 import CarsInputParser from './parser.js';
-import { validateCars } from './validations.js';
+import validateCars from './validations.js';
 
 const Cars = async () => {
   const cars = await userInput();
