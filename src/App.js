@@ -14,7 +14,10 @@ class App {
     this.stringFromConsole = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
     this.testCount = await Console.readLineAsync("시도할 횟수는 몇 회인가요?");
 
-    if(this.testCount === null || this.stringFromConsole === '') 
+    if(this.testCount === null || this.stringFromConsole === null ||
+      this.testCount === '' || this.stringFromConsole === '' ||
+      this.testCount === undefined || this.stringFromConsole === undefined
+    ) 
       throw new Error("[ERROR] : 잘못된 입력입니다");
   }
   
@@ -23,6 +26,8 @@ class App {
     const stateList = names.map(e => {
       if(e.length > 5) 
         throw new Error("[ERROR] : 잘못된 입력입니다");
+
+      if(this.debug) Console.print(e);
       return [e, 0]
     });
 
@@ -63,9 +68,24 @@ class App {
   }
 
   async run() {
-    await this.input();
-    this.seperatedBySeperator();
-    this.whoIsWinner();
+    this.debug = false;
+
+    if(!this.debug) {
+      await this.input();
+      this.seperatedBySeperator();
+      this.whoIsWinner();
+    } else {
+      const testCase = [["pobi,woni,janm", "1"]];
+
+      testCase.forEach(e => {
+        this.stringFromConsole = e[0];
+        this.testCount = Number(e[1]);
+
+        this.seperatedBySeperator();
+        this.whoIsWinner();
+      })
+    }
+    
   }
 }
 
