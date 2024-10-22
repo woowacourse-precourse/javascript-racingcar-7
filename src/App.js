@@ -85,6 +85,12 @@ class DisplayController{
       Console.print(`${players[i]} : ${ RACING_VARIABLES.POSITION_MARKER.repeat(positions[i])}`);
     }
   }
+
+  async displayWinners (players, winners){
+    const winnerArray = winners.map(idx => players[idx])
+
+    Console.print(`최종 우승자 : ${winnerArray.join(',')}`)
+  }
 }
 
 
@@ -118,7 +124,9 @@ class App {
     }
 
     let winnerArray = this.raceController.getRaceWinners(userInputArray, positions);
-    
+
+    this.displayController.displayWinners(userInputArray, winnerArray);
+
   }
 }
 
