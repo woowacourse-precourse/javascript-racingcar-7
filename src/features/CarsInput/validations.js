@@ -1,5 +1,5 @@
-import { INPUT_ERROR } from '../constants/errorMessages.js';
-import throwError from '../utils/throwError.js';
+import { INPUT_ERROR } from '../../constants/errorMessages.js';
+import throwError from '../../utils/throwError.js';
 
 export const validateEmptyInput = input => {
   if (input === '') {
