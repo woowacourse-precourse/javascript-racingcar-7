@@ -1,8 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-
-const MESSAGE = {
-  INTRO: '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분\n',
-};
+import { GAME_MESSAGE, ERROR_MESSAGE } from './constant/index.js';
 
 class App {
   async run() {
@@ -10,11 +7,23 @@ class App {
   }
 
   async setCars() {
-    const input = await Console.readLineAsync(MESSAGE.INTRO);
-
+    const input = await Console.readLineAsync(GAME_MESSAGE.INTRO);
     const carsArr = input.split(',');
+
+    if (carsArr.some((name) => name === '')) {
+      throw new Error(ERROR_MESSAGE.CAR_NAME_NOT_ALLOWED_EMPTY);
+    }
+
+    if (carsArr.some((name) => name.split('').find((char) => char === ' '))) {
+      throw new Error(ERROR_MESSAGE.CAR_NAME_NOT_ALLOWED_GAP);
+    }
+
+    if (carsArr.length !== new Set(carsArr).size) {
+      throw new Error(ERROR_MESSAGE.CAR_NAME_NOT_ALLOWED_DUPLICATION);
+    }
+
     if (carsArr.some((name) => name.length > 5)) {
-      throw new Error('[ERROR] 자동차의 이름은 5자 이하만 가능합니다.');
+      throw new Error(ERROR_MESSAGE.CAR_NAME_MAX_LENGTH_FIVE);
     }
 
     return carsArr;
