@@ -19,13 +19,13 @@ describe('User', () => {
     jest.clearAllMocks();
   });
 
-  describe('유저 입력 값 받아오기 readUserInput', () => {
+  describe('자동차 이름 받아오기 readCarNameInput', () => {
     test('올바른 메시지로 호출하고 입력값을 반환한다', async () => {
       const message = GAME_MESSAGE.START;
       const expectedInput = 'pobi,woni,jun';
       readLineAsyncSpy.mockResolvedValue(expectedInput);
 
-      const result = await user.readUserInput(message);
+      const result = await user.readCarNameInput(message);
 
       expect(readLineAsyncSpy).toHaveBeenCalledWith(message);
       expect(result).toBe(expectedInput);
@@ -40,9 +40,26 @@ describe('User', () => {
 
       for (const input of inputs) {
         readLineAsyncSpy.mockResolvedValue(input);
-        const result = await user.readUserInput('Any message');
+        const result = await user.readCarNameInput('Any message');
         expect(result).toBe(input);
       }
     });
+  });
+
+  describe('시도할 횟수 받아오기', () => {
+    test('올바른 메시지로 호출하고 입력값을 반환한다', async () => {
+      const message = GAME_MESSAGE.ATTEMPTS;
+      const expectedInput = '5';
+      readLineAsyncSpy.mockResolvedValue(expectedInput);
+
+      const result = await user.readAttemptsInput(message);
+
+      expect(readLineAsyncSpy).toHaveBeenCalledWith(message);
+      expect(result).toBe(expectedInput);
+    });
+    // test('시도한 횟수에 숫자를 입력하지 않을 경우', async () => {
+    //   const result = await user.readAttemptsInput('a');
+    //   expect(result).rejects.toThrow('[ERROR]');
+    // });
   });
 });
