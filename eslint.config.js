@@ -23,6 +23,8 @@ export default [
       ecmaVersion: 'latest',
     },
     rules: {
+      // class 에서 this 사용 요구 규칙을 비활성화
+      'class-methods-use-this': 'off',
       // package import를 제외한 모든 import 구문에 대해 확장자를 사용하도록 강제
       'import/extensions': ['error', 'ignorePackages'],
     },
