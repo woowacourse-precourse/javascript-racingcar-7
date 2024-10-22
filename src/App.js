@@ -6,6 +6,7 @@ class App {
             cars: [],
             raceCount: 0,
         };
+
         this.error = {
             cars: (value) => {
                 if (value.length === 0) return 'error';
@@ -22,6 +23,7 @@ class App {
                 }
                 return 'correct';
             },
+
             raceCount: (value) => {
                 const num = Number(value);
                 if (isNaN(num)) return 'error';
@@ -67,6 +69,7 @@ class App {
             print('');
         }
     }
+
     moveCars() {
         const newCars = this.state.cars.map(([name, movement]) => {
             if (getRandom() >= 4) {
@@ -77,13 +80,14 @@ class App {
         });
         this.setState('cars', newCars);
     }
+
     showRaceStatus() {
         this.state.cars.forEach((car) => {
             print(`${car[0]} : ${'-'.repeat(car[1])}`);
         });
     }
 
-    showRaceResult() {
+    findWinners() {
         const maxMovement = Math.max(
             ...this.state.cars.map(([_, count]) => count)
         );
@@ -93,8 +97,14 @@ class App {
             if (movement === maxMovement) winners.push(name);
             else break;
         }
+        return winners;
+    }
+
+    showRaceResult() {
+        const winners = this.findWinners();
         print('최종 우승자 :', winners.join(','));
     }
+
     async run() {
         await this.getCars();
         await this.getRaceCount();
