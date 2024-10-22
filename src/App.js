@@ -22,6 +22,15 @@ class App {
     this.stateList = [...stateList];
   }
 
+  async createRandomBoolean() {
+    const randomValue = await MissionUtils.Random.pickNumberInRange(0, 9);
+
+    if(randomValue >= 4) return true;
+    else return false;
+
+    /// 호출시 await 해줌
+  }
+
   async run() {
     await this.input();
     this.seperatedBySeperator();
