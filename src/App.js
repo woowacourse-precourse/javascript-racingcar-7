@@ -45,6 +45,10 @@ class Validator {
 
 class RaceController{
 
+  createPlayersPositions(playerNumber){
+    const positions = Array(playerNumber).fill(0);
+    return positions;
+  }
   movePlayersRandomly(peopleList){
 
     const updatedList = [...peopleList];
@@ -64,6 +68,7 @@ class App {
   constructor (){
     this.userInput = new UserInput();
     this.validator = new Validator();
+    this.raceController = new RaceController();
   }
   async run() {
     const userInput = await this.userInput.getUserInputCars();
@@ -71,7 +76,10 @@ class App {
 
     this.validator.validateNameLength(userInputArray);
 
+    const positions = this.raceController.createPlayersPositions(userInputArray.length);
+
     const userInputCount = await this.userInput.getUserInputCount();
+
 
 
   }
