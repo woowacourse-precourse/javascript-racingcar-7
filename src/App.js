@@ -3,6 +3,7 @@ import { Console } from "@woowacourse/mission-utils";
 class App {
   async run() {
     const cars = await inputCars();
+    const moveCount = await inputMoveCount();
   }
 }
 
@@ -23,9 +24,9 @@ async function inputCars() {
     )
   ).split(",");
   validateInput(cars);
-  return cars.map((car)=>new Car(car));
+  return cars.map((car) => new Car(car));
 }
-function validateInput(cars){
+function validateInput(cars) {
   cars = cars.forEach((car) => {
     if (car == "") {
       throw Error(["[ERROR] : 잘못된 입력입니다."]);
@@ -35,7 +36,23 @@ function validateInput(cars){
     }
   });
 }
-
-
+async function inputMoveCount() {
+  const inputCount = String(
+    await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n")
+  );
+  validateInputCount(inputCount);
+  return Number(inputCount);
+}
+function validateInputCount(count) {
+  if (count == "") {
+    throw Error(["[ERROR] : 공백이 입력되었습니다."]);
+  }
+  if (isNaN(count)) {
+    throw Error(["[ERROR] : 숫자를 입력해주세요."]);
+  }
+  if (count <= 0) {
+    throw Error(["[ERROR] : 1 이상의 시도횟수를 입력해주세요."]);
+  }
+}
 
 export default App;
