@@ -76,10 +76,18 @@ class App {
 
     this.validator.validateNameLength(userInputArray);
 
-    const positions = this.raceController.createPlayersPositions(userInputArray.length);
+    let positions = this.raceController.createPlayersPositions(userInputArray.length);
 
     const userInputCount = await this.userInput.getUserInputCount();
 
+    // Game start
+    for (let i = 0; i < userInputCount; i++){
+      
+      let nextPostions = this.raceController.movePlayersRandomly(positions);
+
+      positions = nextPostions;
+      Console.print(positions);
+    }
 
 
   }
