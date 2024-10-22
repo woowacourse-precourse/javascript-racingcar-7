@@ -21,7 +21,7 @@
 - [X] input from console
 - [X] seperated By seperator
 - [X] create Random boolean
-- [] who is winner?
+- [X] who is winner?
 - [] Error handling
 - [] logging
 
