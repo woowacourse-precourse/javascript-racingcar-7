@@ -33,14 +33,20 @@ class App {
 
   async whoIsWinner() {
     let max = 0;
+
+    Console.print("\n실행 결과");
     for(let i = 0; i < this.testCount; i++) {
-      this.stateList.forEach((_, j) => {
+      this.stateList.forEach((state, j) => {
         const randBoolean = this.createRandomBoolean();
 
         if(randBoolean) this.stateList[j][1] += 1;
 
         if(this.stateList[j][1] > max) max = this.stateList[j][1];
+
+        Console.print(state[0] + " : " + `${'-'.repeat(state[1])}`);
       });
+
+      Console.print('');
     }
 
     const winnerStateList = this.stateList.filter((e) => e[1] === max);
