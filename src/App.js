@@ -75,10 +75,22 @@ class App {
         }
     }
 
+    showRaceResult() {
+        const sortedCars = [...this.state.cars].sort((a, b) => b[1] - a[1]);
+        const maxMovement = sortedCars[0][1];
+        const winners = [];
+        for (let i = 0; i < sortedCars.length; i++) {
+            const [name, movement] = sortedCars[i];
+            if (movement === maxMovement) winners.push(name);
+            else break;
+        }
+        print('최종 우승자 :', winners.join(','));
+    }
     async run() {
         await this.getCars();
         await this.getRaceCount();
         this.startRace();
+        this.showRaceResult();
     }
 }
 
