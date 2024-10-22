@@ -27,6 +27,18 @@ function MOVE_CAR(RACE_CAR) {
   return RACE_CAR
 }
 
+// 레이싱 결과 출력 함수
+function PRINT_RACE(RACE_CAR) {
+  RACE_CAR.forEach((CAR) => {
+    let CAR_MOVED = ''
+    for (let i = 0; i < CAR[1]; i++) {
+      CAR_MOVED += '-'
+    }
+    MissionUtils.Console.print(`${CAR[0]} : ${CAR_MOVED}`)
+  })
+  MissionUtils.Console.print(``)
+}
+
 class App {
   async run() {
     // 1. 경주할 자동차 이름 입력, 횟수 입력
@@ -47,14 +59,19 @@ class App {
         RACE_CAR.push([CAR, 0])
       }
     })
-    console.log(RACE_CAR)
+    // console.log(RACE_CAR)
 
     // 3. 자동차별로 랜덤한 숫자를 뽑아 전진시키는 기능
     while (CYCLE > 0) {
       RACE_CAR = await MOVE_CAR(RACE_CAR)
-      console.log(RACE_CAR)
+      // console.log(RACE_CAR)
+
+      // 4. 레이싱 결과를 출력하는 함수
+      PRINT_RACE(RACE_CAR)
       CYCLE -= 1
     }
+
+    // 5. 
   }
 }
 
