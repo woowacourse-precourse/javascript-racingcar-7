@@ -9,13 +9,17 @@ class App {
     const cars_list = cars.split(",");
     Console.print(cars_list);
 
-    const rail = new Array(cars_list.length).fill("");
+    const rail = new Array(cars_list.length).fill(0);
 
     for (let i = 0; i < times; i++) {
       cars_list.forEach((car, index) => {
         const random = Math.floor(Math.random() * 10);
         Console.print(random);
+        if (random >= 4) {
+          rail[index]++;
+        }
       });
+      Console.print(rail);
     }
   }
 }
