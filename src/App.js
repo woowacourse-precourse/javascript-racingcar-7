@@ -1,6 +1,5 @@
 import { Console, Random } from "@woowacourse/mission-utils";
-import { Validator } from "./Validator.js"
-
+import { Validator } from "./Validator.js";
 
 class App {
   async run() {
@@ -19,17 +18,21 @@ class App {
     Console.print("\n실행 결과");
 
     for (let i = 0; i < playNum; i++) {
-
       carNames.forEach(name => {
         const randomNum = Random.pickNumberInRange(0, 9);
 
         if (randomNum >= 4) {
           results[name] += "-";
         }
+
         Console.print(`${name} : ${results[name]}`);
       });
       Console.print("");
+
     }
+    const maxMoves = Math.max(...Object.values(results).map((moves) => moves.length)); 
+    const winners = carNames.filter((name) => results[name].length === maxMoves);
+    Console.print(`최종 우승자 : ${winners.join(", ")}`);
   }
 }
 
