@@ -12,7 +12,6 @@ class UserInput{
 
     try {
         const userInput = await Console.readLineAsync(RACING_VARIABLES.INPUT_PROMPT);
-        const userInputArray = userInput.split(",");
         return userInput;
     } catch (error) {
         Console.print('[ERROR]: 입력을 받는 중 문제가 발생했습니다.');
@@ -21,12 +20,29 @@ class UserInput{
 }
 }
 
+class Validator {
+
+  validateNameLength(names) {
+    names.forEach(name => {
+      if (name.length > 5) {
+        throw new Error(`[ERROR]: 이름 "${name}"이 5자를 초과했습니다.`);
+      }
+    });
+  }
+}
+
+
 class App {
   constructor (){
     this.userInput = new UserInput();
+    this.validator = new Validator();
   }
   async run() {
     const userInput = await this.userInput.getUserInput();
+    const userInputArray = userInput.split(",");
+
+    this.validator.validateNameLength(userInputArray);
+
 
   }
 }
