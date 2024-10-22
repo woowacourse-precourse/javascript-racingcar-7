@@ -30,18 +30,34 @@ const getLogSpy = () => {
 describe('자동차 경주 추가 테스트', () => {
   test('우승자가 여러 명일 때 테스트', async () => {
     // given
-    const MOVING_FORWARD = 4;
-    const inputs = ['pobi,woni,honux', '2'];
+    const MOVING_FORWARD = 8;
+    const inputs = ['pobi,woni,honux', '3'];
     const logs = [
+      'pobi : -',
+      'woni : -',
+      'honux : -',
       'pobi : --',
       'woni : --',
       'honux : --',
-      '최종 우승자 : pobi,woni,honux',
+      'pobi : ---',
+      'woni : ---',
+      'honux : ---',
+      '최종 우승자 : pobi, woni, honux',
     ];
     const logSpy = getLogSpy();
 
     mockQuestions(inputs);
-    mockRandoms([MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD]);
+    mockRandoms([
+      MOVING_FORWARD,
+      MOVING_FORWARD,
+      MOVING_FORWARD, // 1st round
+      MOVING_FORWARD,
+      MOVING_FORWARD,
+      MOVING_FORWARD, // 2nd round
+      MOVING_FORWARD,
+      MOVING_FORWARD,
+      MOVING_FORWARD, // 3rd round
+    ]);
 
     // when
     const app = new App();
@@ -51,6 +67,8 @@ describe('자동차 경주 추가 테스트', () => {
     logs.forEach(log => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
+
+    // 추가: 로그 확인
   });
 
   test('이름이 공백일 경우 예외 처리 테스트', async () => {
