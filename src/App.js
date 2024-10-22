@@ -91,6 +91,7 @@ class DisplayController{
     for (let i = 0; i<players.length;i++){
       Console.print(`${players[i]} : ${ RACING_VARIABLES.POSITION_MARKER.repeat(positions[i])}`);
     }
+    Console.print("");
   }
 
   async displayWinners (players, winners){
@@ -129,7 +130,6 @@ class App {
 
       positions = nextPostions;
       this.displayController.displayPlayerPositions(userInputArray , positions);
-      Console.print("");
     }
 
     let winnerArray = this.raceController.getRaceWinners(userInputArray, positions);
