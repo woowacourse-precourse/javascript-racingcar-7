@@ -1,6 +1,6 @@
-import { validateCarNameCount } from "./validateCarNameCount";
-import { validateCarNameLength } from "./validateCarNameLength";
-import { validateCarNameOnlyLetters } from "./validateCarNameOnlyLetters";
+import { validateCarNameCount } from "./validateCarNameCount.js";
+import { validateCarNameLength } from "./validateCarNameLength.js";
+import { validateCarNameOnlyLetters } from "./validateCarNameOnlyLetters.js";
 
 export function validateCarName(inputCarName) {
   const inputCarNameArray = inputCarName.split(",");
