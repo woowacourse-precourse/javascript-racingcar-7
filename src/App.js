@@ -62,6 +62,20 @@ class RaceController{
     }
     return updatedList;
   }
+
+  getRaceWinners (players, positions){
+    let maxValue = Math.max(...positions);
+    let winners = [];
+
+    positions.forEach((value,index)=>{
+      if(value === maxValue){
+        winners.push(index);
+      }
+    })
+
+    return winners;
+
+  }
 }
 
 class DisplayController{
@@ -103,6 +117,7 @@ class App {
       Console.print("");
     }
 
+    let winnerArray = this.raceController.getRaceWinners(userInputArray, positions);
 
   }
 }
