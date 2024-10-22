@@ -39,3 +39,21 @@ describe('자동차 입력 테스트', () => {
     await expect(app.setCars()).rejects.toThrow(message);
   });
 });
+
+describe('이동 할 횟수 입력 테스트', () => {
+  let app;
+  beforeEach(() => {
+    app = new App();
+  });
+
+  const TEST_CASES_FAILED = [
+    ['0', ERROR_MESSAGE.TRY_NUMBER_RANGE_ERROR],
+    ['-1', ERROR_MESSAGE.TRY_NUMBER_RANGE_ERROR],
+    ['123-121', ERROR_MESSAGE.TRY_NUMBER_TYPE_ERROR],
+    ['-10+100', ERROR_MESSAGE.TRY_NUMBER_TYPE_ERROR],
+  ];
+  test.each(TEST_CASES_FAILED)('횟수 입력 실패', async (input, message) => {
+    mockQuestions(input);
+    await expect(app.setTryNumber()).rejects.toThrow(message);
+  });
+});

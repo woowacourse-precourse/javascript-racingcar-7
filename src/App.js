@@ -40,6 +40,8 @@ class App {
     if (Number(input) <= 0) {
       throw new Error(ERROR_MESSAGE.TRY_NUMBER_RANGE_ERROR);
     }
+
+    return input;
   }
 }
 
