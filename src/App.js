@@ -65,11 +65,11 @@ class RaceController{
 
   getRaceWinners (players, positions){
     let maxValue = Math.max(...positions);
-    let winners = [];
+    let winnersIndex = [];
 
     positions.forEach((value,index)=>{
       if(value === maxValue){
-        winners.push(index);
+        winnersIndex.push(index);
       }
     })
 
