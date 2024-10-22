@@ -1,8 +1,10 @@
-import { userInput } from './lib/utils/user-input.js';
+import { Console } from '@woowacourse/mission-utils';
+import Cars from './CarsInput/index.js';
 
 class App {
   async run() {
-    const { cars, count } = await userInput();
+    const cars = await Cars();
+    Console.print(cars);
   }
 }
 
