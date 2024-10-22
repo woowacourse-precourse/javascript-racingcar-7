@@ -10,6 +10,8 @@ class App {
             cars: (value) => {
                 if (value.length === 0) return 'error';
                 const parsedString = value.split(',');
+                if (parsedString.length !== new Set(parsedString).size)
+                    return 'error';
                 for (let i = 0; i < parsedString.length; i++) {
                     if (
                         parsedString[i].length === 0 ||
