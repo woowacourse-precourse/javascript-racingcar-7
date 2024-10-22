@@ -22,8 +22,8 @@ class App {
     this.stateList = [...stateList];
   }
 
-  async createRandomBoolean() {
-    const randomValue = await MissionUtils.Random.pickNumberInRange(0, 9);
+  createRandomBoolean() {
+    const randomValue = MissionUtils.Random.pickNumberInRange(0, 9);
 
     if(randomValue >= 4) return true;
     else return false;
@@ -31,9 +31,28 @@ class App {
     /// 호출시 await 해줌
   }
 
+  async whoIsWinner() {
+    let max = 0;
+    for(let i = 0; i < this.testCount; i++) {
+      this.stateList.forEach((_, j) => {
+        const randBoolean = this.createRandomBoolean();
+
+        if(randBoolean) this.stateList[j][1] += 1;
+
+        if(this.stateList[j][1] > max) max = this.stateList[j][1];
+      });
+    }
+
+    const winnerStateList = this.stateList.filter((e) => e[1] === max);
+    const winnerList = winnerStateList.map(e => e[0]);
+    
+    Console.print("최종 우승자 : " + `${winnerList.join(', ')}`);
+  }
+
   async run() {
     await this.input();
     this.seperatedBySeperator();
+    this.whoIsWinner();
   }
 }
 
