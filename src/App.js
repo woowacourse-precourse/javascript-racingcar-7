@@ -63,12 +63,22 @@ class RaceController{
   }
 }
 
+class DisplayController{
+
+  async displayPlayerPositions (players, positions){
+    for (let i = 0; i<players.length;i++){
+      Console.print(`${players[i]} : ${ "A".repeat(positions[i])}`);
+    }
+  }
+}
+
 
 class App {
   constructor (){
     this.userInput = new UserInput();
     this.validator = new Validator();
     this.raceController = new RaceController();
+    this.displayController = new DisplayController();
   }
   async run() {
     const userInput = await this.userInput.getUserInputCars();
@@ -80,13 +90,16 @@ class App {
 
     const userInputCount = await this.userInput.getUserInputCount();
 
+    
     // Game start
+    Console.print("\n실행 결과");
     for (let i = 0; i < userInputCount; i++){
       
       let nextPostions = this.raceController.movePlayersRandomly(positions);
 
       positions = nextPostions;
-      Console.print(positions);
+      this.displayController.displayPlayerPositions(userInputArray , positions);
+      Console.print("");
     }
 
 
