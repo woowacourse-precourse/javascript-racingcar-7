@@ -7,3 +7,10 @@ export function validateCarNames(names) {
         }
     }
 }
+
+export function playNumIsNaN(num) {
+    
+    if (isNaN(num)) {
+        throw new Error('[ERROR] 시도 횟수는 숫자를 입력해야 합니다.');
+    }
+}
