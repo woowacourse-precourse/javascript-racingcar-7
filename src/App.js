@@ -28,13 +28,22 @@ function isForward() {
   return number >= 4;
 }
 
-function startGame(Game, round) {
+function printRacingGame(carsNames, game) {
+  Console.print("실행 결과");
+  game.map((_, index) => {
+    Console.print(`${carsNames[index]} : ${"-".repeat(game[index])}`);
+  });
+  Console.print("\n");
+}
+
+function startGame(game, round, carNames) {
   for (let i = 0; i < round; i++) {
-    Game.map((_, index) => {
+    game.forEach((_, index) => {
       if (isForward()) {
-        Game[index]++;
+        game[index]++;
       }
     });
+    printRacingGame(carNames, game);
   }
 }
 
@@ -43,7 +52,7 @@ class App {
     const cars = await carNameInput();
     const round = await roundInput();
     let racingGame = new Array(cars.length).fill(0);
-    startGame(racingGame, round);
+    startGame(racingGame, round, cars);
   }
 }
 
