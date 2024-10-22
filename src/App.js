@@ -73,7 +73,7 @@ class RaceController{
       }
     })
 
-    return winners;
+    return winnersIndex;
 
   }
 }
@@ -118,7 +118,7 @@ class App {
     }
 
     let winnerArray = this.raceController.getRaceWinners(userInputArray, positions);
-
+    
   }
 }
 
