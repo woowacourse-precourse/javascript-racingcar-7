@@ -24,7 +24,7 @@ class App {
   seperatedBySeperator() {
     const names = this.stringFromConsole.split(',');
     const stateList = names.map(e => {
-      if(e.length > 5) 
+      if(e.length > 5 || e === '') 
         throw new Error("[ERROR] : 잘못된 입력입니다");
 
       if(this.debug) Console.print(e);
