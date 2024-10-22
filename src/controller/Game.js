@@ -8,7 +8,8 @@ class Game {
     this.user = new User();
   }
   async process() {
-    const input = this.user.readUserInput(GAME_MESSAGE.START);
+    const carNameInput = await this.user.readCarNameInput();
+    const attempts = await this.user.readAttemptsInput();
   }
 }
 
