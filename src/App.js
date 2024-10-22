@@ -8,7 +8,7 @@ Object.freeze(RACING_VARIABLES);
 
 class UserInput{
 
-  async getUserInput(){
+  async getUserInputCars(){
 
     try {
         const userInput = await Console.readLineAsync(RACING_VARIABLES.INPUT_PROMPT);
@@ -17,6 +17,8 @@ class UserInput{
         Console.print('[ERROR]: 입력을 받는 중 문제가 발생했습니다.');
         return null;
     }
+
+  
 }
 }
 
@@ -38,7 +40,7 @@ class App {
     this.validator = new Validator();
   }
   async run() {
-    const userInput = await this.userInput.getUserInput();
+    const userInput = await this.userInput.getUserInputCars();
     const userInputArray = userInput.split(",");
 
     this.validator.validateNameLength(userInputArray);
