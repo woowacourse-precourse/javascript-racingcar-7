@@ -13,10 +13,10 @@ class App {
                 if (parsedString.length !== new Set(parsedString).size)
                     return 'error';
                 for (let i = 0; i < parsedString.length; i++) {
-                    if (
-                        parsedString[i].length === 0 ||
-                        parsedString[i].length > 5
-                    ) {
+                    if (parsedString[i].length === 0) {
+                        return 'error';
+                    }
+                    if (parsedString[i].length > 5) {
                         return 'error';
                     }
                 }
