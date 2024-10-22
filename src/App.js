@@ -71,7 +71,29 @@ class App {
       CYCLE -= 1
     }
 
-    // 5. 
+    // 5. 레이싱 결과 출력
+    let LONGEST_LENGTH = -1
+    RACE_CAR.forEach((CAR) => {
+      if (CAR[1] > LONGEST_LENGTH) {
+        LONGEST_LENGTH = CAR[1]
+      }
+    })
+    const ANSWER_LIST = []
+    RACE_CAR.forEach((CAR) => {
+      if (CAR[1] === LONGEST_LENGTH) {
+        ANSWER_LIST.push(CAR[0])
+      }
+    })
+
+    let RETURN_ANS = ''
+    for (let i = 0; i < ANSWER_LIST.length; i++) {
+      RETURN_ANS += ANSWER_LIST[i]
+      if (i !== ANSWER_LIST.length - 1) {
+        RETURN_ANS += ', '
+      }
+    }
+    // console.log(RETURN_ANS)
+    MissionUtils.Console.print(`최종 우승자 : ${RETURN_ANS}`)
   }
 }
 
