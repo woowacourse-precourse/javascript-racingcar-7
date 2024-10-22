@@ -9,18 +9,21 @@ class App {
     const cars_list = cars.split(",");
     Console.print(cars_list);
 
-    const rail = new Array(cars_list.length).fill(0);
+    const rail = new Array(cars_list.length).fill("");
 
     for (let i = 0; i < times; i++) {
       cars_list.forEach((car, index) => {
         const random = Math.floor(Math.random() * 10);
-        Console.print(random);
+        // Console.print(random);
         if (random >= 4) {
-          rail[index]++;
+          rail[index] += "-";
         }
+        Console.print(car + " : " + rail[index]);
       });
       Console.print(rail);
     }
+
+    Console.print("최종 우승자 : ");
   }
 }
 
