@@ -11,7 +11,7 @@ async function carNameInput() {
   }
   return carNames.split(",");
 }
-async function countInput() {
+async function roundInput() {
   const count = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
   if (Number.isNaN(+count)) {
     throw new Error("[ERROR]");
@@ -27,13 +27,23 @@ function isForward() {
   const number = makeRandomNumber();
   return number >= 4;
 }
+
+function startGame(Game, round) {
+  for (let i = 0; i < round; i++) {
+    Game.map((_, index) => {
+      if (isForward()) {
+        Game[index]++;
+      }
+    });
+  }
+}
+
 class App {
   async run() {
-    const racingGame = {};
-    const Cars = await carNameInput();
-    const Round = await countInput();
-    Cars.map((car) => (racingGame[car] = 0));
-    isForward();
+    const cars = await carNameInput();
+    const round = await roundInput();
+    let racingGame = new Array(cars.length).fill(0);
+    startGame(racingGame, round);
   }
 }
 
