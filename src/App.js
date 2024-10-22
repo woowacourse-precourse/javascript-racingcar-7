@@ -5,6 +5,7 @@ class App {
     const cars = await inputCars();
     const moveCount = await inputMoveCount();
     startRace(cars, moveCount);
+    checkWinner(cars);
   }
 }
 
@@ -64,21 +65,36 @@ function startRace(cars, moveCount) {
     printCurScore(cars);
     curCount++;
   }
-  
 }
 function moveCars(cars) {
   cars.forEach((car) => moveCarByRandomValue(car));
 }
 
-function moveCarByRandomValue(car){
-  if (Random.pickNumberInRange(0,9) >=4){
+function moveCarByRandomValue(car) {
+  if (Random.pickNumberInRange(0, 9) >= 4) {
     car.moveForward();
-  };
+  }
 }
-function printCurScore(cars){
-  cars.forEach(car => {
+function printCurScore(cars) {
+  cars.forEach((car) => {
     Console.print(`${car.name} : ${car.distance}`);
   });
   Console.print("");
+}
+
+function checkWinner(cars) {
+  let finalWinner = [];
+  let maxScore = "";
+  cars.forEach((car) => {
+    if (maxScore < car.distance.length) {
+      maxScore = car.distance;
+    }
+  });
+  cars.forEach((car) => {
+    if (car.distance == maxScore) {
+      finalWinner.push(car.name);
+    }
+  });
+  Console.print(`최종 우승자 : ${finalWinner.join(", ")}`);
 }
 export default App;
