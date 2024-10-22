@@ -14,7 +14,14 @@
 
 # 📋 문제 해결과정
 
-## 설계
+## 자동차 경주 Flow Chart
+
+![image](https://github.com/user-attachments/assets/bc5225f5-4839-4ea2-87e3-0ed65590491e)
+
+## 자동차 전진/멈춤 시퀀스 다이어그램
+
+![image](https://github.com/user-attachments/assets/dd3f6e08-04d2-49ca-b88e-3cbe700fbbb1)
+
 
 # 테스트 케이스
 
