@@ -5,7 +5,8 @@ const RACING_VARIABLES = {
   INPUT_PROMPT : "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n",
   INPUT_COUNT_PROMPT : "시도할 횟수는 몇 회인가요?\n",
   POSITION_MARKER : "-",
-  MAXIMUM_ROUND : 10
+  MAXIMUM_ROUND : 10,
+  WINNER_PROMPT : "최종 우승자"
 
 }
 Object.freeze(RACING_VARIABLES);
@@ -97,7 +98,7 @@ class DisplayController{
   async displayWinners (players, winners){
     const winnerArray = winners.map(idx => players[idx])
 
-    Console.print(`최종 우승자 : ${winnerArray.join(',')}`)
+    Console.print(`${RACING_VARIABLES.WINNER_PROMPT} : ${winnerArray.join(',')}`)
   }
 }
 
