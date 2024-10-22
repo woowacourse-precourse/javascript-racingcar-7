@@ -8,6 +8,15 @@ class App {
     const times = await Console.readLineAsync("시도할 횟수는 몇 회인가요?");
     const cars_list = cars.split(",");
     Console.print(cars_list);
+
+    const rail = new Array(cars_list.length).fill("");
+
+    for (let i = 0; i < times; i++) {
+      cars_list.forEach((car, index) => {
+        const random = Math.floor(Math.random() * 10);
+        Console.print(random);
+      });
+    }
   }
 }
 
