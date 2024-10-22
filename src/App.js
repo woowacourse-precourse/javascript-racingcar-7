@@ -1,6 +1,7 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 const { Console } = MissionUtils;
+const { Random } = MissionUtils;
 async function carNameInput() {
   const carNames = await Console.readLineAsync(
     "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
@@ -15,14 +16,24 @@ async function countInput() {
   if (Number.isNaN(+count)) {
     throw new Error("[ERROR]");
   }
-  return count;
+  return +count;
+}
+
+function makeRandomNumber() {
+  return Random.pickNumberInRange(0, 9);
+}
+
+function isForward() {
+  const number = makeRandomNumber();
+  return number >= 4;
 }
 class App {
   async run() {
+    const racingGame = {};
     const Cars = await carNameInput();
-    Console.print(Cars);
     const Round = await countInput();
-    Console.print(Round);
+    Cars.map((car) => (racingGame[car] = 0));
+    isForward();
   }
 }
 
