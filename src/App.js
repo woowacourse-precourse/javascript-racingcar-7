@@ -1,5 +1,5 @@
-import { Console } from "@woowacourse/mission-utils";
-
+import { Console, MissionUtils } from "@woowacourse/mission-utils";
+// import { MissionUtils } from "@woowacourse/mission-utils";
 class App {
   async run() {
     const cars = await Console.readLineAsync(
@@ -13,7 +13,7 @@ class App {
     Console.print("실행 결과");
     for (let i = 0; i < times; i++) {
       cars_list.forEach((car, index) => {
-        const random = Math.floor(Math.random() * 10);
+        const random = MissionUtils.Random.pickNumberInRange(0, 9);
         // Console.print(random);
         if (random >= 4) {
           rail[index] += "-";
