@@ -18,7 +18,7 @@
 1. 이름의 개수가 많은 경우에 대해서 우승자를 뽑아낼 때 다시 선형 검색을 할 경우 효율성이 떨어지므로 최댓값을 기억하여 최적화(feat/optimization)
 
 ## 현재 개발 추이
-- [] input from console
+- [X] input from console
 - [] seperated By seperator
 - [] create Random boolean
 - [] who is winner?
