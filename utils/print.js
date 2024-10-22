@@ -1,5 +1,5 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 
-export default function print(message) {
-    MissionUtils.Console.print(message);
+export default function print(...message) {
+    MissionUtils.Console.print(message.join(' '));
 }

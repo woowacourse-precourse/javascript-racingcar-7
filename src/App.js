@@ -1,4 +1,4 @@
-import { input, print } from '../utils/index.js';
+import { input, print, getRandom } from '../utils/index.js';
 
 class App {
     constructor() {
@@ -18,12 +18,14 @@ class App {
                         return 'error';
                     }
                 }
+                return 'correct';
             },
             raceCount: (value) => {
                 const num = Number(value);
                 if (isNaN(num)) return 'error';
                 if (num < 0) return 'error';
                 if (num !== Math.floor(num)) return 'error';
+                return 'correct';
             },
         };
     }
@@ -35,21 +37,48 @@ class App {
         };
     }
 
-    async getValues() {
+    async getCars() {
         const cars = await input(
             '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)',
             this.error.cars
         );
+
+        this.setState(
+            'cars',
+            cars.split(',').map((car) => [car, 0])
+        );
+    }
+
+    async getRaceCount() {
         const raceCount = await input(
             '시도할 횟수는 몇 회인가요?',
             this.error.raceCount
         );
-        this.setState('cars', cars.split(','));
         this.setState('raceCount', Number(raceCount));
     }
+
+    startRace() {
+        print('실행 결과');
+        for (let cur = 0; cur < this.state.raceCount; cur++) {
+            const newCars = this.state.cars.map(([name, movement]) => {
+                if (getRandom() >= 4) {
+                    return [name, movement + 1];
+                } else {
+                    return [name, movement];
+                }
+            });
+            this.setState('cars', newCars);
+            this.state.cars.forEach((car) => {
+                print(`${car[0]} : ${'-'.repeat(car[1])}`);
+            });
+            print('');
+        }
+    }
+
     async run() {
-        await this.getValues();
-        print(this.state);
+        await this.getCars();
+        await this.getRaceCount();
+        this.startRace();
     }
 }
 
