@@ -43,6 +43,22 @@ class Validator {
   }
 }
 
+class RaceController{
+
+  movePlayersRandomly(peopleList){
+
+    const updatedList = [...peopleList];
+
+    for (let i = 0; i< peopleList.length; i++){
+      const num = Random.pickNumberInRange(0,9);
+      if (num >= 4){
+        updatedList[i] += 1;
+      }
+    }
+    return updatedList;
+  }
+}
+
 
 class App {
   constructor (){
