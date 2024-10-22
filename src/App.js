@@ -76,11 +76,12 @@ class App {
     }
 
     showRaceResult() {
-        const sortedCars = [...this.state.cars].sort((a, b) => b[1] - a[1]);
-        const maxMovement = sortedCars[0][1];
+        const maxMovement = Math.max(
+            ...this.state.cars.map(([_, count]) => count)
+        );
         const winners = [];
-        for (let i = 0; i < sortedCars.length; i++) {
-            const [name, movement] = sortedCars[i];
+        for (let i = 0; i < this.state.cars.length; i++) {
+            const [name, movement] = this.state.cars[i];
             if (movement === maxMovement) winners.push(name);
             else break;
         }
