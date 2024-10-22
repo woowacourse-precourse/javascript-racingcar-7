@@ -33,7 +33,7 @@ function printRacingGame(carsNames, game) {
   game.map((_, index) => {
     Console.print(`${carsNames[index]} : ${"-".repeat(game[index])}`);
   });
-  Console.print("\n");
+  Console.print("");
 }
 
 function startGame(game, round, carNames) {
@@ -45,14 +45,23 @@ function startGame(game, round, carNames) {
     });
     printRacingGame(carNames, game);
   }
+  return game;
 }
 
+function getWinners(raceResults, carNames) {
+  const topScore = Math.max(...raceResults);
+  const winners = carNames.filter(
+    (_, index) => raceResults[index] === topScore
+  );
+  Console.print(`최종 우승자 : ${winners.join(", ")}`);
+}
 class App {
   async run() {
     const cars = await carNameInput();
     const round = await roundInput();
     let racingGame = new Array(cars.length).fill(0);
-    startGame(racingGame, round, cars);
+    const finalResult = startGame(racingGame, round, cars);
+    getWinners(finalResult, cars);
   }
 }
 
