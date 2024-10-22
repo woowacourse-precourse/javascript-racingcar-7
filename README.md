@@ -23,7 +23,7 @@
 - [X] create Random boolean
 - [X] who is winner?
 - [] Error handling
-- [] logging
+- [X] logging
 
 ### nvm으로 node버전 관리(다른 프로젝트와 병행 시)
 
