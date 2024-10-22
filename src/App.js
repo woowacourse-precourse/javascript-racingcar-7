@@ -60,19 +60,25 @@ class App {
     startRace() {
         print('실행 결과');
         for (let cur = 0; cur < this.state.raceCount; cur++) {
-            const newCars = this.state.cars.map(([name, movement]) => {
-                if (getRandom() >= 4) {
-                    return [name, movement + 1];
-                } else {
-                    return [name, movement];
-                }
-            });
-            this.setState('cars', newCars);
-            this.state.cars.forEach((car) => {
-                print(`${car[0]} : ${'-'.repeat(car[1])}`);
-            });
+            this.moveCars();
+            this.showRaceStatus();
             print('');
         }
+    }
+    moveCars() {
+        const newCars = this.state.cars.map(([name, movement]) => {
+            if (getRandom() >= 4) {
+                return [name, movement + 1];
+            } else {
+                return [name, movement];
+            }
+        });
+        this.setState('cars', newCars);
+    }
+    showRaceStatus() {
+        this.state.cars.forEach((car) => {
+            print(`${car[0]} : ${'-'.repeat(car[1])}`);
+        });
     }
 
     showRaceResult() {
