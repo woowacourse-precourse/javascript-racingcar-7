@@ -19,7 +19,7 @@
 
 ## 현재 개발 추이
 - [X] input from console
-- [] seperated By seperator
+- [X] seperated By seperator
 - [] create Random boolean
 - [] who is winner?
 - [] Error handling
