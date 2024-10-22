@@ -22,7 +22,7 @@
 - [X] seperated By seperator
 - [X] create Random boolean
 - [X] who is winner?
-- [] Error handling
+- [X] Error handling
 - [X] logging
 - [X] middle test
 - [] last test
