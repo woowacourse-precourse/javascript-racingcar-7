@@ -1,4 +1,4 @@
-import { createCars } from './utils/createCars';
+import { createCars } from './models/createCars';
 import {
   getValidateNameInput,
   getValidateRoundCountInput,
