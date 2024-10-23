@@ -1,10 +1,10 @@
 class Racing {
-  #tryCount;
+  #totalRounds;
 
   #cars;
 
-  constructor(tryCount, cars) {
-    this.#tryCount = tryCount;
+  constructor(totalRounds, cars) {
+    this.#totalRounds = totalRounds;
     this.#cars = cars;
   }
 
@@ -15,9 +15,9 @@ class Racing {
   }
 
   play() {
-    const tryCount = this.#tryCount;
+    const totalRounds = this.#totalRounds;
     const rounds = Array.from(
-      { length: tryCount },
+      { length: totalRounds },
       (arrayLike, index) => index + 1,
     );
 
