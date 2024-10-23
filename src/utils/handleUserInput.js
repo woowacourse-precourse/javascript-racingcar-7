@@ -3,11 +3,15 @@ import { validateCars, validateCount }  from "./validate.js";
 
 export default async function handleUserInput() {
     const carNameInput = await getCarName();
-    const cars = validateCars(carNameInput);
+    const carName = validateCars(carNameInput);
     const countInput = await getExecutionCount();
     const executionCount = validateCount(countInput);
     
-    const carAndCount = { cars, executionCount };
+    const carAndCount = {carName, moveCount:{}, executionCount};
+    
+    for (const name of carName) {
+        carAndCount.moveCount[name] = '';
+    }   
 
     return carAndCount;
 }
