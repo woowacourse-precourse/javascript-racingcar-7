@@ -21,6 +21,10 @@ class Validator {
     if (repeatCount < 0) {
       throw new Error('음수는 입력할 수 없습니다');
     }
+
+    if (!Number.isSafeInteger(repeatCount)) {
+      throw new Error('실수, 정상 범위를 벗어난 정수는 입력할 수 없습니다');
+    }
   }
 }
 
