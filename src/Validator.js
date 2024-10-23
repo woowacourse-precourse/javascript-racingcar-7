@@ -17,6 +17,10 @@ class Validator {
     if (repeatCount === 0) {
       throw new Error('빈 문자열 또는 0은 입력할 수 없습니다');
     }
+
+    if (repeatCount < 0) {
+      throw new Error('음수는 입력할 수 없습니다');
+    }
   }
 }
 
