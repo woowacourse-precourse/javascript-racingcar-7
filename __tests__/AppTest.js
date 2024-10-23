@@ -151,4 +151,15 @@ describe('App 클래스 테스트', () => {
       '[ERROR] 이름은 영문자만 가능합니다'
     );
   });
+
+  test('모든 이름이 같은 경우 예외처리', async () => {
+    Console.readLineAsync.mockResolvedValueOnce('pobi,pobi');
+    Console.readLineAsync.mockResolvedValueOnce('5');
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(
+      '[ERROR] 모든 플레이어들의 이름이 같습니다'
+    );
+  });
 });
