@@ -17,8 +17,6 @@ export const validateCarNameList = (carNameList) => {
   if (carNameList.split(",").length === 1) {
     throw new Error(ONE_CAR_MESSAGE);
   }
-
-  return true;
 };
 
 export const validateTryCount = (tryCount) => {
@@ -33,6 +31,4 @@ export const validateTryCount = (tryCount) => {
   if (isNaN(Number(tryCount))) {
     throw new Error(NOT_NUMBER_MESSAGE);
   }
-
-  return true;
 };

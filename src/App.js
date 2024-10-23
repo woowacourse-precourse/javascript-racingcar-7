@@ -1,13 +1,25 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 import Car from "./Car.js";
 import { validateCarNameList, validateTryCount } from "./validation.js";
 
 class App {
+  #tryCount;
+  #cars;
+  constructor() {
+    this.#tryCount = 0;
+    this.#cars = [];
+  }
+
   async run() {
-    const carNameList = await this.readCarName();
-    const tryCount = await this.readTryCount();
+    let carNameList = await this.readCarName();
     validateCarNameList(carNameList);
+    const tryCount = await this.readTryCount();
     validateTryCount(tryCount);
+    this.#tryCount = tryCount;
+
+    this.generateCars(carNameList);
+    this.printGameStart();
+    this.generateGame();
   }
 
   async readCarName() {
@@ -18,6 +30,34 @@ class App {
 
   async readTryCount() {
     return await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+  }
+
+  generateCars(carNameListProp) {
+    const carNameList = carNameListProp.split(",");
+    Console.print(carNameList);
+    carNameList.forEach((elem) => this.#cars.push(new Car(elem)));
+  }
+
+  generateGame() {
+    for (let i = 0; i < this.#tryCount; i++) {
+      this.generateGamePerCycle();
+    }
+  }
+  generateGamePerCycle() {
+    this.#cars.forEach((elem) => {
+      this.generateCarMove(elem);
+    });
+  }
+  generateCarMove(car) {
+    const randomNumber = this.calculateRandomNumber();
+    Console.print(car.getCarName() + randomNumber);
+  }
+  calculateRandomNumber() {
+    return Random.pickNumberInRange(0, 9);
+  }
+
+  printGameStart() {
+    Console.print("실행 결과");
   }
 }
 
