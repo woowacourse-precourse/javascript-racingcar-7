@@ -9,6 +9,7 @@ export function printProgress(carsObject) {
 
 export function printResult(carsObject) {
     let maxDistance = 0;
+
     carsObject.forEach((car) => {
         maxDistance = Math.max(car.distance, maxDistance);
     });
@@ -17,5 +18,5 @@ export function printResult(carsObject) {
         .filter((car) => car.distance === maxDistance)
         .map((car) => car.name);
 
-    Console.print(`최종 우승자 : ${winners.join(',')}`)
+    Console.print(`최종 우승자 : ${winners.join(',')}`);
 }
