@@ -12,6 +12,10 @@ class Car {
   async getRandomNumber() {
     return Random.pickNumberInRange(0, 9);
   }
+
+  async progress() {
+    this.#position += 1;
+  }
 }
 
 export default Car;
