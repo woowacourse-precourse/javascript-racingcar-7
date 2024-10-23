@@ -25,23 +25,23 @@ class App {
 
     validatePositiveInteger(tryCount);
 
-    const carPositions = {};
+    const carPositionObject = {};
     for (let i = 0; i < tryCount; i++) {
       for (const carName of carNameList) {
         const randomNum = pickNumberInRange(0, 9);
         const isGo = randomNum >= 4;
         if (isGo) {
-          if (carPositions[carName]) {
-            carPositions[carName]++;
+          if (carPositionObject[carName]) {
+            carPositionObject[carName]++;
           } else {
-            carPositions[carName] = 1;
+            carPositionObject[carName] = 1;
           }
         }
-        const positionBlock = "-".repeat(carPositions[carName] ?? 0);
+        const positionBlock = "-".repeat(carPositionObject[carName] ?? 0);
         print(`${carName} : ${positionBlock}`);
       }
     }
-    const carPositionEntries = Object.entries(carPositions);
+    const carPositionEntries = Object.entries(carPositionObject);
     carPositionEntries.sort((a, b) => b[1] - a[1]);
     const winPosition = carPositionEntries[0][1];
     const winnerList = carPositionEntries
