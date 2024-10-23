@@ -17,6 +17,7 @@ import {
 } from "./utils";
 
 class App {
+  #MOVEMENT_CHARACTER = "-";
   async run() {
     const userInputCarNames = await readLineAsync(INPUT_MESSAGE_CAR_NAMES);
     const userInputTryCount = await readLineAsync(INPUT_MESSAGE_TRY_COUNT);
@@ -33,7 +34,10 @@ class App {
         const randomNum = pickNumberInRange(0, 9);
         const isGo = randomNum >= 4;
         if (isGo) carPositionObject[carName]++;
-        const positionBlock = "-".repeat(carPositionObject[carName] ?? 0);
+
+        const positionBlock = this.#MOVEMENT_CHARACTER.repeat(
+          carPositionObject[carName] ?? 0
+        );
         print(`${carName} : ${positionBlock}`);
       }
     }
