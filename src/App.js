@@ -1,6 +1,15 @@
 import { Console, Random } from "@woowacourse/mission-utils";
 import Car from "./Car.js";
 import { validateCarNameList, validateTryCount } from "./validation.js";
+import {
+  CAR_NAME_INPUT_MESSAGE,
+  TRY_COUNT_INPUT_MESSAGE,
+} from "./constants/inputMessage.js";
+import {
+  EMPTY_MESSAGE,
+  EXECUTE_RESULT_MESSAGE,
+  WINNER_MESSAGE,
+} from "./constants/outputMessage.js";
 
 class App {
   #tryCount;
@@ -25,29 +34,26 @@ class App {
   }
 
   async readCarName() {
-    return await Console.readLineAsync(
-      "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
-    );
+    return await Console.readLineAsync(CAR_NAME_INPUT_MESSAGE);
   }
 
   async readTryCount() {
-    return await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+    return await Console.readLineAsync(TRY_COUNT_INPUT_MESSAGE);
   }
 
   generateCars(carNameListProp) {
     const carNameList = carNameListProp.split(",");
-    Console.print(carNameList);
     carNameList.forEach((elem) => this.#cars.push(new Car(elem)));
   }
 
   printGameStart() {
-    Console.print("실행 결과");
+    Console.print(EXECUTE_RESULT_MESSAGE);
   }
 
   generateGame() {
     for (let i = 0; i < this.#tryCount; i++) {
       this.generateGamePerCycle();
-      Console.print("");
+      Console.print(EMPTY_MESSAGE);
     }
   }
 
@@ -98,7 +104,7 @@ class App {
   }
 
   printGameResult(winner) {
-    Console.print(`최종 우승자 : ${winner.join(", ")}`);
+    Console.print(WINNER_MESSAGE + winner.join(", "));
   }
 }
 
