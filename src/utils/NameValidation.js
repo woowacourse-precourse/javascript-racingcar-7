@@ -3,7 +3,7 @@ import {
   MORE_THAN_FIVE_LETTERS,
   SAME_CAR_NAME_ERROR,
   ONE_CAR_NAME_ERROR,
-} from './constants/Error';
+} from '../constants/Error';
 
 export default function isValidName(input) {
   if (input === '') {
@@ -22,7 +22,8 @@ export default function isValidName(input) {
       throw new Error(SAME_CAR_NAME_ERROR);
     }
     return true;
-  } else if (carList.length === 1) {
+  }
+  if (carList.length === 1) {
     throw new Error(ONE_CAR_NAME_ERROR);
   }
   return true;
