@@ -27,6 +27,9 @@ export default [
       'class-methods-use-this': 'off',
       // package import를 제외한 모든 import 구문에 대해 확장자를 사용하도록 강제
       'import/extensions': ['error', 'ignorePackages'],
+      // 사용하지 않는 변수 오류 비활성화
+      'no-unused-vars': 'off',
+      'prefer-const': 'off',
     },
   },
   {
