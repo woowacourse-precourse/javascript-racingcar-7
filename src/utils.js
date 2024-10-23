@@ -25,10 +25,12 @@ export const validatePositiveInteger = (num) => {
   if (!Number.isInteger(num)) throw new Error(ERROR_MESSAGE_NOT_INTEGER);
 };
 
-export const getObjectWithZeroValue = (array) => {
-  const object = {};
+export const getMapWithZeroValue = (array) => {
+  const map = new Map();
   for (const item of array) {
-    object[item] = 0;
+    map.set(item, 0);
   }
-  return object;
+  return map;
 };
+
+export const getMaxValueInMap = (map) => Math.max(...map.values());

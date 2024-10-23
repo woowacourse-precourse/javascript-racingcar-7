@@ -41,6 +41,8 @@ class App {
         print(`${carName} : ${traceString}`);
       }
     }
+
+    const maxTrace = getMaxValueInMap(carTraceMap);
   }
   validateCarNameLength(carNameList, maxLength) {
     const isAnyCarNameLengthOverMax = carNameList.some(
