@@ -1,9 +1,10 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 
 // TODO: ApplicationTest.js 테스트 파일은 현재 skip 상태
 class App {
   async run() {
-    getUserInputCarName();
+    await getUserInputCarName();
+    const moveCount = await Console.readLineAsync('시도할 횟수는 몇 회인가요?');
   }
 }
 
@@ -26,8 +27,11 @@ function validatePlayerNames(playerNames) {
     throw new Error('[ERROR]');
 }
 
-// getUserInputMoveCount
-// 이건 굳이 함수로 안 빼고 그냥 변수로 가져오면 될듯
+function createCarRacing(playerNames, moveCount) {
+  for (i = 0; i < moveCount; i++) {
+    displayResult(playerNames);
+  }
+}
 
 // createCarRaacing -> 얘를 5회 반복
 // 변수 돌면서 map으로 getRandomNumber
@@ -36,7 +40,7 @@ function validatePlayerNames(playerNames) {
 
 // getRandomNumber
 // 인자마다 랜덤 API 돌면서 4 이상하고 true / false 담긴 벼앨 반환
-// MissionUtils.Random.pickNumberInRange(0, 9);
+// Random.pickNumberInRange(0, 9);
 
 // displayResult
 // getRandomNumber return값을 바탕으로
