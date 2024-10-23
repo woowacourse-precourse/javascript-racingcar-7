@@ -1,6 +1,6 @@
 import { ERROR_MESSAGES, throwError } from '../Model/Error.js';
-import { checkDuplicate } from '../Util/Util.js';
-import { consecutiveDelimiterPattern, isNumber } from '../Util/Regex.js';
+import { checkDuplicate } from '../Util/util.js';
+import { consecutiveDelimiterPattern, isNumber } from '../Util/regex.js';
 
 function validateCarNames(carNames) {
   if (consecutiveDelimiterPattern.test(carNames)) {
