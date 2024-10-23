@@ -11,19 +11,20 @@ export class MainController{
             const readInput = await InputView.readInput()
             const rawNames =  readInput.rawNames
             const raceCount = readInput.raceCount
-            if(raceCount<=0){
-                throw new Error("경주 횟수는 음수가 될 수 없습니다.")
-            }
+    
+            /*인풋 유효성 검사*/
+            InputValid.isEmptyInput(rawNames,raceCount)
+            InputValid.isRaceCountNum(raceCount)
+            InputValid.isRaceCountPositive(raceCount)
+
             const names = sepateInput(rawNames)
             InputValid.validPlayerName(names)
-
-            //Console.print("\n")
             OutputView.printRace();
             const totalWinner = decisionFinalWinner(raceCount,names)
             const finalWinner = finalRace(totalWinner)
             OutputView.printFinalResult(finalWinner)
-
         }catch(error){
+            console.error("에러 발생:", error.message);
             throw new Error("[ERROR]")
         }
     }

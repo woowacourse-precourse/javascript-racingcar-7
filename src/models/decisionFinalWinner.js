@@ -13,7 +13,6 @@ export const decisionFinalWinner=(raceCount,names)=>{
         var winners=[]
         winners = oneRace(names)
     }
-
     winners.forEach(name=>{
         totalWinner[name]+=1
     })
