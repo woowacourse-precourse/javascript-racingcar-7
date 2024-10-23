@@ -15,9 +15,17 @@ class CarNamesValidator {
         });
     }
 
+    checkDuplicateCarName(carNames) {
+        const uniqueCarNames = new Set(carNames);
+        if (uniqueCarNames.size !== carNames.length) {
+            throw new Error("[ERROR] 자동차 이름은 중복될 수 없습니다.");
+        }
+    }
+
     validateCarNames(carNames) {
         this.checkCarNamesLength(carNames);
         this.checkEmptyCarName(carNames);
+        this.checkDuplicateCarName(carNames);
     }
 }
 export default CarNamesValidator;
