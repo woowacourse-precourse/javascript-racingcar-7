@@ -9,7 +9,6 @@ class CarList {
     let carNameList = [];
     carNameList = carName.split(',');
     this.nameValidator.runAllFunction(carNameList);
-    this.createCarObj(carNameList);
     return carNameList;
   }
 
