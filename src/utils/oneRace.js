@@ -1,4 +1,5 @@
 
+import { Console } from "@woowacourse/mission-utils"
 import makeRandom from "./MakeRamdom"
 
 //그냥 한번에 계산 해버려?
@@ -10,6 +11,10 @@ export const oneRace = (names)=>{
         if(go>=4){
             winners.push(name)
         }
+        printPlayerGoTo(name,ref)
     })
     return winners//["winner1","winner2"]//배열을 리턴
+}
+const printPlayerGoTo=(name,ref)=>{
+    Console.print(`${name} : ${ref}`)
 }
