@@ -10,6 +10,7 @@ jest.mock('@woowacourse/mission-utils', () => ({
 describe('App 클래스 테스트', () => {
   test('자동차 이름 문자열 입력 받기', async () => {
     Console.readLineAsync.mockResolvedValueOnce('pobi,woni,jun');
+    Console.readLineAsync.mockResolvedValueOnce('5');
 
     const app = new App();
     await app.run();
@@ -55,5 +56,14 @@ describe('App 클래스 테스트', () => {
     expect(Console.readLineAsync).toHaveBeenCalledWith(
       '시도할 횟수는 몇 회인가요?\n'
     );
+  });
+
+  test('시도할 횟수에 NaN가 입력됐을 때 예외처리', async () => {
+    Console.readLineAsync.mockResolvedValueOnce('pobi,woni,jun');
+    Console.readLineAsync.mockResolvedValueOnce('abc');
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR] 숫자를 입력해야합니다');
   });
 });
