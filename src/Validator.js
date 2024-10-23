@@ -25,7 +25,7 @@ class Validator {
 
   static checkNames(names) {
     names.forEach((name) => {
-      if (names.length > 5) {
+      if (name.length > 5) {
         throw new Error('이름은 5글자를 넘을 수 없습니다');
       }
 
