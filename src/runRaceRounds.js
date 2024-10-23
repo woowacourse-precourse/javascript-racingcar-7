@@ -1,9 +1,9 @@
 import { Console } from '@woowacourse/mission-utils';
 
-const runRepeat = function runRepeat(cars, repeatCount) {
+const runRaceRounds = function runRaceRounds(cars, roundCount) {
   Console.print('\n실행 결과');
 
-  for (let step = 0; step < repeatCount; step++) {
+  for (let round = 0; round < roundCount; round++) {
     cars.forEach((car) => {
       car.tryMove();
       car.printStatus();
@@ -14,4 +14,4 @@ const runRepeat = function runRepeat(cars, repeatCount) {
   }
 };
 
-export default runRepeat;
+export default runRaceRounds;

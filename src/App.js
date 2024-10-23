@@ -1,6 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import Car from './Car.js';
-import runRepeat from './runRepeat.js';
+import runRaceRounds from './runRaceRounds.js';
 import Validator from './Validator.js';
 import printWinners from './printWinners.js';
 
@@ -13,7 +13,7 @@ class App {
       Validator.nameString(inputString);
 
       const nameArray = inputString.split(',');
-      Validator.nameArray(nameArray);
+      Validator.names(nameArray);
 
       const carArray = nameArray.map((name) => new Car(name));
 
@@ -22,7 +22,7 @@ class App {
       );
       Validator.repeatCount(repeatCount);
 
-      runRepeat(carArray, repeatCount);
+      runRaceRounds(carArray, repeatCount);
 
       printWinners(carArray);
     } catch (error) {
