@@ -16,6 +16,10 @@ class Car {
       this.#distance += 1;
     }
   }
+
+  static findFarthest(distanceA, distanceB) {
+    return distanceB - distanceA;
+  }
 }
 
 export default Car;
