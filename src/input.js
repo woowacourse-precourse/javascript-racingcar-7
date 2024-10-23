@@ -2,8 +2,10 @@ import {Console} from '@woowacourse/mission-utils'
 import {validateCars, validateCount} from "./validate.js";
 
 export async function input() {
-    await getInputCars();
-    await getInputCount();
+    const cars =  await getInputCars();
+    const count =  await getInputCount();
+
+    return {cars, count}
 }
 
 export async function getInputCars() {
