@@ -17,6 +17,13 @@ class Car {
     }
   }
 
+  driving() {
+    this.#move();
+
+    const currentDistance = this.#distance;
+    return currentDistance;
+  }
+
   static findFarthest(distanceA, distanceB) {
     return distanceB - distanceA;
   }
