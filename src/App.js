@@ -11,6 +11,7 @@ class App {
   async run() {
     try {
       const carNames = await this.inputHandler.carNamesInput();
+      const count = await this.inputHandler.countNumInput();
       this.printCarNames(carNames);
     } catch (error) {
       this.outputHandler.printError(error);

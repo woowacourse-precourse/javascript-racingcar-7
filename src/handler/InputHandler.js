@@ -12,6 +12,10 @@ class InputHandler {
         return carNames;
     }
 
+    async countNumInput() {
+        const input = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+    }
+
     processTrimInput(input) {
         const carNames = input.split(',').map(name => name.trim());
         this.carNamesValidator.validateCarNames(carNames)
