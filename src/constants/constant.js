@@ -4,9 +4,9 @@ const CARRACE_START_CONDITION = Object.freeze({
   attemptMaxnumber: 30,
 });
 
-const SEPARATOR = Object.freeze({
-  carSeparator: ",",
-  winnerSeparator: ",",
+const LETTER = Object.freeze({
+  split: ",",
+  runResult: "-",
 });
 
-export { CARRACE_START_CONDITION, SEPARATOR };
+export { CARRACE_START_CONDITION, LETTER };
