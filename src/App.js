@@ -45,6 +45,7 @@ class App {
 
     const maxTrace = getMaxValueInMap(carTraceMap);
     const winnerCarList = getKeyListHasSameValueInMap(carTraceMap, maxTrace);
+    print(`${OUTPUT_MESSAGE_WINNER}${winnerCarList.join(", ")}`);
   }
   validateCarNameLength(carNameList, maxLength) {
     const isAnyCarNameLengthOverMax = carNameList.some(
