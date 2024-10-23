@@ -25,6 +25,16 @@ class InputValidation {
 
     throw new Error("[ERROR]: 중복된 자동차의 이름은 사용할 수 없어요.");
   }
+
+  static validateAttemptLimit(input) {
+    const parsedAttemptLimit = Number(input);
+
+    if (Number.isSafeInteger(parsedAttemptLimit) && parsedAttemptLimit >= 0) {
+      return;
+    }
+
+    throw new Error("[Error]: 시도할 횟수는 0 이상의 정수를 입력해주세요.");
+  }
 }
 
 export default InputValidation;

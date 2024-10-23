@@ -11,6 +11,7 @@ class RacingManager {
     this.#setCarList(carNameList);
 
     const attemptLimit = await InputView.readAttemptLimit();
+    InputValidation.validateAttemptLimit(attemptLimit);
   }
 
   #setCarList(carNameList) {
