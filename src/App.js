@@ -6,6 +6,7 @@ import {
   createErrorMessage,
   hasDuplicate,
   hasInvalidCarNameLength,
+  getTryCount,
 } from "./utils/index.js";
 
 class App {
@@ -14,6 +15,8 @@ class App {
       const carNames = await getCarNames();
       assertCondition(hasDuplicate(carNames), createErrorMessage(MESSAGES.DUPLICATE_CAR_NAME));
       assertCondition(hasInvalidCarNameLength(carNames), createErrorMessage(MESSAGES.INVALID_CAR_NAME_LENGTH));
+
+      const tryCount = await getTryCount();
     } catch (error) {
       Console.print(error.message);
       throw error;
