@@ -61,10 +61,10 @@
 ## 기능 구현 체크리스트
 
 - [ ] 입력모듈
-  - [ ] 문자열 입력 파싱함수
+  - [x] 문자열 입력 파싱함수
     - 제약조건)
-      - [ ] `@woowacourse/mission-utils` 에서 제공하는 `Console.readLineAsync()` 활용하기
-      - [ ] `,` 으로 자동차 이름 구분
+      - [x] `@woowacourse/mission-utils` 에서 제공하는 `Console.readLineAsync()` 활용하기
+      - [x] `,` 으로 자동차 이름 구분
   - [ ] 자동차 생성함수
     - 제약조건)
       - [ ] 자동차의 개수가 0 이하인 경우
