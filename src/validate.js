@@ -4,16 +4,30 @@ export function validateCars(cars) {
     const validLength =  carsArray.every((name) => name.length <= 5)
 
     if (!cars || cars.trim() === '') {
-        throw new Error('[ERROR]')
+        throw new Error("[ERROR]")
     }
 
     if(!regex.test(cars)) {
-        throw new Error('[ERROR]')
+        throw new Error("[ERROR]")
     }
 
     if(!validLength) {
-        throw new Error('[ERROR]')
+        throw new Error("[ERROR]")
     }
 
     return cars
+}
+
+export function validateCount(count) {
+    if (!count || count.trim() === '') {
+        throw new Error("[ERROR]")
+    }
+
+    const parsNumber = parseInt(count, 10)
+
+    if(isNaN(parsNumber)) {
+        throw new Error("[ERROR]")
+    }
+
+    return count
 }

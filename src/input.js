@@ -1,9 +1,9 @@
 import {Console} from '@woowacourse/mission-utils'
-import {validateCars} from "./validate.js";
+import {validateCars, validateCount} from "./validate.js";
 
 export async function input() {
-    await getInputCars()
-    await getInputCount()
+    await getInputCars();
+    await getInputCount();
 }
 
 export async function getInputCars() {
@@ -15,5 +15,5 @@ export async function getInputCars() {
 export async function getInputCount() {
     const count = await Console.readLineAsync('시도할 횟수는 몇 회인가요?')
 
-    return count
+    return validateCount(count);
 }
