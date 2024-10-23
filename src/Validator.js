@@ -3,10 +3,6 @@ class Validator {
     if (!nameString.trim()) {
       throw new Error('공백이 입력됐습니다');
     }
-
-    if (!nameString.includes(',')) {
-      throw new Error('플레이어는 1명일 수 없습니다');
-    }
   }
 
   static repeatCount(repeatCount) {
@@ -37,6 +33,10 @@ class Validator {
         throw new Error('이름은 영문자만 가능합니다');
       }
     });
+
+    if (nameArray.length === 1) {
+      throw new Error('플레이어는 1명일 수 없습니다');
+    }
 
     if (nameArray.every((name) => name === nameArray[0])) {
       throw new Error('모든 플레이어들의 이름이 같습니다');
