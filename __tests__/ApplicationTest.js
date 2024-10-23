@@ -60,7 +60,7 @@ describe('자동차 경주', () => {
     await expect(app.run()).rejects.toThrow('[ERROR]');
   });
 
-  test('문자열 파싱 함수', async () => {
+  test('문자열 올바른 경우 , 를 기준으로 배열을 반환', async () => {
     //given
     const inputs = 'pobi,woni,jun';
 
@@ -69,5 +69,13 @@ describe('자동차 경주', () => {
 
     //then
     await expect(cars).toEqual(['pobi', 'woni', 'jun']);
+  });
+
+  test('문자열의 길이가 0 인 경우 예외를 발생', async () => {
+    //given
+    const inputs = '';
+
+    //when, then
+    await expect(() => parseCarString(inputs)).toThrow('[ERROR]');
   });
 });
