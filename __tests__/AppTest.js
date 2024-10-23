@@ -35,7 +35,18 @@ describe('App 클래스 테스트', () => {
     await expect(app.run()).rejects.toThrow('[ERROR] 공백이 입력됐습니다');
   });
 
+  test('입력값이 이름 1개 일때 예외 발생', async () => {
+    Console.readLineAsync.mockResolvedValueOnce('pobi');
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(
+      '[ERROR] 플레이어는 1명일 수 없습니다'
+    );
+  });
+
   test('시도할 횟수 입력 받기', async () => {
+    Console.readLineAsync.mockResolvedValueOnce('pobi,woni,jun');
     Console.readLineAsync.mockResolvedValueOnce('5');
 
     const app = new App();
