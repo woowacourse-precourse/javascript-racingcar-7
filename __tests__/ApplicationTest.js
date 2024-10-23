@@ -75,4 +75,10 @@ describe("자동차 경주", () => {
       ERROR_MESSAGES.MINIMUM_TWO_CARS_REQUIRED
     );
   });
+
+  test("경주할 자동차 이름이 중복된 경우", () => {
+    expect(() => validateDuplicateCarNames(["emma", "sophia", "emma"])).toThrow(
+      ERROR_MESSAGES.DUPLICATE_CAR_NAMES
+    );
+  });
 });
