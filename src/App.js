@@ -1,5 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import Car from './Car.js';
+import runRepeat from './runRepeat.js';
 import Validator from './Validator.js';
 
 class App {
@@ -19,6 +20,8 @@ class App {
         await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n')
       );
       Validator.repeatCount(repeatCount);
+
+      runRepeat(carArray, repeatCount);
     } catch (error) {
       throw new Error(`[ERROR] ${error.message}`);
     }
