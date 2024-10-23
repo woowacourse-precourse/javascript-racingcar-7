@@ -6,12 +6,12 @@ function validateCarNames(carNames) {
   return carNamesSplit;
 }
 
-function validateFinishLine(finishLine) {
-  const parsedFinishLine = parseInt(finishLine, 10);
-  if (isNaN(parsedFinishLine) || parsedFinishLine < 1) {
+function validateRounds(Rounds) {
+  const parsedRounds = parseInt(Rounds, 10);
+  if (isNaN(parsedRounds) || parsedRounds < 1) {
     throw new Error('[ERROR] 시도 횟수는 1 이상이어야 합니다.');
   }
-  return parsedFinishLine;
+  return parsedRounds;
 }
 
-export { validateCarNames, validateFinishLine };
+export { validateCarNames, validateRounds };
