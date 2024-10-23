@@ -11,11 +11,20 @@ class App {
     }
   }
 
+  throwErrorMessage(msg) {
+    throw new Error(`[ERROR] ${msg}`);
+  }
+
   async run() {
     const inputCarNames = await Console.readLineAsync(
       "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
     );
-    const names = inputCarNames.split(",");
+    const names = inputCarNames.split(",").filter(v => v !== "");
+
+    if (names.length !== new Set(names).size) {
+      this.throwErrorMessage("자동차 이름이 중복되었습니다.");
+    }
+
     const movements = names.reduce((obj, name) => {
       obj.push([name, ""]);
 
@@ -25,6 +34,14 @@ class App {
     const count = await Console.readLineAsync(
       "시도할 횟수는 몇 회인가요?\n"
     ).then(Number);
+
+    if (isNaN(Math.sign(count))) {
+      this.throwErrorMessage("숫자만 입력하세요.");
+    }
+
+    if (Math.sign(count) < 1) {
+      this.throwErrorMessage("양수만 입력하세요.");
+    }
 
     Console.print("\n실행 결과");
 
