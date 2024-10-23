@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { Car } from './Car.js';
+import { Car } from './Model/Car.js';
 
 // 정확히 로그를 주는지 확인하기
 
@@ -19,22 +19,22 @@ class App {
       throw new Error('[ERROR] 시도 횟수는 1 이상이어야 합니다.');
     }
 
-    carNamesSplit.forEach(carName => cars.push(new Car(carName)));
-    if (cars.some(car => car.carName.length > 5)) {
+    carNamesSplit.forEach((carName) => cars.push(new Car(carName)));
+    if (cars.some((car) => car.carName.length > 5)) {
       throw new Error('[ERROR]: 문자가 너무 많습니다.');
     }
     // Console.print('실행 결과');
 
     for (let i = 0; i < finishLine; i++) {
-      cars.forEach(car => car.moveForward()); // 자동차 이동
-      cars.forEach(car => Console.print(car.toString()));
+      cars.forEach((car) => car.moveForward()); // 자동차 이동
+      cars.forEach((car) => Console.print(car.toString()));
     }
 
-    const maxPosition = Math.max(...cars.map(car => car.position));
+    const maxPosition = Math.max(...cars.map((car) => car.position));
 
     const winners = cars
-      .filter(car => car.position === maxPosition)
-      .map(car => car.carName);
+      .filter((car) => car.position === maxPosition)
+      .map((car) => car.carName);
 
     if (winners.length === 1) {
       Console.print(`최종 우승자 : ${winners[0]}`);
