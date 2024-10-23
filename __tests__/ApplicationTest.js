@@ -57,4 +57,10 @@ describe("자동차 경주", () => {
       ERROR_MESSAGES.INVALID_NAME_SEPARATOR
     );
   });
+
+  test("경주할 자동차 이름이 5자를 초과하는 경우", () => {
+    expect(() => validateCarNameLength(["emma", "sophia"])).toThrow(
+      ERROR_MESSAGES.CAR_NAME_TOO_LONG
+    );
+  });
 });
