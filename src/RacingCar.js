@@ -2,7 +2,7 @@ import handleUserInput from "./utils/handleUserInput.js";
 class RacingCar {
     
     async start() {
-        const cars = await handleUserInput();
+        const {cars , executionCount} = await handleUserInput();
     }
 
    

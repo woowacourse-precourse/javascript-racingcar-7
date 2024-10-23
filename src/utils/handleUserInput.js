@@ -1,13 +1,15 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
-import { validateCars } from "./validate.js";
+import { validateCars, validateCount }  from "./validate.js";
 
 export default async function handleUserInput() {
     const carNameInput = await getCarName();
-    const carName = validateCars(carNameInput);
-    const executionCount = await getExecutionCount();
-    const cars = { carName, executionCount };
+    const cars = validateCars(carNameInput);
+    const countInput = await getExecutionCount();
+    const executionCount = validateCount(countInput);
+    
+    const carAndCount = { cars, executionCount };
 
-    return cars;
+    return carAndCount;
 }
 
 async function getCarName() {
@@ -17,8 +19,7 @@ async function getCarName() {
 }
 
 async function getExecutionCount() {
-    const userInput = await MissionUtils.Console.readLineAsync('시도할 횟수를 입력해주세요.\n');
-    const executionCount = parseInt(userInput);
-    
+    const executionCount = await MissionUtils.Console.readLineAsync('시도할 횟수를 입력해주세요.(1 <= n <= 100)\n');
+
     return executionCount;
 }
