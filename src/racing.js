@@ -1,6 +1,7 @@
 import {isMoveForward} from "./random.js";
 import {input} from "./input.js";
-import {printProgress} from "./output.js";
+import { printProgress, printResult} from "./output.js";
+import {Console} from '@woowacourse/mission-utils'
 
 function parseStringToObject(validCars) {
     const carsArray = validCars.split(',')
@@ -22,10 +23,12 @@ export async function racingCars() {
 
     const carsObject = parseStringToObject(cars)
 
+    Console.print('실행결과')
     for(let i= 0; i < count; i++){
         moveCars(carsObject)
         printProgress(carsObject)
+        Console.print('\n')
     }
 
-    return carsObject;
+    printResult(carsObject)
 }
