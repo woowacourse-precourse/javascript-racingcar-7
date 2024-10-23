@@ -1,5 +1,10 @@
+import RacingCar from "./RacingCar.js";
+
 class App {
-  async run() {}
+	async run() {
+		const racingCar = new RacingCar();
+		await racingCar.runRacingCar();
+	}
 }
 
 export default App;
