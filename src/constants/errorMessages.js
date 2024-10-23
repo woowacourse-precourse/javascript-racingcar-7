@@ -1,5 +1,4 @@
 export const ERROR_MESSAGES = {
-  EMPTY_INPUT: '공백이 입력됐습니다',
   NOT_A_NUMBER: '숫자를 입력해야합니다',
   ZERO_OR_EMPTY: '빈 문자열 또는 0은 입력할 수 없습니다',
   NEGATIVE_NUMBER: '음수는 입력할 수 없습니다',

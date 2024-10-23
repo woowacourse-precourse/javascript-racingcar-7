@@ -2,12 +2,6 @@ import { ERROR_MESSAGES } from '../constants/errorMessages.js';
 import { MAX_NAME_LENGTH } from '../constants/gameRules.js';
 
 class Validator {
-  static checkNameString(nameString) {
-    if (!nameString.trim()) {
-      throw new Error(ERROR_MESSAGES.EMPTY_INPUT);
-    }
-  }
-
   static checkRoundCount(roundCount) {
     if (Number.isNaN(roundCount)) {
       throw new Error(ERROR_MESSAGES.NOT_A_NUMBER);
