@@ -7,12 +7,13 @@ const oneRace = (names)=>{
     ///전진하는 비열 Random.pickNumberInRange(0,9)
     const winners=[]
     names.forEach(name=>{
-        const{ref,go} =makeRandomNumber(name)
+        const{ref,go} = makeRandomNumber(name)
         if(go>=4){
             winners.push(name)
         }
         printPlayerGoTo(name,ref)
     })
+    Console.print("\n")
     return winners//["winner1","winner2"]//배열을 리턴
 }
 

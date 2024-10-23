@@ -1,8 +1,9 @@
 import { finalRace } from "../utils/finalRace.js";
 import { sepateInput } from "../utils/parser.js";
 import OutputView from "../views/outputView.js";
-import { decisionContoller } from "./decisionContoller.js";
+import { decisionFinalWinner } from "../models/decisionFinalWinner.js";
 import InputView from "../views/inputView.js";
+import { InputValid } from "../valid/inputValid.js";
 
 export class MainController{
     async run(){
@@ -14,13 +15,16 @@ export class MainController{
                 throw new Error("경주 횟수는 음수가 될 수 없습니다.")
             }
             const names = sepateInput(rawNames)
-            totalWinner = decisionContoller(raceCount,names)
-            finalWinner = finalRace(totalWinner)
-            OutputView.printRace()
+            InputValid.validPlayerName(names)
+
+            //Console.print("\n")
+            OutputView.printRace();
+            const totalWinner = decisionFinalWinner(raceCount,names)
+            const finalWinner = finalRace(totalWinner)
             OutputView.printFinalResult(finalWinner)
 
         }catch(error){
-            console.error("에러가 발생했습니다",error)
+            throw new Error("[ERROR]")
         }
     }
 }
