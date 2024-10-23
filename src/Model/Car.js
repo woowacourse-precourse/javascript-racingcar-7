@@ -2,9 +2,11 @@ import { Random } from '@woowacourse/mission-utils';
 
 export class Car {
   #carName;
+
   #position;
 
   static MIN_MOVE_THRESHOLD = 4;
+
   static MAX_RANDOM_VALUE = 10;
 
   constructor(carName) {

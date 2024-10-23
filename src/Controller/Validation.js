@@ -24,9 +24,21 @@ function validateCarNames(carNames) {
   return carNamesSplit;
 }
 
+// TODO: REFACTOR THIS
 function validateRounds(rounds) {
-  if (!isNumber.test(rounds)) {
-    throwError(ERROR_MESSAGES.ONLY_POSITIVE_INTEGER_ALLOWED);
+  const number = Number(rounds);
+  if (isNaN(number)) {
+    throw new Error('[ERROR] 입력은 숫자여야 합니다.');
+  }
+
+  // 정수가 아닌 경우
+  if (!Number.isInteger(number)) {
+    throw new Error('[ERROR] 입력은 정수여야 합니다.');
+  }
+
+  // 음수인 경우
+  if (number < 0) {
+    throw new Error('[ERROR] 입력은 양수여야 합니다.');
   }
   const parsedRounds = parseInt(rounds, 10);
   if (isNaN(parsedRounds) || parsedRounds < 1) {
