@@ -6,6 +6,7 @@ class App {
     );
     let inputCarName = await Console.readLineAsync("");
     let arrCarName = inputCarName.split(",");
+    Console.print("시도할 횟수는 몇 회인가요?");
   }
 }
 
