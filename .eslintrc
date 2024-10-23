@@ -1,0 +1,31 @@
+{
+  "extends": ["airbnb-base", "prettier"],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error",
+    "import/extensions": [
+      "error",
+      "always",
+      {
+        "js": "always",
+      },
+    ],
+    "max-depth": ["error", 2],
+    "id-match": [
+      "error",
+      "^[a-bA-Z0-9_]+$",
+      {
+        "onlyDeclarations": true,
+        "ignoreDestructuring": true,
+      },
+    ],
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "ConditionalExpression",
+        "message": "삼항 연산자는 사용 금지",
+      },
+    ],
+  },
+  "parserOptions": { "ecmaVersion": 2020, "sourceType": "module" },
+}
