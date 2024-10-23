@@ -15,7 +15,7 @@ class InputValidation {
   }
 
   static #validateDuplicatedCarName(input) {
-    if (new Set(input).length !== input.length) {
+    if (new Set(input).size !== input.length) {
       throw new Error("[ERROR]: 중복된 자동차의 이름은 사용할 수 없어요.");
     }
   }
