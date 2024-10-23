@@ -1,4 +1,4 @@
-import { ERROR_MESSAGES, MAX_NAME_LENGTH } from '../constants/constants';
+import { ERROR_MESSAGES, MAX_NAME_LENGTH } from './errorMessages';
 
 class Validator {
   static checkNameString(nameString) {

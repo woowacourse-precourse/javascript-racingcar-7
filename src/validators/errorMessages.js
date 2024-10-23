@@ -10,7 +10,3 @@ export const ERROR_MESSAGES = {
   ALL_NAMES_SAME: '모든 플레이어들의 이름이 같습니다',
   SAME_NAMES: '중복된 이름이 있습니다',
 };
-
-export const MAX_NAME_LENGTH = 5;
-export const MOVE_PROBABILITY_THRESHOLD = 4;
-export const RANDOM_RANGE = { MIN: 0, MAX: 9 };
