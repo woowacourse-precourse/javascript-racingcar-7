@@ -5,10 +5,21 @@ class App {
     const carNamesInput = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
     const carNames = carNamesInput.split(',');
 
-    const attemptCount = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+    const attemptCountInput = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+    const attemptCount = parseInt(attemptCountInput, 10);
+    if (carNamesInput === '' || attemptCount === '') {
+      throw new Error('[ERROR]');
+    }
+
+    carNames.forEach((carName) => {
+      if (carName.length >= 5) {
+        throw new Error('[ERROR]');
+      }
+    });
+
     Console.print('\n');
     Console.print('실행 결과');
-    // 5자가 넘는 이름이 나올 경우 에러 , 같은 이름일 경우 에러?
+    // 5자가 넘는 이름이 나올 경우 에러 , 같은 이름일 경우 에러?, 이름만 입력하고 끝내버리는 경우
 
     const record = {};
 
@@ -39,7 +50,6 @@ class App {
       }
     }
 
-    Console.print(record);
     Console.print(`최종 우승자 : ${winner.join(', ')}`);
   }
 }
