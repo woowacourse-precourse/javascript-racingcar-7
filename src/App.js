@@ -1,10 +1,10 @@
-import { createCars } from './models/createCars';
+import { createCars } from './models/createCars.js';
 import {
   getValidateNameInput,
   getValidateRoundCountInput,
-} from './utils/inputHandler';
-import Race from './models/Race';
-import WinnerCalculator from './models/WinnerCalculator';
+} from './utils/inputHandler.js';
+import Race from './models/Race.js';
+import WinnerCalculator from './models/WinnerCalculator.js';
 
 class App {
   async run() {

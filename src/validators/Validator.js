@@ -1,4 +1,4 @@
-import { ERROR_MESSAGES, MAX_NAME_LENGTH } from './errorMessages';
+import { ERROR_MESSAGES, MAX_NAME_LENGTH } from './errorMessages.js';
 
 class Validator {
   static checkNameString(nameString) {
