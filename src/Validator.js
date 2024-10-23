@@ -26,6 +26,14 @@ class Validator {
       throw new Error('실수, 정상 범위를 벗어난 정수는 입력할 수 없습니다');
     }
   }
+
+  static nameArray(nameArray) {
+    nameArray.forEach((name) => {
+      if (name.length > 5) {
+        throw new Error('이름은 5글자를 넘을 수 없습니다');
+      }
+    });
+  }
 }
 
 export default Validator;
