@@ -1,4 +1,3 @@
-import { Console } from "@woowacourse/mission-utils";
 import InputHandler from "../src/handler/InputHandler";
 
 jest.mock("@woowacourse/mission-utils", () => ({
