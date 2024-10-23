@@ -37,6 +37,10 @@ class Validator {
         throw new Error('이름은 영문자만 가능합니다');
       }
     });
+
+    if (nameArray.every((name) => name === nameArray[0])) {
+      throw new Error('모든 플레이어들의 이름이 같습니다');
+    }
   }
 }
 
