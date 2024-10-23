@@ -27,7 +27,8 @@ class App {
     /// 입력받은 문자열이 없는 경우에 대해서 에러 처리
     if(this.testCount === null || this.stringFromConsole === null ||
       this.testCount === '' || this.stringFromConsole === '' ||
-      this.testCount === undefined || this.stringFromConsole === undefined
+      this.testCount === undefined || this.stringFromConsole === undefined ||
+      this.testCount < 0
     ) {
       throw new Error(errorMessage);
     }
