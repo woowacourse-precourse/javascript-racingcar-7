@@ -20,7 +20,6 @@ class App {
         const randomNum = MissionUtils.Random.pickNumberInRange(0, 9);
         const isGo = randomNum >= 4;
         if (isGo) {
-          // carName에 1 더한다.
           if (carPositions[carName]) {
             carPositions[carName]++;
           } else {
