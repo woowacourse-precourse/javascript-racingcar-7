@@ -6,8 +6,7 @@ class RacingGame {
     this.cars = [];
   }
 
-  createCars(nameString) {
-    const names = nameString.split(',');
+  createCars(names) {
     this.cars = names.map((name) => new Car(name));
   }
 
@@ -36,8 +35,8 @@ class RacingGame {
     this.winner = winningCarsName.join(', ');
   }
 
-  play(nameString, tries) {
-    this.createCars(nameString);
+  play(names, tries) {
+    this.createCars(names);
     this.repeatTries(tries);
     this.getWinner(this.getHighestScore());
 
