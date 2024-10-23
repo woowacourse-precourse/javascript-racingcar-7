@@ -1,5 +1,3 @@
 import Car from './Car.js';
 
-export const createCars = (names) => {
-  return names.map((name) => new Car(name));
-};
+export const createCars = (names) => names.map((name) => new Car(name));
