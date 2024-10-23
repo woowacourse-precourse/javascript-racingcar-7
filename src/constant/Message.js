@@ -7,6 +7,7 @@ const MESSAGE = {
   GAME_ROUND_ERROR: '[ERROR] 게임 횟수를 숫자로 작성해주세요',
 
   GAME_RESULT_HEADER: '실행 결과',
+  GAME_WINNER_MESSAGE: '최종 우승자 : ',
 };
 
 export default MESSAGE;

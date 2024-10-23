@@ -12,10 +12,21 @@ class Winner {
 
     const distance = resultObj.map((result) => result.distance.length);
 
-    resultObj.map((result, index) => {
+    const getRankingObj = resultObj.map((result, index) => {
       const rank = sortedDistance.indexOf(distance[index]) + 1;
       return { ...result, ranking: rank };
     });
+    this.getWinner(getRankingObj);
+  }
+
+  getWinner(carObj) {
+    let winner = [];
+    carObj.map((car) => {
+      if (car.ranking === 1) {
+        winner.push(car.name);
+      }
+    });
+    this.outputView.winningResult(winner);
   }
 }
 

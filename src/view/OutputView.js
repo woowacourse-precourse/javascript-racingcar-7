@@ -15,6 +15,10 @@ class OutputView {
       Console.print(`${car.name} : ${car.distance}`);
     });
   }
+
+  winningResult(winner) {
+    Console.print(`${MESSAGE.GAME_WINNER_MESSAGE}${winner}`);
+  }
 }
 
 export default OutputView;
