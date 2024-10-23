@@ -9,6 +9,12 @@ class OutputView {
   gameResultHeader() {
     Console.print(MESSAGE.GAME_RESULT_HEADER);
   }
+
+  gameResult(carObj) {
+    carObj.forEach((car) => {
+      Console.print(`${car.name} : ${car.distance}`);
+    });
+  }
 }
 
 export default OutputView;

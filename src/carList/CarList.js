@@ -14,7 +14,7 @@ class CarList {
 
   createCarObj(carNameList) {
     const carList = carNameList.map((name) => ({
-      carName: name,
+      name,
       distance: '',
       ranking: 0,
     }));

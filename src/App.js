@@ -11,11 +11,11 @@ class App {
 
   async run() {
     const carNameList = await this.inputView.getCarNameInput();
-    const gameCount = await this.inputView.getGameCountInput();
+    const gameRound = await this.inputView.getGameCountInput();
     this.outputView.spacing();
     this.outputView.gameResultHeader();
 
-    this.moveCar.moveDistance(carNameList, gameCount);
+    const gameResult = this.moveCar.moveCar(carNameList, gameRound);
   }
 }
 
