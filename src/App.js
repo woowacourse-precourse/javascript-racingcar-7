@@ -27,7 +27,6 @@ class App {
     this.validateCarNameLength(carNameArray, 5);
 
     const tryCount = +userInputTryCount;
-
     validatePositiveInteger(tryCount);
 
     const carTraceMap = getMapWithZeroValue(carNameArray);
@@ -35,8 +34,9 @@ class App {
     for (let i = 0; i < tryCount; i++) {
       for (const carName of carNameArray) {
         const randomNum = pickNumberInRange(0, 9);
-        const isGo = randomNum >= 4;
-        if (isGo) carTraceMap.set(carName, carTraceMap.get(carName) + 1);
+        const isMoveForward = randomNum >= 4;
+        if (isMoveForward)
+          carTraceMap.set(carName, carTraceMap.get(carName) + 1);
 
         const traceString = getRepeatedString(
           this.#TRACE_CHARACTER,
