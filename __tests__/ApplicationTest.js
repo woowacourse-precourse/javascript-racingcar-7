@@ -146,7 +146,9 @@ describe("자동차 경주", () => {
 
       const app = new App();
 
-      await expect(app.run()).rejects.toThrow("[ERROR]");
+      await expect(app.run()).rejects.toThrow(
+        "[ERROR] 자동차 이름의 길이가 5 이상입니다."
+      );
     });
   });
 

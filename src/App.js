@@ -11,7 +11,7 @@ class App {
     const carNameList = userInputCarNames.split(",");
     for (const carName of carNameList) {
       if (carName.length > 5)
-        throw new Error("[Error] 자동차 이름의 길이가 5 이상입니다.");
+        throw new Error("[ERROR] 자동차 이름의 길이가 5 이상입니다.");
     }
     const tryCount = +userInputTryCount;
     const carPositions = {};
