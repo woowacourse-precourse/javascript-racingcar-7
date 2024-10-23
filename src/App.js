@@ -3,8 +3,9 @@ import { Console, Random } from '@woowacourse/mission-utils';
 // TODO: ApplicationTest.js 테스트 파일은 현재 skip 상태
 class App {
   async run() {
-    await getUserInputCarName();
+    const playerNames = await getUserInputCarName();
     const moveCount = await Console.readLineAsync('시도할 횟수는 몇 회인가요?');
+    createCarRacing(playerNames, moveCount);
   }
 }
 
@@ -28,15 +29,25 @@ function validatePlayerNames(playerNames) {
 }
 
 function createCarRacing(playerNames, moveCount) {
-  for (i = 0; i < moveCount; i++) {
+  for (let i = 0; i < moveCount; i++) {
     displayResult(playerNames);
+    Console.print('\n');
   }
 }
 
-// createCarRaacing -> 얘를 5회 반복
-// 변수 돌면서 map으로 getRandomNumber
-// true면 displayResult
-// 반복문 어딘가에 count를 넣어야할 것 같은데...
+// [ 'pobi', 'woni' ]
+function displayResult(playerNames) {
+  playerNames.forEach((player) => {
+    let score = 0;
+    if (Random.pickNumberInRange(0, 9) > 4) score++;
+    Console.print(`${player} : ${printHyphen(score)}\n`);
+  });
+  // 메소드마다 랜덤 돌려서 4 이상이면 카운트 + 1
+}
+
+function printHyphen(score) {
+  return '-'.repeat(score);
+}
 
 // getRandomNumber
 // 인자마다 랜덤 API 돌면서 4 이상하고 true / false 담긴 벼앨 반환
@@ -49,3 +60,5 @@ function createCarRacing(playerNames, moveCount) {
 // 아마도 카운트 계속 추가?
 
 // 시도횟수까지 반복
+
+const score = 0;
