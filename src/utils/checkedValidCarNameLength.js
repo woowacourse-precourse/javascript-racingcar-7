@@ -1,6 +1,9 @@
+import { errorMessages } from '../constant.js';
+
 export function checkedValidCarNameLength(carNames) {
-  if (carNames.length > 5) {
-    return false;
-  }
-  return true;
+  carNames.forEach((carName) => {
+    if (carName.length > 5) {
+      throw new Error(`${errorMessages.prefix} ${errorMessages.invalidCarNameLength}`);
+    }
+  });
 }
