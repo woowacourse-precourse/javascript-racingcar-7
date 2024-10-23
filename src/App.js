@@ -1,5 +1,4 @@
 import { Console } from '@woowacourse/mission-utils';
-import Car from './Car.js';
 import { carInput, countInput } from './utils/input.js';
 
 class App {
@@ -10,7 +9,7 @@ class App {
 
       Console.print(cars, count);
     } catch (e) {
-      throw new Error(e);
+      throw new Error(e.message);
     }
   }
 }
