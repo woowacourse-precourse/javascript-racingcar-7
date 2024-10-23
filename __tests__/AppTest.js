@@ -66,4 +66,15 @@ describe('App 클래스 테스트', () => {
 
     await expect(app.run()).rejects.toThrow('[ERROR] 숫자를 입력해야합니다');
   });
+
+  test('시도할 횟수에 0이 입력됐을 때 예외처리', async () => {
+    Console.readLineAsync.mockResolvedValueOnce('pobi,woni,jun');
+    Console.readLineAsync.mockResolvedValueOnce('    ');
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(
+      '[ERROR] 빈 문자열 또는 0은 입력할 수 없습니다'
+    );
+  });
 });
