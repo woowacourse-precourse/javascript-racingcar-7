@@ -1,4 +1,5 @@
 import {
+  MAX_NAME_MESSAGE,
   MINUS_NUMBER_MESSAGE,
   NOT_NUMBER_MESSAGE,
   ONE_CAR_MESSAGE,
@@ -6,17 +7,24 @@ import {
   ZERO_NUMBER_MESSAGE,
 } from "./constants/errorMessage.js";
 
-export const validateCarNameList = (carNameList) => {
+export const validateCarNameList = (carNameListProp) => {
   const WRONG_PATTERN = /[^A-Za-z,]/g;
 
-  const wrongPattern = carNameList.match(WRONG_PATTERN);
+  const wrongPattern = carNameListProp.match(WRONG_PATTERN);
   if (wrongPattern) {
     throw new Error(WRONG_SEPARATOR_MESSAGE);
   }
 
-  if (carNameList.split(",").length === 1) {
+  const carNameList = carNameListProp.split(",");
+  if (carNameList.length === 1) {
     throw new Error(ONE_CAR_MESSAGE);
   }
+
+  carNameList.forEach((elem) => {
+    if (elem.length > 5) {
+      throw new Error(MAX_NAME_MESSAGE);
+    }
+  });
 };
 
 export const validateTryCount = (tryCount) => {
