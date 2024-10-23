@@ -1,16 +1,16 @@
 import { Console } from "@woowacourse/mission-utils";
 
 class Car {
-  #carName;
+  #name;
   #progressCount;
 
-  constructor(carName) {
-    this.#carName = carName;
+  constructor(name) {
+    this.#name = name;
     this.#progressCount = 0;
   }
 
-  getCarName() {
-    return this.#carName;
+  getName() {
+    return this.#name;
   }
 
   getProgressCount() {

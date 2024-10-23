@@ -20,6 +20,8 @@ class App {
     this.generateCars(carNameList);
     this.printGameStart();
     this.generateGame();
+
+    this.generateGameResult();
   }
 
   async readCarName() {
@@ -50,9 +52,9 @@ class App {
   }
 
   generateGamePerCycle() {
-    this.#cars.forEach((elem) => {
-      this.generateCarMove(elem);
-      this.printCarmove(elem);
+    this.#cars.forEach((car) => {
+      this.generateCarMove(car);
+      this.printCarmove(car);
     });
   }
 
@@ -68,9 +70,35 @@ class App {
   }
 
   printCarmove(car) {
-    Console.print(
-      car.getCarName() + " : " + "-".repeat(car.getProgressCount())
-    );
+    Console.print(car.getName() + " : " + "-".repeat(car.getProgressCount()));
+  }
+
+  generateGameResult() {
+    const winner = this.calculateMaxProgressCount();
+    this.printGameResult(winner);
+  }
+
+  calculateMaxProgressCount() {
+    const winner = [];
+    let maximum = Number.MIN_SAFE_INTEGER;
+
+    this.#cars.forEach((car) => {
+      if (car.getProgressCount() === maximum) {
+        winner.push(car.getName());
+        maximum = car.getProgressCount();
+      }
+      if (car.getProgressCount() > maximum) {
+        winner.length = 0;
+        winner.push(car.getName());
+        maximum = car.getProgressCount();
+      }
+    });
+
+    return winner;
+  }
+
+  printGameResult(winner) {
+    Console.print(`최종 우승자 : ${winner.join(", ")}`);
   }
 }
 
