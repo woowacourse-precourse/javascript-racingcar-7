@@ -3,6 +3,7 @@ import {
   ERROR_MESSAGE_NOT_INTEGER,
   ERROR_MESSAGE_NOT_NUMBER,
   ERROR_MESSAGE_NOT_POSITIVE_POSITIVE,
+  ERROR_MESSAGE_OVER_MAX_LENGTH,
 } from "./constants";
 
 export const readLineAsync = async (message) => {
@@ -23,6 +24,14 @@ export const validatePositiveInteger = (num) => {
   if (isNaN(num)) throw new Error(ERROR_MESSAGE_NOT_NUMBER);
   if (num < 0) throw new Error(ERROR_MESSAGE_NOT_POSITIVE_POSITIVE);
   if (!Number.isInteger(num)) throw new Error(ERROR_MESSAGE_NOT_INTEGER);
+};
+
+export const validateStringArrayLength = (array, maxLength) => {
+  const isStringLengthOverMaxLength = array.some(
+    (carName) => carName.length > maxLength
+  );
+  if (isStringLengthOverMaxLength)
+    throw new Error(ERROR_MESSAGE_OVER_MAX_LENGTH);
 };
 
 export const getMapWithZeroValue = (array) => {

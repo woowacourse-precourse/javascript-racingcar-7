@@ -13,10 +13,12 @@ import {
   print,
   readLineAsync,
   validatePositiveInteger,
+  validateStringArrayLength,
 } from "./utils";
 
 class App {
   #TRACE_CHARACTER = "-";
+  #MAX_CAR_NAME_LENGTH = 5;
   async run() {
     const userInputCarNames = await readLineAsync(INPUT_MESSAGE_CAR_NAMES);
     const userInputTryCount = await readLineAsync(INPUT_MESSAGE_TRY_COUNT);
@@ -44,12 +46,12 @@ class App {
     const winnerCarArray = getKeyArrayHasSameValueInMap(carTraceMap, maxTrace);
     print(`${OUTPUT_MESSAGE_WINNER}${winnerCarArray.join(", ")}`);
   }
-  validateCarNameLength(carNameArray, maxLength) {
-    const isAnyCarNameLengthOverMax = carNameArray.some(
-      (carName) => carName.length > maxLength
-    );
-    if (isAnyCarNameLengthOverMax)
+  validateCarNameLength(carNameArray) {
+    try {
+      validateStringArrayLength(carNameArray, this.#MAX_CAR_NAME_LENGTH);
+    } catch (e) {
       throw new Error(ERROR_MESSAGE_CAR_NAME_OVER_FIVE);
+    }
   }
   getTraceString = (count) => this.#TRACE_CHARACTER.repeat(count);
 }
