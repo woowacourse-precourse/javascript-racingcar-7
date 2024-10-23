@@ -1,5 +1,8 @@
 import { Console, Random } from '@woowacourse/mission-utils';
 
+const MOVE_PROBABILITY_THRESHOLD = 4;
+const RANDOM_RANGE = { MIN: 0, MAX: 9 };
+
 class Car {
   #name;
   #distance;
@@ -17,14 +20,21 @@ class Car {
     return this.#distance;
   }
 
-  printInfo() {
+  printStatus() {
     Console.print(`${this.#name} : ${'-'.repeat(this.#distance)}`);
   }
 
-  moveRandomProbability() {
-    if (Random.pickNumberInRange(0, 9) >= 4) {
+  tryMove() {
+    if (this.#isMovePossible()) {
       this.#distance += 1;
     }
+  }
+
+  #isMovePossible() {
+    return (
+      Random.pickNumberInRange(RANDOM_RANGE.MIN, RANDOM_RANGE.MAX) >=
+      MOVE_PROBABILITY_THRESHOLD
+    );
   }
 }
 
