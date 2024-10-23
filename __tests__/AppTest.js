@@ -125,4 +125,15 @@ describe('App 클래스 테스트', () => {
 
     expect(nameArray).toEqual(expectedArray);
   });
+
+  test('이름이 5글자가 넘을 경우 예외처리', async () => {
+    Console.readLineAsync.mockResolvedValueOnce('pobi,woni,testname');
+    Console.readLineAsync.mockResolvedValueOnce('5');
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(
+      '[ERROR] 이름은 5글자를 넘을 수 없습니다'
+    );
+  });
 });
