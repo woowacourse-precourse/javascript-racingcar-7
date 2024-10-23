@@ -1,4 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
+import { getHighestPositionCars } from './utils/getHighestPositionCars.js';
 
 class CarRacingGame {
   #cars;
@@ -28,6 +29,10 @@ class CarRacingGame {
       Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
     });
     Console.print('');
+  }
+
+  getWinners() {
+    return getHighestPositionCars(this.#cars);
   }
 }
 
