@@ -1,6 +1,8 @@
-import { Console, Random } from '@woowacourse/mission-utils';
-import { GAME_MESSAGE, ERROR_MESSAGE } from './constant/index.js';
+import { Random } from '@woowacourse/mission-utils';
+import { ERROR_MESSAGE } from './constant/index.js';
 import Car from './Car.js';
+import InputView from './view/InputView.js';
+import OutputView from './view/OutputView.js';
 
 class App {
   async run() {
@@ -14,7 +16,7 @@ class App {
   }
 
   async setCars() {
-    const input = await Console.readLineAsync(GAME_MESSAGE.CAR_NAME_INPUT);
+    const input = await InputView.readCarNames();
     const carNameArr = input.split(',');
 
     if (carNameArr.some((name) => name === '')) {
@@ -37,7 +39,7 @@ class App {
   }
 
   async setTryNumber() {
-    const input = await Console.readLineAsync(GAME_MESSAGE.TRY_NUMBER_INPUT);
+    const input = await InputView.readTryNumber();
 
     if (Number.isNaN(Number(input))) {
       throw new Error(ERROR_MESSAGE.TRY_NUMBER_TYPE_ERROR);
@@ -51,17 +53,18 @@ class App {
   }
 
   gameStart(cars, tryNumber) {
-    Console.print('\n실행 결과');
+    OutputView.racingStartIntro();
 
     for (let i = 0; i < tryNumber; i += 1) {
       cars.forEach((car) => {
         const randomNumber = this.getRandomNumber();
         this.tryMove(car, randomNumber);
+
+        const { name, distance } = car.getCarInformation();
+        OutputView.printCarState(name, distance);
       });
 
-      const join = cars.map((car) => car.parseDistanceToString()).join('\n');
-
-      Console.print(`${join}\n`);
+      OutputView.printBlankLine();
     }
   }
 
@@ -77,7 +80,7 @@ class App {
 
   result(cars) {
     const winners = this.judgeWinner(cars);
-    this.printWinner(winners);
+    OutputView.printWinner(winners);
   }
 
   judgeWinner(cars) {
@@ -87,10 +90,6 @@ class App {
       .map((car) => car.getCarInformation().name);
 
     return winners;
-  }
-
-  printWinner(winners) {
-    Console.print(`최종 우승자 : ${winners.join(',')}`);
   }
 }
 
