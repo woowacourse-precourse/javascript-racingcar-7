@@ -70,34 +70,34 @@ describe("자동차 경주", () => {
     test("최종 우승자가 5명인 경우", async () => {
       const MOVING_FORWARD = 4;
       const STOP = 3;
-      const inputs = ["pobi,woni,guesung,hyunjin,guehyeok", "2"];
+      const inputs = ["pobi,woni,gue,hyun,hyek", "5"];
       const logs = [
         "pobi : -",
         "woni : ",
-        "guesung : ",
-        "hyunjin : ",
-        "guehyeok : ",
+        "gue : ",
+        "hyun : ",
+        "hyek : ",
         "pobi : -",
         "woni : -",
-        "guesung : ",
-        "hyunjin : ",
-        "guehyeok : ",
+        "gue : ",
+        "hyun : ",
+        "hyek : ",
         "pobi : -",
         "woni : -",
-        "guesung : -",
-        "hyunjin : ",
-        "guehyeok : ",
+        "gue : -",
+        "hyun : ",
+        "hyek : ",
         "pobi : -",
         "woni : -",
-        "guesung : -",
-        "hyunjin : -",
-        "guehyeok : ",
+        "gue : -",
+        "hyun : -",
+        "hyek : ",
         "pobi : -",
         "woni : -",
-        "guesung : -",
-        "hyunjin : -",
-        "guehyeok : -",
-        "최종 우승자 : pobi,woni,guesung,hyunjin,guehyeok",
+        "gue : -",
+        "hyun : -",
+        "hyek : -",
+        "최종 우승자 : pobi, woni, gue, hyun, hyek",
       ];
       const logSpy = getLogSpy();
 
