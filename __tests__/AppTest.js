@@ -7,6 +7,10 @@ jest.mock('@woowacourse/mission-utils', () => ({
   },
 }));
 
+beforeEach(() => {
+  Console.readLineAsync.mockReset();
+});
+
 describe('App 클래스 테스트', () => {
   test('자동차 이름 문자열 입력 받기', async () => {
     Console.readLineAsync.mockResolvedValueOnce('pobi,woni,jun');
@@ -134,6 +138,17 @@ describe('App 클래스 테스트', () => {
 
     await expect(app.run()).rejects.toThrow(
       '[ERROR] 이름은 5글자를 넘을 수 없습니다'
+    );
+  });
+
+  test('이름이 영문으로만 구성된게 아닐 경우 예외처리', async () => {
+    Console.readLineAsync.mockResolvedValueOnce('po*bi,wo*ni,jun');
+    Console.readLineAsync.mockResolvedValueOnce('5');
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(
+      '[ERROR] 이름은 영문자만 가능합니다'
     );
   });
 });
