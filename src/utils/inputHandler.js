@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import Validator from '../validators/Validator.js';
+import Validator from '../validators/Validator';
 
 export const getNameInput = async () => {
   const nameString = await Console.readLineAsync(
