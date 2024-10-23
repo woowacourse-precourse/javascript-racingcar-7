@@ -19,6 +19,14 @@ class InputValidator {
         }
     }
 
+    static validateInputTryCount(tryInputCount) {
+        if (isNaN(tryInputCount)) {
+            InputValidator.#throwError("시도 횟수는 숫자여야 합니다.");
+        } else if (tryInputCount <= 0) {
+            InputValidator.#throwError("시도 횟수는 0보다 커야합니다.");
+        }
+    }
+
     static #throwError(message) {
         throw new Error(`[ERROR] ${message}`);
     }
