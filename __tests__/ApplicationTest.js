@@ -63,6 +63,18 @@ describe('자동차 경주', () => {
     });
   });
 
+  test('자동차 경주 게임 시작 전 설정 값 입력 예외 테스트', async () => {
+    // given
+    const inputs = ['pobi,woni,jun,lucy,minnie', '-3'];
+
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow(/^\[ERROR\]/);
+  });
   test('예외 테스트', async () => {
     // given
     const inputs = ['pobi,javaji'];
