@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 class App {
   async run() {
     Console.print(
@@ -9,6 +9,7 @@ class App {
     let numberOfCars = arrCarName.length;
     Console.print("시도할 횟수는 몇 회인가요?");
     let playCount = await Console.readLineAsync("");
+    Console.print("실행 결과");
   }
 }
 export default App;
