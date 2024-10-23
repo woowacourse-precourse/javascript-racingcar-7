@@ -27,8 +27,8 @@ const getLogSpy = () => {
 describe('자동차 경주', () => {
   test('자동차 이름 입력', async () => {
     // given
-    const inputs = ['pobi,woni,jun,lucy,minnie'];
-    const log = '자동차 이름: pobi,woni,jun,lucy,minnie';
+    const inputs = ['pobi,woni,jun,lucy,minnie', '3'];
+    const logs = ['자동차 이름: pobi,woni,jun,lucy,minnie', '시도할 횟수: 3'];
     const logSpy = getLogSpy();
 
     mockQuestions(inputs);
@@ -38,7 +38,9 @@ describe('자동차 경주', () => {
     await app.run();
 
     // then
-    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    logs.forEach(log => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
   });
   test('기능 테스트', async () => {
     // given
