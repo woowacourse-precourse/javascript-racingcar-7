@@ -9,7 +9,18 @@ class CarList {
     let carNameList = [];
     carNameList = carName.split(',');
     this.nameValidator.runAllFunction(carNameList);
+    this.createCarObj(carNameList);
     return carNameList;
+  }
+
+  createCarObj(carNameList) {
+    const carList = carNameList.map((name) => ({
+      carName: name,
+      distance: '',
+      ranking: 0,
+    }));
+
+    return carList;
   }
 }
 
