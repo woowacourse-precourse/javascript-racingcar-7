@@ -10,6 +10,7 @@ class App {
     const cars = carNameArr.map((carName) => new Car(carName));
 
     this.gameStart(cars, tryNumber);
+    this.result(cars);
   }
 
   async setCars() {
@@ -72,6 +73,24 @@ class App {
 
   getRandomNumber() {
     return Random.pickNumberInRange(0, 9);
+  }
+
+  result(cars) {
+    const winners = this.judgeWinner(cars);
+    this.printWinner(winners);
+  }
+
+  judgeWinner(cars) {
+    const max = Math.max(...cars.map((car) => car.getCarInformation().distance));
+    const winners = cars
+      .filter((car) => car.getCarInformation().distance === max)
+      .map((car) => car.getCarInformation().name);
+
+    return winners;
+  }
+
+  printWinner(winners) {
+    Console.print(`최종 우승자 : ${winners.join(',')}`);
   }
 }
 
