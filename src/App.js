@@ -7,7 +7,7 @@ import {
 import {
   splitIntoArray,
   getKeyArrayHasSameValueInMap,
-  getMapWithZeroValue,
+  getMapFilledZeroValue,
   getMaxValueInMap,
   getRepeatedString,
   pickNumberInRange,
@@ -25,7 +25,7 @@ class App {
     const carNameArray = this.processCarNames(userInputCarNames);
     const tryCount = this.processTryCount(userInputTryCount);
 
-    const carTraceMap = getMapWithZeroValue(carNameArray);
+    const carTraceMap = getMapFilledZeroValue(carNameArray);
 
     for (let i = 0; i < tryCount; i++) {
       for (const carName of carNameArray) {

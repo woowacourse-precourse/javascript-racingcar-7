@@ -34,7 +34,7 @@ export const validateStringArrayLength = (array, maxLength) => {
     throw new Error(ERROR_MESSAGE_OVER_MAX_LENGTH);
 };
 
-export const getMapWithZeroValue = (array) => {
+export const getMapFilledZeroValue = (array) => {
   const map = new Map();
   for (const item of array) {
     map.set(item, 0);
