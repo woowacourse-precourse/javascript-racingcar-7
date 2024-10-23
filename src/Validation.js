@@ -7,3 +7,9 @@ const validateInputBlank = (input) => {
     throw new Error(ERROR_MESSAGE.blank);
   }
 };
+
+const validateCarnameOverlap = (input) => {
+  if (new Set(input).size !== input.length) {
+    throw new Error(ERROR_MESSAGE.carName.invalidOverlap);
+  }
+};
