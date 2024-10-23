@@ -5,6 +5,10 @@ import Car from '../src/Car.js';
 jest.mock('@woowacourse/mission-utils', () => ({
   Console: {
     readLineAsync: jest.fn(),
+    print: jest.fn(),
+  },
+  Random: {
+    pickNumberInRange: jest.fn(),
   },
 }));
 
