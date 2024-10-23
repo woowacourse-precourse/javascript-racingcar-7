@@ -14,9 +14,19 @@ class App {
         throw new Error("[Error] 자동차 이름의 길이가 5 이상입니다.");
     }
     const tryCount = +userInputTryCount;
+    const carPositions = {};
     for (let i = 0; i < tryCount; i++) {
       for (const carName of carNameList) {
         const randomNum = MissionUtils.Random.pickNumberInRange(0, 9);
+        const isGo = randomNum >= 4;
+        if (isGo) {
+          // carName에 1 더한다.
+          if (carPositions[carName]) {
+            carPositions[carName]++;
+          } else {
+            carPositions[carName] = 1;
+          }
+        }
       }
     }
   }
