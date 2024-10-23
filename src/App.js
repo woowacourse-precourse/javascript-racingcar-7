@@ -2,7 +2,7 @@ import { Console, Random } from "@woowacourse/mission-utils";
 
 class App {
     async run() {
-        const inputCarNames = await this.getCarNames();
+        const inputCarNames = await this.getInputCarNames();
         const carNameList = inputCarNames.split(",");
     }
 
