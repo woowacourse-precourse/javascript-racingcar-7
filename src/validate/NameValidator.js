@@ -5,21 +5,20 @@ class NameValidator {
     carNameList.map((car) => {
       this.validateLength(car);
       this.validateSeparator(car);
+      return carNameList;
     });
   }
 
-  validateLength(carNameList) {
-    if (carNameList.length > 4) {
+  validateLength(carName) {
+    if (carName.length > 4) {
       throw new Error(MESSAGE.CAR_NAME_ERROR);
     }
   }
 
-  validateSeparator(carNameList) {
-    carNameList.forEach((name) => {
-      if (/\s/g.test(name)) {
-        throw new Error(MESSAGE.CAR_NAME_ERROR);
-      }
-    });
+  validateSeparator(carName) {
+    if (/\s/g.test(carName)) {
+      throw new Error(MESSAGE.CAR_NAME_ERROR);
+    }
   }
 }
 
