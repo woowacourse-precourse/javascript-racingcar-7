@@ -9,6 +9,7 @@ import {
   getKeyArrayHasSameValueInMap,
   getMapWithZeroValue,
   getMaxValueInMap,
+  getRepeatedString,
   pickNumberInRange,
   print,
   readLineAsync,
@@ -36,7 +37,10 @@ class App {
         const isGo = randomNum >= 4;
         if (isGo) carTraceMap.set(carName, carTraceMap.get(carName) + 1);
 
-        const traceString = this.getTraceString(carTraceMap.get(carName));
+        const traceString = getRepeatedString(
+          this.#TRACE_CHARACTER,
+          carTraceMap.get(carName)
+        );
 
         print(`${carName} : ${traceString}`);
       }
@@ -53,7 +57,6 @@ class App {
       throw new Error(ERROR_MESSAGE_CAR_NAME_OVER_FIVE);
     }
   }
-  getTraceString = (count) => this.#TRACE_CHARACTER.repeat(count);
 }
 
 export default App;

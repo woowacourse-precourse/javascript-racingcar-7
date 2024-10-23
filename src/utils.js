@@ -42,6 +42,8 @@ export const getMapWithZeroValue = (array) => {
   return map;
 };
 
+export const getRepeatedString = (str, repeatNum) => str.repeat(repeatNum);
+
 export const getMaxValueInMap = (map) => Math.max(...map.values());
 
 export const getKeyArrayHasSameValueInMap = (map, targetValue) => {
