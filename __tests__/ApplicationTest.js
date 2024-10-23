@@ -27,8 +27,8 @@ const getLogSpy = () => {
 describe('자동차 경주', () => {
   test('자동차 경주 게임 시작 전 설정 값 입력', async () => {
     // given
-    const inputs = ['pobi,woni,jun,lucy,minnie', '3'];
-    const logs = ['자동차 이름: pobi,woni,jun,lucy,minnie', '시도할 횟수: 3'];
+    const inputs = ['pobi,woni,jun,lucy', '3'];
+    const logs = ['자동차 이름: pobi,woni,jun,lucy', '시도할 횟수: 3'];
     const logSpy = getLogSpy();
 
     mockQuestions(inputs);
@@ -63,9 +63,21 @@ describe('자동차 경주', () => {
     });
   });
 
-  test('자동차 경주 게임 시작 전 설정 값 입력 예외 테스트', async () => {
+  test('자동차 경주 게임 시작 전 설정 값 입력 예외 테스트(이동할 횟수)', async () => {
     // given
-    const inputs = ['pobi,woni,jun,lucy,minnie', '-3'];
+    const inputs = ['pobi,woni,jun,lucy', '-3'];
+
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow(/^\[ERROR\]/);
+  });
+  test('자동차 경주 게임 시작 전 설정 값 입력 예외 테스트(자동차 이름 길이 초과)', async () => {
+    // given
+    const inputs = ['pobi,woni,jun,lucy,minnie', '3'];
 
     mockQuestions(inputs);
 
