@@ -19,10 +19,7 @@ class App {
     const userInputCarNames = await readLineAsync(INPUT_MESSAGE_CAR_NAMES);
     const userInputTryCount = await readLineAsync(INPUT_MESSAGE_TRY_COUNT);
     const carNameList = convertStringToArray(userInputCarNames, ",");
-    for (const carName of carNameList) {
-      if (carName.length >= 5)
-        throw new Error(ERROR_MESSAGE_CAR_NAME_OVER_FIVE);
-    }
+    this.validateCarNameLength(carNameList, 5);
     const tryCount = +userInputTryCount;
 
     if (isNaN(tryCount)) throw new Error(ERROR_MESSAGE_NOT_NUMBER);
@@ -53,6 +50,13 @@ class App {
       .map((it) => it[0]);
 
     print(`${OUTPUT_MESSAGE_WINNER}${winnerList.join(", ")}`);
+  }
+  validateCarNameLength(carNameList, maxLength) {
+    const isAnyCarNameLengthOverMax = carNameList.some(
+      (carName) => carName.length > maxLength
+    );
+    if (isAnyCarNameLengthOverMax)
+      throw new Error(ERROR_MESSAGE_CAR_NAME_OVER_FIVE);
   }
 }
 
