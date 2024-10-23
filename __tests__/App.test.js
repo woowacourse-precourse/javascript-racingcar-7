@@ -1,6 +1,7 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import App from '../src/App.js';
 import { ERROR_MESSAGE } from '../src/constant/index.js';
+import Car from '../src/Car.js';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -55,5 +56,57 @@ describe('이동 할 횟수 입력 테스트', () => {
   test.each(TEST_CASES_FAILED)('횟수 입력 실패', async (input, message) => {
     mockQuestions(input);
     await expect(app.setTryNumber()).rejects.toThrow(message);
+  });
+});
+
+const mockRandoms = (numbers) => {
+  MissionUtils.Random.pickNumberInRange = jest.fn();
+
+  numbers.reduce(
+    (acc, number) => acc.mockReturnValueOnce(number),
+    MissionUtils.Random.pickNumberInRange,
+  );
+};
+const getLogSpy = () => {
+  const logSpy = jest.spyOn(MissionUtils.Console, 'print');
+  logSpy.mockClear();
+  return logSpy;
+};
+
+describe('게임 시작 테스트', () => {
+  const [carNameArr, tryNumber, randomNumbers, answer] = [
+    [new Car('pobi'), new Car('lisa'), new Car('jun')],
+    4,
+    [1, 2, 7, 3, 4, 4, 0, 4, 9, 6, 8, 5],
+    [
+      '실행 결과',
+      'pobi : ',
+      'lisa : ',
+      'jun : -',
+      '',
+      'pobi : ',
+      'lisa : -',
+      'jun : --',
+      '',
+      'pobi : ',
+      'lisa : --',
+      'jun : ---',
+      '',
+      'pobi : -',
+      'lisa : ---',
+      'jun : ----',
+    ],
+  ];
+
+  test('매 시행마다 각 자동차들의 상태 출력 테스트', () => {
+    const logSpy = getLogSpy();
+    mockRandoms(randomNumbers);
+
+    const app = new App();
+    app.gameStart(carNameArr, tryNumber);
+
+    answer.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
   });
 });
