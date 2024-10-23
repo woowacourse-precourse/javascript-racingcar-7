@@ -1,9 +1,10 @@
 import { Console } from '@woowacourse/mission-utils';
-import Message from '../constant/Message.js';
+import MESSAGE from '../constant/MESSAGE.js';
 
 class InputView {
-  async getCarNamePrompt() {
-    await Console.readLineAsync(Message.CAR_NAME_PROMPT);
+  async getCarNameInput() {
+    let userCarName = await Console.readLineAsync(MESSAGE.CAR_NAME_PROMPT);
+    return userCarName;
   }
 }
 export default InputView;

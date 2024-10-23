@@ -2,11 +2,11 @@ import InputView from './view/InputView.js';
 
 class App {
   constructor() {
-    this.inputview = new InputView();
+    this.inputView = new InputView();
   }
 
   async run() {
-    const userCarName = this.inputview.getCarNamePrompt();
+    await this.inputView.getCarNameInput();
   }
 }
 
