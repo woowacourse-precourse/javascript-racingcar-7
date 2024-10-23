@@ -69,4 +69,10 @@ describe("자동차 경주", () => {
       ERROR_MESSAGES.NAME_MUST_BE_KOREAN_OR_ENGLISH
     );
   });
+
+  test("경주할 자동차가 2대 미만일 경우", () => {
+    expect(() => validateCarNameCount(["emma"])).toThrow(
+      ERROR_MESSAGES.MINIMUM_TWO_CARS_REQUIRED
+    );
+  });
 });
