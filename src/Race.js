@@ -1,4 +1,5 @@
 import Car from "./Car.js";
+import { NUMBER } from "./Constants/constants.js";
 
 class Race {
   #cars;
@@ -15,7 +16,7 @@ class Race {
   }
 
   async checkProgress(randomNumber, car) {
-    if (randomNumber >= 4) {
+    if (randomNumber >= NUMBER.CAN_PROGRESS) {
       return car.progress();
     }
   }

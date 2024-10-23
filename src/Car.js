@@ -1,4 +1,5 @@
 import { Random } from "@woowacourse/mission-utils";
+import { NUMBER } from "./Constants/constants";
 
 class Car {
   #position;
@@ -10,11 +11,11 @@ class Car {
   }
 
   async getRandomNumber() {
-    return Random.pickNumberInRange(0, 9);
+    return Random.pickNumberInRange(NUMBER.RANDOM_MIN, NUMBER.RANDOM_MAX);
   }
 
   async progress() {
-    this.#position += 1;
+    this.#position += NUMBER.PROGRESS;
   }
 }
 
