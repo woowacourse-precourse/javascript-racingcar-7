@@ -12,7 +12,7 @@ class App {
   }
 
   printCarNames(carNames) {
-    Console.print(`입력된 자동차 이름들: ${carNames.join(',')}`);
+    Console.print(`입력된 자동차 이름들: ${carNames.join(', ')}`);
   }
 }
 
