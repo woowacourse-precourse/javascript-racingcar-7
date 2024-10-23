@@ -30,7 +30,7 @@ class App {
     for (let count = 1; count <= attemptCount; count += 1) {
       for (let order = 0; order < carNames.length; order += 1) {
         const randomNumber = Random.pickNumberInRange(0, 9);
-        if (randomNumber > 4) {
+        if (randomNumber >= 4) {
           record[carNames[order]] += 1;
         }
 
