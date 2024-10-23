@@ -22,21 +22,6 @@ class Race {
       Console.print('');
     }
   }
-
-  #findWinners() {
-    const maxDistance = this.#cars.reduce((maxDistance, car) => {
-      return Math.max(maxDistance, car.getDistance());
-    }, 0);
-
-    return this.#cars.filter((car) => car.getDistance() === maxDistance);
-  }
-
-  printWinners() {
-    const winnerCars = this.#findWinners(this.#cars);
-
-    const winnerNames = winnerCars.map((winner) => winner.getName()).join(',');
-    Console.print(`최종 우승자 : ${winnerNames}`);
-  }
 }
 
 export default Race;

@@ -1,6 +1,7 @@
 import { getNameInput, getRoundCountInput } from './utils/inputHandler';
 import Car from './models/Car';
 import Race from './models/Race';
+import WinnerCalculator from './models/WinnerCalculator';
 
 class App {
   async run() {
@@ -12,7 +13,7 @@ class App {
       const race = new Race(cars, roundCount);
 
       race.start();
-      race.printWinners();
+      WinnerCalculator.printWinners(cars);
     } catch (error) {
       throw new Error(`[ERROR] ${error.message}`);
     }
