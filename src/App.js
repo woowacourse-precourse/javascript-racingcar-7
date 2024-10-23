@@ -38,6 +38,19 @@ class App {
 
     const N = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
     checkN(N);
+
+    Console.print("실행 결과");
+    for (let i = 0; i < N; i++) {
+      for (let j = 0; j < carNames.length; j++) {
+        const randomNumber = Random.pickNumberInRange(0, 9);
+        if (randomNumber >= 4) {
+          carsResults[j].position += "-";
+        }
+
+        Console.print(`${carsResults[j].name} : ${carsResults[j].position}`);
+      }
+      Console.print("");
+    }
   }
 }
 
