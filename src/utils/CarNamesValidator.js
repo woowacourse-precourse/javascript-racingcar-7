@@ -6,8 +6,18 @@ class CarNamesValidator {
             }
         });
     }
+
+    checkEmptyCarName(carNames) {
+        carNames.forEach((name) => {
+            if (name === "" || name === null) {
+                throw new Error("[ERROR] 자동차 이름은 빈 문자열일 수 없습니다.");
+            }
+        });
+    }
+
     validateCarNames(carNames) {
         this.checkCarNamesLength(carNames);
+        this.checkEmptyCarName(carNames);
     }
 }
 export default CarNamesValidator;
