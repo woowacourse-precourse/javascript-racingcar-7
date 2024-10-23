@@ -12,22 +12,21 @@
 
 ```
 📦src
- ┣ 📂constants // 애플리케이션에서 사용되는 상수들을 모아놓은 폴더
- ┃ ┣ 📜errors.js // 에러 메시지 관련 상수 정의
- ┃ ┗ 📜messages.js // 사용자 인터페이스 메시지 관련 상수 정의
- ┃ 📂views //
- ┃ ┣
- ┃ 📂models // 
- ┃ ┣
- ┃ 📂controllers // 
- ┃ ┣
- ┃ 📂utils // 애플리케이션에서 사용되는 상수들을 모아놓은 폴더
- ┃ ┣
- ┣ 📜App.js // 애플리케이션의 메인 로직을 관리하는 클래스
- ┣ 📜Car.js // 문자열 계산 로직을 담당하는 클래스
- ┣ 📜Game.js // 애플리케이션의 진입점 (entry point)
- ┣ 📜Validator.js  // 입력 검증
- ┗ 📜Input.js // 사용자 입력을 처리하는 클래스
+┣ 📂constants      // 애플리케이션 전역에서 사용되는 상수 정의
+┃ ┣ 📜errors.js    // 에러 메시지 상수
+┃ ┗ 📜messages.js  // UI 메시지 상수
+┣ 📂views          // 사용자 입출력 처리 뷰 컴포넌트
+┃ ┣ 📜InputView.js // 사용자 입력을 처리하는 뷰
+┃ ┗ 📜OutputView.js// 결과 출력을 처리하는 뷰
+┣ 📂models         // 데이터와 비즈니스 로직을 처리하는 모델
+┃ ┣ 📜CarModel.js  // 자동차 데이터 모델
+┃ ┗ 📜GameModel.js // 게임 상태와 로직 모델
+┣ 📂controllers    // 애플리케이션 흐름을 제어하는 컨트롤러
+┃ ┗ 📜GameController.js // 게임 진행을 제어하는 컨트롤러
+┣ 📂utils          // 공통 유틸리티 기능 모음
+┃ ┗ 📜validators.js// 입력값 검증 유틸리티
+┣ 📜App.js         // 애플리케이션의 초기화 담당
+┗ 📜index.js       // 애플리케이션 진입점
 ```
 
 
