@@ -1,5 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import App from '../src/App.js';
+import Car from '../src/Car.js';
 
 jest.mock('@woowacourse/mission-utils', () => ({
   Console: {
@@ -161,5 +162,19 @@ describe('App 클래스 테스트', () => {
     await expect(app.run()).rejects.toThrow(
       '[ERROR] 모든 플레이어들의 이름이 같습니다'
     );
+  });
+
+  test('자동차 이름 배열을 기반으로 carArray가 올바르게 생성되는지 테스트', async () => {
+    Console.readLineAsync.mockResolvedValueOnce('pobi,woni,jun');
+    Console.readLineAsync.mockResolvedValueOnce('5');
+
+    const app = new App();
+    await app.run();
+
+    const carArray = ['pobi', 'woni', 'jun'].map((name) => new Car(name));
+
+    carArray.forEach((car, index) => {
+      expect(car.getName()).toBe(['pobi', 'woni', 'jun'][index]);
+    });
   });
 });
