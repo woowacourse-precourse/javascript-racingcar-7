@@ -3,9 +3,12 @@ class Racing {
 
   #cars;
 
+  #result;
+
   constructor(totalRounds, cars) {
     this.#totalRounds = totalRounds;
     this.#cars = cars;
+    this.#result = [];
   }
 
   #try() {
@@ -21,7 +24,13 @@ class Racing {
       (arrayLike, index) => index + 1,
     );
 
-    rounds.forEach(() => this.#try());
+    rounds.forEach((round) => {
+      const distances = this.#try();
+
+      if (round === totalRounds) {
+        this.#result = distances;
+      }
+    });
   }
 }
 
