@@ -15,13 +15,16 @@ export async function getUserInputCarName() {
   );
   const playerNames = userInput.trim().split(',');
 
+  validatePlayerNames(playerNames);
   return playerNames;
 }
-// getUserInputCarName
-// TODO: 에러 핸들링
-// userinput으로 n대의 자동차 이름 배열 가져오기
-// , 기준으로 이름만 가져오고 공백은 빼기
-// 공백은 이름으로 표기안되도록 구현
+
+function validatePlayerNames(playerNames) {
+  // [ERROR] 5자를 초과하하거나 쉼표가 아닌 구분자
+  const regex = /^[a-zA-Z0-9ㄱ-ㅣ가-힣]{1,5}$/;
+  if (!playerNames.map((player) => player.match(regex)))
+    throw new Error('[ERROR]');
+}
 
 // getUserInputMoveCount
 // 이건 굳이 함수로 안 빼고 그냥 변수로 가져오면 될듯
