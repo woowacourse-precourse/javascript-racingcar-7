@@ -1,4 +1,4 @@
-import { oneRace } from "../utils/oneRace"
+import oneRace from "../utils/oneRace.js"
 
 export const decisionContoller=(raceCount,names)=>{
     const totalWinner={}//딕셔너리
@@ -14,6 +14,5 @@ export const decisionContoller=(raceCount,names)=>{
     winners.forEach(name=>{
         totalWinner[name]+=1
     })
-
     return totalWinner
 }

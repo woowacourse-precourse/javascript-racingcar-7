@@ -1,13 +1,13 @@
 
 import { Console } from "@woowacourse/mission-utils"
-import makeRandom from "./MakeRamdom"
+import makeRandomNumber from "./MakeRamdom.js"
 
-//그냥 한번에 계산 해버려?
-export const oneRace = (names)=>{
+//각 횟수마다의 위너를 기록한다.
+const oneRace = (names)=>{
     ///전진하는 비열 Random.pickNumberInRange(0,9)
     const winners=[]
     names.forEach(name=>{
-        const{ref,go}=makeRandom(name)
+        const{ref,go} =makeRandomNumber(name)
         if(go>=4){
             winners.push(name)
         }
@@ -15,6 +15,9 @@ export const oneRace = (names)=>{
     })
     return winners//["winner1","winner2"]//배열을 리턴
 }
+
 const printPlayerGoTo=(name,ref)=>{
     Console.print(`${name} : ${ref}`)
 }
+
+export default oneRace

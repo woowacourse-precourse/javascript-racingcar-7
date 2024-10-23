@@ -5,5 +5,5 @@ function makeRandomNumber(racer){
     const ref = "-".repeat(go); 
     return {go, ref} 
 }
-export default makeRandom
+export default makeRandomNumber
 //const randomInstance=new MakeRandom()
