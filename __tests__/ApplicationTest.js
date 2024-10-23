@@ -29,12 +29,48 @@ describe("자동차 경주", () => {
     // given
     const MOVING_FORWARD = 4;
     const STOP = 3;
-    const inputs = ["pobi,woni", "1"];
-    const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
+    const inputs = ["pobio,woni", "5"];
+    const logs = ["pobio : -", "woni : ", "최종 우승자 : pobio"];
     const logSpy = getLogSpy();
 
     mockQuestions(inputs);
     mockRandoms([MOVING_FORWARD, STOP]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
+  test("기능 테스트 2", async () => {
+    // given
+    const MOVING_FORWARD = 4;
+    const STOP = 3;
+    const inputs = ["pobai,woni,dalsi", "2"];
+    const logs = [
+      "pobai : -",
+      "woni : ",
+      "dalsi : -",
+      "pobai : --",
+      "woni : ",
+      "dalsi : --",
+      "최종 우승자 : pobai, dalsi",
+    ];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([
+      MOVING_FORWARD,
+      STOP,
+      MOVING_FORWARD,
+      MOVING_FORWARD,
+      STOP,
+      MOVING_FORWARD,
+    ]);
 
     // when
     const app = new App();
