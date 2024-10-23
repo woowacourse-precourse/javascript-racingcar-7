@@ -27,6 +27,8 @@ class App {
             carPositions[carName] = 1;
           }
         }
+        const positionBlock = "-".repeat(carPositions[carName] ?? 0);
+        MissionUtils.Console.print(`${carName} : ${positionBlock}`);
       }
     }
   }
