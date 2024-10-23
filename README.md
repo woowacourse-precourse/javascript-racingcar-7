@@ -34,7 +34,7 @@
 
 4. 모두 다른 이름인지
 
-- [] 중복된 이름이 있을 경우 : [ERROR] : DUPLICATED_CAR_NAME_ERROR
+- [] 중복된 이름이 있을 경우 : [ERROR] : SAME_CAR_NAME_ERROR
 
 5. 시도할 횟수가 0 초과인지
 
