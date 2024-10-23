@@ -39,7 +39,7 @@ class App {
     const ERROR_MESSAGES = {
       CAR_NAME_TOO_LONG: "자동차 이름은 최대 5글자여야 합니다.", 
       CAR_ALREADY_EXISTS: (car) => `중복된 참가자가 있습니다: "${car}"`,
-
+      INPUT_NOT_A_NUMBER: "입력값은 숫자여야 합니다.",
     };
 
     function throwError(errorMessage) {
@@ -52,10 +52,16 @@ class App {
       getAttemptCount()
     }
 
+    function validateNumber(attemptCount){
+      if(isNaN(attemptCount)){throwError(ERROR_MESSAGES.INPUT_NOT_A_NUMBER)}
+    }
+    
     async function getAttemptCount() {
       const attemptCount = await Console.readLineAsync(
         '원하는 이동 횟수를 입력하세요.(움직이는 칸 수와 무관)\n'
       );
+      const attemptCountNum=Number(attemptCount)
+      validateNumber(attemptCount)
     }
   }
 }
