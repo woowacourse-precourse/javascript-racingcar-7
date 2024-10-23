@@ -47,7 +47,7 @@ class Game {
 
   announceWinner() {
     const winners = this.determineWinners();
-    const winnersName = winners.map((winner) => winner.name).join(',');
+    const winnersName = winners.map((winner) => winner.name).join(', ');
 
     outputView.printMessage(`${GAME_MESSAGE.FINAL_WINNER} ${winnersName}`);
   }
