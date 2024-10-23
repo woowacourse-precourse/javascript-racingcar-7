@@ -1,7 +1,8 @@
 import { Console, Random } from '@woowacourse/mission-utils';
-
-const MOVE_PROBABILITY_THRESHOLD = 4;
-const RANDOM_RANGE = { MIN: 0, MAX: 9 };
+import {
+  MOVE_PROBABILITY_THRESHOLD,
+  RANDOM_RANGE,
+} from '../constants/constants';
 
 class Car {
   #name;
