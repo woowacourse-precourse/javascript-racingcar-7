@@ -8,6 +8,12 @@ class Validator {
       throw new Error('플레이어는 1명일 수 없습니다');
     }
   }
+
+  static repeatCount(repeatCount) {
+    if (Number.isNaN(repeatCount)) {
+      throw new Error('숫자를 입력해야합니다');
+    }
+  }
 }
 
 export default Validator;
