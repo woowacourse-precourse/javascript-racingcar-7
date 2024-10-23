@@ -7,6 +7,7 @@ class App {
 
   async run() {
     await this.inputView.getCarNameInput();
+    await this.inputView.getGameCountInput();
   }
 }
 
