@@ -5,6 +5,8 @@ const MESSAGE = {
 
   GAME_ROUND_PROMPT: '시도할 횟수는 몇 회인가요?\n',
   GAME_ROUND_ERROR: '[ERROR] 게임 횟수를 숫자로 작성해주세요',
+
+  GAME_RESULT_HEADER: '실행 결과',
 };
 
 export default MESSAGE;
