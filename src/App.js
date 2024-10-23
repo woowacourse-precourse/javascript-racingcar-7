@@ -9,7 +9,7 @@ import {
 } from "./constants";
 import {
   convertStringToArray,
-  getKeyListHasSameValueInMap,
+  getKeyArrayHasSameValueInMap,
   getMapWithZeroValue,
   getMaxValueInMap,
   pickNumberInRange,
@@ -23,16 +23,16 @@ class App {
   async run() {
     const userInputCarNames = await readLineAsync(INPUT_MESSAGE_CAR_NAMES);
     const userInputTryCount = await readLineAsync(INPUT_MESSAGE_TRY_COUNT);
-    const carNameList = convertStringToArray(userInputCarNames, ",");
-    this.validateCarNameLength(carNameList, 5);
+    const carNameArray = convertStringToArray(userInputCarNames, ",");
+    this.validateCarNameLength(carNameArray, 5);
     const tryCount = +userInputTryCount;
 
     validatePositiveInteger(tryCount);
 
-    const carTraceMap = getMapWithZeroValue(carNameList);
+    const carTraceMap = getMapWithZeroValue(carNameArray);
 
     for (let i = 0; i < tryCount; i++) {
-      for (const carName of carNameList) {
+      for (const carName of carNameArray) {
         const randomNum = pickNumberInRange(0, 9);
         const isGo = randomNum >= 4;
         if (isGo) carTraceMap.set(carName, carTraceMap.get(carName) + 1);
@@ -44,11 +44,11 @@ class App {
     }
 
     const maxTrace = getMaxValueInMap(carTraceMap);
-    const winnerCarList = getKeyListHasSameValueInMap(carTraceMap, maxTrace);
-    print(`${OUTPUT_MESSAGE_WINNER}${winnerCarList.join(", ")}`);
+    const winnerCarArray = getKeyArrayHasSameValueInMap(carTraceMap, maxTrace);
+    print(`${OUTPUT_MESSAGE_WINNER}${winnerCarArray.join(", ")}`);
   }
-  validateCarNameLength(carNameList, maxLength) {
-    const isAnyCarNameLengthOverMax = carNameList.some(
+  validateCarNameLength(carNameArray, maxLength) {
+    const isAnyCarNameLengthOverMax = carNameArray.some(
       (carName) => carName.length > maxLength
     );
     if (isAnyCarNameLengthOverMax)
