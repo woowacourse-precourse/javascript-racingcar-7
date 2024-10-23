@@ -7,24 +7,22 @@ import printWinners from './printWinners.js';
 class App {
   async run() {
     try {
-      const inputString = await Console.readLineAsync(
+      const nameString = await Console.readLineAsync(
         '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n'
       );
-      Validator.checkNameString(inputString);
+      Validator.checkNameString(nameString);
 
-      const nameArray = inputString.split(',');
-      Validator.checkNames(nameArray);
+      const names = nameString.split(',');
+      Validator.checkNames(names);
+      const cars = names.map((name) => new Car(name));
 
-      const carArray = nameArray.map((name) => new Car(name));
-
-      const repeatCount = Number(
+      const roundCount = Number(
         await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n')
       );
-      Validator.checkRoundCount(repeatCount);
+      Validator.checkRoundCount(roundCount);
 
-      runRaceRounds(carArray, repeatCount);
-
-      printWinners(carArray);
+      runRaceRounds(cars, roundCount);
+      printWinners(cars);
     } catch (error) {
       throw new Error(`[ERROR] ${error.message}`);
     }
