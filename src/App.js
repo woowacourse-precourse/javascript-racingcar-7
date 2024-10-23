@@ -8,15 +8,12 @@ import {
   INPUT_MESSAGE_TRY_COUNT,
   OUTPUT_MESSAGE_WINNER,
 } from "./constants";
+import { print, readLineAsync } from "./utils";
 
 class App {
   async run() {
-    const userInputCarNames = await MissionUtils.Console.readLineAsync(
-      INPUT_MESSAGE_CAR_NAMES
-    );
-    const userInputTryCount = await MissionUtils.Console.readLineAsync(
-      INPUT_MESSAGE_TRY_COUNT
-    );
+    const userInputCarNames = await readLineAsync(INPUT_MESSAGE_CAR_NAMES);
+    const userInputTryCount = await readLineAsync(INPUT_MESSAGE_TRY_COUNT);
     const carNameList = userInputCarNames.split(",");
     for (const carName of carNameList) {
       if (carName.length >= 5)
@@ -39,7 +36,7 @@ class App {
           }
         }
         const positionBlock = "-".repeat(carPositions[carName] ?? 0);
-        MissionUtils.Console.print(`${carName} : ${positionBlock}`);
+        print(`${carName} : ${positionBlock}`);
       }
     }
     const carPositionEntries = Object.entries(carPositions);
@@ -49,9 +46,7 @@ class App {
       .filter((carPosition) => carPosition[1] === winPosition)
       .map((it) => it[0]);
 
-    MissionUtils.Console.print(
-      `${OUTPUT_MESSAGE_WINNER}${winnerList.join(", ")}`
-    );
+    print(`${OUTPUT_MESSAGE_WINNER}${winnerList.join(", ")}`);
   }
 }
 
