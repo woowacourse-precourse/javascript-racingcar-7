@@ -1,9 +1,7 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import Game from './Game.js';
-
-const getReadLineAsync = () => {
-  return jest.spyOn(MissionUtils.Console, 'readLineAsync');
-};
+import outputView from '../view/outputView.js';
+import { GAME_MESSAGE } from '../constants/messages.js';
 
 const getRandomPickNumber = () => {
   return jest.spyOn(MissionUtils.Random, 'pickNumberInRange');
@@ -12,13 +10,17 @@ const getRandomPickNumber = () => {
 describe('Game', () => {
   /** @type {Game} */
   let game;
-  let readLineAsyncSpy;
   let randomPickNumberRangeSpy;
+  let mockCars;
 
   beforeEach(() => {
     game = new Game();
-    readLineAsyncSpy = getReadLineAsync();
     randomPickNumberRangeSpy = getRandomPickNumber();
+    mockCars = [
+      { name: 'car1', position: 3 },
+      { name: 'car2', position: 5 },
+      { name: 'car3', position: 5 },
+    ];
   });
 
   afterEach(() => {
@@ -29,6 +31,7 @@ describe('Game', () => {
     test('입력된 이름으로 자동차를 생성한다', () => {
       const carNames = ['pobi', 'woni', 'jun'];
       game.initializeCars(carNames);
+
       expect(game.cars.length).toBe(3);
       expect(game.cars[0].name).toBe('pobi');
       expect(game.cars[1].name).toBe('woni');
@@ -70,16 +73,12 @@ describe('Game', () => {
   });
 
   describe('우승자 결정 과정', () => {
-    test('initializeCars가 올바르게 설정된다 ', () => {
-      const mockCars = [
-        { name: 'car1', position: 3 },
-        { name: 'car2', position: 5 },
-        { name: 'car3', position: 5 },
-      ];
-
+    beforeEach(() => {
       jest.spyOn(game, 'initializeCars').mockImplementation(() => {
         game.cars = mockCars;
       });
+    });
+    test('initializeCars가 올바르게 설정된다 ', () => {
       game.initializeCars(['car1', 'car2', 'car3']);
 
       expect(game.initializeCars).toHaveBeenCalledWith([
@@ -90,17 +89,7 @@ describe('Game', () => {
     });
 
     test('determineWinners가 최고 위치의 자동차들을 반환한다.', () => {
-      const mockCars = [
-        { name: 'car1', position: 3 },
-        { name: 'car2', position: 5 },
-        { name: 'car3', position: 5 },
-        { name: 'car4', position: 4 },
-      ];
-
-      jest.spyOn(game, 'initializeCars').mockImplementation(() => {
-        game.cars = mockCars;
-      });
-      game.initializeCars(['car1', 'car2', 'car3', 'car4']);
+      game.cars = mockCars;
 
       const winners = game.determineWinners();
 
@@ -108,6 +97,31 @@ describe('Game', () => {
       expect(winners.map((winner) => winner.name).join(', ')).toStrictEqual(
         'car2, car3'
       );
+    });
+
+    test('printRaceStatus가 각 자동차의 상태를 올바르게 출력한다', () => {
+      game.cars = mockCars;
+      const printMessageSpy = jest.spyOn(outputView, 'printMessage');
+      game.printRaceStatus();
+
+      expect(printMessageSpy).toHaveBeenCalledWith('car1 : ---');
+      expect(printMessageSpy).toHaveBeenCalledWith('car2 : -----');
+      expect(printMessageSpy).toHaveBeenCalledWith('car3 : -----');
+      expect(printMessageSpy).toHaveBeenCalledWith('\n');
+    });
+  });
+
+  describe('우승자를 올바르게 출력한다', () => {
+    test('announceWinner가 올바른 형식으로 우승자를 출력한다', () => {
+      game.cars = mockCars;
+
+      const printMessageSpy = jest.spyOn(outputView, 'printMessage');
+
+      game.announceWinner();
+
+      const expectedMessage = `${GAME_MESSAGE.FINAL_WINNER} car2, car3`;
+
+      expect(printMessageSpy).toHaveBeenCalledWith(expectedMessage);
     });
   });
 });
