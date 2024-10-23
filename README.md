@@ -26,7 +26,11 @@
 
 ## 자동차 전진/멈춤 시퀀스 다이어그램
 
-![image](https://github.com/user-attachments/assets/dd3f6e08-04d2-49ca-b88e-3cbe700fbbb1)
+![image](https://github.com/user-attachments/assets/77455160-2f94-4740-b116-5eb141255299)
+
+## 자동차 경주 클래스 다이어그램
+
+
 
 # 테스트 케이스
 
