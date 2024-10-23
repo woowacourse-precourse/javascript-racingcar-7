@@ -1,6 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 
-const findWinners = function findWinners(cars) {
+const findWinners = (cars) => {
   const maxDistance = cars.reduce((maxDistance, car) => {
     return Math.max(maxDistance, car.getDistance());
   }, 0);
@@ -8,7 +8,7 @@ const findWinners = function findWinners(cars) {
   return cars.filter((car) => car.getDistance() === maxDistance);
 };
 
-const printWinners = function printWinners(cars) {
+const printWinners = (cars) => {
   const winnerCars = findWinners(cars);
 
   const winnerNames = winnerCars.map((winner) => winner.getName()).join(',');
