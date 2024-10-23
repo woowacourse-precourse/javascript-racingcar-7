@@ -27,7 +27,20 @@ class App {
       }
       Console.print('\n');
     }
-    Console.print(`최종 우승자 : ${record}`);
+
+    const moves = Object.values(record);
+    const winnerMove = Math.max(...moves);
+
+    const winner = [];
+
+    for (let car = 0; car < moves.length; car += 1) {
+      if (moves[car] === winnerMove) {
+        winner.push(carNames[car]);
+      }
+    }
+
+    Console.print(record);
+    Console.print(`최종 우승자 : ${winner.join(', ')}`);
   }
 }
 
