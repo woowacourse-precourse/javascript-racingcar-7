@@ -31,6 +31,14 @@ class App {
         MissionUtils.Console.print(`${carName} : ${positionBlock}`);
       }
     }
+    const carPositionEntries = Object.entries(carPositions);
+    carPositionEntries.sort((a, b) => b[1] - a[1]);
+    const winPosition = carPositionEntries[0][1];
+    const winnerList = carPositionEntries
+      .filter((carPosition) => carPosition[1] === winPosition)
+      .map((it) => it[0]);
+
+    MissionUtils.Console.print(`최종 우승자 : ${winnerList.join(", ")}`);
   }
 }
 
