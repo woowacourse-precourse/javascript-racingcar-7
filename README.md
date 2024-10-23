@@ -15,13 +15,13 @@
 
 ### 1. 자동차 이름 문자열을 입력합니다 .
 
-- `Console.readLineAsync` 를 사용해 입력받습니다 .
+- `MissionUtils.Console.readLineAsync` 를 사용해 입력받습니다 .
 - 자동차 이름은 쉼표로 구분하고 , 5자 이하만 가능합니다.
 - 자동차 이름이 5자를 넘는 경우 , 에러를 발생시킵니다 .
 
 ### 2. 이동 횟수를 입력받습니다.
 
-- `Console.readLineAsync` 를 사용해 입력받습니다 .
+- `MissionUtils.Console.readLineAsync` 를 사용해 입력받습니다 .
 - 진행할 횟수를 입력받습니다.
 - 숫자가 아닌 경우 , 에러를 발생시킵니다.
 
