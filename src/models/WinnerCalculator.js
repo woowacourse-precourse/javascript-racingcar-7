@@ -2,16 +2,13 @@ import { Console } from '@woowacourse/mission-utils';
 
 class WinnerCalculator {
   static #findWinners(cars) {
-    const maxDistance = cars.reduce((maxDistance, car) => {
-      return Math.max(maxDistance, car.getDistance());
-    }, 0);
-
+    const maxDistance = Math.max(...cars.map((car) => car.getDistance()));
     return cars.filter((car) => car.getDistance() === maxDistance);
   }
 
   static printWinners(cars) {
     const winnerCars = this.#findWinners(cars);
-    const winnerNames = winnerCars.map((winner) => winner.getName()).join(',');
+    const winnerNames = winnerCars.map((car) => car.getName()).join(',');
     Console.print(`최종 우승자 : ${winnerNames}`);
   }
 }
