@@ -6,32 +6,6 @@ class App {
             cars: [],
             raceCount: 0,
         };
-
-        this.error = {
-            cars: (value) => {
-                if (value.length === 0) return 'error';
-                const parsedString = value.split(',');
-                if (parsedString.length !== new Set(parsedString).size)
-                    return 'error';
-                for (let i = 0; i < parsedString.length; i++) {
-                    if (parsedString[i].length === 0) {
-                        return 'error';
-                    }
-                    if (parsedString[i].length > 5) {
-                        return 'error';
-                    }
-                }
-                return 'correct';
-            },
-
-            raceCount: (value) => {
-                const num = Number(value);
-                if (isNaN(num)) return 'error';
-                if (num < 0) return 'error';
-                if (num !== Math.floor(num)) return 'error';
-                return 'correct';
-            },
-        };
     }
 
     setState(key, value) {
@@ -41,12 +15,44 @@ class App {
         };
     }
 
+    isValidateCars(value) {
+        try {
+            if (value.length === 0)
+                throw new Error('입력값이 유효하지 않습니다');
+            const parsedString = value.split(',');
+            if (parsedString.length !== new Set(parsedString).size)
+                throw new Error('중복된 이름이 존재합니다');
+            for (let i = 0; i < parsedString.length; i++) {
+                if (parsedString[i].length === 0) {
+                    throw new Error('이름이 공백인 자동차가 존재합니다');
+                }
+                if (parsedString[i].length > 5) {
+                    throw new Error('자동차의 이름은 5자 이하로 등록해주세요');
+                }
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
+    isValidateRaceCount(value) {
+        try {
+            const num = Number(value);
+            if (isNaN(num)) throw new Error('유효한 숫자가 아닙니다');
+            if (num < 0) throw new Error('경주 횟수는 자연수를 입력해주세요');
+            if (num !== Math.floor(num))
+                throw new Error('경주 횟수는 자연수를 입력해주세요');
+            return 'correct';
+        } catch (error) {
+            throw error;
+        }
+    }
+
     async getCars() {
         const cars = await input(
-            '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)',
-            this.error.cars
+            '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)'
         );
 
+        this.isValidateCars(cars);
         this.setState(
             'cars',
             cars.split(',').map((car) => [car, 0])
@@ -54,10 +60,8 @@ class App {
     }
 
     async getRaceCount() {
-        const raceCount = await input(
-            '시도할 횟수는 몇 회인가요?',
-            this.error.raceCount
-        );
+        const raceCount = await input('시도할 횟수는 몇 회인가요?');
+        this.isValidateRaceCount(raceCount);
         this.setState('raceCount', Number(raceCount));
     }
 
@@ -106,10 +110,14 @@ class App {
     }
 
     async run() {
-        await this.getCars();
-        await this.getRaceCount();
-        this.startRace();
-        this.showRaceResult();
+        try {
+            await this.getCars();
+            await this.getRaceCount();
+            this.startRace();
+            this.showRaceResult();
+        } catch (error) {
+            throw error;
+        }
     }
 }
 
