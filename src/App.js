@@ -35,10 +35,10 @@ class App {
         const isGo = randomNum >= 4;
         if (isGo) carPositionObject[carName]++;
 
-        const positionBlock = this.#MOVEMENT_CHARACTER.repeat(
-          carPositionObject[carName] ?? 0
+        const movementString = this.getMovementString(
+          carPositionObject[carName]
         );
-        print(`${carName} : ${positionBlock}`);
+        print(`${carName} : ${movementString}`);
       }
     }
     const carPositionEntries = Object.entries(carPositionObject);
@@ -57,6 +57,7 @@ class App {
     if (isAnyCarNameLengthOverMax)
       throw new Error(ERROR_MESSAGE_CAR_NAME_OVER_FIVE);
   }
+  getMovementString = (count) => this.#MOVEMENT_CHARACTER.repeat(count);
 }
 
 export default App;
