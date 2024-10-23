@@ -1,26 +1,25 @@
 import { Console } from '@woowacourse/mission-utils';
-export const View = {
-  async getInput(promptMessage) {
-    return await Console.readLineAsync(promptMessage);
-  },
 
-  printMessage(message) {
-    Console.print(message);
-  },
+export async function getInput(promptMessage) {
+  return await Console.readLineAsync(promptMessage);
+}
 
-  printCarPositions(cars) {
-    cars.forEach((car) => this.printMessage(car.toString())); // printMessage 재사용
-  },
+export function printMessage(message) {
+  Console.print(message);
+}
 
-  printWinners(winners) {
-    let winnerMessage;
+export function printCarPositions(cars) {
+  cars.forEach((car) => printMessage(car.toString())); // printMessage 재사용
+}
 
-    if (winners.length === 1) {
-      winnerMessage = `최종 우승자 : ${winners[0]}`; // 한 명일 때는 그대로 출력
-    } else {
-      winnerMessage = `최종 우승자 : ${winners.join(', ')}`; // 여러 명일 때는 join 사용
-    }
+export function printWinners(winners) {
+  let winnerMessage;
 
-    this.printMessage(winnerMessage); // printMessage 재사용
-  },
-};
+  if (winners.length === 1) {
+    winnerMessage = `최종 우승자 : ${winners[0]}`;
+  } else {
+    winnerMessage = `최종 우승자 : ${winners.join(', ')}`;
+  }
+
+  printMessage(winnerMessage); // printMessage 재사용
+}

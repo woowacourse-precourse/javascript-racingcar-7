@@ -1,4 +1,4 @@
-const ERROR_PREFIX = '[ERROR]';
+const ERROR_PREFIX = '[ERROR] ';
 
 const ERROR_MESSAGES = Object.freeze({
   NAME_TOO_LONG: '자동차 이름은 5자를 초과할 수 없습니다.',

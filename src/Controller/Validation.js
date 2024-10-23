@@ -1,7 +1,12 @@
+import { ERROR_MESSAGES, throwError } from '../Model/Error';
+
 function validateCarNames(carNames) {
   const carNamesSplit = carNames.split(',');
   if (carNamesSplit.some((name) => name.trim().length > 5)) {
-    throw new Error('[ERROR]: 자동차 이름은 5자를 초과할 수 없습니다.');
+    throwError(ERROR_MESSAGES.NAME_TOO_LONG);
+  }
+  if (new Set(carNamesSplit).length !== carNamesSplit) {
+    throwError(ERROR_MESSAGES.DUPLICATED_NAMES);
   }
   return carNamesSplit;
 }
@@ -9,7 +14,7 @@ function validateCarNames(carNames) {
 function validateRounds(Rounds) {
   const parsedRounds = parseInt(Rounds, 10);
   if (isNaN(parsedRounds) || parsedRounds < 1) {
-    throw new Error('[ERROR] 시도 횟수는 1 이상이어야 합니다.');
+    throwError(ERROR_MESSAGES.INVALID_INPUT_ROUND);
   }
   return parsedRounds;
 }
