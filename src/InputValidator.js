@@ -1,5 +1,5 @@
 class InputValidator {
-    #throwError(message) {
+    static #throwError(message) {
         throw new Error(`[ERROR] ${message}`);
     }
 }
