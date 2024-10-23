@@ -12,6 +12,7 @@ import {
   pickNumberInRange,
   print,
   readLineAsync,
+  validatePositiveInteger,
 } from "./utils";
 
 class App {
@@ -22,9 +23,7 @@ class App {
     this.validateCarNameLength(carNameList, 5);
     const tryCount = +userInputTryCount;
 
-    if (isNaN(tryCount)) throw new Error(ERROR_MESSAGE_NOT_NUMBER);
-    if (tryCount < 0) throw new Error(ERROR_MESSAGE_NOT_POSITIVE_POSITIVE);
-    if (!Number.isInteger(tryCount)) throw new Error(ERROR_MESSAGE_NOT_INTEGER);
+    validatePositiveInteger(tryCount);
 
     const carPositions = {};
     for (let i = 0; i < tryCount; i++) {
