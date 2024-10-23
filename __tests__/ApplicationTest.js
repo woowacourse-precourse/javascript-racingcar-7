@@ -25,7 +25,7 @@ const getLogSpy = () => {
 };
 
 describe('자동차 경주', () => {
-  test('자동차 이름 입력', async () => {
+  test('자동차 경주 게임 시작 전 설정 값 입력', async () => {
     // given
     const inputs = ['pobi,woni,jun,lucy,minnie', '3'];
     const logs = ['자동차 이름: pobi,woni,jun,lucy,minnie', '시도할 횟수: 3'];
