@@ -1,10 +1,10 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 
 export const startRace = async () => {
     const carNames = await getCarNames();
     const attemptCount = await getAttemptCount();
-    Console.print(carNames);
-    Console.print(attemptCount);
+    
+    displayRaceResults(carNames, attemptCount);
 }
 
 const getCarNames = async () => {
@@ -27,13 +27,13 @@ const validateCarNames = (carNames) => {
 const getAttemptCount = async () => {
     const attemptCount = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
 
-    validateAttempCount(attemptCount);
+    validateAttemptCount(attemptCount);
 
     return attemptCount;
 }
 
-const validateAttempCount = (attempCount) => {
-    const count = Number(attempCount);
+const validateAttemptCount = (attemptCount) => {
+    const count = Number(attemptCount);
 
     if (isNaN(count)) {
         throw new Error('[ERROR] 시도 횟수는 숫자여야 합니다.');
@@ -41,4 +41,27 @@ const validateAttempCount = (attempCount) => {
     else if (count < 1) {
         throw new Error('[ERROR] 시도 횟수는 1 이상의 정수여야 합니다.');
     }
+}
+
+const displayRaceResults = (carNames, attemptCount) => {
+    Console.print('\n실행결과\n');
+    const carNamesAndResults = {};
+    carNames.forEach((car) => {
+        carNamesAndResults[car] = '';
+    });
+
+    for (let i = 0; i < attemptCount; i++) {
+        carNames.forEach((car) => {
+            if (Random.pickNumberInRange(0, 9) >= 4) {
+                carNamesAndResults[car] += '-'
+            }
+        })
+
+        carNames.forEach((car) => {
+            Console.print(`${car} : ${carNamesAndResults[car]}\n`);
+        })
+        Console.print('\n');
+    }
+
+    return carNamesAndResults;
 }
