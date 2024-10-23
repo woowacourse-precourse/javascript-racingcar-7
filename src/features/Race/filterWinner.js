@@ -1,9 +1,9 @@
-const filterWinner = positions => {
-  let winnerIdx = [];
+const filterWinner = (positions) => {
+  const winnerIdx = [];
 
   const maxDistance = Math.max(...positions);
 
-  positions.map((cnt, idx) => {
+  positions.forEach((cnt, idx) => {
     if (cnt === maxDistance) {
       winnerIdx.push(idx);
     }

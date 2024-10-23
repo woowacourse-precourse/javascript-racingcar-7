@@ -1,4 +1,4 @@
-const throwError = message => {
+const throwError = (message) => {
   throw new Error(`[ERROR] ${message}`);
 };
 

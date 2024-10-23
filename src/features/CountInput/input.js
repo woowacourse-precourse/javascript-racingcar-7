@@ -2,7 +2,8 @@ import { Console } from '@woowacourse/mission-utils';
 import { PROMPT_MSG } from '../../constants/promptMessage.js';
 
 const userInput = async () => {
-  return await Console.readLineAsync(`${PROMPT_MSG.COUNT}\n`);
+  const input = await Console.readLineAsync(`${PROMPT_MSG.COUNT}\n`);
+  return input;
 };
 
 export default userInput;

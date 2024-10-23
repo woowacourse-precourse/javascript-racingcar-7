@@ -5,7 +5,7 @@ import validateCars from '../src/features/CarsInput/validations';
 import validateCount from '../src/features/CountInput/validations';
 
 jest.mock('../src/utils/throwError', () =>
-  jest.fn(message => {
+  jest.fn((message) => {
     throw new Error(`[ERROR] ${message}`);
   }),
 );
