@@ -9,11 +9,15 @@ function gameStart(input, count) {
     resultObj[v] = 0;
   });
   for (let i = 0; i < count; i++) {
+    console.log(`${i + 1} 차시:`);
     for (let j = 0; j < carName.length; j++) {
       if (RandomNumber()) {
         resultObj[carName[j]] = (resultObj[carName[j]] || 0) + 1;
       }
     }
+    Object.entries(resultObj).forEach(([name, value]) => {
+      console.log(`${name}: ${"-".repeat(value)}`);
+    });
   }
   return ChangeNumber(resultObj);
 }
