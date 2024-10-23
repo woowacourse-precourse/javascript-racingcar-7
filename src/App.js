@@ -1,8 +1,9 @@
-import getCarNamesInput from './Views/inputView.js';
+import { getCarNamesInput, getRacingCountInput } from './Views/inputView.js';
 
 class App {
   async run() {
-    getCarNamesInput();
+    await getCarNamesInput();
+    getRacingCountInput();
   }
 }
 
