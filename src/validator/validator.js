@@ -19,4 +19,14 @@ const checkValidNameLength = function checkValidNameLengthFunc(carNamesArray) {
   }
 };
 
-export { checkOnlyAlphabetAndComma, checkValidNameLength };
+const checkDuplicateNames = function checkDuplicateNamesFunc(carNamesArray) {
+  const uniqueNames = new Set(carNamesArray);
+
+  if (uniqueNames.size !== carNamesArray.length) {
+    throw new Error(
+      '[ERROR] 중복된 자동차 이름 : 중복된 자동차 이름은 허용되지 않습니다.',
+    );
+  }
+};
+
+export { checkOnlyAlphabetAndComma, checkValidNameLength, checkDuplicateNames };
