@@ -9,8 +9,8 @@ class App {
       );
       Validator.nameString(inputString);
 
-      const repeatCount = await Console.readLineAsync(
-        '시도할 횟수는 몇 회인가요?\n'
+      const repeatCount = Number(
+        await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n')
       );
     } catch (error) {
       throw new Error(`[ERROR] ${error.message}`);
