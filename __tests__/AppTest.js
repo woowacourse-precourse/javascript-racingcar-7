@@ -77,4 +77,15 @@ describe('App 클래스 테스트', () => {
       '[ERROR] 빈 문자열 또는 0은 입력할 수 없습니다'
     );
   });
+
+  test('시도할 횟수에 음수가 입력됐을 때 예외처리', async () => {
+    Console.readLineAsync.mockResolvedValueOnce('pobi,woni,jun');
+    Console.readLineAsync.mockResolvedValueOnce('-2');
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(
+      '[ERROR] 음수는 입력할 수 없습니다'
+    );
+  });
 });
