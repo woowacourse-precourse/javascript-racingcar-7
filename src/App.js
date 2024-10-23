@@ -17,7 +17,7 @@ import {
 } from "./utils";
 
 class App {
-  #MOVEMENT_CHARACTER = "-";
+  #TRACE_CHARACTER = "-";
   async run() {
     const userInputCarNames = await readLineAsync(INPUT_MESSAGE_CAR_NAMES);
     const userInputTryCount = await readLineAsync(INPUT_MESSAGE_TRY_COUNT);
@@ -27,25 +27,24 @@ class App {
 
     validatePositiveInteger(tryCount);
 
-    const carPositionObject = getObjectWithZeroValue(carNameList);
+    const carTraceObject = getObjectWithZeroValue(carNameList);
 
     for (let i = 0; i < tryCount; i++) {
       for (const carName of carNameList) {
         const randomNum = pickNumberInRange(0, 9);
         const isGo = randomNum >= 4;
-        if (isGo) carPositionObject[carName]++;
+        if (isGo) carTraceObject[carName]++;
 
-        const movementString = this.getMovementString(
-          carPositionObject[carName]
-        );
-        print(`${carName} : ${movementString}`);
+        const traceString = this.getTraceString(carTraceObject[carName]);
+
+        print(`${carName} : ${traceString}`);
       }
     }
-    const carPositionEntries = Object.entries(carPositionObject);
-    carPositionEntries.sort((a, b) => b[1] - a[1]);
-    const winPosition = carPositionEntries[0][1];
-    const winnerList = carPositionEntries
-      .filter((carPosition) => carPosition[1] === winPosition)
+    const carTraceEntries = Object.entries(carTraceObject);
+    carTraceEntries.sort((a, b) => b[1] - a[1]);
+    const winTrace = carTraceEntries[0][1];
+    const winnerList = carTraceEntries
+      .filter((carTrace) => carTrace[1] === winTrace)
       .map((it) => it[0]);
 
     print(`${OUTPUT_MESSAGE_WINNER}${winnerList.join(", ")}`);
@@ -57,7 +56,7 @@ class App {
     if (isAnyCarNameLengthOverMax)
       throw new Error(ERROR_MESSAGE_CAR_NAME_OVER_FIVE);
   }
-  getMovementString = (count) => this.#MOVEMENT_CHARACTER.repeat(count);
+  getTraceString = (count) => this.#TRACE_CHARACTER.repeat(count);
 }
 
 export default App;
