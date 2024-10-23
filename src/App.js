@@ -7,15 +7,18 @@ class App {
       return userInput.split(',').map(car => car.trim());
     }
 
-    function addCar(car, raceCars) {
+    function validateCar(car, raceCars) {
       if (car.length > 5) {
-        throwError(ERROR_MESSAGES.CAR_NAME_TOO_LONG)
+        throwError(ERROR_MESSAGES.CAR_NAME_TOO_LONG);
       }
 
       if (car in raceCars) {
-        throwError(ERROR_MESSAGES.CAR_ALREADY_EXISTS(car))
+        throwError(ERROR_MESSAGES.CAR_ALREADY_EXISTS(car));
       }
+    }
 
+    function addCar(car, raceCars) {
+      validateCar(car, raceCars)
       raceCars[car] = '';
       return true;
     }
