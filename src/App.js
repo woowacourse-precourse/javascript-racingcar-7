@@ -32,6 +32,8 @@ class App {
       let raceCars = {};
 
       cars.forEach(car => addCar(car, raceCars));
+
+      return 'success'
     }
     
     const ERROR_MESSAGES = {
@@ -44,7 +46,17 @@ class App {
       throw new Error(`[ERROR] ${errorMessage}`);
     }
 
-    getRaceCar();
+    const raceCarStatus = await getRaceCar();
+
+    if(raceCarStatus==='success'){
+      getAttemptCount()
+    }
+
+    async function getAttemptCount() {
+      const attemptCount = await Console.readLineAsync(
+        '원하는 이동 횟수를 입력하세요.(움직이는 칸 수와 무관)\n'
+      );
+    }
   }
 }
 
