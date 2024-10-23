@@ -22,7 +22,7 @@ export async function getUserInputCarName() {
 function validatePlayerNames(playerNames) {
   // [ERROR] 5자를 초과하하거나 쉼표가 아닌 구분자
   const regex = /^[a-zA-Z0-9ㄱ-ㅣ가-힣]{1,5}$/;
-  if (!playerNames.map((player) => player.match(regex)))
+  if (!playerNames.every((player) => player.match(regex)))
     throw new Error('[ERROR]');
 }
 
