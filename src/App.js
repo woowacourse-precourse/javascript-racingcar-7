@@ -11,8 +11,9 @@ class App {
   async run() {
     try {
       const carNames = await this.inputHandler.carNamesInput();
-      const count = await this.inputHandler.countNumInput();
+      const countNum = await this.inputHandler.countNumInput();
       this.printCarNames(carNames);
+      this.printCountNum(countNum);
     } catch (error) {
       this.outputHandler.printError(error);
     }
@@ -20,6 +21,10 @@ class App {
 
   printCarNames(carNames) {
     Console.print(`입력된 자동차 이름들: ${carNames.join(', ')}`);
+  }
+
+  printCountNum(countNum) {
+    Console.print(`입력된 시도 횟수 : ${countNum}`)
   }
 }
 

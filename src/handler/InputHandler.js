@@ -1,9 +1,11 @@
 import { Console } from "@woowacourse/mission-utils";
 import CarNamesValidator from '../utils/CarNamesValidator.js';
+import CountNumValidator from "../utils/CountNumValidator.js";
 
 class InputHandler {
     constructor() {
         this.carNamesValidator = new CarNamesValidator();
+        this.countNumValidator = new CountNumValidator();
     }
 
     async carNamesInput() {
@@ -14,12 +16,19 @@ class InputHandler {
 
     async countNumInput() {
         const input = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+        this.countNumValidator.validateCountNum(input);
+        return input;
     }
 
     processTrimInput(input) {
         const carNames = input.split(',').map(name => name.trim());
-        this.carNamesValidator.validateCarNames(carNames)
+        this.carNamesValidator.validateCarNames(carNames); // 자르고 유효성 검사
         return carNames;
+    }
+
+    processCountNumInput(input) {
+        this.countNumValidator.validateCountNum(input);
+        return input;
     }
 }
 
