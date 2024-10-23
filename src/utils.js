@@ -11,3 +11,5 @@ export const print = (message) => {
 export const pickNumberInRange = (start, end) => {
   return MissionUtils.Random.pickNumberInRange(start, end);
 };
+
+export const convertStringToArray = (str, separator) => str.split(separator);

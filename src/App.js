@@ -7,13 +7,18 @@ import {
   INPUT_MESSAGE_TRY_COUNT,
   OUTPUT_MESSAGE_WINNER,
 } from "./constants";
-import { pickNumberInRange, print, readLineAsync } from "./utils";
+import {
+  convertStringToArray,
+  pickNumberInRange,
+  print,
+  readLineAsync,
+} from "./utils";
 
 class App {
   async run() {
     const userInputCarNames = await readLineAsync(INPUT_MESSAGE_CAR_NAMES);
     const userInputTryCount = await readLineAsync(INPUT_MESSAGE_TRY_COUNT);
-    const carNameList = userInputCarNames.split(",");
+    const carNameList = convertStringToArray(userInputCarNames, ",");
     for (const carName of carNameList) {
       if (carName.length >= 5)
         throw new Error(ERROR_MESSAGE_CAR_NAME_OVER_FIVE);
