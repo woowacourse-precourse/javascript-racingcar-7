@@ -13,7 +13,7 @@
     "max-depth": ["error", 2],
     "id-match": [
       "error",
-      "^[a-bA-Z0-9_]+$",
+      "^[a-zA-Z0-9_]+$",
       {
         "onlyDeclarations": true,
         "ignoreDestructuring": true,
