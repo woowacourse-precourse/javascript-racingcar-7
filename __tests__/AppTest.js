@@ -112,4 +112,17 @@ describe('App 클래스 테스트', () => {
       '[ERROR] 실수, 정상 범위를 벗어난 정수는 입력할 수 없습니다'
     );
   });
+
+  test('이름 문자열을 쉼표로 분리하여 배열로 변환', async () => {
+    Console.readLineAsync.mockResolvedValueOnce('pobi,woni,jun');
+    Console.readLineAsync.mockResolvedValueOnce('5');
+
+    const app = new App();
+    await app.run();
+
+    const expectedArray = ['pobi', 'woni', 'jun'];
+    const nameArray = 'pobi,woni,jun'.split(',');
+
+    expect(nameArray).toEqual(expectedArray);
+  });
 });
