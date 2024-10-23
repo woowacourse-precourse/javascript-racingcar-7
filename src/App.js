@@ -7,6 +7,7 @@ import {
   hasDuplicate,
   hasInvalidCarNameLength,
   getTryCount,
+  isNotPositiveInteger,
 } from "./utils/index.js";
 
 class App {
@@ -17,6 +18,7 @@ class App {
       assertCondition(hasInvalidCarNameLength(carNames), createErrorMessage(MESSAGES.INVALID_CAR_NAME_LENGTH));
 
       const tryCount = await getTryCount();
+      assertCondition(isNotPositiveInteger(tryCount), createErrorMessage(MESSAGES.INVALID_TRY_COUNT));
     } catch (error) {
       Console.print(error.message);
       throw error;

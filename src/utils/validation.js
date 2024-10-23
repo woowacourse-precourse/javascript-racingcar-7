@@ -17,6 +17,11 @@ export const hasInvalidCarNameLength = (carNames) => {
   return carNames.some((carName) => !isValidLength(carName, MIN_LENGTH, MAX_LENGTH));
 };
 
+// 양의 정수가 아닌지 체크
+export const isNotPositiveInteger = (number) => {
+  return number <= 0 || !Number.isInteger(number);
+};
+
 // 에러 메세지 만들기
 export const createErrorMessage = (message) => {
   return MESSAGES.ERROR + message;

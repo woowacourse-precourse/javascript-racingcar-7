@@ -7,6 +7,6 @@ export const getCarNames = async () => {
 };
 
 export const getTryCount = async () => {
-  const tryCount = Console.readLineAsync(MESSAGES.COUNT_INPUT);
+  const tryCount = await Console.readLineAsync(MESSAGES.COUNT_INPUT);
   return Number(tryCount);
 };
