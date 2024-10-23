@@ -22,12 +22,8 @@ class App {
   #MAX_CAR_NAME_LENGTH = 5;
   async run() {
     const [userInputCarNames, userInputTryCount] = await this.getUserInput();
-
-    const carNameArray = splitIntoArray(userInputCarNames, ",");
-    this.validateCarNameLength(carNameArray, 5);
-
-    const tryCount = +userInputTryCount;
-    validatePositiveInteger(tryCount);
+    const carNameArray = this.processCarNames(userInputCarNames);
+    const tryCount = this.processTryCount(userInputTryCount);
 
     const carTraceMap = getMapWithZeroValue(carNameArray);
 
@@ -57,6 +53,18 @@ class App {
     const tryCount = await readLineAsync(INPUT_MESSAGE_TRY_COUNT);
 
     return [carNames, tryCount];
+  }
+
+  processCarNames(userInputCarNames) {
+    const carNameArray = splitIntoArray(userInputCarNames, ",");
+    this.validateCarNameLength(carNameArray, 5);
+    return carNameArray;
+  }
+
+  processTryCount(userInputTryCount) {
+    const tryCount = +userInputTryCount;
+    validatePositiveInteger(tryCount);
+    return tryCount;
   }
 
   validateCarNameLength(carNameArray) {
