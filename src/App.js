@@ -1,5 +1,9 @@
+import {input} from "./input.js";
+
 class App {
-  async run() {}
+  async run() {
+    await input()
+  }
 }
 
 export default App;
