@@ -44,7 +44,7 @@ MissionUtils.Random.pickNumberInRange(0, 9);
 
 ## 기능 목록
 
-- [ ] 자동차를 입력받는 기능
+- [x] 자동차를 입력받는 기능
   - [ ] 자동차 이름의 길이가 5자 이하인지 검사 (TODO 쉼표를 허용할지 결정 필요)
 - [ ] 몇 번의 이동을 할지 입력받는 기능
   - [ ] 입력 validation
