@@ -7,7 +7,7 @@ class Car {
   }
 
   move() {
-    if (MissionUtils.Random.pickNumberInRange(0, 9) > 4) {
+    if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) {
       this.position++;
     }
   }
