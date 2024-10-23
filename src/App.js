@@ -38,12 +38,12 @@ class App {
         if (isMoveForward)
           carTraceMap.set(carName, carTraceMap.get(carName) + 1);
 
-        const traceString = getRepeatedString(
+        const repeatedTraceChracter = getRepeatedString(
           this.#TRACE_CHARACTER,
           carTraceMap.get(carName)
         );
 
-        print(`${carName} : ${traceString}`);
+        print(`${carName} : ${repeatedTraceChracter}`);
       }
     }
 
