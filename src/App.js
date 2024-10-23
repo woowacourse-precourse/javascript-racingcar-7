@@ -25,26 +25,8 @@ class App {
     const carNameArray = this.processCarNames(userInputCarNames);
     const tryCount = this.processTryCount(userInputTryCount);
 
-    const carTraceMap = getMapFilledZeroValue(carNameArray);
+    const { winnerCarArray } = this.race(carNameArray, tryCount);
 
-    for (let i = 0; i < tryCount; i++) {
-      for (const carName of carNameArray) {
-        const randomNum = pickNumberInRange(0, 9);
-        const isMoveForward = randomNum >= 4;
-        if (isMoveForward)
-          carTraceMap.set(carName, carTraceMap.get(carName) + 1);
-
-        const repeatedTraceChracter = getRepeatedString(
-          this.#TRACE_CHARACTER,
-          carTraceMap.get(carName)
-        );
-
-        print(`${carName} : ${repeatedTraceChracter}`);
-      }
-    }
-
-    const maxTrace = getMaxValueInMap(carTraceMap);
-    const winnerCarArray = getKeyArrayHasSameValueInMap(carTraceMap, maxTrace);
     print(`${OUTPUT_MESSAGE_WINNER}${winnerCarArray.join(", ")}`);
   }
 
@@ -73,6 +55,31 @@ class App {
     } catch (e) {
       throw new Error(ERROR_MESSAGE_CAR_NAME_OVER_FIVE);
     }
+  }
+
+  race(carNameArray, tryCount) {
+    const carTraceMap = getMapFilledZeroValue(carNameArray);
+
+    for (let i = 0; i < tryCount; i++) {
+      for (const carName of carNameArray) {
+        const randomNum = pickNumberInRange(0, 9);
+        const isMoveForward = randomNum >= 4;
+        if (isMoveForward)
+          carTraceMap.set(carName, carTraceMap.get(carName) + 1);
+
+        const repeatedTraceChracter = getRepeatedString(
+          this.#TRACE_CHARACTER,
+          carTraceMap.get(carName)
+        );
+
+        print(`${carName} : ${repeatedTraceChracter}`);
+      }
+    }
+    const maxTrace = getMaxValueInMap(carTraceMap);
+    const winnerCarArray = getKeyArrayHasSameValueInMap(carTraceMap, maxTrace);
+    return {
+      winnerCarArray,
+    };
   }
 }
 
