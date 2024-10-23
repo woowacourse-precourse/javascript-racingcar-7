@@ -1,6 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 
-const runRaceRounds = function runRaceRounds(cars, roundCount) {
+const runRaces = function runRaces(cars, roundCount) {
   Console.print('\n실행 결과');
 
   for (let round = 0; round < roundCount; round++) {
@@ -14,4 +14,4 @@ const runRaceRounds = function runRaceRounds(cars, roundCount) {
   }
 };
 
-export default runRaceRounds;
+export default runRaces;

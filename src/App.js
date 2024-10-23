@@ -1,6 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import Car from './Car.js';
-import runRaceRounds from './runRaceRounds.js';
+import runRaces from './runRaces.js';
 import Validator from './Validator.js';
 import printWinners from './printWinners.js';
 
@@ -21,7 +21,7 @@ class App {
       );
       Validator.checkRoundCount(roundCount);
 
-      runRaceRounds(cars, roundCount);
+      runRaces(cars, roundCount);
       printWinners(cars);
     } catch (error) {
       throw new Error(`[ERROR] ${error.message}`);
