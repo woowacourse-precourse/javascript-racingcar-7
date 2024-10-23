@@ -1,8 +1,11 @@
 class Racing {
   #tryCount;
 
-  constructor(tryCount) {
+  #cars;
+
+  constructor(tryCount, cars) {
     this.#tryCount = tryCount;
+    this.#cars = cars;
   }
 }
 
