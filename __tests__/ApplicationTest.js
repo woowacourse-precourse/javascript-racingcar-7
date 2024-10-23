@@ -63,4 +63,10 @@ describe("자동차 경주", () => {
       ERROR_MESSAGES.CAR_NAME_TOO_LONG
     );
   });
+
+  test("자동차 이름은 한글 또는 영어만 입력할 수 있다. 그렇지 않은 경우", () => {
+    expect(() => validateCarNameOnlyLetters(["123", "^&*"])).toThrow(
+      ERROR_MESSAGES.NAME_MUST_BE_KOREAN_OR_ENGLISH
+    );
+  });
 });
