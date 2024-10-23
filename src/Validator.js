@@ -8,6 +8,7 @@ const ERROR_MESSAGES = {
   NAME_NOT_ALPHABET: '이름은 영문자만 가능합니다',
   SINGLE_PLAYER: '플레이어는 1명일 수 없습니다',
   ALL_NAMES_SAME: '모든 플레이어들의 이름이 같습니다',
+  SAME_NAMES: '중복된 이름이 있습니다',
 };
 
 class Validator {
@@ -52,6 +53,11 @@ class Validator {
 
     if (names.every((name) => name === names[0])) {
       throw new Error(ERROR_MESSAGES.ALL_NAMES_SAME);
+    }
+
+    const nameSet = new Set(names);
+    if (nameSet.size !== names.length) {
+      throw new Error(ERROR_MESSAGES.SAME_NAMES);
     }
   }
 }
