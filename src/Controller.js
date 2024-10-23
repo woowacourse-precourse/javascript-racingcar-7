@@ -1,4 +1,5 @@
 import View from './View.js';
+import { validateName } from './validation.js';
 
 export default class Controller {
   constructor() {
@@ -18,6 +19,7 @@ export default class Controller {
     const input = await rawInput;
 
     const names = input.split(',').map((name) => name.trim());
+    validateName(names);
 
     return names;
   }
