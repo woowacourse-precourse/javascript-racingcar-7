@@ -1,5 +1,6 @@
 import {isMoveForward} from "./random.js";
 import {input} from "./input.js";
+import {printProgress} from "./output.js";
 
 function parseStringToObject(validCars) {
     const carsArray = validCars.split(',')
@@ -23,6 +24,7 @@ export async function racingCars() {
 
     for(let i= 0; i < count; i++){
         moveCars(carsObject)
+        printProgress(carsObject)
     }
 
     return carsObject;
