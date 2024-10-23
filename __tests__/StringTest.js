@@ -26,4 +26,16 @@ describe("InputHandler", () => {
         const input = "car1,,car3";
         expect(() => inputHandler.processInput(input)).toThrow("[ERROR] 자동차 이름은 빈 문자열일 수 없습니다.");
     });
+
+    test("자동차 이름이 중복될 경우 오류 발생", () => {
+        const inputHandler = new InputHandler();
+        const input = "car1,car1,car3";
+        expect(() => inputHandler.processInput(input)).toThrow("[ERROR] 자동차 이름은 중복될 수 없습니다.");
+    });
+
+    test("자동차가 1개일 경우 오류 발생", () => {
+        const inputHandler = new InputHandler();
+        const input = "car1";
+        expect(() => inputHandler.processInput(input)).toThrow("[ERROR] 자동차는 최소 2대 이상이어야 합니다.");
+    });
 });
