@@ -38,31 +38,39 @@ class App {
     carNameList.forEach((elem) => this.#cars.push(new Car(elem)));
   }
 
+  printGameStart() {
+    Console.print("실행 결과");
+  }
+
   generateGame() {
     for (let i = 0; i < this.#tryCount; i++) {
       this.generateGamePerCycle();
+      Console.print("");
     }
   }
+
   generateGamePerCycle() {
     this.#cars.forEach((elem) => {
       this.generateCarMove(elem);
+      this.printCarmove(elem);
     });
   }
+
   generateCarMove(car) {
     const randomNumber = this.calculateRandomNumber();
     if (randomNumber >= 4) {
       car.increaseProgressCount();
     }
-    Console.print(
-      car.getCarName() + "," + randomNumber + "," + car.getProgressCount()
-    );
   }
+
   calculateRandomNumber() {
     return Random.pickNumberInRange(0, 9);
   }
 
-  printGameStart() {
-    Console.print("실행 결과");
+  printCarmove(car) {
+    Console.print(
+      car.getCarName() + " : " + "-".repeat(car.getProgressCount())
+    );
   }
 }
 
