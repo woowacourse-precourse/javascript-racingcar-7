@@ -2,7 +2,15 @@ import PrintFunc from "./print/printFunc.js";
 import { Console } from "@woowacourse/mission-utils";
 
 class App {
-  async run() { }
+  async run() {
+    await this.gatherUserInputs();
+  }
+
+  async gatherUserInputs() {
+    const carNames = await this.checkCarNameInput();
+    const raceRap = await this.checkRacingInputRap();
+    PrintFunc.printParams(`${carNames},${raceRap}`);
+  }
 
   async checkCarNameInput() {
     const carsInput = await Console.readLineAsync(
