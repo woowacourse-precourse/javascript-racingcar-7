@@ -6,6 +6,7 @@ import { validateCarNameSeparator } from "../src/validation/validateCarName/vali
 import { validateCarNameOnlyLetters } from "../src/validation/validateCarName/validateCarNameOnlyLetters.js";
 import { validateCarNameCount } from "../src/validation/validateCarName/validateCarNameCount.js";
 import { validateDuplicateCarNames } from "../src/validation/validateCarName/validateDuplicateCarNames.js";
+import { validateAttemptsNumber } from "../src/validation/validateAttemptsNumber/validateAttemptsNumber.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -79,6 +80,12 @@ describe("자동차 경주", () => {
   test("경주할 자동차 이름이 중복된 경우", () => {
     expect(() => validateDuplicateCarNames(["emma", "sophia", "emma"])).toThrow(
       ERROR_MESSAGES.DUPLICATE_CAR_NAMES
+    );
+  });
+
+  test("시도 횟수 입력 값이 숫자가 아닌 경우", () => {
+    expect(() => validateAttemptsNumber("a")).toThrow(
+      ERROR_MESSAGES.ATTEMPTS_MUST_BE_NUMERIC
     );
   });
 });
