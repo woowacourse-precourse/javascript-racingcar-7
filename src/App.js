@@ -9,6 +9,7 @@ import {
 } from "./constants";
 import {
   convertStringToArray,
+  getObjectWithZeroValue,
   pickNumberInRange,
   print,
   readLineAsync,
@@ -25,18 +26,13 @@ class App {
 
     validatePositiveInteger(tryCount);
 
-    const carPositionObject = {};
+    const carPositionObject = getObjectWithZeroValue(carNameList);
+
     for (let i = 0; i < tryCount; i++) {
       for (const carName of carNameList) {
         const randomNum = pickNumberInRange(0, 9);
         const isGo = randomNum >= 4;
-        if (isGo) {
-          if (carPositionObject[carName]) {
-            carPositionObject[carName]++;
-          } else {
-            carPositionObject[carName] = 1;
-          }
-        }
+        if (isGo) carPositionObject[carName]++;
         const positionBlock = "-".repeat(carPositionObject[carName] ?? 0);
         print(`${carName} : ${positionBlock}`);
       }

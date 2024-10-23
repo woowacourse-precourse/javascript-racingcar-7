@@ -24,3 +24,11 @@ export const validatePositiveInteger = (num) => {
   if (num < 0) throw new Error(ERROR_MESSAGE_NOT_POSITIVE_POSITIVE);
   if (!Number.isInteger(num)) throw new Error(ERROR_MESSAGE_NOT_INTEGER);
 };
+
+export const getObjectWithZeroValue = (array) => {
+  const object = {};
+  for (const item of array) {
+    object[item] = 0;
+  }
+  return object;
+};
