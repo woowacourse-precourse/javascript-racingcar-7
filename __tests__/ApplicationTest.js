@@ -4,6 +4,7 @@ import {
   ERROR_MESSAGE_CAR_NAME_OVER_FIVE,
   ERROR_MESSAGE_NOT_INTEGER,
   ERROR_MESSAGE_NOT_POSITIVE_POSITIVE,
+  OUTPUT_MESSAGE_WINNER,
 } from "../src/constants.js";
 
 const mockQuestions = (inputs) => {
@@ -46,7 +47,7 @@ describe("자동차 경주", () => {
         "woni : ",
         "pobi : -----",
         "woni : ",
-        "최종 우승자 : pobi",
+        `${OUTPUT_MESSAGE_WINNER}pobi`,
       ];
       const logSpy = getLogSpy();
 
@@ -102,7 +103,7 @@ describe("자동차 경주", () => {
         "gue : -",
         "hyun : -",
         "hyek : -",
-        "최종 우승자 : pobi, woni, gue, hyun, hyek",
+        `${OUTPUT_MESSAGE_WINNER}pobi, woni, gue, hyun, hyek`,
       ];
       const logSpy = getLogSpy();
 
