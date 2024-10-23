@@ -1,4 +1,4 @@
-import InputView from "../views/inputView.js";//클래스는 확장자 붙여야
+import InputView from "../views/InputView.js";//클래스는 확장자 붙여야
 
 export class MainController{
     async run(){
