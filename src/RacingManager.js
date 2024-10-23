@@ -11,7 +11,7 @@ class RacingManager {
     InputValidation.validateCarNameList(carNameList);
     this.#setCarList(carNameList);
 
-    const attemptLimit = await InputView.readAttemptLimit();
+    const attemptLimit = Number(await InputView.readAttemptLimit());
     InputValidation.validateAttemptLimit(attemptLimit);
 
     this.#playRounds(attemptLimit);

@@ -27,9 +27,7 @@ class InputValidation {
   }
 
   static validateAttemptLimit(input) {
-    const parsedAttemptLimit = Number(input);
-
-    if (Number.isSafeInteger(parsedAttemptLimit) && parsedAttemptLimit >= 0) {
+    if (Number.isSafeInteger(input) && input >= 0) {
       return;
     }
 
