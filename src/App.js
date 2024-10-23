@@ -9,6 +9,7 @@ class App {
       const count = await countInput();
       const game = new CarRacingGame(cars, count);
       game.playGame();
+      const winners = game.getWinners();
     } catch (e) {
       throw new Error(e.message);
     }
