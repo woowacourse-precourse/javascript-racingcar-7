@@ -9,6 +9,7 @@ import {
 } from "./constants";
 import {
   convertStringToArray,
+  getKeyListHasSameValueInMap,
   getMapWithZeroValue,
   getMaxValueInMap,
   pickNumberInRange,
@@ -43,6 +44,7 @@ class App {
     }
 
     const maxTrace = getMaxValueInMap(carTraceMap);
+    const winnerCarList = getKeyListHasSameValueInMap(carTraceMap, maxTrace);
   }
   validateCarNameLength(carNameList, maxLength) {
     const isAnyCarNameLengthOverMax = carNameList.some(

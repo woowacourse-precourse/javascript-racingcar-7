@@ -34,3 +34,11 @@ export const getMapWithZeroValue = (array) => {
 };
 
 export const getMaxValueInMap = (map) => Math.max(...map.values());
+
+export const getKeyListHasSameValueInMap = (map, targetValue) => {
+  const array = [];
+  for (const [key, value] of map) {
+    if (value === targetValue) array.push(key);
+  }
+  return array;
+};
