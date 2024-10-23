@@ -1,3 +1,5 @@
+import { Console } from '@woowacourse/mission-utils';
+
 class Car {
   #name;
   #distance;
@@ -13,6 +15,10 @@ class Car {
 
   getDistance() {
     return this.#distance;
+  }
+
+  printInfo() {
+    Console.print(`${this.#name} : ${'-'.repeat(this.#distance)}`);
   }
 }
 
