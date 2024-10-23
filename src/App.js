@@ -9,13 +9,11 @@ class App {
 
     function addCar(car, raceCars) {
       if (car.length > 5) {
-        console.log('error: 자동차 이름은 최대 5글자여야 합니다.');
-        return false;
+        throwError(ERROR_MESSAGES.CAR_NAME_TOO_LONG)
       }
 
       if (car in raceCars) {
-        console.log(`중복된 참가자가 있습니다: "${car}"`);
-        return false;
+        throwError(ERROR_MESSAGES.CAR_ALREADY_EXISTS(car))
       }
 
       raceCars[car] = '';
@@ -31,6 +29,16 @@ class App {
       let raceCars = {};
 
       cars.forEach(car => addCar(car, raceCars));
+    }
+    
+    const ERROR_MESSAGES = {
+      CAR_NAME_TOO_LONG: "자동차 이름은 최대 5글자여야 합니다.", 
+      CAR_ALREADY_EXISTS: (car) => `중복된 참가자가 있습니다: "${car}"`,
+
+    };
+
+    function throwError(errorMessage) {
+      throw new Error(`[ERROR] ${errorMessage}`);
     }
 
     getRaceCar();
