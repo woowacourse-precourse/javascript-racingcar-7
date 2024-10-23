@@ -10,7 +10,7 @@ class App {
 
   async run() {
     try {
-      const carNames = await this.inputHandler.carNameInput();
+      const carNames = await this.inputHandler.carNamesInput();
       this.printCarNames(carNames);
     } catch (error) {
       this.outputHandler.printError(error);
