@@ -1,9 +1,22 @@
+import { Console } from '@woowacourse/mission-utils';
+
+// TODO: ApplicationTest.js 테스트 파일은 현재 skip 상태
 class App {
-  async run() {}
+  async run() {
+    getUserInputCarName();
+  }
 }
 
 export default App;
 
+export async function getUserInputCarName() {
+  const userInput = await Console.readLineAsync(
+    '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분\n)'
+  );
+  const playerNames = userInput.trim().split(',');
+
+  return playerNames;
+}
 // getUserInputCarName
 // TODO: 에러 핸들링
 // userinput으로 n대의 자동차 이름 배열 가져오기
