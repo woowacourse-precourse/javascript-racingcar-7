@@ -3,8 +3,8 @@ import { Console, Random } from "@woowacourse/mission-utils";
 export const startRace = async () => {
     const carNames = await getCarNames();
     const attemptCount = await getAttemptCount();
-    
-    displayRaceResults(carNames, attemptCount);
+    const raceResult = displayRaceResults(carNames, attemptCount);
+    displayFinalWinner(raceResult);
 }
 
 const getCarNames = async () => {
@@ -64,4 +64,11 @@ const displayRaceResults = (carNames, attemptCount) => {
     }
 
     return carNamesAndResults;
+}
+
+const displayFinalWinner = (raceResult) => {
+    const maxDistance = Math.max(...Object.values(raceResult).map(result => result.length));
+    const winners = Object.keys(raceResult).filter((car) => raceResult[car].length === maxDistance);
+
+    Console.print(`최종 우승자 : ${winners.join(', ')}`);
 }
