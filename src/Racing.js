@@ -8,7 +8,7 @@ class Racing {
     this.#cars = cars;
   }
 
-  play() {
+  try() {
     const cars = [...this.#cars];
     const distances = cars.map((car) => car.driving());
     return distances;
