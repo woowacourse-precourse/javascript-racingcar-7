@@ -3,6 +3,8 @@ class InputValidator {
         EMPTY: "자동차 이름이 입력되지 않았습니다.",
         INVALID: "자동차 이름은 1~5글자여야 하며, 공백이나 특수 문자는 포함할 수 없습니다.",
         DUPLICATE: "중복되는 자동차 이름이 있습니다.",
+        NOT_NUMBER: "시도 횟수는 숫자여야 합니다.",
+        LESS_THAN_ZERO: "시도 횟수는 0보다 커야합니다.",
     });
 
     static validateCarNameList(carNameList) {
@@ -21,9 +23,9 @@ class InputValidator {
 
     static validateInputTryCount(tryInputCount) {
         if (isNaN(tryInputCount)) {
-            InputValidator.#throwError("시도 횟수는 숫자여야 합니다.");
+            InputValidator.#throwError(InputValidator.ERROR_MESSAGES.NOT_NUMBER);
         } else if (tryInputCount <= 0) {
-            InputValidator.#throwError("시도 횟수는 0보다 커야합니다.");
+            InputValidator.#throwError(InputValidator.ERROR_MESSAGES.LESS_THAN_ZERO);
         }
     }
 
