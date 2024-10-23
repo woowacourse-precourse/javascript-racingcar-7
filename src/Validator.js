@@ -3,7 +3,7 @@ import { checkedValidCarNameLength } from './utils/checkedValidCarNameLength.js'
 import Car from './Car.js';
 
 class Validator {
-  validCarInput(string) {
+  static validCarInput(string) {
     if (regex.invalidCarInputDelimiter.test(string)) {
       throw new Error(`${errorMessages.prefix} ${errorMessages.invalidDelimiter}`);
     } else if (!regex.validInputName.test(string)) {
@@ -17,7 +17,7 @@ class Validator {
     return cars;
   }
 
-  validCountInput(count) {
+  static validCountInput(count) {
     if (!count) {
       throw new Error(`${errorMessages.prefix} ${errorMessages.invalidCount}`);
     }
