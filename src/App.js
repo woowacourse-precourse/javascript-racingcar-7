@@ -9,7 +9,15 @@ class App {
       (input) => {
         if (this.CarNameException(input)) {
           MissionUtils.Console.print(`입력된 자동차: ${input}`);
-          MissionUtils.Console.readLine();
+          MissionUtils.Console.readLine(
+            "게임을 몇번 진행하시겠습니까?",
+            (count) => {
+              MissionUtils.Console.print(
+                `게임을 총 ${count} 번 진행하겠습니다`
+              );
+              gameStart(input, count);
+            }
+          );
         }
       }
     );
@@ -23,6 +31,15 @@ class App {
       }
     });
     return true;
+  }
+
+  gameStart(input, count) {
+    // input ["ㄷ"]
+    let carName = input.split("");
+
+    let gameResult = new Set();
+
+    // gameResult에다가
   }
 }
 

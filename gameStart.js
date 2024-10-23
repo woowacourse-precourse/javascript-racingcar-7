@@ -15,7 +15,7 @@ function gameStart(input, count) {
       }
     }
   }
-  return resultObj;
+  return ChangeNumber(resultObj);
 }
 
 function RandomNumber() {
@@ -26,6 +26,13 @@ function RandomNumber() {
     return true;
   }
   return false;
+}
+
+function ChangeNumber(object) {
+  for (let key in object) {
+    object[key] = "-".repeat(object[key]);
+  }
+  return object;
 }
 
 console.log(gameStart("동규,한세", 5));
