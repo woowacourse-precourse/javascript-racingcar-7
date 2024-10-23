@@ -8,7 +8,7 @@ class Racing {
     this.#cars = cars;
   }
 
-  try() {
+  #try() {
     const cars = [...this.#cars];
     const distances = cars.map((car) => car.driving());
     return distances;
@@ -21,7 +21,7 @@ class Racing {
       (arrayLike, index) => index + 1,
     );
 
-    rounds.forEach(() => this.try());
+    rounds.forEach(() => this.#try());
   }
 }
 
