@@ -5,7 +5,7 @@ class Validator {
     this.#validateDuplicate(names);
 
     names.split(',').map((name) => {
-      this.#validateIsEmptyName(name);
+      this.#validateIsNameEmpty(name);
       this.#validateLengthName(name);
     });
   }
@@ -19,7 +19,7 @@ class Validator {
   }
 
   // 자동차 이름이 빈 문자열인지 확인
-  static #validateIsEmptyName(name) {
+  static #validateIsNameEmpty(name) {
     if (name === '') {
       throw new Error(ERROR_MESSAGES.INVALID_EMPTY_CARNAME);
     }

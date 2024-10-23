@@ -15,6 +15,7 @@ class GameController {
 
       Validator.validateCarNames(carNames);
       Validator.validateGameCount(gameCount);
+
       this.outputView.printResult(carNames);
       this.outputView.printResult(gameCount);
     } catch (error) {
