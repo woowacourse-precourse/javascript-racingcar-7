@@ -1,13 +1,15 @@
-import { ERROR_MESSAGES, throwError } from '../Model/Error';
+import { ERROR_MESSAGES, throwError } from '../Model/Error.js';
 
 function validateCarNames(carNames) {
   const carNamesSplit = carNames.split(',');
   if (carNamesSplit.some((name) => name.trim().length > 5)) {
     throwError(ERROR_MESSAGES.NAME_TOO_LONG);
   }
-  if (new Set(carNamesSplit).length !== carNamesSplit) {
+
+  if (checkDuplicate(carNamesSplit)) {
     throwError(ERROR_MESSAGES.DUPLICATED_NAMES);
   }
+
   return carNamesSplit;
 }
 
