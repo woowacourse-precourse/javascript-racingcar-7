@@ -17,6 +17,7 @@
   ],
   "rules": {
     "import/extensions": "off",
+    "import/prefer-default-export": "off",
     // unused-imports
     "no-unused-vars": "off",
     "unused-imports/no-unused-imports": "error",
@@ -28,7 +29,10 @@
         "args": "after-used",
         "argsIgnorePattern": "^_"
       }
-    ]
+    ],
+    // jsdoc
+    "jsdoc/require-param-description": "off",
+    "jsdoc/require-returns-description": "off"
   },
   "overrides": [
     {
