@@ -88,4 +88,28 @@ describe('App 클래스 테스트', () => {
       '[ERROR] 음수는 입력할 수 없습니다'
     );
   });
+
+  test('실수 또는 정상 범위를 벗어난 정수가 입력됐을 때 예외처리1', async () => {
+    Console.readLineAsync.mockResolvedValueOnce('pobi,woni,jun');
+    Console.readLineAsync.mockResolvedValueOnce('1.2');
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(
+      '[ERROR] 실수, 정상 범위를 벗어난 정수는 입력할 수 없습니다'
+    );
+  });
+
+  test('실수 또는 정상 범위를 벗어난 정수가 입력됐을 때 예외처리2', async () => {
+    Console.readLineAsync.mockResolvedValueOnce('pobi,woni,jun');
+    Console.readLineAsync.mockResolvedValueOnce(
+      '99999999999999999999999999999999'
+    );
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(
+      '[ERROR] 실수, 정상 범위를 벗어난 정수는 입력할 수 없습니다'
+    );
+  });
 });
