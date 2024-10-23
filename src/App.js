@@ -22,6 +22,16 @@ class App {
 
     return carsInputArray;
   }
+
+  async checkRacingInputRap() {
+    const racingTimeInput = await Console.readLineAsync("시도할 횟수는 몇 회인가요? : ");
+
+    if (isNaN(Number(racingTimeInput))) {
+      return PrintFunc.printError("횟수는 숫자여야합니다");
+    }
+
+    return racingTimeInput;
+  }
 }
 
 export default App;
