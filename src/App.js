@@ -1,33 +1,38 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 import { GAME_MESSAGE, ERROR_MESSAGE } from './constant/index.js';
+import Car from './Car.js';
 
 class App {
   async run() {
-    const cars = await this.setCars();
+    const carNameArr = await this.setCars();
     const tryNumber = await this.setTryNumber();
+
+    const cars = carNameArr.map((carName) => new Car(carName));
+
+    this.gameStart(cars, tryNumber);
   }
 
   async setCars() {
     const input = await Console.readLineAsync(GAME_MESSAGE.CAR_NAME_INPUT);
-    const carsArr = input.split(',');
+    const carNameArr = input.split(',');
 
-    if (carsArr.some((name) => name === '')) {
+    if (carNameArr.some((name) => name === '')) {
       throw new Error(ERROR_MESSAGE.CAR_NAME_NOT_ALLOWED_EMPTY);
     }
 
-    if (carsArr.some((name) => name.split('').find((char) => char === ' '))) {
+    if (carNameArr.some((name) => name.split('').find((char) => char === ' '))) {
       throw new Error(ERROR_MESSAGE.CAR_NAME_NOT_ALLOWED_GAP);
     }
 
-    if (carsArr.length !== new Set(carsArr).size) {
+    if (carNameArr.length !== new Set(carNameArr).size) {
       throw new Error(ERROR_MESSAGE.CAR_NAME_NOT_ALLOWED_DUPLICATION);
     }
 
-    if (carsArr.some((name) => name.length > 5)) {
+    if (carNameArr.some((name) => name.length > 5)) {
       throw new Error(ERROR_MESSAGE.CAR_NAME_MAX_LENGTH_FIVE);
     }
 
-    return carsArr;
+    return carNameArr;
   }
 
   async setTryNumber() {
@@ -42,6 +47,31 @@ class App {
     }
 
     return input;
+  }
+
+  gameStart(cars, tryNumber) {
+    Console.print('\n실행 결과');
+
+    for (let i = 0; i < tryNumber; i += 1) {
+      cars.forEach((car) => {
+        const randomNumber = this.getRandomNumber();
+        this.tryMove(car, randomNumber);
+      });
+
+      const join = cars.map((car) => car.parseDistanceToString()).join('\n');
+
+      Console.print(`${join}\n`);
+    }
+  }
+
+  tryMove(car, randomNumber) {
+    if (randomNumber >= 4) {
+      return car.move();
+    }
+  }
+
+  getRandomNumber() {
+    return Random.pickNumberInRange(0, 9);
   }
 }
 
