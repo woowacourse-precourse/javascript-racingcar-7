@@ -7,6 +7,11 @@ class App {
 		const raceCountInput = await Console.readLineAsync(
 			`시도할 횟수는 몇 회인가요?\n`
 		);
+
+		const carList = carNameInput.split(',');
+		checkCarInputLength(carList);
+		checkEmptyInput(carNameInput);
+		checkEmptyInput(raceCountInput);
 	}
 }
 
