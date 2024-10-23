@@ -1,4 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
+import Car from './Car.js';
 import Validator from './Validator.js';
 
 class App {
@@ -11,6 +12,8 @@ class App {
 
       const nameArray = inputString.split(',');
       Validator.nameArray(nameArray);
+
+      const carArray = nameArray.map((name) => new Car(name));
 
       const repeatCount = Number(
         await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n')
