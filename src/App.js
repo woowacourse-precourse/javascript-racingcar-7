@@ -1,8 +1,8 @@
 import { Console } from '@woowacourse/mission-utils';
 import Car from './models/Car.js';
+import printWinners from './utils/printWinners.js';
 import runRaces from './utils/runRaces.js';
 import Validator from './validators/Validator.js';
-import printWinners from './utils/printWinners.js';
 
 class App {
   async run() {
