@@ -20,8 +20,9 @@ class Car {
   driving() {
     this.#move();
 
+    const name = this.#name;
     const currentDistance = this.#distance;
-    return currentDistance;
+    return { name, distance: currentDistance };
   }
 
   static findFarthest(distanceA, distanceB) {
