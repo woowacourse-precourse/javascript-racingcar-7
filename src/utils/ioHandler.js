@@ -1,15 +1,14 @@
 import { Console } from '@woowacourse/mission-utils';
+import { IO_MESSAGE } from '../constants';
 
 async function getGameInput() {
-  const players = await Console.readLineAsync(
-    '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
-  );
-  const count = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+  const players = await Console.readLineAsync(IO_MESSAGE.FIRST_INPUT_MESSAGE);
+  const count = await Console.readLineAsync(IO_MESSAGE.SECOND_INPUT_MESSAGE);
   return { players, count };
 }
 
 function printResult(result) {
-  Console.print('최종 우승자 : ' + result.join(', '));
+  Console.print(IO_MESSAGE.OUTPUT_MESSAGE + result.join(IO_MESSAGE.SEPERATOR));
 }
 
 export { getGameInput, printResult };
