@@ -1,5 +1,10 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
+import {
+  ERROR_MESSAGE_CAR_NAME_OVER_FIVE,
+  ERROR_MESSAGE_NOT_INTEGER,
+  ERROR_MESSAGE_NOT_POSITIVE_POSITIVE,
+} from "../src/constants.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -146,9 +151,7 @@ describe("자동차 경주", () => {
 
       const app = new App();
 
-      await expect(app.run()).rejects.toThrow(
-        "[ERROR] 자동차 이름의 길이가 5 이상입니다."
-      );
+      await expect(app.run()).rejects.toThrow(ERROR_MESSAGE_CAR_NAME_OVER_FIVE);
     });
   });
 
@@ -159,7 +162,9 @@ describe("자동차 경주", () => {
 
       const app = new App();
 
-      await expect(app.run()).rejects.toThrow("[ERROR]");
+      await expect(app.run()).rejects.toThrow(
+        ERROR_MESSAGE_NOT_POSITIVE_POSITIVE
+      );
     });
     test("정수가 아닌 경우 에러를 출력한다.", async () => {
       const inputs = ["pobi,java", 5.5];
@@ -167,7 +172,7 @@ describe("자동차 경주", () => {
 
       const app = new App();
 
-      await expect(app.run()).rejects.toThrow("[ERROR]");
+      await expect(app.run()).rejects.toThrow(ERROR_MESSAGE_NOT_INTEGER);
     });
   });
 });
