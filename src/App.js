@@ -9,7 +9,8 @@ import {
 } from "./constants";
 import {
   convertStringToArray,
-  getObjectWithZeroValue,
+  getMapWithZeroValue,
+  getMaxValueInMap,
   pickNumberInRange,
   print,
   readLineAsync,
@@ -27,27 +28,19 @@ class App {
 
     validatePositiveInteger(tryCount);
 
-    const carTraceObject = getObjectWithZeroValue(carNameList);
+    const carTraceMap = getMapWithZeroValue(carNameList);
 
     for (let i = 0; i < tryCount; i++) {
       for (const carName of carNameList) {
         const randomNum = pickNumberInRange(0, 9);
         const isGo = randomNum >= 4;
-        if (isGo) carTraceObject[carName]++;
+        if (isGo) carTraceMap.set(carName, carTraceMap.get(carName) + 1);
 
-        const traceString = this.getTraceString(carTraceObject[carName]);
+        const traceString = this.getTraceString(carTraceMap.get(carName));
 
         print(`${carName} : ${traceString}`);
       }
     }
-    const carTraceEntries = Object.entries(carTraceObject);
-    carTraceEntries.sort((a, b) => b[1] - a[1]);
-    const winTrace = carTraceEntries[0][1];
-    const winnerList = carTraceEntries
-      .filter((carTrace) => carTrace[1] === winTrace)
-      .map((it) => it[0]);
-
-    print(`${OUTPUT_MESSAGE_WINNER}${winnerList.join(", ")}`);
   }
   validateCarNameLength(carNameList, maxLength) {
     const isAnyCarNameLengthOverMax = carNameList.some(
