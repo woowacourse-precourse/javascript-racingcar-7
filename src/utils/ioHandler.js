@@ -2,9 +2,9 @@ import { Console } from '@woowacourse/mission-utils';
 import { IO_MESSAGE } from '../constants';
 
 async function getGameInput() {
-  const cars = await Console.readLineAsync(IO_MESSAGE.FIRST_INPUT_MESSAGE);
+  const carString = await Console.readLineAsync(IO_MESSAGE.FIRST_INPUT_MESSAGE);
   const count = await Console.readLineAsync(IO_MESSAGE.SECOND_INPUT_MESSAGE);
-  return { cars, count };
+  return { carString, count };
 }
 
 function printGameResult(result) {
