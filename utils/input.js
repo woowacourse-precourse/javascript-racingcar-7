@@ -7,6 +7,6 @@ export default async function input(sentence) {
         );
         return inputValue;
     } catch (error) {
-        throw Error(error);
+        throw error;
     }
 }

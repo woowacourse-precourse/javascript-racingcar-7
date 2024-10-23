@@ -1,5 +1,5 @@
 import App from '../src/App.js';
-import { getLogSpy, mockQuestions, mockRandoms } from './testUtils.js';
+import { getLogSpy, mockQuestions, mockRandoms } from '../utils/testUtils.js';
 
 describe('자동차 경주', () => {
     test('기능 테스트', async () => {

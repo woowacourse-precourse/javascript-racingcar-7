@@ -16,35 +16,29 @@ class App {
     }
 
     isValidateCars(value) {
-        try {
-            if (value.length === 0)
-                throw new Error('입력값이 유효하지 않습니다');
-            const parsedString = value.split(',');
-            if (parsedString.length !== new Set(parsedString).size)
-                throw new Error('중복된 이름이 존재합니다');
-            for (let i = 0; i < parsedString.length; i++) {
-                if (parsedString[i].length === 0) {
-                    throw new Error('이름이 공백인 자동차가 존재합니다');
-                }
-                if (parsedString[i].length > 5) {
-                    throw new Error('자동차의 이름은 5자 이하로 등록해주세요');
-                }
+        if (value.length === 0)
+            throw new Error('[ERROR] 입력값이 유효하지 않습니다');
+        const parsedString = value.split(',');
+        if (parsedString.length !== new Set(parsedString).size)
+            throw new Error('[ERROR] 중복된 이름이 존재합니다');
+        for (let i = 0; i < parsedString.length; i++) {
+            if (parsedString[i].length === 0) {
+                throw new Error('[ERROR] 이름이 공백인 자동차가 존재합니다');
             }
-        } catch (error) {
-            throw error;
+            if (parsedString[i].length > 5) {
+                throw new Error(
+                    '[ERROR] 자동차의 이름은 5자 이하로 등록해주세요'
+                );
+            }
         }
     }
+
     isValidateRaceCount(value) {
-        try {
-            const num = Number(value);
-            if (isNaN(num)) throw new Error('유효한 숫자가 아닙니다');
-            if (num < 0) throw new Error('경주 횟수는 자연수를 입력해주세요');
-            if (num !== Math.floor(num))
-                throw new Error('경주 횟수는 자연수를 입력해주세요');
-            return 'correct';
-        } catch (error) {
-            throw error;
-        }
+        const num = Number(value);
+        if (isNaN(num)) throw new Error('[ERROR] 유효한 숫자가 아닙니다');
+        if (num < 0) throw new Error('[ERROR] 유효한 숫자가 아닙니다');
+        if (num !== Math.floor(num))
+            throw new Error('[ERROR] 유효한 숫자가 아닙니다');
     }
 
     async getCars() {
@@ -95,12 +89,11 @@ class App {
         const maxMovement = Math.max(
             ...this.state.cars.map(([_, count]) => count)
         );
-        const winners = [];
-        for (let i = 0; i < this.state.cars.length; i++) {
-            const [name, movement] = this.state.cars[i];
-            if (movement === maxMovement) winners.push(name);
-            else break;
-        }
+        const winners = this.state.cars.reduce((acc, cur) => {
+            if (cur[1] === maxMovement) return [...acc, cur[0]];
+            else return acc;
+        }, []);
+
         return winners;
     }
 
@@ -110,14 +103,10 @@ class App {
     }
 
     async run() {
-        try {
-            await this.getCars();
-            await this.getRaceCount();
-            this.startRace();
-            this.showRaceResult();
-        } catch (error) {
-            throw error;
-        }
+        await this.getCars();
+        await this.getRaceCount();
+        this.startRace();
+        this.showRaceResult();
     }
 }
 
