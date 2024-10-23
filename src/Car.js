@@ -10,4 +10,8 @@ class Car {
     moveForward() {
         this.#position += 1;
     }
+
+    printPosition() {
+        return `${this.#name} : ${"-".repeat(this.#position)}`;
+    }
 }
