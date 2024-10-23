@@ -4,7 +4,11 @@ import Car from './Car.js';
 class RacingGame {
   constructor() {
     this.cars = [];
-    this.winner;
+  }
+
+  createCars(nameString) {
+    const names = nameString.split(',');
+    this.cars = names.map((name) => new Car(name));
   }
 
   doTry() {
@@ -12,19 +16,30 @@ class RacingGame {
       car.tryMove();
       Console.print(`${car.name} : ${'-'.repeat(car.score)}`);
     });
-
-    Console.print('\n');
   }
 
-  play(nameString, tryInput) {
-    const names = nameString.split(',');
-    this.cars = names.map((name) => new Car(name));
-    let tryCount = tryInput;
-
+  repeatTries(tries) {
     Console.print('\n실행 결과');
-    do {
+    for (let tryCount = tries; tryCount > 0; tryCount -= 1) {
       this.doTry();
-    } while ((tryCount -= 1));
+      Console.print('');
+    }
+  }
+
+  getHighestScore() {
+    return this.cars.reduce((acc, cur) => (acc = Math.max(acc, cur.score)), 0);
+  }
+
+  getWinner(highestScore) {
+    const winningCars = this.cars.filter((car) => car.score === highestScore);
+    const winningCarsName = winningCars.map((car) => car.name);
+    this.winner = winningCarsName.join(', ');
+  }
+
+  play(nameString, tries) {
+    this.createCars(nameString);
+    this.repeatTries(tries);
+    this.getWinner(this.getHighestScore());
 
     return this.winner;
   }

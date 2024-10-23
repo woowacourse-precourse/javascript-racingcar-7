@@ -89,11 +89,12 @@ jun : -----
 
 ### 구현 단계
 
-- [x] 리드미 작성
 - [x] 이름과 시도 횟수를 입력 받고 최종 우승자를 출력
-- [ ] 여러 사람 이름 입력 추가
-- [ ] 게임 클래스 구현
-- [ ] 자동차 클래스 구현
+- [x] 여러 사람 이름 입력 추가
+- [x] RacingGame 클래스 구현
+  - [x] Car 클래스 구현
+  - [x] 시도 구현
+  - [x] 우승자 구현
 - [ ] 예외 상황 처리
 
 항상 기능 개발 이전에 테스트 코드 작성
@@ -101,27 +102,29 @@ jun : -----
 ### 알고리즘 흐름도
 
 1. 이름 입력
-   1. `'경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)'`
+    1. `'경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)'`
 2. 시도 횟수 입력
-   1. `'시도할 횟수는 몇 회인가요?'`
+    1. `'시도할 횟수는 몇 회인가요?'`
 3. RacingGame의 play 호출
-   1. 이름 수 만큼 Car 인스턴스 생성, cars 필드에 저장
-   2. `‘실행 결과’` 출력
-   3. 시도 횟수만큼 trial 반복 호출
-      1. 각각의 Car 인스턴스의 move 호출
-         1. getRandomNumber 호출
-            1. 0~9 중 값을 반환
-         2. 4 이상일 경우 moveForward 호출
-            1. 인스턴스의 score을 +1
-      2. 현재 진행 상황을 출력
-   4. getHighestScore 호출
-      1. `reduce((acc, cur) ⇒ acc = Math.max(acc, cur.score), 0);`
-   5. getWinner 호출
-      1. score가 Game의 highestScore과 같은 인스턴스들 반환
-      2. `cars.map((car) ⇒ car.score === this.highestScore);`
-   6. joinWinners 호출 및 반환
+    1. 이름 수 만큼 Car 인스턴스 생성, cars 필드에 저장
+    2. `‘실행 결과’` 출력
+    3. 시도 횟수만큼 doTry 반복 호출
+        1. 각각의 Car 인스턴스의 tryMove 호출
+            1. getRandomNumber 호출
+                1. 0~9 중 값을 반환
+            2. 4 이상일 경우 moveForward 호출
+                1. 인스턴스의 score을 +1
+        2. 현재 진행 상황을 출력
+            1. `실행 결과`
+            `pobi : -`
+    4. getHighestScore 호출
+        1. `reduce((acc, cur) ⇒ acc = Math.max(acc, cur.score), 0);`
+    5. getWinner 호출
+        1. score가 Game의 highestScore과 같은 인스턴스들 반환
+        2. `cars.map((car) ⇒ car.score === this.highestScore);`
+    6. joinWinners 호출 및 반환
 4. 최종 우승자 출력
-   1. `'최종 우승자 : '`
+    1. `'최종 우승자 : '`
 
 ### 특수 상황 정리
 
