@@ -12,6 +12,14 @@ class Car {
   getCarName() {
     return this.#carName;
   }
+
+  getProgressCount() {
+    return this.#progressCount;
+  }
+
+  increaseProgressCount() {
+    this.#progressCount = this.#progressCount + 1;
+  }
 }
 
 export default Car;

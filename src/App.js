@@ -50,7 +50,12 @@ class App {
   }
   generateCarMove(car) {
     const randomNumber = this.calculateRandomNumber();
-    Console.print(car.getCarName() + randomNumber);
+    if (randomNumber >= 4) {
+      car.increaseProgressCount();
+    }
+    Console.print(
+      car.getCarName() + "," + randomNumber + "," + car.getProgressCount()
+    );
   }
   calculateRandomNumber() {
     return Random.pickNumberInRange(0, 9);
