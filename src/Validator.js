@@ -6,7 +6,7 @@ class Validator {
   validCarInput(string) {
     if (regex.invalidCarInputDelimiter.test(string)) {
       throw new Error(`${errorMessages.prefix} ${errorMessages.invalidDelimiter}`);
-    } else if (!regex.validatorInputName.test(string)) {
+    } else if (!regex.validInputName.test(string)) {
       throw new Error(`${errorMessages.prefix} ${errorMessages.invalidCarInputName}`);
     }
 
