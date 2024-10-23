@@ -29,7 +29,7 @@ describe("자동차 경주", () => {
     test("최종 우승자가 1명인 경우", async () => {
       const MOVING_FORWARD = 4;
       const STOP = 3;
-      const inputs = ["pobi,woni", "1"];
+      const inputs = ["pobi,woni", "5"];
       const logs = [
         "pobi : -",
         "woni : ",
@@ -46,11 +46,18 @@ describe("자동차 경주", () => {
       const logSpy = getLogSpy();
 
       mockQuestions(inputs);
-      mockRandoms([MOVING_FORWARD, STOP]);
-      mockRandoms([MOVING_FORWARD, STOP]);
-      mockRandoms([MOVING_FORWARD, STOP]);
-      mockRandoms([MOVING_FORWARD, STOP]);
-      mockRandoms([MOVING_FORWARD, STOP]);
+      mockRandoms([
+        MOVING_FORWARD,
+        STOP,
+        MOVING_FORWARD,
+        STOP,
+        MOVING_FORWARD,
+        STOP,
+        MOVING_FORWARD,
+        STOP,
+        MOVING_FORWARD,
+        STOP,
+      ]);
 
       const app = new App();
       await app.run();
@@ -95,8 +102,33 @@ describe("자동차 경주", () => {
       const logSpy = getLogSpy();
 
       mockQuestions(inputs);
-      mockRandoms([MOVING_FORWARD, STOP]);
-      mockRandoms([STOP, MOVING_FORWARD]);
+      mockRandoms([
+        MOVING_FORWARD,
+        STOP,
+        STOP,
+        STOP,
+        STOP,
+        STOP,
+        MOVING_FORWARD,
+        STOP,
+        STOP,
+        STOP,
+        STOP,
+        STOP,
+        MOVING_FORWARD,
+        STOP,
+        STOP,
+        STOP,
+        STOP,
+        STOP,
+        MOVING_FORWARD,
+        STOP,
+        STOP,
+        STOP,
+        STOP,
+        STOP,
+        MOVING_FORWARD,
+      ]);
 
       const app = new App();
       await app.run();
