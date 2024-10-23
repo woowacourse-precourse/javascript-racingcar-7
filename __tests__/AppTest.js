@@ -19,6 +19,22 @@ describe('App 클래스 테스트', () => {
     );
   });
 
+  test('입력값이 공백일 때 예외 발생1', async () => {
+    Console.readLineAsync.mockResolvedValueOnce('');
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR] 공백이 입력됐습니다');
+  });
+
+  test('입력값이 공백일 때 예외 발생2', async () => {
+    Console.readLineAsync.mockResolvedValueOnce('  ');
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR] 공백이 입력됐습니다');
+  });
+
   test('시도할 횟수 입력 받기', async () => {
     Console.readLineAsync.mockResolvedValueOnce('5');
 
