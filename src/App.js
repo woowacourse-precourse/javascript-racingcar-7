@@ -9,6 +9,10 @@ class App {
       "시도할 횟수는 몇 회인가요?"
     );
     const carNameList = userInputCarNames.split(",");
+    for (const carName of carNameList) {
+      if (carName.length > 5)
+        throw new Error("[Error] 자동차 이름의 길이가 5 이상입니다.");
+    }
   }
 }
 
