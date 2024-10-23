@@ -5,7 +5,7 @@ import {
   OUTPUT_MESSAGE_WINNER,
 } from "./constants";
 import {
-  convertStringToArray,
+  splitIntoArray,
   getKeyArrayHasSameValueInMap,
   getMapWithZeroValue,
   getMaxValueInMap,
@@ -23,8 +23,9 @@ class App {
   async run() {
     const [userInputCarNames, userInputTryCount] = await this.getUserInput();
 
-    const carNameArray = convertStringToArray(userInputCarNames, ",");
+    const carNameArray = splitIntoArray(userInputCarNames, ",");
     this.validateCarNameLength(carNameArray, 5);
+
     const tryCount = +userInputTryCount;
 
     validatePositiveInteger(tryCount);

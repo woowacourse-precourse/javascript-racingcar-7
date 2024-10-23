@@ -18,7 +18,7 @@ export const pickNumberInRange = (start, end) => {
   return MissionUtils.Random.pickNumberInRange(start, end);
 };
 
-export const convertStringToArray = (str, separator) => str.split(separator);
+export const splitIntoArray = (str, separator) => str.split(separator);
 
 export const validatePositiveInteger = (num) => {
   if (isNaN(num)) throw new Error(ERROR_MESSAGE_NOT_NUMBER);
