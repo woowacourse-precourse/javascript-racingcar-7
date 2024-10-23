@@ -1,7 +1,7 @@
 import { Car } from '../Model/Car.js';
 import { getInput, printWinners, printCarPositions } from '../View/View.js';
 import { validateCarNames, validateRounds } from './Validation.js';
-import { getWinners } from './Util.js';
+import { getWinners } from '../Util/Util.js';
 
 // Controller에서 전체 로직을 처리
 class Controller {

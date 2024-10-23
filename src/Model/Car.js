@@ -25,7 +25,7 @@ export class Car {
 
   moveForward() {
     if (
-      Random.pickNumberInRange(1, Car.MAX_RANDOM_VALUE) >=
+      Random.pickNumberInRange(0, Car.MAX_RANDOM_VALUE) >=
       Car.MIN_MOVE_THRESHOLD
     ) {
       this.#position += 1;

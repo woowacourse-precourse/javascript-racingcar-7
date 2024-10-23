@@ -1,8 +1,19 @@
 import { ERROR_MESSAGES, throwError } from '../Model/Error.js';
+import { checkDuplicate } from '../Util/Util.js';
+import { consecutiveDelimiterPattern, isNumber } from '../Util/Regex.js';
 
 function validateCarNames(carNames) {
-  const carNamesSplit = carNames.split(',');
-  if (carNamesSplit.some((name) => name.trim().length > 5)) {
+  if (consecutiveDelimiterPattern.test(carNames)) {
+    throwError(ERROR_MESSAGES.CONSECUTIVE_DELIMITERS);
+  }
+
+  const carNamesSplit = carNames.split(',').map((name) => name.trim());
+
+  if (carNamesSplit.some((name) => name === '')) {
+    throwError(ERROR_MESSAGES.EMPTY_NAME);
+  }
+
+  if (carNamesSplit.some((name) => name.length > 5)) {
     throwError(ERROR_MESSAGES.NAME_TOO_LONG);
   }
 
@@ -13,8 +24,11 @@ function validateCarNames(carNames) {
   return carNamesSplit;
 }
 
-function validateRounds(Rounds) {
-  const parsedRounds = parseInt(Rounds, 10);
+function validateRounds(rounds) {
+  if (!isNumber.test(rounds)) {
+    throwError(ERROR_MESSAGES.ONLY_POSITIVE_INTEGER_ALLOWED);
+  }
+  const parsedRounds = parseInt(rounds, 10);
   if (isNaN(parsedRounds) || parsedRounds < 1) {
     throwError(ERROR_MESSAGES.INVALID_INPUT_ROUND);
   }
