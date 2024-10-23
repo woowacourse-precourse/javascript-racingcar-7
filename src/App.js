@@ -40,7 +40,16 @@ class App {
       Console.print("");
     }
 
-    Console.print(`자동차 경주 최종 결과 : ${JSON.stringify(movements)}`);
+    movements.sort((a, b) => b[1].length - a[1].length);
+
+    const maxDistance = movements[0][1].length;
+
+    const winner = movements
+      .filter(car => car[1].length === maxDistance)
+      .map(car => car[0])
+      .join(", ");
+
+    Console.print(`최종 우승자 : ${winner}`);
   }
 }
 
