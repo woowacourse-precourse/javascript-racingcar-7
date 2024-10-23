@@ -1,9 +1,13 @@
 import { Console } from "@woowacourse/mission-utils";
+import Car from "./Car.js";
+import { validateCarNameList, validateTryCount } from "./validation.js";
 
 class App {
   async run() {
-    const CAR_NAME_LIST = await this.readCarName();
-    const GAME_COUNT = await this.readGameCount();
+    const carNameList = await this.readCarName();
+    const tryCount = await this.readTryCount();
+    validateCarNameList(carNameList);
+    validateTryCount(tryCount);
   }
 
   async readCarName() {
@@ -12,7 +16,7 @@ class App {
     );
   }
 
-  async readGameCount() {
+  async readTryCount() {
     return await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
   }
 }
