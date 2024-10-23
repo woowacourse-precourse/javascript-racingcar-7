@@ -9,6 +9,11 @@ class App {
       return carNames.split(",");
     };
     Console.print(separateCarName());
+
+    const inputCount = await Console.readLineAsync(
+      "시도할 횟수는 몇 회인가요?\n"
+    );
+    Console.print(inputCount + "회");
   }
 }
 
