@@ -1,5 +1,5 @@
-import { ERROR_MESSAGES } from './errorMessages.js';
-import { MAX_NAME_LENGTH } from '../models/constants.js';
+import { ERROR_MESSAGES } from '../constants/errorMessages.js';
+import { MAX_NAME_LENGTH } from '../constants/gameRules.js';
 
 class Validator {
   static checkNameString(nameString) {

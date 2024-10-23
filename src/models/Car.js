@@ -1,5 +1,8 @@
 import { Console, Random } from '@woowacourse/mission-utils';
-import { MOVE_PROBABILITY_THRESHOLD, RANDOM_RANGE } from './constants.js';
+import {
+  MOVE_PROBABILITY_THRESHOLD,
+  RANDOM_RANGE,
+} from '../constants/gameRules.js';
 
 class Car {
   #name;
