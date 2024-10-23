@@ -2,6 +2,7 @@ import { Console } from '@woowacourse/mission-utils';
 import Car from './Car.js';
 import runRepeat from './runRepeat.js';
 import Validator from './Validator.js';
+import printWinners from './printWinners.js';
 
 class App {
   async run() {
@@ -22,6 +23,8 @@ class App {
       Validator.repeatCount(repeatCount);
 
       runRepeat(carArray, repeatCount);
+
+      printWinners(carArray);
     } catch (error) {
       throw new Error(`[ERROR] ${error.message}`);
     }
