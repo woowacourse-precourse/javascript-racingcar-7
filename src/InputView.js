@@ -7,6 +7,12 @@ class InputView {
 
     return input.trim().split(",");
   }
+
+  static async readAttemptLimit() {
+    const input = await Console.readLineAsync(INPUT_QUERY.ATTEMPT_LIMIT);
+
+    return input.trim();
+  }
 }
 
 export default InputView;
