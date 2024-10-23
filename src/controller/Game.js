@@ -14,8 +14,9 @@ class Game {
     const carNameInput = await this.user.readCarNameInput();
     this.initializeCars(carNameInput.split(','));
     const attempts = await this.user.readAttemptsInput();
-    outputView.printMessage(`${GAME_MESSAGE.RESULT}`);
+    outputView.printMessage(`\n${GAME_MESSAGE.RESULT}`);
     this.race(Number(attempts));
+    this.announceWinner();
   }
 
   initializeCars(carNames) {
@@ -38,6 +39,18 @@ class Game {
       outputView.printMessage(`${car.name} : ${'-'.repeat(car.position)}`);
     });
     outputView.printMessage('\n');
+  }
+
+  determineWinners() {
+    const maxPosition = Math.max(...this.cars.map((car) => car.position));
+    return this.cars.filter((car) => car.position === maxPosition);
+  }
+
+  announceWinner() {
+    const winners = this.determineWinners();
+    const winnersName = winners.map((winner) => winner.name).join(',');
+
+    outputView.printMessage(`${GAME_MESSAGE.FINAL_WINNER} ${winnersName}`);
   }
 }
 
