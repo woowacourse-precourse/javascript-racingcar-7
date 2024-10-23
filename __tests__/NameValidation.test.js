@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import App from '../src/App.js';
-import isValidName from '../src/NameValidation.js';
+import isValidName from '../src/utils/NameValidation.js';
 import {
   EMPTY_CAR_NAME_ERROR,
   ONE_CAR_NAME_ERROR,
