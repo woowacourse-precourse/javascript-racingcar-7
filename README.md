@@ -103,22 +103,24 @@ jun : -----
 
     2. **isValidCarNameLength(carName)**
         - carName이 5자 이하인지 확인
-        - 5자 이하이면 true, 초과하면 false 반환
+        - 5자 이하이면 true, 초과하면 에러 throw
 
-    3. **getValidCarNames**
+    3. **getValidCarNames(input)**
         - splitCarNamesByComma(input) 함수와 isValidCarNameLength(carName)함수를 사용하여 조건에 맞는 자동차의 이름의 배열(cars)만 반환
 
-    
-    4. **start()**
+    4. **convertToNumber(tries)**
+        - tries 변수를 숫자로 변환한다.
+        - 변환 후에 Nan이나 음수값이 나오면 에러 반환
+        
+    5. **start()**
         - race를 시작하는 함수
         - 시도 횟수만큼 for문을 실행하여 각 자동차의 움직임을 출력한다.
 
-    
-
-    5. **logWinners()**
+    6. **logWinners()**
         - 시도 횟수만큼 모두 진행한 후 각 자동차들의 거리 중 최대 값을 구한다.
         - 거리가 최대값에 해당하는 자동차의 이름을 출력
-    
+
+
 
 
 
