@@ -1,10 +1,9 @@
-import { MainController } from "./controllers/MainController";
+import { MainController } from "./controllers/MainController.js";
 
-class App {
+export default class App {
   async run() {
-    const controller=new MainController();
-    await constroller.run()
+    const controller = new MainController();
+    await controller.run()
   }
 }
 
-export default App;
