@@ -1,4 +1,3 @@
-import { MissionUtils } from "@woowacourse/mission-utils";
 import {
   ERROR_MESSAGE_CAR_NAME_OVER_FIVE,
   ERROR_MESSAGE_NOT_INTEGER,
@@ -8,7 +7,7 @@ import {
   INPUT_MESSAGE_TRY_COUNT,
   OUTPUT_MESSAGE_WINNER,
 } from "./constants";
-import { print, readLineAsync } from "./utils";
+import { pickNumberInRange, print, readLineAsync } from "./utils";
 
 class App {
   async run() {
@@ -20,13 +19,15 @@ class App {
         throw new Error(ERROR_MESSAGE_CAR_NAME_OVER_FIVE);
     }
     const tryCount = +userInputTryCount;
+
     if (isNaN(tryCount)) throw new Error(ERROR_MESSAGE_NOT_NUMBER);
     if (tryCount < 0) throw new Error(ERROR_MESSAGE_NOT_POSITIVE_POSITIVE);
     if (!Number.isInteger(tryCount)) throw new Error(ERROR_MESSAGE_NOT_INTEGER);
+
     const carPositions = {};
     for (let i = 0; i < tryCount; i++) {
       for (const carName of carNameList) {
-        const randomNum = MissionUtils.Random.pickNumberInRange(0, 9);
+        const randomNum = pickNumberInRange(0, 9);
         const isGo = randomNum >= 4;
         if (isGo) {
           if (carPositions[carName]) {

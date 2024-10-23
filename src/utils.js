@@ -7,3 +7,7 @@ export const readLineAsync = async (message) => {
 export const print = (message) => {
   MissionUtils.Console.print(message);
 };
+
+export const pickNumberInRange = (start, end) => {
+  return MissionUtils.Random.pickNumberInRange(start, end);
+};
