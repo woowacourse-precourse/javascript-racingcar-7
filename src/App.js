@@ -14,6 +14,8 @@ class App {
         throw new Error("[ERROR] 자동차 이름의 길이가 5 이상입니다.");
     }
     const tryCount = +userInputTryCount;
+    if (isNaN(tryCount) || tryCount < 0 || !Number.isInteger(tryCount))
+      throw new Error("[ERROR]");
     const carPositions = {};
     for (let i = 0; i < tryCount; i++) {
       for (const carName of carNameList) {
