@@ -1,6 +1,7 @@
 import InputView from "./InputView.js";
 import Car from "./Car.js";
 import InputValidation from "./validation.js";
+import { repeat } from "./utils.js";
 
 class RacingManager {
   carList = [];
@@ -12,10 +13,16 @@ class RacingManager {
 
     const attemptLimit = await InputView.readAttemptLimit();
     InputValidation.validateAttemptLimit(attemptLimit);
+
+    this.#playRounds(attemptLimit);
   }
 
   #setCarList(carNameList) {
     this.carList = carNameList.map((carName) => new Car(carName));
+  }
+
+  #playRounds(round) {
+    repeat(round, () => {});
   }
 }
 
