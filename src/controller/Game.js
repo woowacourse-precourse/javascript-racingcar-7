@@ -1,4 +1,3 @@
-import { MissionUtils } from '@woowacourse/mission-utils';
 import { GAME_MESSAGE } from '../constants/messages.js';
 import User from '../user/User.js';
 import outputView from '../view/outputView.js';

@@ -10,6 +10,7 @@ const getRandomPickNumber = () => {
 };
 
 describe('Game', () => {
+  /** @type {Game} */
   let game;
   let readLineAsyncSpy;
   let randomPickNumberRangeSpy;
@@ -28,7 +29,6 @@ describe('Game', () => {
     test('입력된 이름으로 자동차를 생성한다', () => {
       const carNames = ['pobi', 'woni', 'jun'];
       game.initializeCars(carNames);
-
       expect(game.cars.length).toBe(3);
       expect(game.cars[0].name).toBe('pobi');
       expect(game.cars[1].name).toBe('woni');
@@ -36,7 +36,7 @@ describe('Game', () => {
     });
   });
 
-  describe('자동차 이동 moveForward', () => {
+  describe('자동차 이동', () => {
     test('랜덤 값이 4 이상일 때 자동차가 전진한다', () => {
       game.initializeCars(['car1']);
       randomPickNumberRangeSpy.mockReturnValue(4);
@@ -66,6 +66,48 @@ describe('Game', () => {
 
       expect(game.moveForward).toHaveBeenCalledTimes(3);
       expect(game.printRaceStatus).toHaveBeenCalledTimes(3);
+    });
+  });
+
+  describe('우승자 결정 과정', () => {
+    test('initializeCars가 올바르게 설정된다 ', () => {
+      const mockCars = [
+        { name: 'car1', position: 3 },
+        { name: 'car2', position: 5 },
+        { name: 'car3', position: 5 },
+      ];
+
+      jest.spyOn(game, 'initializeCars').mockImplementation(() => {
+        game.cars = mockCars;
+      });
+      game.initializeCars(['car1', 'car2', 'car3']);
+
+      expect(game.initializeCars).toHaveBeenCalledWith([
+        'car1',
+        'car2',
+        'car3',
+      ]);
+    });
+
+    test('determineWinners가 최고 위치의 자동차들을 반환한다.', () => {
+      const mockCars = [
+        { name: 'car1', position: 3 },
+        { name: 'car2', position: 5 },
+        { name: 'car3', position: 5 },
+        { name: 'car4', position: 4 },
+      ];
+
+      jest.spyOn(game, 'initializeCars').mockImplementation(() => {
+        game.cars = mockCars;
+      });
+      game.initializeCars(['car1', 'car2', 'car3', 'car4']);
+
+      const winners = game.determineWinners();
+
+      expect(winners.length).toBe(2);
+      expect(winners.map((winner) => winner.name).join(', ')).toStrictEqual(
+        'car2, car3'
+      );
     });
   });
 });
