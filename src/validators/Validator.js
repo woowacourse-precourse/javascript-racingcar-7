@@ -11,6 +11,8 @@ const ERROR_MESSAGES = {
   SAME_NAMES: '중복된 이름이 있습니다',
 };
 
+const MAX_NAME_LENGTH = 5;
+
 class Validator {
   static checkNameString(nameString) {
     if (!nameString.trim()) {
@@ -38,7 +40,7 @@ class Validator {
 
   static checkNames(names) {
     names.forEach((name) => {
-      if (name.length > 5) {
+      if (name.length > MAX_NAME_LENGTH) {
         throw new Error(ERROR_MESSAGES.NAME_TOO_LONG);
       }
 
