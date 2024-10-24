@@ -1,7 +1,7 @@
 import { Console } from '@woowacourse/mission-utils';
-import MESSAGE from '../constant/MESSAGE.js';
+import MESSAGE from '../utils/constants/MESSAGE.js';
 import CarList from '../carList/CarList.js';
-import GameCountValidator from '../validate/GameCountValidator.js';
+import GameCountValidator from '../utils/validators/GameCountValidator.js';
 
 class InputView {
   constructor() {

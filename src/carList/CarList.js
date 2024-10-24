@@ -1,4 +1,4 @@
-import NameValidator from '../validate/NameValidator.js';
+import NameValidator from '../utils/validators/NameValidator.js';
 
 class CarList {
   constructor() {
