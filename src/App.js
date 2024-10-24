@@ -25,7 +25,15 @@ class App {
     const carNameArray = this.processCarNames(userInputCarNames);
     const tryCount = this.processTryCount(userInputTryCount);
 
-    const { winnerCarArray } = this.race(carNameArray, tryCount);
+    const carTraceMap = getMapFilledZeroValue(carNameArray);
+
+    const afterRaceTraceMap = this.race(carTraceMap, carNameArray, tryCount);
+
+    const maxTrace = getMaxValueInMap(afterRaceTraceMap);
+    const winnerCarArray = getKeyArrayHasSameValueInMap(
+      afterRaceTraceMap,
+      maxTrace
+    );
 
     print(`${OUTPUT_MESSAGE_WINNER}${winnerCarArray.join(", ")}`);
   }
@@ -57,9 +65,7 @@ class App {
     }
   }
 
-  race(carNameArray, tryCount) {
-    const carTraceMap = getMapFilledZeroValue(carNameArray);
-
+  race(carTraceMap, carNameArray, tryCount) {
     for (let i = 0; i < tryCount; i++) {
       for (const carName of carNameArray) {
         const randomNum = pickNumberInRange(0, 9);
@@ -75,11 +81,7 @@ class App {
         print(`${carName} : ${repeatedTraceChracter}`);
       }
     }
-    const maxTrace = getMaxValueInMap(carTraceMap);
-    const winnerCarArray = getKeyArrayHasSameValueInMap(carTraceMap, maxTrace);
-    return {
-      winnerCarArray,
-    };
+    return carTraceMap;
   }
 }
 
