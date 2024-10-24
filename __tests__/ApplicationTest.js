@@ -1,6 +1,6 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
-import inputCarNames from "../src/utils/inputCarNames";
+import { inputCarNames, inputPlayTime } from "../src/utils/inputCarNames";
 import splitNames from "../src/utils/splitInput.js";
 
 const mockQuestions = (inputs) => {
@@ -84,7 +84,7 @@ describe("자동차 경주", () => {
     expect(receivedInput).toEqual(expectedOutput);
   });
 
-  test('각각의 이름의 길이가 5글자 이하', async () => {
+  test('각각의 이름의 길이가 5글자 이하 테스트', async () => {
     // given
     const input = ["pobi,woowahanwoni"];
     mockQuestions(input);
@@ -95,5 +95,17 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]: 이름의 길이는 5글자 이내로 입력해주세요.");
   })
+
+  test('이동할 횟수 입력', async () => {
+    // given
+    const attemptCount = ["5"];
+    mockQuestions(attemptCount);
+  
+    // when
+    const receivedInput = await inputPlayTime();
+  
+    // then
+    expect(receivedInput).toEqual(5);
+  });
 
 });
