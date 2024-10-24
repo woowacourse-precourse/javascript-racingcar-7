@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 
 class App {
     racingCars = {};
@@ -54,6 +54,18 @@ class App {
 
     makePrintableResult(carName, position) {
         return `${carName} : ${"-".repeat(position)}`;
+    }
+
+    makeRandomNumber(min, max) {
+        Random.pickNumberInRange(min, max);
+    }
+
+    isPossibleMove() {
+        return this.makeRandomNumber(0, 9) >= 4;
+    }
+
+    saveRacingCarPosition(carName, position) {
+        this.racingCars[carName] = position;
     }
 
     solve(userInputCarNames, userInputTryCount) {
