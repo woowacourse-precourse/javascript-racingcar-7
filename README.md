@@ -37,8 +37,8 @@ Controller
     - Method
         - [x] runRaceStep(): race 1 단계 진행
         - [x] showRaceStep(): 진행한 race 단계의 결과 출력
-        - [ ] getMaxDistance(): 제일 멀리간 차의 거리 구하기
-        - [ ] getWinnerCar(): 우승한 자동차 구하기
+        - [x] getMaxDistance(): 제일 멀리간 차의 거리 구하기
+        - [x] getWinnerCar(): 우승한 자동차 구하기
         - [ ] announceWinner(): 우승한 자동차 발표하기
 
 - [ ] 가장 멀리 간 차 선별하는 함수

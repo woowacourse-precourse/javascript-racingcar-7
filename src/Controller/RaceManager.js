@@ -27,4 +27,8 @@ export class RaceManager {
       0,
     );
   }
+
+  getWinnerCar(maxDistance) {
+    return this.carArray.filter((car) => car.distance === maxDistance);
+  }
 }
