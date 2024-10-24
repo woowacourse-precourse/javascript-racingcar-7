@@ -1,4 +1,8 @@
-import { validateMaxCar, validateNameLength } from "../src/utils/validate";
+import {
+	validateMaxCar,
+	validateMinCar,
+	validateNameLength,
+} from "../src/utils/validate";
 
 describe("자동차 이름", () => {
 	test("자동차 이름 정상 입력", async () => {
@@ -26,6 +30,16 @@ describe("자동차 이름", () => {
 		// when, then;
 		await expect(validateMaxCar(carNames)).rejects.toThrow(
 			"[ERROR] 입력할 수 있는 자동차는 최대 5대입니다."
+		);
+	});
+
+	test("자동차 이름 미입력", async () => {
+		// given
+		const carNames = "";
+
+		// when, then;
+		await expect(validateMinCar(carNames)).rejects.toThrow(
+			"[ERROR] 자동차 이름이 입력되지 않았습니다."
 		);
 	});
 });
