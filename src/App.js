@@ -18,10 +18,13 @@ class App {
       if (tryCnt < 0)
         throw new Error('이동을 시도할 횟수는 0보다 큰 값이어야 합니다.');
 
+      Console.print('\n실행 결과');
       for (let i = 0; i < tryCnt; i++) {
         cars.forEach(car => {
           car.moveForward();
+          car.printMoveResult();
         });
+        Console.print('\n');
       }
     } catch (error) {
       throw new Error(`[ERROR] ${error.message}`);

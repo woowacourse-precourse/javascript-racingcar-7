@@ -13,6 +13,10 @@ class Car {
   moveForward() {
     if (this.getRandomValue() >= 4) this.moveForwardCnt += 1;
   }
+
+  printMoveResult() {
+    Console.print(`${this.name} : ${'-'.repeat(this.moveForwardCnt)}`);
+  }
 }
 
 export default Car;
