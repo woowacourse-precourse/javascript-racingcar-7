@@ -6,7 +6,7 @@ import {
 } from '../constants/Error';
 
 class NameValidation {
-  isValid(carNames) {
+  static isValid(carNames) {
     if (carNames === '') {
       throw new Error(EMPTY_CAR_NAME_ERROR);
     }
