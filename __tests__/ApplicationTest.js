@@ -8,65 +8,6 @@ import {
   OUTPUT_MESSAGE_WINNER,
 } from "../src/constants.js";
 
-const mockQuestions = (inputs) => {
-  MissionUtils.Console.readLineAsync = jest.fn();
-
-  MissionUtils.Console.readLineAsync.mockImplementation(() => {
-    const input = inputs.shift();
-    return Promise.resolve(input);
-  });
-};
-
-const mockRandoms = (numbers) => {
-  MissionUtils.Random.pickNumberInRange = jest.fn();
-
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, MissionUtils.Random.pickNumberInRange);
-};
-
-const getLogSpy = () => {
-  const logSpy = jest.spyOn(MissionUtils.Console, "print");
-  logSpy.mockClear();
-  return logSpy;
-};
-
-const testCaseExceptionArrayOfCarNameArray = [
-  {
-    title: "자동차 이름이 5글자 초과인 경우",
-    inputs: ["pobi,javaji"],
-    errorMessage: ERROR_MESSAGE_CAR_NAME_INVALID,
-  },
-  {
-    title: "자동차 이름이 1글자 미만인 경우",
-    inputs: ["pobi,"],
-    errorMessage: ERROR_MESSAGE_CAR_NAME_INVALID,
-  },
-  {
-    title: "자동차 이름이 알파벳, 숫자 혹은 언더바(`_`)가 아닌 경우",
-    inputs: ["pobi,$gue"],
-    errorMessage: ERROR_MESSAGE_CAR_NAME_INVALID,
-  },
-  {
-    title: "자동차 이름이 중복되는 경우",
-    inputs: ["pobi,pobi", 1],
-    errorMessage: ERROR_MESSAGE_CAR_NAME_DUPLICATION,
-  },
-];
-
-const testCaseExceptionArrayOfTryCount = [
-  {
-    title: "양수가 아닌 경우",
-    inputs: ["pobi,java", 0],
-    errorMessage: ERROR_MESSAGE_NOT_POSITIVE_POSITIVE,
-  },
-  {
-    title: "정수가 아닌 경우",
-    inputs: ["pobi,java", 5.5],
-    errorMessage: ERROR_MESSAGE_NOT_INTEGER,
-  },
-];
-
 const MOVING_FORWARD = 4;
 const STOP = 3;
 
@@ -161,7 +102,43 @@ const testCaseArrayOfFunctionalTest = [
   },
 ];
 
-const testCaseArray = [
+const testCaseExceptionArrayOfCarNameArray = [
+  {
+    title: "자동차 이름이 5글자 초과인 경우",
+    inputs: ["pobi,javaji"],
+    errorMessage: ERROR_MESSAGE_CAR_NAME_INVALID,
+  },
+  {
+    title: "자동차 이름이 1글자 미만인 경우",
+    inputs: ["pobi,"],
+    errorMessage: ERROR_MESSAGE_CAR_NAME_INVALID,
+  },
+  {
+    title: "자동차 이름이 알파벳, 숫자 혹은 언더바(`_`)가 아닌 경우",
+    inputs: ["pobi,$gue"],
+    errorMessage: ERROR_MESSAGE_CAR_NAME_INVALID,
+  },
+  {
+    title: "자동차 이름이 중복되는 경우",
+    inputs: ["pobi,pobi", 1],
+    errorMessage: ERROR_MESSAGE_CAR_NAME_DUPLICATION,
+  },
+];
+
+const testCaseExceptionArrayOfTryCount = [
+  {
+    title: "양수가 아닌 경우",
+    inputs: ["pobi,java", 0],
+    errorMessage: ERROR_MESSAGE_NOT_POSITIVE_POSITIVE,
+  },
+  {
+    title: "정수가 아닌 경우",
+    inputs: ["pobi,java", 5.5],
+    errorMessage: ERROR_MESSAGE_NOT_INTEGER,
+  },
+];
+
+const testCaseExceptionArray = [
   {
     title: "자동차 이름 예외 테스트",
     testCaseExceptionArray: testCaseExceptionArrayOfCarNameArray,
@@ -191,16 +168,42 @@ describe("자동차 경주", () => {
     );
   });
 
-  describe.each(testCaseArray)("$title", ({ testCaseExceptionArray }) => {
-    test.each(testCaseExceptionArray)(
-      "$title",
-      async ({ inputs, errorMessage }) => {
-        mockQuestions(inputs);
+  describe.each(testCaseExceptionArray)(
+    "$title",
+    ({ testCaseExceptionArray }) => {
+      test.each(testCaseExceptionArray)(
+        "$title",
+        async ({ inputs, errorMessage }) => {
+          mockQuestions(inputs);
 
-        const app = new App();
+          const app = new App();
 
-        await expect(app.run()).rejects.toThrow(errorMessage);
-      }
-    );
-  });
+          await expect(app.run()).rejects.toThrow(errorMessage);
+        }
+      );
+    }
+  );
 });
+
+function mockQuestions(inputs) {
+  MissionUtils.Console.readLineAsync = jest.fn();
+
+  MissionUtils.Console.readLineAsync.mockImplementation(() => {
+    const input = inputs.shift();
+    return Promise.resolve(input);
+  });
+}
+
+function mockRandoms(numbers) {
+  MissionUtils.Random.pickNumberInRange = jest.fn();
+
+  numbers.reduce((acc, number) => {
+    return acc.mockReturnValueOnce(number);
+  }, MissionUtils.Random.pickNumberInRange);
+}
+
+function getLogSpy() {
+  const logSpy = jest.spyOn(MissionUtils.Console, "print");
+  logSpy.mockClear();
+  return logSpy;
+}
