@@ -13,7 +13,7 @@ class RaceManager {
     }
 
     async #prepareRacing() {
-        const inputStr = await IOHandler.input("경주할 자동차 이름을 입렿가세요.(이름은 쉼표(,) 기준으로 구분)\n");
+        const inputStr = await IOHandler.input("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
         const carNames = this.#getNamesFromStr(inputStr);
         carNames.forEach(name => {
             isValidNameLength(name, this.#MAX_NAME_LENGTH);
