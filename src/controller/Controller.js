@@ -30,12 +30,16 @@ class Controller {
       race.moveAllCars();
       this.view.printRacingCars(carMap);
     }
+
+    return race.getWinner();
   }
 
   async startGame() {
     const carNames = await this.getCarName();
     const moveTimes = await this.getMoveTimes();
     const carMap = this.createCars(carNames);
+    const winner = this.runRace(carMap, moveTimes);
+    this.view.printWinner(winner);
   }
 }
 

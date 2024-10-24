@@ -16,6 +16,10 @@ class View {
     });
     this.printMessage('');
   }
+
+  printWinner(winnerArray) {
+    this.printMessage(`최종 우승자 : ${winnerArray.join(', ')}`);
+  }
 }
 
 export default View;

@@ -17,6 +17,12 @@ class Race {
       this.moveCar(car);
     });
   }
+
+  getWinner() {
+    const maxPostion = Math.max(...this.cars.map((car) => car.getPosition()));
+
+    return this.cars.filter((car) => car.getPosition() === maxPostion).map((car) => car.getName());
+  }
 }
 
 export default Race;
