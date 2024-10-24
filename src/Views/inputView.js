@@ -6,7 +6,7 @@ const getCarNamesInput = async () => {
 };
 
 const getRacingCountInput = async () => {
-  const racingCount = Console.readLineAsync('시도할 횟수는 몇 회인가요?: ');
+  const racingCount = await Console.readLineAsync('시도할 횟수는 몇 회인가요?: ');
   return racingCount;
 };
 export { getCarNamesInput, getRacingCountInput };
