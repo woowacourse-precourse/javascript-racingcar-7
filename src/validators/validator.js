@@ -32,6 +32,12 @@ function checkCarNameDuplicates(names) {
   }
 }
 
+function checkMinimumCars(names) {
+  if (names.length < 2) {
+    throw new Error('자동차는 최소 2대 이상이어야 합니다.');
+  }
+}
+
 export function checkCarNames(carNames) {
   const validateCarNames = carNames.map((name) => {
     checkCarNameLength(name);
@@ -40,6 +46,7 @@ export function checkCarNames(carNames) {
     return name;
   });
 
+  checkMinimumCars(validateCarNames);
   checkCarNameDuplicates(validateCarNames);
   return validateCarNames;
 }
