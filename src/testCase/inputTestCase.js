@@ -52,12 +52,37 @@ export const carNameInputCase = [
 export const countInputCase = [
   { input: '5', expected: 5, throwError: false },
   {
+    input: '9999999999999999999999999999999999',
+    expected: 9999999999999999999999999999999999,
+    throwError: false,
+  },
+  {
     input: '',
     expected: `${errorMessages.prefix} ${errorMessages.invalidCount}`,
     throwError: true,
   },
   {
     input: '0',
+    expected: `${errorMessages.prefix} ${errorMessages.invalidCount}`,
+    throwError: true,
+  },
+  {
+    input: '일',
+    expected: `${errorMessages.prefix} ${errorMessages.invalidCount}`,
+    throwError: true,
+  },
+  {
+    input: 'two',
+    expected: `${errorMessages.prefix} ${errorMessages.invalidCount}`,
+    throwError: true,
+  },
+  {
+    input: '2.5',
+    expected: `${errorMessages.prefix} ${errorMessages.invalidCount}`,
+    throwError: true,
+  },
+  {
+    input: '3회',
     expected: `${errorMessages.prefix} ${errorMessages.invalidCount}`,
     throwError: true,
   },
