@@ -1,7 +1,6 @@
-export default class Parser{
-
-    static splitStringByComma(String){
-        const StringArr = String.split(new RegExp(','))
-        return StringArr
-    }
+export default class Parser {
+  static splitStringByComma(inputString) {
+    const stringArray = inputString.split(new RegExp(','));
+    return stringArray;
+  }
 }
