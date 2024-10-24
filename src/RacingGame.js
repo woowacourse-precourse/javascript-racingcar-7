@@ -29,4 +29,9 @@ export default class RacingGame {
       this.cars[name].move();
     });
   }
+
+  getWinners() {
+    const maxDist = Math.max(...Object.values(this.cars).map((car) => car.dist));
+    return Object.keys(this.cars).filter((name) => this.cars[name].dist === maxDist);
+  }
 }

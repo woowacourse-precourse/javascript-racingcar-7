@@ -1,3 +1,4 @@
+import { MissionUtils } from "@woowacourse/mission-utils";
 import RacingGame from "../src/RacingGame";
 
 const mockGame = (repeatCount, cars) => {
@@ -7,6 +8,15 @@ const mockGame = (repeatCount, cars) => {
     jest.spyOn(game.cars[name], "move");
   });
   return game;
+};
+
+const mockRandoms = (numbers) => {
+  MissionUtils.Random.pickNumberInRange = jest.fn();
+
+  numbers.reduce(
+    (acc, number) => acc.mockReturnValueOnce(number),
+    MissionUtils.Random.pickNumberInRange,
+  );
 };
 
 describe("경주 게임", () => {
@@ -37,6 +47,25 @@ describe("경주 게임", () => {
       Object.keys(game.cars).forEach((name) => {
         expect(game.cars[name].move).toBeCalledTimes(REPEAT_COUNT);
       });
+    });
+  });
+
+  describe("우승자를 구한다.", () => {
+    test("경주 게임이 있고 pobi가 ham보다 이동 거리가 큰 경우, 자동차 경주 게임을 완료하면, pobi를 우승자로 선정한다.", () => {
+      // given
+      const REPEAT_COUNT = 1;
+      const MOVING_FORWARD = 4;
+      const STOP = 3;
+
+      const CARS = "pobi,ham";
+      const game = mockGame(REPEAT_COUNT, CARS);
+      mockRandoms([MOVING_FORWARD, STOP]);
+
+      // when
+      game.start();
+
+      // then
+      expect(game.getWinners()).toEqual(["pobi"]);
     });
   });
 });
