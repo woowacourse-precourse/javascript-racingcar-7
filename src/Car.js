@@ -1,5 +1,5 @@
 import { Random } from "@woowacourse/mission-utils";
-import { NUMBER } from "./Constants/constants";
+import { NUMBER } from "./Constants/constants.js";
 
 class Car {
   #position;
