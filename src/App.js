@@ -68,11 +68,8 @@ class App {
   race(carTraceMap, carNameArray, tryCount) {
     for (let i = 0; i < tryCount; i++) {
       for (const carName of carNameArray) {
-        const randomNum = pickNumberInRange(0, 9);
-
-        const isMoveForward = this.getMoveForward(randomNum);
-        if (isMoveForward)
-          carTraceMap.set(carName, carTraceMap.get(carName) + 1);
+        const newPosition = this.moveCarForward(carTraceMap.get(carName));
+        carTraceMap.set(carName, newPosition);
 
         const repeatedTraceChracter = getRepeatedString(
           this.#TRACE_CHARACTER,
@@ -83,6 +80,13 @@ class App {
       }
     }
     return carTraceMap;
+  }
+
+  moveCarForward(currentPosition) {
+    const randomNum = pickNumberInRange(0, 9);
+    const isMoveForward = this.getMoveForward(randomNum);
+    if (isMoveForward) return currentPosition + 1;
+    return currentPosition;
   }
 
   getMoveForward(num) {
