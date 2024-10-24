@@ -18,7 +18,7 @@ Model
     - Property
         * name
         * distance
-    - method
+    - Method
         * move(): distance + 1
             
 View
@@ -27,10 +27,18 @@ View
     - return: 사용자 입력
 - [x] 각 경주 단계 진행 결과 출력하는 함수
     - args: 각 자동차 객체들
-- [ ] 우승자 출력하는 함수
+- [x] 우승자 출력하는 함수
     - args: 우승한 자동차 이름들
 
 Controller
+- [ ] 경주 진행하는 컨트롤러 class
+    - Property
+        * carArray
+    - Method
+        * runRaceStep(): race 1 단계 진행
+        * showRaceStep(): 진행한 race 단계의 결과 출력
+        * announceWinner(): 우승한 자동차 심사해서 이름 출력
+
 - [ ] 가장 멀리 간 차 선별하는 함수
     - args: 모든 자동차의 이동 거리
     - return: 가장 멀리 간 차 이름
