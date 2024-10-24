@@ -8,4 +8,12 @@ export default class View {
       throw new Error('입력 중 오류가 발생했습니다.');
     }
   }
+
+  printStep(name, step) {
+    Console.print(`${name} : ${'-'.repeat(step)}`);
+  }
+
+  printEmpty() {
+    Console.print('');
+  }
 }

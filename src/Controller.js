@@ -1,4 +1,6 @@
+import { Random } from '@woowacourse/mission-utils';
 import View from './View.js';
+import CarModel from './CarModel.js';
 import { validateName, validateTryCount } from './validation.js';
 
 export default class Controller {
@@ -9,6 +11,46 @@ export default class Controller {
   async start() {
     const names = await this.getNames();
     const count = await this.getCount();
+
+    const cars = this.createCars(names);
+
+    this.runRace(cars, count);
+  }
+
+  runRace(cars, count) {
+    for (let i = 0; i < count; i++) {
+      for (let j = 0; j < cars.length; j++) {
+        const car = cars[j];
+        this.runSingleRound(car);
+      }
+      this.view.printEmpty();
+    }
+  }
+
+  runSingleRound(car) {
+    if (this.canMoveForward()) {
+      car.move();
+    }
+
+    this.view.printStep(car.name, car.step);
+  }
+
+  createCars(names) {
+    return names.map((name) => new CarModel(name));
+  }
+
+  canMoveForward() {
+    const randomNumber = this.getRandomNumber();
+
+    if (randomNumber >= 4) {
+      return true;
+    }
+
+    return false;
+  }
+
+  getRandomNumber() {
+    return Random.pickNumberInRange(0, 9);
   }
 
   async getNames() {
