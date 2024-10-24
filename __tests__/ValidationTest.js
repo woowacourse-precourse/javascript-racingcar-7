@@ -70,3 +70,15 @@ describe("자동차 이름 입력 유효성 검사", () => {
     );
   });
 });
+
+describe("자동차 경주 시도 횟수 입력 유효성 검사", () => {
+  test("시도 횟수 정상 입력 시 입력된 값 반환", async () => {
+    const input = ["5"];
+
+    const app = new App();
+    mockQuestions(input);
+
+    const result = await app.getRacingAttmeptCount();
+    expect(result).toEqual("5");
+  });
+});
