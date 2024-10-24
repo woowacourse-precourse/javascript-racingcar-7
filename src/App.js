@@ -73,8 +73,33 @@ class App {
         });
         Console.print(raceCars);
       }
+      checkWinner(raceCars)
+    }
+
+    function getDistances(raceCars) {
+      return Object.values(raceCars).map(distance => distance.length);
     }
     
+    function getMaxDistance(distances) {
+      return Math.max(...distances);
+    }
+    
+    function findWinners(raceCars, maxDistance) {
+      return Object.entries(raceCars)
+        .filter(([car, distance]) => distance.length === maxDistance)
+        .map(([car]) => car);
+    }
+    
+    function printWinners(winners) {
+      Console.print(`최종 우승자: ${winners.join(', ')}`);
+    }
+    
+    function checkWinner(raceCars) {
+      const distances = getDistances(raceCars);
+      const maxDistance = getMaxDistance(distances);
+      const winners = findWinners(raceCars, maxDistance);
+      printWinners(winners);
+    }
     
     
   }
