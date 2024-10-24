@@ -1,4 +1,4 @@
-import { splitCarString, initRecord } from "../utils/initRecord";
+import { splitCarString, initRecord } from '../utils/initRecord.js';
 
 test('split 함수 테스트', () => {
   const carString = 'pobi,woni,jun';
