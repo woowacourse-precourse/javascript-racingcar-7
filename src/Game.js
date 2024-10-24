@@ -16,6 +16,7 @@ export class Game {
     for (let i = 0; i < this.count; i++) {
       this.move();
     }
+    return this.getWinner();
   }
   move() {
     const movingCars = [];
@@ -31,5 +32,11 @@ export class Game {
       Console.print(car + GAME.SAPCE_COLON + GAME.ROUTE.repeat(routeLength));
     });
     Console.print(GAME.NEW_LINE);
+  }
+  getWinner() {
+    const maxValue = Math.max(...Object.values(this.record));
+    return Object.keys(this.record).filter(
+      (car) => this.record[car] === maxValue,
+    );
   }
 }
