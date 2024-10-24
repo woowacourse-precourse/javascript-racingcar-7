@@ -3,8 +3,13 @@ import { validateNameLength } from "./utils/validate.js";
 
 class RacingCar {
 	async runRacingCar() {
-		const { carNameValue, tryCountValue } = await this.getUserInput();
-		await validateNameLength(carNameValue);
+		try {
+			const { carNameValue, tryCountValue } = await this.getUserInput();
+			this.validateInput(carNameValue, tryCountValue);
+		} catch (error) {
+			console.error(error);
+			throw new Error(error.message);
+		}
 	}
 
 	async getUserInput() {
@@ -13,6 +18,11 @@ class RacingCar {
 		);
 		const tryCountValue = await userInput("시도할 횟수는 몇 회인가요?\n");
 		return { carNameValue, tryCountValue };
+	}
+
+	async validateInput(carNameValue, tryCountValue) {
+		await validateNameLength(carNameValue);
+		await validateMaxCar(carNameValue);
 	}
 }
 
