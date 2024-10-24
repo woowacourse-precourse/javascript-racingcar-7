@@ -1,9 +1,11 @@
 import { Console, MissionUtils } from "@woowacourse/mission-utils";
 import Validate from "../utils/validate.js";
+import UserView from "../View/UserView.js";
 
 class CarController{
   constructor() {
     this.Error = new Validate();
+    this.print = new UserView();
     this.carList = []; // 초기값은 추후 model로 분리할 것이다.
     this.count = 0;
     this.distance = new Map(); // 해시맵으로 이름과 거리를 저장
@@ -15,7 +17,7 @@ class CarController{
 
     await this.moveforward();
     const winner = await this.getWinner();
-    Console.print(winner);
+    this.print.printWinner(winner);
   }
 
   async inputCarList() {
@@ -36,22 +38,26 @@ class CarController{
     Console.print("실행 결과");
     for (let i=0; i<this.count; i++){
         await this.oneStep();
+        Console.print('');
     }
   }
   async oneStep() { //랜덤 숫자를 생성하고 carList를 순회하면서 값을 증가시킨다.
     this.carList.forEach((car) => {
       let speed = MissionUtils.Random.pickNumberInRange(0, 9);
-      if(speed > 4){
+      if(speed >= 4){
         if(!this.distance.get(car)){
           this.distance.set(car, 1);
-          Console.print(`${car} 전진`);
+          this.print.printProgress(car, this.distance.get(car));
           // 결과 출력 View
         } else{
           this.distance.set(car, this.distance.get(car)+1);
-          Console.print(`${car} 전진`);
+          this.print.printProgress(car, this.distance.get(car));
           // 결과 출력 View
         }
+      } else{
+        this.print.printProgress(car, this.distance.get(car));
       }
+      // 전진하지 않는 경우도 출력 View
     })
   }
   async getWinner() {
@@ -59,7 +65,7 @@ class CarController{
     const winner = [];
     const allRecords = [];
     let maxRecord = 0;
-    for (let [carName, record] of this.distance){
+    for (let [_, record] of this.distance){
       allRecords.push(record);
     }
     maxRecord = Math.max(...allRecords);
@@ -70,8 +76,6 @@ class CarController{
     }
     return winner;
   }
-
-
 }
 
 export default CarController;
