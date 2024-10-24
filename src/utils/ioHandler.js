@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { IO_MESSAGE } from '../constants';
+import { IO_MESSAGE } from '../constants/index.js';
 
 async function getGameInput() {
   const carString = await Console.readLineAsync(IO_MESSAGE.FIRST_INPUT_MESSAGE);
