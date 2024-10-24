@@ -1,18 +1,18 @@
 import { ERROR_MESSAGES } from '../constants/errorMessages.js';
 
-const isRacingCountInputEmpty = racingCountInput => {
+const isRacingCountInputNoEmpty = racingCountInput => {
   if (racingCountInput === '') {
     throw new Error(ERROR_MESSAGES.EMPTY_INPUT);
   }
 };
 
-const isRacingCountTypeNumber = racingCarInput => {
-  if (!isNaN(racingCarInput)) {
+const isRacingCountTypeNumber = racingCountInput => {
+  if (!isNaN(racingCountInput)) {
     return true;
   }
-  if (isNaN(racingCarInput)) {
+  if (isNaN(racingCountInput)) {
     throw new Error(ERROR_MESSAGES.INVALID_NUMBER);
   }
 };
 
-export { isRacingCountInputEmpty, isRacingCountTypeNumber };
+export { isRacingCountInputNoEmpty, isRacingCountTypeNumber };

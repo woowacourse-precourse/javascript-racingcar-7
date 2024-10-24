@@ -11,8 +11,8 @@ const printRacingProgressOutput = (carNamesInput, progressionLengthForEachRacer)
   Console.print('\n');
 };
 
-const printFinalWinners = MaxNumberNames => {
+const printFinalWinner = MaxNumberNames => {
   Console.print('최종 우승자 : ' + MaxNumberNames.join(', '));
 };
 
-export { printNotificationExecutionResult, printRacingProgressOutput, printFinalWinners };
+export { printNotificationExecutionResult, printRacingProgressOutput, printFinalWinner };

@@ -4,13 +4,12 @@ const carNamesLengthValidator = trimmedEachCarName => {
   return trimmedEachCarName.every(element => element.length < 6);
 };
 
-const isCarNamesInputNotEmpty = carNamesInput => {
+const isCarNamesInputNoEmpty = carNamesInput => {
   if (carNamesInput === '') {
     throw new Error(ERROR_MESSAGES.EMPTY_INPUT);
   }
 };
 
-//숫자일 경우에 에러나게하기
 const isCarNamesInputTypeOfNum = spliteAndtrimmedCarName => {
   for (let i = 0; i < spliteAndtrimmedCarName.length; i += 1) {
     if (!isNaN(parseInt(spliteAndtrimmedCarName[i]))) {
@@ -29,4 +28,4 @@ const isCarNamesInputValidatedLength = spliteAndtrimmedCarName => {
   }
 };
 
-export { isCarNamesInputNotEmpty, isCarNamesInputTypeOfNum, isCarNamesInputValidatedLength };
+export { isCarNamesInputNoEmpty, isCarNamesInputTypeOfNum, isCarNamesInputValidatedLength };

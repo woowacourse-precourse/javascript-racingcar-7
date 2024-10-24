@@ -5,7 +5,7 @@ import { findWinner } from './findingWinner.js';
 let progressionNumberForEachRacer = [];
 let progressionLengthForEachRacer = [];
 
-const assignZeroToArray = (carNamesInput, progressionLengthForEachRacer) => {
+const assignZeroToArray = carNamesInput => {
   for (let i = 0; i < carNamesInput.length; i++) {
     progressionNumberForEachRacer.push(Number('0'));
   }
