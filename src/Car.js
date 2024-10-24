@@ -5,12 +5,7 @@ export default class Car {
 
   dist;
 
-  constructor() {
-    this.name = "";
-    this.dist = 0;
-  }
-
-  init(name) {
+  constructor(name) {
     this.name = name;
     this.dist = 0;
   }
