@@ -17,6 +17,14 @@ class Car {
   printMoveResult() {
     Console.print(`${this.name} : ${'-'.repeat(this.moveForwardCnt)}`);
   }
+
+  getMoveFowradCnt() {
+    return this.moveForwardCnt;
+  }
+
+  getName() {
+    return this.name;
+  }
 }
 
 export default Car;

@@ -26,6 +26,18 @@ class App {
         });
         Console.print('\n');
       }
+
+      const maxMoveForward = cars.reduce((acc, curr) => {
+        if (acc < curr.getMoveFowradCnt()) return curr.getMoveFowradCnt();
+        return acc;
+      }, 0);
+
+      Console.print(
+        `최종 우승자 : ${cars
+          .filter(car => car.getMoveFowradCnt() === maxMoveForward)
+          .map(car => car.getName())
+          .join(',')}`,
+      );
     } catch (error) {
       throw new Error(`[ERROR] ${error.message}`);
     }
