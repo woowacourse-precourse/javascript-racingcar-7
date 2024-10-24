@@ -1,5 +1,6 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
+import inputCarNames from "../src/utils/InputCarNames.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -58,13 +59,16 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
   
-  test('자동차 이름 입력 받아서 나누기', () => {
-    const input = 'pobi,woni';
-
-    const receivedInput = inputCarNames(input);
-    const splitCarNames = splitInput(receivedInput);
+  test('자동차 이름 입력 받기', async () => {
+    // given
+    const inputs = ["pobi,woni"];
+    mockQuestions(inputs);
     
-    expect(splitCarNames).toEqual(['pobi', 'woni']);
+    // when
+    const receivedInput = await inputCarNames();
+
+    // then
+    expect(receivedInput).toEqual('pobi,woni');
   });
 
 });
