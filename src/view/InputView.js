@@ -11,9 +11,9 @@ const InputView = {
     }
   },
 
-  async readRaceAttemptInput() {
+  async readRaceCountInput() {
     try {
-      const input = await Console.readLineAsync(PROMPT_MESSAGES.INPUT_RACE_ATTEMPT);
+      const input = await Console.readLineAsync(PROMPT_MESSAGES.INPUT_RACE_COUNT);
       return input;
     } catch (error) {
       Console.print(ERROR_MESSAGES.READ_INPUT);

@@ -1,6 +1,6 @@
 export const PROMPT_MESSAGES = {
   INPUT_CAR_NAME: '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
-  INPUT_RACE_ATTEMPT: '시도할 횟수는 몇 회인가요?\n',
+  INPUT_RACE_COUNT: '시도할 횟수는 몇 회인가요?\n',
 
   OUTPUT_RACE_RESULT: '\n실행 결과\n',
   OUTPUT_WINNER: '최종 우승자 : ',

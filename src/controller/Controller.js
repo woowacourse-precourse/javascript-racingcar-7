@@ -9,11 +9,11 @@ class Controller {
     const carNames = parseCarNames(carNamesInput);
     CarNameValidations(carNames);
 
-    // (Race) raceAttempt 검증
-    // const raceAttempt = await InputView.readRaceAttemptInput();
+    const raceCount = await InputView.readRaceCountInput();
+    RaceCountValidations(raceCount);
 
     // (Car) carNames 쉼표 기준으로 분리하여 배열로 저장
-    // (Race) raceAttempt 만큼 경주 진행
+    // (Race) raceCount 만큼 경주 진행
     // (Race) 무작위 값 생성
     // (Car) 각 자동차별 무작위 값이 4 이상인지 확인 후 '-' 추가
     
