@@ -34,6 +34,9 @@ class App {
   runRace(cars) {
     Object.keys(cars).forEach((car) => {
       let randomValue = Random.pickNumberInRange(0, 9);
+      if (randomValue >= 4) {
+        cars[car] += 1;
+      }
     });
   }
 }
