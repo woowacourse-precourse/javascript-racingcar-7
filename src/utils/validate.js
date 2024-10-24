@@ -1,7 +1,7 @@
 export async function validateNameLength(carNameValue) {
 	const carNames = carNameValue
 		.split(",")
-		.filter((carName) => carName.length >= 5);
+		.filter((carName) => carName.length > 5);
 
 	if (carNames.length > 0) {
 		throw new Error(
