@@ -9,6 +9,10 @@ class App {
 
   async run() {}
 
+  MakeCars(names) {
+    return names.map((name) => new Car(name));
+  }
+
   getCarList() {
     return this.carList;
   }
