@@ -36,7 +36,12 @@ class App {
 		// 게임 시작
 		startRacingGame(carList, parseInt(tryNumber));
 
-		
+		// 경주 결과 출력
+		const maxPosition = Math.max(...positions);
+		const winners = carList.filter(
+			(_, index) => positions[index] === maxPosition
+		);
+		Console.print(`최종 우승자 : ${winners.join(', ')}`);
 	}
 }
 
