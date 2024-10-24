@@ -5,6 +5,7 @@ class NameValidator {
     carNameList.map((car) => {
       this.validateLength(car);
       this.validateSeparator(car);
+      this.validateBlankName(car);
       return carNameList;
     });
   }
@@ -16,7 +17,13 @@ class NameValidator {
   }
 
   validateSeparator(carName) {
-    if (/\s/g.test(carName)) {
+    if (/[^a-zA-Z0-9가-힣ㄱ-ㅎ]/g.test(carName)) {
+      throw new Error(MESSAGE.CAR_NAME_ERROR);
+    }
+  }
+
+  validateBlankName(carName) {
+    if (carName === '') {
       throw new Error(MESSAGE.CAR_NAME_ERROR);
     }
   }
