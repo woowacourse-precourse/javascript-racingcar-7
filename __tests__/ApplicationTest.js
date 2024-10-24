@@ -83,6 +83,12 @@ test.each([
   [['car1', '32 '], '[ERROR]'],
   [['car1', ' 32'], '[ERROR]'],
   [['car1', ' '], '[ERROR]'],
+  // Exception5
+  [['naaaaame', '1'], '[ERROR]'],
+  // Exception6
+  [['name,name,name', '1'], '[ERROR]'],
+  [['name,name1,name', '1'], '[ERROR]'],
+  [['name,naaaaame1,name', '1'], '[ERROR]'],
 ])('areAnagrams(%s) returns %s', async (first) => {
   // given
   mockQuestions(first);
