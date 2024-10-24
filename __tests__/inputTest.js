@@ -1,5 +1,5 @@
 import Validator from '../src/Validator.js';
-import { carNameInputCase, countInputCase } from './inputTestCase.js';
+import { carNameInputCase, countInputCase } from '../src/testCase/inputTestCase.js';
 
 describe('입력 테스트', () => {
   test.each(carNameInputCase)('자동차 입력 %s에 대한 테스트', ({ input, expected, throwError }) => {
@@ -15,6 +15,6 @@ describe('입력 테스트', () => {
       expect(() => Validator.validCountInput(input)).toThrow(expected);
       return;
     }
-    expect(Validator.validCountInput(input)).not.toThrow();
+    expect(Validator.validCountInput(input)).toEqual(expected);
   });
 });
