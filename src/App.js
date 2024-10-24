@@ -1,7 +1,7 @@
 import InputHandler from './handler/InputHandler.js';
 import OutputHandler from './handler/OutputHandler.js';
 import MovingCar from "./MovingCar.js";
-import Car from './Car.js'
+import createCars from './CreateCar.js';
 
 class App {
   constructor() {
@@ -14,14 +14,11 @@ class App {
     try {
       const carNames = await this.inputHandler.carNamesInput();
       const countNum = await this.inputHandler.countNumInput();
-      const cars = this.createCars(carNames, countNum);
+      const cars = createCars(carNames, countNum);
       this.movingCar.startRace(cars, countNum);
     } catch (error) {
       this.outputHandler.printError(error);
     }
-  }
-  createCars(carNames, countNum) {
-    return carNames.map(name => new Car(name, countNum));
   }
 }
 
