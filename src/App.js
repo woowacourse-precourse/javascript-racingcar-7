@@ -22,6 +22,8 @@ class App {
       this.printAttemptResult(moveCntPerCar);
       Console.print("\n");
     }
+
+    this.printWinner(moveCntPerCar);
   }
 
   async readRacingCarNames() {
@@ -60,6 +62,15 @@ class App {
     });
 
     Console.print(lines.join("\n"));
+  }
+
+  printWinner(moveCntPerCar) {
+    const maxMoveCnt = Math.max(...Object.values(moveCntPerCar));
+    const winners = Object.entries(moveCntPerCar)
+      .filter(([_, moveCnt]) => moveCnt === maxMoveCnt)
+      .map(([car]) => car);
+
+    Console.print(`최종 우승자 : ${winners.join(", ")}`);
   }
 }
 
