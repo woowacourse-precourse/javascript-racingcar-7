@@ -25,6 +25,15 @@ class App {
           racersProcess.set(racers[j], racersProcess.get(racers[j]) + "-");
         }
       }
+
+      // 출력할 차수별 진행결과 템플릿을 생성합니다.
+      let answer = [];
+      for (let [key, value] of racersProcess) {
+        answer.push(`${key} : ${value}`);
+      }
+
+      // 차수별 진행결과를 출력합니다.
+      Console.print(answer.join("\n"));
     }
     const winner = [];
     Console.print(`최종 우승자 : ${winner.join(", ")}`);
