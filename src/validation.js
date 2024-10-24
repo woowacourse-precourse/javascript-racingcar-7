@@ -1,7 +1,8 @@
 import { ERROR_MESSAGES } from "./constants/message.js";
+import RULES from "./constants/rule.js";
 
 export function isCarNamesValid(cars) {
-  if (cars.some((car) => car.length > 5)) {
+  if (cars.some((car) => car.length > RULES.CAR_NAME_MAX_LENGTH)) {
     return { isCarValid: false, errCarMessage: ERROR_MESSAGES.OVER_CAR_NAME_LENGTH };
   }
 
