@@ -6,6 +6,8 @@ class Car {
 
   #position;
 
+  static MAX_CAR_NAME_LENGTH = 5;
+
   constructor(name) {
     this.#validateName(name);
 
@@ -14,7 +16,11 @@ class Car {
   }
 
   #validateName(name) {
-    if (name.length > 5) {
+    if (name.trim().length === 0) {
+      throw new Error(errorString(CONSOLE_MESSAGE.MIN_CAR_NAME_LENGTH_ERROR));
+    }
+
+    if (name.length > Car.MAX_CAR_NAME_LENGTH) {
       throw new Error(errorString(CONSOLE_MESSAGE.MAX_CAR_NAME_LENGTH_ERROR));
     }
   }
