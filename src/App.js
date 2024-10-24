@@ -12,9 +12,7 @@ import {
 class App {
   #TRACE_CHARACTER = "-";
   async run() {
-    const [userInputCarNames, userInputTryCount] = await Input.getUserInput();
-    const carNameArray = Input.processCarNames(userInputCarNames);
-    const tryCount = Input.processTryCount(userInputTryCount);
+    const { carNameArray, tryCount } = await this.#getInput();
 
     const carTraceMap = getMapFilledZeroValue(carNameArray);
 
@@ -27,6 +25,17 @@ class App {
     );
 
     print(`${OUTPUT_MESSAGE_WINNER}${winnerCarArray.join(", ")}`);
+  }
+
+  async #getInput() {
+    const [userInputCarNames, userInputTryCount] = await Input.getUserInput();
+    const carNameArray = Input.processCarNames(userInputCarNames);
+    const tryCount = Input.processTryCount(userInputTryCount);
+
+    return {
+      carNameArray,
+      tryCount,
+    };
   }
 
   race(carTraceMap, carNameArray, tryCount) {
