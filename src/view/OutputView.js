@@ -14,6 +14,10 @@ const OutputView = {
   printWinner(winner) {
     Console.print(`${PROMPT_MESSAGES.OUTPUT_WINNER}${winner}`);
   },
+
+  printErrorMessage(errorMessage) {
+    throw new Error(`${PROMPT_MESSAGES.OUTPUT_ERROR} ${errorMessage}`);
+  }
 }
 
 export default OutputView;
