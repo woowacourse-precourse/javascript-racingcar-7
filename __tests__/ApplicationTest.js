@@ -93,4 +93,52 @@ describe("자동차 경주", () => {
         // then
         await expect(app.run()).rejects.toThrow("[ERROR]");
     });
+
+    test("시도 횟수 검증 예외 테스트, 시도 횟수가 0일 때", async () => {
+        // given
+        const inputs = ["pobi,jun", "0"];
+        mockQuestions(inputs);
+
+        // when
+        const app = new App();
+
+        // then
+        await expect(app.run()).rejects.toThrow("[ERROR]");
+    });
+
+    test("시도 횟수 검증 예외 테스트, 시도 횟수가 음수일 때", async () => {
+        // given
+        const inputs = ["pobi,jun", "-1"];
+        mockQuestions(inputs);
+
+        // when
+        const app = new App();
+
+        // then
+        await expect(app.run()).rejects.toThrow("[ERROR]");
+    });
+
+    test("시도 횟수 검증 예외 테스트, 시도 횟수가 30회 초과일 때", async () => {
+        // given
+        const inputs = ["pobi,jun", "31"];
+        mockQuestions(inputs);
+
+        // when
+        const app = new App();
+
+        // then
+        await expect(app.run()).rejects.toThrow("[ERROR]");
+    });
+
+    test("시도 횟수 검증 예외 테스트, 시도 횟수가 숫자가 아닐 때", async () => {
+        // given
+        const inputs = ["pobi,jun", "a"];
+        mockQuestions(inputs);
+
+        // when
+        const app = new App();
+
+        // then
+        await expect(app.run()).rejects.toThrow("[ERROR]");
+    });
 });
