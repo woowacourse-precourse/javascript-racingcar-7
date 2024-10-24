@@ -16,24 +16,37 @@ function checkNames(arr) {
   let isError = false;
 
   arr.forEach((name) => {
-    if (name.length() > 5) isError = true;
+    if (name.length > 5) isError = true;
   });
   if (arr.length < 2) {
     isError = true;
+  }
+  if (isError) throw new Error('[ERROR]');
+}
+
+function checkCount(input) {
+  if (isNaN(input)) {
+    throw new Error('[ERROR]');
+  } else {
+    if (Number(input) % 1 === 0) return Number(input);
+    else throw new Error('[ERROR]');
   }
 }
 
 class App {
   async run() {
-    const input = await Console.readLineAsync(
+    const inputNames = await Console.readLineAsync(
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n'
     );
-    const names = getNames(input);
-    if (checkNames(names)) {
-      throw new Error('[ERROR]');
-    } else {
-      // TODO: 정상적인 입력에 대한 수행
-    }
+    const names = getNames(inputNames);
+    checkNames(names);
+
+    const inputCount = await Console.readLineAsync(
+      `시도할 횟수는 몇 회인가요?\n`
+    );
+    const trial = checkCount(inputCount);
+
+    //TODO: 정상적인 입력 시 수행할 것 (자동차 배열 만들기)
   }
 }
 
