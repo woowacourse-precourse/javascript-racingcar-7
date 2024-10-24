@@ -1,7 +1,7 @@
-import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
+import App from "../src/App.js";
 import {
-  ERROR_MESSAGE_CAR_NAME_OVER_FIVE,
+  ERROR_MESSAGE_CAR_NAME_INVALID,
   ERROR_MESSAGE_NOT_INTEGER,
   ERROR_MESSAGE_NOT_POSITIVE_POSITIVE,
   OUTPUT_MESSAGE_WINNER,
@@ -134,6 +134,7 @@ describe("자동차 경주", () => {
         STOP,
         STOP,
         MOVING_FORWARD,
+        ``,
       ]);
 
       const app = new App();
@@ -152,7 +153,7 @@ describe("자동차 경주", () => {
 
       const app = new App();
 
-      await expect(app.run()).rejects.toThrow(ERROR_MESSAGE_CAR_NAME_OVER_FIVE);
+      await expect(app.run()).rejects.toThrow(ERROR_MESSAGE_CAR_NAME_INVALID);
     });
   });
 

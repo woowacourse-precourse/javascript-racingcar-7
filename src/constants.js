@@ -1,7 +1,6 @@
 export const ERROR_MESSAGE_DEFAULT = "[ERROR]";
 export const ERROR_MESSAGE_USER_INPUT = `${ERROR_MESSAGE_DEFAULT} 입력 도중 알 수 없는 에러가 발생했습니다.`;
-export const ERROR_MESSAGE_CAR_NAME_OVER_MAX = `${ERROR_MESSAGE_DEFAULT} 길이가 5 이하의 자동차 이름을 입력해주세요.`;
-export const ERROR_MESSAGE_CAR_NAME_UNDER_MIN = `${ERROR_MESSAGE_DEFAULT} 길이가 1 이상의 자동차 이름을 입력해주세요.`;
+export const ERROR_MESSAGE_CAR_NAME_INVALID = `${ERROR_MESSAGE_DEFAULT} 1글자 이상, 5글자 이하의 알파벳, 숫자 혹은 언더바(_)로 이루어진 자동차 이름을 입력해주세요`;
 export const ERROR_MESSAGE_NOT_INTEGER = `${ERROR_MESSAGE_DEFAULT} 정수를 입력해주세요.`;
 export const ERROR_MESSAGE_NOT_POSITIVE_POSITIVE = `${ERROR_MESSAGE_DEFAULT} 양수를 입력해주세요.`;
 export const ERROR_MESSAGE_NOT_NUMBER = `${ERROR_MESSAGE_DEFAULT} 숫자를 입력해주세요.`;

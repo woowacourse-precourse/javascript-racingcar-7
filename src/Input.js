@@ -1,8 +1,5 @@
 import {
-  ERROR_MESSAGE_CAR_NAME_OVER_FIVE,
-  ERROR_MESSAGE_CAR_NAME_OVER_MAX,
-  ERROR_MESSAGE_CAR_NAME_UNDER_MIN,
-  ERROR_MESSAGE_OVER_MAX_LENGTH,
+  ERROR_MESSAGE_CAR_NAME_INVALID,
   ERROR_MESSAGE_USER_INPUT,
   INPUT_MESSAGE_CAR_NAMES,
   INPUT_MESSAGE_TRY_COUNT,
@@ -14,8 +11,7 @@ import {
 } from "./utils";
 
 class Input {
-  static #MIN_CAR_NAME_LENGTH = 1;
-  static #MAX_CAR_NAME_LENGTH = 5;
+  static #CAR_NAME_REGEXP = /^\w{1,5}$/;
   static #SEPARATOR = ",";
 
   #carNames;
@@ -37,7 +33,7 @@ class Input {
 
   processCarNames() {
     const carNameArray = splitIntoArray(this.#carNames, Input.#SEPARATOR);
-    this.validateCarNameLength(carNameArray);
+    this.validateCarNameArray(carNameArray);
     return carNameArray;
   }
 
@@ -47,14 +43,11 @@ class Input {
     return tryCount;
   }
 
-  validateCarNameLength(carNameArray) {
-    for (const carName of carNameArray) {
-      const carNameLength = carName.length;
-      if (carNameLength < Input.#MIN_CAR_NAME_LENGTH)
-        throw new Error(ERROR_MESSAGE_CAR_NAME_UNDER_MIN);
-      if (carNameLength > Input.#MAX_CAR_NAME_LENGTH)
-        throw new Error(ERROR_MESSAGE_CAR_NAME_OVER_MAX);
-    }
+  validateCarNameArray(carNameArray) {
+    const isAllCarNameValid = carNameArray.every((carName) =>
+      Input.#CAR_NAME_REGEXP.test(carName)
+    );
+    if (!isAllCarNameValid) throw new Error(ERROR_MESSAGE_CAR_NAME_INVALID);
   }
 }
 
