@@ -16,3 +16,10 @@ export const printRound = (roundData) => {
   }
   printSpace();
 };
+
+export const printWinner = (winnerList) => {
+  let winner;
+  if (winnerList.length === 1) winner = winnerList[0];
+  else winner = winnerList.join(", ");
+  Console.print(`최종 우승자 : ${winner}`);
+};
