@@ -1,6 +1,7 @@
 import { Console } from "@woowacourse/mission-utils";
 import { getCarsName, getAttemptNumber } from "./inputView.js";
-import { checkAttemptNum, checkCarsName } from "./validate.js"
+import { checkAttemptNum, checkCarsName } from "./validate.js";
+import Car from './Car.js'
 
 class App {
   async run() {
@@ -11,7 +12,7 @@ class App {
 
     const attemptNum = await getAttemptNumber();
 
-    checkAttemptNum(attemptNum);
+    checkAttemptNum(attemptNum);    
   }
 }
 
