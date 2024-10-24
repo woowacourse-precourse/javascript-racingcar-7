@@ -1,5 +1,5 @@
-import { GameManager } from "./GameManager";
-import { read, print, random } from "./lib/utils";
+import { GameManager } from "./GameManager.js";
+import { read, print, random } from "./lib/utils.js";
 
 class App {
   constructor() {

@@ -1,4 +1,4 @@
-import { GAME_NUMBERS } from "./constants";
+import { GAME_NUMBERS } from "./constants.js";
 
 const ERROR = "[ERROR] ";
 

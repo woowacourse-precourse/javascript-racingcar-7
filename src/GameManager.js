@@ -1,5 +1,5 @@
 import { GAME_NUMBERS, GAME_MESSAGES } from "./lib/constants.js";
-import { Car } from "./Car";
+import { Car } from "./Car.js";
 import { handleNameErrors, handleNumberErrors } from "./lib/validations.js";
 
 export class GameManager {
