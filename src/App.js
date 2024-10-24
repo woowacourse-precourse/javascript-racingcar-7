@@ -10,7 +10,7 @@ class App {
             throw new Error("[ERROR] 자동차는 2대 이상 입력해주세요.");
         }
 
-        const regExp = /^[a-zA-Z가-힣]$/; // 한글, 영문만 입력 가능
+        const regExp = /^[a-z|A-Z|가-힣]+$/; // 한글, 영문만 입력 가능
         const uniqueCarNames = new Set(); // 중복된 자동차 이름 체크
 
         const validatedCarNames = carNames.map((carName) => {
