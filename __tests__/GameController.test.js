@@ -13,6 +13,21 @@ const mockQuestions = (inputs) => {
   });
 };
 
+const mockRandoms = (numbers) => {
+  MissionUtils.Random.pickNumberInRange = jest.fn();
+
+  numbers.reduce(
+    (acc, number) => acc.mockReturnValueOnce(number),
+    MissionUtils.Random.pickNumberInRange,
+  );
+};
+
+const getLogSpy = () => {
+  const logSpy = jest.spyOn(MissionUtils.Console, 'print');
+  logSpy.mockClear();
+  return logSpy;
+};
+
 describe('초기 입력 테스트', () => {
   let gameController;
 
@@ -48,6 +63,80 @@ describe('초기 입력 테스트', () => {
       mockQuestions([cars, tryNumber]);
 
       await expect(gameController.init()).rejects.toThrow(message);
+    },
+  );
+});
+
+describe('게임 실행 기능 테스트', () => {
+  const TEST_CASES = [
+    [
+      'pobi,lisa,jun',
+      '4',
+      [1, 2, 7, 3, 4, 4, 0, 4, 9, 6, 8, 5],
+      [
+        '실행 결과',
+        'pobi : ',
+        'lisa : ',
+        'jun : -',
+        '',
+        'pobi : ',
+        'lisa : -',
+        'jun : --',
+        '',
+        'pobi : ',
+        'lisa : --',
+        'jun : ---',
+        '',
+        'pobi : -',
+        'lisa : ---',
+        'jun : ----',
+      ],
+    ],
+    [
+      'dong,gyun,dany',
+      '4',
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [
+        '실행 결과',
+        'dong : ',
+        'gyun : ',
+        'dany : ',
+        '',
+        'dong : ',
+        'gyun : ',
+        'dany : ',
+        '',
+        'dong : ',
+        'gyun : ',
+        'dany : ',
+        '',
+        'dong : ',
+        'gyun : ',
+        'dany : ',
+      ],
+    ],
+  ];
+
+  let gameController;
+
+  beforeEach(() => {
+    gameController = new GameController();
+  });
+
+  test.each(TEST_CASES)(
+    '매 시행마다 각 자동차들의 상태 출력 테스트',
+    async (cars, tryNumber, randomNumbers, answer) => {
+      const logSpy = getLogSpy();
+
+      mockQuestions([cars, tryNumber]);
+      mockRandoms(randomNumbers);
+
+      await gameController.init();
+      gameController.execute();
+
+      answer.forEach((log) => {
+        expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+      });
     },
   );
 });
