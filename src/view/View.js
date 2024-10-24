@@ -1,4 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
+import { MESSAGES } from '../constant/Constants';
 
 class View {
   printMessage(message) {
@@ -18,7 +19,7 @@ class View {
   }
 
   printWinner(winnerArray) {
-    this.printMessage(`최종 우승자 : ${winnerArray.join(', ')}`);
+    this.printMessage(`${MESSAGES.OUTPUT_WINNER}${winnerArray.join(', ')}`);
   }
 }
 
