@@ -20,11 +20,19 @@ function checkAllowedCharacters(name) {
   }
 }
 
+function checkEmptyString(name) {
+  if (name === '') {
+    throw new Error('자동차 이름은 공백일 수 없습니다.');
+  }
+}
+
 export function checkCarNames(carNames) {
   const validateCarNames = carNames.map((name) => {
     checkCarNameLength(name);
+    checkEmptyString(name);
     checkAllowedCharacters(name);
     return name;
   });
+
   return validateCarNames;
 }
