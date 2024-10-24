@@ -14,6 +14,10 @@ export default class OutputView {
     Console.print(`${OUTPUT_MESSAGES.WINNERS_PREFIX}${winners}`);
   }
 
+  static printEmptyLine() {
+    Console.print('');
+  }
+
   static printError(message) {
     Console.print(message);
   }

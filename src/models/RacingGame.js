@@ -1,4 +1,3 @@
-// src/domain/RacingGame.js
 import { Random } from '@woowacourse/mission-utils';
 import Car from './Car.js';
 import { validateCarNames, validateAttempts } from '../utils/validator.js';
@@ -22,6 +21,7 @@ export default class RacingGame {
     for (let i = 0; i < attempts; i++) {
       await this.moveAll();
       this.printStatus();
+      OutputView.printEmptyLine();
     }
     
     this.announceWinners();
