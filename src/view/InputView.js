@@ -17,7 +17,7 @@ class InputView {
 
   async getGameCountInput() {
     const gameCount = await Console.readLineAsync(MESSAGE.GAME_ROUND_PROMPT);
-    this.gameCountValidator.validateGameCount(gameCount);
+    this.gameCountValidator.runAllFunction(gameCount);
     return gameCount;
   }
 }
