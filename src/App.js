@@ -1,8 +1,8 @@
 import { createCars } from './models/createCars.js';
 import { getNameInput, getRoundCountInput } from './utils/inputHandler.js';
+import { printWinners } from './utils/printWinners.js';
 import Race from './models/Race.js';
 import Validator from './validators/Validator.js';
-import WinnerCalculator from './models/WinnerCalculator.js';
 
 class App {
   async run() {
@@ -18,7 +18,7 @@ class App {
       const race = new Race(cars, roundCount);
       race.start();
 
-      WinnerCalculator.printWinners(cars);
+      printWinners(cars);
     } catch (error) {
       throw new Error(`[ERROR] ${error.message}`);
     }
