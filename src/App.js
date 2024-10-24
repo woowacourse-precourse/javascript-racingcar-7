@@ -1,13 +1,11 @@
-import Car from './Car.js';
 import checkWinner from './utils/checkWinner.js';
+import createCarList from './utils/createCarList.js';
 
 class App {
   async run() {
     const UserInput = ['test1', 'test2', 'test3'];
 
-    const carList = UserInput.map((name) => {
-      return new Car(name);
-    });
+    const carList = createCarList(UserInput);
 
     for (let i = 0; i < 10; i++) {
       carList.forEach((car) => {
