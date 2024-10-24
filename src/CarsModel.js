@@ -1,20 +1,15 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 class CarsModel {
-  #cars = [];
   #carsMap;
 
   constructor(input) {
-    this.#cars = input.split(",");
-    if (!this.#validateCarNames(this.#cars)) throw new Error("[ERROR]");
-    this.#carsMap = new Map(this.#cars.map((car) => [car, 0]));
+    const cars = input.split(",");
+    this.#carsMap = new Map(cars.map((car) => [car, 0]));
   }
 
-  #validateCarNames(cars) {
-    if (!cars.every((car) => car.length <= 5)) return false;
-    if (new Set(cars).size !== cars.length) return false;
-    if (cars.some((car) => car.trim() === "")) return false;
-    return true;
+  getCarNames() {
+    return [...this.#carsMap.keys()];
   }
 
   getCarsMap() {
