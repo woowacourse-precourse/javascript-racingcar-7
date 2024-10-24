@@ -1,16 +1,19 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
+import { PrintRoundResult } from "./handler/PrintRoundResult.js";
 import { MAX_RANDOM_NUMBER, MIN_RANDOM_NUMBER, WINNING_NUMBER } from "./constants/Constants.js";
 
 export class Game {
+  #printRoundResult;
+
+  constructor() {
+    this.#printRoundResult = new PrintRoundResult();
+  }
+
   play(attemptCount, cars) {
     for (let i = 0; i < attemptCount; i++) {
       const roundResult = cars.map((car) => this.#game(car));
-      this.#printRoundResult(roundResult);
+      this.#printRoundResult.print(roundResult);
     }
-  }
-
-  #printRoundResult(roundResult) {
-    roundResult.map((car) => MissionUtils.Console.print(`${car.name} : ${'-'.repeat(car.length)}`));
   }
 
   #game(car) {
