@@ -24,11 +24,12 @@ const getLogSpy = () => {
   return logSpy;
 };
 
+const MOVING_FORWARD = 4;
+const STOP = 3;
+
 describe("자동차 경주", () => {
   test("기능 테스트 0", async () => {
-    // given
-    const MOVING_FORWARD = 4;
-    const STOP = 3;
+    // given    
     const inputs = ["pobio,woni", "5"];
     const logs = ["pobio : -", "woni : ", "최종 우승자 : pobio"];
     const logSpy = getLogSpy();
@@ -48,8 +49,6 @@ describe("자동차 경주", () => {
 
   test("기능 테스트 1", async () => {
     // given
-    const MOVING_FORWARD = 4;
-    const STOP = 3;
     const inputs = ["pobai,woni,dalsi", "2"];
     const logs = [
       "pobai : -",
@@ -84,8 +83,6 @@ describe("자동차 경주", () => {
 
   test("기능 테스트 2", async () => {
     // given
-    const MOVING_FORWARD = 4;
-    const STOP = 3;
     const inputs = ["pobai,woni,dalsi", "1"];
     const logs = [
       "pobai : ",
@@ -110,7 +107,9 @@ describe("자동차 경주", () => {
 
   test.each([
     [["pobi, "]],
-    [[","]] 
+    [[","]],
+    [[" , ,"]],
+    [["   ,  , dalsi"]] 
   ])("⚠️ 예외 : 자동차 이름 공백 입력 테스트 %#", async (inputs) => {
     // given
     mockQuestions(inputs);
