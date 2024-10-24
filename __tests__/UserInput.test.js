@@ -19,8 +19,8 @@ const getLogSpy = () => {
 
 describe('사용자 입력 테스트', () => {
   test('유효한 사용자 입력 테스트', async () => {
-    const inputs = ['pobi, woni'];
-    const logs = ['pobi, woni']; // 기대하는 로그 메시지
+    const inputs = ['pobi, woni', '5'];
+    const logs = ['pobi, woni', '5']; // 기대하는 로그 메시지
     const logSpy = getLogSpy();
     mockGetUserInputs(inputs);
 
