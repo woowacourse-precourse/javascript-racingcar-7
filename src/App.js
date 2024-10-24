@@ -32,6 +32,24 @@ class App {
       }
 
       const carsMap = makeCarsMap(carArray);
+
+      const input =
+        await MissionUtils.Console.readLineAsync(
+          '시도할 횟수는 몇 회인가요?\n',
+        );
+
+      const NumberOfGames = parseFloat(input);
+
+      if (Number.isNaN(NumberOfGames)) {
+        throw new Error('[ERROR] 숫자가 아닌 값을 입력하셨습니다.');
+      }
+      if (NumberOfGames < 0) {
+        throw new Error('[ERROR] 양수만 입력하실 수 있습니다.');
+      }
+
+      if (!Number.isInteger(NumberOfGames)) {
+        throw new Error('[ERROR] 정수가 아닌 값을 입력하셨습니다.');
+      }
     } catch (error) {
       console.log(error.message);
     }
