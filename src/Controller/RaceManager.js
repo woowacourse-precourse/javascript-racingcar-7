@@ -1,5 +1,5 @@
 import { getRandomNumber } from '../util/getRandomNumber.js';
-import { printCarDistance } from '../View/printDistance.js';
+
 import { printWinner } from '../View/printWinner.js';
 
 export class RaceManager {
@@ -12,6 +12,12 @@ export class RaceManager {
       if (getRandomNumber() >= 4) {
         car.move();
       }
+    });
+  }
+
+  showRaceStep() {
+    this.carArray.forEach((car) => {
+      printDistance(car);
     });
   }
 }
