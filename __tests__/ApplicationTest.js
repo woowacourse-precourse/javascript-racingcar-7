@@ -31,6 +31,42 @@ const getLogSpy = () => {
   return logSpy;
 };
 
+const testCaseExceptionArrayOfCarNameArray = [
+  {
+    title: "자동차 이름이 5글자 초과인 경우",
+    inputs: ["pobi,javaji"],
+    errorMessage: ERROR_MESSAGE_CAR_NAME_INVALID,
+  },
+  {
+    title: "자동차 이름이 1글자 미만인 경우",
+    inputs: ["pobi,"],
+    errorMessage: ERROR_MESSAGE_CAR_NAME_INVALID,
+  },
+  {
+    title: "자동차 이름이 알파벳, 숫자 혹은 언더바(`_`)가 아닌 경우",
+    inputs: ["pobi,$gue"],
+    errorMessage: ERROR_MESSAGE_CAR_NAME_INVALID,
+  },
+  {
+    title: "자동차 이름이 중복되는 경우",
+    inputs: ["pobi,pobi", 1],
+    errorMessage: ERROR_MESSAGE_CAR_NAME_DUPLICATION,
+  },
+];
+
+const testCaseExceptionArrayOfTryCount = [
+  {
+    title: "양수가 아닌 경우",
+    inputs: ["pobi,java", 0],
+    errorMessage: ERROR_MESSAGE_NOT_POSITIVE_POSITIVE,
+  },
+  {
+    title: "정수가 아닌 경우",
+    inputs: ["pobi,java", 5.5],
+    errorMessage: ERROR_MESSAGE_NOT_INTEGER,
+  },
+];
+
 describe("자동차 경주", () => {
   describe("기능 테스트", () => {
     test("최종 우승자가 1명인 경우", async () => {
@@ -148,60 +184,28 @@ describe("자동차 경주", () => {
   });
 
   describe("자동차 이름 예외 테스트", () => {
-    test("자동차 이름이 5글자 초과인 경우", async () => {
-      const inputs = ["pobi,javaji"];
-      mockQuestions(inputs);
+    test.each(testCaseExceptionArrayOfCarNameArray)(
+      "$title",
+      async ({ inputs, errorMessage }) => {
+        mockQuestions(inputs);
 
-      const app = new App();
+        const app = new App();
 
-      await expect(app.run()).rejects.toThrow(ERROR_MESSAGE_CAR_NAME_INVALID);
-    });
-    test("자동차 이름이 1글자 미만인 경우", async () => {
-      const inputs = ["pobi,"];
-      mockQuestions(inputs);
-
-      const app = new App();
-
-      await expect(app.run()).rejects.toThrow(ERROR_MESSAGE_CAR_NAME_INVALID);
-    });
-    test("자동차 이름이 알파벳, 숫자 혹은 언더바(`_`)가 아닌 경우", async () => {
-      const inputs = ["pobi,$gue"];
-      mockQuestions(inputs);
-
-      const app = new App();
-
-      await expect(app.run()).rejects.toThrow(ERROR_MESSAGE_CAR_NAME_INVALID);
-    });
-    test("자동차 이름이 중복되는 경우", async () => {
-      const inputs = ["pobi,pobi", 1];
-      mockQuestions(inputs);
-
-      const app = new App();
-
-      await expect(app.run()).rejects.toThrow(
-        ERROR_MESSAGE_CAR_NAME_DUPLICATION
-      );
-    });
+        await expect(app.run()).rejects.toThrow(errorMessage);
+      }
+    );
   });
 
   describe("시도 횟수 예외 테스트", () => {
-    test("양수가 아닌 경우", async () => {
-      const inputs = ["pobi,java", 0];
-      mockQuestions(inputs);
+    test.each(testCaseExceptionArrayOfTryCount)(
+      "$title",
+      async ({ inputs, errorMessage }) => {
+        mockQuestions(inputs);
 
-      const app = new App();
+        const app = new App();
 
-      await expect(app.run()).rejects.toThrow(
-        ERROR_MESSAGE_NOT_POSITIVE_POSITIVE
-      );
-    });
-    test("정수가 아닌 경우", async () => {
-      const inputs = ["pobi,java", 5.5];
-      mockQuestions(inputs);
-
-      const app = new App();
-
-      await expect(app.run()).rejects.toThrow(ERROR_MESSAGE_NOT_INTEGER);
-    });
+        await expect(app.run()).rejects.toThrow(errorMessage);
+      }
+    );
   });
 });
