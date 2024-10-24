@@ -2,7 +2,6 @@ import { InputView } from "./View/InputView.js";
 import Race from "./Race.js";
 import { Validator } from "./Validator.js";
 import { OutputView } from "./View/OutputView.js";
-import { Console } from "@woowacourse/mission-utils";
 
 class App {
   async run() {
@@ -22,7 +21,7 @@ class App {
       OutputView.lineBreak();
     }
 
-    await race.winner();
+    OutputView.winner(await race.winner());
   }
 
   async validateCarName(arr) {

@@ -13,4 +13,8 @@ export class OutputView {
   static attemptResult(arr) {
     Console.print(arr.join(MESSAGE.LINE_BREAK));
   }
+
+  static winner(arr) {
+    Console.print(MESSAGE.WINNER + arr.join(MESSAGE.WINNER_DELIMITER));
+  }
 }

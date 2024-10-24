@@ -13,6 +13,8 @@ export const MESSAGE = {
   ATTEMPT_COUNT_INPUT: "시도할 횟수는 몇 회인가요?",
   ATTEMPT_RESULT: "실행 결과",
   LINE_BREAK: "\n",
+  WINNER_DELIMITER: ",",
+  WINNER: "최종 우승자 : ",
 };
 
 export const ERROR_MESSAGE = {
