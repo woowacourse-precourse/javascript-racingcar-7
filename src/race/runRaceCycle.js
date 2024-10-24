@@ -9,4 +9,5 @@ export const runRaceCycle = (car, cumulativeResults) => {
     }
     Console.print(car[i] + ' : ' + cumulativeResults[i]);
   }
+  Console.print('');
 };
