@@ -10,6 +10,7 @@ class App {
       const game = new CarRacingGame(cars, count);
       game.playGame();
       const winners = game.getWinners();
+      Console.print(`최종 우승자 : ${winners}`);
     } catch (e) {
       throw new Error(e.message);
     }
