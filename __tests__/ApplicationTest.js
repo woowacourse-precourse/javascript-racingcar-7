@@ -1,6 +1,6 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
-import { inputCarNames, inputPlayTime } from "../src/utils/inputCarNames";
+import { inputCarNames, inputPlayTime } from "../src/utils/customInput.js";
 import splitNames from "../src/utils/splitInput.js";
 
 const mockQuestions = (inputs) => {
