@@ -46,3 +46,10 @@ export async function validateMaxCount(tryCountValue) {
 		throw new Error("[ERROR] 입력할 수 있는 시도 횟수는 최대 10회입니다.");
 	}
 }
+
+export async function validateString(tryCountValue) {
+	const tryCount = parseInt(tryCountValue, 10);
+	if (Number.isNaN(tryCount)) {
+		throw new Error("[ERROR] 시도 횟수는 숫자만 입력이 가능합니다.");
+	}
+}
