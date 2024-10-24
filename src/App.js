@@ -5,6 +5,14 @@ class App {
     const racingCarNames = await this.readRacingCarNames();
     const attemptCount = await this.readAttemptCount();
 
+    if (
+      attemptCount === "" ||
+      attemptCount === null ||
+      attemptCount === undefined
+    ) {
+      this.printError("시도 횟수를 입력해 주세요.");
+    }
+
     const racingCarNamesArray = this.parseRacingCarNames(racingCarNames);
     const moveCntPerCar = {};
     racingCarNamesArray.forEach((car) => {
@@ -71,6 +79,10 @@ class App {
       .map(([car]) => car);
 
     Console.print(`최종 우승자 : ${winners.join(", ")}`);
+  }
+
+  printError(message) {
+    throw new Error(`[ERROR] ${message}`);
   }
 }
 
