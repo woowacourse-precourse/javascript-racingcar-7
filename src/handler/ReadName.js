@@ -2,7 +2,7 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 import { SEPARATOR } from "../constants/Constants.js";
 import { INPUT_ERROR_MESSAGE, INPUT_NAME_MESSAGE, SEPARATOR_ERROR_MESSAGE } from "../constants/Messages.js";
 
-export class InputName {
+export class ReadName {
   async read() {
     const input = await MissionUtils.Console.readLineAsync(INPUT_NAME_MESSAGE);
     this.#validateInput(input);

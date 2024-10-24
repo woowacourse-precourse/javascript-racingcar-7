@@ -6,7 +6,7 @@ import {
 } from "../constants/Messages.js";
 import { MIN_ATTEMPT_COUNT } from "../constants/Constants.js";
 
-export class InputAttemptCount {
+export class ReadAttemptCount {
   async read() {
     const input = await MissionUtils.Console.readLineAsync(INPUT_ATTEMPT_COUNT_MESSAGE);
     this.#validate(input);

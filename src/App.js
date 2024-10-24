@@ -1,5 +1,5 @@
-import { InputName } from "./handler/InputName.js";
-import { InputAttemptCount } from "./handler/InputAttemptCount.js";
+import { ReadName } from "./handler/ReadName.js";
+import { ReadAttemptCount } from "./handler/ReadAttemptCount.js";
 import { PrintWinners } from "./handler/PrintWinners.js";
 import { Game } from "./Game.js";
 import { Car } from "./Car.js";
@@ -11,8 +11,8 @@ class App {
   #game;
 
   constructor() {
-    this.#inputName = new InputName();
-    this.#inputAttemptCount = new InputAttemptCount();
+    this.#inputName = new ReadName();
+    this.#inputAttemptCount = new ReadAttemptCount();
     this.#game = new Game();
     this.#printWinner = new PrintWinners();
   }
