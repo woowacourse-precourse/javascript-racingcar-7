@@ -9,7 +9,7 @@ export class InputName {
   async read() {
     const input = await MissionUtils.Console.readLineAsync(INPUT_NAME_MESSAGE);
     this.#validateInput(input);
-    return input;
+    return input.split(SEPARATOR);
   }
 
   #validateInput(input) {
