@@ -7,9 +7,9 @@ class App {
       const trials = await App.getMoveCount();
 
       const results = this.startRace(names, trials);
-      console.log(results);
+      this.printWinner(results);
     } catch (error) {
-      throw new Error('[ERROR]');
+      throw error;
     }
   }
 
@@ -46,9 +46,24 @@ class App {
           distance++;
         }
       }
+      this.printResult(name, distance);
       return { name, distance };
     });
     return results;
+  }
+
+  printResult(name, distance) {
+    const track = '-'.repeat(distance);
+    MissionUtils.Console.print(`${name} : ${track}`);
+  }
+
+  printWinner(results) {
+    const maxDistance = Math.max(...results.map((result) => result.distance));
+    const winners = results
+      .filter((result) => result.distance === maxDistance)
+      .map((result) => result.name);
+
+    MissionUtils.Console.print(`최종 우승자 : ${winners.join(', ')}`);
   }
 }
 
