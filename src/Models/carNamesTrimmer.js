@@ -3,7 +3,7 @@ const splitCarNames = carNames => {
   return eachCarName;
 };
 
-const trimEachCarName = eachCarName => {
+const trimEachCarNames = eachCarName => {
   let trimmedEachCarName = [];
   for (let i = 0; eachCarName.length > i; i += 1) {
     trimmedEachCarName[i] = eachCarName[i].trim();
@@ -12,7 +12,7 @@ const trimEachCarName = eachCarName => {
 };
 
 const splitAndTrimCarName = carNames => {
-  const splitAndTrimmedCarName = trimEachCarName(splitCarNames(carNames));
+  const splitAndTrimmedCarName = trimEachCarNames(splitCarNames(carNames));
   return splitAndTrimmedCarName;
 };
 

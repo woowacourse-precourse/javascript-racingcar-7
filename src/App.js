@@ -8,15 +8,15 @@ class App {
   async run() {
     const carNamesInput = await getCarNamesInput();
     isCarNamesInputNoEmpty(carNamesInput);
+ 
+    const carNameWords = splitAndTrimCarName(carNamesInput);
+    isCarNamesInputTypeOfNum(carNameWords);
 
-    const spliteAndtrimmedCarName = splitAndTrimCarName(carNamesInput);
-    isCarNamesInputTypeOfNum(spliteAndtrimmedCarName);
-
-    if (isCarNamesInputValidatedLength(spliteAndtrimmedCarName)) {
+    if (isCarNamesInputValidatedLength(carNameWords)) {
       const racingCountInput = await getRacingCountInput();
       isRacingCountInputNoEmpty(racingCountInput);
       isRacingCountTypeNumber(racingCountInput);
-      findProgressionLength(spliteAndtrimmedCarName, racingCountInput);
+      findProgressionLength(carNameWords, racingCountInput);
     }
   }
 }

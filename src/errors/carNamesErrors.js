@@ -10,20 +10,20 @@ const isCarNamesInputNoEmpty = carNamesInput => {
   }
 };
 
-const isCarNamesInputTypeOfNum = spliteAndtrimmedCarName => {
-  for (let i = 0; i < spliteAndtrimmedCarName.length; i += 1) {
-    if (!isNaN(parseInt(spliteAndtrimmedCarName[i]))) {
+const isCarNamesInputTypeOfNum = carNameWords => {
+  for (let i = 0; i < carNameWords.length; i += 1) {
+    if (!isNaN(parseInt(carNameWords[i]))) {
       throw new Error(ERROR_MESSAGES.INVALID_STRING);
     }
   }
 };
 
-const isCarNamesInputValidatedLength = spliteAndtrimmedCarName => {
-  if (carNamesLengthValidator(spliteAndtrimmedCarName)) {
+const isCarNamesInputValidatedLength = carNameWords => {
+  if (carNamesLengthValidator(carNameWords)) {
     return true;
   }
 
-  if (carNamesLengthValidator(spliteAndtrimmedCarName) === false) {
+  if (carNamesLengthValidator(carNameWords) === false) {
     throw new Error(ERROR_MESSAGES.OVERLENGTH_INPUT);
   }
 };
