@@ -35,6 +35,18 @@ class Validator {
       throw Error(this.ERROR_MSG.EXSIT_WHITE_SPACE);
     }
   }
+
+  static isDuplicate(arr) {
+    if (new Set(arr).size !== arr.length) {
+      throw Error(this.ERROR_MSG.DUPLICATE_CAR_NAME);
+    }
+  }
+
+  static exceedMaxLength(string) {
+    if (string.length > 5) {
+      throw Error(this.ERROR_MSG.EXCEED_CAR_NAME_LENGTH);
+    }
+  }
 }
 
 export default Validator;
