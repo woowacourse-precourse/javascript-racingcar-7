@@ -1,4 +1,4 @@
-import { ERROR_MESSAGES } from '../../Errors/errorMessages.js';
+import { ERROR_MESSAGES } from '../../constants/errorMessages.js';
 
 const isRacingCountInputEmpty = racingCountInput => {
   if (racingCountInput === '') {

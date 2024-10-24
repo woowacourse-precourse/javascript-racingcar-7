@@ -1,6 +1,4 @@
-import { Console } from '@woowacourse/mission-utils';
-import { ERROR_MESSAGES } from '../../Errors/errorMessages.js';
-import App from '../../App.js';
+import { ERROR_MESSAGES } from '../../constants/errorMessages.js';
 
 const isCarNamesInputNotEmpty = carNamesInput => {
   if (carNamesInput === '') {

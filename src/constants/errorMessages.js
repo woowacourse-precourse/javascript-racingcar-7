@@ -5,7 +5,7 @@ export const ERROR_MESSAGES = {
   INVALID_NUMBER: '[ERROR] 숫자가 아닙니다. 숫자로 입력해 주세요. ', // 자동차 이름
 };
 
-// 최동현님 코드 참고
+// 코드 참고
 
 // export const ERROR_MESSAGES = {
 // 	INVALID_TYPE: '잘못된 타입입니다.',
