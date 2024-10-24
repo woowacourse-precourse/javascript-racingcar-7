@@ -32,7 +32,6 @@ class RaceManager {
 
         const inputCount = await IOHandler.input("시도할 횟수는 몇 회인가요?");
         checkLessThanOrEqualMaxCount(inputCount, this.#MAX_RACE_COUNT);
-        IOHandler.output(`carNames: ${carNames}, inputCount: ${inputCount}`);
 
         this.#setCarListFromCarNames(carNames);
         this.#setRacingCount(inputCount);
@@ -42,8 +41,6 @@ class RaceManager {
         await this.#prepareRacing();
 
     }
-
-
 }
 
 export default RaceManager;
