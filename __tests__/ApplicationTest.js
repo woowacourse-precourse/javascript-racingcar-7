@@ -130,13 +130,13 @@ describe("자동차 경주", () => {
     [["jack, daniels "]]
   ])("⚠️ 예외 : 6자이상 자동차 이름 입력 테스트 %#", async (inputs) => {
     // given
-    const inputs = ["pobi,javaji"];
     mockQuestions(inputs);
-
+  
     // when
     const app = new App();
-
+  
     // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
+    await expect(app.run()).rejects.toThrow("[ERROR] : 자동차 이름은 5자 이하만 가능합니다.");
   });
+  
 });
