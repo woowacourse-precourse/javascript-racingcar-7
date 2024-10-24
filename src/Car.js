@@ -1,6 +1,7 @@
 class Car {
-  constructor() {
+  constructor(name) {
     this.position = 0;
+    this.name = name;
   }
 
   getPosition() {
