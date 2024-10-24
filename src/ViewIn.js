@@ -1,4 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
+import Validator from './Validator.js';
 
 class ViewIn {
   INPUT_CAR_MSG =
@@ -13,9 +14,14 @@ class ViewIn {
     };
 
     inputObject.carList = await Console.readLineAsync(this.INPUT_CAR_MSG);
+    Validator.isInvalid(inputObject.carList);
+    Validator.existWriteSpace(inputObject.carList);
+
     inputObject.gameCount = await Console.readLineAsync(
       this.INPUT_GAME_COUNT_MSG,
     );
+    Validator.isInvalid(inputObject.gameCount);
+    Validator.existWriteSpace(inputObject.gameCount);
 
     return inputObject;
   }
