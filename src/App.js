@@ -8,12 +8,14 @@ class App {
     const carsUserInput = await getInputAsync(MESSAGES.INPUT_CAR_NAMES);
     const carsModel = new CarsModel(carsUserInput);
 
-    if (!isCarNamesValid(carsModel.getCarNames())) throw new Error(ERROR_MESSAGES.PREFIX);
+    const { isCarValid, errCarMessage } = isCarNamesValid(carsModel.getCarNames());
+    if (!isCarValid) throw new Error(ERROR_MESSAGES.PREFIX + errCarMessage);
 
     const trialCountUserInput = await getInputAsync(MESSAGES.INPUT_TRIAL_COUNT);
     const trialCount = Number(trialCountUserInput);
 
-    if (!isTrialInputValid(trialCount)) throw new Error(ERROR_MESSAGES.PREFIX);
+    const { isTrialValid, errTrialMessage } = isTrialInputValid(trialCount);
+    if (!isTrialValid) throw new Error(ERROR_MESSAGES.PREFIX + errTrialMessage);
 
     for (let i = 0; i < trialCount; i++) {
       carsModel.moveCars();
