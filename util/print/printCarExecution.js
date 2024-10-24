@@ -1,5 +1,7 @@
-import { getRandomValue } from "./getRandomValue";
-import { checkMove } from "./checkMove";
+import { Console } from "@woowacourse/mission-utils";
+
+import { getRandomValue } from "../get/getRandomValue.js";
+import { checkMove } from "../validation/checkMove.js";
 
 export function printCarExecution(cars, carMoveHashMap) {
     for (let car of cars) {
