@@ -4,11 +4,13 @@ export default class CarRacing {
   #names;
   #count;
   #movements;
+  #firstRace;
 
   constructor(names, count, movements) {
     this.#names = names;
     this.#count = count;
     this.#movements = movements;
+    this.#firstRace = true;
   }
 
   get carNames() {
@@ -90,7 +92,9 @@ export default class CarRacing {
     }, []);
   }
 
-  startBroadCast() {
+  start() {
+    if (this.#firstRace) this.#firstRace = false;
+
     Console.print("\n실행 결과");
 
     const { carNames: names, movements, raceCount: count } = this.info;
@@ -119,6 +123,10 @@ export default class CarRacing {
   }
 
   get winners() {
+    if (this.#firstRace) {
+      CarRacing.#throwErrorMessage("경기를 1번 이상 진행하세요.");
+    }
+
     const movements = this.#movements;
     const maxDistance = CarRacing.#maxMovement(movements);
 
