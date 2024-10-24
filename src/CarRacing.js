@@ -45,7 +45,6 @@ export default class CarRacing {
     return new CarRacing(names, count, movements);
   }
 
-  // 레이싱과 상관 없으므로, 옮기기
   static #throwErrorMessage(msg) {
     throw new Error(`[ERROR] ${msg}`);
   }
