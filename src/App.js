@@ -15,13 +15,14 @@ class App {
         if (separateNames[i].length > 5) {
           throw new Error("[ERROR] 자동차 이름을 5자 이하로 작성해주세요.");
         }
+        if (separateNames[i].length === 0) {
+          throw new Error("[ERROR] 자동차 이름을 공백으로 작성하였습니다.");
+        }
       }
 
       const uniqueNames = [...new Set(separateNames)];
       if (separateNames.length !== uniqueNames.length) {
-        throw new Error(
-          "[ERROR] 자동차의 이름을 중복으로 작성하였습니다. 다시 작성해주새요."
-        );
+        throw new Error("[ERROR] 자동차의 이름을 중복으로 작성하였습니다.");
       }
 
       return separateNames;
