@@ -1,9 +1,9 @@
 import { Console } from '@woowacourse/mission-utils';
 import InputHandler from './handler/InputHandler.js';
 import OutputHandler from './handler/OutputHandler.js';
-import MovingCar from "./MovingCar.js";
-import createCars from './CreateCar.js';
-import RaceResult from './RaceResult.js';
+import MovingCar from "./car/MovingCar.js";
+import createCars from './car/CreateCar.js';
+import RaceResult from './RacingResult.js';
 
 class App {
   constructor() {
