@@ -1,14 +1,17 @@
 import { Console } from "@woowacourse/mission-utils";
 import { INPUT_MESSAGE } from "./constants/message.js";
+import Racingcar from "./model/racingcar.js";
 
 class App {
   getRacingCarName = async () => {
-    await Console.readLineAsync(INPUT_MESSAGE.carName);
+    const input = await Console.readLineAsync(INPUT_MESSAGE.carName);
   };
 
   getRacingAttmeptCount = async () => {
-    await Console.readLineAsync(INPUT_MESSAGE.attemptNumber);
+    const input = await Console.readLineAsync(INPUT_MESSAGE.attemptNumber);
   };
+
+  calculateMoveForward() {}
 
   async run() {}
 }
