@@ -1,4 +1,4 @@
-import { Random } from '@woowacourse/mission-utils';
+import { Random, Console } from '@woowacourse/mission-utils';
 import View from './View.js';
 import CarModel from './CarModel.js';
 import { validateName, validateTryCount } from './validation.js';
@@ -24,7 +24,7 @@ export default class Controller {
         const car = cars[j];
         this.runSingleRound(car);
       }
-      this.view.printEmpty();
+      this.printEmpty();
     }
   }
 
@@ -82,5 +82,9 @@ export default class Controller {
     validateTryCount(await count);
 
     return count;
+  }
+
+  printEmpty() {
+    Console.print('');
   }
 }

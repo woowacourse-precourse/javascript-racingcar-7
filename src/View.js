@@ -16,8 +16,4 @@ export default class View {
   printStep(name, step) {
     Console.print(`${name} : ${'-'.repeat(step)}`);
   }
-
-  printEmpty() {
-    Console.print('');
-  }
 }
