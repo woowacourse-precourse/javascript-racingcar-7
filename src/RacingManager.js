@@ -2,7 +2,8 @@ import InputView from "./InputView.js";
 import Car from "./Car.js";
 import InputValidation from "./validation.js";
 import { repeat } from "./utils.js";
-
+import RandomNumberGenerator from "./RandomNumberGenerator.js";
+import OutputView from "./OutputView.js";
 class RacingManager {
   carList = [];
 
