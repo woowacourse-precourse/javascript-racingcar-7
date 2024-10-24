@@ -16,4 +16,16 @@ export class Validator {
       throw new Error(ERROR_MESSAGE.TAG + ERROR_MESSAGE.CAR_NAME_SAME);
     }
   }
+
+  static isNumber(number) {
+    if (!Number.isInteger(number)) {
+      throw new Error(ERROR_MESSAGE.TAG + ERROR_MESSAGE.NOT_NUMBER);
+    }
+  }
+
+  static attemptMin(number) {
+    if (number < NUMBER.ATTEMPT_MIN) {
+      throw new Error(ERROR_MESSAGE.TAG + ERROR_MESSAGE.ATTEMPT_MIN);
+    }
+  }
 }

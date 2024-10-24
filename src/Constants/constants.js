@@ -5,6 +5,7 @@ export const NUMBER = {
   PROGRESS: 1,
   CAR_NAME_MAX: 5,
   CAR_NAME_MIN: 1,
+  ATTEMPT_MIN: 1,
 };
 
 export const MESSAGE = {
@@ -18,4 +19,6 @@ export const ERROR_MESSAGE = {
   CAR_NAME_TOO_LONG: `자동차 이름은 ${NUMBER.CAR_NAME_MAX} 글자를 초과할 수 없습니다.`,
   CAR_NAME_TOO_SHORT: `자동차 이름은 ${NUMBER.CAR_NAME_MIN} 글자 이상 입력해주세요.`,
   CAR_NAME_SAME: "자동차 이름이 중복되었습니다.",
+  NOT_NUMBER: "정수를 입력해주세요.",
+  ATTEMPT_MIN: `최소 ${NUMBER.ATTEMPT_MIN}번 시도해야 합니다.`,
 };
