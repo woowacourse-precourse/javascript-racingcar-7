@@ -1,14 +1,7 @@
 import { OUTPUT_MESSAGE_WINNER } from "./constants";
 import Input from "./Input";
 import Race from "./Race";
-import {
-  getKeyArrayHasSameValueInMap,
-  getMapFilledZeroValue,
-  getMaxValueInMap,
-  getRepeatedString,
-  pickNumberInRange,
-  print,
-} from "./utils";
+import { print } from "./utils";
 
 class App {
   async run() {
