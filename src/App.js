@@ -1,5 +1,6 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import { validateCarNames, validateAttemptCount } from "./utils/validator.js";
+import { raceCars, getRandomNumber } from "./utils/race-logic.js";
 
 class App {
   async run() {
@@ -11,12 +12,16 @@ class App {
       validateCarNames(carNames);
 
       const tryCountInput = await MissionUtils.Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
-      validateAttemptCount(tryCountInput);
+      const tryCount = validateAttemptCount(tryCountInput);
+
+      MissionUtils.Console.print("\n실행 결과\n");
+      raceCars(carNames, tryCount, getRandomNumber);
     } catch (error) {
       MissionUtils.Console.print(`[ERROR] ${error.message}`);
       throw error;
     }
   }
+
   parseCarNames(input) {
     return input.split(",").map((name) => name.trim());
   }
