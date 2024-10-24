@@ -2,7 +2,7 @@ import { startRace } from "./CarRacing.js";
 
 class App {
   async run() {
-    startRace();
+    await startRace();
   }
 }
 
