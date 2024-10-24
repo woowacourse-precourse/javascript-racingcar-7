@@ -71,6 +71,13 @@ test.each([
   // Exception2
   [['ca r1'], '[ERROR]'],
   [['car1, car2'], '[ERROR]'],
+  // Exception5
+  [['naaaaame', '1'], '[ERROR]'],
+  // Exception6
+  [['name,name,name', '1'], '[ERROR]'],
+  [['name,name1,name', '1'], '[ERROR]'],
+  // 우선순위 Check 필요
+  [['name,naaaaame1,name', '1'], '[ERROR]'],
   // Exception7
   [['car1'], '[ERROR]'],
   [['car1', null], '[ERROR]'],
@@ -83,13 +90,6 @@ test.each([
   [['car1', '32 '], '[ERROR]'],
   [['car1', ' 32'], '[ERROR]'],
   [['car1', ' '], '[ERROR]'],
-  // Exception5
-  [['naaaaame', '1'], '[ERROR]'],
-  // Exception6
-  [['name,name,name', '1'], '[ERROR]'],
-  [['name,name1,name', '1'], '[ERROR]'],
-  // 우선순위 Check 필요
-  [['name,naaaaame1,name', '1'], '[ERROR]'],
   // Exception9 ~ 12
   [['car1,car2,car3', '-1'], '[ERROR]'],
   [['car1,car2,car3', '0'], '[ERROR]'],
