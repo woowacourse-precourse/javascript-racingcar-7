@@ -16,7 +16,7 @@ class App {
     const input = await Console.readLineAsync(INPUT_MESSAGE.carName);
     validateInputBlank(input);
     const carVariety = input.split(LETTER.split).map((carName) => {
-      validateRacingCarSeparator(carName);
+      //validateRacingCarSeparator(carName);
       validateCarNameLength(carName);
       return carName;
     });
@@ -53,6 +53,7 @@ class App {
       car.stopAndGo();
       Console.print(`${car.name} : ${LETTER.runResult.repeat(car.forward)}`);
     });
+    console.log(); // 횟수별 줄바꿈 용도
   };
 
   printWinner = (winner) => {
