@@ -1,4 +1,5 @@
 import Car from "./Car";
+import Output from "./Output";
 
 export default class RacingGame {
   repeatCount;
@@ -21,6 +22,7 @@ export default class RacingGame {
   start() {
     for (let i = 0; i < this.repeatCount; i += 1) {
       this.play();
+      Output.printResult(Object.keys(this.cars).map((name) => this.cars[name]));
     }
   }
 
