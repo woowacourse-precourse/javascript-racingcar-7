@@ -15,7 +15,7 @@ describe("자동차 이름", () => {
 		const racingCar = new RacingCar();
 
 		// then
-		await expect(racingCar.validateInput(carNames)).resolves.not.toThrow();
+		await expect(racingCar.validateCarName(carNames)).resolves.not.toThrow();
 	});
 
 	test("자동차 이름 5자 초과 입력", async () => {
