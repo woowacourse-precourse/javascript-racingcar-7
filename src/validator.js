@@ -1,4 +1,4 @@
-import { isEmpty, startsWithComma, endsWithComma, isDuplicatedComma, hasNameLongerThanFive } from './utils/validateInput';
+import { isEmpty, startsWithComma, endsWithComma, isDuplicatedComma, hasNameLongerThanFive, isValidAttemptCount } from './utils/validateInput';
 
 const userInputValidator = (input) => {
     if (isEmpty(input)) {
@@ -18,8 +18,14 @@ const eachNameLengthValidator = (nameList) => {
     }
 }
 
+const attemptCountValidator = (input) => {
+    if (isValidAttemptCount(input)) {
+        throwError('입력은 양의 정수만 가능합니다.')
+    }
+}
+
 function throwError(message) {
     throw new Error(`[ERROR]: ${message}`);
 };
 
-export { userInputValidator, eachNameLengthValidator };
+export { userInputValidator, eachNameLengthValidator, attemptCountValidator };
