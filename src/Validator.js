@@ -18,11 +18,11 @@ class Validator {
   }
 
   static validCountInput(count) {
-    const result = Number(count);
-    if (!result) {
+    if (regex.invalidCountInput.test(count) || !count) {
       throw new Error(`${errorMessages.prefix} ${errorMessages.invalidCount}`);
     }
 
+    const result = Number(count);
     return result;
   }
 }
