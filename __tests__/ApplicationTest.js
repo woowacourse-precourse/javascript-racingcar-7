@@ -67,6 +67,100 @@ const testCaseExceptionArrayOfTryCount = [
   },
 ];
 
+const MOVING_FORWARD = 4;
+const STOP = 3;
+
+const testCaseArrayOfFunctionalTest = [
+  {
+    title: "최종 우승자가 1명인 경우",
+    inputs: ["pobi,woni", "5"],
+    logs: [
+      "pobi : -",
+      "woni : ",
+      "pobi : --",
+      "woni : ",
+      "pobi : ---",
+      "woni : ",
+      "pobi : ----",
+      "woni : ",
+      "pobi : -----",
+      "woni : ",
+      `${OUTPUT_MESSAGE_WINNER}pobi`,
+    ],
+    randomDataArray: [
+      MOVING_FORWARD,
+      STOP,
+      MOVING_FORWARD,
+      STOP,
+      MOVING_FORWARD,
+      STOP,
+      MOVING_FORWARD,
+      STOP,
+      MOVING_FORWARD,
+      STOP,
+    ],
+  },
+  {
+    title: "최종 우승자가 5명인 경우",
+    inputs: ["pobi,woni,gue,hyun,hyek", "5"],
+    logs: [
+      "pobi : -",
+      "woni : ",
+      "gue : ",
+      "hyun : ",
+      "hyek : ",
+      "pobi : -",
+      "woni : -",
+      "gue : ",
+      "hyun : ",
+      "hyek : ",
+      "pobi : -",
+      "woni : -",
+      "gue : -",
+      "hyun : ",
+      "hyek : ",
+      "pobi : -",
+      "woni : -",
+      "gue : -",
+      "hyun : -",
+      "hyek : ",
+      "pobi : -",
+      "woni : -",
+      "gue : -",
+      "hyun : -",
+      "hyek : -",
+      `${OUTPUT_MESSAGE_WINNER}pobi, woni, gue, hyun, hyek`,
+    ],
+    randomDataArray: [
+      MOVING_FORWARD,
+      STOP,
+      STOP,
+      STOP,
+      STOP,
+      STOP,
+      MOVING_FORWARD,
+      STOP,
+      STOP,
+      STOP,
+      STOP,
+      STOP,
+      MOVING_FORWARD,
+      STOP,
+      STOP,
+      STOP,
+      STOP,
+      STOP,
+      MOVING_FORWARD,
+      STOP,
+      STOP,
+      STOP,
+      STOP,
+      STOP,
+      MOVING_FORWARD,
+    ],
+  },
+];
+
 const testCaseArray = [
   {
     title: "자동차 이름 예외 테스트",
@@ -80,118 +174,21 @@ const testCaseArray = [
 
 describe("자동차 경주", () => {
   describe("기능 테스트", () => {
-    test("최종 우승자가 1명인 경우", async () => {
-      const MOVING_FORWARD = 4;
-      const STOP = 3;
-      const inputs = ["pobi,woni", "5"];
-      const logs = [
-        "pobi : -",
-        "woni : ",
-        "pobi : --",
-        "woni : ",
-        "pobi : ---",
-        "woni : ",
-        "pobi : ----",
-        "woni : ",
-        "pobi : -----",
-        "woni : ",
-        `${OUTPUT_MESSAGE_WINNER}pobi`,
-      ];
-      const logSpy = getLogSpy();
+    test.each(testCaseArrayOfFunctionalTest)(
+      "$title",
+      async ({ inputs, randomDataArray, logs }) => {
+        const logSpy = getLogSpy();
+        mockQuestions(inputs);
+        mockRandoms(randomDataArray);
 
-      mockQuestions(inputs);
-      mockRandoms([
-        MOVING_FORWARD,
-        STOP,
-        MOVING_FORWARD,
-        STOP,
-        MOVING_FORWARD,
-        STOP,
-        MOVING_FORWARD,
-        STOP,
-        MOVING_FORWARD,
-        STOP,
-      ]);
+        const app = new App();
+        await app.run();
 
-      const app = new App();
-      await app.run();
-
-      logs.forEach((log) => {
-        expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-      });
-    });
-
-    test("최종 우승자가 5명인 경우", async () => {
-      const MOVING_FORWARD = 4;
-      const STOP = 3;
-      const inputs = ["pobi,woni,gue,hyun,hyek", "5"];
-      const logs = [
-        "pobi : -",
-        "woni : ",
-        "gue : ",
-        "hyun : ",
-        "hyek : ",
-        "pobi : -",
-        "woni : -",
-        "gue : ",
-        "hyun : ",
-        "hyek : ",
-        "pobi : -",
-        "woni : -",
-        "gue : -",
-        "hyun : ",
-        "hyek : ",
-        "pobi : -",
-        "woni : -",
-        "gue : -",
-        "hyun : -",
-        "hyek : ",
-        "pobi : -",
-        "woni : -",
-        "gue : -",
-        "hyun : -",
-        "hyek : -",
-        `${OUTPUT_MESSAGE_WINNER}pobi, woni, gue, hyun, hyek`,
-      ];
-      const logSpy = getLogSpy();
-
-      mockQuestions(inputs);
-      mockRandoms([
-        MOVING_FORWARD,
-        STOP,
-        STOP,
-        STOP,
-        STOP,
-        STOP,
-        MOVING_FORWARD,
-        STOP,
-        STOP,
-        STOP,
-        STOP,
-        STOP,
-        MOVING_FORWARD,
-        STOP,
-        STOP,
-        STOP,
-        STOP,
-        STOP,
-        MOVING_FORWARD,
-        STOP,
-        STOP,
-        STOP,
-        STOP,
-        STOP,
-        MOVING_FORWARD,
-        ``,
-      ]);
-
-      const app = new App();
-      await app.run();
-
-      logs.forEach((log) => {
-        expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-      });
-    });
+        logs.forEach((log) => {
+          expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+        });
+      }
+    );
   });
 
   describe.each(testCaseArray)("$title", ({ testCaseExceptionArray }) => {
