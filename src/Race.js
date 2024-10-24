@@ -24,7 +24,6 @@ class Race {
     #moveCars() {
         this.#carList.forEach((car) => {
             this.#moveCar(car);
-            car.printPosition();
         });
     }
 
@@ -33,6 +32,7 @@ class Race {
         if (Race.#isForward(randomNumber)) {
             car.moveForward();
         }
+        car.printPosition();
     }
 
     static #pickRandomNumber() {
