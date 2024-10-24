@@ -14,8 +14,7 @@ class App {
   async run() {
     const { carNameArray, tryCount } = await this.#getInput();
     const winnerCarArray = this.#raceRun(carNameArray, tryCount);
-
-    print(`${OUTPUT_MESSAGE_WINNER}${winnerCarArray.join(", ")}`);
+    this.#printOutput(winnerCarArray);
   }
 
   async #getInput() {
@@ -34,6 +33,10 @@ class App {
     const race = new Race(carNameArray, tryCount);
     race.run();
     return race.getWinnerArray;
+  }
+
+  #printOutput(winnerCarArray) {
+    print(`${OUTPUT_MESSAGE_WINNER}${winnerCarArray.join(", ")}`);
   }
 }
 
