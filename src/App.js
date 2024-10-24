@@ -9,9 +9,11 @@ class App {
       "시도할 횟수는 몇 회인가요?\n"
     );
 
+    MissionUtils.Console.print("\n실행 결과");
+
     class Car {
-      constructor(carname) {
-        this.carname = carname;
+      constructor(name) {
+        this.name = name;
         this.result = "";
       }
       go = () => {
@@ -19,6 +21,26 @@ class App {
           this.result += "-";
         }
       };
+    }
+
+    const cars = carname.split(",");
+    const carObjs = [];
+
+    for (let i = 0; i < cars.length; i++) {
+      const car = new Car(cars[i]);
+      carObjs.push(car);
+    }
+
+    function printResult() {
+      for (let i = 0; i < carObjs.length; i++) {
+        carObjs[i].go();
+        MissionUtils.Console.print(`${carObjs[i].name} : ${carObjs[i].result}`);
+      }
+    }
+
+    for (let i = 0; i < Number(tryCount); i++) {
+      printResult();
+      MissionUtils.Console.print("");
     }
   }
 }
