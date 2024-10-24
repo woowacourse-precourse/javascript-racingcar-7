@@ -4,6 +4,7 @@ import {
 	validateMinCar,
 	validateMaxCar,
 	validateNameLength,
+	validateMinCount,
 } from "./utils/validate.js";
 
 class RacingCar {
@@ -11,6 +12,7 @@ class RacingCar {
 		try {
 			const { carNameValue, tryCountValue } = await this.getUserInput();
 			this.validateCarName(carNameValue);
+			this.validateTryCount(tryCountValue);
 		} catch (error) {
 			console.error(error);
 			throw new Error(error.message);
@@ -30,6 +32,10 @@ class RacingCar {
 		await validateMaxCar(carNameValue);
 		await validateMinCar(carNameValue);
 		await validateDuplicateName(carNameValue);
+	}
+
+	async validateTryCount(tryCountValue) {
+		await validateMinCount(tryCountValue);
 	}
 }
 

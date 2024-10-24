@@ -32,3 +32,10 @@ export async function validateDuplicateName(carNameValue) {
 		throw new Error("[ERROR] 중복된 자동차 이름이 있습니다.");
 	}
 }
+
+export async function validateMinCount(tryCountValue) {
+	const tryCount = parseInt(tryCountValue, 10);
+	if (tryCount < 1) {
+		throw new Error("[ERROR] 입력할 수 있는 시도 횟수는 최소 1회입니다.");
+	}
+}
