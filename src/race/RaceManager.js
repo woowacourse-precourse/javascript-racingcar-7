@@ -1,5 +1,5 @@
 import IOHandler from "../utils/IOHandler.js";
-import { checkValidNameLength } from "./Validator.js";
+import { checkValidNameLength, checkLessThanOrEqualMaxCount } from "./Validator.js";
 
 class RaceManager {
     #MAX_NAME_LENGTH = Object.freeze(5);
@@ -22,6 +22,7 @@ class RaceManager {
         });
 
         const inputCount = await IOHandler.input("시도할 횟수는 몇 회인가요?");
+        checkLessThanOrEqualMaxCount(inputCount, this.#MAX_RACE_COUNT);
         IOHandler.output(`carNames: ${carNames}, inputCount: ${inputCount}`);
     }
 
