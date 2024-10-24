@@ -3,10 +3,10 @@ const Console = MissionUtils.Console;
 const Random = MissionUtils.Random;
 
 
-process(driverArray)
+processInputToOutput(driverArray)
 {
 
 }
 
 
-export default process;
+export default  processInputToOutput;

@@ -1,5 +1,5 @@
-import {parsePlayers, parseRound} from './parseInput';
-import errorMessage from './ErrorMessage';
+import { parsePlayers, parseRound } from './parseInput';
+import { errorMessage } from './ErrorMessage';
 
 describe('parse Input Test', () => {
 

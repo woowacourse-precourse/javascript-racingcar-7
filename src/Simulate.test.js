@@ -1,8 +1,8 @@
-import process from './Simulate';
+import { processInputToOutput } from './Simulate';
 
 test('Simulator.process(driverArray) test', ()=> {
     // must obtain JSON object
-    expect(process(['p1', 'p2', 'p3+'])).toStrictEqual(
+    expect( processInputToOutput(['p1', 'p2', 'p3+'])).toStrictEqual(
         [
             expect.objectContaining({
                 name: 'p1',

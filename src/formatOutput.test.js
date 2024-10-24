@@ -1,4 +1,4 @@
-import format from './formatOutput';
+import { format } from './formatOutput';
 
 test('formatOutput.format(resultArray) test', () => {
     // do something
