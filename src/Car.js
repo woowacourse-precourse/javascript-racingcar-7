@@ -17,9 +17,9 @@ class Car {
     }
 
     roundResult() {
-        let step = "";
+        let step = '';
         for (let i = 0; i < this.position; i++) {
-            step += "-"
+            step += '-'
         }
         return `${this.name} : ${step}`;
     }
