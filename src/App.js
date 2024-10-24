@@ -7,8 +7,12 @@ class App {
     this.car = new Car();
   }
 
-  async run() {
-    this.moveCarForward(this.car);
+  async run() {}
+
+  repeat(number) {
+    for (let i = 0; i < number; i++) {
+      this.moveCarForward(this.car);
+    }
   }
 
   moveCarForward(car) {
