@@ -1,3 +1,5 @@
+import Car from '../model/Car.js';
+import Race from '../model/Race.js';
 import View from '../view/View.js';
 
 class Controller {
@@ -17,9 +19,23 @@ class Controller {
     return moveTimes;
   }
 
+  createCars(carNames) {
+    return carNames.map((name) => new Car(name));
+  }
+
+  runRace(carMap, moveTimes) {
+    const race = new Race(carMap);
+
+    for (let move = 0; move < moveTimes; move++) {
+      race.moveAllCars();
+      this.view.printRacingCars(carMap);
+    }
+  }
+
   async startGame() {
     const carNames = await this.getCarName();
     const moveTimes = await this.getMoveTimes();
+    const carMap = this.createCars(carNames);
   }
 }
 
