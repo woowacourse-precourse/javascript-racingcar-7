@@ -10,7 +10,10 @@ class App {
     Console.print("시도할 횟수는 몇 회인가요?");
     let playCount = await Console.readLineAsync("");
     Console.print("실행 결과");
-
+    let cars = arrCarName.map(name => new Car(name));
+    for (let count = 0; count < playCount; count++) {
+      RoundResultPrint(cars);
+    }
   }
 }
 class Car {
