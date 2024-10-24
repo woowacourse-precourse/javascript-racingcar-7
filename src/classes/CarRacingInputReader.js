@@ -8,7 +8,7 @@ class CarRacingInputReader {
 
     this.validateInput(input);
 
-    return input;
+    return input.split(',');
   }
 
   async getTotalRounds() {
@@ -16,7 +16,7 @@ class CarRacingInputReader {
 
     this.validateInput(input);
 
-    return input;
+    return parseInt(input);
   }
 
   validateInput(input) {
