@@ -29,7 +29,15 @@ class App {
   }
 
   async getInputCount() {
-    return await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+    const inputCount = await Console.readLineAsync(
+      '시도할 횟수는 몇 회인가요?\n'
+    );
+
+    const parsedCount = Number(inputCount);
+    if (isNaN(parsedCount) || parsedCount <= 0) {
+      throw new Error('[ERROR] 시도할 횟수는 1 이상의 숫자여야 합니다.');
+    }
+    return parsedCount;
   }
 
   initializeCars(inputCar) {
