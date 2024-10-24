@@ -10,10 +10,11 @@ class App {
     Console.print("시도할 횟수는 몇 회인가요?");
     let playCount = await Console.readLineAsync("");
     Console.print("실행 결과");
-    let cars = arrCarName.map(name => new Car(name));
+    let cars = arrCarName.map((name) => new Car(name));
     for (let count = 0; count < playCount; count++) {
       RoundResultPrint(cars);
     }
+    getWinner(cars);
   }
 }
 class Car {
@@ -30,14 +31,14 @@ class Car {
   }
 }
 
-function Race (cars) {
-  cars.forEach(car => {
+function Race(cars) {
+  cars.forEach((car) => {
     car.randomMove();
   });
   return cars;
 }
 
-function RoundResultPrint (cars) {
+function RoundResultPrint(cars) {
   let carsMove = Race(cars);
   for (let carNumber = 0; carNumber < carsMove.length; carNumber++) {
     let moveDistance = "";
@@ -47,5 +48,18 @@ function RoundResultPrint (cars) {
     Console.print(carsMove[carNumber].name + " : " + moveDistance);
   }
   Console.print("");
+}
+
+function getWinner(cars) {
+  let carsMoveCountArray = cars.map((car) => car.moveCount);
+  let maxMove = Math.max(...carsMoveCountArray);
+  let winners = [];
+  for (let carNumber = 0; carNumber < cars.length; carNumber++) {
+    if (maxMove == cars[carNumber].moveCount) {
+      winners.push(cars[carNumber].name);
+    }
+  }
+  let winner = winners.join(", ");
+  Console.print("최종 우승자 : " + winner);
 }
 export default App;
