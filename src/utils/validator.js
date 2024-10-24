@@ -1,4 +1,3 @@
-// 자동차 이름 유효성 검사
 export function validateCarNames(carNames) {
   const uniqueNames = new Set(carNames);
   if (uniqueNames.size !== carNames.length) {
@@ -12,7 +11,6 @@ export function validateCarNames(carNames) {
   });
 }
 
-// 시도 횟수 유효성 검사
 export function validateAttemptCount(input) {
   const tryCount = Number(input.trim());
   if (isNaN(tryCount)) {
