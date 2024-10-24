@@ -84,4 +84,16 @@ describe("자동차 경주", () => {
     expect(receivedInput).toEqual(expectedOutput);
   });
 
+  test('각각의 이름의 길이가 5글자 이하', async () => {
+    // given
+    const input = "pobi,woowahanwoni";
+    mockQuestions(input);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]: 이름의 길이는 5글자 이내로 입력해주세요.");
+  })
+
 });
