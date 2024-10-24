@@ -28,8 +28,8 @@ export const createErrorMessage = (message) => {
 };
 
 // 조건이 true인 경우 예외 처리
-export const assertCondition = (condition, errorMessage) => {
+export const assertCondition = (condition, message) => {
   if (condition) {
-    throw new Error(errorMessage);
+    throw new Error(createErrorMessage(message));
   }
 };
