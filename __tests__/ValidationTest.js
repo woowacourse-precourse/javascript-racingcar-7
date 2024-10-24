@@ -93,7 +93,7 @@ describe("자동차 경주 시도 횟수 입력 유효성 검사", () => {
     );
   });
 
-  test("시도 횟수 정수가 아닐 시 오류 발생", async () => {
+  test("시도 횟수 소수일 시 오류 발생", async () => {
     const input = ["3.5"];
 
     const app = new App();
