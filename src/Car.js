@@ -17,3 +17,5 @@ class Car {
         Console.print(`${this.#name} : ${"-".repeat(this.#position)}`);
     }
 }
+
+export default Car;

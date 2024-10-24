@@ -33,3 +33,5 @@ class InputValidator {
         throw new Error(`[ERROR] ${message}`);
     }
 }
+
+export default InputValidator;

@@ -1,4 +1,4 @@
-import { Random } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 import Car from "./Car.js";
 
 class Race {
@@ -12,6 +12,28 @@ class Race {
         this.#tryCount = tryCount;
     }
 
+    start() {
+        Console.print("\n실행 결과");
+        for (let i = 0; i < this.#tryCount; i++) {
+            this.#moveCars();
+            Console.print("\n");
+        }
+    }
+
+    #moveCars() {
+        this.#carList.forEach((car) => {
+            this.#moveCar(car);
+            car.printPosition();
+        });
+    }
+
+    #moveCar(car) {
+        const randomNumber = Race.#pickRandomNumber();
+        if (Race.#isForward(randomNumber)) {
+            car.moveForward();
+        }
+    }
+
     static #pickRandomNumber() {
         return Random.pickNumberInRange(0, 9);
     }
@@ -20,3 +42,5 @@ class Race {
         return number >= Race.#FORWARD_THRESHOLD;
     }
 }
+
+export default Race;
