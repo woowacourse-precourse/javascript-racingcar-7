@@ -36,8 +36,8 @@ class App {
   };
 
   calculateWinner = (cars) => {
-    const maxForward = Math.max(...cars.map((car) => car.forward));
-    return cars.filter((car) => car.forward === maxForward);
+    const maxForward = Math.max(...cars.map((car) => car.distance));
+    return cars.filter((car) => car.distance === maxForward);
   };
 
   printRacingResult = (cars, count) => {
@@ -52,7 +52,7 @@ class App {
   printMoveForwardResult = (cars) => {
     cars.forEach((car) => {
       car.stopAndGo();
-      Console.print(`${car.name} : ${LETTER.runResult.repeat(car.forward)}`);
+      Console.print(`${car.name} : ${LETTER.runResult.repeat(car.distance)}`);
     });
     console.log(); // 횟수별 줄바꿈 용도
   };
