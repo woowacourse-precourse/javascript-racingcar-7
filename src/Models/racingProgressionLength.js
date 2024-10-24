@@ -18,7 +18,7 @@ const findProgressionLength = (carNamesInput, racingCountInput) => {
   for (let i = 0; i < racingCountInput; i++) {
     for (let j = 0; j < carNamesInput.length; j++) {
       const randomNumber = Random.pickNumberInRange(0, 9);
-      if (randomNumber > 4) {
+      if (randomNumber >= 4) {
         progressionNumberForEachRacer[j] += 1;
       }
       progressionLengthForEachRacer[j] = '-'.repeat(progressionNumberForEachRacer[j]);
