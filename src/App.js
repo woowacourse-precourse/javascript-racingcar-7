@@ -1,10 +1,29 @@
 import { Console } from "@woowacourse/mission-utils";
 import { INPUT_MESSAGE } from "./constants/message.js";
 import Racingcar from "./model/racingcar.js";
+import {
+  validateInputBlank,
+  validateCarNameLength,
+  validateRacingCarSeparator,
+  validateCarNameOverlap,
+  validateRacingCountNumber,
+  validateRacingCountType,
+} from "./Validation.js";
+import { LETTER } from "./constants/constant.js";
 
 class App {
   getRacingCarName = async () => {
     const input = await Console.readLineAsync(INPUT_MESSAGE.carName);
+    validateInputBlank(input);
+    const carVariety = input.split(LETTER.split).map((carName) => {
+      validateRacingCarSeparator(carName);
+      validateCarNameLength(carName);
+      return carName;
+    });
+
+    validateCarNameOverlap(carVariety);
+
+    return carVariety.map((carName) => new Racingcar(carName));
   };
 
   getRacingAttmeptCount = async () => {
