@@ -33,11 +33,13 @@ View
 Controller
 - [ ] 경주 진행하는 컨트롤러 class
     - Property
-        * carArray
+        * carArray: 경주에 참여한 자동차 배열
     - Method
-        * runRaceStep(): race 1 단계 진행
-        * showRaceStep(): 진행한 race 단계의 결과 출력
-        * announceWinner(): 우승한 자동차 심사해서 이름 출력
+        - [x] runRaceStep(): race 1 단계 진행
+        - [ ] showRaceStep(): 진행한 race 단계의 결과 출력
+        - [ ] getMaxDistance(): 제일 멀리간 차의 거리 구하기
+        - [ ] getWinnerCar(): 우승한 자동차 구하기
+        - [ ] announceWinner(): 우승한 자동차 발표하기
 
 - [ ] 가장 멀리 간 차 선별하는 함수
     - args: 모든 자동차의 이동 거리
