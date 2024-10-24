@@ -1,21 +1,22 @@
 import { Console } from '@woowacourse/mission-utils';
+import { MESSAGES } from '../constants/messages.js';
 
 class OutputView {
   printGameStart() {
-    Console.print('\n실행 결과');
+    Console.print(MESSAGES.OUTPUT.GAME_START);
   }
 
   printRaceProgress(cars) {
     cars.forEach((car) => {
       Console.print(`${car.getName()} : ${'-'.repeat(car.getPosition())}`);
     });
-    Console.print(''); // 빈 줄 출력
+    Console.print('');
   }
 
   printWinners(winners) {
     const winnerNames = winners.map((car) => car.getName()).join(', ');
 
-    Console.print(`최종 우승자 : ${winnerNames}`);
+    Console.print(`${MESSAGES.OUTPUT.WINNERS}${winnerNames}`);
   }
 }
 
