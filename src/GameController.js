@@ -63,8 +63,18 @@ class GameController {
     return serialized;
   }
 
-  getInfo() {
-    return { cars: this.#cars, tryNumber: this.#tryNumber };
+  result() {
+    const winners = this.#judgeWinner(this.#cars);
+    OutputView.printWinner(winners);
+  }
+
+  #judgeWinner() {
+    const max = Math.max(...this.#cars.map((car) => car.getCarInformation().distance));
+    const winners = this.#cars
+      .filter((car) => car.getCarInformation().distance === max)
+      .map((car) => car.getCarInformation().name);
+
+    return winners;
   }
 }
 
