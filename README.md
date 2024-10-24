@@ -33,8 +33,30 @@
 
 ![image](https://github.com/user-attachments/assets/b327f20d-492a-4ab0-a971-dfac8f8ac09c)
 
-# 테스트 케이스
+# 🛠️ 테스트 케이스
+
+- 자동차 입력
+  - 영문 정상 입력
+  - 한글 정상 입력
+  - 빈 문자열 에러
+  - 이름에 숫자 포함 에러
+  - 이름에 특수문자 포함 에러
+  - 이름 5글자 초과 에러
+  - 쉼표(,) 구분자 에러
+- 시도 횟수 입력
+  - 숫자 정상 입력
+  - 큰 숫자 정상 입력
+  - 빈 문자열 에러
+  - 0 입력 에러
+  - 한글 밑 영문 입력 에러
+  - 소수 입력 에러
+  - 숫자 + 다른 문자 입력 에러
 
 # 📺 실행 결과
 
 # 📕 TMI
+
+- https://jestjs.io/docs/using-matchers
+- https://jestjs.io/docs/asynchronous
+- https://www.daleseo.com/jest-each/
+- https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Classes/static
