@@ -50,3 +50,15 @@ export function checkCarNames(carNames) {
   checkCarNameDuplicates(validateCarNames);
   return validateCarNames;
 }
+
+function checkPositiveInteger(roundCount) {
+  if (!Number.isInteger(roundCount) || roundCount < 1) {
+    throw new Error('게임 시도 횟수는 양의 정수만 입력 가능합니다.');
+  }
+}
+
+export function validateRoundCount(roundCountInput) {
+  const roundCount = Number(roundCountInput);
+
+  checkPositiveInteger(roundCount);
+}
