@@ -10,7 +10,7 @@ class RacingCar {
 	async runRacingCar() {
 		try {
 			const { carNameValue, tryCountValue } = await this.getUserInput();
-			this.validateInput(carNameValue, tryCountValue);
+			this.validateCarName(carNameValue);
 		} catch (error) {
 			console.error(error);
 			throw new Error(error.message);
@@ -25,7 +25,7 @@ class RacingCar {
 		return { carNameValue, tryCountValue };
 	}
 
-	async validateInput(carNameValue, tryCountValue) {
+	async validateCarName(carNameValue) {
 		await validateNameLength(carNameValue);
 		await validateMaxCar(carNameValue);
 		await validateMinCar(carNameValue);
