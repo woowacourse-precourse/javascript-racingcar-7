@@ -1,5 +1,6 @@
 import { OUTPUT_MESSAGE_WINNER } from "./constants";
 import Input from "./Input";
+import Race from "./Race";
 import {
   getKeyArrayHasSameValueInMap,
   getMapFilledZeroValue,
@@ -10,19 +11,9 @@ import {
 } from "./utils";
 
 class App {
-  #TRACE_CHARACTER = "-";
   async run() {
     const { carNameArray, tryCount } = await this.#getInput();
-
-    const carTraceMap = getMapFilledZeroValue(carNameArray);
-
-    const afterRaceTraceMap = this.race(carTraceMap, carNameArray, tryCount);
-
-    const maxTrace = getMaxValueInMap(afterRaceTraceMap);
-    const winnerCarArray = getKeyArrayHasSameValueInMap(
-      afterRaceTraceMap,
-      maxTrace
-    );
+    const winnerCarArray = this.#raceRun(carNameArray, tryCount);
 
     print(`${OUTPUT_MESSAGE_WINNER}${winnerCarArray.join(", ")}`);
   }
@@ -38,35 +29,10 @@ class App {
     };
   }
 
-  race(carTraceMap, carNameArray, tryCount) {
-    for (let i = 0; i < tryCount; i++) {
-      for (const carName of carNameArray) {
-        const newPosition = this.moveCarForward(carTraceMap.get(carName));
-        carTraceMap.set(carName, newPosition);
-        this.printCarPosition(carName, newPosition);
-      }
-    }
-    return carTraceMap;
-  }
-
-  moveCarForward(currentPosition) {
-    const randomNum = pickNumberInRange(0, 9);
-    const isMoveForward = this.getMoveForward(randomNum);
-    if (isMoveForward) return currentPosition + 1;
-    return currentPosition;
-  }
-
-  getMoveForward(num) {
-    return num >= 4;
-  }
-
-  printCarPosition(carName, position) {
-    const repeatedTraceChracter = getRepeatedString(
-      this.#TRACE_CHARACTER,
-      position
-    );
-
-    print(`${carName} : ${repeatedTraceChracter}`);
+  #raceRun(carNameArray, tryCount) {
+    const race = new Race(carNameArray, tryCount);
+    race.run();
+    return race.getWinnerArray;
   }
 }
 
