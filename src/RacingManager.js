@@ -27,6 +27,7 @@ class RacingManager {
       this.carList.forEach((car) => {
         this.#handleCarMovement(car);
       });
+      OutputView.printEmptyLine();
     });
   }
 
@@ -36,6 +37,8 @@ class RacingManager {
     if (this.#canMove(movementValue)) {
       car.move();
     }
+
+    OutputView.printCarStatus(car);
   }
 
   #canMove(movementValue) {
