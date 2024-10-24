@@ -25,6 +25,27 @@ function checkN(N) {
   return N;
 }
 
+function canMove() {
+  const RANDOM_NUMBER = Random.pickNumberInRange(0, 9);
+  let go = false;
+
+  if (RANDOM_NUMBER >= 4) {
+    go = true;
+  }
+
+  return go;
+}
+
+function moveOneStep(permissionToGo, N, carsResults) {
+  for (let i = 0; i < N; i++) {
+    if (permissionToGo) {
+      carsResults[i].position += "-";
+    }
+    Console.print(`${carsResults[i].name} : ${carsResults[i].position}`);
+  }
+  return;
+}
+
 class App {
   async run() {
     const carNamesUserInput = await Console.readLineAsync(
@@ -41,14 +62,7 @@ class App {
 
     Console.print("실행 결과");
     for (let i = 0; i < N; i++) {
-      for (let j = 0; j < carNames.length; j++) {
-        const randomNumber = Random.pickNumberInRange(0, 9);
-        if (randomNumber >= 4) {
-          carsResults[j].position += "-";
-        }
-
-        Console.print(`${carsResults[j].name} : ${carsResults[j].position}`);
-      }
+      moveOneStep(canMove(), carNames.length, carsResults);
       Console.print("");
     }
   }
