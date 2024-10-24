@@ -1,4 +1,3 @@
-import { Console } from "@woowacourse/mission-utils";
 import Car from "./Car.js";
 import { NUMBER } from "./Constants/constants.js";
 
@@ -30,6 +29,38 @@ class Race {
     if (randomNumber >= NUMBER.CAN_PROGRESS) {
       return car.progress();
     }
+  }
+
+  async winner() {
+    let result = [];
+
+    for (const car of this.#cars) {
+      result.push(await car.getPosition());
+    }
+
+    const sortResult = result.sort((a, b) => b.position - a.position);
+
+    return this.checkJoint(
+      sortResult,
+      sortResult[0].position,
+      sortResult[0].name
+    );
+  }
+
+  checkJoint(arr, winnersPosition, winnersName) {
+    let winners = [winnersName];
+
+    for (let i = 1; i < arr.length; i++) {
+      const isSamePosition = winnersPosition === arr[i].position;
+
+      if (isSamePosition) {
+        winners.push(arr[i].name);
+      }
+
+      if (!isSamePosition) break;
+    }
+
+    return winners;
   }
 }
 

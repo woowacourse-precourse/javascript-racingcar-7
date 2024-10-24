@@ -20,6 +20,13 @@ class Car {
     return positionDash;
   }
 
+  async getPosition() {
+    return {
+      name: this.#name,
+      position: this.#position.length,
+    };
+  }
+
   async progress() {
     this.#position += "-";
   }
