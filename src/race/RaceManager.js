@@ -38,8 +38,8 @@ class RaceManager {
         this.#setRacingCount(inputCount);
     }
 
-    racing() {
-        this.#prepareRacing();
+    async racing() {
+        await this.#prepareRacing();
 
     }
 
