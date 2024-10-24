@@ -31,7 +31,7 @@ function Race (arrCarName, playCount) {
   cars.forEach(car => {
     car.randomMove();
   });
-  let arrMoveCount = cars.map(car => car.moveCount);
-  return arrMoveCount;
+  return cars;
 }
+
 export default App;
