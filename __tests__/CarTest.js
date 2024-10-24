@@ -9,7 +9,7 @@ describe('자동차 객체', () => {
   test('자동차는 처음에 이름을 가진다.', () => {
     const NAME = 'pobi';
     const car = new Car(NAME);
-    expect(car.name).toBe(NAME);
+    expect(car.getName()).toBe(NAME);
   });
 
   test('자동차는 위치를 1 증가할 수 있다.', () => {
