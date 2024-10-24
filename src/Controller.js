@@ -5,10 +5,12 @@ export default class Controller {
   constructor() {
     this.view = new View();
     this.names = [];
+    this.count = 0;
   }
 
   async start() {
     this.names = await this.getNames();
+    this.count = await this.getCount();
   }
 
   async getNames() {
@@ -22,5 +24,13 @@ export default class Controller {
     validateName(names);
 
     return names;
+  }
+
+  async getCount() {
+    const rawInput = this.view.getInput('시도할 횟수는 몇 회인가요?\n');
+
+    const input = await rawInput;
+
+    return input;
   }
 }
