@@ -28,7 +28,8 @@ class App {
 
       const { getCarsInfoEntries, getAdvanceCounts, incrementAdvanceCount } = carsInfoController(carNames);
 
-      executionLoop(tryCount, MESSAGES.EXECUTION_RESULT, [
+      Console.print(MESSAGES.EXECUTION_RESULT);
+      executionLoop(tryCount, [
         () => advanceCars(carNames, incrementAdvanceCount),
         () => printResult(getAdvanceResult(getCarsInfoEntries())),
       ]);

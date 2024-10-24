@@ -31,13 +31,11 @@ export const getAdvanceResult = (carsInfoEntries) => {
 };
 
 /**
- * 메세지를 출력하고, 반복 횟수 만큼 실행 리스트에 함수들을 실행합니다.
+ * 반복 횟수 만큼 실행 리스트에 있는 함수들을 실행합니다.
  * @param {number} repeatCount - 반복 횟수
- * @param {string} message - 실행 전 출력할 메세지
  * @param {Array<() => void>} executionList - 실행할 함수들의 배열
  */
-export const executionLoop = (repeatCount, message, executionList) => {
-  Console.print(message);
+export const executionLoop = (repeatCount, executionList) => {
   for (let i = 0; i < repeatCount; i++) {
     executionList.forEach((executionFn) => executionFn());
   }
