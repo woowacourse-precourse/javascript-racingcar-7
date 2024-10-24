@@ -27,6 +27,18 @@ class App {
       let nameArray = input.split(',');
       let moveArray = Array.from({length: nameArray.length}, () => '');
 
+      // 전진 중...
+      Console.print('실행 결과');
+      for (let i = 0; i < count; i++) {
+        nameArray.map((value, index) => {
+          var randNum = Random.pickNumberInRange(0, 9);
+          if (randNum >= 4)
+            moveArray[index] += '-';
+          Console.print(`${value} : ${moveArray[index]}`);
+        })
+        Console.print('');
+      }
+
     } catch (error) {
       throw new Error('[ERROR]');
     }
