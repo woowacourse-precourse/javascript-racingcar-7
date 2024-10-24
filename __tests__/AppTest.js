@@ -9,4 +9,11 @@ describe('자동차 경주', () => {
 
     expect(app.isHighEnough()).toBe(true);
   });
+
+  test('무작위 값이 4 미만이면 거짓을 반환한다.', () => {
+    const app = new App();
+    jest.spyOn(MissionUtils.Random, 'pickNumberInRange').mockReturnValue(1);
+
+    expect(app.isHighEnough()).toBe(false);
+  });
 });
