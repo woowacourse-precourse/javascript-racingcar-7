@@ -15,12 +15,14 @@ class App {
 
   async run() {
     try {
-      const carNames = await this.inputHandler.carNamesInput();
-      const countNum = await this.inputHandler.countNumInput();
+      const { carNames, countNum } = await this.inputHandler.getCarNamesAndCountNum();
+
       const cars = createCars(carNames, countNum);
       this.movingCar.startRace(cars, countNum);
+
       const winners = this.raceResult.findWinners(cars);
-      Console.print(`최종 우승자 : ${winners}`);
+      this.outputHandler.printWinners(winners);
+
     } catch (error) {
       this.outputHandler.printError(error);
     }
