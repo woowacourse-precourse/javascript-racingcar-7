@@ -138,17 +138,6 @@ const testCaseExceptionArrayOfTryCount = [
   },
 ];
 
-const testCaseExceptionArray = [
-  {
-    title: "자동차 이름 예외 테스트",
-    testCaseExceptionArray: testCaseExceptionArrayOfCarNameArray,
-  },
-  {
-    title: "시도 횟수 예외 테스트",
-    testCaseExceptionArray: testCaseExceptionArrayOfTryCount,
-  },
-];
-
 describe("자동차 경주", () => {
   describe("기능 테스트", () => {
     test.each(testCaseArrayOfFunctionalTest)(
@@ -168,21 +157,31 @@ describe("자동차 경주", () => {
     );
   });
 
-  describe.each(testCaseExceptionArray)(
-    "$title",
-    ({ testCaseExceptionArray }) => {
-      test.each(testCaseExceptionArray)(
-        "$title",
-        async ({ inputs, errorMessage }) => {
-          mockQuestions(inputs);
+  describe("자동차 이름 예외 테스트", () => {
+    test.each(testCaseExceptionArrayOfCarNameArray)(
+      "$title",
+      async ({ inputs, errorMessage }) => {
+        mockQuestions(inputs);
 
-          const app = new App();
+        const app = new App();
 
-          await expect(app.run()).rejects.toThrow(errorMessage);
-        }
-      );
-    }
-  );
+        await expect(app.run()).rejects.toThrow(errorMessage);
+      }
+    );
+  });
+
+  describe("시도 횟수 예외 테스트", () => {
+    test.each(testCaseExceptionArrayOfTryCount)(
+      "$title",
+      async ({ inputs, errorMessage }) => {
+        mockQuestions(inputs);
+
+        const app = new App();
+
+        await expect(app.run()).rejects.toThrow(errorMessage);
+      }
+    );
+  });
 });
 
 function mockQuestions(inputs) {
