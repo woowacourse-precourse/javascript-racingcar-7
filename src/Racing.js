@@ -54,6 +54,12 @@ class Racing {
 
     return winners;
   }
+
+  announceWinners() {
+    const winners = this.#findWinners();
+    const winnersName = winners.map((winner) => winner.name);
+    return winnersName;
+  }
 }
 
 export default Racing;
