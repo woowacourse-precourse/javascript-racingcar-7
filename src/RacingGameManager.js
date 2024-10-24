@@ -1,4 +1,3 @@
-import { Console } from '@woowacourse/mission-utils';
 import Car from './Car.js';
 import { CONSOLE_MESSAGE } from './constant.js';
 import {
@@ -15,6 +14,8 @@ class RacingGameManager {
   #tryCount = 0;
 
   static MAX_CAR_COUNT = 50;
+
+  static MAX_TRY_COUNT = 500;
 
   async playGame() {
     const carInput = await getUserInput(CONSOLE_MESSAGE.CAR_INPUT_MESSAGE);
@@ -42,7 +43,7 @@ class RacingGameManager {
     if (carNames.length > RacingGameManager.MAX_CAR_COUNT) {
       throw new Error(
         errorString(
-          `경주할 자동차는 ${RacingGameManager.MAX_CAR_COUNT}대 이하이어야 합니다.`,
+          `경주할 자동차는 ${RacingGameManager.MAX_CAR_COUNT}대 이하만 가능합니다.`,
         ),
       );
     }
@@ -50,7 +51,6 @@ class RacingGameManager {
 
   #validateTryCountInput(input) {
     const inputToNumber = Number(input);
-    Console.print(isIntegerNumber(inputToNumber));
 
     if (!isNumber(inputToNumber)) {
       throw new Error(
@@ -60,6 +60,14 @@ class RacingGameManager {
 
     if (!isPositiveNumber(inputToNumber) || !isIntegerNumber(inputToNumber)) {
       throw new Error(errorString(CONSOLE_MESSAGE.MIN_TRY_COUNT_ERROR));
+    }
+
+    if (inputToNumber > RacingGameManager.MAX_TRY_COUNT) {
+      throw new Error(
+        errorString(
+          `시도 횟수는 ${RacingGameManager.MAX_TRY_COUNT} 이하만 가능합니다.`,
+        ),
+      );
     }
   }
 }
