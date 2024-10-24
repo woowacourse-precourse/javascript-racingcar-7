@@ -6,17 +6,12 @@ class OutputView {
     Console.print('');
   }
 
-  static racingStartIntro() {
-    Console.print(OUTPUT_MESSAGE.RACING_START_INTRO);
+  static printArrayWithNewLine(arr) {
+    Console.print(`${arr.join('\n')}`);
   }
 
-  static printCarState(carName, distance) {
-    let newDistance = '';
-    for (let i = 0; i < distance; i += 1) {
-      newDistance += OUTPUT_MESSAGE.STRINGYFY_DISTANCE;
-    }
-
-    Console.print(`${carName} : ${newDistance}`);
+  static racingStartIntro() {
+    Console.print(OUTPUT_MESSAGE.RACING_START_INTRO);
   }
 
   static printWinner(winners) {
