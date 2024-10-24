@@ -40,6 +40,11 @@ class App {
       return MissionUtils.Random.pickNumberInRange(0, 9);
     };
     Console.print(randomNum());
+
+    const userNames = checkNames();
+
+    const progress = Array.from({ length: userNames.length }, () => "");
+    Console.print(progress);
   }
 }
 
