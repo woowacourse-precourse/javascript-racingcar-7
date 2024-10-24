@@ -12,6 +12,14 @@ export class Car {
     if (shouldMove) this.#distance++;
   }
 
+  getDistance() {
+    return this.#distance;
+  }
+
+  getName() {
+    return this.#name;
+  }
+
   getStatus() {
     return `${this.#name} : ${this.#PROGRESS.repeat(this.#distance)}`;
   }
