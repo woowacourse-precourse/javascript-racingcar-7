@@ -4,13 +4,11 @@ import { validateName, validateTryCount } from './validation.js';
 export default class Controller {
   constructor() {
     this.view = new View();
-    this.names = [];
-    this.count = 0;
   }
 
   async start() {
-    this.names = await this.getNames();
-    this.count = await this.getCount();
+    const names = await this.getNames();
+    const count = await this.getCount();
   }
 
   async getNames() {
