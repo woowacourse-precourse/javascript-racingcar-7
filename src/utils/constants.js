@@ -18,4 +18,5 @@ export const ERROR_MESSAGES = {
   EMPTY_NAMES: `${ERROR_PREFIX}자동차 이름을 입력해야 합니다.`,
   DUPLICATE_NAMES: `${ERROR_PREFIX}자동차 이름은 중복될 수 없습니다.`,
   INVALID_ATTEMPTS: `${ERROR_PREFIX}시도 횟수는 양의 정수여야 합니다.`,
+  EMPTY_INPUT: `${ERROR_PREFIX}입력값이 없습니다.`,
 };
