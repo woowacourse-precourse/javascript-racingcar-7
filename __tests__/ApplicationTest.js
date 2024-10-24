@@ -81,4 +81,53 @@ describe('자동차 경주', () => {
     // then
     await expect(app.run()).rejects.toThrow('[ERROR]');
   });
+
+  test('시도할 횟수를 입력하지 않은 경우', async () => {
+    // given
+    const inputs = ['pobi,woni', ''];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('시도할 횟수에 숫자를 적지 않은 경우', async () => {
+    // given
+    const inputs = ['pobi,woni', 'a'];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('시도할 횟수에 음수를 적은 경우', async () => {
+    // given
+    const inputs = ['pobi,woni', '-1'];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('시도할 횟수에 최대 횟수를 넘는 수를 입력한 경우', async () => {
+    // given
+    const MAX_MOVE_TIMES = Number.MAX_VALUE;
+    const inputs = ['pobi,woni', `${MAX_MOVE_TIMES * 2}`];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
 });
