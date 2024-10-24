@@ -22,7 +22,8 @@ class App {
     Console.print("\n실행 결과");
     for (let i = 0; i < attemptCount; i += 1) {
       racingCarNamesArray.forEach((car) => {
-        if (this.moveCar()) {
+        const randomNumber = this.getRandomNumber();
+        if (this.moveCar(randomNumber)) {
           moveCntPerCar[car] += 1;
         }
       });
@@ -54,8 +55,7 @@ class App {
     return Random.pickNumberInRange(0, 9);
   }
 
-  moveCar() {
-    const randomNumber = this.getRandomNumber();
+  moveCar(randomNumber) {
     if (randomNumber >= 4) {
       return true;
     }

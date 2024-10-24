@@ -57,4 +57,59 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
+  // Add test
+  test("자동차 이름을 쉼표(,)를 기준으로 구분한다.", () => {
+    const racingCarNames = "pobi,woni";
+
+    const app = new App();
+    const racingCarNamesArray = app.parseRacingCarNames(racingCarNames);
+
+    expect(racingCarNamesArray).toEqual(["pobi", "woni"]);
+  });
+
+  test("무작위 값이 4 이상일 경우 전진한다.", () => {
+    const app = new App();
+
+    expect(app.moveCar(4)).toBe(true);
+    expect(app.moveCar(5)).toBe(true);
+    expect(app.moveCar(9)).toBe(true);
+    expect(app.moveCar(3)).toBe(false);
+    expect(app.moveCar(0)).toBe(false);
+  });
+
+  test("매 시도에서 실행 결과를 출력한다.", () => {
+    const moveCntPerCar = { pobi: 1, woni: 2 };
+
+    const app = new App();
+    const logSpy = getLogSpy();
+    app.printAttemptResult(moveCntPerCar);
+
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining("pobi : -"));
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining("woni : --"));
+  });
+
+  test("최종 우승자를 출력한다.", () => {
+    const moveCntPerCar = { pobi: 1, woni: 2 };
+
+    const app = new App();
+    const logSpy = getLogSpy();
+    app.printWinner(moveCntPerCar);
+
+    expect(logSpy).toHaveBeenCalledWith(
+      expect.stringContaining("최종 우승자 : woni")
+    );
+  });
+
+  test("우승자가 여러 명일 경우 쉼표(,)를 이용하여 구분한다.", () => {
+    const moveCntPerCar = { pobi: 2, woni: 2 };
+
+    const app = new App();
+    const logSpy = getLogSpy();
+    app.printWinner(moveCntPerCar);
+
+    expect(logSpy).toHaveBeenCalledWith(
+      expect.stringContaining("최종 우승자 : pobi, woni")
+    );
+  });
 });
