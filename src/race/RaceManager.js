@@ -19,6 +19,10 @@ class RaceManager {
         this.#carList = carNames.map((name) => new Car(name));
     }
 
+    #setRacingCount(count) {
+        this.#racingCount = count;
+    }
+
     async #prepareRacing() {
         const inputStr = await IOHandler.input("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
         const carNames = this.#getNamesFromStr(inputStr);
@@ -31,6 +35,7 @@ class RaceManager {
         IOHandler.output(`carNames: ${carNames}, inputCount: ${inputCount}`);
 
         this.#setCarListFromCarNames(carNames);
+        this.#setRacingCount(inputCount);
     }
 
     racing() {
