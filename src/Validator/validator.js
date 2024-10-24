@@ -5,67 +5,71 @@ import throwError from '../util/errorThrower.js';
 import { _pipe } from '../util/util.js';
 
 /**
- * @typedef {function(string): string} ValidationFunction
- * @param {string} input
- * @returns {string}
+ * @typedef {function(string[]): string[]} ValidationFunction
+ * @param {string[]} carNames
+ * @returns {string[]}
  * @throws {Error}
  */
-const checkEmpty = (input) => {
-  if (!input) throwError(CAR_NAME_ERROR_MESSAGE.NO_INPUT);
+const checkEmpty = (carNames) => {
+  if (carNames.length === 0 || carNames.some((name) => name.trim() === '')) {
+    throwError(CAR_NAME_ERROR_MESSAGE.NO_INPUT);
+  }
 
-  return input;
+  return carNames;
 };
 
 /**@type {ValidationFunction} */
-const checkCarNameRange = (input) => {
-  const carNames = input.split(',').some((car) => car.length > 5); //['정안','진','규홍']
-  if (carNames) throwError(CAR_NAME_ERROR_MESSAGE.OUT_OF_RANGE);
+const checkCarNameRange = (carNames) => {
+  if (carNames.some((car) => car.length > 5))
+    throwError(CAR_NAME_ERROR_MESSAGE.OUT_OF_RANGE);
 
-  return input;
+  return carNames;
 };
 
 /**@type {ValidationFunction} */
-const checkOneCarInput = (input) => {
-  const carNames = input.split(',');
-  console.log('carNames', carNames);
+const checkOneCarInput = (carNames) => {
   if (carNames.length === 1) throwError(CAR_NAME_ERROR_MESSAGE.ONE_CAR_NAME);
 
-  return input;
+  return carNames;
 };
 
 /**@type {ValidationFunction} */
-const checkContainCommaCarName = (input) => {
-  const carNames = input.split(',');
+const checkContainCommaCarName = (carNames) => {
   if (carNames.some((name) => name.trim() === ''))
     throwError(CAR_NAME_ERROR_MESSAGE.CONTAIN_COMMA);
 
-  return input;
+  return carNames;
 };
 
 /**@type {ValidationFunction} */
-const checkIncludeComma = (input) => {
-  const carNames = input.split(',');
+const checkIncludeSpace = (carNames) => {
   if (carNames.some((name) => name.includes(' ')))
     throwError(CAR_NAME_ERROR_MESSAGE.INCLUDE_SPACE);
 
-  return input;
+  return carNames;
 };
 
 /**@type {ValidationFunction} */
-const checkDuplicateCarName = (input) => {
-  const carNames = input.split(',');
+const checkDuplicateCarName = (carNames) => {
   if (carNames.length !== new Set(carNames).size)
     throwError(CAR_NAME_ERROR_MESSAGE.DUPLICATE_CAR_NAME);
 
-  return input;
+  return carNames;
 };
 
+/**
+ * @param {string} input
+ * @returns {string[]}
+ */
+const splitCarNames = (input) => input.split(',');
+
 const validateInput = _pipe(
+  splitCarNames,
   checkEmpty,
   checkCarNameRange,
   checkOneCarInput,
   checkContainCommaCarName,
-  checkIncludeComma,
+  checkIncludeSpace,
   checkDuplicateCarName
 );
 
