@@ -147,8 +147,24 @@ describe("자동차 경주", () => {
   });
 
   describe("입력 1번 예외 테스트", () => {
-    test("5글자 이상의 문자가 올 경우 에러를 출력한다.", async () => {
+    test("자동차 이름이 5글자 초과인 경우", async () => {
       const inputs = ["pobi,javaji"];
+      mockQuestions(inputs);
+
+      const app = new App();
+
+      await expect(app.run()).rejects.toThrow(ERROR_MESSAGE_CAR_NAME_INVALID);
+    });
+    test("자동차 이름이 1글자 미만인 경우", async () => {
+      const inputs = ["pobi,"];
+      mockQuestions(inputs);
+
+      const app = new App();
+
+      await expect(app.run()).rejects.toThrow(ERROR_MESSAGE_CAR_NAME_INVALID);
+    });
+    test("자동차 이름이 알파벳, 숫자 혹은 언더바(`_`)가 아닌 경우", async () => {
+      const inputs = ["pobi,$gue"];
       mockQuestions(inputs);
 
       const app = new App();
@@ -158,8 +174,8 @@ describe("자동차 경주", () => {
   });
 
   describe("입력 2번 예외 테스트", () => {
-    test("양수가 아닌 경우 에러를 출력한다.", async () => {
-      const inputs = ["pobi,java", -5];
+    test("양수가 아닌 경우", async () => {
+      const inputs = ["pobi,java", 0];
       mockQuestions(inputs);
 
       const app = new App();
@@ -168,7 +184,7 @@ describe("자동차 경주", () => {
         ERROR_MESSAGE_NOT_POSITIVE_POSITIVE
       );
     });
-    test("정수가 아닌 경우 에러를 출력한다.", async () => {
+    test("정수가 아닌 경우", async () => {
       const inputs = ["pobi,java", 5.5];
       mockQuestions(inputs);
 
