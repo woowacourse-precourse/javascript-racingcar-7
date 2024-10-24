@@ -14,7 +14,7 @@
 
 ## MVC 패턴
 Model
-- [ ] Car class
+- [x] Car class
     - Property
         * name
         * distance
