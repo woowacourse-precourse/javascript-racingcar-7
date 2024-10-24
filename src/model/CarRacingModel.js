@@ -1,6 +1,20 @@
-import { Random } from "@woowacourse/mission-utils";
+import { Random, Console } from "@woowacourse/mission-utils";
 
-export default class CarRacingModel {}
+export default class CarRacingModel {
+  constructor(carNames) {
+    this.carNames = carNames.split(",").map((names) => new Car(names));
+  }
+
+  runRace(tryCount) {
+    for (let i = 0; i < tryCount; i++) {
+      this.carNames.forEach((car) => {
+        car.move();
+        Console.print(`${car.carName} : ${car.moveProgress()}`);
+      });
+      Console.print("\n");
+    }
+  }
+}
 
 class Car {
   constructor(carName) {
