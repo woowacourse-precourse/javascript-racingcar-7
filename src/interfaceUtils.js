@@ -7,3 +7,11 @@ export function inputCars() {
 export function inputTrialCount() {
   return Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
 }
+
+export function printCarsMove(carsMap) {
+  Console.print("");
+  for (const [carName, carLength] of carsMap) {
+    const lengthDash = "-".repeat(carLength);
+    Console.print(`${carName} : ${lengthDash}`);
+  }
+}
