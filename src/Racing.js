@@ -29,6 +29,8 @@ class Racing {
     rounds.forEach((round) => {
       const result = this.#try();
       this.#result = result;
+
+      this.#showResult();
     });
   }
 
