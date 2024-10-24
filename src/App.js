@@ -1,4 +1,4 @@
-import inputCarNames from "./utils/inputCarNames.js";
+import { inputCarNames } from "./utils/inputCarNames.js";
 import splitName from "./utils/splitInput.js";
 import { eachNameLengthValidator, userInputValidator } from "./validator.js";
 
