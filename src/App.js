@@ -3,7 +3,9 @@ const Console = MissionUtils.Console;
 const Random = MissionUtils.Random;
 
 class App {
-  async run() {}
+  async run() {
+    
+  }
 }
 
 export default App;
