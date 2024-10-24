@@ -14,3 +14,7 @@ export const getTryCount = async () => {
 export const printResult = (result) => {
   Console.print(result + "\n");
 };
+
+export const printWinner = (winner) => {
+  Console.print(MESSAGES.WINNER + winner);
+};

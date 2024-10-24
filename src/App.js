@@ -13,6 +13,7 @@ import {
   printResult,
   executionLoop,
   getWinner,
+  printWinner,
 } from "./utils/index.js";
 
 class App {
@@ -32,7 +33,8 @@ class App {
         () => printResult(getAdvanceResult(getCarsInfoEntries())),
       ]);
 
-      const result = getWinner(getAdvanceCounts(), getCarsInfoEntries());
+      const winner = getWinner(getAdvanceCounts(), getCarsInfoEntries());
+      printWinner(winner);
     } catch (error) {
       Console.print(error.message);
       throw error;
