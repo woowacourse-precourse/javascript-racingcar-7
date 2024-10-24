@@ -1,3 +1,5 @@
+import Car from "./Car";
+
 export default class RacingGame {
   repeatCount;
 
@@ -5,7 +7,15 @@ export default class RacingGame {
 
   constructor(repeatCount, cars) {
     this.repeatCount = repeatCount;
-    this.cars = cars;
+    this.cars = RacingGame.formatStringToCars(cars);
+  }
+
+  static formatStringToCars(carString) {
+    const cars = {};
+    carString.split(",").forEach((name) => {
+      cars[name] = new Car(name);
+    });
+    return cars;
   }
 
   start() {
@@ -14,5 +24,9 @@ export default class RacingGame {
     }
   }
 
-  play() {}
+  play() {
+    Object.keys(this.cars).forEach((name) => {
+      this.cars[name].move();
+    });
+  }
 }
