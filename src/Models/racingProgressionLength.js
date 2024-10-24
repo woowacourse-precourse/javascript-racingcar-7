@@ -31,7 +31,7 @@ const resultOutput = carNamesInput => {
   for (let i = 0; i < carNamesInput.length; i += 1) {
     Console.print(`${carNamesInput[i]} : ${progressionLengthForEachRacer[i]}`);
   }
-  Console.print('');
+  Console.print('\n');
 };
 
 const findWinner = carNamesInput => {
