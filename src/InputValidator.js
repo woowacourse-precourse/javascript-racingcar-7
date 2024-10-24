@@ -24,7 +24,10 @@ class InputValidator {
     static validateInputTryCount(tryInputCount) {
         if (tryInputCount === "") {
             InputValidator.#throwError(InputValidator.ERROR_MESSAGES.TRY_COUNT_EMPTY);
-        } else if (isNaN(tryInputCount) || tryInputCount < 1) {
+        }
+
+        const tryCount = Number(tryInputCount);
+        if (!Number.isInteger(tryCount) || tryCount < 1) {
             InputValidator.#throwError(InputValidator.ERROR_MESSAGES.INVALID_TRY_COUNT);
         }
     }
