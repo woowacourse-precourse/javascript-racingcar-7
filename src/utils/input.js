@@ -11,6 +11,6 @@ export async function carInput() {
 
 export async function countInput() {
   const input = await Console.readLineAsync('시도할 횟수는 몇번인가요?\n');
-  const result = parseInt(Validator.validCountInput(input));
+  const result = Validator.validCountInput(input);
   return result;
 }
