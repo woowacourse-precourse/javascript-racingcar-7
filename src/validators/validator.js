@@ -57,8 +57,22 @@ function checkPositiveInteger(roundCount) {
   }
 }
 
-export function validateRoundCount(roundCountInput) {
+function checkRoundLimit(roundCount, maxRounds) {
+  if (roundCount > maxRounds) {
+    throw new Error(`게임 시도 횟수는 ${maxRounds} 이하만 가능합니다.`);
+  }
+}
+
+function checkIsNumber(roundCount) {
+  if (Number.isNaN(roundCount)) {
+    throw new Error('숫자 이외의 문자가 입력되었습니다.');
+  }
+}
+
+export function validateRoundCount(roundCountInput, maxRounds = 100) {
   const roundCount = Number(roundCountInput);
 
+  checkIsNumber(roundCount);
   checkPositiveInteger(roundCount);
+  checkRoundLimit(roundCount, maxRounds);
 }
