@@ -13,8 +13,8 @@ export default class Controller {
     const count = await this.getCount();
 
     const cars = this.createCars(names);
-    this.printEmpty();
-    Console.print('실행 결과');
+    this.printMessage();
+    this.printMessage('실행 결과');
 
     this.runRace(cars, count);
     this.findWinner(cars);
@@ -26,7 +26,7 @@ export default class Controller {
         const car = cars[j];
         this.runSingleRound(car);
       }
-      this.printEmpty();
+      this.printMessage();
     }
   }
 
@@ -86,7 +86,11 @@ export default class Controller {
     return count;
   }
 
-  printEmpty() {
-    Console.print('');
+  printMessage(message) {
+    if (message) {
+      Console.print(message);
+    } else {
+      Console.print('');
+    }
   }
 }
