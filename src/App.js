@@ -18,8 +18,18 @@ class App {
       const num = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
       this.count = Number(num);
     }catch(error){
+      Console.print("ERROR: 입력 오류");
       throw new Error("[ERROR]");
     }
+  }
+
+  checkNameLength(){
+    this.carNameArr.forEach(carName => {
+      if(carName.length > 5){
+        Console.print("ERROR: 자동차 이름이 5자보다 많습니다.")
+        throw new Error("[ERROR]");
+      }
+    });
   }
 }
 
