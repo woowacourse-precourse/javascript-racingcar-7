@@ -27,8 +27,12 @@ class Input {
   }
 
   async getUserInput() {
-    this.#carNames = await readLineAsync(INPUT_MESSAGE_CAR_NAMES);
-    this.#tryCount = await readLineAsync(INPUT_MESSAGE_TRY_COUNT);
+    try {
+      this.#carNames = await readLineAsync(INPUT_MESSAGE_CAR_NAMES);
+      this.#tryCount = await readLineAsync(INPUT_MESSAGE_TRY_COUNT);
+    } catch (e) {
+      throw new Error(ERROR_MESSAGE_USER_INPUT);
+    }
   }
 
   processCarNames() {
