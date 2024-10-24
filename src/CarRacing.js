@@ -91,7 +91,7 @@ export default class CarRacing {
     }, []);
   }
 
-  start() {
+  startBroadCast() {
     if (this.#firstRace) this.#firstRace = false;
 
     Console.print("\n실행 결과");
