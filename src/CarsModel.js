@@ -6,7 +6,7 @@ class CarsModel {
 
   constructor(input) {
     const cars = input.split(",");
-    this.#carsMap = new Map(cars.map((car) => [car, 0]));
+    this.#carsMap = new Map(cars.map((car) => [car.trim(), 0]));
   }
 
   getCarNames() {
