@@ -18,11 +18,12 @@ class Validator {
   }
 
   static validCountInput(count) {
-    if (!count) {
+    const result = Number(count);
+    if (!result) {
       throw new Error(`${errorMessages.prefix} ${errorMessages.invalidCount}`);
     }
 
-    return count;
+    return result;
   }
 }
 
