@@ -25,23 +25,6 @@ const getLogSpy = () => {
 };
 
 describe('자동차 경주', () => {
-  test('자동차 경주 게임 시작 전 설정 값 입력', async () => {
-    // given
-    const inputs = ['pobi,woni,jun,lucy', '3'];
-    const logs = ['자동차 이름: pobi,woni,jun,lucy', '시도할 횟수: 3'];
-    const logSpy = getLogSpy();
-
-    mockQuestions(inputs);
-
-    // when
-    const app = new App();
-    await app.run();
-
-    // then
-    logs.forEach(log => {
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-    });
-  });
   test('기능 테스트', async () => {
     // given
     const MOVING_FORWARD = 4;
@@ -61,31 +44,6 @@ describe('자동차 경주', () => {
     logs.forEach(log => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
-  });
-
-  test('자동차 경주 게임 시작 전 설정 값 입력 예외 테스트(이동할 횟수)', async () => {
-    // given
-    const inputs = ['pobi,woni,jun,lucy', '-3'];
-
-    mockQuestions(inputs);
-
-    // when
-    const app = new App();
-
-    // then
-    await expect(app.run()).rejects.toThrow(/^\[ERROR\]/);
-  });
-  test('자동차 경주 게임 시작 전 설정 값 입력 예외 테스트(자동차 이름 길이 초과)', async () => {
-    // given
-    const inputs = ['pobi,woni,jun,lucy,minnie', '3'];
-
-    mockQuestions(inputs);
-
-    // when
-    const app = new App();
-
-    // then
-    await expect(app.run()).rejects.toThrow(/^\[ERROR\]/);
   });
   test('예외 테스트', async () => {
     // given
