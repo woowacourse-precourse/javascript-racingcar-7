@@ -13,6 +13,8 @@ export default class Controller {
     const count = await this.getCount();
 
     const cars = this.createCars(names);
+    this.printEmpty();
+    Console.print('실행 결과');
 
     this.runRace(cars, count);
     this.findWinner(cars);
