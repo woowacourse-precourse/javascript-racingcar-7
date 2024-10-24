@@ -35,7 +35,7 @@ export async function validateDuplicateName(carNameValue) {
 
 export async function validateMinCount(tryCountValue) {
 	const tryCount = parseInt(tryCountValue, 10);
-	if (tryCount < 1) {
+	if (tryCount < 1 || tryCountValue === "") {
 		throw new Error("[ERROR] 입력할 수 있는 시도 횟수는 최소 1회입니다.");
 	}
 }
