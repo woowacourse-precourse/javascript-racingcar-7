@@ -25,7 +25,7 @@ export function validateCount(count) {
     throw new Error('[ERROR]');
   }
 
-  if (isNaN(parsNumber)) {
+  if (Number.isNaN(parsNumber)) {
     throw new Error('[ERROR]');
   }
 
