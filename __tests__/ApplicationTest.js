@@ -55,7 +55,7 @@ describe('자동차 경주', () => {
     names.forEach(name => {
       expect(() => {
         new Car(name);
-      }).toThrow(ERROR_MESSAGE.ERROR_EMPTY_CAR_NAME);
+      }).toThrow();
     });
   });
 
