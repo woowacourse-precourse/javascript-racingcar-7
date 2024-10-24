@@ -1,6 +1,7 @@
 import Car from '../model/Car.js';
 import Race from '../model/Race.js';
 import View from '../view/View.js';
+import Validator from './../validator/Validator.js';
 
 class Controller {
   constructor() {
@@ -9,6 +10,7 @@ class Controller {
 
   async getCarName() {
     const carNames = await this.view.readUserInput('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)');
+    Validator.isValidCarName(carNames);
 
     return carNames.split(',').map((name) => name);
   }
