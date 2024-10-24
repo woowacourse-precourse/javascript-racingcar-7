@@ -18,9 +18,14 @@ class App {
   }
 
   async getInputCarNames() {
-    return await Console.readLineAsync(
+    const inputCar = await Console.readLineAsync(
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n'
     );
+
+    if (!inputCar || inputCar.trim() === '') {
+      throw new Error('[ERROR] 자동차 이름은 비어있을 수 없습니다.');
+    }
+    return inputCar;
   }
 
   async getInputCount() {
@@ -29,9 +34,19 @@ class App {
 
   initializeCars(inputCar) {
     let cars = {};
-    inputCar.split(',').forEach((car) => {
+    const carNames = inputCar.split(',').map((car) => car.trim());
+    carNames.forEach((car) => {
+      Console.print(cars);
       if (car.length > 5) {
         throw new Error('[ERROR] 자동차 이름은 5자 이하만 가능합니다.');
+      }
+      if (car === '') {
+        throw new Error('[ERROR] 자동차 이름은 공백일 수 없습니다.');
+      }
+      if (cars.hasOwnProperty(car)) {
+        throw new Error(
+          `[ERROR] 자동차 이름은 중복될 수 없습니다. 중복된 이름: ${car}`
+        );
       }
       cars[car] = 0;
     });
