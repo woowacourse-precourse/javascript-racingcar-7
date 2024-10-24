@@ -12,6 +12,7 @@ import {
   getAdvanceResult,
   printResult,
   executionLoop,
+  getWinner,
 } from "./utils/index.js";
 
 class App {
@@ -24,12 +25,14 @@ class App {
       const tryCount = await getTryCount();
       assertCondition(isNotPositiveInteger(tryCount), MESSAGES.INVALID_TRY_COUNT);
 
-      const { getCarsInfoEntries, incrementAdvanceCount } = carsInfoController(carNames);
+      const { getCarsInfoEntries, getAdvanceCounts, incrementAdvanceCount } = carsInfoController(carNames);
 
       executionLoop(tryCount, MESSAGES.EXECUTION_RESULT, [
         () => advanceCars(carNames, incrementAdvanceCount),
         () => printResult(getAdvanceResult(getCarsInfoEntries())),
       ]);
+
+      const result = getWinner(getAdvanceCounts(), getCarsInfoEntries());
     } catch (error) {
       Console.print(error.message);
       throw error;
