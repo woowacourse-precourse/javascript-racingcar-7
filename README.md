@@ -8,7 +8,7 @@
   - [x] 4 이상일 경우 전진
   - [x] 아니면 멈춤
 - [x] 입력이 유효한지 검증하는 Validator 구현
-- [ ] 자동차 경주를 play하는 CarRacingGame 클래스 구현
+- [x] 자동차 경주를 play하는 CarRacingGame 클래스 구현
   - [x] 매 횟수마다 이동 결과 출력
   - [x] 가장 많이 이동한 자동차를 `winners` 배열에 삽입
   - [ ] 우승자를 쉼표를 구분자로 출력
@@ -30,6 +30,8 @@
 ![image](https://github.com/user-attachments/assets/77455160-2f94-4740-b116-5eb141255299)
 
 ## 자동차 경주 클래스 다이어그램
+
+![image](https://github.com/user-attachments/assets/a4b5d5e5-b41c-4e28-bb58-0cdd8b8563f5)
 
 
 
