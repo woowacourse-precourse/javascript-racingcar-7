@@ -1,3 +1,4 @@
+import { Console } from '@woowacourse/mission-utils';
 import Car from './Car.js';
 import { CONSOLE_MESSAGE } from './constant.js';
 import {
@@ -74,7 +75,12 @@ class RacingGameManager {
   }
 
   #startGame() {
-    this.#cars.forEach((car) => car.move());
+    Console.print('\n실행 결과');
+    this.#cars.forEach((car) => {
+      car.move();
+      car.printCarPosition();
+    });
+    Console.print('');
   }
 }
 

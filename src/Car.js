@@ -1,4 +1,4 @@
-import { Random } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 import { CONSOLE_MESSAGE } from './constant.js';
 import { errorString } from './util.js';
 
@@ -32,6 +32,14 @@ class Car {
     if (canMove) {
       this.#position += 1;
     }
+  }
+
+  #switchPositionToDash() {
+    return '-'.repeat(this.#position);
+  }
+
+  printCarPosition() {
+    Console.print(`${this.#name} : ${this.#switchPositionToDash()}`);
   }
 }
 
