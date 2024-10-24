@@ -35,7 +35,10 @@ class App {
     return input;
   };
 
-  calculateMoveForward() {}
+  calculateWinner = (cars) => {
+    const maxForward = Math.max(...cars.map((car) => car.forward));
+    return cars.filter((car) => car.forward === maxForward);
+  };
 
   async run() {}
 }
