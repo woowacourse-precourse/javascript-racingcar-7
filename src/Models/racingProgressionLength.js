@@ -1,6 +1,6 @@
 import { Random } from '@woowacourse/mission-utils';
 import { printNotificationExecutionResult, printRacingProgressOutput } from '../Views/outputView.js';
-import { findWinner } from './findingwinners.js';
+import { findWinner } from './findingWinner.js';
 
 let progressionNumberForEachRacer = [];
 let progressionLengthForEachRacer = [];
