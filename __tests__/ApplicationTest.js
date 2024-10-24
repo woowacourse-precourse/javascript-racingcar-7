@@ -71,4 +71,16 @@ describe("자동차 경주", () => {
     expect(receivedInput).toEqual('pobi,woni');
   });
 
+  test('입력 받은 문자열 분리하기', () => {
+    // given
+    const input = ["pobi,woni"];
+    const expectedOutput = ["pobi", "woni"];
+       
+    // when
+    const receivedInput = SplitNames(input);
+
+    // then
+    expect(receivedInput).toEqual(expectedOutput);
+  });
+
 });
