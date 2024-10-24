@@ -1,7 +1,7 @@
 export class Car {
-  constructor(name, distance) {
+  constructor(name) {
     this.name = name;
-    this.distance = distance;
+    this.distance = 0;
   }
 
   move() {
