@@ -7,6 +7,11 @@ class Input {
     return carNames;
   }
 
+  static async createRound(message) {
+    const input = await this.#readInput(message);
+    return parseInt(input, 10);
+  }
+
   static #readInput(message) {
     return Console.readLineAsync(message + '\n');
   }
