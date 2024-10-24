@@ -4,6 +4,8 @@ import { checkValidNameLength } from "./Validator.js";
 class RaceManager {
     #MAX_NAME_LENGTH = Object.freeze(5);
 
+    #MAX_RACE_COUNT = Object.freeze(100);
+
     #carList;
 
     #racingCount;
@@ -19,7 +21,8 @@ class RaceManager {
             checkValidNameLength(name, this.#MAX_NAME_LENGTH);
         });
 
-        IOHandler.output(carNames);
+        const inputCount = await IOHandler.input("시도할 횟수는 몇 회인가요?");
+        IOHandler.output(`carNames: ${carNames}, inputCount: ${inputCount}`);
     }
 
     racing() {
