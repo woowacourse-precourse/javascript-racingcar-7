@@ -29,4 +29,17 @@ const checkDuplicateNames = function checkDuplicateNamesFunc(carNamesArray) {
   }
 };
 
-export { checkOnlyAlphabetAndComma, checkValidNameLength, checkDuplicateNames };
+const checkOnlyNumber = function checkOnlyNumberFunc(inputForTryCount) {
+  const numberRegex = /^[0-9]+$/;
+
+  if (!numberRegex.test(inputForTryCount)) {
+    throw new Error('[ERROR]: 유효하지 않은 입력: 숫자만 입력 가능합니다.');
+  }
+};
+
+export {
+  checkOnlyAlphabetAndComma,
+  checkValidNameLength,
+  checkDuplicateNames,
+  checkOnlyNumber,
+};
