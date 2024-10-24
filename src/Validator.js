@@ -2,7 +2,6 @@ class Validator {
   static ERROR_MSG = Object.freeze({
     INVALID_INPUT_DATA: '[ERROR] 입력 오류가 발생했어요.',
     EXSIT_WHITE_SPACE: "[ERROR] 공백(space, ' ')은 허용하지 않아요.",
-    ZREO_CAR_NAME: '[ERROR] 자동차 이름은 최소 1개 이상 입력되어야 해요.',
     EXCEED_CAR_NAME_COUNT:
       '[ERROR] 자동차 이름은 10,000개 이하로 입력되어야 해요.',
     EXCEED_CAR_NAME_LENGTH: '[ERROR] 자동차 이름은 5자 이하로 설정되어야 해요.',
