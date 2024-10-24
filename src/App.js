@@ -35,7 +35,16 @@ class App {
       // 차수별 진행결과를 출력합니다.
       Console.print(answer.join("\n"));
     }
+
+    // 가장 멀린간 자동차를 구합니다.
+    const arr = [...racersProcess.values()].map((v) => v.length);
+    let max = Math.max(...arr);
     const winner = [];
+    for (let [key, value] of racersProcess) {
+      if (value.length === max) {
+        winner.push(key);
+      }
+    }
     Console.print(`최종 우승자 : ${winner.join(", ")}`);
   }
 }
