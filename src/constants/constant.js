@@ -5,7 +5,6 @@ const CARRACE_START_CONDITION = Object.freeze({
 });
 
 const LETTER = Object.freeze({
-  split: ",",
   runResult: "-",
 });
 

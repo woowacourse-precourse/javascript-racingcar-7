@@ -15,7 +15,7 @@ class App {
   getRacingCarName = async () => {
     const input = await Console.readLineAsync(INPUT_MESSAGE.carName);
     validateInputBlank(input);
-    const carVariety = input.split(LETTER.split).map((carName) => {
+    const carVariety = input.split(",").map((carName) => {
       //validateRacingCarSeparator(carName);
       validateCarNameLength(carName);
       return carName;
@@ -59,9 +59,9 @@ class App {
 
   printWinner = (winner) => {
     Console.print(
-      `${OUTPUT_MESSAGE.winner} : ${winner
+      `${OUTPUT_MESSAGE.winner}${winner
         .map((winner) => winner.name)
-        .join(LETTER.split)}`
+        .join(", ")}`
     );
   };
 
