@@ -13,13 +13,15 @@ export class Game {
   }
   play() {
     for (let i = 0; i < this.count; i++) {
-      let movingCars = [];
-      Object.keys(this.record).map((key) => {
-        if (Random.pickNumberInRange(0, 9) >= 4) {
-          movingCars.push(key);
-        }
-      });
-      this.update(movingCars);
+      this.move();
     }
   }
+  move() {
+    let movingCars = [];
+    Object.keys(this.record).map((key) => {
+      Random.pickNumberInRange(0, 9) >= 4 && movingCars.push(key);
+    });
+    this.update(movingCars);
+  }
+  print() {}
 }
