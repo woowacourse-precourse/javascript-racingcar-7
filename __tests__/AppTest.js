@@ -36,7 +36,7 @@ describe('자동차 경주', () => {
   test('여러 대의 자동차는 서로 독립적이다', () => {
     const NAMES = ['pobi', 'woni', 'jun'];
 
-    const carList = app.MakeCars(NAMES);
+    const carList = app.makeCars(NAMES);
     expect(carList[0].getName()).toBe(NAMES[0]);
     expect(carList[1].getName()).toBe(NAMES[1]);
   });

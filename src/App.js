@@ -8,10 +8,10 @@ class App {
   }
 
   async run() {
-    this.carList = this.MakeCars([]);
+    this.carList = this.makeCars([]);
   }
 
-  MakeCars(names) {
+  makeCars(names) {
     return names.map((name) => new Car(name));
   }
 
