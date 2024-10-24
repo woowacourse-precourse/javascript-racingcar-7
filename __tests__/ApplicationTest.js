@@ -141,4 +141,26 @@ describe("자동차 경주", () => {
         // then
         await expect(app.run()).rejects.toThrow("[ERROR]");
     });
+
+    test("기능 테스트,");
+
+    test("기능 테스트, 공동 우승자 출력 테스트", async () => {
+        // given
+        const MOVING_FORWARD = 4;
+        const inputs = ["pobi,woni", "1"];
+        const logs = ["pobi : -", "woni : -", "최종 우승자 : pobi, jun"];
+        const logSpy = getLogSpy();
+
+        mockQuestions(inputs);
+        mockRandoms([MOVING_FORWARD, MOVING_FORWARD]);
+
+        // when
+        const app = new App();
+        await app.run();
+
+        // then
+        logs.forEach((log) => {
+            expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+        });
+    });
 });
