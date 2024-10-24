@@ -1,11 +1,12 @@
 import { Console } from "@woowacourse/mission-utils";
+import { MESSAGES } from "./constants/message.js";
 
 export function inputCars() {
-  return Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
+  return Console.readLineAsync(MESSAGES.INPUT_CAR_NAMES);
 }
 
 export function inputTrialCount() {
-  return Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+  return Console.readLineAsync(MESSAGES.INPUT_TRIAL_COUNT);
 }
 
 export function printCarsMove(carsMap) {
@@ -17,5 +18,5 @@ export function printCarsMove(carsMap) {
 }
 
 export function printWinners(winnerCars) {
-  Console.print(`\n최종 우승자 : ${winnerCars.join(", ")}`);
+  Console.print(MESSAGES.PRINT_WINNERS + winnerCars.join(", "));
 }
