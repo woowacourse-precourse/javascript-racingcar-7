@@ -1,5 +1,6 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 
+// 경주를 실행하는 함수
 export function raceCars(carNames, tryCount, getRandomNumber) {
   const carPositions = {};
 
@@ -17,14 +18,19 @@ export function raceCars(carNames, tryCount, getRandomNumber) {
       }
     });
 
-    // 각 라운드마다 전진 상태 출력
-    carNames.forEach((car) => {
-      MissionUtils.Console.print(`${car} : ${"-".repeat(carPositions[car])}`);
-    });
-    MissionUtils.Console.print(""); // 라운드 끝날 때 줄바꿈
+    // 전진 상태 출력 함수 호출
+    printRoundResults(carNames, carPositions);
   }
 }
 
+// 각 라운드의 결과를 출력하는 함수
+function printRoundResults(carNames, carPositions) {
+  carNames.forEach((car) => {
+    MissionUtils.Console.print(`${car} : ${"-".repeat(carPositions[car])}`);
+  });
+  MissionUtils.Console.print(""); // 라운드 끝날 때 줄바꿈
+}
+
 export function getRandomNumber() {
-  return Math.floor(Math.random() * 10);
+  return MissionUtils.Random.pickNumberInRange(0, 9);
 }
