@@ -1,7 +1,7 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
-import Car from "./Car.js";
-import InputValidator from "./InputValidator.js";
-import View from "./View.js";
+import Car from "../domain/Car.js";
+import InputValidator from "../utils/InputValidator.js";
+import View from "../view/View.js";
 
 export default class CarRacingController {
   constructor() {
