@@ -3,6 +3,7 @@ import { Console } from '@woowacourse/mission-utils';
 class App {
   constructor() {
     this.names = '';
+    this.number = null;
   }
 
   async getCarNames() {
@@ -24,9 +25,14 @@ class App {
     });
   }
 
+  async getNumber() {
+    this.number = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+  }
+
   async run() {
     await this.getCarNames();
     this.validateCarNames();
+    await this.getNumber();
   }
 }
 
