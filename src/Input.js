@@ -16,31 +16,31 @@ class Input {
   static #CAR_NAME_REGEXP = /^\w{1,5}$/;
   static #SEPARATOR = ",";
 
-  #carNames;
-  #tryCount;
+  #rawCarNames;
+  #rawTryCount;
 
   constructor() {
-    this.#carNames = "";
-    this.#tryCount = "";
+    this.#rawCarNames = "";
+    this.#rawTryCount = "";
   }
 
   async getUserInput() {
     try {
-      this.#carNames = await readLineAsync(INPUT_MESSAGE_CAR_NAMES);
-      this.#tryCount = await readLineAsync(INPUT_MESSAGE_TRY_COUNT);
+      this.#rawCarNames = await readLineAsync(INPUT_MESSAGE_CAR_NAMES);
+      this.#rawTryCount = await readLineAsync(INPUT_MESSAGE_TRY_COUNT);
     } catch (e) {
       throw new Error(ERROR_MESSAGE_USER_INPUT);
     }
   }
 
   processCarNames() {
-    const carNameArray = splitIntoArray(this.#carNames, Input.#SEPARATOR);
+    const carNameArray = splitIntoArray(this.#rawCarNames, Input.#SEPARATOR);
     this.validateCarNameArray(carNameArray);
     return carNameArray;
   }
 
   processTryCount() {
-    const tryCount = +this.#tryCount;
+    const tryCount = +this.#rawTryCount;
     validatePositiveInteger(tryCount);
     return tryCount;
   }
