@@ -14,9 +14,10 @@ function getNames(str) {
 
 function checkNames(arr) {
   let isError = false;
-
   arr.forEach((name) => {
-    if (name.length > 5) isError = true;
+    if (name.length > 5 || name.length < 1) {
+      isError = true;
+    }
   });
   if (arr.length < 2) {
     isError = true;
