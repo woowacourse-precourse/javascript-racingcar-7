@@ -1,6 +1,7 @@
 import { INVALID_NUMBER, TOO_BIG_NUMBER } from '../constants/Error';
+
 class NumValidation {
-  isValidNum(tryCount) {
+  static isValidNum(tryCount) {
     if (tryCount === '0') {
       throw new Error(INVALID_NUMBER);
     }
