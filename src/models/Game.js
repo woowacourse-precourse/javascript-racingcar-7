@@ -1,6 +1,38 @@
 import { Random } from '@woowacourse/mission-utils';
 import Car from './Car.js';
 
-class Game {}
+class Game {
+  #cars;
+  #count;
+
+  constructor(carNames, count) {
+    this.#cars = this.#createCars(carNames);
+    this.#count = count;
+  }
+
+  #createCars(carNames) {
+    return carNames.map((name) => new Car(name));
+  }
+
+  play(callback) {
+    // callback 매개변수 추가
+    for (let i = 0; i < this.#count; i++) {
+      this.#moveCars();
+      callback(this.#cars); // 매 라운드마다 현재 상태 전달
+    }
+  }
+
+  #moveCars() {
+    this.#cars.forEach((car) => {
+      const randomNumber = Random.pickNumberInRange(0, 9);
+      car.move(randomNumber);
+    });
+  }
+
+  getWinners() {
+    const maxPosition = Math.max(...this.#cars.map((car) => car.getPosition()));
+    return this.#cars.filter((car) => car.getPosition() === maxPosition);
+  }
+}
 
 export default Game;
