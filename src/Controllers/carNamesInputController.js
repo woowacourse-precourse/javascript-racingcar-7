@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import carNamesLengthValidator from '../Models/validations/carNamesValidator.js';
+import { isCarNamesInputNotEmpty, carNamesLengthValidator } from '../Models/validations/carNamesValidator.js';
 
 const validateCarNamesLength = spliteAndtrimmedCarName => {
   if (carNamesLengthValidator(spliteAndtrimmedCarName)) {

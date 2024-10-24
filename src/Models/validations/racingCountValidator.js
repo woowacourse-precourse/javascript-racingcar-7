@@ -1,3 +1,9 @@
+const isRacingCountInputEmpty = racingCountInput => {
+  if (racingCountInput === '') {
+    throw new Error(ERROR_MESSAGES.EMPTY_INPUT);
+  }
+};
+
 const validateRacingCount = racingCarInput => {
   if (!isNaN(racingCarInput)) {
     return true;
@@ -7,4 +13,4 @@ const validateRacingCount = racingCarInput => {
   }
 };
 
-export default validateRacingCount;
+export { isRacingCountInputEmpty, validateRacingCount };
