@@ -70,13 +70,7 @@ class App {
       for (const carName of carNameArray) {
         const newPosition = this.moveCarForward(carTraceMap.get(carName));
         carTraceMap.set(carName, newPosition);
-
-        const repeatedTraceChracter = getRepeatedString(
-          this.#TRACE_CHARACTER,
-          carTraceMap.get(carName)
-        );
-
-        print(`${carName} : ${repeatedTraceChracter}`);
+        this.printCarPosition(carName, newPosition);
       }
     }
     return carTraceMap;
@@ -91,6 +85,15 @@ class App {
 
   getMoveForward(num) {
     return num >= 4;
+  }
+
+  printCarPosition(carName, position) {
+    const repeatedTraceChracter = getRepeatedString(
+      this.#TRACE_CHARACTER,
+      position
+    );
+
+    print(`${carName} : ${repeatedTraceChracter}`);
   }
 }
 
