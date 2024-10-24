@@ -1,7 +1,7 @@
 import RacingGame from "../src/RacingGame";
 
-const mockGame = (repeatCount) => {
-  const game = new RacingGame(repeatCount);
+const mockGame = (repeatCount, cars) => {
+  const game = new RacingGame(repeatCount, cars);
   game.play = jest.fn();
   return game;
 };
@@ -11,7 +11,8 @@ describe("경주 게임", () => {
     test("경주 게임이 있고 반복 횟수가 2회인 경우, 경주 게임을 시작하면, 게임을 두 번 반복한다.", () => {
       // given
       const REPEAT_COUNT = 2;
-      const game = mockGame(REPEAT_COUNT);
+      const CARS = "pobi,ham";
+      const game = mockGame(REPEAT_COUNT, CARS);
 
       // when
       game.start();

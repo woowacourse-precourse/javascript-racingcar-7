@@ -1,8 +1,11 @@
 export default class RacingGame {
   repeatCount;
 
-  constructor(repeatCount) {
+  cars;
+
+  constructor(repeatCount, cars) {
     this.repeatCount = repeatCount;
+    this.cars = cars;
   }
 
   start() {
