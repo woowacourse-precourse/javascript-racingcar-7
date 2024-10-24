@@ -6,8 +6,6 @@ class Winner {
   }
 
   checkRanking(resultObj) {
-    console.log(resultObj);
-
     const sortedDistance = resultObj
       .map((result) => result.distance.length)
       .sort((a, b) => b - a);
