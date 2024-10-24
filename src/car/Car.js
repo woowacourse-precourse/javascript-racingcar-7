@@ -1,3 +1,5 @@
+import getRandomNum from '../utils/getRandomNum.js';
+
 class Car {
   constructor(name, moveCount = 0) {
     this.name = name;
@@ -10,6 +12,12 @@ class Car {
 
   getMoveCount() {
     return this.moveCount;
+  }
+
+  move() {
+    if (getRandomNum() >= 4) {
+      this.moveCount += 1;
+    }
   }
 }
 
