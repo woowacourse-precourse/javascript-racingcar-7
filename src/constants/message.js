@@ -22,7 +22,7 @@ const ERROR_MESSAGE = Object.freeze({
 
   attemptNumber: {
     invalidType: `${PREFIX_ERROR} 숫자를 입력해주십시오.`,
-    invalidInteger: `${PREFIX_ERROR} 정수를 입력해주십시오.`,
+    invalidInteger: `${PREFIX_ERROR} 양의 정수를 입력해주십시오.`,
   },
 });
 
