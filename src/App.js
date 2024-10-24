@@ -8,8 +8,13 @@ class App {
     const carNameArr = await carNameList.split(",");
     await this.validateCarName(carNameArr);
 
+    const attemptCount = await InputView.attemptCount();
+
     const race = new Race(carNameArr);
-    race.progressCar();
+
+    for (let count = 0; count < attemptCount; count++) {
+      race.progressCar();
+    }
   }
 
   async validateCarName(arr) {
