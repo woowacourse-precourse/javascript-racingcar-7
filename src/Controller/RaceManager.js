@@ -20,4 +20,11 @@ export class RaceManager {
       printDistance(car);
     });
   }
+
+  getMaxDistance() {
+    return this.carArray.reduce(
+      (acc, current) => (acc > current.distance ? acc : current.distance),
+      0,
+    );
+  }
 }
