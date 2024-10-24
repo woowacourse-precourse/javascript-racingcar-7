@@ -25,7 +25,7 @@ class InputValidator {
         if (tryInputCount === "") {
             InputValidator.#throwError(InputValidator.ERROR_MESSAGES.TRY_COUNT_EMPTY);
         } else if (isNaN(tryInputCount) || tryInputCount < 1) {
-            InputValidator.#throwError(InputValidator.ERROR_MESSAGES.LESS_THAN_ZERO);
+            InputValidator.#throwError(InputValidator.ERROR_MESSAGES.INVALID_TRY_COUNT);
         }
     }
 
