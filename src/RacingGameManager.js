@@ -27,6 +27,12 @@ class RacingGameManager {
     if (!input || !input.includes(',')) {
       throw new Error(errorString(CONSOLE_MESSAGE.MIN_CAR_COUNT_ERROR));
     }
+
+    const carNames = input.split(',');
+    const deduplicatedCarNames = new Set(carNames);
+    if (carNames.length !== deduplicatedCarNames.size) {
+      throw new Error(errorString(CONSOLE_MESSAGE.DUPLICATED_CAR_NAME_ERROR));
+    }
   }
 }
 
