@@ -2,6 +2,7 @@ import { GAME_MESSAGE } from '../constants/messages.js';
 import User from '../user/User.js';
 import outputView from '../view/outputView.js';
 import Car from '../model/Car.js';
+import { validateInput } from '../Validator/validator.js';
 
 class Game {
   constructor() {
@@ -11,6 +12,7 @@ class Game {
 
   async process() {
     const carNameInput = await this.user.readCarNameInput();
+    validateInput(carNameInput);
     this.initializeCars(carNameInput.split(','));
     const attempts = await this.user.readAttemptsInput();
     outputView.printMessage(`\n${GAME_MESSAGE.RESULT}`);
@@ -33,6 +35,7 @@ class Game {
     this.cars.forEach((car) => car.move());
   }
 
+  /**@todo print 해주는 애들의 담당은 Game이 아닌듯 */
   printRaceStatus() {
     this.cars.forEach((car) => {
       outputView.printMessage(`${car.name} : ${'-'.repeat(car.position)}`);
