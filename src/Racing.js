@@ -43,6 +43,17 @@ class Racing {
       Console.print(`${name} : ${distanceGraph}`);
     });
   }
+
+  #findWinners() {
+    const finalResult = this.#result;
+    const distanceList = finalResult.map(({ distance }) => distance);
+    const farthestDistance = Math.max(...distanceList);
+    const winners = finalResult.filter(
+      (car) => car.distance === farthestDistance,
+    );
+
+    return winners;
+  }
 }
 
 export default Racing;
