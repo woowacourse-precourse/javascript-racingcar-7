@@ -1,6 +1,6 @@
 import CarsModel from "./CarsModel.js";
 import { inputCars, inputTrialCount, printCarsMove, printWinners } from "./interfaceUtils.js";
-import { isCarNamesValid } from "./validation.js";
+import { isCarNamesValid, isTrialInputValid } from "./validation.js";
 
 class App {
   async run() {
@@ -11,6 +11,8 @@ class App {
 
     const trialCountUserInput = await inputTrialCount();
     const trialCount = Number(trialCountUserInput);
+
+    if (!isTrialInputValid(trialCount)) throw new Error("[ERROR]");
 
     for (let i = 0; i < trialCount; i++) {
       carsModel.moveCars();
