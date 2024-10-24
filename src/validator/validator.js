@@ -37,9 +37,20 @@ const checkOnlyNumber = function checkOnlyNumberFunc(inputForTryCount) {
   }
 };
 
+const checkValidRange = function checkValidRangeFunc(inputForTryCount) {
+  const checkNumber = Number(inputForTryCount);
+
+  if (checkNumber < 1 || checkNumber > 300) {
+    throw new Error(
+      '[ERROR]: 유효하지 않은 횟수: 1이상 300이하의 숫자만 입력 가능합니다.',
+    );
+  }
+};
+
 export {
   checkOnlyAlphabetAndComma,
   checkValidNameLength,
   checkDuplicateNames,
   checkOnlyNumber,
+  checkValidRange,
 };
