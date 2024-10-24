@@ -1,5 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
-import { INPUT_MESSAGE } from "./constants/message.js";
+import { INPUT_MESSAGE, OUTPUT_MESSAGE } from "./constants/message.js";
 import Racingcar from "./model/racingcar.js";
 import {
   validateInputBlank,
@@ -38,6 +38,14 @@ class App {
   calculateWinner = (cars) => {
     const maxForward = Math.max(...cars.map((car) => car.forward));
     return cars.filter((car) => car.forward === maxForward);
+  };
+
+  printRacingResult = (cars, count) => {
+    Console.print(OUTPUT_MESSAGE.racingResult);
+
+    Array.from({ length: count }).forEach(() => {
+      this.printMoveForwardResult(cars);
+    });
   };
 
   async run() {}
