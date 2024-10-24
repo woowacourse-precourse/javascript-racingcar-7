@@ -31,7 +31,7 @@ async function inputCars() {
 function validateInput(cars) {
   cars = cars.forEach((car) => {
     if (car == "") {
-      throw Error(["[ERROR] : 잘못된 입력입니다."]);
+      throw Error(["[ERROR] : 공백은 입력될 수 없습니다."]);
     }
     if (car.length > 5) {
       throw Error(["[ERROR] : 자동차 이름은 5자 이하만 가능합니다."]);

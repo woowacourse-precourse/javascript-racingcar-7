@@ -119,7 +119,7 @@ describe("자동차 경주", () => {
     const app = new App();
   
     // then
-    await expect(app.run()).rejects.toThrow("[ERROR] : 잘못된 입력입니다.");
+    await expect(app.run()).rejects.toThrow("[ERROR] : 공백은 입력될 수 없습니다.");
   });
 
   test.each([
