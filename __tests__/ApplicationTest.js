@@ -146,7 +146,7 @@ describe("자동차 경주", () => {
     });
   });
 
-  describe("입력 1번 예외 테스트", () => {
+  describe("자동차 이름 예외 테스트", () => {
     test("자동차 이름이 5글자 초과인 경우", async () => {
       const inputs = ["pobi,javaji"];
       mockQuestions(inputs);
@@ -173,7 +173,7 @@ describe("자동차 경주", () => {
     });
   });
 
-  describe("입력 2번 예외 테스트", () => {
+  describe("시도 횟수 예외 테스트", () => {
     test("양수가 아닌 경우", async () => {
       const inputs = ["pobi,java", 0];
       mockQuestions(inputs);
