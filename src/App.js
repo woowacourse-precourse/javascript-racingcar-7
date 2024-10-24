@@ -5,8 +5,11 @@ class App {
     try {
       const names = await App.getCarNames();
       const trials = await App.getMoveCount();
+
+      const results = this.startRace(names, trials);
+      console.log(results);
     } catch (error) {
-      console.error(error.message);
+      throw new Error('[ERROR]');
     }
   }
 
@@ -32,6 +35,20 @@ class App {
       }
       return trials;
     });
+  }
+
+  startRace(names, trials) {
+    const results = names.map((name) => {
+      let distance = 0;
+      for (let i = 0; i < trials; i++) {
+        const randomValue = MissionUtils.Random.pickNumberInRange(0, 9);
+        if (randomValue >= 4) {
+          distance++;
+        }
+      }
+      return { name, distance };
+    });
+    return results;
   }
 }
 
