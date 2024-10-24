@@ -11,7 +11,7 @@
 - [x] 자동차 경주를 play하는 CarRacingGame 클래스 구현
   - [x] 매 횟수마다 이동 결과 출력
   - [x] 가장 많이 이동한 자동차를 `winners` 배열에 삽입
-  - [ ] 우승자를 쉼표를 구분자로 출력
+  - [x] 우승자를 쉼표를 구분자로 출력
 - [x] 사용자가 잘못된 값을 입력할 경우 `[ERROR]`로 시작하는 메시지와 함께 `Error`를 발생시킨 후 애플리케이션 종료
   - [x] 자동차 이름이 영어 대소문자, 한글이 아닌 문자가 포함된 경우 `[ERROR] 자동차 이름은 한글, 영문 대소문자만 가능합니다.`
   - [x] 자동차 이름이 5자 넘으면 `[ERROR] 자동차 이름을 5자 이하로 입력해주세요.`
@@ -27,13 +27,11 @@
 
 ## 자동차 전진/멈춤 시퀀스 다이어그램
 
-![image](https://github.com/user-attachments/assets/77455160-2f94-4740-b116-5eb141255299)
+![image](https://github.com/user-attachments/assets/7c436e48-63fb-4814-bf49-b21eefbe322a)
 
 ## 자동차 경주 클래스 다이어그램
 
-![image](https://github.com/user-attachments/assets/a4b5d5e5-b41c-4e28-bb58-0cdd8b8563f5)
-
-
+![image](https://github.com/user-attachments/assets/b327f20d-492a-4ab0-a971-dfac8f8ac09c)
 
 # 테스트 케이스
 
