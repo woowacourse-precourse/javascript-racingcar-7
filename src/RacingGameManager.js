@@ -27,6 +27,8 @@ class RacingGameManager {
     );
     this.#validateTryCountInput(tryCountInput);
     this.#tryCount = Number(tryCountInput);
+
+    this.#startGame();
   }
 
   #validateCarInput(input) {
@@ -69,6 +71,10 @@ class RacingGameManager {
         ),
       );
     }
+  }
+
+  #startGame() {
+    this.#cars.forEach((car) => car.move());
   }
 }
 
