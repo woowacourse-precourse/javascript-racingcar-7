@@ -41,10 +41,16 @@ class App {
     };
     Console.print(randomNum());
 
-    const userNames = checkNames();
-
-    const progress = Array.from({ length: userNames.length }, () => "");
-    Console.print(progress);
+    const makeTable = () => {
+      const info = {};
+      const userNames = checkNames();
+      userNames.forEach((key) => {
+        info[key] = "";
+      });
+      return info;
+    };
+    const table = makeTable();
+    Console.print(table);
   }
 }
 
