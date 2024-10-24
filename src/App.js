@@ -56,8 +56,18 @@ class App {
         return `${carName} : ${"-".repeat(position)}`;
     }
 
+    printResult() {
+        const racingCarNames = this.getRacingCarNames();
+        for (const carName of racingCarNames) {
+            const carPosition = this.getRacingCarPosition(carName);
+            Console.print(this.makePrintableResult(carName, carPosition));
+        }
+
+        Console.print("\n");
+    }
+
     makeRandomNumber(min, max) {
-        Random.pickNumberInRange(min, max);
+        return Random.pickNumberInRange(min, max);
     }
 
     isPossibleMove() {
@@ -68,8 +78,31 @@ class App {
         this.racingCars[carName] = position;
     }
 
+    getRacingCarPosition(carName) {
+        return this.racingCars[carName];
+    }
+
+    getRacingCarNames() {
+        return Object.keys(this.racingCars);
+    }
+
+    progressRacing() {
+        const racingCarNames = this.getRacingCarNames();
+        for (const carName of racingCarNames) {
+            if (this.isPossibleMove()) {
+                const carPosition = this.getRacingCarPosition(carName);
+                this.saveRacingCarPosition(carName, carPosition + 1);
+            }
+        }
+    }
+
     solve(userInputCarNames, userInputTryCount) {
         this.saveRacingCars(userInputCarNames);
+
+        while (userInputTryCount--) {
+            this.progressRacing();
+            this.printResult();
+        }
     }
 
     async run() {
