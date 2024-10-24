@@ -27,6 +27,14 @@ class App {
   getRandomNumber() {
     return Random.pickNumberInRange(0, 9);
   }
+
+  moveCar() {
+    const randomNumber = this.getRandomNumber();
+    if (randomNumber >= 4) {
+      return true;
+    }
+    return false;
+  }
 }
 
 export default App;
