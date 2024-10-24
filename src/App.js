@@ -15,8 +15,8 @@ class App {
   getRacingCarName = async () => {
     const input = await Console.readLineAsync(INPUT_MESSAGE.carName);
     validateInputBlank(input);
+    validateRacingCarSeparator(input);
     const carVariety = input.split(",").map((carName) => {
-      //validateRacingCarSeparator(carName);
       validateCarNameLength(carName);
       return carName;
     });

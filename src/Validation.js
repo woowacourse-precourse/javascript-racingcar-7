@@ -34,7 +34,7 @@ const validateRacingCountNumber = (input) => {
 };
 
 const validateRacingCarSeparator = (input) => {
-  if (input.indexOf(LETTER.split) == -1) {
+  if (input.indexOf(",") == -1) {
     throw new Error(ERROR_MESSAGE.carName.invalidSeparator);
   }
 };
