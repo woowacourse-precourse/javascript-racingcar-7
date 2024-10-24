@@ -54,4 +54,4 @@
 ├── Validator.js ⬅️입력 검증을 처리하는 클래스  
 ├── Input.js ⬅️사용자로부터 입력을 처리하는 클래스  
 ├── Race.js ⬅️경주 로직을 처리하는 클래스  
-└── Constants.js ⬅️상수들 정의하는 클래스
+└── Constants.js ⬅️상수들 정의하는 파일
