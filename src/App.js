@@ -69,7 +69,8 @@ class App {
     for (let i = 0; i < tryCount; i++) {
       for (const carName of carNameArray) {
         const randomNum = pickNumberInRange(0, 9);
-        const isMoveForward = randomNum >= 4;
+
+        const isMoveForward = this.getMoveForward(randomNum);
         if (isMoveForward)
           carTraceMap.set(carName, carTraceMap.get(carName) + 1);
 
@@ -82,6 +83,10 @@ class App {
       }
     }
     return carTraceMap;
+  }
+
+  getMoveForward(num) {
+    return num >= 4;
   }
 }
 
