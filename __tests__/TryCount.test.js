@@ -32,4 +32,14 @@ describe("시도 횟수 입력", () => {
 			"[ERROR] 입력할 수 있는 시도 횟수는 최대 10회입니다."
 		);
 	});
+
+	test("시도 횟수 미입력", async () => {
+		// given
+		const tryCount = "";
+
+		// when, then
+		await expect(validateMinCount(tryCount)).rejects.toThrow(
+			"[ERROR] 입력할 수 있는 시도 횟수는 최소 1회입니다."
+		);
+	});
 });
