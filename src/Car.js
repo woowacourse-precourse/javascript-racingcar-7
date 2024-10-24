@@ -4,6 +4,8 @@ class Car {
     #name;
     #position;
 
+    static #CAR_POSITION_SYMBOL = "-";
+
     constructor(name) {
         this.#name = name;
         this.#position = 0;
@@ -14,7 +16,7 @@ class Car {
     }
 
     printPosition() {
-        Console.print(`${this.#name} : ${"-".repeat(this.#position)}`);
+        Console.print(`${this.#name} : ${Car.#CAR_POSITION_SYMBOL.repeat(this.#position)}`);
     }
 
     get name() {
