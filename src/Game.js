@@ -13,7 +13,7 @@ export class Game {
   }
 
   #printRoundResult(roundResult) {
-    roundResult.map((car) => console.log(car.name,':','-'.repeat(car.length)));
+    roundResult.map((car) => MissionUtils.Console.print(`${car.name} : ${'-'.repeat(car.length)}`));
   }
 
   #game(car) {
