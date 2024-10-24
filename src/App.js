@@ -6,8 +6,10 @@ class App {
     const inputCount = await this.getInputCount();
 
     let cars = this.initializeCars(inputCar);
+    Console.print('실행 결과');
 
     this.runRace(cars);
+    this.printRaceStatus(cars);
   }
 
   async getInputCarNames() {
@@ -37,6 +39,12 @@ class App {
       if (randomValue >= 4) {
         cars[car] += 1;
       }
+    });
+  }
+
+  printRaceStatus(cars) {
+    Object.keys(cars).forEach((car) => {
+      Console.print(`${car} : ${'-'.repeat(cars[car])}`);
     });
   }
 }
