@@ -27,8 +27,8 @@ class Racing {
     );
 
     rounds.forEach((round) => {
-      const distances = this.#try();
-      this.#result = distances;
+      const result = this.#try();
+      this.#result = result;
     });
   }
 
