@@ -105,7 +105,31 @@ describe("자동차 경주", () => {
     const receivedInput = await inputPlayTime();
   
     // then
-    expect(receivedInput).toEqual(5);
+    expect(receivedInput).toEqual("5");
   });
+
+  test('입력된 이동할 횟수가 정수인지 판별', async () => {
+    // given
+    const input = ["3.5"];
+    mockQuestions(input);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]: 입력은 양의 정수만 가능합니다.");
+  })
+
+  test('입력된 이동할 횟수가 양수인지 판별', async () => {
+    // given
+    const input = ["-3"];
+    mockQuestions(input);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]: 입력은 양의 정수만 가능합니다.");
+  })
 
 });

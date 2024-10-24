@@ -19,7 +19,7 @@ const eachNameLengthValidator = (nameList) => {
 }
 
 const attemptCountValidator = (input) => {
-    if (isValidAttemptCount(input)) {
+    if (!isValidAttemptCount(input)) {
         throwError('입력은 양의 정수만 가능합니다.')
     }
 }
