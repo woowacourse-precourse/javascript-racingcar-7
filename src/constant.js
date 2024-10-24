@@ -10,4 +10,5 @@ export const errorMessages = {
 export const regex = {
   validInputName: /^[가-힣a-zA-Z]+(?:,[가-힣a-zA-Z]+)*$/,
   invalidCarInputDelimiter: /^[가-힣a-zA-Z]+(?:[^,][가-힣a-zA-Z]+)*$/,
+  invalidCountInput: /[^1-9]/,
 };
