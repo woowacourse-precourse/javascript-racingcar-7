@@ -15,3 +15,7 @@ export function printCarsMove(carsMap) {
     Console.print(`${carName} : ${lengthDash}`);
   }
 }
+
+export function printWinners(winnerCars) {
+  Console.print(`\n최종 우승자 : ${winnerCars.join(", ")}`);
+}

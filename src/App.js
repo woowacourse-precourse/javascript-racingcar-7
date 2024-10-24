@@ -1,4 +1,4 @@
-import { inputCars, inputTrialCount, printCarsMove } from "./interfaceUtils.js";
+import { inputCars, inputTrialCount, printCarsMove, printWinners } from "./interfaceUtils.js";
 import { isCarNamesValid } from "./validationUtils.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
@@ -22,6 +22,14 @@ class App {
       }
       printCarsMove(carsMap);
     }
+
+    const winningLength = Math.max(...carsMap.values());
+    const winnerCars = [];
+    for (const [carName, carCount] of carsMap) {
+      if (carCount === winningLength) winnerCars.push(carName);
+    }
+
+    printWinners(winnerCars);
   }
 }
 
