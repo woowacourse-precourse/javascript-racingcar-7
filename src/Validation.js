@@ -26,4 +26,16 @@ const validateRacingCountType = (input) => {
   }
 };
 
-export { validateInputBlank, validateCarNameOverlap, validateCarNameLength };
+const validateRacingCountNumber = (input) => {
+  if (!NUMBER_REGEX.test(input)) {
+    throw new Error(ERROR_MESSAGE.attemptNumber.invalidInteger);
+  }
+};
+
+export {
+  validateInputBlank,
+  validateCarNameOverlap,
+  validateCarNameLength,
+  validateRacingCountType,
+  validateRacingCountNumber,
+};
