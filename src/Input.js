@@ -1,5 +1,8 @@
 import {
   ERROR_MESSAGE_CAR_NAME_OVER_FIVE,
+  ERROR_MESSAGE_CAR_NAME_OVER_MAX,
+  ERROR_MESSAGE_CAR_NAME_UNDER_MIN,
+  ERROR_MESSAGE_OVER_MAX_LENGTH,
   INPUT_MESSAGE_CAR_NAMES,
   INPUT_MESSAGE_TRY_COUNT,
 } from "./constants";
@@ -7,10 +10,10 @@ import {
   readLineAsync,
   splitIntoArray,
   validatePositiveInteger,
-  validateStringArrayLength,
 } from "./utils";
 
 class Input {
+  static #MIN_CAR_NAME_LENGTH = 1;
   static #MAX_CAR_NAME_LENGTH = 5;
 
   #carNames;
@@ -34,10 +37,12 @@ class Input {
   }
 
   validateCarNameLength(carNameArray) {
-    try {
-      validateStringArrayLength(carNameArray, Input.#MAX_CAR_NAME_LENGTH);
-    } catch (e) {
-      throw new Error(ERROR_MESSAGE_CAR_NAME_OVER_FIVE);
+    for (const carName of carNameArray) {
+      const carNameLength = carName.length;
+      if (carNameLength < Input.#MIN_CAR_NAME_LENGTH)
+        throw new Error(ERROR_MESSAGE_CAR_NAME_UNDER_MIN);
+      if (carNameLength > Input.#MAX_CAR_NAME_LENGTH)
+        throw new Error(ERROR_MESSAGE_CAR_NAME_OVER_MAX);
     }
   }
 }
