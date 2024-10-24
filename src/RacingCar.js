@@ -1,5 +1,5 @@
 import { userInput } from "./utils/MissionUtils.js";
-import { validateNameLength } from "./utils/validate.js";
+import { validateDuplicateName, validateNameLength } from "./utils/validate.js";
 
 class RacingCar {
 	async runRacingCar() {
@@ -23,6 +23,7 @@ class RacingCar {
 	async validateInput(carNameValue, tryCountValue) {
 		await validateNameLength(carNameValue);
 		await validateMaxCar(carNameValue);
+		await validateDuplicateName(carNameValue);
 	}
 }
 

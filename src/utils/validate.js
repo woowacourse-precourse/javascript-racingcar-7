@@ -23,3 +23,12 @@ export async function validateMinCar(carNameValue) {
 		throw new Error("[ERROR] 자동차 이름이 입력되지 않았습니다.");
 	}
 }
+
+export async function validateDuplicateName(carNameValue) {
+	const carNames = carNameValue.split(",");
+	const deduplicatedCarName = new Set(carNames);
+
+	if (carNames.length !== deduplicatedCarName.size) {
+		throw new Error("[ERROR] 중복된 자동차 이름이 있습니다.");
+	}
+}
