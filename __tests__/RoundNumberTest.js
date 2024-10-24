@@ -1,24 +1,6 @@
 import { mockQuestions } from "./testUtils.js";
-import { ROUND_ERROR } from "../src/lib/errors.js";
-import { GAME_NUMBERS } from "../src/lib/constants.js";
 import { read } from "../src/lib/utils.js";
-
-const handleNumberErrors = (inputNumber) => {
-  // 숫자가 아닌 값을 입력한 경우
-  if (!Number.isInteger(inputNumber)) {
-    throw new Error(ROUND_ERROR.IS_DIGIT);
-  }
-
-  // MIN ROUNDS 보다 작은 수를 입력한 경우
-  if (inputNumber < GAME_NUMBERS.MIN_ROUNDS) {
-    throw new Error(ROUND_ERROR.MIN_ROUNDS);
-  }
-
-  // MAX ROUNDS 보다 큰 수를 입력한 경우
-  if (inputNumber > GAME_NUMBERS.MAX_ROUNDS) {
-    throw new Error(ROUND_ERROR.MAX_ROUNDS);
-  }
-};
+import { handleNumberErrors } from "../src/lib/validations.js";
 
 const validateRoundNumber = async (type, message) => {
   const input = await read();
