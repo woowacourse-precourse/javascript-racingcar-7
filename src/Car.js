@@ -10,7 +10,7 @@ const MOVING_VALUE = Object.freeze({
   STOP: 0,
 });
 
-export class Car {
+class Car {
   constructor(name) {
     this.name = name;
     this.position = 0;
@@ -30,8 +30,4 @@ export class Car {
   }
 }
 
-const racingCars = ['test1', 'test2'].map((name) => {
-  return new Car(name);
-});
-
-racingCars.forEach((car) => car.actionOneTurn());
+export default Car;
