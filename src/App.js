@@ -8,8 +8,15 @@ class App {
 
   async enterInput() {
     const namesString = await Console.readLineAsync(SYSTEM_MESSAGE.ENTER_NAME);
-    this.names = namesString.split(',');
+    const namesArray = namesString.split(',');
+
+    this.carsForward = namesArray.reduce((acc, item) => {
+      acc[item] = 0;
+      return acc;
+    }, {});
+
     this.count = await Console.readLineAsync(SYSTEM_MESSAGE.ENTER_COUNT);
+
   }
 }
 
