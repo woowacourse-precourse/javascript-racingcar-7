@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, MissionUtils } from "@woowacourse/mission-utils";
 
 class App {
   async run() {
@@ -44,6 +44,11 @@ class App {
         Console.print(userNames[j] + " : ");
       }
     }
+
+    const randomNum = () => {
+      return MissionUtils.Random.pickNumberInRange(0, 9);
+    };
+    Console.print(randomNum());
   }
 }
 
