@@ -27,5 +27,20 @@ describe("자동차", () => {
         expect(car.dist).toEqual(1);
       },
     );
+
+    test(
+      "자동차가 있고 무작위 이동 결과가 4 미만인 경우, 자동차가 움직이려고 시도하면, 이동 거리가 변하지 않는다.",
+      () => {
+        // given
+        car.init("ham");
+        mockRandoms(3);
+
+        // when
+        car.move();
+
+        // then
+        expect(car.dist).toEqual(0);
+      },
+    );
   });
 });
