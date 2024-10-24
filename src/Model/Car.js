@@ -1,17 +1,15 @@
 import { Random } from '@woowacourse/mission-utils';
+import { throwError, ERROR_MESSAGES } from './Error.js';
+import CAR_SETTINGS from '../Config/SettingValues.js';
 
-export class Car {
+export default class Car {
   #carName;
 
   #position;
 
-  static MIN_MOVE_THRESHOLD = 4;
-
-  static MAX_RANDOM_VALUE = 10;
-
   constructor(carName) {
     if (typeof carName !== 'string') {
-      throw new Error('유효하지 않은 이름입니다.');
+      throwError(ERROR_MESSAGES.INVALID_NAME);
     }
     this.#carName = carName;
     this.#position = 0;
@@ -27,8 +25,10 @@ export class Car {
 
   moveForward() {
     if (
-      Random.pickNumberInRange(0, Car.MAX_RANDOM_VALUE) >=
-      Car.MIN_MOVE_THRESHOLD
+      Random.pickNumberInRange(
+        CAR_SETTINGS.MIN_RANDOM_VALUE,
+        CAR_SETTINGS.MAX_RANDOM_VALUE,
+      ) >= CAR_SETTINGS.MIN_MOVE_THRESHOLD
     ) {
       this.#position += 1;
     }

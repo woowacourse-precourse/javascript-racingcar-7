@@ -1,4 +1,4 @@
-import { Car } from '../Model/Car.js';
+import Car from '../Model/Car.js';
 import { getInput, printWinners, printCarPositions } from '../View/View.js';
 import { validateCarNames, validateRounds } from './Validation.js';
 import { getWinners } from '../Util/util.js';

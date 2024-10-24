@@ -41,7 +41,7 @@ const exceptionTestCases = [
   {
     description: '시도 횟수가 0일 때 예외 처리 테스트',
     inputs: ['pobi,woni,honux', '0'],
-    expectedError: `${ERROR_PREFIX}${ERROR_MESSAGES.ONLY_POSITIVE_INTEGER_ALLOWED}`,
+    expectedError: `${ERROR_PREFIX}${ERROR_MESSAGES.ONLY_POSITIVE_ALLOWED}`,
   },
 
   {
@@ -52,7 +52,7 @@ const exceptionTestCases = [
   {
     description: '시도 횟수가 음수일 경우 예외 처리 테스트',
     inputs: ['pobi,woni,honux', '-3'],
-    expectedError: `${ERROR_PREFIX}${ERROR_MESSAGES.ONLY_POSITIVE_INTEGER_ALLOWED}`,
+    expectedError: `${ERROR_PREFIX}${ERROR_MESSAGES.ONLY_POSITIVE_ALLOWED}`,
   },
 
   {
@@ -63,7 +63,7 @@ const exceptionTestCases = [
   {
     description: '시도 횟수가 숫자가 아닌 문자열일 경우 예외 처리 테스트',
     inputs: ['pobi,woni,honux', 'three'],
-    expectedError: `${ERROR_PREFIX}${ERROR_MESSAGES.ONLY_POSITIVE_INTEGER_ALLOWED}`,
+    expectedError: `${ERROR_PREFIX}${ERROR_MESSAGES.ONLY_NUMBER_ALLOWED}`,
   },
   {
     description: '이름에 길이가 너무 긴 경우 예외 처리 테스트',
@@ -78,7 +78,7 @@ const exceptionTestCases = [
   {
     description: '시도 횟수가 소수일 경우 예외 처리 테스트',
     inputs: ['pobi,woni,honux', '3.5'],
-    expectedError: `${ERROR_PREFIX}${ERROR_MESSAGES.ONLY_POSITIVE_INTEGER_ALLOWED}`,
+    expectedError: `${ERROR_PREFIX}${ERROR_MESSAGES.ONLY_INTEGER_ALLOWED}`,
   },
 ];
 

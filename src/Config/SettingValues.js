@@ -1,0 +1,7 @@
+const CAR_SETTINGS = {
+  MIN_MOVE_THRESHOLD: 4,
+  MIN_RANDOM_VALUE: 0,
+  MAX_RANDOM_VALUE: 10,
+};
+
+export default CAR_SETTINGS;

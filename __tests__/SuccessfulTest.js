@@ -62,6 +62,23 @@ const validNameTestCases = [
       '최종 우승자 : pobi, @😀, honux',
     ],
   },
+  {
+    description: '4를 입력했을때 전진, 3이면 중지인지 테스트',
+    inputs: ['pobi,@😀,honux', '3'],
+    randoms: [4, 4, 4, 3, 3, 3, 4, 4, 4],
+    expectedLogs: [
+      'pobi : -',
+      '@😀 : -',
+      'honux : -',
+      'pobi : -',
+      '@😀 : -',
+      'honux : -',
+      'pobi : --',
+      '@😀 : --',
+      'honux : --',
+      '최종 우승자 : pobi, @😀, honux',
+    ],
+  },
 ];
 
 describe('SuccessfulTestcase', () => {

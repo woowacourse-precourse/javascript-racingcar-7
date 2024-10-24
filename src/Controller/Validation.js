@@ -1,6 +1,6 @@
 import { ERROR_MESSAGES, throwError } from '../Model/Error.js';
 import { checkDuplicate } from '../Util/util.js';
-import { consecutiveDelimiterPattern, isNumber } from '../Util/regex.js';
+import { consecutiveDelimiterPattern } from '../Util/regex.js';
 
 function validateCarNames(carNames) {
   if (consecutiveDelimiterPattern.test(carNames)) {
@@ -25,25 +25,23 @@ function validateCarNames(carNames) {
 }
 
 // TODO: REFACTOR THIS
-function validateRounds(rounds) {
-  const number = Number(rounds);
-  if (isNaN(number)) {
-    throw new Error('[ERROR] 입력은 숫자여야 합니다.');
+function validateRounds(input) {
+  const rounds = Number(input);
+  if (Number.isNaN(rounds)) {
+    throwError(ERROR_MESSAGES.ONLY_NUMBER_ALLOWED);
   }
 
   // 정수가 아닌 경우
-  if (!Number.isInteger(number)) {
-    throw new Error('[ERROR] 입력은 정수여야 합니다.');
+  if (!Number.isInteger(rounds)) {
+    throwError(ERROR_MESSAGES.ONLY_INTEGER_ALLOWED);
   }
 
   // 음수인 경우
-  if (number < 0) {
-    throw new Error('[ERROR] 입력은 양수여야 합니다.');
+  if (rounds <= 0) {
+    throwError(ERROR_MESSAGES.ONLY_POSITIVE_ALLOWED);
   }
+
   const parsedRounds = parseInt(rounds, 10);
-  if (isNaN(parsedRounds) || parsedRounds < 1) {
-    throwError(ERROR_MESSAGES.INVALID_INPUT_ROUND);
-  }
   return parsedRounds;
 }
 
