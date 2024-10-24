@@ -11,8 +11,15 @@ class Controller {
     return carNames.split(',').map((name) => name);
   }
 
+  async getMoveTimes() {
+    const moveTimes = await this.view.readUserInput('시도할 횟수는 몇 회인가요?');
+
+    return moveTimes;
+  }
+
   async startGame() {
     const carNames = await this.getCarName();
+    const moveTimes = await this.getMoveTimes();
   }
 }
 
