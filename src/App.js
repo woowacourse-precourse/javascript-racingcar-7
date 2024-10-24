@@ -6,10 +6,13 @@ class App {
     const inputCount = await this.getInputCount();
 
     let cars = this.initializeCars(inputCar);
-    Console.print('실행 결과');
+    Console.print('\n실행 결과');
 
-    this.runRace(cars);
-    this.printRaceStatus(cars);
+    for (let count = 0; count < inputCount; count++) {
+      this.runRace(cars);
+      this.printRaceStatus(cars);
+      Console.print('');
+    }
   }
 
   async getInputCarNames() {
