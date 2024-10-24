@@ -2,7 +2,7 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 import { SEPARATOR } from "../constants/Constants.js";
 
 const INPUT_NAME_MESSAGE = '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분) ';
-const LENGTH_ERROR_MESSAGE = '[ERROR] 이름은 1~5자로 입력해주세요.';
+const INPUT_ERROR_MESSAGE = '[ERROR] 공백 입력은 불가합니다.';
 const SEPARATOR_ERROR_MESSAGE = '[ERROR] 이름은 쉼표(,) 기준으로 구분해야 합니다.';
 
 export class InputName {
@@ -18,7 +18,7 @@ export class InputName {
   }
 
   #checkEmpty(input) {
-    if (input.trim() === '') throw new Error(LENGTH_ERROR_MESSAGE);
+    if (input.trim() === '') throw new Error(INPUT_ERROR_MESSAGE);
   }
 
   #checkSeparator(input) {
