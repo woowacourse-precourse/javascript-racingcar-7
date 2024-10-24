@@ -3,6 +3,7 @@ import {
   ERROR_MESSAGE_CAR_NAME_OVER_MAX,
   ERROR_MESSAGE_CAR_NAME_UNDER_MIN,
   ERROR_MESSAGE_OVER_MAX_LENGTH,
+  ERROR_MESSAGE_USER_INPUT,
   INPUT_MESSAGE_CAR_NAMES,
   INPUT_MESSAGE_TRY_COUNT,
 } from "./constants";
@@ -15,9 +16,15 @@ import {
 class Input {
   static #MIN_CAR_NAME_LENGTH = 1;
   static #MAX_CAR_NAME_LENGTH = 5;
+  static #SEPARATOR = ",";
 
   #carNames;
   #tryCount;
+
+  constructor() {
+    this.#carNames = "";
+    this.#tryCount = "";
+  }
 
   async getUserInput() {
     this.#carNames = await readLineAsync(INPUT_MESSAGE_CAR_NAMES);
@@ -25,7 +32,7 @@ class Input {
   }
 
   processCarNames() {
-    const carNameArray = splitIntoArray(this.#carNames, ",");
+    const carNameArray = splitIntoArray(this.#carNames, Input.#SEPARATOR);
     this.validateCarNameLength(carNameArray);
     return carNameArray;
   }
