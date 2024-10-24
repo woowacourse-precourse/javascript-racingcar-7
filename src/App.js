@@ -1,6 +1,7 @@
 import { InputView } from "./View/InputView.js";
 import Race from "./Race.js";
 import { Validator } from "./Validator.js";
+import { OutputView } from "./View/OutputView.js";
 
 class App {
   async run() {
@@ -12,8 +13,12 @@ class App {
     await this.validateAttemptCount(attemptCount);
 
     const race = new Race(carNameArr);
+
+    OutputView.progressResult();
     for (let count = 0; count < attemptCount; count++) {
-      race.progressCar();
+      await race.progressCar();
+      OutputView.attemptResult(await race.attemptResult());
+      OutputView.lineBreak();
     }
   }
 

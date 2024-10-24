@@ -1,3 +1,4 @@
+import { Console } from "@woowacourse/mission-utils";
 import Car from "./Car.js";
 import { NUMBER } from "./Constants/constants.js";
 
@@ -13,6 +14,16 @@ class Race {
       const randomNumber = await car.getRandomNumber();
       await this.checkProgress(randomNumber, car);
     }
+  }
+
+  async attemptResult() {
+    let attemptResultArr = [];
+
+    for (const car of this.#cars) {
+      attemptResultArr.push(await car.getAttemptResult());
+    }
+
+    return attemptResultArr;
   }
 
   async checkProgress(randomNumber, car) {

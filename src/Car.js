@@ -7,15 +7,21 @@ class Car {
 
   constructor(name) {
     this.#name = name;
-    this.#position = 0;
+    this.#position = "";
   }
 
   async getRandomNumber() {
     return Random.pickNumberInRange(NUMBER.RANDOM_MIN, NUMBER.RANDOM_MAX);
   }
 
+  async getAttemptResult() {
+    let positionDash = `${this.#name} : ${this.#position}`;
+
+    return positionDash;
+  }
+
   async progress() {
-    this.#position += NUMBER.PROGRESS;
+    this.#position += "-";
   }
 }
 
