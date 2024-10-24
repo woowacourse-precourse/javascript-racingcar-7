@@ -19,7 +19,7 @@ class App {
     async getInputTryCount() {
         try {
             const message = "시도할 횟수는 몇회인가요?\n";
-            const inputTryCount = await Console.readIntAsync(message);
+            const inputTryCount = await Console.readLineAsync(message);
             return inputTryCount;
         } catch (error) {}
     }
