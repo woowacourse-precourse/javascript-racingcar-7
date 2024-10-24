@@ -112,4 +112,13 @@ describe("자동차 경주", () => {
       expect.stringContaining("최종 우승자 : pobi, woni")
     );
   });
+
+  test("자동차 이름이 5자를 초과할 경우 에러를 출력한다.", async () => {
+    const inputs = ["pobiyy,woni", "1"];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
 });

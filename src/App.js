@@ -14,6 +14,13 @@ class App {
     }
 
     const racingCarNamesArray = this.parseRacingCarNames(racingCarNames);
+
+    racingCarNamesArray.forEach((car) => {
+      if (car.length > 5) {
+        this.printError("자동차 이름은 5자 이하만 가능합니다.");
+      }
+    });
+
     const moveCntPerCar = {};
     racingCarNamesArray.forEach((car) => {
       moveCntPerCar[car] = 0;
