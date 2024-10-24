@@ -1,9 +1,10 @@
+import Car from "./Car.js";
 import Console from "./Console.js";
 import Parser from "./utils/Parser.js";
 import Validator from "./utils/Validator.js";
 
 export default class Game{
-    #cars = []
+    #carList = []
     #attemptCount = 0
     #console = new Console();
 
@@ -15,6 +16,11 @@ export default class Game{
         Validator.validateCarNameWhitespace(carNamesArray)
         Validator.validateDuplicateCarName(carNamesArray)
         Validator.validateCarNameLength(carNamesArray)
+
+        carNamesArray.forEach(carName => {
+            const car = new Car(carName)
+            this.#carList.push(car)
+        });
 
         this.#attemptCount = await this.#console.getAttemptCount();
     }
