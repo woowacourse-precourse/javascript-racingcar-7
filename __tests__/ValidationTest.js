@@ -47,4 +47,15 @@ describe("자동차 이름 입력 유효성 검사", () => {
       ERROR_MESSAGE.carName.invalidOverlap
     );
   });
+
+  test("자동차 이름 5글자 초과 시 오류 발생", async () => {
+    const input = ["hakuku,haku"];
+
+    const app = new App();
+    mockQuestions(input);
+
+    await expect(async () => await app.getRacingCarName()).rejects.toThrow(
+      ERROR_MESSAGE.carName.invalidLength
+    );
+  });
 });
