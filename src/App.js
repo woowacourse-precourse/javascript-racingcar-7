@@ -13,7 +13,7 @@ import {
 class App {
   async run() {
     const { carNameArray, tryCount } = await this.#getInput();
-    const winnerCarArray = this.#raceRun(carNameArray, tryCount);
+    const winnerCarArray = this.#runRace(carNameArray, tryCount);
     this.#printOutput(winnerCarArray);
   }
 
@@ -29,7 +29,7 @@ class App {
     };
   }
 
-  #raceRun(carNameArray, tryCount) {
+  #runRace(carNameArray, tryCount) {
     const race = new Race(carNameArray, tryCount);
     race.run();
     return race.getWinnerArray;
