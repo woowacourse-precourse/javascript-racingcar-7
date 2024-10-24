@@ -25,4 +25,15 @@ describe("자동차 이름 입력 유효성 검사", () => {
       JSON.stringify([new Racingcar("haku"), new Racingcar("haul")])
     );
   });
+
+  test("자동차 이름 공백 입력 시 오류 발생", async () => {
+    const input = [];
+
+    const app = new App();
+    mockQuestions(input);
+
+    await expect(async () => await app.getRacingCarName()).rejects.toThrow(
+      ERROR_MESSAGE.blank
+    );
+  });
 });
