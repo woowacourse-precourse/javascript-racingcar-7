@@ -12,8 +12,14 @@ class App {
     );
     let lenMovedArr = new Array(n).fill(0);
 
-    let resultCar = '';
     Console.print('\n실행 결과');
+    this.runCompetiton(lenMovedArr, carArr, n);
+
+    Console.print(
+      `최종 우승자 : ${this.getWinner(lenMovedArr, carArr).join(',')}`,
+    );
+  }
+  runCompetiton(lenMovedArr, carArr, n) {
     for (let i = 0; i < n; i++) {
       carArr.forEach((car, idx) => {
         lenMovedArr[idx] += this.getIsForward(); //전진 상황 업데이트
@@ -21,8 +27,19 @@ class App {
       });
       Console.print(' ');
     }
+  }
+  getWinner(lenMovedArr, carArr) {
+    //최대값 index구하기
+    const maxScore = Math.max(...lenMovedArr);
+    let resultArr = [];
 
-    Console.print(`최종 우승자 : ${resultCar}`);
+    lenMovedArr.forEach((elem, idx) => {
+      if (elem == maxScore) {
+        resultArr.push(carArr[idx]);
+      }
+    });
+
+    return resultArr;
   }
 
   getIsForward() {
