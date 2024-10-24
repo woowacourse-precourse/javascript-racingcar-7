@@ -5,6 +5,7 @@ import {
 	validateMaxCar,
 	validateNameLength,
 	validateMinCount,
+	validateMaxCount,
 } from "./utils/validate.js";
 
 class RacingCar {
@@ -36,6 +37,7 @@ class RacingCar {
 
 	async validateTryCount(tryCountValue) {
 		await validateMinCount(tryCountValue);
+		await validateMaxCount(tryCountValue);
 	}
 }
 

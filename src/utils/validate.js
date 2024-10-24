@@ -39,3 +39,10 @@ export async function validateMinCount(tryCountValue) {
 		throw new Error("[ERROR] 입력할 수 있는 시도 횟수는 최소 1회입니다.");
 	}
 }
+
+export async function validateMaxCount(tryCountValue) {
+	const tryCount = parseInt(tryCountValue, 10);
+	if (tryCount > 10) {
+		throw new Error("[ERROR] 입력할 수 있는 시도 횟수는 최대 10회입니다.");
+	}
+}
