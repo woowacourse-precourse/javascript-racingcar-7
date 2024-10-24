@@ -86,7 +86,7 @@ describe("자동차 경주", () => {
 
   test('각각의 이름의 길이가 5글자 이하', async () => {
     // given
-    const input = "pobi,woowahanwoni";
+    const input = ["pobi,woowahanwoni"];
     mockQuestions(input);
 
     // when
