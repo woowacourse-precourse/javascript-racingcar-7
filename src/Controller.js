@@ -15,6 +15,7 @@ export default class Controller {
     const cars = this.createCars(names);
 
     this.runRace(cars, count);
+    this.findWinner(cars);
   }
 
   runRace(cars, count) {
@@ -25,6 +26,15 @@ export default class Controller {
       }
       this.view.printEmpty();
     }
+  }
+
+  findWinner(cars) {
+    const max = Math.max(...cars.map((car) => car.step));
+
+    const MaxCars = cars.filter((car) => car.step === max);
+    const winners = MaxCars.map((car) => car.name);
+
+    this.view.printWinner(winners);
   }
 
   runSingleRound(car) {

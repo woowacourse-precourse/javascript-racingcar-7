@@ -9,6 +9,10 @@ export default class View {
     }
   }
 
+  printWinner(winners) {
+    Console.print(`최종 우승자 : ${winners.join(', ')}`);
+  }
+
   printStep(name, step) {
     Console.print(`${name} : ${'-'.repeat(step)}`);
   }
