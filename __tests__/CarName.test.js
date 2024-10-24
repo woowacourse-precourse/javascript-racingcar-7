@@ -1,4 +1,5 @@
 import {
+	validateDuplicateName,
 	validateMaxCar,
 	validateMinCar,
 	validateNameLength,
@@ -40,6 +41,16 @@ describe("자동차 이름", () => {
 		// when, then;
 		await expect(validateMinCar(carNames)).rejects.toThrow(
 			"[ERROR] 자동차 이름이 입력되지 않았습니다."
+		);
+	});
+
+	test("자동차 이름 중복 입력", async () => {
+		// given
+		const carNames = "ayden,ayden";
+
+		// when, then;
+		await expect(validateDuplicateName(carNames)).rejects.toThrow(
+			"[ERROR] 중복된 자동차 이름이 있습니다."
 		);
 	});
 });
