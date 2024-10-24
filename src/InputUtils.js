@@ -7,3 +7,7 @@ export async function getCarName() {
 export function splitCarName(name) {
   return name.split(',');
 }
+
+export async function getAttemptCount() {
+  return await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?');
+}

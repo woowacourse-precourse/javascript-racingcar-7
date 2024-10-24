@@ -2,7 +2,7 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 
 import Car from './Car.js';
 
-import { getCarName, splitCarName } from './InputUtils.js';
+import { getCarName, splitCarName, getAttemptCount } from './InputUtils.js';
 
 class App {
   constructor() {
@@ -13,6 +13,7 @@ class App {
     this.carList = this.makeCars([]);
     const carNames = await getCarName();
     const splittedCarName = splitCarName(carNames);
+    const attemptCount = await getAttemptCount();
   }
 
   makeCars(names) {
