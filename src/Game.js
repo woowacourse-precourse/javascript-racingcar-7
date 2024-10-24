@@ -8,8 +8,12 @@ export class Game {
   play(attemptCount, cars) {
     for (let i = 0; i < attemptCount; i++) {
       const roundResult = cars.map((car) => this.#game(car));
-      console.log(roundResult);
+      this.#printRoundResult(roundResult);
     }
+  }
+
+  #printRoundResult(roundResult) {
+    roundResult.map((car) => console.log(car.name,':','-'.repeat(car.length)));
   }
 
   #game(car) {
