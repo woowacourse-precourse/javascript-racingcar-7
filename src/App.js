@@ -8,6 +8,7 @@ class App {
 
     const game = new Game(carNames, round);
     game.play();
+    game.printResult();
   }
 }
 
