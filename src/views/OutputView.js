@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { OUTPUT_MESSAGES } from '../utils/constants';
+import { OUTPUT_MESSAGES } from '../utils/constants.js';
 
 export default class OutputView {
   static printGameStart() {

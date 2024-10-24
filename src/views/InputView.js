@@ -8,7 +8,7 @@ export default class InputView {
   }
 
   static async requestAttempts() {
-    const input = await Console.readLineAsync(INPUT_MESSAGES.REQUEST_ATTEMPTS);
+    const input = await Console.readLineAsync(INPUT_MESSAGES.REQUEST_ATTEMPT_COUNT);
     return input.trim();
   }
 }
