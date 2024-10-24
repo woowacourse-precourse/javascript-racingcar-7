@@ -4,8 +4,24 @@ class App {
   async run() {
     const racingCarNames = await this.readRacingCarNames();
     const attemptCount = await this.readAttemptCount();
+
     const racingCarNamesArray = this.parseRacingCarNames(racingCarNames);
-    const randomNumber = this.getRandomNumber();
+    const moveCntPerCar = {};
+    racingCarNamesArray.forEach((car) => {
+      moveCntPerCar[car] = 0;
+    });
+
+    Console.print("\n실행 결과");
+    for (let i = 0; i < attemptCount; i += 1) {
+      racingCarNamesArray.forEach((car) => {
+        if (this.moveCar()) {
+          moveCntPerCar[car] += 1;
+        }
+      });
+
+      this.printAttemptResult(moveCntPerCar);
+      Console.print("\n");
+    }
   }
 
   async readRacingCarNames() {
@@ -34,6 +50,16 @@ class App {
       return true;
     }
     return false;
+  }
+
+  printAttemptResult(moveCntPerCar) {
+    const lines = [];
+
+    Object.entries(moveCntPerCar).forEach(([car, moveCnt]) => {
+      lines.push(`${car} : ${"-".repeat(moveCnt)}`);
+    });
+
+    Console.print(lines.join("\n"));
   }
 }
 
