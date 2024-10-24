@@ -55,6 +55,14 @@ class App {
     });
   };
 
+  printWinner = (winner) => {
+    Console.print(
+      `${OUTPUT_MESSAGE.winner} : ${winner
+        .map((winner) => winner.name)
+        .join(LETTER.split)}`
+    );
+  };
+
   async run() {}
 }
 
