@@ -9,7 +9,9 @@ class Car {
   /**
    * 자동차를 움직이는 함수
    */
-  move() {}
+  move() {
+    this.#distance += 1;
+  }
 
   get name() {
     return this.#name;
