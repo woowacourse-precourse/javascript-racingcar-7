@@ -1,7 +1,13 @@
 export default class Validator {
+  static validateCarNames(carNamesArray) {
+    this.validateCarNameWhitespace(carNamesArray);
+    this.validateCarNameLength(carNamesArray);
+    this.validateDuplicateCarName(carNamesArray);
+  }
+
   static validateCarNameWhitespace(carNamesArray) {
     carNamesArray.forEach((carName) => {
-      if (carName.trim() == '') {
+      if (carName == '') {
         throw new Error('[ERROR] 자동차 이름에 공백을 입력하였습니다.');
       }
     });
@@ -9,27 +15,28 @@ export default class Validator {
 
   static validateCarNameLength(carNamesArray) {
     carNamesArray.forEach((carName) => {
-      if (carName.length >= 6) {
-        throw new Error('[ERROR] 자동차 이름이 6자 이상입니다.');
+      if (carName.length > 5) {
+        throw new Error('[ERROR] 자동차 이름은 5자 이하로 입력해야 합니다.');
       }
     });
   }
 
   static validateDuplicateCarName(carNamesArray) {
-    const carsNameCheckArray = [];
+    const carNamesSet = new Set();
 
     carNamesArray.forEach((carName) => {
-      if (carsNameCheckArray.includes(carName.trim())) {
-        throw new Error(`[ERROR] ${carName.trim()}는 중복되는 이름입니다.`);
+      if (carNamesSet.has(carName)) {
+        throw new Error(`[ERROR] 중복된 자동차 이름: ${carName}`);
       }
-      carsNameCheckArray.push(carName.trim());
+
+      carNamesSet.add(carName);
     });
   }
 
-  static validateAttemptCount(attemptCount){
-    const isValidate = new RegExp('^\\d+$').test(attemptCount)
-    if(!isValidate || Number(attemptCount)===0){
-        throw new Error('[ERROR] 시도할 횟수는 양의 정수를 입력해주세요.');
+  static validateAttemptCount(attemptCount) {
+    const isValid = /^\d+$/.test(attemptCount);
+    if (!isValid || Number(attemptCount) === 0) {
+      throw new Error('[ERROR] 시도 횟수는 1 이상의 정수를 입력해야 합니다.');
     }
   }
 }
