@@ -1,4 +1,4 @@
-import GameController from './GameController.js';
+import GameController from './controller/GameController.js';
 
 class App {
   #controller;
@@ -6,9 +6,7 @@ class App {
   async run() {
     this.#controller = new GameController();
 
-    await this.#controller.init();
-    this.#controller.execute();
-    this.#controller.result();
+    await this.#controller.play();
   }
 }
 

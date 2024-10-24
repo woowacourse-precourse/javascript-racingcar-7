@@ -2,12 +2,8 @@ import { Console } from '@woowacourse/mission-utils';
 import { OUTPUT_MESSAGE } from '../constant/index.js';
 
 class OutputView {
-  static printBlankLine() {
-    Console.print('');
-  }
-
-  static printArrayWithNewLine(arr) {
-    Console.print(`${arr.join('\n')}`);
+  static printRaceResult(raceResult) {
+    Console.print(raceResult.map((inner) => inner.join('\n')).join('\n\n'));
   }
 
   static racingStartIntro() {
@@ -15,7 +11,7 @@ class OutputView {
   }
 
   static printWinner(winners) {
-    Console.print(OUTPUT_MESSAGE.FINAL_WINNER + winners.join(','));
+    Console.print(`\n${OUTPUT_MESSAGE.FINAL_WINNER + winners.join(',')}`);
   }
 }
 

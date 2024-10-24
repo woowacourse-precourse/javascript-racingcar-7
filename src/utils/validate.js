@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from './constant/index.js';
+import { ERROR_MESSAGE } from '../constant/index.js';
 
 export const carNameValidate = (carNameArr) => {
   if (carNameArr.some((name) => name === '')) {
