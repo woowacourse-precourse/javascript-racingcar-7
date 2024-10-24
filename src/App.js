@@ -6,6 +6,8 @@ class App {
   async run() {
     const carNamesInput = await this.getCarNamesInput();
     const moveAttemptCountInput = await this.getMoveAttemptCount();
+
+    const carsData = this.changeCarNamesInputToCarsData(carNamesInput);
   }
 
   async getCarNamesInput() {
@@ -20,6 +22,12 @@ class App {
     );
 
     return input.replace(/ /g, '');
+  }
+
+  changeCarNamesInputToCarsData(carNamesInput) {
+    const carNames = carNamesInput.split(',');
+
+    return carNames.map((name) => ({ name, position: 0 }));
   }
 }
 
