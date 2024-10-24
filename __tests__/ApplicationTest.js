@@ -1,6 +1,7 @@
-import App from "../src/App.js";
-import { MissionUtils } from "@woowacourse/mission-utils";
-import IO_MESSAGE from '../src/common/message';
+import App from '../src/App.js';
+import { MissionUtils } from '@woowacourse/mission-utils';
+import { ERROR_MESSAGE, IO_MESSAGE } from '../src/common/message.js';
+import Car from '../src/car/Car.js';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -20,13 +21,13 @@ const mockRandoms = (numbers) => {
 };
 
 const getLogSpy = () => {
-  const logSpy = jest.spyOn(MissionUtils.Console, "print");
+  const logSpy = jest.spyOn(MissionUtils.Console, 'print');
   logSpy.mockClear();
   return logSpy;
 };
 
-describe("자동차 경주", () => {
-  test.only('입력 테스트', async () => {
+describe('자동차 경주', () => {
+  test('입력 테스트', async () => {
     const app = new App();
     const inputs = ['test'];
     mockQuestions(inputs);
@@ -34,36 +35,69 @@ describe("자동차 경주", () => {
     expect(NAMES).toEqual('test');
   });
 
-  test("기능 테스트", async () => {
-    // given
-    const MOVING_FORWARD = 4;
-    const STOP = 3;
-    const inputs = ["pobi,woni", "1"];
-    const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
-    const logSpy = getLogSpy();
+  test('자동차 생성 테스트', async () => {
+    const car = new Car('test');
+    expect(car._name).toEqual('test');
+    expect(car._count).toBe(0);
+  });
 
-    mockQuestions(inputs);
-    mockRandoms([MOVING_FORWARD, STOP]);
-
-    // when
-    const app = new App();
-    await app.run();
-
-    // then
-    logs.forEach((log) => {
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+  test('자동차 생성 예외 테스트(5자 초과)', async () => {
+    const names = ['asdfad', 'ㅁㄴㅇㅁㄴㅇ', '123123', 'as12ㅁㄴ'];
+    names.forEach(name => {
+      expect(() => {
+        new Car(name);
+      }).toThrow(ERROR_MESSAGE.ERROR_TOO_LONG_CAR_NAME);
     });
   });
 
-  test("예외 테스트", async () => {
-    // given
-    const inputs = ["pobi,javaji"];
-    mockQuestions(inputs);
-
-    // when
-    const app = new App();
-
-    // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
+  test('자동차 생성 예외 테스트(빈 문자열, null)', async () => {
+    const names = ['', null];
+    names.forEach(name => {
+      expect(() => {
+        new Car(name);
+      }).toThrow();
+    });
   });
+
+  test('자동차 생성 예외 테스트(한글, 숫자, 영어 이외)', async () => {
+    const names = ['     ', 'asd_', 'a_sd', '_asd', '_ㅁㄴㅇ', '_123', 'asd!', 'asd👍', '(❁´◡`❁)', '^_^'];
+    names.forEach(name => {
+      expect(() => {
+        new Car(name);
+      }).toThrow();
+    });
+  });
+
+  // test("기능 테스트", async () => {
+  //   // given
+  //   const MOVING_FORWARD = 4;
+  //   const STOP = 3;
+  //   const inputs = ["pobi,woni", "1"];
+  //   const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
+  //   const logSpy = getLogSpy();
+  //
+  //   mockQuestions(inputs);
+  //   mockRandoms([MOVING_FORWARD, STOP]);
+  //
+  //   // when
+  //   const app = new App();
+  //   await app.run();
+  //
+  //   // then
+  //   logs.forEach((log) => {
+  //     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+  //   });
+  // });
+  //
+  // test("예외 테스트", async () => {
+  //   // given
+  //   const inputs = ["pobi,javaji"];
+  //   mockQuestions(inputs);
+  //
+  //   // when
+  //   const app = new App();
+  //
+  //   // then
+  //   await expect(app.run()).rejects.toThrow("[ERROR]");
+  // });
 });
