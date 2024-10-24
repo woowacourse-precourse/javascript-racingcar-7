@@ -1,6 +1,8 @@
 import { Console } from "@woowacourse/mission-utils";
 
 class App {
+    racingCars = {};
+
     validateCarName(carNameList) {
         const carNames = carNameList.trim().split(",");
 
@@ -44,7 +46,19 @@ class App {
         return parsedTryCount;
     }
 
-    solve(userInputCarName, userInputTryCount) {}
+    saveRacingCars(carNames) {
+        carNames.forEach((carName) => {
+            this.racingCars[carName] = 0;
+        });
+    }
+
+    makePrintableResult(carName, position) {
+        return `${carName} : ${"-".repeat(position)}`;
+    }
+
+    solve(userInputCarNames, userInputTryCount) {
+        this.saveRacingCars(userInputCarNames);
+    }
 
     async run() {
         const userInputCarName = await Console.readLineAsync(
