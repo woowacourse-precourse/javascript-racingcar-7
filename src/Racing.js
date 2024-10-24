@@ -32,7 +32,8 @@ class Racing {
     });
   }
 
-  showResult(raceResult) {
+  #showResult() {
+    const raceResult = this.#result;
     raceResult.forEach(({ name, distance }) => {
       const DISTANCE_MARK = '-';
       const distanceGraph = DISTANCE_MARK.repeat(distance);
