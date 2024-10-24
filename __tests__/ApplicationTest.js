@@ -67,6 +67,17 @@ const testCaseExceptionArrayOfTryCount = [
   },
 ];
 
+const testCaseArray = [
+  {
+    title: "자동차 이름 예외 테스트",
+    testCaseExceptionArray: testCaseExceptionArrayOfCarNameArray,
+  },
+  {
+    title: "시도 횟수 예외 테스트",
+    testCaseExceptionArray: testCaseExceptionArrayOfTryCount,
+  },
+];
+
 describe("자동차 경주", () => {
   describe("기능 테스트", () => {
     test("최종 우승자가 1명인 경우", async () => {
@@ -183,21 +194,8 @@ describe("자동차 경주", () => {
     });
   });
 
-  describe("자동차 이름 예외 테스트", () => {
-    test.each(testCaseExceptionArrayOfCarNameArray)(
-      "$title",
-      async ({ inputs, errorMessage }) => {
-        mockQuestions(inputs);
-
-        const app = new App();
-
-        await expect(app.run()).rejects.toThrow(errorMessage);
-      }
-    );
-  });
-
-  describe("시도 횟수 예외 테스트", () => {
-    test.each(testCaseExceptionArrayOfTryCount)(
+  describe.each(testCaseArray)("$title", ({ testCaseExceptionArray }) => {
+    test.each(testCaseExceptionArray)(
       "$title",
       async ({ inputs, errorMessage }) => {
         mockQuestions(inputs);
