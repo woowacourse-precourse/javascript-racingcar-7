@@ -18,6 +18,7 @@ class Race {
             this.#moveCars();
             Console.print("\n");
         }
+        this.#printWinner();
     }
 
     #moveCars() {
@@ -45,6 +46,12 @@ class Race {
     #findWinner() {
         const maxPosition = Math.max(...this.#carList.map((car) => car.position));
         return this.#carList.filter((car) => car.position === maxPosition);
+    }
+
+    #printWinner() {
+        const winnerList = this.#findWinner();
+        const winnerNames = winnerList.map((car) => car.name).join(", ");
+        Console.print(`최종 우승자 : ${winnerNames}`);
     }
 }
 
