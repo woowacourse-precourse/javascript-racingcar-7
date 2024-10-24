@@ -1,4 +1,5 @@
 import { ERROR_MESSAGE } from "./constants/message.js";
+import { LETTER } from "./constants/constant.js";
 
 const NUMBER_REGEX = /^[1-9]\d*$/;
 
@@ -32,10 +33,17 @@ const validateRacingCountNumber = (input) => {
   }
 };
 
+const validateRacingCarSeparator = (input) => {
+  if (input.indexOf(LETTER.split) == -1) {
+    throw new Error(ERROR_MESSAGE.carName.invalidSeparator);
+  }
+};
+
 export {
   validateInputBlank,
   validateCarNameOverlap,
   validateCarNameLength,
   validateRacingCountType,
   validateRacingCountNumber,
+  validateRacingCarSeparator,
 };
