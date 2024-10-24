@@ -19,4 +19,6 @@ export default async function startGame() {
     game.playRound();
     printRaceProgress(cars);
   }
+
+  const winners = game.getWinners();
 }

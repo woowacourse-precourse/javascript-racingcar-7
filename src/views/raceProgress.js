@@ -2,7 +2,7 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 
 function formatRaceProgress(cars) {
   return cars
-    .map((car) => `${car.name} : ${'-'.repeat(car.position)}`)
+    .map((car) => `${car.getCarName()} : ${'-'.repeat(car.getPosition())}`)
     .join('\n');
 }
 
