@@ -1,17 +1,17 @@
 import {
-  checkCommaSaperatedNames,
+  checkCommaSeparatedNames,
   checkCarNames,
 } from '../validators/validator.js';
-import getCarNamesInput from './inputController.js';
 
 function splitCarNames(carNamesInput) {
-  checkCommaSaperatedNames(carNamesInput);
+  checkCommaSeparatedNames(carNamesInput);
 
   return carNamesInput.split(',').map((name) => name.trim());
 }
 
-export default async function initializeCars() {
-  const carNamesInput = await getCarNamesInput();
+export default function prepareCarNames(carNamesInput) {
   const carNames = splitCarNames(carNamesInput);
   checkCarNames(carNames);
+
+  return carNames;
 }

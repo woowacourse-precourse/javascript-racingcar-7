@@ -1,4 +1,4 @@
-export function checkCommaSaperatedNames(input) {
+export function checkCommaSeparatedNames(input) {
   const pattern = /^[a-zA-Z0-9가-힣,\s]+$/;
 
   if (!pattern.test(input)) {
@@ -39,16 +39,16 @@ function checkMinimumCars(names) {
 }
 
 export function checkCarNames(carNames) {
-  const validateCarNames = carNames.map((name) => {
+  checkMinimumCars(carNames);
+  checkCarNameDuplicates(carNames);
+
+  carNames.forEach((name) => {
     checkCarNameLength(name);
     checkEmptyString(name);
     checkAllowedCharacters(name);
-    return name;
   });
 
-  checkMinimumCars(validateCarNames);
-  checkCarNameDuplicates(validateCarNames);
-  return validateCarNames;
+  return carNames;
 }
 
 function checkPositiveInteger(roundCount) {
@@ -75,4 +75,6 @@ export function validateRoundCount(roundCountInput, maxRounds = 100) {
   checkIsNumber(roundCount);
   checkPositiveInteger(roundCount);
   checkRoundLimit(roundCount, maxRounds);
+
+  return roundCount;
 }
