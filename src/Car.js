@@ -8,6 +8,10 @@ class Car {
     return this.position;
   }
 
+  getName() {
+    return this.name;
+  }
+
   move() {
     this.position += 1;
   }
