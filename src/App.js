@@ -38,7 +38,8 @@ function canMove() {
 
 function moveOneStep(permissionToGo, N, carsResults) {
   for (let i = 0; i < N; i++) {
-    if (permissionToGo) {
+    const permission = permissionToGo();
+    if (permission) {
       carsResults[i].position += "-";
     }
     Console.print(`${carsResults[i].name} : ${carsResults[i].position}`);
@@ -62,7 +63,7 @@ class App {
 
     Console.print("실행 결과");
     for (let i = 0; i < N; i++) {
-      moveOneStep(canMove(), carNames.length, carsResults);
+      moveOneStep(canMove, carNames.length, carsResults);
       Console.print("");
     }
   }
