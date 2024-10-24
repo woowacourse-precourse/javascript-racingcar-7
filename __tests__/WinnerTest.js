@@ -1,5 +1,5 @@
 import App from "../src/App.js";
-import { mockQuestions, mockRandoms, getLogSpy } from "./testUtils.js";
+import { mockQuestions, mockRandoms, getLogSpy } from "../src/lib/testUtils.js";
 
 describe("우승자 안내 문구", () => {
   test("단독 우승자", async () => {

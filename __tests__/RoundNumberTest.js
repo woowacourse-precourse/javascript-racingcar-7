@@ -1,4 +1,4 @@
-import { mockQuestions } from "./testUtils.js";
+import { mockQuestions } from "../src/lib/testUtils.js";
 import { read } from "../src/lib/utils.js";
 import { handleNumberErrors } from "../src/lib/validations.js";
 

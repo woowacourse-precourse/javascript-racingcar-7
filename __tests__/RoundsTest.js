@@ -1,5 +1,5 @@
 import App from "../src/App.js";
-import { mockQuestions, mockRandoms, getLogSpy } from "./testUtils.js";
+import { mockQuestions, mockRandoms, getLogSpy } from "../src/lib/testUtils.js";
 
 describe("각 차수별 실행 결과 테스트", () => {
   test("각 차수별 실행 결과", async () => {
