@@ -1,5 +1,9 @@
 import RacingCar from "../src/RacingCar.js";
-import { validateMaxCount, validateMinCount } from "../src/utils/validate.js";
+import {
+	validateMaxCount,
+	validateMinCount,
+	validateString,
+} from "../src/utils/validate.js";
 
 describe("시도 횟수 입력", () => {
 	test("시도 횟수 정상 입력", async () => {
@@ -40,6 +44,16 @@ describe("시도 횟수 입력", () => {
 		// when, then
 		await expect(validateMinCount(tryCount)).rejects.toThrow(
 			"[ERROR] 입력할 수 있는 시도 횟수는 최소 1회입니다."
+		);
+	});
+
+	test("시도 횟수 문자 입력", async () => {
+		// given
+		const tryCount = "count";
+
+		// when, then
+		await expect(validateString(tryCount)).rejects.toThrow(
+			"[ERROR] 시도 횟수는 숫자만 입력이 가능합니다."
 		);
 	});
 });
