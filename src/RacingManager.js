@@ -23,7 +23,24 @@ class RacingManager {
   }
 
   #playRounds(round) {
-    repeat(round, () => {});
+    repeat(round, () => {
+      this.carList.forEach((car) => {
+        this.#handleCarMovement(car);
+      });
+    });
+  }
+
+  #handleCarMovement(car) {
+    const movementValue = RandomNumberGenerator.create();
+
+    if (this.#canMove(movementValue)) {
+      car.move();
+    }
+  }
+
+  #canMove(movementValue) {
+    const MOVEMENT_THRESHOLD = 4;
+    return movementValue >= MOVEMENT_THRESHOLD;
   }
 }
 
