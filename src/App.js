@@ -5,6 +5,11 @@ class App {
   getRacingCarName = async () => {
     await Console.readLineAsync(INPUT_MESSAGE.carName);
   };
+
+  getRacingAttmeptCount = async () => {
+    await Console.readLineAsync(INPUT_MESSAGE.attemptNumber);
+  };
+
   async run() {}
 }
 
