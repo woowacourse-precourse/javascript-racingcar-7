@@ -14,4 +14,6 @@ const ERROR_MESSAGE = {
   INVALID_INTEGER: '[ERROR] 정수만 입력해주세요.',
 };
 
-export { SYSTEM_MESSAGE, ERROR_MESSAGE };
+const FORWARD_DASH = '-';
+
+export { SYSTEM_MESSAGE, ERROR_MESSAGE, FORWARD_DASH };

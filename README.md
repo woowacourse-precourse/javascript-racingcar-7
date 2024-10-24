@@ -11,11 +11,11 @@
 
 <br>
 
-- [ ] 결과 계산하기
-  - [ ] 자동차의 수만큼 0~9 사이의 Random Number 생성.
-    - [ ] `Random.pickNumberInRange(0, 9);` 사용.
-  - [ ] Random Number가 4 이상이면, 1칸 전진.
-  - [ ] 입력받은 시도 횟수만큼 반복.
+- [x] 결과 계산하기
+  - [x] 자동차의 수만큼 0~9 사이의 Random Number 생성.
+    - [x] `Random.pickNumberInRange(0, 9);` 사용.
+  - [x] Random Number가 4 이상이면, 1칸 전진.
+  - [x] 입력받은 시도 횟수만큼 반복.
 
 <br>
 
