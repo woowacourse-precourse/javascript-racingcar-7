@@ -22,7 +22,8 @@ Model
         * move(): distance + 1
             
 View
-- [ ] 사용자 입력 받는 함수
+- [x] 사용자 입력 받는 함수
+    - args: message
     - return: 사용자 입력
 - [ ] 각 경주 단계 진행 결과 출력하는 함수
     - args: 각 자동차 객체들
