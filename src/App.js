@@ -41,6 +41,7 @@ class App {
   };
 
   printRacingResult = (cars, count) => {
+    console.log();
     Console.print(OUTPUT_MESSAGE.racingResult);
 
     Array.from({ length: count }).forEach(() => {
