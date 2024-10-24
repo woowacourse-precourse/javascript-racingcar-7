@@ -8,8 +8,8 @@ export class Game {
     this.count = count;
   }
 
-  update(movingCars) {
-    movingCars.forEach((car) => {
+  update(movedCars) {
+    movedCars.forEach((car) => {
       this.record[car] += 1;
     });
   }
@@ -17,20 +17,20 @@ export class Game {
   play() {
     Console.print(GAME.START_MESSAGE);
     for (let i = 0; i < this.count; i++) {
-      this.move();
+      const movedCars = this.getMovedCars();
+      this.update(movedCars);
+      this.print();
     }
-    return this.getWinner();
   }
 
-  move() {
-    const movingCars = [];
+  getMovedCars() {
+    const movedCars = [];
     Object.keys(this.record).forEach((key) => {
       if (Random.pickNumberInRange(0, 9) >= CRITERIA_NUMBER) {
-        movingCars.push(key);
+        movedCars.push(key);
       }
     });
-    this.update(movingCars);
-    this.print();
+    return movedCars;
   }
 
   print() {
