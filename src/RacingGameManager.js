@@ -14,7 +14,7 @@ class RacingGameManager {
 
   #tryCount = 0;
 
-  constructor() {}
+  static MAX_CAR_COUNT = 50;
 
   async playGame() {
     const carInput = await getUserInput(CONSOLE_MESSAGE.CAR_INPUT_MESSAGE);
@@ -37,6 +37,14 @@ class RacingGameManager {
     const deduplicatedCarNames = new Set(carNames);
     if (carNames.length !== deduplicatedCarNames.size) {
       throw new Error(errorString(CONSOLE_MESSAGE.DUPLICATED_CAR_NAME_ERROR));
+    }
+
+    if (carNames.length > RacingGameManager.MAX_CAR_COUNT) {
+      throw new Error(
+        errorString(
+          `경주할 자동차는 ${RacingGameManager.MAX_CAR_COUNT}대 이하이어야 합니다.`,
+        ),
+      );
     }
   }
 
