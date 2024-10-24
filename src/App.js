@@ -8,12 +8,12 @@ function makeCarsMap(carArray) {
   return carsMap;
 }
 
-async function UserInput(message) {
+async function userInput(message) {
   const cars = await MissionUtils.Console.readLineAsync(message);
   return cars;
 }
 
-function CarsValidation(cars) {
+function carsValidation(cars) {
   const carArray = cars.split(',').map(car => car.trim());
   if (carArray.length === 1) {
     throw new Error('[ERROR] 인식된 자동차가 없습니다.');
@@ -32,8 +32,8 @@ function CarsValidation(cars) {
   return carArray;
 }
 
-function NumberOfGamesValidation(userInput) {
-  const NumberOfGames = parseFloat(userInput);
+function numberOfGamesValidation(input) {
+  const NumberOfGames = parseFloat(input);
 
   if (Number.isNaN(NumberOfGames)) {
     throw new Error('[ERROR] 숫자가 아닌 값을 입력하셨습니다.');
@@ -48,11 +48,20 @@ function NumberOfGamesValidation(userInput) {
   return NumberOfGames;
 }
 
+function printCurrentGame(map) {
+  map.forEach((value, key) => {
+    const currentGameLine = '-'.repeat(value);
+    MissionUtils.Console.print(`${key} : ${currentGameLine}\n`);
+  });
+  MissionUtils.Console.print('\n');
+}
+
 function addOneRandomValue(map) {
   map.forEach((value, key) => {
     const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
     map.set(key, value + randomNumber);
   });
+  printCurrentGame(map);
 }
 
 function getAfterGameMap(map, NumberOfGames) {
@@ -61,21 +70,47 @@ function getAfterGameMap(map, NumberOfGames) {
   }
 }
 
+function getHighScoreCars(map) {
+  let maxHighScore = 0;
+  map.forEach(value => {
+    maxHighScore = Math.max(maxHighScore, value);
+  });
+
+  const highScoreCars = [];
+  map.forEach((value, key) => {
+    if (value === maxHighScore) highScoreCars.push(key);
+  });
+  return highScoreCars;
+}
+
+function getStringHighScoreCars(carsArray) {
+  let carString = '';
+  for (let i = 0; i < carsArray.length; i += 1) {
+    carString += `${carsArray[i]},`;
+  }
+  carString = carString.replace(/,\s*$/, '');
+  return carString;
+}
+
 class App {
   async run() {
     try {
-      const cars = await UserInput(
+      const cars = await userInput(
         '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
       );
 
-      const carArray = CarsValidation(cars);
+      const carArray = carsValidation(cars);
 
       const carsMap = makeCarsMap(carArray);
 
-      const input = await UserInput('시도할 횟수는 몇 회인가요?\n');
-      const NumberOfGames = NumberOfGamesValidation(input);
+      const input = await userInput('시도할 횟수는 몇 회인가요?\n');
+      const numberOfGames = numberOfGamesValidation(input);
+      MissionUtils.Console.print('\n실행 결과');
+      getAfterGameMap(carsMap, numberOfGames);
 
-      getAfterGameMap(carsMap, NumberOfGames);
+      const highScoreCarsArray = getHighScoreCars(carsMap);
+      const highScoreCarsString = getStringHighScoreCars(highScoreCarsArray);
+      MissionUtils.Console.print(`\n최종 우승자 : ${highScoreCarsString}`);
     } catch (error) {
       console.log(error.message);
     }
