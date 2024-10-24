@@ -32,8 +32,7 @@ class App {
       let raceCars = {};
 
       cars.forEach(car => addCar(car, raceCars));
-
-      return 'success'
+      return ['success',raceCars]
     }
     
     const ERROR_MESSAGES = {
@@ -46,24 +45,41 @@ class App {
       throw new Error(`[ERROR] ${errorMessage}`);
     }
 
-    const raceCarStatus = await getRaceCar();
+    const [raceCarStatus,raceCars] = await getRaceCar();
 
     if(raceCarStatus==='success'){
-      getAttemptCount()
+      getAttemptCount(raceCars)
     }
 
     function validateNumber(attemptCount){
       if(isNaN(attemptCount)){throwError(ERROR_MESSAGES.INPUT_NOT_A_NUMBER)}
+      else if(!isNaN(attemptCount)){return 'number'}
     }
     
-    async function getAttemptCount() {
+    async function getAttemptCount(raceCars) {
       const attemptCount = await Console.readLineAsync(
         '원하는 이동 횟수를 입력하세요.(움직이는 칸 수와 무관)\n'
       );
       const attemptCountNum=Number(attemptCount)
-      validateNumber(attemptCount)
+      const numberStatus = validateNumber(attemptCountNum)
+      if(numberStatus==='number'){moveCar(attemptCountNum,raceCars)}
     }
+
+    function moveCar(attemptCountNum, raceCars) {
+      const carKeys = Object.keys(raceCars);
+      for (let i = 0; i < attemptCountNum; i++) {
+        carKeys.forEach(key => {
+          if (Random.pickNumberInRange(0, 9) > 4) raceCars[key] += '-';
+        });
+        Console.print(raceCars);
+      }
+    }
+    
+    
+    
   }
+
+
 }
 
 export default App;
