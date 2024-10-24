@@ -12,4 +12,17 @@ class App {
     Console.print("실행 결과");
   }
 }
+class Car {
+  constructor(name) {
+    this.name = name;
+    this.moveCount = 0;
+  }
+
+  randomMove() {
+    let randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
+    if (randomNumber >= 4) {
+      this.moveCount++;
+    }
+  }
+}
 export default App;
