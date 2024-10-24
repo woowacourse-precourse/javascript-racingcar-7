@@ -1,5 +1,6 @@
 import { Random } from '@woowacourse/mission-utils';
-import { printNotificationExecutionResult, printRacingProgressOutput, printFinalWinners } from '../Views/outputView.js';
+import { printNotificationExecutionResult, printRacingProgressOutput } from '../Views/outputView.js';
+import { findWinner } from './findingwinners.js';
 
 let progressionNumberForEachRacer = [];
 let progressionLengthForEachRacer = [];
@@ -24,20 +25,7 @@ const findProgressionLength = (carNamesInput, racingCountInput) => {
     }
     printRacingProgressOutput(carNamesInput, progressionLengthForEachRacer);
   }
-  findWinner(carNamesInput);
-};
-
-const findWinner = carNamesInput => {
-  const max = Math.max(...progressionNumberForEachRacer);
-
-  let FindingMaxNumIndex = progressionNumberForEachRacer.indexOf(max);
-  let MaxNumberNames = [];
-
-  while (FindingMaxNumIndex != -1) {
-    MaxNumberNames.push(carNamesInput[FindingMaxNumIndex]);
-    FindingMaxNumIndex = progressionNumberForEachRacer.indexOf(max, FindingMaxNumIndex + 1);
-  }
-  printFinalWinners(MaxNumberNames);
+  findWinner(carNamesInput, progressionNumberForEachRacer);
 };
 
 export default findProgressionLength;
