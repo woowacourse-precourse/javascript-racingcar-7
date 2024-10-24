@@ -30,7 +30,6 @@ export class GameManager {
     const names = input.split(",").map((name) => name.trim());
 
     handleNameErrors(names);
-    this.io.print(names.join(","));
 
     return names;
   }
@@ -40,7 +39,6 @@ export class GameManager {
     const rounds = Number(input);
 
     handleNumberErrors(rounds);
-    this.io.print(rounds);
 
     return rounds;
   }
