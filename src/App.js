@@ -1,10 +1,11 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 
 class App {
   async run() {
     const racingCarNames = await this.readRacingCarNames();
     const attemptCount = await this.readAttemptCount();
     const racingCarNamesArray = this.parseRacingCarNames(racingCarNames);
+    const randomNumber = this.getRandomNumber();
   }
 
   async readRacingCarNames() {
@@ -21,6 +22,10 @@ class App {
 
   parseRacingCarNames(racingCarNames) {
     return racingCarNames.split(",");
+  }
+
+  getRandomNumber() {
+    return Random.pickNumberInRange(0, 9);
   }
 }
 
