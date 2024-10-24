@@ -3,34 +3,65 @@ import { Console, Random } from "@woowacourse/mission-utils";
 class App {
     racingCars = {};
 
-    validateCarName(carNameList) {
-        const carNames = carNameList.trim().split(",");
+    splitCarNamesStr(carNamesStr) {
+        const carNames = carNamesStr.trim().split(",");
+        return carNames.map((carName) => carName.trim());
+    }
 
-        if (carNames.length < 2) {
-            throw new Error("[ERROR] 자동차는 2대 이상 입력해주세요.");
+    isValidCarName(carName) {
+        const regExp = /^[a-z|A-Z|가-힣]+$/; // 한글, 영문만 입력 가능
+
+        if (carName.length > 5) {
+            return false;
         }
 
-        const regExp = /^[a-z|A-Z|가-힣]+$/; // 한글, 영문만 입력 가능
+        if (!carName.match(regExp)) {
+            throw false;
+        }
+
+        return true;
+    }
+
+    hasUniqueCarNames(carNames) {
         const uniqueCarNames = new Set(); // 중복된 자동차 이름 체크
 
-        const validatedCarNames = carNames.map((carName) => {
-            const trimmedCarName = carName.trim();
-
-            if (trimmedCarName.length > 5) {
-                throw new Error("[ERROR] 자동차 이름은 5자 이하로 입력해주세요.");
-            } else if (!trimmedCarName.match(regExp)) {
-                throw new Error("[ERROR 자동차 이름은 한글, 영문만 입력 가능합니다.");
-            }
-
-            uniqueCarNames.add(trimmedCarName.toLowerCase());
-            return trimmedCarName;
+        carNames.forEach((carName) => {
+            uniqueCarNames.add(carName.toLowerCase());
         });
 
         if (uniqueCarNames.size !== carNames.length) {
+            return false;
+        }
+
+        return true;
+    }
+
+    isValidCarCount(carNames) {
+        if (carNames.length < 2) {
+            return false;
+        }
+
+        return true;
+    }
+
+    validateCarNames(carNamesStr) {
+        const carNames = this.splitCarNamesStr(carNamesStr);
+
+        if (!this.isValidCarCount(carNames)) {
+            throw new Error("[ERROR] 자동차는 2대 이상 입력해주세요.");
+        }
+
+        carNames.forEach((carName) => {
+            if (!this.isValidCarName(carName)) {
+                throw new Error("[ERROR] 자동차 이름은 5자 이하 한글, 영문만 입력 가능합니다.");
+            }
+        });
+
+        if (!this.hasUniqueCarNames(carNames)) {
             throw new Error("[ERROR] 중복된 자동차 이름이 존재합니다.");
         }
 
-        return validatedCarNames;
+        return carNames;
     }
 
     validateTryCount(tryCount) {
@@ -116,12 +147,12 @@ class App {
     }
 
     async run() {
-        const userInputCarName = await Console.readLineAsync(
+        const userInputCarNames = await Console.readLineAsync(
             "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
         );
         const userInputTryCount = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
 
-        const validatedCarNames = this.validateCarName(userInputCarName);
+        const validatedCarNames = this.validateCarNames(userInputCarNames);
         const validatedTryCount = this.validateTryCount(userInputTryCount);
 
         const winner = this.solve(validatedCarNames, validatedTryCount);
