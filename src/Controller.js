@@ -1,18 +1,18 @@
-import ViewIn from './ViewIn.js';
+import ViewIn from './InputView.js';
 import Model from './Model.js';
 
 class Controller {
-  viewIn;
+  InputView;
 
   model;
 
   constructor() {
-    this.viewIn = new ViewIn();
+    this.InputView = new ViewIn();
     this.model = new Model();
   }
 
   async control() {
-    const userInputObject = await this.viewIn.getUserInputObject();
+    const userInputObject = await this.InputView.getUserInputObject();
 
     this.model.makeCar(userInputObject.carList);
   }
