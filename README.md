@@ -31,12 +31,14 @@ View
     - args: 우승한 자동차 이름들
 
 Controller
-- [ ] 0 ~ 9 Random 값 반환하는 함수
-    - return: random 숫자 값
 - [ ] 가장 멀리 간 차 선별하는 함수
     - args: 모든 자동차의 이동 거리
     - return: 가장 멀리 간 차 이름
 - [ ] 입력이 잘못 된 경우 Error 반환하는 함수
+
+Util
+- [x] 0 ~ 9 Random 값 반환하는 함수
+    - return: random 숫자 값
 
 ## 기능 요구 사항
 초간단 자동차 경주 게임을 구현한다.
