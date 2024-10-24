@@ -8,10 +8,10 @@ class App {
 
   async run() {
     // 자동차 이름, 횟수 입력받기
-    await this.getCarName();
+    await this.getCarNameCount();
   }
 
-  async getCarName(){
+  async getCarNameCount(){
     try{
       const input = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
       this.carNameArr = input.split(',').map(car => car.trim());
