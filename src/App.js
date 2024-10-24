@@ -5,13 +5,7 @@ class App {
     const racingCarNames = await this.readRacingCarNames();
     const attemptCount = await this.readAttemptCount();
 
-    if (
-      attemptCount === "" ||
-      attemptCount === null ||
-      attemptCount === undefined
-    ) {
-      this.printError("시도 횟수를 입력해 주세요.");
-    }
+    this.validateAttempCount(attemptCount);
 
     const racingCarNamesArray = this.parseRacingCarNames(racingCarNames);
 
@@ -90,6 +84,12 @@ class App {
 
   printError(message) {
     throw new Error(`[ERROR] ${message}`);
+  }
+
+  validateAttempCount(attemptCount) {
+    if (+attemptCount === 0 || !Number.isInteger(+attemptCount)) {
+      this.printError("시도 횟수는 1 이상의 정수만 가능합니다.");
+    }
   }
 }
 
