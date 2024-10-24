@@ -15,7 +15,7 @@ class Race {
   }
 
   #runRounds() {
-    for (let round = 0; round < this.#roundCount; round++) {
+    for (let round = 0; round < this.#roundCount; round += 1) {
       this.#cars.forEach((car) => {
         car.tryMove();
         car.printStatus();
