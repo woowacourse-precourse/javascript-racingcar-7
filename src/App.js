@@ -1,12 +1,14 @@
 import { getGameInput, printGameResult } from './utils/ioHandler.js';
 import { Game } from './Game.js';
+import { Record } from './Record.js';
 
 class App {
   async run() {
     const { carString, count } = await getGameInput();
-    const game = new Game(carString, count);
-    const gameResult = game.play();
-    printGameResult(gameResult);
+    const record = new Record(carString);
+    const game = new Game(record, count);
+    game.play();
+    printGameResult(game.getWinner());
   }
 }
 
