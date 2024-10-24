@@ -24,14 +24,18 @@ export default class Game {
     });
 
     this.#attemptCount = await this.#console.getAttemptCount();
-
     Validator.validateAttemptCount(this.#attemptCount);
+
+    this.#console.print('\n실행 결과');
 
     let currentAttempt = 0;
     while (currentAttempt < this.#attemptCount) {
       this.#carList.forEach((car) => {
         this.#attemptMove(car);
+        this.#console.printDistance(car);
       });
+
+      this.#console.print('');
 
       currentAttempt++;
     }
@@ -41,7 +45,7 @@ export default class Game {
     const randomNumber = RandomNumber.generateNumberZeroToNine();
 
     if (Comparator.checkAtLeastFour(randomNumber)) {
-      car.increaseDistance();
+      car.move();
     }
   }
 

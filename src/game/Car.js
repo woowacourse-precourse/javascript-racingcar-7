@@ -10,7 +10,11 @@ export default class Car {
     return this.#distance;
   }
 
-  increaseDistance() {
+  getName() {
+    return this.#name;
+  }
+
+  move() {
     this.#distance++;
   }
 

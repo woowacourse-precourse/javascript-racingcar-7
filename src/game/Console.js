@@ -20,4 +20,14 @@ export default class Console {
 
     return attemptCount;
   }
+
+  print(string) {
+    MissionUtils.Console.print(string);
+  }
+
+  printDistance(car) {
+    MissionUtils.Console.print(
+      `${car.getName()} : ${car.getDistanceAsString()}`
+    );
+  }
 }
