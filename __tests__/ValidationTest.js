@@ -103,4 +103,15 @@ describe("자동차 경주 시도 횟수 입력 유효성 검사", () => {
       ERROR_MESSAGE.attemptNumber.invalidInteger
     );
   });
+
+  test("시도 횟수 공백일 시 오류 발생", async () => {
+    const input = [""];
+
+    const app = new App();
+    mockQuestions(input);
+
+    await expect(async () => await app.getRacingAttmeptCount()).rejects.toThrow(
+      ERROR_MESSAGE.blank
+    );
+  });
 });
