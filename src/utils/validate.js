@@ -17,3 +17,9 @@ export async function validateMaxCar(carNameValue) {
 		throw new Error("[ERROR] 입력할 수 있는 자동차는 최대 5대입니다.");
 	}
 }
+
+export async function validateMinCar(carNameValue) {
+	if (carNameValue.length <= 0) {
+		throw new Error("[ERROR] 자동차 이름이 입력되지 않았습니다.");
+	}
+}
