@@ -21,6 +21,9 @@ class App {
   initializeCars(inputCar) {
     let cars = {};
     inputCar.split(',').forEach((car) => {
+      if (car.length > 5) {
+        throw new Error('[ERROR] 자동차 이름은 5자 이하만 가능합니다.');
+      }
       cars[car] = 0;
     });
     return cars;
