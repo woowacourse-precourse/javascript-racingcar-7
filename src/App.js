@@ -1,4 +1,4 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 
 class App {
   async run() {
@@ -6,6 +6,8 @@ class App {
     const inputCount = await this.getInputCount();
 
     let cars = this.initializeCars(inputCar);
+
+    this.runRace(cars);
   }
 
   async getInputCarNames() {
@@ -27,6 +29,12 @@ class App {
       cars[car] = 0;
     });
     return cars;
+  }
+
+  runRace(cars) {
+    Object.keys(cars).forEach((car) => {
+      let randomValue = Random.pickNumberInRange(0, 9);
+    });
   }
 }
 
