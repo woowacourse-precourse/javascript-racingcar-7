@@ -4,6 +4,8 @@ class App {
   async run() {
     const inputCar = await this.getInputCarNames();
     const inputCount = await this.getInputCount();
+
+    let cars = this.initializeCars(inputCar);
   }
 
   async getInputCarNames() {
@@ -14,6 +16,14 @@ class App {
 
   async getInputCount() {
     return await Console.readLineAsync('시도할 횟수는 몇 회인가요?');
+  }
+
+  initializeCars(inputCar) {
+    let cars = {};
+    inputCar.split(',').forEach((car) => {
+      cars[car] = 0;
+    });
+    return cars;
   }
 }
 
