@@ -1,7 +1,7 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
-import inputCarNames from "../src/utils/InputCarNames.js";
-import { splitNames } from "../src/utils/SplitInput.js";
+import inputCarNames from "../src/utils/inputCarNames";
+import splitNames from "../src/utils/splitInput.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();

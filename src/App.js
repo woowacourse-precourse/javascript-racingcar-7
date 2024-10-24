@@ -1,11 +1,10 @@
-import { Console } from "@woowacourse/mission-utils";
-import inputCarNames from "./utils/InputCarNames.js";
-import { splitNames } from "./utils/SplitInput.js";
+import inputCarNames from "./utils/inputCarNames.js";
+import splitName from "./utils/splitInput.js";
 
 class App {
   async run() {
     const carNames = await inputCarNames();
-    const splitCarNames = splitNames(carNames);
+    const splitCarNames = splitName(carNames);
   }
 }
 
