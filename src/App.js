@@ -14,6 +14,7 @@ import {
 class App {
   #tryCount;
   #cars;
+
   constructor() {
     this.#tryCount = 0;
     this.#cars = [];
