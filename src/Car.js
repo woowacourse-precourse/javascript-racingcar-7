@@ -1,3 +1,4 @@
+import { Random } from '@woowacourse/mission-utils';
 import { CONSOLE_MESSAGE } from './constant.js';
 import { errorString } from './util.js';
 
@@ -22,6 +23,14 @@ class Car {
 
     if (name.length > Car.MAX_CAR_NAME_LENGTH) {
       throw new Error(errorString(CONSOLE_MESSAGE.MAX_CAR_NAME_LENGTH_ERROR));
+    }
+  }
+
+  move() {
+    const canMove = Random.pickNumberInRange(0, 9) >= 4;
+
+    if (canMove) {
+      this.#position += 1;
     }
   }
 }
