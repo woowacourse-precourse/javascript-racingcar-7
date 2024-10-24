@@ -14,5 +14,8 @@ export default class CarRacingController {
 
     this.model = new CarRacingModel(carNamesInput);
     this.model.runRace(parseInt(tryCountInput, 10));
+
+    const winners = this.model.getWinners();
+    this.view.showWinners(winners);
   }
 }

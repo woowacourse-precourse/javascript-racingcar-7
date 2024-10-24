@@ -12,6 +12,10 @@ export default class CarRacingView {
   }
 
   showRacingResult() {
-    return Console.print("\n실행 결과");
+    Console.print("\n실행 결과");
+  }
+
+  showWinners(winners) {
+    Console.print(`최종 우승자 : ${winners.join(", ")}`);
   }
 }

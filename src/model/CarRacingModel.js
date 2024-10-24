@@ -2,17 +2,26 @@ import { Random, Console } from "@woowacourse/mission-utils";
 
 export default class CarRacingModel {
   constructor(carNames) {
-    this.carNames = carNames.split(",").map((names) => new Car(names));
+    this.cars = carNames.split(",").map((names) => new Car(names));
   }
 
   runRace(tryCount) {
     for (let i = 0; i < tryCount; i++) {
-      this.carNames.forEach((car) => {
+      this.cars.forEach((car) => {
         car.move();
         Console.print(`${car.carName} : ${car.moveProgress()}`);
       });
       Console.print("");
     }
+  }
+
+  getWinners() {
+    const maxDistanceCarsName = Math.max(
+      ...this.cars.map((car) => car.distance)
+    );
+    return this.cars
+      .filter((car) => car.distance === maxDistanceCarsName)
+      .map((car) => car.carName);
   }
 }
 
