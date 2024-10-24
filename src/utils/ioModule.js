@@ -5,4 +5,12 @@ const getUserInput = async function getUserInputFunc(promptMessage) {
   return userInput;
 };
 
-export default getUserInput;
+const printCarsMoving = function printCarsMovingFunc(carName, movePosition) {
+  Console.print(`${carName} : ${movePosition}`);
+};
+
+const printNewLine = function printNewLineFunc() {
+  Console.print('');
+};
+
+export { getUserInput, printCarsMoving, printNewLine };
