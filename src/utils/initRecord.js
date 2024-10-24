@@ -5,7 +5,7 @@ export function splitCarString(carString) {
 export function initRecord(carString) {
   const gameRecord = {};
   const cars = splitCarString(carString);
-  cars.map((car) => {
+  cars.forEach((car) => {
     gameRecord[car] = 0;
   });
   return gameRecord;
