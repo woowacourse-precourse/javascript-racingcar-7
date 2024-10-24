@@ -6,4 +6,13 @@ const IO_MESSAGE = Object.freeze({
   SEPERATOR: ', ',
 });
 
-export { IO_MESSAGE };
+const GAME = Object.freeze({
+  START_MESSAGE: '\n실행 결과',
+  SAPCE_COLON: ' + ',
+  NEW_LINE: '\n',
+  ROUTE: '-',
+});
+
+const CRITERIA_NUMBER = 4;
+
+export { IO_MESSAGE, GAME, CRITERIA_NUMBER };

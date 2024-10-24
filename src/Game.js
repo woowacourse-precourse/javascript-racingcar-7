@@ -1,6 +1,6 @@
 import { Console, Random } from '@woowacourse/mission-utils';
 import { initRecord } from './utils/initRecord.js';
-
+import { GAME, CRITERIA_NUMBER } from './constants/index.js';
 export class Game {
   constructor(cars, count) {
     this.record = initRecord(cars);
@@ -12,7 +12,7 @@ export class Game {
     });
   }
   play() {
-    Console.print('\n실행 결과');
+    Console.print(GAME.START_MESSAGE);
     for (let i = 0; i < this.count; i++) {
       this.move();
     }
@@ -20,16 +20,16 @@ export class Game {
   move() {
     const movingCars = [];
     Object.keys(this.record).map((key) => {
-      Random.pickNumberInRange(0, 9) >= 4 && movingCars.push(key);
+      Random.pickNumberInRange(0, 9) >= CRITERIA_NUMBER && movingCars.push(key);
     });
     this.update(movingCars);
     this.print();
   }
 
   print() {
-    Object.entries(this.record).map(([car, movingLength]) => {
-      Console.print(car + ' : ' + '-'.repeat(movingLength));
+    Object.entries(this.record).map(([car, routeLength]) => {
+      Console.print(car + GAME.SAPCE_COLON + GAME.ROUTE.repeat(routeLength));
     });
-    Console.print('\n');
+    Console.print(GAME.NEW_LINE);
   }
 }
