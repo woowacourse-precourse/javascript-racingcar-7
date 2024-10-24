@@ -1,4 +1,7 @@
-import checkCommaSaperatedNames from '../validators/validator.js';
+import {
+  checkCommaSaperatedNames,
+  checkCarNames,
+} from '../validators/validator.js';
 import getCarNamesInput from './inputController.js';
 
 function splitCarNames(carNamesInput) {
@@ -10,4 +13,5 @@ function splitCarNames(carNamesInput) {
 export default async function initializeCars() {
   const carNamesInput = await getCarNamesInput();
   const carNames = splitCarNames(carNamesInput);
+  checkCarNames(carNames);
 }
