@@ -25,4 +25,13 @@ class Car {
     }
   }
 }
+
+function Race (arrCarName, playCount) {
+  let cars = arrCarName.map(name => new Car(name));
+  cars.forEach(car => {
+    car.randomMove();
+  });
+  let arrMoveCount = cars.map(car => car.moveCount);
+  return arrMoveCount;
+}
 export default App;
