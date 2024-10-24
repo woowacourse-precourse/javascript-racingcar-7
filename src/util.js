@@ -13,3 +13,9 @@ export const getUserInput = async (message) => {
 
   return input;
 };
+
+export const isNumber = (num) => !Number.isNaN(num);
+
+export const isPositiveNumber = (num) => num > 0;
+
+export const isIntegerNumber = (num) => Number.isInteger(num);

@@ -7,6 +7,7 @@ export const CONSOLE_MESSAGE = Object.freeze({
     '경주할 자동차는 2대 이상이어야 합니다. 쉼표(,)로 구분해서 2대 이상 입력해주세요.',
   DUPLICATED_CAR_NAME_ERROR: '중복된 자동차 이름이 존재합니다.',
   INVALID_TRY_COUNT_TYPE_ERROR: '시도 횟수는 숫자로 입력해주세요.',
+  MIN_TRY_COUNT_ERROR: '시도 횟수는 1 이상의 자연수여야 합니다.',
   MAX_CAR_NAME_LENGTH_ERROR: '자동차 이름은 5자 이하만 가능합니다.',
   MIN_CAR_NAME_LENGTH_ERROR: '자동차 이름은 1자 이상이어야 합니다.',
 });

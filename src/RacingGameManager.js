@@ -1,6 +1,13 @@
+import { Console } from '@woowacourse/mission-utils';
 import Car from './Car.js';
 import { CONSOLE_MESSAGE } from './constant.js';
-import { errorString, getUserInput } from './util.js';
+import {
+  errorString,
+  getUserInput,
+  isIntegerNumber,
+  isNumber,
+  isPositiveNumber,
+} from './util.js';
 
 class RacingGameManager {
   #cars = [];
@@ -35,11 +42,16 @@ class RacingGameManager {
 
   #validateTryCountInput(input) {
     const inputToNumber = Number(input);
+    Console.print(isIntegerNumber(inputToNumber));
 
-    if (Number.isNaN(inputToNumber)) {
+    if (!isNumber(inputToNumber)) {
       throw new Error(
         errorString(CONSOLE_MESSAGE.INVALID_TRY_COUNT_TYPE_ERROR),
       );
+    }
+
+    if (!isPositiveNumber(inputToNumber) || !isIntegerNumber(inputToNumber)) {
+      throw new Error(errorString(CONSOLE_MESSAGE.MIN_TRY_COUNT_ERROR));
     }
   }
 }
