@@ -81,4 +81,15 @@ describe("자동차 경주 시도 횟수 입력 유효성 검사", () => {
     const result = await app.getRacingAttmeptCount();
     expect(result).toEqual("5");
   });
+
+  test("시도 횟수 숫자가 아닐 시 오류 발생", async () => {
+    const input = ["ㅁ"];
+
+    const app = new App();
+    mockQuestions(input);
+
+    await expect(async () => await app.getRacingAttmeptCount()).rejects.toThrow(
+      ERROR_MESSAGE.attemptNumber.invalidType
+    );
+  });
 });
