@@ -1,5 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
-import {MissionUtils} from "@woowacourse/mission-utils";
+import { MissionUtils } from "@woowacourse/mission-utils";
 
 class App {
   async run() {
@@ -65,12 +65,12 @@ class App {
     const maxPosition = Math.max(...Object.values(CAR_POSITIONS));
 
     // 우승자 찾기
-    const WINNER = CAR_NAMES.filter(
-      (name) => CAR_POSITIONS[name] === maxPosition
-    );
+    const WINNER = CAR_NAMES.filter
+      ((name) => CAR_POSITIONS[name] === maxPosition)
+      .join(", ");
 
     // 쉼표로 구분하여 우승자 출력
-    Console.print(`최종 우승자 : ${WINNER.join(", ")}`);
+    Console.print(`최종 우승자 : ${WINNER}`);
   }
 }
 
