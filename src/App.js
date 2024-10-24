@@ -96,6 +96,14 @@ class App {
         }
     }
 
+    findMaxPositionUser() {
+        const carNames = this.getRacingCarNames();
+        const positions = carNames.map((carName) => this.getRacingCarPosition(carName));
+        const maxPosition = Math.max(...positions);
+
+        return carNames.filter((carName) => this.getRacingCarPosition(carName) === maxPosition);
+    }
+
     solve(userInputCarNames, userInputTryCount) {
         this.saveRacingCars(userInputCarNames);
 
@@ -103,6 +111,8 @@ class App {
             this.progressRacing();
             this.printResult();
         }
+
+        return this.findMaxPositionUser();
     }
 
     async run() {
@@ -114,7 +124,9 @@ class App {
         const validatedCarNames = this.validateCarName(userInputCarName);
         const validatedTryCount = this.validateTryCount(userInputTryCount);
 
-        this.solve(validatedCarNames, validatedTryCount);
+        const winner = this.solve(validatedCarNames, validatedTryCount);
+
+        Console.print(`최종 우승자 : ${winner.join(", ")}`);
     }
 }
 
