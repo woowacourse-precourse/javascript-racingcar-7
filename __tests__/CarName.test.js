@@ -1,6 +1,14 @@
 import { validateNameLength } from "../src/utils/validate";
 
 describe("자동차 이름", () => {
+	test("자동차 이름 정상", async () => {
+		// given
+		const carNames = "ayden,kia";
+
+		// when, then
+		await expect(validateNameLength(carNames)).resolves.not.toThrow();
+	});
+
 	test("자동차 이름이 5자를 초과", async () => {
 		// given
 		const carNames = "ayden,aydenote";
