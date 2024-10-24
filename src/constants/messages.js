@@ -12,7 +12,6 @@ const CAR_NAME_ERROR_MESSAGE = Object.freeze({
   OUT_OF_RANGE: '자동차 이름은 5자 이하로 입력해주세요.',
   ONE_CAR_NAME: '자동차는 두 대 이상 입력해주세요.',
   CONTAIN_COMMA: '자동차 이름은 쉼표(,)를 포함할 수 없습니다.',
-  SEPARATE_COMMA: '자동차 이름은 쉼표(,)로 구분되어야 합니다.',
   INCLUDE_SPACE: '자동차 이름에 공백은 포함할 수 없습니다.',
   DUPLICATE_CAR_NAME: '자동차 이름이 중복되었습니다.',
 });
