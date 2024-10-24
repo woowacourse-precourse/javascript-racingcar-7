@@ -1,4 +1,4 @@
-export class CarModel {
+export default class CarModel {
   constructor(name) {
     this.name = name;
     this.step = 0;
