@@ -1,4 +1,5 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
+import { MIN_ATTEMPT_COUNT } from "../constants/Constants.js";
 
 const INPUT_ATTEMPT_COUNT_MESSAGE = '시도할 횟수는 몇 회인가요? ';
 const ATTEMPT_COUNT_ERROR_MESSAGE = '[ERROR] 시도 횟수를 1이상 숫자로 입력해주세요.';
@@ -15,6 +16,7 @@ export class InputAttemptCount {
     this.#checkEmpty(input);
     const number = Number(input);
     this.#isNumber(number);
+    this.#checkRange(number);
   }
 
   #checkEmpty(input) {
@@ -23,5 +25,9 @@ export class InputAttemptCount {
 
   #isNumber(input) {
     if (isNaN(input)) throw new Error(NAN_ERROR_MESSAGE);
+  }
+
+  #checkRange(input) {
+    if (input < MIN_ATTEMPT_COUNT) throw new Error(ATTEMPT_COUNT_ERROR_MESSAGE);
   }
 }
