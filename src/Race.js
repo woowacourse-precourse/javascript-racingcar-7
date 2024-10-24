@@ -8,7 +8,11 @@ import {
 } from "./utils";
 
 class Race {
-  #TRACE_CHARACTER = "-";
+  static #MIN_RANDOM = 0;
+  static #MAX_RANDOM = 9;
+  static MOVE_FORWARD_THRESHOLD = 4;
+  static #TRACE_CHARACTER = "-";
+
   #carNameArray;
   #tryCount;
   #carTraceMap;
@@ -31,7 +35,7 @@ class Race {
   }
 
   moveCarForward(currentPosition) {
-    const randomNum = pickNumberInRange(0, 9);
+    const randomNum = pickNumberInRange(Race.#MIN_RANDOM, Race.#MAX_RANDOM);
     const isMoveForward = this.getMoveForward(randomNum);
     if (isMoveForward) return currentPosition + 1;
     return currentPosition;
@@ -43,7 +47,7 @@ class Race {
 
   printCarPosition(carName, position) {
     const repeatedTraceChracter = getRepeatedString(
-      this.#TRACE_CHARACTER,
+      Race.#TRACE_CHARACTER,
       position
     );
 

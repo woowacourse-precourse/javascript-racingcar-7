@@ -11,9 +11,11 @@ import {
 } from "./utils";
 
 class Input {
-  #MAX_CAR_NAME_LENGTH = 5;
+  static #MAX_CAR_NAME_LENGTH = 5;
+
   #carNames;
   #tryCount;
+
   async getUserInput() {
     this.#carNames = await readLineAsync(INPUT_MESSAGE_CAR_NAMES);
     this.#tryCount = await readLineAsync(INPUT_MESSAGE_TRY_COUNT);
@@ -33,7 +35,7 @@ class Input {
 
   validateCarNameLength(carNameArray) {
     try {
-      validateStringArrayLength(carNameArray, this.#MAX_CAR_NAME_LENGTH);
+      validateStringArrayLength(carNameArray, Input.#MAX_CAR_NAME_LENGTH);
     } catch (e) {
       throw new Error(ERROR_MESSAGE_CAR_NAME_OVER_FIVE);
     }
