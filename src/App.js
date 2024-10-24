@@ -2,6 +2,8 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 
 import Car from './Car.js';
 
+import { getCarName, splitCarName } from './InputUtils.js';
+
 class App {
   constructor() {
     this.carList = [];
@@ -9,16 +11,8 @@ class App {
 
   async run() {
     this.carList = this.makeCars([]);
-    const carNames = await this.getCarName();
-    const splittedCarName = this.splitCarName(carNames);
-  }
-
-  async getCarName() {
-    return await MissionUtils.Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)');
-  }
-
-  splitCarName(name) {
-    return name.split(',');
+    const carNames = await getCarName();
+    const splittedCarName = splitCarName(carNames);
   }
 
   makeCars(names) {
