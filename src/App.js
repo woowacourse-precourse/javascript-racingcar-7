@@ -36,15 +36,6 @@ class App {
 
     // 2. 입력받은 값을 통해 게임 구현
 
-    const userNames = checkNames();
-    Console.print("실행 결과");
-    for (let cnt = 0; cnt < inputCount; cnt++) {
-      Console.print("\n");
-      for (let j = 0; j < userNames.length; j++) {
-        Console.print(userNames[j] + " : ");
-      }
-    }
-
     const randomNum = () => {
       return MissionUtils.Random.pickNumberInRange(0, 9);
     };
