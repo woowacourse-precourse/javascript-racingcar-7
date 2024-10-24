@@ -1,23 +1,23 @@
 import Validator from '../utils/validator.js';
 import InputView from '../views/InputView.js';
 import OutputView from '../views/OutputView.js';
+import Game from '../models/Game.js';
 
 class GameController {
+  #inputView;
+  #outputView;
+  #game;
+
   constructor() {
-    this.inputView = new InputView();
-    this.outputView = new OutputView();
+    this.#inputView = new InputView();
+    this.#outputView = new OutputView();
   }
 
   async run() {
     try {
-      const carNames = await this.inputView.readCarNames();
-      const gameCount = await this.inputView.readRacingCount();
-
-      Validator.validateCarNames(carNames);
-      Validator.validateGameCount(gameCount);
-
-      this.outputView.printResult(carNames);
-      this.outputView.printResult(gameCount);
+      await this.#initializeGame();
+      this.#playGame();
+      this.#announceWinners();
     } catch (error) {
       throw error;
     }

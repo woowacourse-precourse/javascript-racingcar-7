@@ -1,8 +1,8 @@
 import { Console } from '@woowacourse/mission-utils';
 
 class OutputView {
-  printResult(result) {
-    Console.print(result);
+  printGameStart() {
+    Console.print('\n실행 결과');
   }
 }
 

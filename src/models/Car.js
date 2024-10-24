@@ -1,23 +1,28 @@
-import { Console } from '@woowacourse/mission-utils';
-
 class Car {
+  #name;
+  #position;
+
   constructor(name) {
-    this.name = name;
-    this.position = 0;
+    this.#name = name;
+    this.#position = 0;
   }
 
-  move(randonNumber) {
-    if (randonNumber >= 4) {
-      this.position += 1;
+  move(randomNumber) {
+    if (this.#isMovable(randomNumber)) {
+      this.#position += 1;
     }
   }
 
+  #isMovable(randomNumber) {
+    return randomNumber >= 4;
+  }
+
   getName() {
-    return this.name;
+    return this.#name;
   }
 
   getPosition() {
-    return this.position;
+    return this.#position;
   }
 }
 
