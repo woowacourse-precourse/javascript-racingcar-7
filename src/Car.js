@@ -1,3 +1,5 @@
+import { Console } from "@woowacourse/mission-utils";
+
 class Car {
     #name;
     #position;
@@ -12,6 +14,6 @@ class Car {
     }
 
     printPosition() {
-        return `${this.#name} : ${"-".repeat(this.#position)}`;
+        Console.print(`${this.#name} : ${"-".repeat(this.#position)}`);
     }
 }
