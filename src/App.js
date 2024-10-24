@@ -54,8 +54,10 @@ class App {
   }
 
   printWinners(cars) {
-    let maxDistance = Math.max(...Object.values(cars));
-    let winners = Object.keys(cars).filter((car) => cars[car] === maxDistance);
+    const maxDistance = Math.max(...Object.values(cars));
+    const winners = Object.keys(cars).filter(
+      (car) => cars[car] === maxDistance
+    );
     Console.print(`최종 우승자 : ${winners.join(', ')}`);
   }
 }
