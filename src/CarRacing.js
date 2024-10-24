@@ -13,26 +13,6 @@ export default class CarRacing {
     this.#firstRace = true;
   }
 
-  get carNames() {
-    return [...this.#names];
-  }
-
-  get raceCount() {
-    return this.#count;
-  }
-
-  get movements() {
-    return [...this.#movements];
-  }
-
-  get info() {
-    return {
-      carNames: this.carNames,
-      raceCount: this.raceCount,
-      movements: this.movements,
-    };
-  }
-
   static async createInstance() {
     const names = await CarRacing.#getCarNamesAsync();
     CarRacing.#validateCarNames(names);
@@ -47,6 +27,14 @@ export default class CarRacing {
 
   static #throwErrorMessage(msg) {
     throw new Error(`[ERROR] ${msg}`);
+  }
+
+  static #createMovements(names) {
+    return names.reduce((obj, name) => {
+      obj.push([name, ""]);
+
+      return obj;
+    }, []);
   }
 
   static async #getCarNamesAsync() {
@@ -83,27 +71,17 @@ export default class CarRacing {
     }
   }
 
-  static #createMovements(names) {
-    return names.reduce((obj, name) => {
-      obj.push([name, ""]);
-
-      return obj;
-    }, []);
-  }
-
   startBroadCast() {
     if (this.#firstRace) this.#firstRace = false;
 
     Console.print("\n실행 결과");
 
-    const { carNames: names, movements, raceCount: count } = this.info;
-
-    for (let i = 0; i < count; i++) {
-      for (let j = 0; j < names.length; j++) {
-        CarRacing.#forwardOrStopCar(movements, j);
+    for (let i = 0; i < this.#count; i++) {
+      for (let j = 0; j < this.#names.length; j++) {
+        CarRacing.#forwardOrStopCar(this.#movements, j);
       }
 
-      movements.forEach(car => {
+      this.#movements.forEach(car => {
         Console.print(car.join(" : "));
       });
 
@@ -127,7 +105,7 @@ export default class CarRacing {
     }
 
     const movements = this.#movements;
-    const maxDistance = CarRacing.#maxMovement(movements);
+    const maxDistance = CarRacing.#maxMovement([...movements]);
 
     return movements
       .filter(car => car[1].length === maxDistance)
