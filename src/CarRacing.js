@@ -17,11 +17,23 @@ const getCarNames = async () => {
 }
 
 const validateCarNames = (carNames) => {
+    if (carNames.length > 10) {
+        throw new Error('[ERROR] 자동차는 최대 10대까지 등록 가능합니다.');
+    }
     carNames.forEach((car) => {
+        if (car.length === 0) {
+            throw new Error('[ERROR] 자동차 이름으로 공백은 허용되지 않습니다.');
+        }
         if (car.length > 5) {
             throw new Error('[ERROR] 모든 자동차 이름은 5자 이하여야 합니다.');
         }
     });
+
+    const deduplicatedCarNames = new Set(carNames);
+
+    if (carNames.length !== deduplicatedCarNames.size) {
+        throw new Error('[ERROR] 중복되는 자동차 이름이 있습니다.');
+    }
 }
 
 const getAttemptCount = async () => {
@@ -29,7 +41,7 @@ const getAttemptCount = async () => {
 
     validateAttemptCount(attemptCount);
 
-    return attemptCount;
+    return Number(attemptCount);
 }
 
 const validateAttemptCount = (attemptCount) => {
@@ -40,6 +52,12 @@ const validateAttemptCount = (attemptCount) => {
     }
     else if (count < 1) {
         throw new Error('[ERROR] 시도 횟수는 1 이상의 정수여야 합니다.');
+    }
+    else if (!Number.isInteger(count)) {
+        throw new Error('[ERROR] 시도 횟수는 실수가 될 수 없습니다.');
+    }
+    else if (count > 100) {
+        throw new Error('[ERROR] 시도 횟수는 최대 100회까지 가능합니다.');
     }
 }
 
