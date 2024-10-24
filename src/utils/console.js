@@ -10,3 +10,7 @@ export const getTryCount = async () => {
   const tryCount = await Console.readLineAsync(MESSAGES.COUNT_INPUT);
   return Number(tryCount);
 };
+
+export const printResult = (result) => {
+  Console.print(result + "\n");
+};

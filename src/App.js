@@ -3,11 +3,15 @@ import { MESSAGES } from "./constants/index.js";
 import {
   getCarNames,
   assertCondition,
-  createErrorMessage,
   hasDuplicate,
   hasInvalidCarNameLength,
   getTryCount,
   isNotPositiveInteger,
+  carsInfoController,
+  advanceCars,
+  getAdvanceResult,
+  printResult,
+  executionLoop,
 } from "./utils/index.js";
 
 class App {
@@ -19,6 +23,13 @@ class App {
 
       const tryCount = await getTryCount();
       assertCondition(isNotPositiveInteger(tryCount), MESSAGES.INVALID_TRY_COUNT);
+
+      const { getCarsInfoEntries, incrementAdvanceCount } = carsInfoController(carNames);
+
+      executionLoop(tryCount, MESSAGES.EXECUTION_RESULT, [
+        () => advanceCars(carNames, incrementAdvanceCount),
+        () => printResult(getAdvanceResult(getCarsInfoEntries())),
+      ]);
     } catch (error) {
       Console.print(error.message);
       throw error;
