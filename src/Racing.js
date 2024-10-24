@@ -1,3 +1,5 @@
+import { Console } from '@woowacourse/mission-utils';
+
 class Racing {
   #totalRounds;
 
@@ -30,6 +32,15 @@ class Racing {
       if (round === totalRounds) {
         this.#result = distances;
       }
+    });
+  }
+
+  showStatus(raceStatus) {
+    raceStatus.forEach(({ name, distance }) => {
+      const DISTANCE_MARK = '-';
+      const distanceGraph = DISTANCE_MARK.repeat(distance);
+
+      Console.print(`${name} : ${distanceGraph}`);
     });
   }
 }
