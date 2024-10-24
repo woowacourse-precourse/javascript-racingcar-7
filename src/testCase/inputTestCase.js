@@ -13,7 +13,22 @@ export const carNameInputCase = [
     throwError: false,
   },
   {
+    input: '자스,java,파이,ts',
+    expected: [new Car('자스'), new Car('java'), new Car('파이'), new Car('ts')],
+    throwError: false,
+  },
+  {
     input: '',
+    expected: `${errorMessages.prefix} ${errorMessages.invalidCarInputName}`,
+    throwError: true,
+  },
+  {
+    input: 'js1,java2,py3,ts4',
+    expected: `${errorMessages.prefix} ${errorMessages.invalidCarInputName}`,
+    throwError: true,
+  },
+  {
+    input: 'js!,java@,py#,ts$',
     expected: `${errorMessages.prefix} ${errorMessages.invalidCarInputName}`,
     throwError: true,
   },
