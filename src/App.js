@@ -86,7 +86,7 @@ function checkWinner(cars) {
   let finalWinner = [];
   let maxScore = "";
   cars.forEach((car) => {
-    if (maxScore < car.distance.length) {
+    if (maxScore.length  < car.distance.length) {
       maxScore = car.distance;
     }
   });
