@@ -33,4 +33,16 @@ function Race (cars) {
   });
   return cars;
 }
+
+function RoundResultPrint (cars) {
+  let carsMove = Race(cars);
+  for (let carNumber = 0; carNumber < carsMove.length; carNumber++) {
+    let moveDistance = "";
+    for (let move = 0; move < carsMove[carNumber].moveCount; move++) {
+      moveDistance += "-";
+    }
+    Console.print(carsMove[carNumber].name + " : " + moveDistance);
+  }
+  Console.print("");
+}
 export default App;
