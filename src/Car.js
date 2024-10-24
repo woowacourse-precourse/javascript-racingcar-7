@@ -1,3 +1,5 @@
+import { Random } from "@woowacourse/mission-utils";
+
 class Car {
     constructor(name) {
         this.name = name;
