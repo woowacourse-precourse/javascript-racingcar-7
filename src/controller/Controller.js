@@ -17,6 +17,7 @@ class Controller {
 
   async getMoveTimes() {
     const moveTimes = await this.view.readUserInput('시도할 횟수는 몇 회인가요?');
+    Validator.isValidMoveTimes(moveTimes);
 
     return moveTimes;
   }
