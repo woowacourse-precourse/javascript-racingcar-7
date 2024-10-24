@@ -1,8 +1,20 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 
+import Car from './Car.js';
+
 class App {
+  constructor() {
+    this.car = new Car();
+  }
+
   async run() {
-    this.isHighEnough();
+    this.moveCarForward(this.car);
+  }
+
+  moveCarForward(car) {
+    if (this.isHighEnough()) {
+      car.move();
+    }
   }
 
   isHighEnough() {
