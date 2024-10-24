@@ -88,7 +88,13 @@ test.each([
   // Exception6
   [['name,name,name', '1'], '[ERROR]'],
   [['name,name1,name', '1'], '[ERROR]'],
+  // 우선순위 Check 필요
   [['name,naaaaame1,name', '1'], '[ERROR]'],
+  // Exception9 ~ 12
+  [['car1,car2,car3', '-1'], '[ERROR]'],
+  [['car1,car2,car3', '0'], '[ERROR]'],
+  [['car1,car2,car3', '999999999999999999999999999999999'], '[ERROR]'],
+  [['car1,car2,car3', 'one'], '[ERROR]'],
 ])('areAnagrams(%s) returns %s', async (first) => {
   // given
   mockQuestions(first);
