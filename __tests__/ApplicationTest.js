@@ -1,5 +1,6 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
+import IO_MESSAGE from '../src/constant/ioMessage';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -25,6 +26,14 @@ const getLogSpy = () => {
 };
 
 describe("자동차 경주", () => {
+  test.only('입력 테스트', async () => {
+    const app = new App();
+    const inputs = ['test'];
+    mockQuestions(inputs);
+    const NAMES = await app.getInput(IO_MESSAGE.INPUT_CAR_NAME);
+    expect(NAMES).toEqual('test');
+  });
+
   test("기능 테스트", async () => {
     // given
     const MOVING_FORWARD = 4;
