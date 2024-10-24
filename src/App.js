@@ -1,5 +1,14 @@
+import { Console } from "@woowacourse/mission-utils";
+
 class App {
-  async run() {}
+  constructor(){
+    this.carNameArr = [];
+    this.count = 0;
+  }
+
+  async run() {
+
+  }
 }
 
 export default App;
