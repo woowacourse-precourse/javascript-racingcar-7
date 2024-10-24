@@ -1,24 +1,14 @@
-import InputView from './view/InputView.js';
-import OutputView from './view/OutputView.js';
-import MoveCar from './MoveCar.js';
-import Winner from './Winner.js';
+import GameController from './gameController/GameController.js';
 
 class App {
   constructor() {
-    this.inputView = new InputView();
-    this.outputView = new OutputView();
-    this.moveCar = new MoveCar();
-    this.winner = new Winner();
+    this.gameController = new GameController();
   }
 
   async run() {
-    const carNameList = await this.inputView.getCarNameInput();
-    const gameRound = await this.inputView.getGameCountInput();
-    this.outputView.spacing();
-    this.outputView.gameResultHeader();
-
-    const gameResult = this.moveCar.moveCar(carNameList, gameRound);
-    this.winner.checkRanking(gameResult);
+    const [carNames, gameRound] = await this.gameController.prepareGame();
+    const gameResult = this.gameController.runGame(carNames, gameRound);
+    this.gameController.finishGame(gameResult);
   }
 }
 
