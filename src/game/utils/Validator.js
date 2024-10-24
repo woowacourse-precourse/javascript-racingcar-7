@@ -25,4 +25,11 @@ export default class Validator {
       carsNameCheckArray.push(carName.trim());
     });
   }
+
+  static validateAttemptCount(attemptCount){
+    const isValidate = new RegExp('^\\d+$').test(attemptCount)
+    if(!isValidate || Number(attemptCount)===0){
+        throw new Error('[ERROR] 시도할 횟수는 양의 정수를 입력해주세요.');
+    }
+  }
 }
