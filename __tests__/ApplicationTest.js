@@ -60,11 +60,11 @@ describe('자동차 경주', () => {
   });
 
   test('자동차 생성 예외 테스트(한글, 숫자, 영어 이외)', async () => {
-    const names = ['     ', 'asd_', 'a_sd', '_asd', '_ㅁㄴㅇ', '_123', 'asd!', 'asd👍', '(❁´◡`❁)', '^_^'];
+    const names = ['     ', 'asd_', 'a_sd', '_asd', '_ㅁㄴㅇ', '_123', 'asd!', 'asd👍', '^_^'];
     names.forEach(name => {
       expect(() => {
         new Car(name);
-      }).toThrow();
+      }).toThrow(ERROR_MESSAGE.ERROR_NOT_ALLOWED_CHARACTER);
     });
   });
 
