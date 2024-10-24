@@ -57,4 +57,28 @@ describe('자동차 경주', () => {
     // then
     await expect(app.run()).rejects.toThrow('[ERROR]');
   });
+
+  test('중복된 자동차 이름을 부여할 경우', async () => {
+    // given
+    const inputs = ['pobi,pobi'];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('자동차의 이름을 부여하지 않은 경우', async () => {
+    // given
+    const inputs = [''];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
 });
