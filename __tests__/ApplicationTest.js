@@ -57,4 +57,14 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+  
+  test('자동차 이름 입력 받아서 나누기', () => {
+    const input = 'pobi,woni';
+
+    const receivedInput = inputCarNames(input);
+    const splitCarNames = splitInput(receivedInput);
+    
+    expect(splitCarNames).toEqual(['pobi', 'woni']);
+  });
+
 });
