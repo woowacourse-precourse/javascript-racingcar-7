@@ -10,20 +10,22 @@ function parseStringToObject(validCars) {
 }
 
 function moveCars(carsObject) {
-  carsObject.forEach((car) => {
+  return carsObject.map((car) => {
     if (isMoveForward()) {
-      car.distance += 1;
+      return { ...car, distance: car.distance + 1 };
     }
+
+    return car;
   });
 }
 
 export async function racingCars() {
   const { cars, count } = await input();
-  const carsObject = parseStringToObject(cars);
+  let carsObject = parseStringToObject(cars);
 
   Console.print('실행결과');
   for (let i = 0; i < count; i++) {
-    moveCars(carsObject);
+    carsObject = moveCars(carsObject);
     printProgress(carsObject);
     Console.print('\n');
   }
