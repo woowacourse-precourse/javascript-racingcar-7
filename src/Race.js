@@ -41,6 +41,11 @@ class Race {
     static #isForward(number) {
         return number >= Race.#FORWARD_THRESHOLD;
     }
+
+    #findWinner() {
+        const maxPosition = Math.max(...this.#carList.map((car) => car.position));
+        return this.#carList.filter((car) => car.position === maxPosition);
+    }
 }
 
 export default Race;
