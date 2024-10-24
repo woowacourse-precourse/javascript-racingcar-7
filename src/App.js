@@ -10,10 +10,12 @@ class App {
   }
 
   async run() {
-    this.carList = this.makeCars([]);
     const carNames = await getCarName();
     const splittedCarName = splitCarName(carNames);
     const attemptCount = await getAttemptCount();
+
+    this.carList = this.makeCars(splittedCarName);
+    this.repeat(attemptCount);
   }
 
   makeCars(names) {
@@ -26,7 +28,7 @@ class App {
 
   repeat(number) {
     for (let i = 0; i < number; i++) {
-      this.moveCarForward(this.car);
+      this.carList.forEach((car) => this.moveCarForward(car));
     }
   }
 
