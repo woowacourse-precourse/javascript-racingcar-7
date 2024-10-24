@@ -1,4 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
+import { Random } from '@woowacourse/mission-utils';
 
 class App {
   async run() {
@@ -15,13 +16,21 @@ class App {
     Console.print('\n실행 결과');
     for (let i = 0; i < n; i++) {
       carArr.forEach((car, idx) => {
-        let lenMoved = '';
-        Console.print(`${car} : ${lenMoved}`);
+        lenMovedArr[idx] += this.getIsForward(); //전진 상황 업데이트
+        Console.print(`${car} : ${'-'.repeat(lenMovedArr[idx])}`);
       });
       Console.print(' ');
     }
 
     Console.print(`최종 우승자 : ${resultCar}`);
+  }
+
+  getIsForward() {
+    if (Random.pickNumberInRange(0, 9) >= 4) {
+      return 1;
+    } else {
+      return 0;
+    }
   }
 }
 
