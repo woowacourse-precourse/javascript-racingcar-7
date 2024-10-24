@@ -3,8 +3,6 @@
 <details>
 <summary>자세히 보기</summary>
 
-<br/>
-
 - 미션은 과제를 포크하고 클론하는 것으로 시작한다.
 
 - 기능을 구현하기 전 `README.md` 에 구현 할 기능 목록을 정리하여 추가한다.
@@ -16,8 +14,6 @@
 
 <details>
 <summary>자세히 보기</summary>
-
-<br/>
 
 > **초간단 자동차 경주 게임을 구현한다.**
 
@@ -82,7 +78,6 @@ jun : -----
 
 <details>
 <summary>자세히 보기</summary>
-<br/>
 
 - Node.js 20.17.0 버전에서 실행 가능해야 한다.
 
@@ -98,7 +93,6 @@ jun : -----
 
 <details>
 <summary>자세히 보기</summary>
-<br/>
 
 - depth는 2까지만 허용한다.
 
@@ -145,7 +139,6 @@ jun : -----
 
 <details>
 <summary>자세히 보기</summary>
-<br/>
 
 1. 자동차 이름들을 입력 받는다.
 
@@ -165,11 +158,13 @@ jun : -----
 
 <details open>
 <summary>자세히 보기</summary>
-<br/>
 
 - [x] 자동차 이름들을 입력 받는다.
+
   - [x] 자동차 이름들을 `쉼표(,)` 를 기준으로 나눈다.
+
   - [x] 각 자동차 이름에 `앞, 뒤 공백을 제거`한다.
+
 - [x] 자동차 이름들에 `중복이 있다면` 예외 처리한다.
 - [x] 자동차 이름이 `1자 이상 5자 이하가 아닌 경우` 예외 처리한다.
 - [x] 시도할 횟수를 입력 받는다.
@@ -177,5 +172,124 @@ jun : -----
 - [x] 시도할 횟수 만큼 전진하고 결과를 출력한다.
 - [x] 마지막 결과를 기준으로 최종 우승자를 구한다.
 - [x] 최종 우승자를 출력한다.
+
+</details>
+
+## 👀 미션 라이브러리 까보기
+
+```tsx
+// 시작 범위 ~ 끝 범위 내 랜덤 정수를 생성하는 메서드
+static pickNumberInRange(startInclusive, endInclusive) {
+  Random.#validateRange(startInclusive, endInclusive);
+
+  startInclusive = Math.ceil(startInclusive);
+
+  return (
+    Math.floor(Math.random() * (endInclusive + 1 - startInclusive)) +
+    startInclusive
+  );
+}
+```
+
+- `validateRange` 를 호출하여 인자 값들을 유효성 검사한다.
+
+- 시작 범위을 `무조건 올림(ceil)` 한다.
+- `Math.random()` : 0 이상 1미만의 부동 소수점 난수를 생성한다.
+- `endInclusive + 1 - startInclusive`: 생성하고자 하는 난수의 범위를 결정한다.
+- 생성된 난수를 `Math.floor` 를 통해 가장 가까운 정수로 내림 처리한다.
+- 이 결과의 시작 값을 더해 `시작 값 ~ 끝 값 범위의 무작위 정수를 반환`한다.
+
+### 정리하기
+
+→ 인자 값(범위)들을 유효성 검사
+
+→ `0 ~ 끝 범위`까지의 랜덤 난수 생성
+
+→ 정수로 내림 처리
+
+→ 시작 범위를 더해 `시작 범위 ~ 끝 범위의 무작위 정수` 반환
+
+### `validateRange` 유효성 검사 로직
+
+```tsx
+static #isNumber(value) {
+  return typeof value === "number";
+}
+
+static #validateRange(startInclusive, endInclusive) {
+	// 타입이 숫자인지 체크
+  if (!Random.#isNumber(startInclusive) || !Random.#isNumber(endInclusive)) {
+    throw new Error("arguments must be numbers.");
+  }
+
+	// 자바스크립트에서 표현할 수 있는 최대 음수 -9007199254740991 체크
+  if (startInclusive < Number.MIN_SAFE_INTEGER) {
+    throw new Error(
+      "startInclusive cannot be less than Number.MIN_SAFE_INTEGER"
+    );
+  }
+
+	// 자바스크립트에서 표현할 수 있는 최대 정수 9007199254740991 체크
+  if (endInclusive > Number.MAX_SAFE_INTEGER) {
+    throw new Error(
+      "endInclusive cannot be greater than Number.MAX_SAFE_INTEGER."
+    );
+  }
+
+  // 시작 범위가 끝 범위보다 크다면
+  if (startInclusive > endInclusive) {
+    throw new Error(
+      `startInclusive ${startInclusive} cannot be greater than endInclusive ${endInclusive}.`
+    );
+  }
+
+  // 자바스크립트에서 표현할 수 있는 최대 숫자 값 1.7976931348623157 × 10^308 체크
+  if (endInclusive - startInclusive >= Number.MAX_VALUE) {
+    throw new Error("the input range is too large.");
+  }
+}
+```
+
+## 🐱 Git 커밋 컨벤션
+
+<details>
+<summary>자세히 보기</summary>
+
+|   Type   | Description                                           |
+| :------: | ----------------------------------------------------- |
+|   init   | 초기 설정                                             |
+|   feat   | 새로운 기능 추가                                      |
+|   fix    | 버그 수정                                             |
+| refactor | 코드 리팩토링                                         |
+| comment  | 필요한 주석 추가 및 변경                              |
+|  chore   | 패키지 매니저 수정, 그 외 기타 수정 ex) `.gitnore` 등 |
+|  rename  | 파일 혹은 폴더명을 수정하거나 옮기는 작업만인 경우    |
+|  remove  | 파일을 삭제하는 작업만 수행한 경우                    |
+|   docs   | 문서 수정                                             |
+|   test   | 테스트 코드 작성 및 수정                              |
+
+</details>
+
+## 📂 폴더 구조
+
+<details open>
+<summary>자세히 보기</summary>
+
+```js
+📦src
+ ┣ 📂constants // 상수 폴더
+ ┃ ┣ 📜index.js // 상수 배럴 파일
+ ┃ ┣ 📜message.js // 메세지
+ ┃ ┗ 📜rule.js // 게임 규칙
+ ┣ 📂utils // 유틸 폴더
+ ┃ ┣ 📜advance.js // 자동차 전진 관련 로직
+ ┃ ┣ 📜console.js // 콘솔 관련(입출력)
+ ┃ ┣ 📜controller.js // 컨트롤러(자동차 정보 가져오기, 전진 카운트 증가 등)
+ ┃ ┣ 📜index.js // 유틸 배럴 파일
+ ┃ ┣ 📜validation.js // 유효성 검사 로직
+ ┃ ┗ 📜winner.js // 우승자 관련 로직
+ ┣ 📜App.js // 애플리케이션 구현
+ ┗ 📜index.js // 실행 파일
+```
 
 </details>
