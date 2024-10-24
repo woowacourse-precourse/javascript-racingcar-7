@@ -1,4 +1,4 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 import { checkCarInputLength } from './errors/carError.js';
 import { checkEmptyInput } from './errors/commonError.js';
 
@@ -16,10 +16,27 @@ class App {
 		checkEmptyInput(carNameInput);
 		checkEmptyInput(tryNumber);
 
-		// 전진 : 무작위 값 0-9까지 값의 4 이상의 값
+		// 각 자동차 위치 초기화
+		const positions = Array(carList.length).fill(0);
 
-		// 멈춤 : 3이하
+		const startRacingGame = (carList, tryNumber) => {
+			for (let i = 0; i < tryNumber; i++) {
+				// 전진 : 무작위 값 0-9까지 값의 4 이상의 값 -> 랜덤숫자
+				for (let j = 0; j < carList.length; j++) {
+					const randomNumber = Random.pickNumberInRange(0, 9);
+					if (randomNumber >= 4) {
+						positions[j] += 1;
+					}
+					Console.print(`${carList[j]} : ${'-'.repeat(positions[j])}`);
+				}
+				Console.print('');
+			}
+		};
 
+		// 게임 시작
+		startRacingGame(carList, parseInt(tryNumber));
+
+		
 	}
 }
 
