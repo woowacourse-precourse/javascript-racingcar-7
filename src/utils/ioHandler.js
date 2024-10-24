@@ -1,16 +1,16 @@
 import { Console } from '@woowacourse/mission-utils';
-import { IO_MESSAGE } from '../constants/index.js';
+import { IO_MESSAGE, ERROR } from '../constants/index.js';
 import { ValidationError } from '../Error/ValidationError.js';
 
 function validateInput(carString, count) {
   if (!carString) {
-    throw new ValidationError('[ERROR] 자동차가 입력되지 않았습니다.');
+    throw new ValidationError(ERROR.EMPTY_CAR_STRING_MESSAGE);
   }
   if (Number.isNaN(parseInt(count, 10))) {
-    throw new ValidationError('[ERROR] 숫자가 입력되지 않았습니다.');
+    throw new ValidationError(ERROR.EMPTY_COUNT_MESSAGE);
   }
   if (count <= 0) {
-    throw new ValidationError('[ERROR] 양수를 입력해야 합니다.');
+    throw new ValidationError(ERROR.NONE_POSITIVE_COUNT_MESSAGE);
   }
 }
 

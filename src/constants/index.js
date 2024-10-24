@@ -13,6 +13,12 @@ const GAME = Object.freeze({
   ROUTE: '-',
 });
 
+const ERROR = Object.freeze({
+  EMPTY_CAR_STRING_MESSAGE : '[ERROR] 자동차가 입력되지 않았습니다.',
+  EMPTY_COUNT_MESSAGE : '[ERROR] 숫자가 입력되지 않았습니다.',
+  NONE_POSITIVE_COUNT_MESSAGE : '[ERROR] 양수를 입력해야 합니다.',
+});
+
 const CRITERIA_NUMBER = 4;
 
-export { IO_MESSAGE, GAME, CRITERIA_NUMBER };
+export { IO_MESSAGE, GAME, CRITERIA_NUMBER, ERROR };
