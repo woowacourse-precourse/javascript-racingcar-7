@@ -1,12 +1,8 @@
 import { Console } from "@woowacourse/mission-utils";
 import { MESSAGES } from "./constants/message.js";
 
-export function inputCars() {
-  return Console.readLineAsync(MESSAGES.INPUT_CAR_NAMES);
-}
-
-export function inputTrialCount() {
-  return Console.readLineAsync(MESSAGES.INPUT_TRIAL_COUNT);
+export function getInputAsync(message) {
+  return Console.readLineAsync(message);
 }
 
 export function printCarsMove(carsMap) {
