@@ -8,7 +8,7 @@ const IO_MESSAGE = Object.freeze({
 
 const GAME = Object.freeze({
   START_MESSAGE: '\n실행 결과',
-  SAPCE_COLON: ' + ',
+  SAPCE_COLON: ' : ',
   NEW_LINE: '\n',
   ROUTE: '-',
 });
