@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import IO_MESSAGE from './constant/ioMessage.js';
+import { IO_MESSAGE } from './common/message.js';
 
 class App {
   async run() {

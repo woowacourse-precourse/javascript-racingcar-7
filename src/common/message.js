@@ -5,4 +5,9 @@ const IO_MESSAGE = Object.freeze({
   OUTPUT_FINAL_RESULT: '최종 우승자 : ',
 });
 
-export default IO_MESSAGE;
+const ERROR_MESSAGE = Object.freeze({
+  ERROR_EMPTY_STRING: '[ERROR] 입력 값이 비었습니다.',
+  ERROR_NOT_ALLOWED_CHARACTER: '[ERROR] 자동차의 이름은 한글, 영문, 숫자만 가능합니다.',
+});
+
+export { IO_MESSAGE, ERROR_MESSAGE };
