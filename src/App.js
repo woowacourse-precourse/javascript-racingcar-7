@@ -8,6 +8,10 @@ class App {
   async run() {
     const carNamesInput = await getCarNamesInput();
     isCarNamesInputNotEmpty(carNamesInput);
+    
+
+
+
 
     const spliteAndtrimmedCarName = splitAndTrimCarName(carNamesInput);
 

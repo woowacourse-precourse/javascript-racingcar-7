@@ -1,5 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import { isCarNamesInputNotEmpty, carNamesLengthValidator } from '../Models/validations/carNamesValidator.js';
+import { ERROR_MESSAGES } from '../Errors/errorMessages.js';
 
 const validateCarNamesLength = spliteAndtrimmedCarName => {
   if (carNamesLengthValidator(spliteAndtrimmedCarName)) {
@@ -7,7 +8,7 @@ const validateCarNamesLength = spliteAndtrimmedCarName => {
   }
 
   if (carNamesLengthValidator(spliteAndtrimmedCarName) === false) {
-    Console.print('[Error] 자동차 이름이 5자를 초과하였습니다. 5자 이하만 가능합니다.');
+    throw new Error(ERROR_MESSAGES.OVERLENGTH_INPUT);
   }
 };
 
