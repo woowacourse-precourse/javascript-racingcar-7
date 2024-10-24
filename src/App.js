@@ -48,6 +48,13 @@ class App {
     });
   };
 
+  printMoveForwardResult = (cars) => {
+    cars.forEach((car) => {
+      car.stopAndGo();
+      Console.print(`${car.name} : ${LETTER.runResult.repeat(car.forward)}`);
+    });
+  };
+
   async run() {}
 }
 
