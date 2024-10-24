@@ -1,4 +1,5 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
+import Car from '../src/utils/Car.js';
 
 const mockRandoms = numbers => {
   MissionUtils.Random.pickNumberInRange = jest.fn();
@@ -8,25 +9,22 @@ const mockRandoms = numbers => {
   }, MissionUtils.Random.pickNumberInRange);
 };
 
-describe('차량 전진 테스트', () => {
-  const mockStraight = jest.fn();
+describe('Car 클래스 테스트', () => {
+  let car;
   beforeEach(() => {
-    // 여기서 mockRandoms를 호출하여 랜덤 숫자를 설정
-    mockRandoms([5]); // 예시로 5를 설정
+    // 각 테스트가 시작할 때마다 새로운 Car 객체 생성
+    car = new Car('pobi');
   });
 
-  mockStraight.mockImplementation(car => {
-    const num = MissionUtils.Random.pickNumberInRange(0, 9); // 랜덤 숫자 가져오기
-    if (num > 4) {
-      return car.concat('-');
-    }
-    return car;
-  });
-  test('랜덤 숫자가 4이상일 경우 - 를 붙인다', () => {
-    expect(mockStraight('pobi: -')).toBe('pobi: --');
-  });
-  test('랜덤 숫자가 4 미만일 경우 - 를 붙인다', () => {
-    mockRandoms([3]);
-    expect(mockStraight('pobi: -')).toBe('pobi: -');
+  describe('랜덤 숫자에 따라 전진 여부 테스트', () => {
+    test('랜덤 숫자가 4이상일 경우 전진', () => {
+      car.move(5);
+      expect(car.getPosition()).toBe('pobi : -');
+    });
+
+    test('랜덤 숫자가 4미만일 경우 정지', () => {
+      car.move(2);
+      expect(car.getPosition()).toBe('pobi : ');
+    });
   });
 });
