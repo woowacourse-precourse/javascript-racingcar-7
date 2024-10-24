@@ -9,6 +9,13 @@ class View {
     this.printMessage(input);
     return await Console.readLineAsync('');
   }
+
+  printRacingCars(carMap) {
+    carMap.forEach((car) => {
+      this.printMessage(`${car.name} : ${car.position}`);
+    });
+    this.printMessage('');
+  }
 }
 
 export default View;
