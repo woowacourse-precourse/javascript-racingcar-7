@@ -1,3 +1,4 @@
+import RacingCar from "../src/RacingCar.js";
 import {
 	validateDuplicateName,
 	validateMaxCar,
@@ -8,10 +9,16 @@ import {
 describe("자동차 이름", () => {
 	test("자동차 이름 정상 입력", async () => {
 		// given
-		const carNames = "ayden,kia";
+		const carNames = "ayden,BMW";
+		const tryCount = "3";
 
-		// when, then
-		await expect(validateNameLength(carNames)).resolves.not.toThrow();
+		// when
+		const racingCar = new RacingCar();
+
+		// then
+		await expect(
+			racingCar.validateInput(carNames, tryCount)
+		).resolves.not.toThrow();
 	});
 
 	test("자동차 이름 5자 초과 입력", async () => {
