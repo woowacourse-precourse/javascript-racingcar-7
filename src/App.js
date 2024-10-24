@@ -51,6 +51,13 @@ class App {
     };
     const table = makeTable();
     Console.print(table);
+
+    function show() {
+      for (let key in table) {
+        Console.print(key + " : " + table[key]);
+      }
+    }
+    Console.print(show());
   }
 }
 
