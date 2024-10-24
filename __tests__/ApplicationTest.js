@@ -71,11 +71,11 @@ describe("자동차 경주", () => {
   test("무작위 값이 4 이상일 경우 전진한다.", () => {
     const app = new App();
 
-    expect(app.moveCar(4)).toBe(true);
-    expect(app.moveCar(5)).toBe(true);
-    expect(app.moveCar(9)).toBe(true);
-    expect(app.moveCar(3)).toBe(false);
-    expect(app.moveCar(0)).toBe(false);
+    expect(app.isCarMove(4)).toBe(true);
+    expect(app.isCarMove(5)).toBe(true);
+    expect(app.isCarMove(9)).toBe(true);
+    expect(app.isCarMove(3)).toBe(false);
+    expect(app.isCarMove(0)).toBe(false);
   });
 
   test("매 시도에서 실행 결과를 출력한다.", () => {

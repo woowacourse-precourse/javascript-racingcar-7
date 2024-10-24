@@ -25,29 +25,12 @@ class App {
 
     const racingCarNamesArray = this.parseRacingCarNames(racingCarNames);
 
-    racingCarNamesArray.forEach((car) => {
-      if (car.length > 5) {
-        this.printError("자동차 이름은 5자 이하만 가능합니다.");
-      }
-    });
+    this.validateRacingCarNames(racingCarNamesArray);
 
-    const moveCntPerCar = {};
-    racingCarNamesArray.forEach((car) => {
-      moveCntPerCar[car] = 0;
-    });
+    const moveCntPerCar = this.initMoveCntPerCar(racingCarNamesArray);
 
     Console.print("\n실행 결과");
-    for (let i = 0; i < attemptCount; i += 1) {
-      racingCarNamesArray.forEach((car) => {
-        const randomNumber = this.getRandomNumber();
-        if (this.moveCar(randomNumber)) {
-          moveCntPerCar[car] += 1;
-        }
-      });
-
-      this.printAttemptResult(moveCntPerCar);
-      Console.print("\n");
-    }
+    this.race(moveCntPerCar, racingCarNamesArray, attemptCount);
 
     this.printWinner(moveCntPerCar);
   }
@@ -60,7 +43,7 @@ class App {
     return Random.pickNumberInRange(0, 9);
   }
 
-  moveCar(randomNumber) {
+  isCarMove(randomNumber) {
     if (randomNumber >= 4) {
       return true;
     }
@@ -94,6 +77,49 @@ class App {
     if (+attemptCount === 0 || !Number.isInteger(+attemptCount)) {
       this.printError("시도 횟수는 1 이상의 정수만 가능합니다.");
     }
+  }
+
+  validateRacingCarNames(racingCarNamesArray) {
+    racingCarNamesArray.forEach((carName) => {
+      this.validateRacingCarName(carName);
+    });
+  }
+
+  validateRacingCarName(carName) {
+    if (carName.length > 5) {
+      this.printError("자동차 이름은 5자 이하만 가능합니다.");
+    }
+  }
+
+  race(moveCntPerCar, racingCarNamesArray, attemptCount) {
+    for (let i = 0; i < attemptCount; i += 1) {
+      this.moveCars(moveCntPerCar, racingCarNamesArray);
+      this.printAttemptResult(moveCntPerCar);
+      Console.print("\n");
+    }
+  }
+
+  moveCars(moveCntPerCar, racingCarNamesArray) {
+    racingCarNamesArray.forEach((carName) => {
+      this.moveCar(moveCntPerCar, carName);
+    });
+  }
+
+  moveCar(moveCntPerCar, carName) {
+    const randomNumber = this.getRandomNumber();
+    if (this.isCarMove(randomNumber)) {
+      moveCntPerCar[carName] += 1;
+    }
+  }
+
+  initMoveCntPerCar(racingCarNamesArray) {
+    const moveCntPerCar = {};
+
+    racingCarNamesArray.forEach((car) => {
+      moveCntPerCar[car] = 0;
+    });
+
+    return moveCntPerCar;
   }
 }
 
