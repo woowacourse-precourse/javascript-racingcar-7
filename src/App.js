@@ -4,8 +4,10 @@ import { FORWARD_DASH, SYSTEM_MESSAGE } from './constants.js';
 class App {
   async run() {
     await this.enterInput();
+
     Console.print(SYSTEM_MESSAGE.RESULT);
-    this.carsMoveForward();
+    this.generateRandomNumber();
+    this.printWinner();
   }
 
   async enterInput() {
@@ -24,10 +26,20 @@ class App {
     for (let i = 0; i < this.count; i++) {
       this.namesArray.forEach(element => {
         if (Random.pickNumberInRange(0, 9) >= 4) this.carsForward[element] += 1;
+
         Console.print(`${element} : ${FORWARD_DASH.repeat(this.carsForward[element])}`);
       });
+
       Console.print('');
     }
+  }
+
+  printWinner() {
+    const winners = Object.keys(this.carsForward).filter(
+      key => this.carsForward[key] === Math.max(...Object.values(this.carsForward)),
+    );
+
+    Console.print(`${SYSTEM_MESSAGE.WINNER}${winners.join(', ')}`);
   }
 }
 
