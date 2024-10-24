@@ -1,5 +1,10 @@
+import RacingGame from "./RacingGame.js";
+
 class App {
-  async run() {}
+  racingGame = new RacingGame()
+  async run() {
+     return await this.racingGame.start()
+  }
 }
 
 export default App;
