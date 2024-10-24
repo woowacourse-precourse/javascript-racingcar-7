@@ -10,6 +10,7 @@ class App {
     Console.print("시도할 횟수는 몇 회인가요?");
     let playCount = await Console.readLineAsync("");
     Console.print("실행 결과");
+
   }
 }
 class Car {
@@ -26,12 +27,10 @@ class Car {
   }
 }
 
-function Race (arrCarName, playCount) {
-  let cars = arrCarName.map(name => new Car(name));
+function Race (cars) {
   cars.forEach(car => {
     car.randomMove();
   });
   return cars;
 }
-
 export default App;
