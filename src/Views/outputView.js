@@ -1,8 +1,11 @@
 import { Console } from '@woowacourse/mission-utils';
 
 const printNotificationExecutionResult = () => {
-  Console.print('');
-  Console.print('실행 결과');
+  Console.print('\n실행 결과');
 };
 
-export { printNotificationExecutionResult };
+const printFinalWinners = MaxNumberNames => {
+  Console.print('최종 우승자 : ' + MaxNumberNames.join(', '));
+};
+
+export { printNotificationExecutionResult, printFinalWinners };
