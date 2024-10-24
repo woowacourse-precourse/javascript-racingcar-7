@@ -11,7 +11,7 @@ export default class CarRacingModel {
         car.move();
         Console.print(`${car.carName} : ${car.moveProgress()}`);
       });
-      Console.print("\n");
+      Console.print("");
     }
   }
 }
