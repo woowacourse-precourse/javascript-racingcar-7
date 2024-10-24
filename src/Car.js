@@ -9,7 +9,7 @@ class Car{
     }
 
     validateName(name){
-        if(length(name) > 5) {
+        if(name.length > 5) {
             throw new Error("[ERROR] 이름은 5자를 초과하면 안됩니다.");
         }
     }

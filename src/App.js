@@ -1,17 +1,19 @@
 import { Console } from "@woowacourse/mission-utils";
-import Car from "./Car";
+import Car from "./Car.js";
 
 class App {
   cars = [];
 
   async run() {
     try {
-      await carNames();
+      await this.carNames();
       const attempt = await this.attempts();
-
+      await this.startRace(attempt);
+      this.announceWinner();
     }
     catch {
-
+      Console.print(error.message);
+      throw Error;
     }
   }
   
@@ -27,9 +29,37 @@ class App {
     if (isNaN(attempt) || attempt <= 0) {
       throw new Error("[ERROR] 유효하지 않은 시도 횟수입니다.")
     }
+    return attempt;
   }
 
+  async startRace(attempt) {
+    Console.print("\n실행 결과");
+    for (let i = 0; i < attempt; i++) {
+      this.moveCars();
+      this.currentRace();
+    }
+  }
 
+  moveCars() {
+    this.cars.forEach(car => car.goAhead());
+  }
+
+  currentRace() {
+    this.cars.forEach(car => {
+      Console.print(`${car.name}: ${car.currentPosition()}`);
+    });
+    Console.print("\n");
+  }
+
+  announceWinner() {
+    const maxPosition = Math.max(...this.cars.map(car => car.position));
+    const winners = this.cars
+      .filter(car => car.position === maxPosition)
+      .map(car => car.name)
+      .join(', ');
+
+    Console.print(`최종 우승자 : ${winners}`);
+  }
 }
 
 export default App;
