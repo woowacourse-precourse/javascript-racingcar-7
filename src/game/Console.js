@@ -1,4 +1,5 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
+import Parser from './utils/Parser.js';
 
 export default class Console {
   #CARS_NAME_PROMPT =
@@ -28,6 +29,12 @@ export default class Console {
   printDistance(car) {
     MissionUtils.Console.print(
       `${car.getName()} : ${car.getDistanceAsString()}`
+    );
+  }
+
+  printWinners(winnersArray) {
+    MissionUtils.Console.print(
+      `최종 우승자 : ${Parser.joinWithComma(winnersArray)}`
     );
   }
 }

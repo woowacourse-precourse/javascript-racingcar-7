@@ -39,6 +39,8 @@ export default class Game {
 
       currentAttempt++;
     }
+
+    this.#selectWinners();
   }
 
   #attemptMove(car) {
@@ -49,5 +51,8 @@ export default class Game {
     }
   }
 
-  #selectWinners() {}
+  #selectWinners() {
+    const winnersArray = Comparator.selectFurthestCars(this.#carList);
+    this.#console.printWinners(winnersArray);
+  }
 }
