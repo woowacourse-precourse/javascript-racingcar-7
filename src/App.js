@@ -1,4 +1,4 @@
-import { createCars } from './models/createCars.js';
+import { createCars } from './utils/createCars.js';
 import { getNameInput, getRoundCountInput } from './utils/inputHandler.js';
 import { printWinners } from './utils/printWinners.js';
 import Race from './models/Race.js';
