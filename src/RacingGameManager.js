@@ -76,11 +76,13 @@ class RacingGameManager {
 
   #startGame() {
     Console.print('\n실행 결과');
-    this.#cars.forEach((car) => {
-      car.move();
-      car.printCarPosition();
-    });
-    Console.print('');
+    for (let i = 0; i < this.#tryCount; i++) {
+      this.#cars.forEach((car) => {
+        car.move();
+        car.printCarPosition();
+      });
+      Console.print('');
+    }
   }
 }
 
