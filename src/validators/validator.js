@@ -26,6 +26,12 @@ function checkEmptyString(name) {
   }
 }
 
+function checkCarNameDuplicates(names) {
+  if (new Set(names).size !== names.length) {
+    throw new Error('자동차 이름이 중복되었습니다.');
+  }
+}
+
 export function checkCarNames(carNames) {
   const validateCarNames = carNames.map((name) => {
     checkCarNameLength(name);
@@ -34,5 +40,6 @@ export function checkCarNames(carNames) {
     return name;
   });
 
+  checkCarNameDuplicates(validateCarNames);
   return validateCarNames;
 }
