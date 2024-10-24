@@ -6,13 +6,13 @@ const isRacingCountInputEmpty = racingCountInput => {
   }
 };
 
-const validateRacingCount = racingCarInput => {
+const isRacingCountTypeNumber = racingCarInput => {
   if (!isNaN(racingCarInput)) {
     return true;
   }
   if (isNaN(racingCarInput)) {
-    return false;
+    throw new Error(ERROR_MESSAGES.INVALID_NUMBER);
   }
 };
 
-export { isRacingCountInputEmpty, validateRacingCount };
+export { isRacingCountInputEmpty, isRacingCountTypeNumber };
