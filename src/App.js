@@ -28,6 +28,11 @@ class App {
 
   getRacingAttmeptCount = async () => {
     const input = await Console.readLineAsync(INPUT_MESSAGE.attemptNumber);
+    validateInputBlank(input);
+    validateRacingCountType(input);
+    validateRacingCountNumber(input);
+
+    return input;
   };
 
   calculateMoveForward() {}
