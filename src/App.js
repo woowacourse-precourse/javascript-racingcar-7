@@ -19,9 +19,10 @@ class App {
   }
 
   async #getInput() {
-    const [userInputCarNames, userInputTryCount] = await Input.getUserInput();
-    const carNameArray = Input.processCarNames(userInputCarNames);
-    const tryCount = Input.processTryCount(userInputTryCount);
+    const input = new Input();
+    await input.getUserInput();
+    const carNameArray = input.processCarNames();
+    const tryCount = input.processTryCount();
 
     return {
       carNameArray,

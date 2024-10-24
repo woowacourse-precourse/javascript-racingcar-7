@@ -11,29 +11,29 @@ import {
 } from "./utils";
 
 class Input {
-  static MAX_CAR_NAME_LENGTH = 5;
-  static async getUserInput() {
-    const carNames = await readLineAsync(INPUT_MESSAGE_CAR_NAMES);
-    const tryCount = await readLineAsync(INPUT_MESSAGE_TRY_COUNT);
-
-    return [carNames, tryCount];
+  #MAX_CAR_NAME_LENGTH = 5;
+  #carNames;
+  #tryCount;
+  async getUserInput() {
+    this.#carNames = await readLineAsync(INPUT_MESSAGE_CAR_NAMES);
+    this.#tryCount = await readLineAsync(INPUT_MESSAGE_TRY_COUNT);
   }
 
-  static processCarNames(userInputCarNames) {
-    const carNameArray = splitIntoArray(userInputCarNames, ",");
+  processCarNames() {
+    const carNameArray = splitIntoArray(this.#carNames, ",");
     this.validateCarNameLength(carNameArray);
     return carNameArray;
   }
 
-  static processTryCount(userInputTryCount) {
-    const tryCount = +userInputTryCount;
+  processTryCount() {
+    const tryCount = +this.#tryCount;
     validatePositiveInteger(tryCount);
     return tryCount;
   }
 
-  static validateCarNameLength(carNameArray) {
+  validateCarNameLength(carNameArray) {
     try {
-      validateStringArrayLength(carNameArray, this.MAX_CAR_NAME_LENGTH);
+      validateStringArrayLength(carNameArray, this.#MAX_CAR_NAME_LENGTH);
     } catch (e) {
       throw new Error(ERROR_MESSAGE_CAR_NAME_OVER_FIVE);
     }
