@@ -48,6 +48,19 @@ function NumberOfGamesValidation(userInput) {
   return NumberOfGames;
 }
 
+function addOneRandomValue(map) {
+  map.forEach((value, key) => {
+    const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
+    map.set(key, value + randomNumber);
+  });
+}
+
+function getAfterGameMap(map, NumberOfGames) {
+  for (let i = 0; i < NumberOfGames; i += 1) {
+    addOneRandomValue(map);
+  }
+}
+
 class App {
   async run() {
     try {
@@ -61,6 +74,8 @@ class App {
 
       const input = await UserInput('시도할 횟수는 몇 회인가요?\n');
       const NumberOfGames = NumberOfGamesValidation(input);
+
+      getAfterGameMap(carsMap, NumberOfGames);
     } catch (error) {
       console.log(error.message);
     }
