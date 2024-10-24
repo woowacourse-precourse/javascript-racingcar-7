@@ -1,4 +1,4 @@
-import {racingCars} from "./racing.js";
+import { racingCars } from './racing.js';
 
 class App {
   async run() {
