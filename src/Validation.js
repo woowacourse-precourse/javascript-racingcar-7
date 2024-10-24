@@ -20,4 +20,10 @@ const validateCarNameLength = (input) => {
   }
 };
 
+const validateRacingCountType = (input) => {
+  if (Number.isNaN(Number(input))) {
+    throw new Error(ERROR_MESSAGE.attemptNumber.invalidType);
+  }
+};
+
 export { validateInputBlank, validateCarNameOverlap, validateCarNameLength };
