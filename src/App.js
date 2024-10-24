@@ -2,7 +2,12 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 
 class App {
   async run() {
-    MissionUtils.Random.pickNumberInRange(1, 10);
+    this.isHighEnough();
+  }
+
+  isHighEnough() {
+    const randomValue = MissionUtils.Random.pickNumberInRange(1, 10);
+    return randomValue >= 4;
   }
 }
 
