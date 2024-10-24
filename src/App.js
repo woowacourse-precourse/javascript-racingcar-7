@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 
 class App {
   async run() {
@@ -14,6 +14,9 @@ class App {
     const racers = firstUserInput.split(",");
 
     racers.map((racer) => {
+      if (racer.length >= 6) {
+        throw new Error("[ERROR] : 이름은 5글자 이하로 입력해주세요");
+      }
       racersProcess.set(racer, "");
     });
 
