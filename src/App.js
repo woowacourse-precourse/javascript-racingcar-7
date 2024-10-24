@@ -4,6 +4,7 @@ class App {
   async run() {
     const racingCarNames = await this.readRacingCarNames();
     const attemptCount = await this.readAttemptCount();
+    const racingCarNamesArray = this.parseRacingCarNames(racingCarNames);
   }
 
   async readRacingCarNames() {
@@ -16,6 +17,10 @@ class App {
   async readAttemptCount() {
     const input = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
     return input;
+  }
+
+  parseRacingCarNames(racingCarNames) {
+    return racingCarNames.split(",");
   }
 }
 
