@@ -1,6 +1,7 @@
-import { Random } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 
 let progressionNumberForEachRacer = [];
+let progressionLengthForEachRacer = [];
 
 const assignZeroToArray = carNamesInput => {
   for (let i = 0; i < carNamesInput.length; i++) {
@@ -10,7 +11,8 @@ const assignZeroToArray = carNamesInput => {
 
 const findProgressionLength = (carNamesInput, racingCountInput) => {
   assignZeroToArray(carNamesInput);
-  let progressionLengthForEachRacer = [];
+  Console.print('');
+  Console.print('실행 결과');
 
   for (let i = 0; i < racingCountInput; i++) {
     for (let j = 0; j < carNamesInput.length; j++) {
@@ -20,7 +22,29 @@ const findProgressionLength = (carNamesInput, racingCountInput) => {
       }
       progressionLengthForEachRacer[j] = '-'.repeat(progressionNumberForEachRacer[j]);
     }
+    resultOutput(carNamesInput);
   }
+  findWinner(carNamesInput);
+};
+
+const resultOutput = carNamesInput => {
+  for (let i = 0; i < carNamesInput.length; i += 1) {
+    Console.print(`${carNamesInput[i]} : ${progressionLengthForEachRacer[i]}`);
+  }
+  Console.print('');
+};
+
+const findWinner = carNamesInput => {
+  const max = Math.max(...progressionNumberForEachRacer);
+
+  let FindingMaxNumIndex = progressionNumberForEachRacer.indexOf(max);
+  let MaxNumberNames = [];
+
+  while (FindingMaxNumIndex != -1) {
+    MaxNumberNames.push(carNamesInput[FindingMaxNumIndex]);
+    FindingMaxNumIndex = progressionNumberForEachRacer.indexOf(max, FindingMaxNumIndex + 1);
+  }
+  Console.print('최종 우승자 : ' + MaxNumberNames.join(', '));
 };
 
 export default findProgressionLength;

@@ -10,3 +10,4 @@ const getRacingCountInput = async () => {
   return racingCount;
 };
 export { getCarNamesInput, getRacingCountInput };
+

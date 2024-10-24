@@ -8,13 +8,11 @@ import findProgressionLength from './Models/progressionLengthForEachRacer.js';
 class App {
   async run() {
     const carNamesInput = await getCarNamesInput();
-    console.log(carNamesInput);
     isCarNamesInputNotEmpty(carNamesInput);
     const spliteAndtrimmedCarName = splitAndTrimCarName(carNamesInput);
 
     if (validateCarNamesLength(spliteAndtrimmedCarName)) {
       const racingCountInput = await getRacingCountInput();
-      console.log('racingCountInput: ', racingCountInput);
 
       isRacingCountInputEmpty(racingCountInput);
       isRacingCountTypeNumber(racingCountInput);
