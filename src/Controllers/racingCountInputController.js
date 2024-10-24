@@ -1,4 +1,4 @@
-import validateRacingCount from '../Models/validations/racingCountValidator.js';
+import validateRacingCount from '../models/validations/racingCountValidator.js';
 
 const validateRacingCountNumberType = racingCountInput => {
   if (validateRacingCount(racingCountInput)) {

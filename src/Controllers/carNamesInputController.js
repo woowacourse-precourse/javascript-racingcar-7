@@ -1,4 +1,4 @@
-import { carNamesLengthValidator } from '../Models/validations/carNamesValidator.js';
+import { carNamesLengthValidator } from '../models/validations/carNamesValidator.js';
 import { ERROR_MESSAGES } from '../constants/errorMessages.js';
 
 const validateCarNamesLength = spliteAndtrimmedCarName => {

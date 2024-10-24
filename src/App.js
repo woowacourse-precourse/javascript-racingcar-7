@@ -1,9 +1,9 @@
 import { getCarNamesInput, getRacingCountInput } from './views/inputView.js';
-import splitAndTrimCarName from './Models/carNamesTrimmer.js';
-import validateCarNamesLength from './Controllers/carNamesInputController.js';
-import { isRacingCountInputEmpty, isRacingCountTypeNumber } from './Models/validations/racingCountValidator.js';
-import { isCarNamesInputNotEmpty } from './Models/validations/carNamesValidator.js';
-import findProgressionLength from './Models/progressionLengthForEachRacer.js';
+import { isCarNamesInputNotEmpty } from './models/validations/carNamesValidator.js';
+import splitAndTrimCarName from './models/carNamesTrimmer.js';
+import validateCarNamesLength from './controllers/carNamesInputController.js';
+import { isRacingCountInputEmpty, isRacingCountTypeNumber } from './models/validations/racingCountValidator.js';
+import findProgressionLength from './models/racingProgressionLength.js';
 
 class App {
   async run() {
