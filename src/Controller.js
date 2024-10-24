@@ -1,5 +1,5 @@
 import View from './View.js';
-import { validateName } from './validation.js';
+import { validateName, validateTryCount } from './validation.js';
 
 export default class Controller {
   constructor() {
@@ -27,10 +27,10 @@ export default class Controller {
   }
 
   async getCount() {
-    const rawInput = this.view.getInput('시도할 횟수는 몇 회인가요?\n');
+    const count = this.view.getInput('시도할 횟수는 몇 회인가요?\n');
 
-    const input = await rawInput;
+    validateTryCount(await count);
 
-    return input;
+    return count;
   }
 }
