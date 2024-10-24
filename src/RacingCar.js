@@ -1,8 +1,10 @@
 import { userInput } from "./utils/MissionUtils.js";
+import { validateNameLength } from "./utils/validate.js";
 
 class RacingCar {
 	async runRacingCar() {
 		const { carNameValue, tryCountValue } = await this.getUserInput();
+		await validateNameLength(carNameValue);
 	}
 
 	async getUserInput() {
