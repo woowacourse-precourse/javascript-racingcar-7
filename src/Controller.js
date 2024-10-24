@@ -13,8 +13,7 @@ class Controller {
 
   async control() {
     const userInputObject = await this.InputView.getUserInputObject();
-
-    this.model.makeCar(userInputObject.carList);
+    this.model.setData(userInputObject);
   }
 }
 

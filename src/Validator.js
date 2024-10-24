@@ -16,6 +16,13 @@ class Validator {
     CAHR_GAME_COUNT: '[ERROR] 경기횟수는 숫자로만 지정해주세요',
   });
 
+  static REGEXP = Object.freeze({
+    IS_NUMBER: /^[-+]?(\d+|Infinity)$/,
+    ESCAPE: /[.*+?^${}()|[\]\\]/g,
+  });
+
+  static MAX_GAME_COUNT = 10000;
+
   static isInvalid(string) {
     if (
       string === undefined ||
@@ -45,6 +52,25 @@ class Validator {
     if (string.length > 5) {
       throw Error(this.ERROR_MSG.EXCEED_CAR_NAME_LENGTH);
     }
+  }
+
+  static isChar(string) {
+    if (this.REGEXP.IS_NUMBER.test(string) === false)
+      throw Error(this.ERROR_MSG.CAHR_GAME_COUNT);
+  }
+
+  static isNagative(string) {
+    if (parseInt(string, 10) < 0)
+      throw Error(this.ERROR_MSG.NEGATIVE_GAME_COUNT);
+  }
+
+  static isZero(string) {
+    if (parseInt(string, 10) === 0) throw Error(this.ERROR_MSG.ZERO_GAME_COUNT);
+  }
+
+  static exceedMaxCount(string) {
+    if (parseInt(string, 10) > this.MAX_GAME_COUNT)
+      throw Error(this.ERROR_MSG.EXCEED_GAME_COUNT);
   }
 }
 
