@@ -63,7 +63,20 @@ class App {
     );
   };
 
-  async run() {}
+  async run() {
+    try {
+      const cars = await this.getRacingCarName();
+      const count = await this.getRacingAttmeptCount();
+
+      this.printRacingResult(cars, count);
+
+      const winner = this.calculateWinner(cars);
+      this.printWinner(winner);
+    } catch (err) {
+      Console.print(err.message);
+      throw err;
+    }
+  }
 }
 
 export default App;
