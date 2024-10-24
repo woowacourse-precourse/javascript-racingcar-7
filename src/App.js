@@ -4,10 +4,14 @@ import Car from './Car.js';
 
 class App {
   constructor() {
-    this.car = new Car();
+    this.carList = [];
   }
 
   async run() {}
+
+  getCarList() {
+    return this.carList;
+  }
 
   repeat(number) {
     for (let i = 0; i < number; i++) {
