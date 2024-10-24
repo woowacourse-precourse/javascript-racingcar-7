@@ -52,12 +52,36 @@ class App {
         }   
     }
 
+    race(raceBoard, cars) {
+        cars.forEach(car => {
+            let hasMoved = Random.pickNumberInRange(0, 9);
+            if (hasMoved >= 4) {
+                raceBoard[car] = raceBoard[car] + '-';
+            }    
+        })
+    }
+    
+    printRaceBoard(raceBoard) {
+        Object.entries(raceBoard).forEach(([car, moves]) => {
+            Console.print(`${car}: ${moves}`);
+        })
+    }
+
     async run() {
         try {
             const carNames = await this.getCarNames();
             const cars = this.splitCars(carNames);
-            const racers = this.onStartLine(cars);
+            let raceBoard = this.onStartLine(cars);
             const laps = await this.getLaps();
+
+            Console.print('\n실행 결과');
+            for(let lap = 0; lap < laps; lap++) {
+                this.race(raceBoard, cars);
+                this.printRaceBoard(raceBoard);
+                Console.print('\n');
+            }
+
+
         } catch (error) {
             Console.print(`${error.message}`);
         }
