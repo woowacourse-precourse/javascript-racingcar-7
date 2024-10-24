@@ -1,7 +1,3 @@
 export function checkMove(value) {
-    if (value >= 4) {
-        return true;
-    }
-
-    return false;
+    return value >= 4;
 }

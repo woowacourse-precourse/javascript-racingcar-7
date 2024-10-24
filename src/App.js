@@ -1,37 +1,23 @@
 import { Console } from '@woowacourse/mission-utils';
 
-import { makeError } from '../util/makeError.js';
+import { getCars } from '../util/getCars.js';
+import { getAttemptCount } from '../util/getAttemptCount.js';
+import { initializeCarMoveCount } from '../util/initializeCarMoveCount.js';
+import { printExecutionResults } from '../util/printExecutionResults.js';
+
+import { makeNameError } from '../util/error/checkName.js';
 import { getRandomValue } from '../util/getRandomValue.js';
 import { checkMove } from '../util/checkMove.js';
 
 class App {
   async run() {
-    const inputValue = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
+    const cars = await getCars();
 
-    const ATTEMPT_COUNT = Number(await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n')); // 시도할 횟수 입력
+    const ATTEMPT_COUNT = await getAttemptCount();
 
-    const cars = inputValue.split(',').map((car) => car.trim()); // 자동차 이름을 배열에 저장
+    const carMoveHashMap = initializeCarMoveCount(cars);
 
-    makeError(cars);
-
-    const carMoveCount = {};
-
-    cars.forEach((car) => {
-      if (!carMoveCount[car]) carMoveCount[car] = [];
-    }) // 해시 맵 초기화 
-
-
-    Console.print('\n');
-    Console.print('실행 결과');
-
-    for (let i = 0; i < ATTEMPT_COUNT; i++) { //자동차별 진행 상황 출력
-      for (let car of cars) {
-        const isMoved = checkMove(getRandomValue());
-        if (isMoved) carMoveCount[car].push('-');
-        Console.print(`${car} : ${carMoveCount[car].join('')}`);
-      }
-      Console.print(' ');
-    }
+    printExecutionResults(cars, carMoveHashMap, ATTEMPT_COUNT);
 
     const winners = [];
 
