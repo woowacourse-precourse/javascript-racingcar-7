@@ -32,8 +32,8 @@ class Racing {
     });
   }
 
-  showStatus(raceStatus) {
-    raceStatus.forEach(({ name, distance }) => {
+  showResult(raceResult) {
+    raceResult.forEach(({ name, distance }) => {
       const DISTANCE_MARK = '-';
       const distanceGraph = DISTANCE_MARK.repeat(distance);
 
