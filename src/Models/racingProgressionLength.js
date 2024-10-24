@@ -1,10 +1,10 @@
-import { Console, Random } from '@woowacourse/mission-utils';
-import { printNotificationExecutionResult, printFinalWinners } from '../Views/outputView.js';
+import { Random } from '@woowacourse/mission-utils';
+import { printNotificationExecutionResult, printRacingProgressOutput, printFinalWinners } from '../Views/outputView.js';
 
 let progressionNumberForEachRacer = [];
 let progressionLengthForEachRacer = [];
 
-const assignZeroToArray = carNamesInput => {
+const assignZeroToArray = (carNamesInput, progressionLengthForEachRacer) => {
   for (let i = 0; i < carNamesInput.length; i++) {
     progressionNumberForEachRacer.push(Number('0'));
   }
@@ -22,16 +22,9 @@ const findProgressionLength = (carNamesInput, racingCountInput) => {
       }
       progressionLengthForEachRacer[j] = '-'.repeat(progressionNumberForEachRacer[j]);
     }
-    resultOutput(carNamesInput);
+    printRacingProgressOutput(carNamesInput, progressionLengthForEachRacer);
   }
   findWinner(carNamesInput);
-};
-
-const resultOutput = carNamesInput => {
-  for (let i = 0; i < carNamesInput.length; i += 1) {
-    Console.print(`${carNamesInput[i]} : ${progressionLengthForEachRacer[i]}`);
-  }
-  Console.print('\n');
 };
 
 const findWinner = carNamesInput => {
