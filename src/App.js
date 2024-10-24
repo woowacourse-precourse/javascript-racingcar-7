@@ -9,17 +9,25 @@ class App {
       return carNames.split(",");
     };
 
-    const checkWordLength = () => {
+    const checkNames = () => {
       const separateNames = separate();
       for (let i = 0; i < separateNames.length; i++) {
         if (separateNames[i].length > 5) {
           throw new Error("[ERROR] 자동차 이름을 5자 이하로 작성해주세요.");
         }
       }
+
+      const uniqueNames = [...new Set(separateNames)];
+      if (separateNames.length !== uniqueNames.length) {
+        throw new Error(
+          "[ERROR] 자동차의 이름을 중복으로 작성하였습니다. 다시 작성해주새요."
+        );
+      }
+
       return separateNames;
     };
 
-    Console.print(checkWordLength());
+    Console.print(checkNames());
 
     const inputCount = await Console.readLineAsync(
       "시도할 횟수는 몇 회인가요?\n"
