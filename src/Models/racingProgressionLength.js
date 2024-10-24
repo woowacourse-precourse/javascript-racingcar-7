@@ -1,4 +1,5 @@
 import { Console, Random } from '@woowacourse/mission-utils';
+import { printNotificationExecutionResult } from '../Views/outputView.js';
 
 let progressionNumberForEachRacer = [];
 let progressionLengthForEachRacer = [];
@@ -11,8 +12,7 @@ const assignZeroToArray = carNamesInput => {
 
 const findProgressionLength = (carNamesInput, racingCountInput) => {
   assignZeroToArray(carNamesInput);
-  Console.print('');
-  Console.print('실행 결과');
+  printNotificationExecutionResult();
 
   for (let i = 0; i < racingCountInput; i++) {
     for (let j = 0; j < carNamesInput.length; j++) {
