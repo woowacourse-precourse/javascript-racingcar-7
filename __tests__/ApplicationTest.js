@@ -1,7 +1,7 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
-const mockQuestions = (inputs) => {
+/*const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
 
   MissionUtils.Console.readLineAsync.mockImplementation(() => {
@@ -56,5 +56,59 @@ describe("자동차 경주", () => {
 
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+});*/
+
+
+import App from "../src/App.js";
+import { MissionUtils } from "@woowacourse/mission-utils";
+
+const mockQuestions = (inputs) => {
+  MissionUtils.Console.readLineAsync = jest.fn();
+
+  MissionUtils.Console.readLineAsync.mockImplementation(() => {
+    const input = inputs.shift();
+    return Promise.resolve(input);
+  });
+};
+
+const getLogSpy = () => {
+  const logSpy = jest.spyOn(MissionUtils.Console, "print");
+  logSpy.mockClear();
+  return logSpy;
+};
+
+describe("자동차 이름 유효성 검사", () => {
+  test("자동차 이름은 5자 이하일 경우 성공적으로 추가된다.", async () => {
+    // given
+    const inputs = ["pobi,woni"]; // 유효한 이름
+    mockQuestions(inputs);
+    const app = new App();
+
+    // when
+    const raceCarStatus = await app.run();
+
+    // then
+    expect(raceCarStatus[0]).toBe("success");
+  });
+
+  test("자동차 이름이 6자 초과인 경우 에러를 발생시킨다.", async () => {
+    // given
+    const inputs = ["pobimaru,woni"]; // 6자 초과 이름
+    mockQuestions(inputs);
+    const app = new App();
+
+    // when & then
+    await expect(app.run()).rejects.toThrow("[ERROR] 자동차 이름은 최대 5글자여야 합니다.");
+  });
+
+  test("중복된 자동차 이름이 입력될 경우 에러를 발생시킨다.", async () => {
+    // given
+    const inputs = ["pobi,woni,pobi"]; // 중복된 이름
+    mockQuestions(inputs);
+    const app = new App();
+
+    // when & then
+    await expect(app.run()).rejects.toThrow("[ERROR] 중복된 참가자가 있습니다: \"pobi\"");
   });
 });

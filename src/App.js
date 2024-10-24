@@ -62,7 +62,9 @@ class App {
       );
       const attemptCountNum=Number(attemptCount)
       const numberStatus = validateNumber(attemptCountNum)
-      if(numberStatus==='number'){moveCar(attemptCountNum,raceCars)}
+      if(numberStatus==='number'){
+        Console.print('실행결과\n') 
+        moveCar(attemptCountNum,raceCars)}
     }
 
     function moveCar(attemptCountNum, raceCars) {
@@ -71,10 +73,12 @@ class App {
         carKeys.forEach(key => {
           if (Random.pickNumberInRange(0, 9) > 4) raceCars[key] += '-';
         });
-        Console.print(raceCars);
+        const statusOutput = carKeys.map(key => `${key} : ${raceCars[key]}\n`).join('');
+        Console.print(`${statusOutput}`);
       }
-      checkWinner(raceCars)
+      checkWinner(raceCars);
     }
+    
 
     function getDistances(raceCars) {
       return Object.values(raceCars).map(distance => distance.length);
