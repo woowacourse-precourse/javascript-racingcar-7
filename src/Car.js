@@ -1,7 +1,5 @@
-const DISTANCE = 1;
-const MAX_NAME_LENGTH = 5;
-
-const NAME_LENGTH_ERROR_MESSAGE = '이름은 5자 이하만 가능합니다';
+import { NAME_LENGTH_ERROR_MESSAGE } from "./constants/Messages.js";
+import { DISTANCE, MAX_NAME_LENGTH } from "./constants/Constants.js";
 
 export class Car {
   #name;
@@ -13,7 +11,7 @@ export class Car {
   }
 
   #validateName(name) {
-    if(name.length > MAX_NAME_LENGTH) throw new Error(NAME_LENGTH_ERROR_MESSAGE);
+    if (name.length > MAX_NAME_LENGTH) throw new Error(NAME_LENGTH_ERROR_MESSAGE);
   }
 
   move() {

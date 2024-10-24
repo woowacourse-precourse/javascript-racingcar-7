@@ -1,8 +1,5 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
-
-const MIN_RANDOM_NUMBER = 0;
-const MAX_RANDOM_NUMBER = 9;
-const WINNING_NUMBER = 4;
+import { MAX_RANDOM_NUMBER, MIN_RANDOM_NUMBER, WINNING_NUMBER } from "./constants/Constants.js";
 
 export class Game {
   play(attemptCount, cars) {

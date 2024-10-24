@@ -1,6 +1,5 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
-
-const PRINT_WINNER_MESSAGE = '최종 우승자 : ';
+import { PRINT_WINNER_MESSAGE } from "../constants/Messages.js";
 
 export class PrintWinners {
   printWinners(cars) {

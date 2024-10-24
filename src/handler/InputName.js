@@ -1,9 +1,6 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import { SEPARATOR } from "../constants/Constants.js";
-
-const INPUT_NAME_MESSAGE = '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분) ';
-const INPUT_ERROR_MESSAGE = '[ERROR] 공백 입력은 불가합니다.';
-const SEPARATOR_ERROR_MESSAGE = '[ERROR] 이름은 쉼표(,) 기준으로 구분해야 합니다.';
+import { INPUT_ERROR_MESSAGE, INPUT_NAME_MESSAGE, SEPARATOR_ERROR_MESSAGE } from "../constants/Messages.js";
 
 export class InputName {
   async read() {
