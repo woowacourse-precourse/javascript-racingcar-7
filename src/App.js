@@ -13,6 +13,8 @@ class App {
       this.printRaceStatus(cars);
       Console.print('');
     }
+
+    this.printWinners(cars);
   }
 
   async getInputCarNames() {
@@ -49,6 +51,12 @@ class App {
     Object.keys(cars).forEach((car) => {
       Console.print(`${car} : ${'-'.repeat(cars[car])}`);
     });
+  }
+
+  printWinners(cars) {
+    let maxDistance = Math.max(...Object.values(cars));
+    let winners = Object.keys(cars).filter((car) => cars[car] === maxDistance);
+    Console.print(`최종 우승자 : ${winners.join(', ')}`);
   }
 }
 
