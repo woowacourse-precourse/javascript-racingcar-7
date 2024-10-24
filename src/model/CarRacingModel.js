@@ -8,7 +8,7 @@ class Car {
     this.distance = 0;
   }
 
-  moveForward() {
+  move() {
     if (this.getRandomNumber() >= 4) {
       this.distance += 1;
     }
@@ -16,5 +16,9 @@ class Car {
 
   getRandomNumber() {
     return Random.pickNumberInRange(1, 9);
+  }
+
+  moveProgress() {
+    return "-".repeat(this.distance);
   }
 }
