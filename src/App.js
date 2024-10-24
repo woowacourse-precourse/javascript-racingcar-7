@@ -136,9 +136,12 @@ class App {
     }
 
     solve(userInputCarNames, userInputTryCount) {
-        this.saveRacingCars(userInputCarNames);
+        const validatedCarNames = this.validateCarNames(userInputCarNames);
+        let validatedTryCount = this.validateTryCount(userInputTryCount);
 
-        while (userInputTryCount--) {
+        this.saveRacingCars(validatedCarNames);
+
+        while (validatedTryCount--) {
             this.progressRacing();
             this.printResult();
         }
@@ -152,10 +155,7 @@ class App {
         );
         const userInputTryCount = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
 
-        const validatedCarNames = this.validateCarNames(userInputCarNames);
-        const validatedTryCount = this.validateTryCount(userInputTryCount);
-
-        const winner = this.solve(validatedCarNames, validatedTryCount);
+        const winner = this.solve(userInputCarNames, userInputTryCount);
 
         Console.print(`최종 우승자 : ${winner.join(", ")}`);
     }
