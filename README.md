@@ -54,6 +54,8 @@
 
 # 📺 실행 결과
 
+![image](https://github.com/user-attachments/assets/3a61aca3-a693-453a-9a13-696bbebb8036)
+
 # 📕 TMI
 
 - https://jestjs.io/docs/using-matchers
