@@ -1,26 +1,24 @@
-import { Console } from '@woowacourse/mission-utils';
-import { MissionUtils } from '@woowacourse/mission-utils';
+import { Console, MissionUtils } from '@woowacourse/mission-utils';
 
 export function progressRacing(carList) {
   const progressResult = [];
 
   carList.forEach (_ => {
     const randomNum = MissionUtils.Random.pickNumberInRange(0, 9);
+    let flag = 0;
+
     if (randomNum >= 4) {
-      progressResult.push(1);
+      flag = 1;
     }
-    else {
-      progressResult.push(0);
-    }
-  })
+    progressResult.push(value);
+    
+  });
   return progressResult;
 }
 
 export function printRacingStatus(carList, racingStatus) {
-  let i = 0;
-  while (i < carList.length) {
-    Console.print(carList[i] + ' : ' + '-'.repeat(racingStatus[i]));
-    i ++;
-  }
+  carList.forEach((car, idx) => {
+    Console.print(`${car} : ${'-'.repeat(racingStatus[idx])}`);
+  });
   Console.print('');
 }
