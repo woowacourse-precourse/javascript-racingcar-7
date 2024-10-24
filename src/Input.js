@@ -1,10 +1,12 @@
 import {
+  ERROR_MESSAGE_CAR_NAME_DUPLICATION,
   ERROR_MESSAGE_CAR_NAME_INVALID,
   ERROR_MESSAGE_USER_INPUT,
   INPUT_MESSAGE_CAR_NAMES,
   INPUT_MESSAGE_TRY_COUNT,
 } from "./constants";
 import {
+  checkArrayAllUnique,
   readLineAsync,
   splitIntoArray,
   validatePositiveInteger,
@@ -48,6 +50,10 @@ class Input {
       Input.#CAR_NAME_REGEXP.test(carName)
     );
     if (!isAllCarNameValid) throw new Error(ERROR_MESSAGE_CAR_NAME_INVALID);
+
+    const isAllCarNameUnique = checkArrayAllUnique(carNameArray);
+    if (!isAllCarNameUnique)
+      throw new Error(ERROR_MESSAGE_CAR_NAME_DUPLICATION);
   }
 }
 

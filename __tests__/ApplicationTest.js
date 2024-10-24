@@ -1,6 +1,7 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import App from "../src/App.js";
 import {
+  ERROR_MESSAGE_CAR_NAME_DUPLICATION,
   ERROR_MESSAGE_CAR_NAME_INVALID,
   ERROR_MESSAGE_NOT_INTEGER,
   ERROR_MESSAGE_NOT_POSITIVE_POSITIVE,
@@ -170,6 +171,16 @@ describe("자동차 경주", () => {
       const app = new App();
 
       await expect(app.run()).rejects.toThrow(ERROR_MESSAGE_CAR_NAME_INVALID);
+    });
+    test("자동차 이름이 중복되는 경우", async () => {
+      const inputs = ["pobi,pobi", 1];
+      mockQuestions(inputs);
+
+      const app = new App();
+
+      await expect(app.run()).rejects.toThrow(
+        ERROR_MESSAGE_CAR_NAME_DUPLICATION
+      );
     });
   });
 

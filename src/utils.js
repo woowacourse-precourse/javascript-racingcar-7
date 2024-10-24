@@ -44,3 +44,7 @@ export const getKeyArrayHasSameValueInMap = (map, targetValue) => {
   }
   return array;
 };
+
+export const checkArrayAllUnique = (array) => {
+  return array.length === [...new Set(array)].length;
+};
