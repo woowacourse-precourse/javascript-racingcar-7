@@ -19,7 +19,7 @@ class Car {
   }
 
   randomMove() {
-    let randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
+    let randomNumber = Random.pickNumberInRange(0, 9);
     if (randomNumber >= 4) {
       this.moveCount++;
     }
