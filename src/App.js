@@ -1,6 +1,5 @@
 import { Console, Random } from '@woowacourse/mission-utils';
 
-
 class App {
     async getCarNames() {
         const input = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
@@ -63,28 +62,42 @@ class App {
     
     printRaceBoard(raceBoard) {
         Object.entries(raceBoard).forEach(([car, moves]) => {
-            Console.print(`${car}: ${moves}`);
+            Console.print(`${car} : ${moves}`);
         })
     }
 
-    async run() {
-        try {
-            const carNames = await this.getCarNames();
-            const cars = this.splitCars(carNames);
-            let raceBoard = this.onStartLine(cars);
-            const laps = await this.getLaps();
+    whoWon(raceBoard, cars) {
+        let movesOfWinner = 0;
+        let winners = [];
 
-            Console.print('\n실행 결과');
-            for(let lap = 0; lap < laps; lap++) {
-                this.race(raceBoard, cars);
-                this.printRaceBoard(raceBoard);
-                Console.print('\n');
+        cars.forEach(car => {
+            const moves = raceBoard[car].length;
+            if (moves > movesOfWinner) {
+                movesOfWinner = moves;
+                winners = [car];
+            } else if (moves === movesOfWinner) {
+                winners.push(car);
             }
+        });
 
+        const result = winners.join(', ');
+        Console.print(`최종 우승자 : ${result}`);
+    }
 
-        } catch (error) {
-            Console.print(`${error.message}`);
+    async run() {
+        const carNames = await this.getCarNames();
+        const cars = this.splitCars(carNames);
+        let raceBoard = this.onStartLine(cars);
+        const laps = await this.getLaps();
+
+        Console.print('\n실행 결과');
+        for(let move = 0; move < laps; move++) {
+            this.race(raceBoard, cars);
+            this.printRaceBoard(raceBoard);
+            Console.print('\n');
         }
+
+        this.whoWon(raceBoard, cars);
     }
 }
 
