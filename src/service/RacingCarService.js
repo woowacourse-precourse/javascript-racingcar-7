@@ -17,15 +17,10 @@ export default class RacingCarService {
   }
 
   processCarMovement() {
-    let movementResult = [];
-    this.cars.forEach((car) => {
+    return this.cars.map((car) => {
       car.advanceOnRandom();
-      movementResult.push({
-        name: car.getName(),
-        advancedCount: car.getAdvancedCount(),
-      });
+      return { name: car.getName(), advancedCount: car.getAdvancedCount() };
     });
-    return movementResult;
   }
 
   getWinners() {

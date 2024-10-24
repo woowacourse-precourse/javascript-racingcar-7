@@ -17,17 +17,16 @@ export default class RacingCarController {
     Validator.validateUserInput(carNamesString);
     this.#racingCarService.saveCars(carNamesString);
 
-    const tryNumber = await this.#inputView.inputTryNumber();
+    const tryNumber = Number(await this.#inputView.inputTryNumber());
     Validator.validateTryNumber(tryNumber);
 
+    this.#ouputView.printEmptyLine();
     this.#ouputView.printString(OUTPUT.EXCUTION_RESULT);
-    Array(Number(tryNumber))
-      .fill(0)
-      .forEach(() => {
-        const advancedResult = this.#racingCarService.processCarMovement();
-        this.#ouputView.printAdvancedResult(advancedResult);
-        this.#ouputView.printEmptyLine();
-      });
+    for (let i = 0; i < tryNumber; i++) {
+      const advancedResult = this.#racingCarService.processCarMovement();
+      this.#ouputView.printAdvancedResult(advancedResult);
+      this.#ouputView.printEmptyLine();
+    }
 
     const winners = this.#racingCarService.getWinners();
     this.#ouputView.printWinners(winners);

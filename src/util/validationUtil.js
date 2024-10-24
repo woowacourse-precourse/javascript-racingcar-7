@@ -33,19 +33,19 @@ export function checkConflictingCarName(cars) {
 }
 
 export function checkMinTryNumber(tryNumber) {
-  if (Number(tryNumber) < 1) {
+  if (tryNumber < 1) {
     throw new Error(ERROR.MIN_TRY_NUMBER);
   }
 }
 
 export function checkMaxTryNumber(tryNumber) {
-  if (Number(tryNumber) > 10000) {
+  if (tryNumber > 10000) {
     throw new Error(ERROR.MAX_TRY_NUMBER);
   }
 }
 
 export function checkIntegerTryNumber(tryNumber) {
-  if (!Number.isInteger(Number(tryNumber))) {
+  if (!Number.isInteger(tryNumber)) {
     throw new Error(ERROR.INTEGER_TRY_NUMBER);
   }
 }
