@@ -1,4 +1,5 @@
 import { Random } from '@woowacourse/mission-utils';
+import { Console } from '@woowacourse/mission-utils';
 
 class Car {
   #name;
@@ -17,7 +18,7 @@ class Car {
   }
 
   display() {
-    return `${this.#name} : ${'-'.repeat(this.#position)}`;
+    Console.print(`${this.#name} : ${'-'.repeat(this.#position)}`);
   }
 
   getPosition() {

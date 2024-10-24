@@ -25,7 +25,7 @@ class Game {
 
   #printScore() {
     this.#cars.forEach((car) => {
-      Console.print(`${car.getName()} : ${'-'.repeat(car.getPosition())}`);
+      car.display();
     });
   }
 
