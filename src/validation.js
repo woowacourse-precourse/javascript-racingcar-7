@@ -16,6 +16,6 @@ export function validateTrial(trial) {
   }
 
   if (trial <= 0) {
-    throw new Error('[ERROR] 시도 횟수는 0보다 커야합니다.');
+    throw new Error('[ERROR] 시도 횟수는 0보다 커야 합니다.');
   }
 }
