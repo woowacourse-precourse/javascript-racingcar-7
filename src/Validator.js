@@ -1,3 +1,4 @@
+import checkMinRounds from './utils/checkMinRounds.js';
 import { checkArrayLength, checkIsEmpty, checkStringLength, handleError } from './utils/index.js';
 
 class Validator {
@@ -16,6 +17,12 @@ class Validator {
   static arrayLength(value) {
     if (checkArrayLength(value)) {
       handleError('[ERROR] : 자동차가 2대 이상 참여해야 경주를 시작할 수 있어요.');
+    }
+  }
+
+  static minRound(value) {
+    if (checkMinRounds(value)) {
+      handleError('[ERROR] : 경주를 진행할 횟수를 1회 이상 입력해주세요.');
     }
   }
 }
