@@ -35,7 +35,7 @@ class App {
 
   peekResult(cars) {
     cars.forEach(car => {
-      Console.print(`${car.getName()} : ${'-'.repeat(car.getCount())}`);
+      Console.print(`${car.name} : ${'-'.repeat(car.count)}`);
     });
     Console.print('');
   }
