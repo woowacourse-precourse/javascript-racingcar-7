@@ -21,6 +21,7 @@ class App {
     }
 
     const winners = this.getWinners(carsData);
+    this.printWinners(winners);
   }
 
   async getCarNamesInput() {
@@ -53,6 +54,10 @@ class App {
 
   printRoundResult(car) {
     Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
+  }
+
+  printWinners(winners) {
+    Console.print(`${PRINT_MESSAGE.WINNERS}${winners.join(', ')}`);
   }
 
   moveForward(car) {
