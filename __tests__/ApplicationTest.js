@@ -121,17 +121,20 @@ describe("자동차 경주", () => {
     expect(initialRaceInfomation).toContainEqual(['one', ''] && ['two', ''] && ['three', '']);
   });
 
-  test('기능 단위 테스트: goStopResult()', () => {
-    // given
-    const go = 4;
-    const expectedResult = '-';
+  test.each([
+  [4, '-'],
+  [5, '-'],
+  [0, ''],
+  [3, '']
+  ])('기능 단위 테스트: goStopResult() { randomNumber: %s, result: %s }' ,
+    (randomNumer, result) => {
+      // given
+      mockRandoms([randomNumer]);
 
-    mockRandoms([go]);
+      // when
+      const fnResult = goStopResult();
 
-    // when
-    const fnResult = goStopResult();
-    
-    // then
-    expect(fnResult).toBe(expectedResult);
-  });
+      // then
+      expect(fnResult).toBe(result);
+    });
 });
