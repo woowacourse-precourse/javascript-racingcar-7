@@ -3,6 +3,9 @@ import { Console, Random } from "@woowacourse/mission-utils";
 function getCarNames(userInput) {
   const carNames = userInput.split(",");
   carNames.map((carName) => {
+    if (carName.trim() === "") {
+      throw new Error("[ERROR] 공백은 이름이 될 수 없습니다.");
+    }
     if (carName.length > 5) {
       throw new Error("[ERROR] 이름은 5글자를 초과할 수 없습니다.");
     }
