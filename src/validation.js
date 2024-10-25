@@ -21,11 +21,13 @@ export function isCarNamesValid(cars) {
 }
 
 export function isTrialInputValid(input) {
-  if (Number.isNaN(input)) {
+  const numInput = Number(input);
+
+  if (Number.isNaN(numInput)) {
     return { isTrialValid: false, errTrialMessage: ERROR_MESSAGES.NOT_NUMBER };
   }
 
-  if (input < 0) {
+  if (numInput < 0) {
     return {
       isTrialValid: false,
       errTrialMessage: ERROR_MESSAGES.NOT_NEGATIVE,

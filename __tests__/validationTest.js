@@ -51,7 +51,7 @@ describe("자동차 이름 유효성 검사 테스트", () => {
 describe("시도 횟수 유효성 검사 테스트", () => {
   const notNumberInputs = ["hi", NaN, "jiye"];
   test.each(notNumberInputs)("숫자가 아닌 경우", async (input) => {
-    expect(isTrialInputValid(Number(input))).toEqual({
+    expect(isTrialInputValid(input)).toEqual({
       isTrialValid: false,
       errTrialMessage: ERROR_MESSAGES.NOT_NUMBER,
     });
@@ -59,7 +59,7 @@ describe("시도 횟수 유효성 검사 테스트", () => {
 
   const negativeInputs = [-3, -82, -12356];
   test.each(negativeInputs)("음수인 경우", async (input) => {
-    expect(isTrialInputValid(Number(input))).toEqual({
+    expect(isTrialInputValid(input)).toEqual({
       isTrialValid: false,
       errTrialMessage: ERROR_MESSAGES.NOT_NEGATIVE,
     });
@@ -67,6 +67,6 @@ describe("시도 횟수 유효성 검사 테스트", () => {
 
   const passTrialInputs = [5, 8, 180, 200000];
   test.each(passTrialInputs)("통과 케이스", async (input) => {
-    expect(isTrialInputValid(Number(input))).toEqual({ isTrialValid: true });
+    expect(isTrialInputValid(input)).toEqual({ isTrialValid: true });
   });
 });
