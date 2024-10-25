@@ -13,5 +13,5 @@ export function printCarPosition(name, position) {
 }
 
 export function printWinnerCar(winnerNames) {
-  MissionUtils.Console.print(formatWinnerNames(winnerNames));
+  MissionUtils.Console.print(`최종 우승자 : ${formatWinnerNames(winnerNames)}`);
 }
