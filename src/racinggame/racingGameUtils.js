@@ -9,4 +9,8 @@ const getMaxMoveCount = function getMaxMoveCountFunc(cars) {
   );
 };
 
-export { getMovePosition, getMaxMoveCount };
+const filterWinningCars = function getWinningCarsFunc(cars, maxMoveCount) {
+  return cars.filter((car) => car.getMoveCount() === maxMoveCount);
+};
+
+export { getMovePosition, getMaxMoveCount, filterWinningCars };
