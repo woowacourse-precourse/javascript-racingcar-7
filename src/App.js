@@ -62,12 +62,17 @@ function addMoving(permission, value, index) {
   }
 }
 
+function changeMaxPosition(value, maxValue) {
+  if (value >= maxValue) {
+    maxValue = value;
+  }
+  return maxValue;
+}
+
 function checkMaxPosition(carsResults) {
   let MAX_POSITION = 0;
   carsResults.map((car) => {
-    if (car.position.length >= MAX_POSITION) {
-      MAX_POSITION = car.position.length;
-    }
+    MAX_POSITION = changeMaxPosition(car.position.length, MAX_POSITION);
   });
   return MAX_POSITION;
 }
