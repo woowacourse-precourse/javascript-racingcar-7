@@ -2,6 +2,7 @@ import checkDuplicateCarName from "./checkDuplicateCarName.js";
 import getCarNameList from "./getCarNameList.js";
 import getUserInput from "./getUserInput.js";
 import validateCarNameString from "./validateCarNameString.js";
+import validateNumberOfAttemps from "./validateNumberOfAttemps.js";
 
 class App {
   async run() {
@@ -10,6 +11,7 @@ class App {
     const carNameList = getCarNameList(carNameInputString);
     checkDuplicateCarName(carNameList);
     const numberOfAttemps = await getUserInput("시도할 횟수는 몇 회인가요?\n");
+    validateNumberOfAttemps(numberOfAttemps);
   }
 }
 
