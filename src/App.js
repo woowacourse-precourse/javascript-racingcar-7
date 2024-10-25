@@ -5,10 +5,19 @@ class App {
   cars = [];
 
   async run() {
+    try {
       await this.carNames();
       const attempt = await this.attempts();
       await this.startRace(attempt);
       this.announceWinner();
+    }
+    catch(error) {
+      Console.print(`[ERROR] ${error.message}`);
+    if (process.env.NODE_ENV === 'test') {
+      throw new Error(`[ERROR] ${error.message}`);
+    }
+    return;
+  }
   }
   
   async carNames() {
@@ -21,7 +30,7 @@ class App {
     const input = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
     const attempt = Number(input);
     if (isNaN(attempt) || attempt <= 0) {
-      throw new Error("[ERROR] 유효하지 않은 시도 횟수입니다.")
+      throw new Error("유효하지 않은 시도 횟수입니다.")
     }
     return attempt;
   }
