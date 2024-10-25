@@ -1,4 +1,4 @@
-import { Console, Random } from "@woowacourse/mission-utils";
+import { Console, Random } from '@woowacourse/mission-utils';
 
 class App {
   async run() {
@@ -8,16 +8,14 @@ class App {
     this.startRacingGame(racingCarNames, attemptCount);
   }
 
-  async readRacingCarNames() {
-    const input = await Console.readLineAsync(
-      "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
+  readRacingCarNames() {
+    return Console.readLineAsync(
+      '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
     );
-    return input;
   }
 
-  async readAttemptCount() {
-    const input = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
-    return input;
+  readAttemptCount() {
+    return Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
   }
 
   startRacingGame(racingCarNames, attemptCount) {
@@ -29,14 +27,14 @@ class App {
 
     const moveCntPerCar = this.initMoveCntPerCar(racingCarNamesArray);
 
-    Console.print("\n실행 결과");
+    Console.print('\n실행 결과');
     this.race(moveCntPerCar, racingCarNamesArray, attemptCount);
 
     this.printWinner(moveCntPerCar);
   }
 
   parseRacingCarNames(racingCarNames) {
-    return racingCarNames.split(",");
+    return racingCarNames.split(',');
   }
 
   getRandomNumber() {
@@ -54,10 +52,10 @@ class App {
     const lines = [];
 
     Object.entries(moveCntPerCar).forEach(([car, moveCnt]) => {
-      lines.push(`${car} : ${"-".repeat(moveCnt)}`);
+      lines.push(`${car} : ${'-'.repeat(moveCnt)}`);
     });
 
-    Console.print(lines.join("\n"));
+    Console.print(lines.join('\n'));
   }
 
   printWinner(moveCntPerCar) {
@@ -66,7 +64,7 @@ class App {
       .filter(([_, moveCnt]) => moveCnt === maxMoveCnt)
       .map(([car]) => car);
 
-    Console.print(`최종 우승자 : ${winners.join(", ")}`);
+    Console.print(`최종 우승자 : ${winners.join(', ')}`);
   }
 
   printError(message) {
@@ -75,7 +73,7 @@ class App {
 
   validateAttempCount(attemptCount) {
     if (+attemptCount === 0 || !Number.isInteger(+attemptCount)) {
-      this.printError("시도 횟수는 1 이상의 정수만 가능합니다.");
+      this.printError('시도 횟수는 1 이상의 정수만 가능합니다.');
     }
   }
 
@@ -87,7 +85,7 @@ class App {
 
   validateRacingCarName(carName) {
     if (carName.length > 5) {
-      this.printError("자동차 이름은 5자 이하만 가능합니다.");
+      this.printError('자동차 이름은 5자 이하만 가능합니다.');
     }
   }
 
@@ -95,7 +93,7 @@ class App {
     for (let i = 0; i < attemptCount; i += 1) {
       this.moveCars(moveCntPerCar, racingCarNamesArray);
       this.printAttemptResult(moveCntPerCar);
-      Console.print("\n");
+      Console.print('\n');
     }
   }
 
