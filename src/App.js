@@ -30,6 +30,12 @@ class App {
     return Math.max(...this.carList.map((car) => car.position));
   }
 
+  findCarWithMaxPosition(maxPosition) {
+    return this.carList
+      .filter((car) => car.position === maxPosition)
+      .map((car) => car.name);
+  }
+
   repeat(number) {
     for (let i = 0; i < number; i++) {
       this.carList.forEach((car) => this.moveCarForward(car));
