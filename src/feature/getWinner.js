@@ -23,19 +23,38 @@ function getWinner(carList, raceProgress) {
 
   RACE_RESULT_COUNT.sort((carA, carB) => carB[1] - carA[1]);
 
-  RACE_RESULT_COUNT.forEach((car, index) => {
-    const RACE_LENGTH = car[1];
+  for(let index = 0; index < RACE_RESULT_COUNT.length; index++) {
+    const RACE_LENGTH = RACE_RESULT_COUNT[index][1];
+    const WINNER_CAR = RACE_RESULT_COUNT[index];
 
     if(index === 0) {
-      WINNERS.push(car);
-      return;
+      WINNERS.push(WINNER_CAR);
+      continue;
     };
 
     if(WINNERS[0][1] === RACE_LENGTH) {
-      WINNERS.push(car);
-      return;
+      WINNERS.push(WINNER_CAR);
+      continue;
     };
-  });
+
+    if(WINNERS[0][1] > RACE_LENGTH) {
+      break;
+    };
+  };
+
+  // RACE_RESULT_COUNT.forEach((car, index) => {
+  //   const RACE_LENGTH = car[1];
+
+  //   if(index === 0) {
+  //     WINNERS.push(car);
+  //     return;
+  //   };
+
+  //   if(WINNERS[0][1] === RACE_LENGTH) {
+  //     WINNERS.push(car);
+  //     return;
+  //   };
+  // });
 
   const WINNER_NAMES = WINNERS.map((winner) => winner[0]);
 
