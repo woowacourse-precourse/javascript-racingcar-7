@@ -5,16 +5,10 @@ class App {
   cars = [];
 
   async run() {
-    try {
       await this.carNames();
       const attempt = await this.attempts();
       await this.startRace(attempt);
       this.announceWinner();
-    }
-    catch {
-      Console.print(error.message);
-      throw Error;
-    }
   }
   
   async carNames() {
@@ -46,7 +40,7 @@ class App {
 
   currentRace() {
     this.cars.forEach(car => {
-      Console.print(`${car.name}: ${car.currentPosition()}`);
+      Console.print(`${car.name} : ${car.currentPosition()}`);
     });
     Console.print("\n");
   }
