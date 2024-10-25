@@ -3,15 +3,24 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 class Car {
   #name;
 
+  moveCnt;
+
   constructor(name) {
     if (!Car.validateCarName(name)) {
       throw new Error('[ERROR] 이름은 5자 이하만 가능합니다');
     }
     this.#name = name;
+    this.moveCnt = 0;
   }
 
   getName() {
     return this.#name;
+  }
+
+  tryMoveForward() {
+    if (Car.canMoveForward()) {
+      this.moveCnt += 1;
+    }
   }
 
   static validateCarName(name) {
@@ -20,7 +29,6 @@ class Car {
 
   static canMoveForward() {
     const randomValue = MissionUtils.Random.pickNumberInRange(0, 9);
-    console.log(randomValue);
     if (randomValue >= 4) {
       return true;
     }
