@@ -14,8 +14,9 @@ const validateInput = {
     hasNameLongerThanFive: (nameList) => {
         return nameList.some((name) => name.length > 5);
     },
-    isValidAttemptCount: (number) => {
-        return Number.isInteger(Number(number)) && Number(number) > 0;
+    isValidAttemptCount: (input) => {
+        const number = Number(input);
+        return Number.isInteger(number) && number > 0;
     }
 }
 

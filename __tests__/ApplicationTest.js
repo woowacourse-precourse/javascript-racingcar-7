@@ -2,6 +2,7 @@ import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 import { inputCarNames, inputPlayTime } from "../src/utils/customInput.js";
 import splitNames from "../src/utils/splitInput.js";
+import { attemptCountValidator } from "../src/validator.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -100,36 +101,45 @@ describe("자동차 경주", () => {
     // given
     const attemptCount = ["5"];
     mockQuestions(attemptCount);
-  
+
     // when
     const receivedInput = await inputPlayTime();
-  
+
     // then
     expect(receivedInput).toEqual("5");
   });
 
   test('입력된 이동할 횟수가 정수인지 판별', async () => {
     // given
-    const input = ["3.5"];
-    mockQuestions(input);
+    const attemptCount = ["3.5"];
+    mockQuestions(attemptCount);
 
     // when
-    const app = new App();
+    const receivedInput = await inputPlayTime();
 
     // then
-    await expect(app.run()).rejects.toThrow("[ERROR]: 입력은 양의 정수만 가능합니다.");
-  })
+    expect(() => attemptCountValidator(receivedInput)).toThrow("[ERROR]: 입력은 양의 정수만 가능합니다.");
+  });
 
   test('입력된 이동할 횟수가 양수인지 판별', async () => {
     // given
-    const input = ["-3"];
-    mockQuestions(input);
+    const attemptCount = [-5];
+    mockQuestions(attemptCount);
 
     // when
-    const app = new App();
+    const receivedInput = await inputPlayTime();
 
     // then
-    await expect(app.run()).rejects.toThrow("[ERROR]: 입력은 양의 정수만 가능합니다.");
-  })
+    expect(() => attemptCountValidator(receivedInput)).toThrow("[ERROR]: 입력은 양의 정수만 가능합니다.");
+  });
+
+  test('랜덤 숫자 뽑기', () => {
+    // when
+    const randomNumber = pickRandomNumber();
+  
+    // then
+    expect(randomNumber).toBeGreaterThanOrEqual(1);
+    expect(randomNumber).toBeLessThanOrEqual(9);
+  });
 
 });
