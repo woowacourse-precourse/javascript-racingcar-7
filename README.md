@@ -41,10 +41,7 @@ Controller
         - [x] getWinnerCar(): 우승한 자동차 구하기
         - [x] announceWinner(): 우승한 자동차 발표하기
 
-- [ ] 가장 멀리 간 차 선별하는 함수
-    - args: 모든 자동차의 이동 거리
-    - return: 가장 멀리 간 차 이름
-- [ ] 입력이 잘못 된 경우 Error 반환하는 함수
+- [ ] 입력이 잘못 된 경우 Error 반환하기
 
 Util
 - [x] 0 ~ 9 Random 값 반환하는 함수
