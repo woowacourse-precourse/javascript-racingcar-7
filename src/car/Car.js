@@ -1,3 +1,4 @@
+import { Random } from '@woowacourse/mission-utils';
 import { hasSpecialCharacter } from '../common/stringUtil.js';
 import { ERROR_MESSAGE } from '../common/message.js';
 import { CAR } from './constant.js';
@@ -12,7 +13,12 @@ class Car {
   }
 
   _isValidNameLength(string) {
-    return string.length <= CAR.MAX_LENGTH;
+    return string.length <= CAR.NAME_MAX_LENGTH;
+  }
+
+  run() {
+    const num = Random.pickNumberInRange(CAR.RUN_RANDOM_RANGE_MIN, CAR.RUN_RANDOM_RANGE_MAX);
+    if (num >= CAR.RUN_CONDITION_VALUE) this._count++;
   }
 }
 

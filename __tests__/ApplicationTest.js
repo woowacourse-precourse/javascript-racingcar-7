@@ -68,6 +68,26 @@ describe('자동차 경주', () => {
     });
   });
 
+  test('랜덤 테스트(전진)', async () => {
+    const car = new Car('test');
+    const numbers = [4, 5, 6, 7, 8, 9];
+    mockRandoms(numbers);
+    numbers.forEach((number, idx) => {
+      car.run();
+      expect(car._count).toBe(idx + 1);
+    });
+  });
+
+  test('랜덤 테스트(유지)', async () => {
+    const car = new Car('test');
+    const numbers = [0, 1, 2, 3];
+    mockRandoms(numbers);
+    numbers.forEach(() => {
+      car.run();
+      expect(car._count).toBe(0);
+    });
+  });
+
   // test("기능 테스트", async () => {
   //   // given
   //   const MOVING_FORWARD = 4;
