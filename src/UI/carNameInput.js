@@ -26,6 +26,14 @@ async function carNameInput() {
         const ERROR = new Error(EMPTY_INPUT);
         throw ERROR;
       };
+
+      const DUPLICATE_CHECK = CAR_NAME.filter((car) => car === name);
+
+      if(DUPLICATE_CHECK.length > 1) {
+        const HAS_DUPLICATE_NAME = '중복된 자동차 이름이 존재 합니다.';
+        const ERROR = new Error(HAS_DUPLICATE_NAME);
+        throw ERROR;
+      }
     });
   
     return CAR_NAME;
