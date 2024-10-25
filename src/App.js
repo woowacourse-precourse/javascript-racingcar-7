@@ -5,7 +5,7 @@ import { print } from "./utils.js";
 
 class App {
   async run() {
-    const { carArray, tryCount } = await this.#getInput();
+    const [carArray, tryCount] = await this.#getInput();
     const winnerCarArray = this.#runRace(carArray, tryCount);
     this.#printOutput(winnerCarArray);
   }
@@ -16,10 +16,7 @@ class App {
     const carArray = input.parseCars();
     const tryCount = input.parseTryCount();
 
-    return {
-      carArray,
-      tryCount,
-    };
+    return [carArray, tryCount];
   }
 
   #runRace(carArray, tryCount) {
