@@ -1,13 +1,6 @@
-import { Console, Random } from "@woowacourse/mission-utils";
+import { Console } from '@woowacourse/mission-utils';
 
-export const startRace = async () => {
-    const carNames = await getCarNames();
-    const attemptCount = await getAttemptCount();
-    const raceResult = displayRaceResults(carNames, attemptCount);
-    displayFinalWinner(raceResult);
-}
-
-const getCarNames = async () => {
+export const getCarNames = async () => {
     const carNames = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
     const trimmedCarNames = carNames.split(',').map(car => car.trim());
 
@@ -36,7 +29,7 @@ const validateCarNames = (carNames) => {
     }
 }
 
-const getAttemptCount = async () => {
+export const getAttemptCount = async () => {
     const attemptCount = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
 
     validateAttemptCount(attemptCount);
@@ -59,52 +52,4 @@ const validateAttemptCount = (attemptCount) => {
     else if (count > 100) {
         throw new Error('[ERROR] 시도 횟수는 최대 100회까지 가능합니다.');
     }
-}
-
-const displayRaceResults = (carNames, attemptCount) => {
-    Console.print('\n실행결과\n');
-    let carNamesAndResults = initializeRaceState(carNames);
-
-    for (let i = 0; i < attemptCount; i++) {
-        carNamesAndResults = moveCars(carNames, carNamesAndResults);
-        displayRoundResult(carNames, carNamesAndResults);
-    }
-
-    return carNamesAndResults;
-}
-
-const initializeRaceState = (carNames) => {
-    const carNamesAndResults = {};
-
-    carNames.forEach((car) => {
-        carNamesAndResults[car] = '';
-    });
-
-    return carNamesAndResults;
-}
-
-const moveCars = (carNames, carNamesAndResults) => {
-    const updatedResults = {...carNamesAndResults};
-    
-    carNames.forEach((car) => {
-        if (Random.pickNumberInRange(0, 9) >= 4) {
-            updatedResults[car] += '-'
-        }
-    })
-
-    return updatedResults;
-}
-
-const displayRoundResult = (carNames, carNamesAndResults) => {
-    carNames.forEach((car) => {
-        Console.print(`${car} : ${carNamesAndResults[car]}\n`);
-    })
-    Console.print('\n');
-}
-
-const displayFinalWinner = (raceResult) => {
-    const maxDistance = Math.max(...Object.values(raceResult).map(result => result.length));
-    const winners = Object.keys(raceResult).filter((car) => raceResult[car].length === maxDistance);
-
-    Console.print(`최종 우승자 : ${winners.join(', ')}`);
 }

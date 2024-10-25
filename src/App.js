@@ -1,4 +1,4 @@
-import { startRace } from "./CarRacing.js";
+import { startRace } from "./Race.js";
 
 class App {
   async run() {
