@@ -118,4 +118,19 @@ describe('자동차 경주', () => {
         (error) => expect(error.message).toMatch(ERROR_DETAILS.SECONDS_NOT_POSITIVE),
       );
   });
+
+  test('이동 횟수가 실수인 경우 에러를 던진다', async () => {
+    // given
+    const inputs = ['pobi', '1.1'];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    app.run()
+      .catch(
+        (error) => expect(error.message).toMatch(ERROR_DETAILS.SECONDS_NOT_INTEGER),
+      );
+  });
 });
