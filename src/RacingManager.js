@@ -10,8 +10,7 @@ class RacingManager {
 
   static normalizeCarNames(nameInput) {
     const MAX_NAME_LENGTH = 5;
-    const carNames = [...nameInput];
-    const parsedNames = this.parseCarNames(carNames);
+    const parsedNames = this.parseCarNames(nameInput);
     const validCarNames = Validation.carNames(parsedNames, MAX_NAME_LENGTH);
     return validCarNames;
   }
