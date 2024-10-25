@@ -27,12 +27,12 @@
 
 - [ ] models 폴더
 
-  - [ ] RacingCars.js
+  - [ ] RacingCarModel.js
 
   1. 얼마나 앞으로 갔는지
   2. 자동차 이름
 
-  - [ ] Race.js
+  - [ ] RacingModel.js
 
   1. 라운드 수
   2. 참가 자동차 이름
