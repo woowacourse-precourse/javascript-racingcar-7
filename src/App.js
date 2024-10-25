@@ -14,6 +14,10 @@ class Car {
     let num = Random.pickNumberInRange(0, 9);
     if (num >= 4) this.moveCount++;
   }
+
+  getProgress() {
+    Console.print(`${this.name} : ${'-'.repeat(this.moveCount)}`);
+  }
 }
 
 function getNames(str) {
@@ -66,7 +70,9 @@ class App {
     for (let i = 0; i < trial; i++) {
       cars.forEach((car) => {
         car.forwardOrNot();
+        car.getProgress();
       });
+      Console.print('');
     }
   }
 }
