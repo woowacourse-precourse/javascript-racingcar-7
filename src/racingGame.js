@@ -31,6 +31,13 @@ class RacingGame {
     });
     console.log(this.cars);
   }
+
+  async startGame() {
+    await this.init();
+    for (let i = 0; i < this.counts; i++) {
+      this.getScores();
+    }
+  }
 }
 
 export default RacingGame;
