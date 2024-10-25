@@ -49,6 +49,13 @@ class Validation {
 
     return true;
   }
+
+  carNames(names) {
+    Validation.isNoDuplicated(names);
+    names.forEach((name) => this.#isValidLength(name));
+
+    return names;
+  }
 }
 
 export default Validation;
