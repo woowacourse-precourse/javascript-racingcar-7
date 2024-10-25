@@ -73,4 +73,19 @@ describe('자동차 경주', () => {
         (error) => expect(error.message).toMatch(ERROR_DETAILS.CARNAME_EMPTY),
       );
   });
+
+  test('중복된 레이서 이름이 있는지 있으면 에러를 던진다', async () => {
+    // given
+    const inputs = ['pobi,pobi'];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    app.run()
+      .catch(
+        (error) => expect(error.message).toMatch(ERROR_DETAILS.CARNAMES_DUPLICATE),
+      );
+  });
 });
