@@ -19,6 +19,8 @@ class App {
 
       Console.print('');
     }
+
+    const winners = this.getWinners(carsData);
   }
 
   async getCarNamesInput() {
@@ -57,6 +59,14 @@ class App {
     if (this.canMoveForward()) {
       car.position += 1;
     }
+  }
+
+  getWinners(carsData) {
+    const winnersPosition = Math.max(...carsData.map((car) => car.position));
+
+    return carsData
+      .filter((car) => winnersPosition === car.position)
+      .map((car) => car.name);
   }
 }
 
