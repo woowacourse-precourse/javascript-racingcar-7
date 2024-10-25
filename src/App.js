@@ -73,11 +73,21 @@ class App {
     const carList = carNames.split(',');
     const carsDistances = Array.from({ length: carList.length }, () => '');
 
+    const moveCar = (carsCanMove) => {
+      for (let index = 0; index < carList.length; index++) {
+        if (carsCanMove[index]) {
+          carsDistances[index] += '-';
+        }
+      }
+    };
+
     for (let count = 1; count <= gameCount; count++) {
       const carsCanMove = Array.from(
         { length: carList.length },
         () => Random.pickNumberInRange(0, 9) >= 4,
       );
+
+      moveCar(carsCanMove);
     }
   }
 }
