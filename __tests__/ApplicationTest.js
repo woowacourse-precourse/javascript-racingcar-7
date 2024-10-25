@@ -32,7 +32,7 @@ describe("자동차 경주", () => {
     ${3} | ${9}             | ${0}              | ${["pobi : -", "woni : "]}  | ${"pobi"}
     ${4} | ${9}             | ${9}              | ${["pobi : -", "woni : -"]} | ${"pobi, woni"}
   `(
-    `case $# : 첫 번째 사람의 움직임이 $firstRandomValue, 두 번째 사람의 움직임이 $secondRandomValue 라면, 우승자는 $winner 입니다.`,
+    `case $# : 첫 번째 사람의 randomNumber가 $firstRandomValue, 두 번째 사람의 randomNumber가 $secondRandomValue 라면, 우승자는 $winner 입니다.`,
     async ({ firstRandomValue, secondRandomValue, moves, winner }) => {
       // given
       const inputs = ["pobi,woni", "1"];
@@ -54,14 +54,26 @@ describe("자동차 경주", () => {
   );
 });
 
-test("예외 테스트", async () => {
-  // given
-  const inputs = ["pobi,javaji"];
-  mockQuestions(inputs);
+describe("예외 테스트", () => {
+  test.each`
+    #    | carNamesInput     | roundInput
+    ${1} | ${"123456,12345"} | ${"1"}
+    ${2} | ${""}             | ${"1"}
+    ${3} | ${"12345;1234"}   | ${"1"}
+    ${4} | ${"12345,1234"}   | ${""}
+    ${5} | ${"12345,1234"}   | ${"ㄱ"}
+  `(
+    `case $# : 자동차 이름을 $carNamesInput, 진행 횟수를 $roundInput 로 입력하면 , 에러가 발생합니다.`,
+    async ({ carNamesInput, roundInput }) => {
+      // given
+      const inputs = [carNamesInput, roundInput];
+      mockQuestions(inputs);
 
-  // when
-  const app = new App();
+      // when
+      const app = new App();
 
-  // then
-  await expect(app.run()).rejects.toThrow("[ERROR]");
+      // then
+      await expect(app.run()).rejects.toThrow("[ERROR]");
+    }
+  );
 });
