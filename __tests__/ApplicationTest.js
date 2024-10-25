@@ -68,6 +68,7 @@ describe(
       ['pobi,woni,jun', ['pobi', 'woni', 'jun']],
       ['pobi, woni ,jun', ['pobi', ' woni ', 'jun']],
       ['', new Error('[ERROR]')],
+      ['pobi,,woni', new Error('[ERROR]')],
     ])('parseCarString(%s)', (inputs, expected) => {
       //given
       const inputString = inputs;
