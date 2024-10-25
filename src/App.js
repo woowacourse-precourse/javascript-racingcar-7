@@ -1,5 +1,5 @@
 import Game from './controller/Game.js';
-import Race from './model/RaceModel.js';
+import Race from './model/Race.js';
 import User from './user/User.js';
 import outputView from './view/outputView.js';
 

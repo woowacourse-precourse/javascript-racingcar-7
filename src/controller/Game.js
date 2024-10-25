@@ -21,8 +21,6 @@ class Game {
     outputView.printMessage(`\n${GAME_MESSAGE.RESULT}`);
     this.raceModel.race(Number(attempts));
 
-    this.outputView.printRaceStatus(this.raceModel.getCars());
-
     const winners = this.raceModel.determineWinners();
     this.outputView.announceWinner(winners);
   }
