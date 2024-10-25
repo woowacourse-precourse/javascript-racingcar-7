@@ -7,6 +7,7 @@ class App {
     let inputCarName = await Console.readLineAsync("");
     let arrCarName = inputCarName.split(",");
     let numberOfCars = arrCarName.length;
+    carNameValidation(arrCarName);
     Console.print("시도할 횟수는 몇 회인가요?");
     let playCount = await Console.readLineAsync("");
     Console.print("\n실행 결과");
@@ -17,6 +18,14 @@ class App {
     getWinner(cars);
   }
 }
+
+function carNameValidation(arrCarName) {
+  let carNameResult = arrCarName.every(car => car.length <= 5);
+  if(carNameResult == false) {
+    throw new Error("[Error] 자동차 이름은 5자 이하만 가능합니다.");
+  }
+}
+
 class Car {
   constructor(name) {
     this.name = name;
