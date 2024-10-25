@@ -4,6 +4,7 @@ import {
   MAX_CAR_COUNT,
   MAX_TRY_COUNT,
 } from '../src/constant.js';
+import { errorString } from '../src/util.js';
 import { mockQuestions } from './ApplicationTest.js';
 
 describe('UserInputHandler 입력 처리 테스트', () => {
@@ -32,7 +33,7 @@ describe('UserInputHandler 입력 처리 테스트', () => {
 
     // then
     await expect(userInputHandler.getCarNames()).rejects.toThrow(
-      ERROR_MESSAGE.MIN_CAR_COUNT,
+      errorString(ERROR_MESSAGE.MIN_CAR_COUNT),
     );
   });
 
@@ -43,7 +44,7 @@ describe('UserInputHandler 입력 처리 테스트', () => {
 
     // then
     await expect(userInputHandler.getCarNames()).rejects.toThrow(
-      ERROR_MESSAGE.DUPLICATED_CAR_NAME,
+      errorString(ERROR_MESSAGE.DUPLICATED_CAR_NAME),
     );
   });
 
@@ -58,7 +59,7 @@ describe('UserInputHandler 입력 처리 테스트', () => {
 
     // then
     await expect(userInputHandler.getCarNames()).rejects.toThrow(
-      ERROR_MESSAGE.MAX_CAR_COUNT,
+      errorString(ERROR_MESSAGE.MAX_CAR_COUNT),
     );
   });
 
@@ -81,7 +82,7 @@ describe('UserInputHandler 입력 처리 테스트', () => {
 
     // then
     await expect(userInputHandler.getTryCount()).rejects.toThrow(
-      ERROR_MESSAGE.INVALID_TRY_COUNT_TYPE,
+      errorString(ERROR_MESSAGE.INVALID_TRY_COUNT_TYPE),
     );
   });
 
@@ -92,7 +93,7 @@ describe('UserInputHandler 입력 처리 테스트', () => {
 
     // then
     await expect(userInputHandler.getTryCount()).rejects.toThrow(
-      ERROR_MESSAGE.MIN_TRY_COUNT,
+      errorString(ERROR_MESSAGE.MIN_TRY_COUNT),
     );
   });
 
@@ -103,7 +104,7 @@ describe('UserInputHandler 입력 처리 테스트', () => {
 
     // then
     await expect(userInputHandler.getTryCount()).rejects.toThrow(
-      ERROR_MESSAGE.MIN_TRY_COUNT,
+      errorString(ERROR_MESSAGE.MIN_TRY_COUNT),
     );
   });
 
@@ -114,7 +115,7 @@ describe('UserInputHandler 입력 처리 테스트', () => {
 
     // then
     await expect(userInputHandler.getTryCount()).rejects.toThrow(
-      ERROR_MESSAGE.MAX_TRY_COUNT,
+      errorString(ERROR_MESSAGE.MAX_TRY_COUNT),
     );
   });
 });
