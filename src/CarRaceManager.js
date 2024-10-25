@@ -23,6 +23,9 @@ class CarRaceManager {
       this.#raceLap();
       this.#displayDistance();
     }
+
+    this.#determineWinner();
+    this.#printWinner();
   }
 
   #raceLap() {
@@ -41,6 +44,19 @@ class CarRaceManager {
 
   #printNewLine() {
     Console.print('');
+  }
+
+  #determineWinner() {
+    const maxDistance = Math.max(...this.#cars.map((car) => car.getDistance()));
+
+    this.#winners = this.#cars.filter(
+      (car) => car.getDistance() === maxDistance
+    );
+  }
+
+  #printWinner() {
+    const winnerNames = this.#winners.map((winner) => winner.getName());
+    Console.print(OUTPUT_MESSAGE.winners(winnerNames));
   }
 }
 
