@@ -24,6 +24,7 @@ class App {
         '시도할 횟수는 몇 회인가요?\n'
       );
 
+      Console.print('\n실행 결과');
       for (let i = 0; i < attemps; i++) {
         Object.entries(carsInfo).forEach(([key, value]) => {
           const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
@@ -34,6 +35,13 @@ class App {
         });
         Console.print('');
       }
+
+      const values = Object.values(carsInfo);
+      const max = Math.max(...values);
+      const winners = Object.keys(carsInfo).filter(
+        (name) => carsInfo[name] === max
+      );
+      Console.print(`최종 우승자 : ${winners.join(', ')}`);
     } catch (error) {
       Console.print(error.message);
       throw error;
