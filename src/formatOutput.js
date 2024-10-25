@@ -2,7 +2,7 @@ import { MissionUtils } from '@woowacourse/mission-utils'
 const Console = MissionUtils.Console;
 const Random = MissionUtils.Random;
 
-function formatOutput(resultArray){
+export function formatOutput(resultArray){
     let result = '실행 결과\n';
     resultArray.forEach( (value) => {
         Object.keys(value).forEach( (v) => {
@@ -25,5 +25,3 @@ function formatOutput(resultArray){
     result += `최종 우승자 : ${winner}`;
     return result;
 }
-
-export default formatOutput;
