@@ -1,7 +1,8 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import Car from "../domain/Car.js";
 import InputValidator from "../utils/InputValidator.js";
-import View from "../view/View.js";
+import InputView from "../view/InputView.js";
+import OutputView from "../view/OutputView.js";
 
 export default class CarRacingController {
   constructor() {
@@ -19,18 +20,18 @@ export default class CarRacingController {
   }
 
   async initializeGame() {
-    const carNamesInput = await View.readCarNames();
+    const carNamesInput = await InputView.readCarNames();
     const carNames = InputValidator.validateCarNames(carNamesInput);
     this.cars = carNames.map(name => new Car(name));
     
-    const attemptsInput = await View.readAttempts();
+    const attemptsInput = await InputView.readAttempts();
     this.attempts = InputValidator.validateAttempts(attemptsInput);
   }
 
   async raceLoop() {
     for (let i = 0; i < this.attempts; i++) {
       this.moveAllCars();
-      View.printRaceStatus(this.cars);
+      OutputView.printRaceStatus(this.cars);
     }
   }
 
@@ -44,6 +45,6 @@ export default class CarRacingController {
   announceWinners() {
     const maxPosition = Math.max(...this.cars.map(car => car.getPosition()));
     const winners = this.cars.filter(car => car.getPosition() === maxPosition);
-    View.printWinners(winners);
+    OutputView.printWinners(winners);
   }
 }

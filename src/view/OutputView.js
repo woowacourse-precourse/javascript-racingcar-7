@@ -1,15 +1,7 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import { PRINT_MESSAGE } from "../static/Static.js";
 
-export default class View {
-  static async readCarNames() {
-    return await MissionUtils.Console.readLineAsync(PRINT_MESSAGE.inputName);
-  }
-
-  static async readAttempts() {
-    return await MissionUtils.Console.readLineAsync(PRINT_MESSAGE.inputTries);
-  }
-
+class OutputView {
   static printRaceStatus(cars) {
     cars.forEach(car => {
       const position = PRINT_MESSAGE.moveMarking.repeat(car.getPosition());
@@ -23,3 +15,5 @@ export default class View {
     MissionUtils.Console.print(`${PRINT_MESSAGE.winnerMessage}${winnerNames}`);
   }
 }
+
+export default OutputView;
