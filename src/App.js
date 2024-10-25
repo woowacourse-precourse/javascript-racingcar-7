@@ -36,7 +36,7 @@ class App {
       this.printRaceStatus(raceResults);
       MissionUtils.Console.print("\n");
     }
-    this.printRaceStatus(raceResults);
+    this.printWinners(raceResults);
   }
 
   raceRound(raceResults) {
@@ -51,6 +51,14 @@ class App {
     raceResults.forEach((car) => {
       console.log(`${car.name} : ${"-".repeat(car.position)}`);
     });
+  }
+
+  printWinners(raceResults) {
+    const maxPosition = Math.max(...raceResults.map((car) => car.position));
+    const winners = raceResults
+      .filter((car) => car.position === maxPosition)
+      .map((car) => car.name);
+    MissionUtils.Console.print(`\n최종 우승자 : ${winners.join(", ")}`);
   }
 }
 
