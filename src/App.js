@@ -6,7 +6,8 @@ class App {
   async run() {
     const playerNames = await getUserInputCarName();
     const moveCount = await Console.readLineAsync('시도할 횟수는 몇 회인가요?');
-    createCarRacing(playerNames, moveCount);
+    const playerScore = createCarRacing(playerNames, moveCount);
+    Console.print(`최종 우승자 : ${findGameWinner(playerScore)}`);
   }
 }
 
@@ -42,8 +43,6 @@ function formatUserInputForGameResult(playerNames) {
 function createCarRacing(formattedUserInput, moveCount) {
   for (let i = 0; i < moveCount; i++) {
     displayResult(formattedUserInput);
-    // TODO: 여기 있으니 줄바꿈이 moveCount만큼 되고 있음
-    Console.print('\n');
   }
 
   return displayResult(formattedUserInput);
@@ -62,9 +61,10 @@ function displayResult(formattedUserInput) {
   });
 
   updatedGameResultPlayer.forEach((player) => {
-    Console.print(`${player.name} : ${printHyphen(player.score)}\n`);
+    Console.print(`${player.name} : ${printHyphen(player.score)}`);
   });
-
+  // TODO: 줄바꿈이 여러번 되고 있음
+  Console.print('\n');
   return updatedGameResultPlayer;
 }
 
@@ -72,4 +72,18 @@ function printHyphen(score) {
   return '-'.repeat(score);
 }
 
-function findGameWinner() {}
+function findGameWinner(playerScore) {
+  const topScore = playerScore.reduce((prev, current) => {
+    if (prev.score > current.score) return prev;
+    else return current;
+  }).score;
+
+  const topScoringPlayers = playerScore
+    .filter((player) => {
+      return player.score === topScore;
+    })
+    .map((player) => player.name);
+
+  return topScoringPlayers.join(', ');
+}
+//pobi,woni,jun
