@@ -12,7 +12,7 @@ class RacingGameManager {
     this.#tryCount = tryCount;
   }
 
-  async playGame() {
+  playGame() {
     this.#startGame();
 
     const winners = this.#selectWinner();

@@ -12,19 +12,27 @@ class UserInputHandler {
   static MAX_TRY_COUNT = 500;
 
   async getCarNames() {
-    const carInput = await getUserInput(CONSOLE_MESSAGE.CAR_INPUT_MESSAGE);
-    this.#validateCarInput(carInput);
+    try {
+      const carInput = await getUserInput(CONSOLE_MESSAGE.CAR_INPUT_MESSAGE);
+      this.#validateCarInput(carInput);
 
-    return carInput.split(',').map((carName) => carName.trim());
+      return carInput.split(',').map((carName) => carName.trim());
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 
   async getTryCount() {
-    const tryCountInput = await getUserInput(
-      CONSOLE_MESSAGE.TRY_COUNT_INPUT_MESSAGE,
-    );
-    this.#validateTryCountInput(tryCountInput);
+    try {
+      const tryCountInput = await getUserInput(
+        CONSOLE_MESSAGE.TRY_COUNT_INPUT_MESSAGE,
+      );
+      this.#validateTryCountInput(tryCountInput);
 
-    return Number(tryCountInput);
+      return Number(tryCountInput);
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 
   #validateCarInput(input) {

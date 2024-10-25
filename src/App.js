@@ -8,7 +8,7 @@ class App {
     const tryCount = await inputHandler.getTryCount();
 
     const game = new RacingGameManager(carNames, tryCount);
-    await game.playGame();
+    game.playGame();
   }
 }
 
