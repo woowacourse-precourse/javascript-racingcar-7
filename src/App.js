@@ -43,11 +43,11 @@ class App {
 
     Console.print(`실행 결과\n`);
 
-    const cars = CAR_NAMES.map((name) => new Car(name));
+    const CARS = CAR_NAMES.map((name) => new Car(name));
 
     for (let i = 0; i < TRY_COUNT; i++) {
-      cars.forEach((car) => car.move());
-      cars.forEach((car) => car.showPosition());
+      CARS.forEach((car) => car.move());
+      CARS.forEach((car) => car.showPosition());
       Console.print('\n');
     }
   }
