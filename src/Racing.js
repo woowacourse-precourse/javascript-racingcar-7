@@ -1,4 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
+import Validation from './Validation.js';
 
 class Racing {
   #totalRounds;
@@ -8,7 +9,7 @@ class Racing {
   #result;
 
   constructor(totalRounds, cars) {
-    this.#totalRounds = totalRounds;
+    this.#totalRounds = Racing.normalizeTotalRounds(totalRounds);
     this.#cars = cars;
     this.#result = [];
   }
@@ -61,6 +62,16 @@ class Racing {
     const winnersNameToString = winnersName.join(', ');
 
     Console.print(`최종 우승자 : ${winnersNameToString}`);
+  }
+
+  static normalizeTotalRounds(totalRounds) {
+    const parsedTotalRounds = this.parseTotalRounds(totalRounds);
+    const validTotalRounds = Validation.totalRounds(parsedTotalRounds);
+    return validTotalRounds;
+  }
+
+  static parseTotalRounds(totalRounds) {
+    return Number(totalRounds);
   }
 }
 
