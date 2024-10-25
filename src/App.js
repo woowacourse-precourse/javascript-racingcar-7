@@ -11,6 +11,10 @@ class Car {
       this.position += 1;
     }
   }
+
+  showPosition() {
+    Console.print(`${this.name}: ${'-'.repeat(this.position)}`);
+  }
 }
 
 class App {
@@ -43,6 +47,7 @@ class App {
 
     for (let i = 0; i < TRY_COUNT; i++) {
       cars.forEach((car) => car.move());
+      cars.forEach((car) => car.showPosition());
       Console.print('\n');
     }
   }
