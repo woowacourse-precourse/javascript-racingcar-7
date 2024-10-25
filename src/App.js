@@ -23,11 +23,12 @@ class App {
   async run() {
     let carNameList = await this.readCarName();
     validateCarNameList(carNameList);
+    this.generateCars(carNameList);
+
     const tryCount = await this.readTryCount();
     validateTryCount(tryCount);
-    this.#tryCount = tryCount;
 
-    this.generateCars(carNameList);
+    this.#tryCount = tryCount;
     this.printGameStart();
     this.generateGame();
 
