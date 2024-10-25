@@ -9,6 +9,7 @@ class App {
     validateCarNameString(carNameInputString);
     const carNameList = getCarNameList(carNameInputString);
     checkDuplicateCarName(carNameList);
+    const numberOfAttemps = await getUserInput("시도할 횟수는 몇 회인가요?\n");
   }
 }
 
