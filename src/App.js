@@ -1,5 +1,6 @@
 import checkDuplicateCarName from "./checkDuplicateCarName.js";
 import createCarObjectList from "./createCarObjectList.js";
+import displayWinners from "./displayWinners.js";
 import extractWinners from "./extractWinners.js";
 import getCarNameList from "./getCarNameList.js";
 import getUserInput from "./getUserInput.js";
@@ -18,6 +19,7 @@ class App {
     validateRaceCount(raceCount);
     startCarRace(carObjectList, raceCount);
     const winners = extractWinners(carObjectList);
+    displayWinners(winners);
   }
 }
 
