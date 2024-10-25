@@ -10,6 +10,7 @@ class App {
     carNameValidation(arrCarName);
     Console.print("시도할 횟수는 몇 회인가요?");
     let playCount = await Console.readLineAsync("");
+    playTimesValidation(playCount);
     Console.print("\n실행 결과");
     let cars = arrCarName.map((name) => new Car(name));
     for (let count = 0; count < playCount; count++) {
@@ -26,6 +27,20 @@ function carNameValidation(arrCarName) {
   }
 }
 
+function playTimesValidation(playCount) {
+  if(playCount == 0) {
+    return 0;
+  }
+  else if(playCount % 1 == 0 && playCount > 0) {
+    return 0;
+  }
+  else if (playCount < 0){
+    throw new Error("[Error] 음수를 입력할 수 없습니다.");
+  }
+  else {
+    throw new Error("[Error] 이동 횟수는 자연수만 가능합니다.");
+  }
+}
 class Car {
   constructor(name) {
     this.name = name;
