@@ -25,6 +25,10 @@ const OutputView = {
     const winnerText = this.formatWinners(winners);
     Console.print(`최종 우승자 : ${winnerText}`);
   },
+
+  throwError(message) {
+    throw new Error(`[ERROR] ${message}`);
+  },
 };
 
 export default OutputView;
