@@ -63,25 +63,43 @@ const validateAttemptCount = (attemptCount) => {
 
 const displayRaceResults = (carNames, attemptCount) => {
     Console.print('\n실행결과\n');
+    let carNamesAndResults = initializeRaceState(carNames);
+
+    for (let i = 0; i < attemptCount; i++) {
+        carNamesAndResults = moveCars(carNames, carNamesAndResults);
+        displayRoundResult(carNames, carNamesAndResults);
+    }
+
+    return carNamesAndResults;
+}
+
+const initializeRaceState = (carNames) => {
     const carNamesAndResults = {};
+
     carNames.forEach((car) => {
         carNamesAndResults[car] = '';
     });
 
-    for (let i = 0; i < attemptCount; i++) {
-        carNames.forEach((car) => {
-            if (Random.pickNumberInRange(0, 9) >= 4) {
-                carNamesAndResults[car] += '-'
-            }
-        })
-
-        carNames.forEach((car) => {
-            Console.print(`${car} : ${carNamesAndResults[car]}\n`);
-        })
-        Console.print('\n');
-    }
-
     return carNamesAndResults;
+}
+
+const moveCars = (carNames, carNamesAndResults) => {
+    const updatedResults = {...carNamesAndResults};
+    
+    carNames.forEach((car) => {
+        if (Random.pickNumberInRange(0, 9) >= 4) {
+            updatedResults[car] += '-'
+        }
+    })
+
+    return updatedResults;
+}
+
+const displayRoundResult = (carNames, carNamesAndResults) => {
+    carNames.forEach((car) => {
+        Console.print(`${car} : ${carNamesAndResults[car]}\n`);
+    })
+    Console.print('\n');
 }
 
 const displayFinalWinner = (raceResult) => {
