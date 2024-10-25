@@ -9,11 +9,11 @@ class App {
     let numberOfCars = arrCarName.length;
     carNameValidation(arrCarName);
     Console.print("시도할 횟수는 몇 회인가요?");
-    let playCount = await Console.readLineAsync("");
-    playTimesValidation(playCount);
+    let playTimes = await Console.readLineAsync("");
+    playTimesValidation(playTimes);
     Console.print("\n실행 결과");
     let cars = arrCarName.map((name) => new Car(name));
-    for (let count = 0; count < playCount; count++) {
+    for (let count = 0; count < playTimes; count++) {
       RoundResultPrint(cars);
     }
     getWinner(cars);
@@ -27,14 +27,14 @@ function carNameValidation(arrCarName) {
   }
 }
 
-function playTimesValidation(playCount) {
-  if(playCount == 0) {
+function playTimesValidation(playTimes) {
+  if(playTimes == 0) {
     return 0;
   }
-  else if(playCount % 1 == 0 && playCount > 0) {
+  else if(playTimes % 1 == 0 && playTimes > 0) {
     return 0;
   }
-  else if (playCount < 0){
+  else if (playTimes < 0){
     throw new Error("[Error] 음수를 입력할 수 없습니다.");
   }
   else {
@@ -44,13 +44,13 @@ function playTimesValidation(playCount) {
 class Car {
   constructor(name) {
     this.name = name;
-    this.moveCount = 0;
+    this.playTimes = 0;
   }
 
   randomMove() {
     let randomNumber = Random.pickNumberInRange(0, 9);
     if (randomNumber >= 4) {
-      this.moveCount++;
+      this.playTimes++;
     }
   }
 }
@@ -66,7 +66,7 @@ function RoundResultPrint(cars) {
   let carsMove = Race(cars);
   for (let carNumber = 0; carNumber < carsMove.length; carNumber++) {
     let moveDistance = "";
-    for (let move = 0; move < carsMove[carNumber].moveCount; move++) {
+    for (let move = 0; move < carsMove[carNumber].playTimes; move++) {
       moveDistance += "-";
     }
     Console.print(carsMove[carNumber].name + " : " + moveDistance);
@@ -75,11 +75,11 @@ function RoundResultPrint(cars) {
 }
 
 function getWinner(cars) {
-  let carsMoveCountArray = cars.map((car) => car.moveCount);
-  let maxMove = Math.max(...carsMoveCountArray);
+  let carsplayTimesArray = cars.map((car) => car.playTimes);
+  let maxMove = Math.max(...carsplayTimesArray);
   let winners = [];
   for (let carNumber = 0; carNumber < cars.length; carNumber++) {
-    if (maxMove == cars[carNumber].moveCount) {
+    if (maxMove == cars[carNumber].playTimes) {
       winners.push(cars[carNumber].name);
     }
   }
