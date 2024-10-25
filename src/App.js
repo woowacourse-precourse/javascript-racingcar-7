@@ -41,6 +41,7 @@ class App {
   }
 
   repeat(number) {
+    MissionUtils.Console.print('실행 결과');
     for (let i = 0; i < number; i++) {
       this.carList.forEach((car) => {
         this.moveCarForward(car);
