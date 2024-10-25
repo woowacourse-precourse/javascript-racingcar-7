@@ -1,18 +1,29 @@
+import printRaceProgress from '../views/raceProgress.js';
+import generateRandomNumber from '../utils/random.js';
+
 export default class Game {
-  constructor(cars, round) {
+  constructor(cars, rounds) {
     this.cars = cars;
-    this.round = round;
+    this.rounds = rounds;
   }
 
-  playRound() {
-    this.cars.forEach((car) => car.move());
+  playAllRounds() {
+    for (let i = 1; i <= this.rounds; i += 1) {
+      this.playSingleRound();
+      printRaceProgress(this.cars);
+    }
+  }
+
+  playSingleRound() {
+    this.cars.forEach((car) => {
+      const randomNumber = generateRandomNumber();
+      car.move(randomNumber);
+    });
   }
 
   getWinners() {
     const maxPosition = Math.max(...this.cars.map((car) => car.getPosition()));
 
-    return this.cars
-      .filter((car) => car.getPosition() === maxPosition)
-      .map((car) => car.getCarName());
+    return this.cars.filter((car) => car.getPosition() === maxPosition);
   }
 }
