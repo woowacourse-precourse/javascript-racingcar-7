@@ -1,6 +1,7 @@
 import getAttemptsInput from './getAttemptsInput.js';
 import getCarNamesInput from './getCarNamesInput.js';
 import splitStringByComma from './splitIStringByComma.js';
+import validateAttempts from './validateAttempts.js';
 import validateCarNames from './validateCarNames.js';
 
 class App {
@@ -10,6 +11,7 @@ class App {
     validateCarNames(carNames);
 
     const attemptsInput = await getAttemptsInput();
+    validateAttempts(attemptsInput);
   }
 }
 
