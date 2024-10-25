@@ -7,6 +7,11 @@ class App {
     );
 
     const carNames = inputCarNames.split(',');
+    const validateCarNames = carNames.forEach((name) => {
+      if (name.length > 5) {
+        throw new Error('[ERROR] 자동차 이름은 5자 이하만 입력 가능합니다.');
+      }
+    });
 
     const inputRounds = await Console.readLineAsync(
       '시도할 횟수는 몇 회인가요?\n'
