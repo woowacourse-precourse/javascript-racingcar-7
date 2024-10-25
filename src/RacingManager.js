@@ -2,22 +2,16 @@ import Car from './Car.js';
 import Validation from './Validation.js';
 
 class RacingManager {
-  #nameInput;
-
-  constructor(nameInput) {
-    this.#nameInput = nameInput;
-  }
-
-  #normalizeCarNames() {
+  static normalizeCarNames(nameInput) {
     const MAX_NAME_LENGTH = 5;
-    const nameInput = this.#nameInput;
-    const parsedNames = RacingManager.parseCarNames(nameInput);
-    const carNames = Validation.carNames(parsedNames, MAX_NAME_LENGTH);
-    return carNames;
+    const carNames = [...nameInput];
+    const parsedNames = RacingManager.parseCarNames(carNames);
+    const validCarNames = Validation.carNames(parsedNames, MAX_NAME_LENGTH);
+    return validCarNames;
   }
 
-  register() {
-    const nameList = this.#normalizeCarNames();
+  static register() {
+    const nameList = this.normalizeCarNames();
     const registeredCars = nameList.map((name) => new Car(name));
     return registeredCars;
   }
