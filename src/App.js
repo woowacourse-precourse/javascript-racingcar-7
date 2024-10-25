@@ -34,7 +34,7 @@ class App {
     for (let i = 0; i < raceRounds; i++) {
       this.raceRound(raceResults);
       this.printRaceStatus(raceResults);
-      MissionUtils.Console.print("\n");
+      MissionUtils.Console.print("");
     }
     this.printWinners(raceResults);
   }
@@ -58,7 +58,7 @@ class App {
     const winners = raceResults
       .filter((car) => car.position === maxPosition)
       .map((car) => car.name);
-    MissionUtils.Console.print(`\n최종 우승자 : ${winners.join(", ")}`);
+    MissionUtils.Console.print(`최종 우승자 : ${winners.join(", ")}`);
   }
 }
 
