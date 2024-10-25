@@ -7,6 +7,9 @@ class App {
   async run() {
     const input = await Console.readLineAsync(INPUT_MESSAGE.entries);
     const carNames = this.#parseEntries(input);
+
+    const tryCount = await Console.readLineAsync(INPUT_MESSAGE.tryCount);
+    this.#validateTryCount(tryCount);
   }
 
   #parseEntries(input) {
@@ -22,6 +25,15 @@ class App {
 
     if (name.length > CAR_NAME_MAX_LENGTH) {
       throw Error(ERROR_MESSAGE.carNameLength);
+    }
+  }
+
+  #validateTryCount(tryCount) {
+    const isPositiveInteger =
+      Number(tryCount) > 0 && Number.isInteger(Number(tryCount));
+
+    if (!isPositiveInteger) {
+      throw Error(ERROR_MESSAGE.tryCount);
     }
   }
 }
