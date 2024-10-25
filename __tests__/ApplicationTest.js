@@ -60,13 +60,4 @@ describe('자동차 경주', () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
-
-  // test('예외 테스트', async () => {
-  //   const inputs = ['pobi,javaji'];
-  //   mockQuestions(inputs);
-
-  //   const app = new App();
-
-  //   await expect(app.run()).rejects.toThrow('[ERROR]');
-  // });
 });
