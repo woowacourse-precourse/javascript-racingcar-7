@@ -1,5 +1,5 @@
-import { parseInput } from './parseInput';
-import { Simulator } from './Simulate';
+import { parsePlayers, parseRound } from './parseInput';
+import { processInputToOutput } from './Simulate';
 import { formatOutput } from './formatOutput';
 
 import { MissionUtils } from '@woowacourse/mission-utils'

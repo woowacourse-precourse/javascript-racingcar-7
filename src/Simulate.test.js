@@ -1,8 +1,8 @@
 import { processInputToOutput } from './Simulate';
 
-test('Simulator.process(driverArray) test', ()=> {
+test('Simulator.processInputToOutput(driverArray) test', ()=> {
     // must obtain JSON object
-    expect( processInputToOutput(['p1', 'p2', 'p3+'])).toStrictEqual(
+    expect( processInputToOutput(['p1', 'p2', 'p3+'], 3) ).toStrictEqual(
         [
             expect.objectContaining({
                 name: 'p1',
@@ -15,7 +15,7 @@ test('Simulator.process(driverArray) test', ()=> {
             expect.objectContaining({
                 name: 'p3+',
                 phase: expect.any(Array),
-            }),
+            })
         ]
     );
 
