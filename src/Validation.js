@@ -1,5 +1,16 @@
 import { ERROR_MESSAGE } from './Message.js';
 
+function validateCarName(carName) {
+  try {
+    validateNoWhiteSpace(carName);
+    validateOnlyLetters(carName);
+    validateNoSpecialCharacters(carName);
+    validateMaxFiveChars(carName);
+  } catch (err) {
+    throw new Error(`[ERROR] ${err.message}`);
+  }
+}
+
 function validateNoWhiteSpace(carName) {
   if (carName.includes(' ')) throw new Error(`${ERROR_MESSAGE.NO_WHITESPACE}`);
 }
