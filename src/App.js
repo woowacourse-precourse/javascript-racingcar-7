@@ -1,10 +1,9 @@
-import { Console } from "@woowacourse/mission-utils";
 import carNameInput from "./UI/carNameInput.js";
-import errorHandler from "./Error/errorHandler.js";
 import trialCountInput from "./UI/trialCountInput.js";
-import createRacerInformation from "./racerData/racer.js";
+import createRacerInformation from "./racerData/\bcreateRacerInformation.js";
 import raceProgression from "./feature/raceProgression.js";
 import getWinner from "./feature/getWinner.js";
+import errorHandler from "./Error/errorHandler.js";
 
 class App {
   async run() {

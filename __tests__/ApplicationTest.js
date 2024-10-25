@@ -2,7 +2,7 @@ import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 import carNameInput from "../src/UI/carNameInput.js";
 import trialCountInput from "../src/UI/trialCountInput.js";
-import createRacerInformation from "../src/racerData/racer.js";
+import createRacerInformation from "../src/racerData/\bcreateRacerInformation.js";
 import goStopResult from "../src/feature/goStopResult.js";
 import raceProgression from "../src/feature/raceProgression.js";
 import getWinner from "../src/feature/getWinner.js";
