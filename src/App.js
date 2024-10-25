@@ -25,7 +25,14 @@ class App {
       console.log(carList)
 
       // 몇 번 이동할 건지 입력받기
-
+      MissionUtils.Console.print('시도할 횟수는 몇 회인가요?');
+      const tryTime = await MissionUtils.Console.readLineAsync('');
+      if (parseInt(tryTime) < 1)
+        throw Error(`[ERROR] 1 미만의 수는 입력할 수 없습니다. 양수를 입력해주세요.`)
+      if (Number.isNaN(parseInt(tryTime)))
+        throw Error(`[ERROR] 숫자를 입력해주세요.`);
+      if (tryTime.includes('.'))
+        throw Error(`[ERROR] 소수는 입력할 수 없습니다. 정수를 입력해주세요.`)
       
       // 차수별 실행 결과 출력하기
       
