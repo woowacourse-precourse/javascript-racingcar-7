@@ -48,6 +48,20 @@ class LacingController {
     this.setRound(times);
     return this;
   }
+
+  /**
+   * @returns {LacingController}
+   */
+  play() {
+    const cars = this.getCars();
+    const round = this.getRound();
+
+    for (let r = 0; r < round; r += 1) {
+      cars.forEach((car) => car.drive(r));
+    }
+
+    return this;
+  }
 }
 
 export default LacingController;
