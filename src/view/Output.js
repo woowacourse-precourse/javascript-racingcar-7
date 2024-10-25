@@ -35,6 +35,14 @@ class Output {
 
     Console.print(result + '\n');
   }
+
+  /**
+   * @param {string[]} winner
+   * @returns {void}
+   */
+  static printWinner(winner) {
+    Console.print(`최종 우승자 : ${winner.join(', ')}`);
+  }
 }
 
 export default Output;
