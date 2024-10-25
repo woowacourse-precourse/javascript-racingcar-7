@@ -7,9 +7,9 @@ import parseCarNames from "../helpers/parseCarNames.js";
 // TODO: 컨트롤러 로직 별로 분리
 class Controller {
   async start() {
-    // const carNamesInput = await InputView.readCarNameInput();
-    // const carNames = parseCarNames(carNamesInput);
-    // CarNameValidations(carNames);
+    const carNamesInput = await InputView.readCarNameInput();
+    const carNames = parseCarNames(carNamesInput);
+    CarNameValidations(carNames);
 
     const raceCount = await InputView.readRaceCountInput();
     RaceCountValidations(raceCount);

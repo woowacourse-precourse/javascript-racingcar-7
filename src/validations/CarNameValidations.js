@@ -22,10 +22,20 @@ const validateIsTooLong = (carNames) => {
   }
 }
 
+const validateDuplicate = (carNames) => {
+  const isDuplicate = carNames.some((carName) => {
+    return carNames.indexOf(carName) !== carNames.lastIndexOf(carName);
+  })
+  if (isDuplicate) {
+    OutputView.printErrorMessage(ERROR_MESSAGES.IS_DUPLICATE);
+  }
+}
+
 const CarNameValidations = (carNames) => {
   validateIsString(carNames);
   validateIsEmpty(carNames);
   validateIsTooLong(carNames);
+  validateDuplicate(carNames);
 }
 
 export default CarNameValidations;
