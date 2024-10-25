@@ -5,4 +5,9 @@ function createRacerInformation(racerList) {
    * 3. 변환된 배열을 활용해서 Map 자료구조를 생성
    * 4. Map을 반환
    */
-}
+  const DEFAULT_RACER_LIST = racerList.map((car) => [car, '']);
+  const RACER_MAP = new Map(DEFAULT_RACER_LIST);
+  return RACER_MAP;
+};
+
+export default createRacerInformation;
