@@ -50,6 +50,12 @@ class App {
       CARS.forEach((car) => car.showPosition());
       Console.print('\n');
     }
+
+    const WINNERS = CARS.filter(
+      (car) => car.position === Math.max(...CARS.map((car) => car.position))
+    );
+
+    console.log(WINNERS);
   }
 }
 
