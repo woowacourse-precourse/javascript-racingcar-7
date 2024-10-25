@@ -31,6 +31,8 @@ class CarRacingGame {
       } else if (winnerCars[0].distance === currentCar.distance) {
         return [...winnerCars, currentCar];
       }
+
+      return winnerCars;
     }, []);
 
     return winners.map((car) => car.name);
