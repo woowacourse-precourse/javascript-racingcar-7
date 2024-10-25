@@ -18,7 +18,7 @@ class App {
         (nameElement, index) => (new Car({name:nameElement}))
       );
 
-
+      const n = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n'); // 경주할 자동차의 이름을 입력받는다.
       
     
     } catch(error) {
