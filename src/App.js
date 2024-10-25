@@ -20,6 +20,14 @@ class App {
     const participant_list = participant_input.split(',');
     
   }
+
+  isRamdomAbove(threshold) {
+    const random_value = MissionUtils.Random.pickNumberInRange(0, 9);
+    if (random_value >= threshold) {
+      return true
+    }
+    return false
+  }
 }
 
 export default App;
