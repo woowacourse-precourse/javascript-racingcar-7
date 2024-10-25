@@ -12,6 +12,7 @@ class App {
 
 export default App;
 
+// [ 'pobi', 'woni' ]
 export async function getUserInputCarName() {
   const userInput = await Console.readLineAsync(
     '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분\n)'
@@ -44,19 +45,31 @@ function createCarRacing(formattedUserInput, moveCount) {
     // TODO: 여기 있으니 줄바꿈이 moveCount만큼 되고 있음
     Console.print('\n');
   }
+
+  return displayResult(formattedUserInput);
 }
 
-// [ 'pobi', 'woni' ]
+// const playerNames = [
+//   { name: 'pobi', score: 0 },
+//   { name: 'woni', score: 0 },
+// ];
 function displayResult(formattedUserInput) {
-  formattedUserInput.forEach((player) => {
+  // return하여 map으로 변환하기
+  const updatedGameResultPlayer = formattedUserInput.map((player) => {
+    const updatedGameScore = player.score;
     if (Random.pickNumberInRange(0, 9) > 4) player.score += 1;
+    return { ...player, score: updatedGameScore };
+  });
+
+  updatedGameResultPlayer.forEach((player) => {
     Console.print(`${player.name} : ${printHyphen(player.score)}\n`);
   });
+
+  return updatedGameResultPlayer;
 }
 
-// TODO: 누적해서 결과값이 나오도록
 function printHyphen(score) {
   return '-'.repeat(score);
 }
 
-// function findGameWinner(){}
+function findGameWinner() {}
