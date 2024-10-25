@@ -9,11 +9,11 @@ export default class OutputView {
     Console.print(`${name} : ${'-'.repeat(step)}`);
   }
 
-  printMessage(message) {
-    if (message) {
-      Console.print(message);
-    } else {
-      Console.print('');
-    }
+  printEmptyLine() {
+    Console.print('');
+  }
+
+  printResult() {
+    Console.print('실행 결과');
   }
 }
