@@ -1,13 +1,10 @@
 import { Console } from "@woowacourse/mission-utils";
 
-import { setWinner } from "../setWinner.js";
+export default function printWinner(winners) {
+    if (winners.length === 0) {
+        Console.print('우승자가 가려지지 않았습니다.');
 
-export function printWinner(cars, carMoveHashMap, ATTEMPT_COUNT) {
-    const winners = [];
-
-    for (let car of cars) {
-        setWinner(car, carMoveHashMap, winners, ATTEMPT_COUNT);
+    } else {
+        Console.print(`최종 우승자 : ${winners.join(', ')}`);
     }
-
-    Console.print(`최종 우승자 : ${winners.join(', ')}`);
 }

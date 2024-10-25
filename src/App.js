@@ -2,7 +2,7 @@ import { getCars } from '../util/get/getCars.js';
 import { getAttemptCount } from '../util/get/getAttemptCount.js';
 import { initializeCarMoveCount } from '../util/initializeCarMoveCount.js';
 import { printExecutionResults } from '../util/print/printExecutionResults.js';
-import { printWinner } from '../util/print/printWinner.js';
+import { findWinner } from '../util/findWinner.js';
 
 class App {
   async run() {
@@ -14,7 +14,7 @@ class App {
 
     printExecutionResults(cars, carMoveHashMap, ATTEMPT_COUNT);
 
-    printWinner(cars, carMoveHashMap, ATTEMPT_COUNT);
+    findWinner(cars, carMoveHashMap, ATTEMPT_COUNT);
   }
 }
 
