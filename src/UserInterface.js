@@ -12,3 +12,9 @@ export async function inputNumberOfMove() {
     `${GAME_PROGRESS_MESSAGE.ENTER_TRIAL_COUNT}\n`
   );
 }
+
+export function displayCarMovement(carDataList, moveValue) {
+  for (let i = 0; i < moveValue.length; i++) {
+    Console.print(`${carDataList[i].name} : ${'_ '.repeat(moveValue[i])}`);
+  }
+}
