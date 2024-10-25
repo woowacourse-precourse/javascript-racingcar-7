@@ -39,12 +39,23 @@ describe('OutputView', () => {
   });
 
   test('우승자를 출력한다', () => {
-    const winner = 'pobi';
+    const winner = ['pobi'];
     const log = '최종 우승자 : pobi';
     const logSpy = getLogSpy();
 
     const outputView = new OutputView();
     outputView.printWinners(winner);
+
+    expect(logSpy).toHaveBeenCalledWith(log);
+  });
+
+  test('우승자가 여려 명일 경우 쉼표로 구분하여 우승자를 출력한다', () => {
+    const winners = ['pobi', 'jun'];
+    const log = '최종 우승자 : pobi, jun';
+    const logSpy = getLogSpy();
+
+    const outputView = new OutputView();
+    outputView.printWinners(winners);
 
     expect(logSpy).toHaveBeenCalledWith(log);
   });
