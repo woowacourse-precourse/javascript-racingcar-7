@@ -8,7 +8,7 @@ import {
 } from "./constants/errorMessage.js";
 
 export const validateCarNameList = (carNameListProp) => {
-  const WRONG_PATTERN = /[^A-Za-z,]/g;
+  const WRONG_PATTERN = /[^ㄱ-ㅎ가-힣A-Za-z,]/g;
 
   const wrongPattern = carNameListProp.match(WRONG_PATTERN);
   if (wrongPattern) {

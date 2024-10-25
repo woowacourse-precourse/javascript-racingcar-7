@@ -27,12 +27,13 @@ class App {
 
     const tryCount = await this.readTryCount();
     validateTryCount(tryCount);
-
     this.#tryCount = tryCount;
+
     this.printGameStart();
     this.generateGame();
 
-    this.generateGameResult();
+    const winner = this.generateGameResult();
+    this.printGameResult(winner);
   }
 
   async readCarName() {
@@ -61,13 +62,13 @@ class App {
 
   generateGamePerCycle() {
     this.#cars.forEach((car) => {
-      this.generateCarMove(car);
+      const randomNumber = this.calculateRandomNumber();
+      this.generateCarMove(car, randomNumber);
       this.printCarmove(car);
     });
   }
 
-  generateCarMove(car) {
-    const randomNumber = this.calculateRandomNumber();
+  generateCarMove(car, randomNumber) {
     if (randomNumber >= 4) {
       car.increaseProgressCount();
     }
@@ -82,8 +83,7 @@ class App {
   }
 
   generateGameResult() {
-    const winner = this.calculateMaxProgressCount();
-    this.printGameResult(winner);
+    return this.calculateMaxProgressCount();
   }
 
   calculateMaxProgressCount() {
