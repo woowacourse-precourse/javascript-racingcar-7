@@ -1,6 +1,17 @@
 import Car from '../src/Car';
 
 describe('자동차 클래스', () => {
+  test('자동차 이름 getter 테스트', () => {
+    //given
+    const car = new Car('pobi');
+
+    //when
+    const carName = car.getName();
+
+    //then
+    expect(carName).toEqual('pobi');
+  });
+
   test.each([
     ['pobi', true],
     [' jun ', true],
