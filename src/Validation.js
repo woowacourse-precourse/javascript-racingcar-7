@@ -19,6 +19,15 @@ class Validation {
 
     return true;
   }
+
+  static isNoDuplicated(names) {
+    const nameSet = new Set(names);
+    if (nameSet.size !== names.length) {
+      throw new Error('[ERROR] 자동차 이름은 중복해서 입력할 수 없습니다.');
+    }
+
+    return true;
+  }
 }
 
 export default Validation;
