@@ -1,4 +1,4 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 
 import { PRINT_MESSAGE } from './constants.js';
 
@@ -28,6 +28,10 @@ class App {
     const carNames = carNamesInput.split(',');
 
     return carNames.map((name) => ({ name, position: 0 }));
+  }
+
+  canMoveForward() {
+    return Random.pickNumberInRange(0, 9) >= 4;
   }
 }
 
