@@ -1,6 +1,6 @@
 import { Console } from "@woowacourse/mission-utils";
 
-import findMoveLonger from "../findMoveLonger.js";
+import findMoveLonger from "../find/findMoveLonger.js";
 
 export default function printWinner(winners, carMoveHashMap) {
     if (winners.length === 0) {

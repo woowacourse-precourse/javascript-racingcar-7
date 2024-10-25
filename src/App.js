@@ -2,7 +2,7 @@ import { getCars } from '../util/get/getCars.js';
 import { getAttemptCount } from '../util/get/getAttemptCount.js';
 import { initializeCarMoveCount } from '../util/initializeCarMoveCount.js';
 import { printExecutionResults } from '../util/print/printExecutionResults.js';
-import { findWinner } from '../util/findWinner.js';
+import { findWinner } from '../util/find/findWinner.js';
 
 class App {
   async run() {

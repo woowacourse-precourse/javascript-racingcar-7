@@ -1,6 +1,6 @@
 import { Console } from "@woowacourse/mission-utils";
 
-import checkCnt from "./validation/checkCnt.js";
+import checkCnt from "../validation/checkCnt.js";
 
 export default function findMoveLonger(carMoveHashMap) {
     const counts = {
