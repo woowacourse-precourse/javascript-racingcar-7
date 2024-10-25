@@ -32,7 +32,7 @@ class RaceManager {
             checkValidNameLength(name, this.#MAX_NAME_LENGTH);
         });
 
-        const inputCount = await IOHandler.input("시도할 횟수는 몇 회인가요?");
+        const inputCount = await IOHandler.input("시도할 횟수는 몇 회인가요\n");
         checkLessThanOrEqualMaxCount(inputCount, this.#MAX_RACE_COUNT);
 
         this.#setCarListFromCarNames(carNames);
