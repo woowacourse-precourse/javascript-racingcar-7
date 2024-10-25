@@ -20,6 +20,10 @@ class OutputView {
   static printWinners(winners) {
     MissionUtils.Console.print(`최종 우승자 : ${winners}`);
   }
+
+  static printError(message) {
+    MissionUtils.Console.print(message);
+  }
 }
 
 export default OutputView;

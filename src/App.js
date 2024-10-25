@@ -1,11 +1,13 @@
 import GameController from './controllers/GameController.js';
+import OutputView from './views/OutputView.js';
 
 class App {
   async run() {
     try {
-      GameController.play();
+      await GameController.play();
     } catch (error) {
-      console.log(error.message);
+      OutputView.printError(error);
+      throw error;
     }
   }
 }
