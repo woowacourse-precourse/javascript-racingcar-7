@@ -19,6 +19,7 @@ export const OUTPUT_MESSAGE = Object.freeze({
   WINNER_NAMES: "최종 우승자:",
 });
 
+export const TRY_MINIMUM_COUNT = 0;
 export const MOVEMENT_MINIMUM = 4;
 export const MOVE_INCREMENT = 1;
 export const CAR_NAME_MINIMUM = 1;
