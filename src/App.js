@@ -9,7 +9,6 @@ class App {
     const carArray = userInputCarNames
       .split(',')
       .map(carName => carName.trim());
-    console.log(carArray);
   }
 }
 
