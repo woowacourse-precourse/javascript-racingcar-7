@@ -39,9 +39,14 @@ MVC 패턴을 통한 기능 구현을 목표했습니다.
 
 #### gameController.js (게임 로직 제어)
 
-- [ ] 게임 초기화
-- [ ] 게임 진행
-- [ ] 우승자 결정
+- [ ] 자동차 이름 입력받기 (InputView 활용)
+- [ ] 시도 횟수 입력 받기 (InputView 활용)
+- [ ] 참가자 정보 검증하기 (Validator 활용)
+- [ ] 레이싱 게임 객체 생성하기 (RacingGame 활용)
+- [ ] 자동차들의 이동 처리하기 (RacingGame 활용)
+- [ ] 라운드 진행 상태 보여주기 (OutputView 활용)
+- [ ] 우승자 찾기 (RacingGame 활용)
+- [ ] 우승자 발표하기 (OutputView 활용)
 
 ### 🛠 Utils
 
