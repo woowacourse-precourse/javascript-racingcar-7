@@ -1,4 +1,5 @@
 import Car from './Car.js';
+import CarRacingOutputWriter from './CarRacingOutputWriter.js';
 
 class CarRacingGame {
   constructor(carNames) {
@@ -8,9 +9,10 @@ class CarRacingGame {
   startGame(totalRounds) {
     for (let i = 0; i < totalRounds; i++) {
       this.playRound();
+      CarRacingOutputWriter.printRoundResults(this.cars);
     }
 
-    this.determineWinners();
+    CarRacingOutputWriter.printWinners(this.determineWinners());
   }
 
   playRound() {
