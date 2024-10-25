@@ -36,17 +36,34 @@ class App {
 
     carNames.forEach((car) => (cars[car] = 0));
 
-    for (let i = 0; i < n; i++) {
-      for (const carName of carNames) {
-        const RandomNumber = Random.pickNumberInRange(0, 9);
+    Console.print('\n실행 결과');
 
-        if (RandomNumber >= 4) {
-          cars[carName] += RandomNumber;
+    for (let i = 0; i < n; i++) {
+      const result = [];
+      for (const carName of carNames) {
+        const randomNumber = Random.pickNumberInRange(0, 9);
+
+        if (randomNumber >= 4) {
+          cars[carName] += randomNumber;
         }
 
-        // 실행 결과 출력 구현하기
+        result.push(`${carName} : ${'-'.repeat(randomNumber)}`);
+      }
+
+      Console.print(result.join(' \n') + '\n');
+    }
+
+    const max = Math.max(...Object.values(cars));
+
+    const result = [];
+
+    for (const [car, score] of Object.entries(cars)) {
+      if (score === max) {
+        result.push(car);
       }
     }
+
+    return result;
   }
 
   async run() {
