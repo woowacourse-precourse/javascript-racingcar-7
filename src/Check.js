@@ -1,11 +1,11 @@
 class Check {
   async checkCarNames(car_names_arr) {
     const str_len_check = car_names_arr.some(
-      (str) => str.length >= 1 && str.length <= 5
+      (str) => str.length <= 0 || str.length >= 6
     );
 
     // 자동차 이름 길이가 1~5 사이이면 true
-    return str_len_check;
+    return !str_len_check;
   }
 
   async checkAttemptNumber(attempt_number) {
