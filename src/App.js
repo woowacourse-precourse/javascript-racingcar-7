@@ -1,13 +1,20 @@
-import {  Console   } from "@woowacourse/mission-utils";
+import {  Console, MissionUtils   } from "@woowacourse/mission-utils";
 import Car from "./Car.js";
 
 
 class App {
-
-
-
   async run() {
+
+    // * 랜덤 값 얻기
+    const getRandomValue = () => {
+      return MissionUtils.Random.pickNumberInRange(0,9);
+    }
+
+
+
+
     try{
+      // ! 입력  ============///
       const cars = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n'); // pobi,woni,jun
       // *자동차는 (,) 쉼표를 기준으로 배열로 만들어준다.
       const carInputNameArray = cars.split(',');// [pobi,woni,jun]
@@ -20,6 +27,10 @@ class App {
 
       const n = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n'); // 경주할 자동차의 이름을 입력받는다.
       
+      // ! ============///
+
+
+
     
     } catch(error) {
       return Promise.reject(error); // 예외 던지기
