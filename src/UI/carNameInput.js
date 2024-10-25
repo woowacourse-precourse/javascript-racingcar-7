@@ -19,7 +19,13 @@ async function carNameInput() {
         const OVER_FIVE_CHARACTOR = '자동차 이름이 5글자를 초과 합니다.';
         const ERROR = new Error(OVER_FIVE_CHARACTOR);
         throw ERROR;
-      }
+      };
+
+      if(name.length === 0) {
+        const EMPTY_INPUT = '자동차 이름이 설정되지 않았습니다.';
+        const ERROR = new Error(EMPTY_INPUT);
+        throw ERROR;
+      };
     });
   
     return CAR_NAME;
