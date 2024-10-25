@@ -1,7 +1,7 @@
 import { Console } from '@woowacourse/mission-utils';
 import checkWinner from './utils/checkWinner.js';
 import runCarRacing from './utils/runCarRacing.js';
-import { parseCarNameInput, parseTurnInput } from './parseInput.js';
+import { parseCarNameInput, parseTurnInput } from './utils/parseInput.js';
 
 class App {
   async run() {

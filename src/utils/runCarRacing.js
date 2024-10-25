@@ -1,4 +1,4 @@
-import { printBlankLine, printCurrentStatus } from '../printData.js';
+import { printBlankLine, printCurrentStatus } from './printData.js';
 
 // (Car[], number) => void
 const runCarRacing = (carList, turn) => {
