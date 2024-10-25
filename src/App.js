@@ -1,5 +1,13 @@
 import { Console, Random } from "@woowacourse/mission-utils";
 
+const ERROR_MESSAGE = {
+    INVALID_CAR_NAME: "[ERROR] 자동차 이름은 5자 이하 한글, 영문만 입력 가능합니다.",
+    INVALID_CAR_COUNT: "[ERROR] 자동차는 2대 이상 입력해주세요.",
+    DUPLICATED_CAR_NAME: "[ERROR] 중복된 자동차 이름이 존재합니다.",
+    INVALID_TRY_COUNT: "[ERROR] 시도 횟수는 1 이상 10 이하 정수값을 입력해주세요.",
+    INVALID_NUMBER: "[ERROR] 시도 횟수는 숫자로 입력해주세요.",
+};
+
 class App {
     racingCars = {};
 
@@ -66,17 +74,17 @@ class App {
         const carNames = this.splitCarNamesStr(carNamesStr);
 
         if (!this.isValidCarCount(carNames)) {
-            throw new Error("[ERROR] 자동차는 2대 이상 입력해주세요.");
+            throw new Error(ERROR_MESSAGE.INVALID_CAR_COUNT);
         }
 
         carNames.forEach((carName) => {
             if (!this.isValidCarName(carName)) {
-                throw new Error("[ERROR] 자동차 이름은 5자 이하 한글, 영문만 입력 가능합니다.");
+                throw new Error(ERROR_MESSAGE.INVALID_CAR_NAME);
             }
         });
 
         if (!this.hasUniqueCarNames(carNames)) {
-            throw new Error("[ERROR] 중복된 자동차 이름이 존재합니다.");
+            throw new Error(ERROR_MESSAGE.DUPLICATED_CAR_NAME);
         }
 
         return carNames;
@@ -84,12 +92,12 @@ class App {
 
     validateTryCount(tryCount) {
         if (isNaN(tryCount)) {
-            throw new Error("[ERROR] 시도 횟수는 숫자로 입력해주세요.");
+            throw new Error(ERROR_MESSAGE.INVALID_NUMBER);
         }
 
         const parsedTryCount = Number(tryCount);
         if (parsedTryCount < 1 || !Number.isInteger(parsedTryCount) || parsedTryCount > 10) {
-            throw new Error("[ERROR] 시도 횟수는 1 이상 10이하 정수값을 입력해주세요.");
+            throw new Error(ERROR_MESSAGE.INVALID_TRY_COUNT);
         }
 
         return parsedTryCount;
