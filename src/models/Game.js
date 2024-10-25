@@ -1,4 +1,4 @@
-import printRaceProgress from '../views/raceProgress.js';
+import { printRaceProgress } from '../views/output.js';
 import generateRandomNumber from '../utils/random.js';
 
 export default class Game {

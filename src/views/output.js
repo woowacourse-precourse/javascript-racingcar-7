@@ -6,7 +6,11 @@ function formatRaceProgress(cars) {
     .join('\n');
 }
 
-export default function printRaceProgress(cars) {
+export function printRaceProgress(cars) {
   const raceProgress = formatRaceProgress(cars);
   return MissionUtils.Console.print(`${raceProgress}\n`);
+}
+
+export function printResult(winners) {
+  return MissionUtils.Console.print(`최종 우승자 : ${winners.join(', ')}`);
 }

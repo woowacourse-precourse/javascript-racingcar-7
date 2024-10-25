@@ -2,7 +2,7 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 import Car from '../models/Car.js';
 import Game from '../models/Game.js';
 import { validateRoundCount } from '../validators/validator.js';
-import printResult from '../views/result.js';
+import { printResult } from '../views/output.js';
 import prepareCarNames from './carContoller.js';
 import { getCarNamesInput, getRoundCount } from './inputController.js';
 
