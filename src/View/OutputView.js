@@ -23,8 +23,9 @@ class OutputView {
     });
   }
 
-  printWinners(winner) {
-    this.printOutput(`최종 우승자 : ${winner}`);
+  printWinners(winners) {
+    const formattedWinners = winners.join(', ');
+    this.printOutput(`최종 우승자 : ${formattedWinners}`);
   }
 }
 
