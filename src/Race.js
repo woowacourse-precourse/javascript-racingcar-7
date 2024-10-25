@@ -41,12 +41,12 @@ class Race {
 
   #moveCarForward(currentPosition) {
     const randomNum = pickNumberInRange(Race.#MIN_RANDOM, Race.#MAX_RANDOM);
-    const isMoveForward = this.#getMoveForward(randomNum);
+    const isMoveForward = this.#getIsMoveForward(randomNum);
     if (isMoveForward) return currentPosition + 1;
     return currentPosition;
   }
 
-  #getMoveForward(num) {
+  #getIsMoveForward(num) {
     return num >= Race.#MOVE_FORWARD_THRESHOLD;
   }
 
