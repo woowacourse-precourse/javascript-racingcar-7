@@ -11,7 +11,7 @@ const mockQuestions = (inputs) => {
 };
 
 describe("입력 받기", () => {
-  
+
   let race;
   beforeEach(() => {
     race = new CarRace();
@@ -37,8 +37,8 @@ describe("입력 받기", () => {
     const inputs = ["ferrari,redbull,mercedes,mclaren", "2"];
     mockQuestions(inputs);
 
-    const result = await race.getInputs();
+    const result = await race.getAllInputs();
     expect(result.cars).toEqual(["ferrari", "redbull", "mercedes", "mclaren"]);
-    expect(result.raceCount).toBe(2);
+    expect(result.totalLaps).toBe(2);
   });
 });

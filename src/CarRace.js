@@ -1,8 +1,13 @@
 import { MissionUtils, Console } from "@woowacourse/mission-utils";
+import Car from "./Car";
+
 class CarRace {
+  carInstances = [];
   async race() {
-    
-  }
+    const {cars, totalLaps} = await this.getAllInputs();
+    cars.map((name) => this.carInstances.push(new Car(name)));
+
+  };
 
   async getInputCars() {
     try {
@@ -22,10 +27,25 @@ class CarRace {
     }
   };
 
-  async getInputs() {
+  async getAllInputs() {
     const cars = await this.getInputCars();
-    const raceCount = await this.getInputLaps();
-    return {cars, raceCount};
+    const totalLaps = await this.getInputLaps();
+    return {cars, totalLaps};
+  };
+
+  runSingleLap() {
+    this.carInstances.forEach(car => car.move());
+  };
+
+  displayRoundStatus() {
+    this.carInstances.forEach(car => Console.print(car.name + ":" + "-".repeat(car.distance)));
+  };
+
+  executeTotalLapsAndDisplay(totalLaps) {
+    for(let i = 0 ; i < totalLaps ; i++) {
+      this.runSingleLap();
+      this.displayRoundStatus();
+    }
   }
 };
 
