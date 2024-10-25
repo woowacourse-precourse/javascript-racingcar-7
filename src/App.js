@@ -1,4 +1,4 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 
 const RIGHT_EXAMPLE_OF_CAR_NAME_INPUT =
   "ex) 'pobi,jun' 같은 형식으로 입력해주세요.";
@@ -67,6 +67,18 @@ class App {
     const gameCount =
       await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
     validateGameCount(gameCount);
+
+    Console.print('\n실행 결과');
+
+    const carList = carNames.split(',');
+    const carsDistances = Array.from({ length: carList.length }, () => '');
+
+    for (let count = 1; count <= gameCount; count++) {
+      const carsCanMove = Array.from(
+        { length: carList.length },
+        () => Random.pickNumberInRange(0, 9) >= 4,
+      );
+    }
   }
 }
 
