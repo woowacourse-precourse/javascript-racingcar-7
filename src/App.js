@@ -1,5 +1,6 @@
 import Input from "./Input.js";
 import Validator from "./Validator.js";
+import Race from "./Race.js";
 import { Console } from "@woowacourse/mission-utils";
 
 class App {
@@ -12,9 +13,10 @@ class App {
       Validator.validateCarName(splitedUserInput) &&
       Validator.validateTryCount(tryCount)
     ) {
-      Console.print("입력 값 검증 성공");
-    } else {
-      Console.print("입력 값 검증 실패");
+      const race = new Race(splitedUserInput, tryCount);
+      race.startRace();
+
+      Console.print(race.carPositions);
     }
   }
 }
