@@ -38,6 +38,20 @@ class Validation {
 
     return true;
   }
+
+  static isValidTotalRounds(totalRounds) {
+    if (Number.isInteger(totalRounds)) {
+      throw new Error(
+        '[ERROR] 자동차 이동 시도 횟수는 1이상의 정수로만 입력 가능합니다.',
+      );
+    }
+
+    if (totalRounds < 1) {
+      throw new Error('[ERROR] 자동차 이동 시도 횟수는 1회 이상이어야 합니다.');
+    }
+
+    return true;
+  }
 }
 
 export default Validation;
