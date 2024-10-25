@@ -1,6 +1,7 @@
 import { ERROR_MESSAGES, throwError } from '../Model/Error.js';
 import { checkDuplicate } from '../Util/util.js';
 import { consecutiveDelimiterPattern } from '../Util/regex.js';
+import Car from '../Model/Car.js';
 
 function validateCarNames(carNames) {
   if (consecutiveDelimiterPattern.test(carNames)) {
@@ -45,4 +46,19 @@ function validateRounds(input) {
   return parsedRounds;
 }
 
-export { validateCarNames, validateRounds };
+function isCarLegit(car) {
+  if (car === null || car === undefined || !(car instanceof Car)) {
+    throwError(ERROR_MESSAGES.ILLEGAL_CAR);
+  }
+}
+
+//Type sanity check
+function validateCars(cars) {
+  cars.forEach((car) => {
+    isCarLegit(car);
+  });
+
+  return cars;
+}
+
+export { validateCarNames, validateRounds, validateCars };

@@ -11,6 +11,8 @@ const ERROR_MESSAGES = Object.freeze({
   EMPTY_NAME: '공백을 이름으로 사용할수 없습니다',
   CONSECUTIVE_DELIMITERS: '구분자를 중복되서 사용할수 없습니다.',
   WRONG_FORMAT: '포멧팅이 올바르지 않습니다.',
+  ILLEGAL_CAR: '생성된 차량 객체가 정의되지 않았습니다.',
+  ILLEGAL_CAR_ARRAY: '차량 배열이 올바르지 않습니다.',
 });
 
 function throwError(message) {
