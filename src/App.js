@@ -1,3 +1,4 @@
+import getAttemptsInput from './getAttemptsInput.js';
 import getCarNamesInput from './getCarNamesInput.js';
 import splitStringByComma from './splitIStringByComma.js';
 import validateCarNames from './validateCarNames.js';
@@ -7,6 +8,8 @@ class App {
     const carNamesInput = await getCarNamesInput();
     const carNames = splitStringByComma(carNamesInput);
     validateCarNames(carNames);
+
+    const attemptsInput = await getAttemptsInput();
   }
 }
 
