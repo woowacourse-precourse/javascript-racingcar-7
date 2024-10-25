@@ -46,6 +46,7 @@ class App {
         this.moveCarForward(car);
         printCarPosition(car.name, car.position);
       });
+      MissionUtils.Console.print('\n');
     }
   }
 
