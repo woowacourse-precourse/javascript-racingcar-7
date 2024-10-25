@@ -50,4 +50,6 @@ class Car {
   }
 }
 
+Object.freeze(Car);
+
 export default Car;
