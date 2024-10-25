@@ -2,7 +2,8 @@ import { GAME_MESSAGE } from '../constants/messages.js';
 import User from '../user/User.js';
 import outputView from '../view/outputView.js';
 import Car from '../model/Car.js';
-import { validateInput } from '../Validator/validator.js';
+import { validateCarName } from '../Validator/validateCarName.js';
+import { validateAttempts } from '../Validator/validateAttempts.js';
 
 class Game {
   constructor() {
@@ -12,9 +13,10 @@ class Game {
 
   async process() {
     const carNameInput = await this.user.readCarNameInput();
-    validateInput(carNameInput);
+    validateCarName(carNameInput);
     this.initializeCars(carNameInput.split(','));
     const attempts = await this.user.readAttemptsInput();
+    validateAttempts(attempts - 0);
     outputView.printMessage(`\n${GAME_MESSAGE.RESULT}`);
     this.race(Number(attempts));
     this.announceWinner();
