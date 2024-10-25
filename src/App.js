@@ -20,6 +20,8 @@ class App {
     runCarRacing(carList, turn);
 
     const winner = checkWinner(carList);
+
+    Console.print(`최종 우승자 : ${winner}`);
   }
 }
 
