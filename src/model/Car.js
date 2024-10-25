@@ -1,4 +1,6 @@
 class Car {
+  /** @type {number[]} */
+  road = [];
   name = '';
 
   /**
@@ -22,6 +24,23 @@ class Car {
    */
   getName() {
     return this.name;
+  }
+
+  /**
+   * @param {number} round
+   * @returns {number}
+   */
+  getTrack(round) {
+    return this.road[round];
+  }
+
+  /**
+   * @param {number} track
+   * @returns {Car}
+   */
+  addTrack(track) {
+    this.road.push(track);
+    return this;
   }
 }
 
