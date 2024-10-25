@@ -38,6 +38,7 @@ const checkOnlyNumber = function checkOnlyNumberFunc(inputForTryCount) {
   if (!numberRegex.test(inputForTryCount)) {
     throw new Error('[ERROR]: 유효하지 않은 입력: 숫자만 입력 가능합니다.');
   }
+  return inputForTryCount;
 };
 
 const checkValidRange = function checkValidRangeFunc(inputForTryCount) {
@@ -48,6 +49,7 @@ const checkValidRange = function checkValidRangeFunc(inputForTryCount) {
       '[ERROR]: 유효하지 않은 횟수: 1이상 300이하의 숫자만 입력 가능합니다.',
     );
   }
+  return inputForTryCount;
 };
 
 const checkIsNull = function checkIsNullFunc(inputString) {

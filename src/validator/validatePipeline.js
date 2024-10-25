@@ -3,7 +3,9 @@ import {
   checkDuplicateNames,
   checkIsNull,
   checkOnlyAlphabetAndComma,
+  checkOnlyNumber,
   checkValidNameLength,
+  checkValidRange,
 } from './validator.js';
 
 const pipeline = function pipelineFunc(functions, input) {
@@ -23,4 +25,8 @@ const validateForRacingCars = function validateForRacingCarsFunc(input) {
   );
 };
 
-export default validateForRacingCars;
+const validateForTryCount = function validateForRacingCarsFunc(input) {
+  return pipeline([checkIsNull, checkOnlyNumber, checkValidRange], input);
+};
+
+export { validateForRacingCars, validateForTryCount };
