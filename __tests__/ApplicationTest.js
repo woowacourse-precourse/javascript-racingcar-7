@@ -76,6 +76,15 @@ describe("자동차 경주", () => {
     expect(carList).toContain('aaaa' && 'bbbb' && 'cccc' && 'dddd');
   });
 
+  test("기능 단위 예외 테스트: carNameInput()", async () => {
+    // given
+    const input = [',,aaaa', 'aaaaa,bbbb,ccccccc'];
+    mockQuestions(input);
+
+    // then
+    await expect(carNameInput()).rejects.toThrow('자동차 이름이 설정되지 않았습니다.' || '자동차 이름이 5글자를 초과 합니다.');
+  })
+
   test.each([
     ['4', 4],
     ['123', 123],
