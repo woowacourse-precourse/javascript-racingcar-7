@@ -1,1 +1,3 @@
-export * from './errorMessage.js';
+import { ERROR_MESSAGE } from './errorMessage.js';
+
+export default { ERROR_MESSAGE };

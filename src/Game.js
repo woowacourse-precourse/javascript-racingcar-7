@@ -1,3 +1,3 @@
-const initGame = (car, count) => {};
-
-export default { initGame };
+export const initGame = (car, count) => {
+  console.log(car, count);
+};

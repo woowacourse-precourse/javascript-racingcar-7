@@ -1,14 +1,15 @@
-import { ERROR_MESSAGE } from './const';
+import ERROR_MESSAGE from './const/index.js';
 
-const checkLengthError = (input) => {
-  if (input.length > 5) throw new Error(ERROR_MESSAGE.LENGTH_ERROR);
+const checkLengthError = (carInput) => {
+  carInput.forEach((car) => {
+    if (String(car).length > 5) throw new Error(ERROR_MESSAGE.LENGTH_ERROR);
+  });
 };
 
-const checkCountError = (input) => {
-  if (input.length > 5) throw new Error(ERROR_MESSAGE.BIGNUM_ERROR);
+const checkCountError = (countInput) => {
+  if (countInput > 10000) throw new Error(ERROR_MESSAGE.COUNT_ERROR);
 };
-const validateInput = ({ car, count }) => {
+export const validateInput = ({ car, count }) => {
   checkLengthError(car);
   checkCountError(count);
 };
-export default { validateInput };
