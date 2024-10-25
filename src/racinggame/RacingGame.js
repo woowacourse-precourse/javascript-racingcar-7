@@ -1,5 +1,5 @@
 import {
-  printCarsMoving,
+  printKeyValueFormat,
   printNewLine,
   printPrevNewLine,
 } from '../utils/ioModule.js';
@@ -29,7 +29,7 @@ class RacingGame {
   printCurrentState() {
     this.cars.forEach((car) => {
       const movePosition = getMovePosition(car);
-      printCarsMoving(car.getName(), movePosition);
+      printKeyValueFormat(car.getName(), movePosition);
     });
     printNewLine();
   }

@@ -1,7 +1,7 @@
 import { splitByComma, joinByComma } from './utils/stringUtils.js';
 import Car from './car/Car.js';
 import Game from './racingGame/RacingGame.js';
-import { getUserInput, printCarsMoving } from './utils/ioModule.js';
+import { getUserInput, printKeyValueFormat } from './utils/ioModule.js';
 import {
   validateCarNames,
   validateRacingCarInput,
@@ -24,7 +24,7 @@ class App {
     const game = new Game(racingCars, Number(inputForTryCount));
     game.play();
     const winners = game.getWinnerNames();
-    printCarsMoving(PRINT_MESSAGES.OUTPUT.WINNER, joinByComma(winners));
+    printKeyValueFormat(PRINT_MESSAGES.OUTPUT.WINNER, joinByComma(winners));
   }
 }
 

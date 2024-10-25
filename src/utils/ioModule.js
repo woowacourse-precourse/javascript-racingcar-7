@@ -5,8 +5,8 @@ const getUserInput = async function getUserInputFunc(promptMessage) {
   return userInput;
 };
 
-const printCarsMoving = function printCarsMovingFunc(carName, movePosition) {
-  Console.print(`${carName} : ${movePosition}`);
+const printKeyValueFormat = function printKeyValue(key, value) {
+  Console.print(`${key} : ${value}`);
 };
 
 const printNewLine = function printNewLineFunc() {
@@ -17,4 +17,4 @@ const printPrevNewLine = function printPrevNewLineFunc(string) {
   Console.print(`\n${string}`);
 };
 
-export { getUserInput, printCarsMoving, printNewLine, printPrevNewLine };
+export { getUserInput, printKeyValueFormat, printNewLine, printPrevNewLine };
