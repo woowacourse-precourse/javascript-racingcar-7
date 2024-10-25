@@ -1,5 +1,9 @@
 export const validateCarNameList = (carNameList) => {
   carNameList.forEach((carName) => {
+    if (carName.length == 0) {
+      throw new Error('[ERROR] 자동차 이름 입력 없음 오류');
+    }
+
     if (carName.length > 5) {
       throw new Error('[ERROR] 자동차 이름 길이 입력 오류');
     }
