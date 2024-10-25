@@ -9,6 +9,7 @@ export default function progressGame(carDataList, numberOfMove) {
     displayCarMovement(carDataList, moveValues);
     calculateTotalMoveValue(carDataList, moveValues);
   }
+  return carDataList;
 }
 
 function extractMoveValue(numberOfCars) {
