@@ -47,10 +47,32 @@ class App {
 
   #executeRace() {
     Object.entries(this.#car).forEach(([carName, move]) => {
-      if (Math.random() >= 0.4) {
+      if (Math.floor(Math.random() * 10) >= 4) {
         this.#car[carName] = move + 1;
       }
+
+      this.#printRound(carName, this.#car[carName]);
     });
+  }
+
+  #printRound(carName, move) {
+    MissionUtils.Console.print(`${carName} : ${"-".repeat(move)}`);
+  }
+
+  #printWinner() {
+    let biggerMove = -Infinity;
+    let winners = [];
+
+    Object.entries(this.#car).forEach(([carName, move]) => {
+      if (move > biggerMove) {
+        biggerMove = move;
+        winners = [carName];
+      } else if (biggerMove === move) {
+        winners.push(carName);
+      }
+    });
+
+    MissionUtils.Console.print(`최종 우승자 : ${winners.join(", ")}`);
   }
 
   async run() {
@@ -62,6 +84,8 @@ class App {
 
       this.#round--;
     }
+
+    this.#printWinner();
   }
 }
 
