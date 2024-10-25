@@ -130,4 +130,19 @@ describe('자동차 경주', () => {
         (error) => expect(error.message).toMatch(ERROR_DETAILS.SECONDS_NOT_SAFE_INTEGER),
       );
   });
+
+  test('레이서 이름이 6자 이상인 경우 에러를 던진다', async () => {
+    // given
+    const inputs = ['123456,12345'];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    app.run()
+      .catch(
+        (error) => expect(error.message).toMatch(ERROR_DETAILS.CARNAME_LENGTH),
+      );
+  });
 });

@@ -10,6 +10,7 @@ const ERROR_DETAILS = Object.freeze({
   'CARNAMES_EMPTY': `${ERROR_HEAD}: carNames must not be empty.`,
   'CARNAMES_NOT_STRING': `${ERROR_HEAD}: carName must be a string.`,
   'CARNAME_EMPTY': `${ERROR_HEAD}: carName must not be empty.`,
+  'CARNAME_LENGTH': `${ERROR_HEAD}: carName must be between 1 and 5 characters long.`,
   'CARNAMES_DUPLICATE': `${ERROR_HEAD}: carNames must not have duplicates.`,
   'SECONDS_NAN': `${ERROR_HEAD}: seconds must be a number.`,
   'SECONDS_NOT_SAFE_INTEGER': `${ERROR_HEAD}: seconds must be a safe integer.`,
