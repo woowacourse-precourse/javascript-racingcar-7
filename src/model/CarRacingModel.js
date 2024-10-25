@@ -2,7 +2,7 @@ import { Random, Console } from "@woowacourse/mission-utils";
 
 export default class CarRacingModel {
   constructor(carNames) {
-    this.cars = carNames.split(",").map((names) => new Car(names));
+    this.cars = carNames.map((names) => new Car(names));
   }
 
   runRace(tryCount) {
