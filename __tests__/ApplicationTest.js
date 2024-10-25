@@ -154,7 +154,7 @@ describe("자동차 경주", () => {
 
   test('레이스 초기 상태 설정', () => {
   // given
-  const names = ['pobi','bora', 'nana'];
+  const names = ['pobi','bora','nana'];
 
   // when
   const cars = settingRace(names);

@@ -1,9 +1,12 @@
 import canMoveForward from "./canMoveForward.js";
+import { displayEndOfStart, displayStatus } from "./displayResult.js";
 import pickRandomNumber from "./pickRandomNumber.js";
 
 export default function playRace(cars, playTime) {
+    displayEndOfStart();
     while (playTime > 0) {
         playRound(cars);
+        displayStatus(cars);
         playTime--;
     }
     return determineWinners(cars);
