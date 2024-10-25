@@ -1,12 +1,16 @@
 import { validateAllCarNames, validatePositiveNumber } from './Validation';
 
-export default function prepareGameData(carNames, numberOfMove) {
+export function prepareCarData(carNames) {
   const carNameArray = extractCarName(carNames);
   validateAllCarNames(carNameArray);
   const carDataList = carNameArray.map(initializeCarData);
+  return carDataList;
+}
+
+export function prepareMoveCount(numberOfMove) {
   numberOfMove = Number(numberOfMove);
   validatePositiveNumber(numberOfMove);
-  return { carDataList, numberOfMove };
+  return numberOfMove;
 }
 
 function extractCarName(carNames) {
