@@ -17,9 +17,12 @@ class App {
       '시도할 횟수는 몇 회인가요?\n'
     );
 
+    let raceCount = new Array(carNames.length).fill(0);
+
     for (let i = 0; i < inputRounds; i++) {
       for (let j = 0; j < carNames.length; j++) {
         if (Random.pickNumberInRange(0, 9) >= 4) {
+          raceCount[j] += 1;
         }
       }
     }
