@@ -2,18 +2,18 @@ import Car from './Car.js';
 import Validation from './Validation.js';
 
 class RacingManager {
+  static register(nameInput) {
+    const nameList = this.normalizeCarNames(nameInput);
+    const registeredCars = nameList.map((name) => new Car(name));
+    return registeredCars;
+  }
+
   static normalizeCarNames(nameInput) {
     const MAX_NAME_LENGTH = 5;
     const carNames = [...nameInput];
     const parsedNames = this.parseCarNames(carNames);
     const validCarNames = Validation.carNames(parsedNames, MAX_NAME_LENGTH);
     return validCarNames;
-  }
-
-  static register(nameInput) {
-    const nameList = this.normalizeCarNames(nameInput);
-    const registeredCars = nameList.map((name) => new Car(name));
-    return registeredCars;
   }
 
   static parseCarNames(names) {
