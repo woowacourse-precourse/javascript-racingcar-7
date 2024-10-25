@@ -40,19 +40,20 @@ class App {
       throw new Error("[ERROR] 음수를 입력하셨습니다. 프로그램을 종료합니다.");
     }
   }
+
+  hasLongCarName(carNames) {
+    for (const carName of carNames) {
+      if (carName.length > 5) return false;
+    }
+    return true;
+  }
+
+  hasCarNameStartingWithNumber(carNames) {
+    for (const carName of carNames) {
+      if (/^\d/.test(carName)) return true;
+    }
+    return false;
+  }
 }
 
-function hasLongCarName(carNames) {
-  for (const carName of carNames) {
-    if (carName.length > 5) return false;
-  }
-  return true;
-}
-
-function hasCarNameStartingWithNumber(carNames) {
-  for (const carName of carNames) {
-    if (/^\d/.test(carName)) return true;
-  }
-  return false;
-}
 export default App;
