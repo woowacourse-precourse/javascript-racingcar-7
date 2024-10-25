@@ -29,7 +29,7 @@ class App {
 
   static async #getValidatedCarNames() {
     const input = await App.#getCarNames();
-    const carNames = input.split(',').map((name) => (name === '' ? ' ' : name));
+    const carNames = input.split(',').map((name) => name || ' ');
 
     Validator.IsEmpty(carNames);
     Validator.arrayLength(carNames);
