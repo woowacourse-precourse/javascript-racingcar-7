@@ -1,3 +1,4 @@
+import converStringToNumber from './convertStringToNumber.js';
 import getAttemptsInput from './getAttemptsInput.js';
 import getCarNamesInput from './getCarNamesInput.js';
 import splitStringByComma from './splitIStringByComma.js';
@@ -12,6 +13,7 @@ class App {
 
     const attemptsInput = await getAttemptsInput();
     validateAttempts(attemptsInput);
+    const attempts = converStringToNumber(attemptsInput);
   }
 }
 
