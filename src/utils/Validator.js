@@ -1,24 +1,17 @@
-import {
-  ERROR_MESSAGES,
-  createError,
-  GAME_CONSTANTS,
-} from '../constants/constants.js';
+import { ERROR_MESSAGES, createError } from '../constants/constants.js';
 
 class Validator {
   static numberOfGamesValidation(input) {
-    const NumberOfGames = parseFloat(input);
-
-    if (Number.isNaN(NumberOfGames)) {
+    if (Number.isNaN(input)) {
       throw createError(ERROR_MESSAGES.NOT_A_NUMBER);
     }
-    if (NumberOfGames < 0) {
+    if (input < 0) {
       throw createError(ERROR_MESSAGES.NEGATIVE_NUMBER);
     }
 
-    if (!Number.isInteger(NumberOfGames)) {
+    if (!Number.isInteger(input)) {
       throw createError(ERROR_MESSAGES.NOT_INTEGER);
     }
-    return NumberOfGames;
   }
 
   static carValidation(carArray) {
@@ -31,9 +24,7 @@ class Validator {
       throw createError(ERROR_MESSAGES.INVALID_COMMA);
     }
 
-    const hasLongName = carArray.some(
-      car => car.length > GAME_CONSTANTS.CAR_NAME.MAX_LENGTH,
-    );
+    const hasLongName = carArray.some(car => car.length > 5);
     if (hasLongName) {
       throw createError(ERROR_MESSAGES.NAME_TOO_LONG);
     }
