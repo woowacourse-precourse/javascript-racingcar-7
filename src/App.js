@@ -16,7 +16,7 @@ class App {
     Console.print("\n실행 결과");
     let cars = arrCarName.map((name) => new Car(name));
     for (let count = 0; count < playTimes; count++) {
-      RoundResultPrint(cars);
+      roundResultPrint(cars);
     }
     
     getWinner(cars);
@@ -58,15 +58,15 @@ class Car {
   }
 }
 
-function Race(cars) {
+function race(cars) {
   cars.forEach((car) => {
     car.randomMove();
   });
   return cars;
 }
 
-function RoundResultPrint(cars) {
-  let carsMove = Race(cars);
+function roundResultPrint(cars) {
+  let carsMove = race(cars);
   for (let carNumber = 0; carNumber < carsMove.length; carNumber++) {
     let moveDistance = "";
     for (let move = 0; move < carsMove[carNumber].playTimes; move++) {
