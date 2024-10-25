@@ -6,28 +6,28 @@ class RaceController {
     const positions = Array(playerNumber).fill(0);
     return positions;
   }
+
+  updatePlayersPositions(positions, i) {
+    const num = Random.pickNumberInRange(0, 9);
+    if (num >= 4) {
+      positions[i] += 1;
+    }
+  }
   movePlayersRandomly(peopleList) {
 
     const updatedList = [...peopleList];
 
     for (let i = 0; i < peopleList.length; i++) {
-      const num = Random.pickNumberInRange(0, 9);
-      if (num >= 4) {
-        updatedList[i] += 1;
-      }
+      updatePlayersPositions(updatedList, i);
     }
-    return updatedList;
   }
+
 
   getRaceWinnersIndex(positions) {
     let maxValue = Math.max(...positions);
     let winnersIndex = [];
 
-    positions.forEach((value, index) => {
-      if (value === maxValue) {
-        winnersIndex.push(index);
-      }
-    })
+    positions.forEach((value, index) => { value === maxValue && winnersIndex.push(index) })
 
     return winnersIndex;
 
