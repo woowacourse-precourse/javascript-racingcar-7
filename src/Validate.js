@@ -1,4 +1,4 @@
-import ERROR_MESSAGE from './const/index.js';
+import { ERROR_MESSAGE } from './const/index.js';
 
 const checkLengthError = (carInput) => {
   carInput.forEach((car) => {

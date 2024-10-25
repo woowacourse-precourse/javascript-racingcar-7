@@ -1,3 +1,2 @@
-import { ERROR_MESSAGE } from './errorMessage.js';
-
-export default { ERROR_MESSAGE };
+export { ERROR_MESSAGE } from './errorMessage.js';
+export { VOWEL } from './ascii.js';

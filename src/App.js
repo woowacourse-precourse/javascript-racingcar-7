@@ -2,6 +2,7 @@ import { input, print } from './IoHandller.js';
 import { validateInput } from './Validate.js';
 import { parseInputs } from './Parsing.js';
 import { initGame } from './Game.js';
+import { initRandomName } from './Random.js';
 
 class App {
   async run() {
@@ -10,7 +11,8 @@ class App {
       const countInput = await input('시도할 횟수를 입력한다 : ');
       const parseCarInput = parseInputs(carInput);
       validateInput({ car: parseCarInput, count: countInput });
-      initGame(parseCarInput, countInput);
+      const checkEmptyAndRandom = initRandomName(...parseCarInput);
+      initGame(checkEmptyAndRandom, countInput);
     } catch (error) {
       print(error.message);
       throw error;
