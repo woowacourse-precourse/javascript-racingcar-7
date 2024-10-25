@@ -8,7 +8,7 @@
 
 사용자는 경주할 자동차 이름과 시도할 횟수를 입력한다.
 
--   [ ] `@woowacourse/mission-utils` 의 `Console.readLineAsync()` 을 사용해 입력받기
+-   [x] `@woowacourse/mission-utils` 의 `Console.readLineAsync()` 을 사용해 입력받기
     ```
     경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)
     pobi,woni,jun
