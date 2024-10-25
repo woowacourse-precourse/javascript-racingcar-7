@@ -15,6 +15,7 @@ class App {
     const carObjectList = createCarObjectList(carNameList);
     const raceCount = await getUserInput("시도할 횟수는 몇 회인가요?\n");
     validateRaceCount(raceCount);
+    startCarRace(carObjectList, raceCount);
   }
 }
 
