@@ -1,5 +1,5 @@
 export default class Car{
-    constructor(name = ''){
+    constructor(name){
         this.carName = name;
     }
     getName(){
