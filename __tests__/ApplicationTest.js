@@ -1,6 +1,6 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import { getUserInput } from '../src/views/View.js';
-
+import { divisionCarName } from '../src/models/Model.js';
 import App from '../src/App.js';
 
 const mockQuestions = (inputs) => {
@@ -74,5 +74,10 @@ describe('view', () => {
     expect(input).toBe('happy,sad');
 
     consoleSpy.mockRestore();
+  });
+  test('사용자가 입력한 차 이름 ,로 구분', async () => {
+    const inputs = 'happy,car';
+    const car = divisionCarName(inputs);
+    expect(car).toEqual(['happy', 'car']);
   });
 });
