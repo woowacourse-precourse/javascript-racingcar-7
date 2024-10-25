@@ -77,12 +77,17 @@ function checkMaxPosition(carsResults) {
   return MAX_POSITION;
 }
 
+function pickWinners(value, maxValue, winners) {
+  if (value.position.length == maxValue) {
+    winners.push(value.name);
+  }
+  return winners;
+}
+
 function determineWinner(carsResults, maxPosition) {
   let winners = [];
   carsResults.forEach((car) => {
-    if (car.position.length == maxPosition) {
-      winners.push(car.name);
-    }
+    winners = pickWinners(car, maxPosition, winners);
   });
   return winners;
 }
