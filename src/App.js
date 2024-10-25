@@ -1,6 +1,16 @@
 import { Console, MissionUtils } from '@woowacourse/mission-utils';
 
 class App {
+  errorMessages = [
+    '[ERROR] 경주할 자동차를 입력해주세요',
+    '[ERROR] 1 이상의 숫자부터 입력 가능합니다.',
+    '[ERROR] 경주할 자동차의 이름은 문자로 입력해주세요',
+  ];
+
+  throwError(messageIndex) {
+    throw new Error(this.errorMessages[messageIndex]);
+  }
+
   async run() {
     const participant_input = await Console.readLineAsync(
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n'
@@ -10,16 +20,19 @@ class App {
     );
 
     if (!participant_input) {
-      // ERROR 경주할 자동차를 입력해주세요.
+      this.throwError(0)
+    }
+    if (participant_input[0] === ',') {
+      this.throwError(2)
     }
 
     if (isNaN(try_input) || try_input <= 0) {
-      // ERROR 1 이상의 숫자부터 입력가능
-      throw error('111');
+      this.throwError(1)
     }
 
     const participant_dict = participant_input
       .split(',')
+      .map(name => name.trim())
       .reduce((acc, name) => {
         acc[name] = 0;
         return acc;
