@@ -23,7 +23,7 @@ class App {
       if (carName.length > 5) {
         throw new Error('[ERROR] 자동차 이름은 5글자 이하여야 합니다.');
       }
-      this.nameMap.set(carName, 0);
+      this.nameMap.set(carName, '');
     });
     this.nameArray = [...splitedNames];
   }
@@ -48,14 +48,18 @@ class App {
   }
 
   moveCars() {
-    for (let i = 0; i < this.names.length; i += 1) {
+    for (let i = 0; i < this.nameArray.length; i += 1) {
       const randomNumber = Random.pickNumberInRange(0, 9);
 
       if (randomNumber >= 4) {
         const beforeValue = this.nameMap.get(this.nameArray[i]);
-        this.nameMap.set(this.nameArray[i], beforeValue + 1);
+        this.nameMap.set(this.nameArray[i], `${beforeValue}-`);
       }
+      Console.print(
+        `${this.nameArray[i]} : ${this.nameMap.get(this.nameArray[i])}`,
+      );
     }
+    Console.print('\n');
   }
 
   async run() {
