@@ -7,3 +7,7 @@ export function formatWinnerNames(winners) {
 export function generateProgressBar(position) {
   return '-'.repeat(position);
 }
+
+export function printCarPosition(name, position) {
+  MissionUtils.Console.print(`${name} : ${generateProgressBar(position)}`);
+}
