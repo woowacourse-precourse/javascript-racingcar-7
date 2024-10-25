@@ -1,4 +1,5 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
+
 class App {
   async getCarNames() {
     const input = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
@@ -30,9 +31,28 @@ class App {
     return parseInt(input);
   }
 
+  async getWinners(carNames, n) {
+    const cars = {};
+
+    carNames.forEach((car) => (cars[car] = 0));
+
+    for (let i = 0; i < n; i++) {
+      for (const carName of carNames) {
+        const RandomNumber = Random.pickNumberInRange(0, 9);
+
+        if (RandomNumber >= 4) {
+          cars[carName] += RandomNumber;
+        }
+
+        // 실행 결과 출력 구현하기
+      }
+    }
+  }
+
   async run() {
-    const CarNames = await this.getCarNames();
+    const carNames = await this.getCarNames();
     const count = await this.getAttemptCount();
+    const winnners = await this.getWinners(carNames, count);
   }
 }
 
