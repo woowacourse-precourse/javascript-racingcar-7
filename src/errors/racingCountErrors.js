@@ -11,7 +11,7 @@ const isRacingCountTypeNumber = racingCountInput => {
     return true;
   }
   if (isNaN(racingCountInput)) {
-    throw new Error(ERROR_MESSAGES.INVALID_NUMBER);
+    throw new Error(ERROR_MESSAGES.NOT_NUMBER);
   }
 };
 

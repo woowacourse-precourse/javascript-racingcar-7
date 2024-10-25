@@ -13,7 +13,7 @@ const isCarNamesInputNoEmpty = carNamesInput => {
 const isCarNamesInputTypeOfNum = carNameWords => {
   for (let i = 0; i < carNameWords.length; i += 1) {
     if (!isNaN(parseInt(carNameWords[i]))) {
-      throw new Error(ERROR_MESSAGES.INVALID_STRING);
+      throw new Error(ERROR_MESSAGES.NOT_STRING);
     }
   }
 };
@@ -24,7 +24,7 @@ const isCarNamesInputValidatedLength = carNameWords => {
   }
 
   if (carNamesLengthValidator(carNameWords) === false) {
-    throw new Error(ERROR_MESSAGES.OVERLENGTH_INPUT);
+    throw new Error(ERROR_MESSAGES.TOO_LONG);
   }
 };
 
