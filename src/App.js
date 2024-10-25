@@ -9,7 +9,6 @@ function getCarNames(userInput) {
     if (carName.length > 5) {
       throw new Error("[ERROR] 이름은 5글자를 초과할 수 없습니다.");
     }
-    return carName.trim();
   });
   return carNames;
 }
@@ -70,16 +69,29 @@ function determineWinner(carsResults, maxPosition) {
   return winners;
 }
 
+function checkDuplicationValue(carsNames) {
+  let trimedNames = [];
+  carsNames.forEach((carName) => {
+    trimedNames.push(carName.trim());
+  });
+  const CARS_NAMES = new Set(trimedNames);
+
+  if (trimedNames.length !== CARS_NAMES.size) {
+    throw new Error("[ERROR] 중복된 이름이 있습니다.");
+  }
+}
+
 class App {
   async run() {
     const carNamesUserInput = await Console.readLineAsync(
       "경주할 자동차 이름을 입력하세요.\n"
     );
     const carNames = getCarNames(carNamesUserInput);
-    let carsResults = carNames.map((carName) => {
-      return { name: carName, position: "" };
-    });
 
+    let carsResults = carNames.map((carName) => {
+      return { name: carName.trim(), position: "" };
+    });
+    checkDuplicationValue(carNames);
     const N = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
     checkN(N);
 
