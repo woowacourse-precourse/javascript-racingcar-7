@@ -9,4 +9,9 @@ describe('Car Test', () => {
     car.move(distance);
     expect(car.getLength()).toBe(distance);
   })
+
+  test('getName() 메서드는 Car의 name을 반한한다.', () => {
+    const car = new Car(name);
+    expect(car.getName()).toBe(name);
+  })
 })

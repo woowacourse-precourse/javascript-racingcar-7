@@ -25,7 +25,7 @@
 ### test
 **Car Class 테스트**
 - [x] `move()` 메서드는 `Car`의 length를 증가시킨다.
-- [ ] `getName()`, `getLength()` 메서드는 각각 `Car`의 이름과 거리를 반환한다.
+- [x] `getName()`, `getLength()` 메서드는 각각 `Car`의 이름과 거리를 반환한다.
 
 **Game Class 테스트**
 - [ ] 랜덤 값이 우승 번호 이상이면 `Car`를 전진한다.
