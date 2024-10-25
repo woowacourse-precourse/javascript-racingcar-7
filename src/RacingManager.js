@@ -1,3 +1,4 @@
+import Car from './Car.js';
 import Validation from './Validation.js';
 
 class RacingManager {
@@ -15,6 +16,12 @@ class RacingManager {
     const parsedNames = RacingManager.parseCarNames(nameInput);
     const carNames = Validation.carNames(parsedNames);
     return carNames;
+  }
+
+  register() {
+    const nameList = this.#acceptCarNames();
+    const registeredCars = nameList.map((name) => new Car(name));
+    return registeredCars;
   }
 
   static parseCarNames(names) {
