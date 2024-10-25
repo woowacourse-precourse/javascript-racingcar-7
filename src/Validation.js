@@ -28,6 +28,16 @@ class Validation {
 
     return true;
   }
+
+  static isNumber(totalRounds) {
+    if (Number.isNaN(totalRounds)) {
+      throw new Error(
+        '[ERROR] 자동차 이동 시도 횟수는 숫자로만 입력 가능합니다.',
+      );
+    }
+
+    return true;
+  }
 }
 
 export default Validation;
