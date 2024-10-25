@@ -35,7 +35,16 @@ class App {
         throw Error(`[ERROR] 소수는 입력할 수 없습니다. 정수를 입력해주세요.`)
       
       // 차수별 실행 결과 출력하기
-      
+      MissionUtils.Console.print('실행 결과');
+      for (let n = 0; n < tryTime; n += 1) {  // n번 반복
+        for (let i = 0; i < carList.length; i += 1) {
+          if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) {
+            carList[i].movement += 1;
+          }
+          MissionUtils.Console.print(`${carList[i].name} : ${'-'.repeat(carList[i].movement )}`);
+        }
+        MissionUtils.Console.print('');
+      }
       
       // 우승자 출력하기
       
