@@ -1,32 +1,37 @@
 import { Console, Random } from '@woowacourse/mission-utils';
 
 class RaceHandler {
-    doRace(raceBoard, cars) {
-        cars.forEach(car => {
+    onStartLine(carNames) {
+        return Object.fromEntries(carNames.map(carName => [carName, '']));
+    }
+
+    doRace(raceBoard, carNames) {
+        carNames.forEach(carName => {
             const hasMoved = Random.pickNumberInRange(0, 9);
             if (hasMoved >= 4) {
-                raceBoard[car] += '-';
+                raceBoard[carName] += '-';
             }
         });
     }
 
     showRaceBoard(raceBoard) {
-        Object.entries(raceBoard).forEach(([car, moves]) => {
-            Console.print(`${car} : ${moves}`);
+        Object.entries(raceBoard).forEach(([carName, moves]) => {
+            Console.print(`${carName} : ${moves}`);
         });
+        Console.print('\n');
     }
 
-    showWinner(raceBoard, cars) {
+    showWinner(raceBoard, carNames) {
         let winners = [];
         let maxMoves = 0;
 
-        cars.forEach(car => {
-            const moves = raceBoard[car].length;
+        carNames.forEach(carName => {
+            const moves = raceBoard[carName].length;
             if (moves > maxMoves) {
                 maxMoves = moves;
-                winners = [car];
+                winners = [carName];
             } else if (moves === maxMoves) {
-                winners.push(car);
+                winners.push(carName);
             }
         });
 

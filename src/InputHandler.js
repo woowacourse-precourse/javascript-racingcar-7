@@ -12,8 +12,8 @@ class InputHandler {
 
     splitCars(carNames) {
         const names = carNames.split(',');
-        const hasEmptyName = names.some(car => car === '');
-        const nameTooLong = names.some(car => car.length > 5);
+        const hasEmptyName = names.some(name => name === '');
+        const nameTooLong = names.some(name => name.length > 5);
         const notEnoughCars = names.length < 2;
         const hasDuplicates = new Set(names).size !== names.length;
 
