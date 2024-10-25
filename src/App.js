@@ -11,8 +11,8 @@ class App {
       const countInput = await input('시도할 횟수를 입력한다 : ');
       const parseCarInput = parseInputs(carInput);
       validateInput({ car: parseCarInput, count: countInput });
-      const checkEmptyAndRandom = initRandomName(...parseCarInput);
-      initGame(checkEmptyAndRandom, countInput);
+      const carNamesWithRandom = initRandomName(...parseCarInput);
+      initGame({ car: carNamesWithRandom, count: countInput });
     } catch (error) {
       print(error.message);
       throw error;
