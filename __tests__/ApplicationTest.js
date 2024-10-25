@@ -6,7 +6,7 @@ import {
   ERROR_MESSAGE_NOT_INTEGER,
   ERROR_MESSAGE_NOT_POSITIVE_POSITIVE,
   OUTPUT_MESSAGE_WINNER,
-} from "../src/constants.js";
+} from "../src/lib/constants.js";
 
 const MOVING_FORWARD = 4;
 const STOP = 3;

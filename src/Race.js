@@ -5,7 +5,7 @@ import {
   getRepeatedString,
   pickNumberInRange,
   print,
-} from "./utils.js";
+} from "./lib/utils.js";
 
 class Race {
   static #MIN_RANDOM = 0;
