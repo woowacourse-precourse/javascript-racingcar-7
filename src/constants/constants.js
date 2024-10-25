@@ -20,6 +20,6 @@ export const ERROR_MESSAGES = {
   IS_TOO_LONG: '입력 값이 너무 깁니다. 5자 이하로 입력해주세요.',
   IS_DUPLICATE: '입력 값들 중 중복되는 값이 존재합니다. 다시 입력해주세요.',
   IS_NOT_NUM: '입력 값이 숫자가 아닙니다. 숫자로 입력해주세요.',
-  IS_NOT_POS_NUM: '입력 값이 양의 정수가 아닙니다. 양의 정수로 입력해주세요.',
+  IS_NOT_POSITIVE_INTEGER: '입력 값이 양의 정수가 아닙니다. 양의 정수로 입력해주세요.',
   IS_EXCEEDING_MAX: `입력 값이 최대 시도 횟수를 초과하였습니다. ${RACE_MAX_NUM}보다 작은 값으로 입력해주세요.`,
 }
