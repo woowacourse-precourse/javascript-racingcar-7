@@ -1,3 +1,4 @@
+import { Console } from '@woowacourse/mission-utils';
 import CarService from './CarService.js';
 import OutputView from '../view/OutputView.js';
 import CONSTANT from '../utils/constants/CONSTANT.js';
@@ -13,6 +14,7 @@ class GameServices {
     for (let round = CONSTANT.START_ROUND; round < gameRound; round++) {
       this.carService.checkMovement(carObj);
       this.outputView.gameResult(carObj);
+      Console.print('');
     }
     return carObj;
   }
