@@ -4,6 +4,7 @@ import { inputCarNames, inputPlayTime } from "../src/utils/customInput.js";
 import splitNames from "../src/utils/splitInput.js";
 import { attemptCountValidator } from "../src/validator.js";
 import pickRandomNumber from "../src/utils/pickRandomNumber.js";
+import canMoveForward from "../src/utils/canMoveForward.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
