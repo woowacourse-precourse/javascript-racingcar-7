@@ -10,6 +10,7 @@ import {
   getCarNames,
 } from './racingGameUtils.js';
 import { PRINT_MESSAGES } from '../constants/messages.js';
+import { joinByComma } from '../utils/stringUtils.js';
 
 class RacingGame {
   constructor(cars, tryCount) {
@@ -24,6 +25,8 @@ class RacingGame {
       this.cars.forEach((car) => car.move());
       this.printCurrentState();
     }
+
+    this.printWinner();
   }
 
   printCurrentState() {
@@ -38,6 +41,11 @@ class RacingGame {
     const maxMoveCount = getMaxMoveCount(this.cars);
     const winningCars = filterWinningCars(this.cars, maxMoveCount);
     return getCarNames(winningCars);
+  }
+
+  printWinner() {
+    const winners = this.getWinnerNames();
+    printKeyValueFormat(PRINT_MESSAGES.OUTPUT.WINNER, joinByComma(winners));
   }
 }
 
