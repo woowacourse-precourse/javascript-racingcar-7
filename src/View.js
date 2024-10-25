@@ -16,4 +16,12 @@ export default class View {
   printStep(name, step) {
     Console.print(`${name} : ${'-'.repeat(step)}`);
   }
+
+  printMessage(message) {
+    if (message) {
+      Console.print(message);
+    } else {
+      Console.print('');
+    }
+  }
 }

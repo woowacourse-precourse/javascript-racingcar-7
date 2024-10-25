@@ -13,8 +13,8 @@ export default class Controller {
     const count = await this.getCount();
 
     const cars = this.createCars(names);
-    this.printMessage();
-    this.printMessage('실행 결과');
+    this.view.printMessage();
+    this.view.printMessage('실행 결과');
 
     this.runRace(cars, count);
     this.findWinner(cars);
@@ -26,7 +26,7 @@ export default class Controller {
         const car = cars[j];
         this.runSingleRound(car);
       }
-      this.printMessage();
+      this.view.printMessage();
     }
   }
 
@@ -84,13 +84,5 @@ export default class Controller {
     validateTryCount(await count);
 
     return count;
-  }
-
-  printMessage(message) {
-    if (message) {
-      Console.print(message);
-    } else {
-      Console.print('');
-    }
   }
 }
