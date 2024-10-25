@@ -7,7 +7,7 @@ export const INPUT_MESSAGES = {
 }
 
 export const OUTPUT_MESSAGES = {
-  RACE_RESULT: '\n실행 결과\n',
+  RACE_RESULT: '\n실행 결과',
   WINNER: '최종 우승자 : ',
   ERROR: '[ERROR]',
 }

@@ -1,7 +1,7 @@
-import Controller from "./controller/Controller.js";
+import RaceController from "./controller/RaceController.js";
 class App {
   async run() {
-    await new Controller().start();
+    await new RaceController().start();
   }
 }
 

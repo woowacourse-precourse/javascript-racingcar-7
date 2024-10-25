@@ -6,8 +6,8 @@ const OutputView = {
     Console.print(OUTPUT_MESSAGES.RACE_RESULT);
   },
 
-  printRoundResult(carName, moveCounts) {
-    const forwardSymbol = FORWARD_SYMBOL.repeat(moveCounts);
+  printRoundResult(carName, forwardCount) {
+    const forwardSymbol = FORWARD_SYMBOL.repeat(forwardCount);
     Console.print(`${carName} : ${forwardSymbol}`);
   },
   
