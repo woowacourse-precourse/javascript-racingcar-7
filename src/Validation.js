@@ -31,7 +31,7 @@ class Validation {
   }
 
   static isValidTotalRounds(totalRounds) {
-    if (Number.isInteger(totalRounds)) {
+    if (!Number.isInteger(totalRounds)) {
       throw new Error(
         '[ERROR] 자동차 이동 시도 횟수는 1이상의 정수로만 입력 가능합니다.',
       );
