@@ -32,10 +32,8 @@ class RacingGame {
   #serializeCarsState() {
     const serialized = this.#cars.map((car) => {
       const { name, distance } = car.getCarInformation();
-      let newDistance = '';
-      for (let i = 0; i < distance; i += 1) {
-        newDistance += OUTPUT_MESSAGE.STRINGYFY_DISTANCE;
-      }
+      const newDistance = Array(distance).fill(OUTPUT_MESSAGE.STRINGYFY_DISTANCE).join('');
+
       return `${name} : ${newDistance}`;
     });
 
