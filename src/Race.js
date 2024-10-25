@@ -23,15 +23,27 @@ class Race {
   startRace() {
     let attempt = 0;
     while (attempt < this.tryCount) {
-      this.cars.forEach((car) => {
-        if (this.canMoveToForward(Random.pickNumberInRange(0, 9))) {
-          this.carPositions[car] += "-";
-        }
-        Console.print(`${car} : ${this.carPositions[car]} \n`);
-      });
+      this.moveCars();
       Console.print("\n");
       attempt++;
     }
+  }
+
+  moveCars() {
+    this.cars.forEach((car) => {
+      this.updateCarPosition(car);
+      this.printCarPosition(car);
+    });
+  }
+
+  updateCarPosition(car) {
+    if (this.canMoveToForward(Random.pickNumberInRange(0, 9))) {
+      this.carPositions[car] += "-";
+    }
+  }
+
+  printCarPosition(car) {
+    Console.print(`${car} : ${this.carPositions[car]} \n`);
   }
 
   getScores() {
