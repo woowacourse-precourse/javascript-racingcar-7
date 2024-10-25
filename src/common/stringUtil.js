@@ -3,4 +3,8 @@ function hasSpecialCharacter(string) {
   return REGEX.test(string);
 }
 
-export { hasSpecialCharacter };
+function isNumber(string) {
+  return !Number.isNaN(Number(string));
+}
+
+export { hasSpecialCharacter, isNumber };

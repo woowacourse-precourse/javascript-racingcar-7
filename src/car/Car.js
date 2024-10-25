@@ -5,9 +5,9 @@ import { CAR } from './constant.js';
 
 class Car {
   constructor(name = '') {
-    if (!name) throw new Error(ERROR_MESSAGE.ERROR_EMPTY_CAR_NAME);
-    if (!this._isValidNameLength(name)) throw new Error(ERROR_MESSAGE.ERROR_TOO_LONG_CAR_NAME);
-    if (hasSpecialCharacter(name)) throw new Error(ERROR_MESSAGE.ERROR_NOT_ALLOWED_CHARACTER);
+    if (!name) throw new Error(ERROR_MESSAGE.EMPTY_CAR_NAME);
+    if (!this._isValidNameLength(name)) throw new Error(ERROR_MESSAGE.TOO_LONG_CAR_NAME);
+    if (hasSpecialCharacter(name)) throw new Error(ERROR_MESSAGE.NOT_ALLOWED_CHARACTER);
     this._name = name;
     this._count = 0;
   }
@@ -16,9 +16,17 @@ class Car {
     return string.length <= CAR.NAME_MAX_LENGTH;
   }
 
-  run() {
+  moveOrStop() {
     const num = Random.pickNumberInRange(CAR.RUN_RANDOM_RANGE_MIN, CAR.RUN_RANDOM_RANGE_MAX);
     if (num >= CAR.RUN_CONDITION_VALUE) this._count++;
+  }
+
+  getName() {
+    return this._name;
+  }
+
+  getCount() {
+    return this._count;
   }
 }
 
