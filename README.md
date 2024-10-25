@@ -41,7 +41,16 @@ Controller
         - [x] getWinnerCar(): 우승한 자동차 구하기
         - [x] announceWinner(): 우승한 자동차 발표하기
 
-- [ ] 입력이 잘못 된 경우 Error 반환하기
+Validate
+공통
+- [x] 빈 입력값 인 경우 Error -> input 받을 때 처리
+
+실행 횟수
+- [ ] 양의 정수가 아닌 경우 Error
+
+경주에 참여하는 자동차 명단
+- [ ] 자동차 이름이 5글자 초과인 경우 Error
+
 
 Util
 - [x] 0 ~ 9 Random 값 반환하는 함수
