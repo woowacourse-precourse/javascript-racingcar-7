@@ -9,7 +9,7 @@ class RaceManager {
 
     #MAX_RACE_COUNT = Object.freeze(100);
 
-    #carList;
+    #cars;
 
     #racingCount;
 
@@ -17,18 +17,18 @@ class RaceManager {
         return str.replaceAll(' ', '').split(',');
     }
 
-    #setCarListFromCarNames(carNames) {
-        this.#carList = carNames.map((name) => new Car(name));
+    #setCarsFromCarNames(carNames) {
+        this.#cars = carNames.map((name) => new Car(name));
     }
 
-    async #setCarListFromInput() {
+    async #setCarsFromInput() {
         const inputStr = await IOHandler.input("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
         const carNames = this.#getNamesFromStr(inputStr);
         carNames.forEach(name => {
             checkValidNameLength(name, this.#MAX_NAME_LENGTH);
         });
 
-        this.#setCarListFromCarNames(carNames);
+        this.#setCarsFromCarNames(carNames);
     }
 
     #setRacingCount(count) {
@@ -42,7 +42,7 @@ class RaceManager {
     }
 
     async #prepareRacing() {
-        await this.#setCarListFromInput();
+        await this.#setCarsFromInput();
         await this.#setRacingCountFromInput();
     }
 
@@ -55,9 +55,9 @@ class RaceManager {
         await this.#prepareRacing();
 
         const raceExcutor = new RaceExcutor();
-        raceExcutor.executeForRaceCount(this.#carList, this.#racingCount);
+        raceExcutor.executeForRaceCount(this.#cars, this.#racingCount);
 
-        const winnerNames = getWinners(this.#carList);
+        const winnerNames = getWinners(this.#cars);
         this.#printWinners(winnerNames);
     }
 }
