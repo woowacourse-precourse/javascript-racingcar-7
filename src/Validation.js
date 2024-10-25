@@ -1,11 +1,8 @@
 class Validation {
   #maxNameLength;
 
-  #nameSeparator;
-
-  constructor(maxNameLength, nameSeparator) {
+  constructor(maxNameLength) {
     this.#maxNameLength = maxNameLength;
-    this.#nameSeparator = nameSeparator;
   }
 
   #isValidLength(name) {
