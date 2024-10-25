@@ -5,6 +5,7 @@ class RacingGame {
   constructor() {
     this.cars = [];
     this.init();
+    this.counts = 0;
   }
 
   async init() {
@@ -16,7 +17,10 @@ class RacingGame {
     names.forEach((element) => {
       this.cars.push(new Car(element, 0));
     });
-    console.log(this.cars);
+    const userInputCounts = await Console.readLineAsync(
+      "시도할 횟수는 몇 회인가요?"
+    );
+    this.counts = userInputCounts;
   }
 }
 
