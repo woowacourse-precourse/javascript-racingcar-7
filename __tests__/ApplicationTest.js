@@ -1,6 +1,8 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import App from '../src/App.js';
 import NameValidator from '../src/utils/validators/NameValidator.js';
+import GameController from '../src/controller/GameController.js';
+import GameCountValidator from '../src/utils/validators/GameCountValidator.js';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -89,6 +91,38 @@ describe('자동차 이름 검증', () => {
 
     await expect(async () => {
       await nameValidator.runAllFunction(inputs);
+    }).rejects.toThrow('[ERROR]');
+  });
+});
+
+describe('게임 횟수 검증', () => {
+  let gameCountValidator;
+
+  beforeEach(() => {
+    gameCountValidator = new GameCountValidator();
+  });
+
+  test('게임 횟수가 공백인 경우, 에러 처리', async () => {
+    const inputs = '';
+
+    await expect(async () => {
+      await gameCountValidator.runAllFunction(inputs);
+    }).rejects.toThrow('[ERROR]');
+  });
+
+  test('게임 횟수가 영어로 입력한 경우, 에러 처리', async () => {
+    const inputs = 'abc';
+
+    await expect(async () => {
+      await gameCountValidator.runAllFunction(inputs);
+    }).rejects.toThrow('[ERROR]');
+  });
+
+  test('게임 횟수가 한글로 입력한 경우, 에러 처리', async () => {
+    const inputs = '가나다';
+
+    await expect(async () => {
+      await gameCountValidator.runAllFunction(inputs);
     }).rejects.toThrow('[ERROR]');
   });
 });
