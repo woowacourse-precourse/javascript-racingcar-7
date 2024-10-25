@@ -1,14 +1,12 @@
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 import GameService from '../service/GameService.js';
-import Winner from '../Winner.js';
 
 class GameController {
   constructor() {
     this.inputView = new InputView();
     this.outputView = new OutputView();
     this.gameService = new GameService();
-    this.winner = new Winner();
   }
 
   async prepareGame() {
@@ -26,7 +24,7 @@ class GameController {
   }
 
   finishGame(gameResult) {
-    this.winner.checkRanking(gameResult);
+    this.gameService.checkRanking(gameResult);
   }
 }
 
