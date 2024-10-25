@@ -1,4 +1,17 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
+
+class Car {
+  constructor(name) {
+    this.name = name;
+    this.position = 0;
+  }
+
+  move() {
+    if (Random.pickNumberInRange(0, 9) >= 4) {
+      this.position += 1;
+    }
+  }
+}
 
 class App {
   async run() {
@@ -25,6 +38,13 @@ class App {
     );
 
     Console.print(`실행 결과\n`);
+
+    const cars = CAR_NAMES.map((name) => new Car(name));
+
+    for (let i = 0; i < TRY_COUNT; i++) {
+      cars.forEach((car) => car.move());
+      Console.print('\n');
+    }
   }
 }
 
