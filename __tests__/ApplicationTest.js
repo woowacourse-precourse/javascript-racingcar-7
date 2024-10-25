@@ -2,6 +2,8 @@ import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 import carNameInput from "../src/UI/carNameInput.js";
 import trialCountInput from "../src/UI/trialCountInput.js";
+import createRacerInformation from "../src/racerData/racer.js";
+import goStopResult from "../src/feature/goStopResult.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -106,5 +108,30 @@ describe("자동차 경주", () => {
 
       // then
       await expect(trialCountInput()).rejects.toThrow(`${result}`);
-  })
+  });
+
+  test('기능 단위 테스트: createRacerInformation', () => {
+    // given
+    const carList = ['one', 'two', 'three'];
+
+    // when
+    const initialRaceInfomation = createRacerInformation(carList);
+
+    // then
+    expect(initialRaceInfomation).toContainEqual(['one', ''] && ['two', ''] && ['three', '']);
+  });
+
+  test('기능 단위 테스트: goStopResult()', () => {
+    // given
+    const go = 4;
+    const expectedResult = '-';
+
+    mockRandoms([go]);
+
+    // when
+    const fnResult = goStopResult();
+    
+    // then
+    expect(fnResult).toBe(expectedResult);
+  });
 });
