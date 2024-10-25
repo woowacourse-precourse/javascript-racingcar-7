@@ -18,3 +18,8 @@ export function displayCarMovement(carDataList, moveValue) {
     Console.print(`${carDataList[i].name} : ${'_ '.repeat(moveValue[i])}`);
   }
 }
+
+export function announceWinner(winner) {
+  if (winner.length > 1) winner = winner.join(', ');
+  Console.print(`${GAME_PROGRESS_MESSAGE.FINAL_WINNER} : ${winner}`);
+}
