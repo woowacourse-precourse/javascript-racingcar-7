@@ -9,6 +9,11 @@ class Car {
   getName() {
     return this.name;
   }
+
+  forwardOrNot() {
+    let num = Random.pickNumberInRange(0, 9);
+    if (num >= 4) this.moveCount++;
+  }
 }
 
 function getNames(str) {
@@ -52,9 +57,17 @@ class App {
     const trial = checkCount(inputCount);
 
     //TODO: 정상적인 입력 시 수행할 것 (자동차 배열 만들기)
-    const cars = names.map((name, i) => {
+    const cars = names.map((name) => {
       return new Car(name);
     });
+
+    Console.print('\n실행 결과');
+
+    for (let i = 0; i < trial; i++) {
+      cars.forEach((car) => {
+        car.forwardOrNot();
+      });
+    }
   }
 }
 
