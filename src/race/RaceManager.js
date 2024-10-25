@@ -21,22 +21,29 @@ class RaceManager {
         this.#carList = carNames.map((name) => new Car(name));
     }
 
-    #setRacingCount(count) {
-        this.#racingCount = count;
-    }
-
-    async #prepareRacing() {
+    async #setCarListFromInput() {
         const inputStr = await IOHandler.input("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
         const carNames = this.#getNamesFromStr(inputStr);
         carNames.forEach(name => {
             checkValidNameLength(name, this.#MAX_NAME_LENGTH);
         });
 
+        this.#setCarListFromCarNames(carNames);
+    }
+
+    #setRacingCount(count) {
+        this.#racingCount = count;
+    }
+
+    async #setRacingCountFromInput() {
         const inputCount = await IOHandler.input("시도할 횟수는 몇 회인가요\n");
         checkLessThanOrEqualMaxCount(inputCount, this.#MAX_RACE_COUNT);
-
-        this.#setCarListFromCarNames(carNames);
         this.#setRacingCount(inputCount);
+    }
+
+    async #prepareRacing() {
+        await this.#setCarListFromInput();
+        await this.#setRacingCountFromInput();
     }
 
     #printWinners(winnerNames) {
