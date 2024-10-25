@@ -3,10 +3,12 @@ export const getWinner = (cars, result) => {
   let maxAdvance = 0;
 
   for (let i = 0; i < result.length; i++) {
-    if (result[i].length > maxAdvance) {
-      maxAdvance = result[i].length;
+    const advanceSpace = result[i].length;
+
+    if (advanceSpace > maxAdvance) {
+      maxAdvance = advanceSpace;
       winner = cars[i];
-    } else if (result[i].length === maxAdvance) {
+    } else if (advanceSpace === maxAdvance) {
       winner += ', ' + cars[i];
     }
   }
