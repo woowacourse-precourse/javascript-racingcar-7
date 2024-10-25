@@ -12,6 +12,13 @@ class App {
     }
 
     const CARS = CAR_NAMES.split(',');
+
+    CARS.forEach((car) => {
+      if (car.length > 5 || car.length === 0) {
+        Console.print('[ERROR] 자동차 이름은 5자 이하여야 합니다.');
+        return;
+      }
+    });
   }
 }
 
