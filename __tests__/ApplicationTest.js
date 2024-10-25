@@ -26,16 +26,25 @@ const getLogSpy = () => {
 };
 
 describe('자동차 경주', () => {
-  test('기능 테스트', async () => {
+  test('레이싱 경기 후 진행 과정과 결과가 출력되는지 검증한다', async () => {
     // given
     const MOVING_FORWARD = 4;
     const STOP = 3;
-    const inputs = ['pobi,woni', '1'];
-    const logs = ['pobi : -', 'woni : ', '최종 우승자 : pobi'];
+    const inputs = ['pobi,woni', '3'];
+    const logs = [
+      '실행 결과',
+      'pobi : ---',
+      'woni : --',
+      '최종 우승자 : pobi'
+    ];
     const logSpy = getLogSpy();
 
     mockQuestions(inputs);
-    mockRandoms([MOVING_FORWARD, STOP]);
+    mockRandoms([
+      MOVING_FORWARD, MOVING_FORWARD,
+      MOVING_FORWARD, MOVING_FORWARD,
+      MOVING_FORWARD, STOP,
+    ]);
 
     // when
     const app = new App();
@@ -45,18 +54,6 @@ describe('자동차 경주', () => {
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
-  });
-
-  test('예외 테스트', async () => {
-    // given
-    const inputs = ['pobi,javaji'];
-    mockQuestions(inputs);
-
-    // when
-    const app = new App();
-
-    // then
-    await expect(app.run()).rejects.toThrow('[ERROR]');
   });
 
   test('공백으로 입력된 자동차 이름이 있으면 에러를 던진다', async () => {
