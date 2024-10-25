@@ -5,6 +5,10 @@ class Car {
     this.name = name;
     this.moveCount = 0;
   }
+
+  getName() {
+    return this.name;
+  }
 }
 
 function getNames(str) {
@@ -48,6 +52,9 @@ class App {
     const trial = checkCount(inputCount);
 
     //TODO: 정상적인 입력 시 수행할 것 (자동차 배열 만들기)
+    const cars = names.map((name, i) => {
+      return new Car(name);
+    });
   }
 }
 
