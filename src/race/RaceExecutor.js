@@ -14,7 +14,7 @@ export default class RaceExcutor {
         return `${name} : ${this.#COUNT_SIGN.repeat(num)}\n`;
     }
 
-    #startRace() {
+    #printStartExcuteResultMessage() {
         IOHandler.output('실행 결과');
     }
 
@@ -43,7 +43,7 @@ export default class RaceExcutor {
     }
 
     executeForRaceCount(cars, raceCount) {
-        this.#startRace();
+        this.#printStartExcuteResultMessage();
 
         for (let i = 0; i < raceCount; i++) {
             const executionResult = this.#execute(cars);
