@@ -47,7 +47,12 @@ class App {
       }
       
       // 우승자 출력하기
-      
+      const max = Math.max(...carList.map(player => player.movement));
+
+      const winnerList = carList
+        .filter(player => player.movement === max)
+        .map(player => player.name)
+      MissionUtils.Console.print(`최종 우승자 : ${winnerList.join(', ')}`);
 
     } catch (err) {
       console.error(err.message);
