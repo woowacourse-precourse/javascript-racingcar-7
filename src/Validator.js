@@ -4,10 +4,7 @@ import { ERROR_MESSAGES } from "./Constants.js";
 class Validator {
   static validateCarName(cars) {
     cars.forEach((car) => {
-      if (car.length > 5 || !car.length) {
-        Console.print(ERROR_MESSAGES.invalidCarName);
-        throw new Error("[ERROR]");
-      }
+      this.validateSingleCarName(car);
     });
 
     if (cars.length < 2) {
@@ -21,6 +18,13 @@ class Validator {
     }
 
     return true;
+  }
+
+  static validateSingleCarName(car) {
+    if (car.length > 5 || !car) {
+      Console.print(ERROR_MESSAGES.invalidCarName);
+      throw new Error("[ERROR]");
+    }
   }
 
   // 인자로 넘겨주는 값의 type이 string이었기에 count를 number로 형변환해줌
