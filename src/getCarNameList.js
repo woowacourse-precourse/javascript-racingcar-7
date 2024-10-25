@@ -1,5 +1,5 @@
 const getCarNameList = (carNameInputString) => {
-  if (carNameString) {
+  if (carNameInputString) {
     const carNameList = carNameInputString.split(',');
 
     return carNameList;
