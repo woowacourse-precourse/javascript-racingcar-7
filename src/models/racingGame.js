@@ -1,3 +1,4 @@
+import getRandomNumber from '../utils/random.js';
 import Car from './car.js';
 
 class RacingGame {
@@ -23,6 +24,14 @@ class RacingGame {
 
   getCurrentRound() {
     return this.currentRound;
+  }
+
+  playOneRound() {
+    this.cars.foreach((car) => {
+      const moveNumber = getRandomNumber();
+      car.move(moveNumber);
+    });
+    this.currentRound += 1;
   }
 }
 
