@@ -12,6 +12,7 @@ class App {
     );
 
     this.handleCarInputString(carInput);
+    this.simulateRaceRounds(numberInput);
   }
 
   // carInput을 받아서 carObject에 저장하는 함수
@@ -21,6 +22,24 @@ class App {
       this.carObject[carName] = 0; // 임시로 0 대입
     });
     Console.print(carNames);
+  }
+
+  //numberInput 바탕으로 각 라운드를 시뮬레이션하여 랜덤값 부여 함수
+  simulateRaceRounds(numberInput) {
+    for (let i = 0; i < numberInput; i++) {
+      Object.keys(this.carObject).forEach((carName) => {
+        this.carObject[carName] += this.moveOrStop(
+          Math.floor(Math.random() * 10) // 0~9까지의 랜덤값
+        );
+      });
+      Console.print(this.carObject);
+    }
+  }
+
+  //전진 or 멈춤 판단 함수
+  moveOrStop(randomNumber) {
+    if (randomNumber >= 4) return 1;
+    return 0;
   }
 }
 
