@@ -32,7 +32,9 @@ class App {
   }
 
   static parseCarNames(names) {
-    return names.split(',');
+    const splittedNames = names.split(',');
+    const trimmedNames = splittedNames.map((name) => name.trim());
+    return trimmedNames;
   }
 
   static totalRoundsToNumber(totalRounds) {
