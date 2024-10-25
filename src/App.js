@@ -3,6 +3,24 @@ import { Console, Random } from "@woowacourse/mission-utils";
 class App {
     racingCars = {};
 
+    initializeRacingCars(carNames) {
+        carNames.forEach((carName) => {
+            this.racingCars[carName] = 0;
+        });
+    }
+
+    saveRacingCarPosition(carName, position) {
+        this.racingCars[carName] = position;
+    }
+
+    getRacingCarPosition(carName) {
+        return this.racingCars[carName];
+    }
+
+    getRacingCarNames() {
+        return Object.keys(this.racingCars);
+    }
+
     splitCarNamesStr(carNamesStr) {
         const carNames = carNamesStr.trim().split(",");
         return carNames.map((carName) => carName.trim());
@@ -77,44 +95,12 @@ class App {
         return parsedTryCount;
     }
 
-    saveRacingCars(carNames) {
-        carNames.forEach((carName) => {
-            this.racingCars[carName] = 0;
-        });
-    }
-
-    makePrintableResult(carName, position) {
-        return `${carName} : ${"-".repeat(position)}`;
-    }
-
-    printResult() {
-        const racingCarNames = this.getRacingCarNames();
-        for (const carName of racingCarNames) {
-            const carPosition = this.getRacingCarPosition(carName);
-            Console.print(this.makePrintableResult(carName, carPosition));
-        }
-
-        Console.print("\n");
-    }
-
     makeRandomNumber(min, max) {
         return Random.pickNumberInRange(min, max);
     }
 
     isPossibleMove() {
         return this.makeRandomNumber(0, 9) >= 4;
-    }
-
-    saveRacingCarPosition(carName, position) {
-        this.racingCars[carName] = position;
-    }
-
-    getRacingCarPosition(carName) {
-        return this.racingCars[carName];
-    }
-
-    getRacingCarNames() {
-        return Object.keys(this.racingCars);
     }
 
     progressRacing() {
@@ -135,11 +121,25 @@ class App {
         return carNames.filter((carName) => this.getRacingCarPosition(carName) === maxPosition);
     }
 
+    makePrintableResult(carName, position) {
+        return `${carName} : ${"-".repeat(position)}`;
+    }
+
+    printResult() {
+        const racingCarNames = this.getRacingCarNames();
+        for (const carName of racingCarNames) {
+            const carPosition = this.getRacingCarPosition(carName);
+            Console.print(this.makePrintableResult(carName, carPosition));
+        }
+
+        Console.print("\n");
+    }
+
     solve(userInputCarNames, userInputTryCount) {
         const validatedCarNames = this.validateCarNames(userInputCarNames);
         let validatedTryCount = this.validateTryCount(userInputTryCount);
 
-        this.saveRacingCars(validatedCarNames);
+        this.initializeRacingCars(validatedCarNames);
 
         while (validatedTryCount--) {
             this.progressRacing();
