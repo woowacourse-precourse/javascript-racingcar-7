@@ -7,6 +7,8 @@ class CarRacingGame {
   }
 
   startGame(totalRounds) {
+    CarRacingOutputWriter.printStartMessage();
+
     for (let i = 0; i < totalRounds; i++) {
       this.playRound();
       CarRacingOutputWriter.printRoundResults(this.cars);

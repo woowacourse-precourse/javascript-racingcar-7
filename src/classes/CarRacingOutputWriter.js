@@ -1,6 +1,10 @@
 import { Console } from '@woowacourse/mission-utils';
 
 class CarRacingOutputWriter {
+  static printStartMessage() {
+    Console.print('\n실행결과');
+  }
+
   static printRoundResults(cars) {
     let results = '';
 
