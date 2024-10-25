@@ -23,13 +23,16 @@ class App {
       car.distance += 1;
     }
 
+    // * 자동차의 거리만큼 '-' 출력
+    const printCurrentCarDistanceResult = (car) => {
+      Console.print(`${car.name} : ${'-'.repeat(car.distance)}`); //pobi : --
+    }
 
     try{
       // ! 입력  ============///
       const cars = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n'); // pobi,woni,jun
       // *자동차는 (,) 쉼표를 기준으로 배열로 만들어준다.
       const carInputNameArray = cars.split(',');// [pobi,woni,jun]
-      console.log(carInputNameArray);
 
       // * 자동차 객체 배열을 만든다. 
       const carArray = carInputNameArray.map( 
@@ -44,13 +47,11 @@ class App {
       // ! 자동차 경주하기 ==== //
       const randomValue = getRandomValue();
 
-      if (isValueMoreThanFour) {
+      if (isValueMoreThanFour(randomValue)) {
         increaseCarDistance(carArray[0]);
       }
 
-      console.log(carArray);
-
-
+      Console.print(printCurrentCarDistanceResult(carArray[0]));
       // ! =================== //
     
     } catch(error) {
