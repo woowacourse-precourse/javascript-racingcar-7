@@ -8,10 +8,7 @@ const findWinners = (carNames, progressionNumForRacer) => {
 
   while (maxNumIndex !== -1) {
     winners.push(carNames[maxNumIndex]);
-    maxNumIndex = progressionNumForRacer.indexOf(
-      maxRacingLength,
-      maxNumIndex + 1,
-    );
+    maxNumIndex = progressionNumForRacer.indexOf(maxRacingLength, maxNumIndex + 1);
   }
   printWinners(winners);
 };

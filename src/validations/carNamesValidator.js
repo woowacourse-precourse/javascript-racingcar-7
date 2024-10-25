@@ -1,9 +1,8 @@
 import { ERROR_MESSAGES } from '../constants/errorMessages.js';
 
-// 이거 커ㅣㅅ해야됨 리리펙토링도 필요
 const isValidLength = (carNames) => {
-  const UNDER_SIX = carNames.every((element) => element.length < 6);
-  return UNDER_SIX;
+  const lessThanSixCarNames = carNames.every((element) => element.length < 6);
+  return lessThanSixCarNames;
 };
 
 const validateNotEmpty = (carNames) => {

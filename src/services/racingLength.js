@@ -1,8 +1,5 @@
-import { Random } from '@woowacourse/mission-utils';
-import {
-  printNotificationExecutionResult,
-  printRacerAndRacingOutput,
-} from '../views/outputView.js';
+import { Console, Random } from '@woowacourse/mission-utils';
+import { printRacerAndRacingOutput } from '../views/outputView.js';
 import { findWinners } from './findingWinners.js';
 
 const racingLengthNum = [];
@@ -14,10 +11,14 @@ const assignZeroToArray = (carNames) => {
   }
 };
 
-// TO-DO: 리펙토링 함수명
+const generateRandomNum = () => {
+  const randomNum = Random.pickNumberInRange(0, 9);
+  return randomNum;
+};
+
 const findRacingLength = (carNames) => {
   for (let j = 0; j < carNames.length; j++) {
-    const randomNum = Random.pickNumberInRange(0, 9);
+    const randomNum = generateRandomNum();
     if (randomNum >= 4) {
       racingLengthNum[j] += 1;
     }
@@ -25,9 +26,9 @@ const findRacingLength = (carNames) => {
   }
 };
 
-const findProgressionLength = (carNames, racingCount) => {
+const updateRacingProgress = (carNames, racingCount) => {
   assignZeroToArray(carNames);
-  printNotificationExecutionResult();
+  Console.print('\n실행 결과');
   for (let i = 0; i < racingCount; i++) {
     findRacingLength(carNames);
     printRacerAndRacingOutput(carNames, racingLengthStr);
@@ -35,4 +36,4 @@ const findProgressionLength = (carNames, racingCount) => {
   findWinners(carNames, racingLengthNum);
 };
 
-export default findProgressionLength;
+export default updateRacingProgress;

@@ -9,13 +9,12 @@ import {
   isRacingCountInputNoEmpty,
   isRacingCountTypeNumber,
 } from './validations/racingCountValidator.js';
-import findProgressionLength from './services/racingLength.js';
+import updateRacingProgress from './services/racingLength.js';
 
 class App {
   async run() {
     const carNamesInput = await getCarNamesInput();
     validateNotEmpty(carNamesInput);
-
     const carNameWords = splitAndTrimCarName(carNamesInput);
     validateStringInput(carNameWords);
 
@@ -23,7 +22,7 @@ class App {
       const racingCountInput = await getRacingCountInput();
       isRacingCountInputNoEmpty(racingCountInput);
       isRacingCountTypeNumber(racingCountInput);
-      findProgressionLength(carNameWords, racingCountInput);
+      updateRacingProgress(carNameWords, racingCountInput);
     }
   }
 }
