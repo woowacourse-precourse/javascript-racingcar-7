@@ -2,11 +2,31 @@ import { Console } from '@woowacourse/mission-utils';
 
 class InputHandler {
     async getCarNames() {
-        const input = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
-        if (input === '') {
+        const carNames = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
+        if (carNames === '') {
             throw new Error('[ERROR] 경주 하려면 자동차가 2대 이상 필요해요!');
         } else {
-            return input;
+            return this.splitCars(carNames);
+        }
+    }
+
+    splitCars(carNames) {
+        const names = carNames.split(',');
+        const hasEmptyName = names.some(car => car === '');
+        const nameTooLong = names.some(car => car.length > 5);
+        const notEnoughCars = names.length < 2;
+        const hasDuplicates = new Set(names).size !== names.length;
+
+        if (hasEmptyName) {
+            throw new Error('[ERROR] 누군가 참가용지에 이름을 쓰지 않았습니다!');
+        } else if (nameTooLong) {
+            throw new Error('[ERROR] 자동차 이름은 5자 이하로 입력해주세요!');
+        } else if (notEnoughCars) {
+            throw new Error('[ERROR] 경주 하려면 자동차가 2대 이상 필요해요!');
+        } else if (hasDuplicates) {
+            throw new Error('[ERROR] 중복된 자동차 이름이 있어요!');
+        } else {
+            return names;
         }
     }
 
