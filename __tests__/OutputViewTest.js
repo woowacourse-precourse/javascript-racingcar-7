@@ -1,3 +1,4 @@
+import OutputView from '../src/View/OutputView';
 import { getLogSpy } from './ApplicationTest';
 
 describe('OutputView', () => {
