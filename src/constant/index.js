@@ -15,7 +15,8 @@ const ERROR_MESSAGE = Object.freeze({
   CAR_NAME_NOT_ALLOWED_DUPLICATION: '[ERROR] 자동차의 이름이 중복되었습니다.',
   CAR_NAME_MAX_LENGTH_FIVE: '[ERROR] 자동차의 이름은 5자 이하만 가능합니다.',
   TRY_NUMBER_TYPE_ERROR: '[ERROR] 숫자만 입력 가능합니다.',
-  TRY_NUMBER_RANGE_ERROR: '[ERROR] 숫자만 입력 가능합니다.',
+  TRY_NUMBER_RANGE_ERROR: '[ERROR] 1이상의 숫자만 입력 가능합니다.',
+  TRY_NUMBER_IS_NOT_INTEGER_ERROR: '[ERROR] 양의 정수값만 입력 가능합니다.',
 });
 
 export { INPUT_MESSAGE, OUTPUT_MESSAGE, ERROR_MESSAGE };

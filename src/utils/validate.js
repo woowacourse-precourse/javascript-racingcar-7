@@ -1,6 +1,6 @@
 import { ERROR_MESSAGE } from '../constant/index.js';
 
-export const carNameValidate = (carNameArr) => {
+export const validateCarNames = (carNameArr) => {
   if (carNameArr.some((name) => name === '')) {
     throw new Error(ERROR_MESSAGE.CAR_NAME_NOT_ALLOWED_EMPTY);
   }
@@ -18,12 +18,16 @@ export const carNameValidate = (carNameArr) => {
   }
 };
 
-export const numberValidate = (tryNumber) => {
+export const validatePositiveInteger = (tryNumber) => {
   if (Number.isNaN(tryNumber)) {
     throw new Error(ERROR_MESSAGE.TRY_NUMBER_TYPE_ERROR);
   }
 
   if (tryNumber <= 0) {
     throw new Error(ERROR_MESSAGE.TRY_NUMBER_RANGE_ERROR);
+  }
+
+  if (!Number.isInteger(tryNumber)) {
+    throw new Error(ERROR_MESSAGE.TRY_NUMBER_IS_NOT_INTEGER_ERROR);
   }
 };
