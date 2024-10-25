@@ -1,6 +1,6 @@
 import carNameInput from "./UI/carNameInput.js";
 import trialCountInput from "./UI/trialCountInput.js";
-import createRacerInformation from "./racerData/\bcreateRacerInformation.js";
+import createRacerInformation from "./racerData/createRacerInformation.js";
 import raceProgression from "./feature/raceProgression.js";
 import getWinner from "./feature/getWinner.js";
 import errorHandler from "./Error/errorHandler.js";
