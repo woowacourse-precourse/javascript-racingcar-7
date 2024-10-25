@@ -16,6 +16,10 @@ class App {
     const inputRounds = await Console.readLineAsync(
       '시도할 횟수는 몇 회인가요?\n'
     );
+
+    for (let i = 0; i < inputRounds; i++) {
+      for (let j = 0; j < carNames.length; j++) {}
+    }
   }
 }
 
