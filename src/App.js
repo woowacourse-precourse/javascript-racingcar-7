@@ -13,7 +13,7 @@ class Car {
   }
 
   showPosition() {
-    Console.print(`${this.name}: ${'-'.repeat(this.position)}`);
+    Console.print(`${this.name} : ${'-'.repeat(this.position)}`);
   }
 }
 
@@ -41,7 +41,7 @@ class App {
       '시도할 횟수는 몇회인가요?\n'
     );
 
-    Console.print(`실행 결과\n`);
+    Console.print(`실행 결과`);
 
     const CARS = CAR_NAMES.map((name) => new Car(name));
 
@@ -56,7 +56,7 @@ class App {
     );
 
     Console.print(
-      `최종 우승자: ${WINNERS.map((winner) => winner.name).join(', ')}`
+      `최종 우승자 : ${WINNERS.map((winner) => winner.name).join(', ')}`
     );
   }
 }
