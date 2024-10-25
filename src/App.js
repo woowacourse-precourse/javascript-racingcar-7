@@ -1,7 +1,7 @@
-import { OUTPUT_MESSAGE_WINNER } from "./lib/constants.js";
-import Input from "./Input.js";
-import Race from "./Race.js";
-import { print } from "./lib/utils.js";
+import { OUTPUT_MESSAGE_WINNER } from './lib/constants.js';
+import Input from './Input.js';
+import Race from './Race.js';
+import { print } from './lib/utils.js';
 
 class App {
   async run() {
@@ -26,7 +26,7 @@ class App {
   }
 
   #printOutput(winnerCarArray) {
-    print(`${OUTPUT_MESSAGE_WINNER}${winnerCarArray.join(", ")}`);
+    print(`${OUTPUT_MESSAGE_WINNER}${winnerCarArray.join(', ')}`);
   }
 }
 

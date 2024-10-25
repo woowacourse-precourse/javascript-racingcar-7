@@ -4,24 +4,24 @@ import {
   ERROR_MESSAGE_USER_INPUT,
   INPUT_MESSAGE_CAR_NAMES,
   INPUT_MESSAGE_TRY_COUNT,
-} from "./lib/constants.js";
+} from './lib/constants.js';
 import {
   checkArrayAllUnique,
   readLineAsync,
   splitIntoArray,
   validatePositiveInteger,
-} from "./lib/utils.js";
+} from './lib/utils.js';
 
 class Input {
   static #CAR_NAME_REGEXP = /^\w{1,5}$/;
-  static #SEPARATOR = ",";
+  static #SEPARATOR = ',';
 
   #rawCars;
   #rawTryCount;
 
   constructor() {
-    this.#rawCars = "";
-    this.#rawTryCount = "";
+    this.#rawCars = '';
+    this.#rawTryCount = '';
   }
 
   async getUserInput() {
@@ -46,8 +46,8 @@ class Input {
   }
 
   #validateCarArray(carArray) {
-    const isAllCarValid = carArray.every((car) =>
-      Input.#CAR_NAME_REGEXP.test(car)
+    const isAllCarValid = carArray.every(car =>
+      Input.#CAR_NAME_REGEXP.test(car),
     );
     if (!isAllCarValid) throw new Error(ERROR_MESSAGE_CAR_NAME_INVALID);
 

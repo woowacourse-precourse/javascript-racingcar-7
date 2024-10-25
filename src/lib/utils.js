@@ -1,15 +1,15 @@
-import { MissionUtils } from "@woowacourse/mission-utils";
+import { MissionUtils } from '@woowacourse/mission-utils';
 import {
   ERROR_MESSAGE_NOT_INTEGER,
   ERROR_MESSAGE_NOT_NUMBER,
   ERROR_MESSAGE_NOT_POSITIVE_POSITIVE,
-} from "./constants.js";
+} from './constants.js';
 
-export const readLineAsync = async (message) => {
+export const readLineAsync = async message => {
   return await MissionUtils.Console.readLineAsync(message);
 };
 
-export const print = (message) => {
+export const print = message => {
   MissionUtils.Console.print(message);
 };
 
@@ -19,7 +19,7 @@ export const pickNumberInRange = (start, end) => {
 
 export const splitIntoArray = (str, separator) => str.split(separator);
 
-export const validatePositiveInteger = (num) => {
+export const validatePositiveInteger = num => {
   const isNumeric = getIsNumeric(num);
   if (!isNumeric) throw new Error(ERROR_MESSAGE_NOT_NUMBER);
 
@@ -30,12 +30,12 @@ export const validatePositiveInteger = (num) => {
   if (!isInteger) throw new Error(ERROR_MESSAGE_NOT_INTEGER);
 };
 
-export const getIsNumeric = (num) => {
-  if (typeof num != "number") return false;
+export const getIsNumeric = num => {
+  if (typeof num != 'number') return false;
   return !isNaN(num) && !isNaN(parseFloat(num));
 };
 
-export const getMapFilledZero = (array) => {
+export const getMapFilledZero = array => {
   const map = new Map();
   for (const item of array) {
     map.set(item, 0);
@@ -45,7 +45,7 @@ export const getMapFilledZero = (array) => {
 
 export const getRepeatedString = (str, repeatNum) => str.repeat(repeatNum);
 
-export const getMaxValueInMap = (map) => Math.max(...map.values());
+export const getMaxValueInMap = map => Math.max(...map.values());
 
 export const getKeyArrayHasTargetValueInMap = (map, targetValue) => {
   const array = [];
@@ -55,6 +55,6 @@ export const getKeyArrayHasTargetValueInMap = (map, targetValue) => {
   return array;
 };
 
-export const checkArrayAllUnique = (array) => {
+export const checkArrayAllUnique = array => {
   return array.length === [...new Set(array)].length;
 };

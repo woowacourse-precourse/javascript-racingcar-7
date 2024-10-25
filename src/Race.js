@@ -5,13 +5,13 @@ import {
   getRepeatedString,
   pickNumberInRange,
   print,
-} from "./lib/utils.js";
+} from './lib/utils.js';
 
 class Race {
   static #MIN_RANDOM = 0;
   static #MAX_RANDOM = 9;
   static #MOVE_FORWARD_THRESHOLD = 4;
-  static #TRACE_CHARACTER = "-";
+  static #TRACE_CHARACTER = '-';
 
   #carArray;
   #tryCount;
@@ -53,7 +53,7 @@ class Race {
   #printCarPosition(car, position) {
     const repeatedTraceChracter = getRepeatedString(
       Race.#TRACE_CHARACTER,
-      position
+      position,
     );
 
     print(`${car} : ${repeatedTraceChracter}`);
@@ -63,7 +63,7 @@ class Race {
     const maxTrace = getMaxValueInMap(this.#carTraceMap);
     const winnerCarArray = getKeyArrayHasTargetValueInMap(
       this.#carTraceMap,
-      maxTrace
+      maxTrace,
     );
     return winnerCarArray;
   }
