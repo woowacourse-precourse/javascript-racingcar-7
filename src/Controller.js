@@ -1,11 +1,13 @@
-import { Random, Console } from '@woowacourse/mission-utils';
-import View from './View.js';
+import { Random } from '@woowacourse/mission-utils';
+import OutputView from './View/OutputView.js';
+import InputView from './View/InputView.js';
 import CarModel from './CarModel.js';
 import { validateName, validateTryCount } from './validation.js';
 
 export default class Controller {
   constructor() {
-    this.view = new View();
+    this.inputView = new InputView();
+    this.outputView = new OutputView();
   }
 
   async start() {
@@ -13,8 +15,8 @@ export default class Controller {
     const count = await this.getCount();
 
     const cars = this.createCars(names);
-    this.view.printMessage();
-    this.view.printMessage('실행 결과');
+    this.outputView.printMessage();
+    this.outputView.printMessage('실행 결과');
 
     this.runRace(cars, count);
     this.findWinner(cars);
@@ -26,7 +28,7 @@ export default class Controller {
         const car = cars[j];
         this.runSingleRound(car);
       }
-      this.view.printMessage();
+      this.outputView.printMessage();
     }
   }
 
@@ -36,7 +38,7 @@ export default class Controller {
     const MaxCars = cars.filter((car) => car.step === max);
     const winners = MaxCars.map((car) => car.name);
 
-    this.view.printWinner(winners);
+    this.outputView.printWinner(winners);
   }
 
   runSingleRound(car) {
@@ -44,7 +46,7 @@ export default class Controller {
       car.move();
     }
 
-    this.view.printStep(car.name, car.step);
+    this.outputView.printStep(car.name, car.step);
   }
 
   createCars(names) {
@@ -66,7 +68,7 @@ export default class Controller {
   }
 
   async getNames() {
-    const rawInput = this.view.getInput(
+    const rawInput = this.inputView.getInput(
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n'
     );
 
@@ -79,7 +81,7 @@ export default class Controller {
   }
 
   async getCount() {
-    const count = this.view.getInput('시도할 횟수는 몇 회인가요?\n');
+    const count = this.inputView.getInput('시도할 횟수는 몇 회인가요?\n');
 
     validateTryCount(await count);
 
