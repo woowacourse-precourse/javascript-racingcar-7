@@ -142,8 +142,6 @@ describe("자동차 경주", () => {
         await expect(app.run()).rejects.toThrow("[ERROR]");
     });
 
-    test("기능 테스트,");
-
     test("기능 테스트, 공동 우승자 출력 테스트", async () => {
         // given
         const MOVING_FORWARD = 4;
