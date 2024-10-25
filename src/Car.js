@@ -9,10 +9,16 @@ class Car {
   }
 
   move(randomNumber) {
-    if (randomNumber < DECISION_POINT_NUMBER) {
+    if (randomNumber < this.#DECISION_POINT_NUMBER) {
       return this.#movingDistance;
     }
 
     return ++this.#movingDistance;
   }
+
+  getName() {
+    return this.#carName;
+  }
 }
+
+export default Car;
