@@ -1,4 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
+
+import CarRaceManager from './CarRaceManager.js';
 import { ERROR_MESSAGE, INPUT_MESSAGE } from './constants/index.js';
 
 const CAR_NAME_MAX_LENGTH = 5;
@@ -10,6 +12,9 @@ class App {
 
     const tryCount = await Console.readLineAsync(INPUT_MESSAGE.tryCount);
     this.#validateTryCount(tryCount);
+
+    const carRaceManager = new CarRaceManager(carNames, tryCount);
+    carRaceManager.race();
   }
 
   #parseEntries(input) {

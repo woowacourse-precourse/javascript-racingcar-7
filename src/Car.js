@@ -11,6 +11,10 @@ class Car {
     this.#distance = 0;
   }
 
+  getName() {
+    return this.#name;
+  }
+
   getDistance() {
     return this.#distance;
   }
