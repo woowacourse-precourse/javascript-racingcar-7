@@ -10,17 +10,17 @@ class RacingGame {
     this.cars = names.map((name) => new Car(name));
   }
 
-  doTry() {
+  attempt() {
     this.cars.forEach((car) => {
       car.tryMove();
       Console.print(`${car.name} : ${'-'.repeat(car.score)}`);
     });
   }
 
-  repeatTries(tries) {
+  repeatAttempts(attempts) {
     Console.print('\n실행 결과');
-    for (let tryCount = tries; tryCount > 0; tryCount -= 1) {
-      this.doTry();
+    for (let attemptCount = attempts; attemptCount > 0; attemptCount -= 1) {
+      this.attempt();
       Console.print('');
     }
   }
@@ -37,7 +37,7 @@ class RacingGame {
 
   play(names, counts) {
     this.createCars(names);
-    this.repeatTries(counts);
+    this.repeatAttempts(counts);
     this.getWinner(this.getHighestScore());
 
     return this.winner;

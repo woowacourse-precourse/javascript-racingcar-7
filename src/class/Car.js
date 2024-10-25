@@ -10,13 +10,17 @@ class Car {
     this.score = 0;
   }
 
+  canMoveForward(num) {
+    return num >= 4;
+  }
+
   moveForward() {
     this.score += 1;
   }
 
   tryMove() {
     const randomNumber = getRandomSingleDigit();
-    if (randomNumber >= 4) {
+    if (this.canMoveForward(randomNumber)) {
       this.moveForward();
     }
   }

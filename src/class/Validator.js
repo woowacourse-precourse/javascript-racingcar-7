@@ -1,7 +1,7 @@
 import { ERROR_MESSAGES } from '../constants/errorMessages';
 
 class Validator {
-  ValidateName(nameString) {
+  static validateName(nameString) {
     const names = nameString.split(',');
 
     if (names.length < 2) throw new Error(ERROR_MESSAGES.name.MIN_NAMES);
@@ -16,13 +16,13 @@ class Validator {
     return names;
   }
 
-  ValidateTry(tries) {
-    if (tries < 1) throw new Error(ERROR_MESSAGES.count.MIN_TRIES);
-    if (isNaN(tries)) throw new Error(ERROR_MESSAGES.count.NOT_NUMBER);
-    if (tries.toString().includes('.')) throw new Error(ERROR_MESSAGES.count.NOT_NATURAL_NUMBER);
-    if (tries.toString().length > 15) throw new Error(ERROR_MESSAGES.count.MAX_LENGTH);
+  static validateAttempt(attempts) {
+    if (attempts < 1) throw new Error(ERROR_MESSAGES.count.MIN_ATTEMPTS);
+    if (isNaN(attempts)) throw new Error(ERROR_MESSAGES.count.NOT_NUMBER);
+    if (attempts.toString().includes('.')) throw new Error(ERROR_MESSAGES.count.NOT_NATURAL_NUMBER);
+    if (attempts.toString().length > 15) throw new Error(ERROR_MESSAGES.count.MAX_LENGTH);
 
-    return tries;
+    return attempts;
   }
 }
 
