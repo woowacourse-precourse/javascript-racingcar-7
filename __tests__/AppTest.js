@@ -40,4 +40,14 @@ describe('자동차 경주', () => {
     expect(carList[0].getName()).toBe(NAMES[0]);
     expect(carList[1].getName()).toBe(NAMES[1]);
   });
+
+  test('자동차들이 가진 위치 값 중에서 가장 큰 위치의 값을 찾는다.', () => {
+    app.carList = [
+      { name: 'pobi', position: 2 },
+      { name: 'woni', position: 9 },
+      { name: 'jun', position: 3 },
+    ];
+
+    expect(app.getMaxPosition()).toBe(9);
+  });
 });
