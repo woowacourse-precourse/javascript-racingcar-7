@@ -15,6 +15,6 @@ export class OutputView {
   }
 
   static winner(arr) {
-    Console.print(MESSAGE.WINNER + arr.join(MESSAGE.WINNER_DELIMITER));
+    Console.print(MESSAGE.WINNER + arr);
   }
 }

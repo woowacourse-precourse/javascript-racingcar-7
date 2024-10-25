@@ -13,7 +13,6 @@ export const MESSAGE = {
   ATTEMPT_COUNT_INPUT: "시도할 횟수는 몇 회인가요?",
   ATTEMPT_RESULT: "실행 결과",
   LINE_BREAK: "\n",
-  WINNER_DELIMITER: ",",
   WINNER: "최종 우승자 : ",
 };
 
@@ -24,4 +23,9 @@ export const ERROR_MESSAGE = {
   CAR_NAME_SAME: "자동차 이름이 중복되었습니다.",
   NOT_NUMBER: "정수를 입력해주세요.",
   ATTEMPT_MIN: `최소 ${NUMBER.ATTEMPT_MIN}번 시도해야 합니다.`,
+};
+
+export const DELIMITER = {
+  CAR: ",",
+  WINNER: ",",
 };

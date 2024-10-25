@@ -15,7 +15,7 @@ class Car {
   }
 
   async getAttemptResult() {
-    let positionDash = `${this.#name} : ${this.#position}`;
+    const positionDash = `${this.#name} : ${this.#position}`;
 
     return positionDash;
   }

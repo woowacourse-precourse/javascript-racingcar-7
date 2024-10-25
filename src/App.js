@@ -1,37 +1,51 @@
-import { InputView } from "./View/InputView.js";
-import Race from "./Race.js";
 import { Validator } from "./Validator.js";
+import { InputView } from "./View/InputView.js";
 import { OutputView } from "./View/OutputView.js";
+import { DELIMITER } from "./Constants/constants.js";
+import Race from "./Race.js";
 
 class App {
+  #race;
+  #attemptCount;
+
   async run() {
-    const carNameList = await InputView.carNameList();
-    const carNameArr = await carNameList.split(",");
-    await this.validateCarName(carNameArr);
+    this.#race = new Race(await this.inputCarName());
+    this.#attemptCount = await this.inputAttemptCount();
 
-    const attemptCount = Number(await InputView.attemptCount());
-    await this.validateAttemptCount(attemptCount);
-
-    const race = new Race(carNameArr);
-
-    OutputView.progressResult();
-    for (let count = 0; count < attemptCount; count++) {
-      await race.progressCar();
-      OutputView.attemptResult(await race.attemptResult());
-      OutputView.lineBreak();
+    await OutputView.progressResult();
+    for (let count = 0; count < this.#attemptCount; count++) {
+      await this.progress();
     }
 
-    OutputView.winner(await race.winner());
+    await this.getWinner();
   }
 
-  async validateCarName(arr) {
-    Validator.carNameLength(arr);
-    Validator.carNameSame(arr);
+  async inputCarName() {
+    const carNameList = await InputView.carNameList();
+    const carNameArr = await carNameList.split(DELIMITER.CAR);
+    Validator.carNameLength(carNameArr);
+    Validator.carNameSame(carNameArr);
+
+    return carNameArr;
   }
 
-  async validateAttemptCount(number) {
-    Validator.isNumber(number);
-    Validator.attemptMin(number);
+  async inputAttemptCount() {
+    const attemptCount = Number(await InputView.attemptCount());
+    Validator.isNumber(attemptCount);
+    Validator.attemptMin(attemptCount);
+
+    return attemptCount;
+  }
+
+  async progress() {
+    await this.#race.progressCar();
+    OutputView.attemptResult(await this.#race.attemptResult());
+    OutputView.lineBreak();
+  }
+
+  async getWinner() {
+    const winners = await this.#race.winner();
+    OutputView.winner(winners.join(DELIMITER.WINNER));
   }
 }
 
