@@ -1,14 +1,14 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
-import CarList from '../model/CarList.js';
+import Car from '../model/Car.js';
 import CONSTANT from '../utils/constants/CONSTANT.js';
 
 class CarServices {
   constructor() {
-    this.carList = new CarList();
+    this.car = new Car();
   }
 
   getCarList(carNameList) {
-    return this.carList.createCarList(carNameList);
+    return this.car.createCar(carNameList);
   }
 
   checkMovement(carObj) {

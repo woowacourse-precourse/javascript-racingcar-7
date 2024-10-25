@@ -12,6 +12,16 @@ class Car {
     this.nameValidator.runAllFunction(carNameList);
     return carNameList;
   }
+
+  createCar(carNameList) {
+    const car = carNameList.map((name) => ({
+      name,
+      distance: '',
+      ranking: 0,
+    }));
+
+    return car;
+  }
 }
 
 export default Car;
