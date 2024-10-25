@@ -1,7 +1,9 @@
 import { getUserInputCarName } from '../src/App';
+import { Console } from '@woowacourse/mission-utils';
 
 describe('getUserInputCarName', () => {
   test('차 이름 추가', () => {
+    jest.spyOn(Console, 'readLineAsync');
     expect('pobi, woni, jun').toEqual(['pobi', 'woni', 'jun']);
   });
 

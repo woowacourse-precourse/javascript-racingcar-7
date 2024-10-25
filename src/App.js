@@ -1,6 +1,7 @@
 import { Console, Random } from '@woowacourse/mission-utils';
 
 // TODO: ApplicationTest.js 테스트 파일은 현재 skip 상태
+
 class App {
   async run() {
     const playerNames = await getUserInputCarName();
@@ -24,41 +25,43 @@ export async function getUserInputCarName() {
 function validatePlayerNames(playerNames) {
   // [ERROR] 5자를 초과하하거나 쉼표가 아닌 구분자
   const regex = /^[a-zA-Z0-9ㄱ-ㅣ가-힣]{1,5}$/;
-  if (!playerNames.every((player) => player.match(regex)))
+  if (!playerNames.some((player) => player.match(regex)))
     throw new Error('[ERROR]');
+
+  return formatUserInputForGameResult(playerNames);
+}
+
+function formatUserInputForGameResult(playerNames) {
+  const formattedUserInput = playerNames.map((key) => ({
+    name: key,
+    score: 0,
+  }));
+
+  return formattedUserInput;
 }
 
 function createCarRacing(playerNames, moveCount) {
   for (let i = 0; i < moveCount; i++) {
     displayResult(playerNames);
+    // TODO: 여기 있으니 줄바꿈이 moveCount만큼 되고 있음
     Console.print('\n');
   }
 }
 
+// TODO... 객체로 바꿔서 그 객체의 score를 올려줘야할듯
+
 // [ 'pobi', 'woni' ]
 function displayResult(playerNames) {
+  let score = 0;
   playerNames.forEach((player) => {
-    let score = 0;
     if (Random.pickNumberInRange(0, 9) > 4) score++;
     Console.print(`${player} : ${printHyphen(score)}\n`);
   });
-  // 메소드마다 랜덤 돌려서 4 이상이면 카운트 + 1
 }
 
+// TODO: 누적해서 결과값이 나오도록
 function printHyphen(score) {
   return '-'.repeat(score);
 }
 
-// getRandomNumber
-// 인자마다 랜덤 API 돌면서 4 이상하고 true / false 담긴 벼앨 반환
-// Random.pickNumberInRange(0, 9);
-
-// displayResult
-// getRandomNumber return값을 바탕으로
-// map 돌면서 화면 단에 포매팅해서 그려주기
-// true면 결과값 반환
-// 아마도 카운트 계속 추가?
-
-// 시도횟수까지 반복
-
-const score = 0;
+// function findGameWinner(){}
