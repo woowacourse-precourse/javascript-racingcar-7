@@ -87,6 +87,25 @@ class RacingGame {
       });
       Console.print('');
     }
+
+    return this;
+  }
+
+  getWinnerNames() {
+    const furthestPosition = Math.max(
+      ...this.#cars.map((car) => car.getPositionAtSecond(this.#ranForSeconds))
+    );
+
+    const winnerNames = this.#cars
+      .filter((car) => car.getPositionAtSecond(this.#ranForSeconds) === furthestPosition)
+      .map((car) => car.getName());
+
+    return winnerNames;
+  }
+
+  printWinners() {
+    const winnerNames = this.getWinnerNames();
+    Console.print(`최종 우승자 : ${winnerNames.join(', ')}`);
   }
 }
 

@@ -6,12 +6,12 @@ class App {
   async run() {
     const inputString = await Console.readLineAsync(QUERIES.CAR_NAMES);
     const carNames = inputString.split(",").map((carName) => carName.trim());
-
     const race = new RacingGame(carNames);
 
     const seconds = Number(await Console.readLineAsync(QUERIES.SECONDS));
     race.playFor(seconds)
-      .printHistory();
+      .printHistory()
+      .printWinners();
   }
 }
 

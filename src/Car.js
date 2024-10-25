@@ -14,6 +14,10 @@ class Car {
     return betweenZeroNine >= 4;
   }
 
+  getName() {
+    return this.#name;
+  }
+
   runForSeconds(seconds) {
     this.#positionHistory = Array(seconds + 1);
     this.#positionHistory[0] = 0;
@@ -33,6 +37,11 @@ class Car {
   getStateAtSecond(second) {
     this.ensureSecondInRange(second);
     return `${this.#name} : ${'-'.repeat(this.#positionHistory[second])}`;
+  }
+
+  getPositionAtSecond(second) {
+    this.ensureSecondInRange(second);
+    return this.#positionHistory[second];
   }
 }
 
