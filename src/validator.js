@@ -1,4 +1,4 @@
-import { isEmpty, startsWithComma, endsWithComma, isDuplicatedComma, hasNameLongerThanFive, isValidAttemptCount } from './utils/validateInput';
+import { isEmpty, startsWithComma, endsWithComma, isDuplicatedComma, hasNameLongerThanFive, isValidAttemptCount } from './utils/validateInput.js';
 
 const userInputValidator = (input) => {
     if (isEmpty(input)) {
