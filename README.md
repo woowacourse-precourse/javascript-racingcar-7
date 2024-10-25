@@ -107,7 +107,11 @@ jun : -----
      - generateRandomNumber()로 난수를 생성한 뒤 canMoveForward(randomValue)의 반환값이 true면 distance에 1을 더한다.
 
   4. **getDistance()**
-     - 현재 자동차의 거리를 출력한다.
+
+     - 현재 자동차의 거리를 반환
+
+  5. **getName()**
+     - 자동차의 이름을 반환
 
 ### Race Class
 

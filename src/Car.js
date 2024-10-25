@@ -23,6 +23,10 @@ class Car {
   getDistance() {
     return this.distance;
   }
+
+  getName() {
+    return this.name;
+  }
 }
 
 export default Car;

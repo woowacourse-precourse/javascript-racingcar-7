@@ -44,15 +44,17 @@ class Race {
     this.cars.forEach((car) => {
       car.move();
       MissionUtils.Console.print(
-        `${car.name} : ${"-".repeat(car.getDistance())}`
+        `${car.getName()} : ${"-".repeat(car.getDistance())}`
       );
     });
   }
   getWinners() {
-    const maxDistance = Math.max(...this.cars.map((car) => car.distance));
+    const maxDistance = Math.max(
+      ...Array.from(this.cars, (car) => car.distance)
+    );
     const winners = this.cars
       .filter((car) => car.distance === maxDistance)
-      .map((car) => car.name);
+      .map((car) => car.getName());
 
     return winners;
   }
