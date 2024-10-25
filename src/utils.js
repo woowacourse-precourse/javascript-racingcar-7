@@ -3,7 +3,7 @@ import {
   ERROR_MESSAGE_NOT_INTEGER,
   ERROR_MESSAGE_NOT_NUMBER,
   ERROR_MESSAGE_NOT_POSITIVE_POSITIVE,
-} from "./constants";
+} from "./constants.js";
 
 export const readLineAsync = async (message) => {
   return await MissionUtils.Console.readLineAsync(message);

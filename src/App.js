@@ -1,7 +1,7 @@
-import { OUTPUT_MESSAGE_WINNER } from "./constants";
-import Input from "./Input";
-import Race from "./Race";
-import { print } from "./utils";
+import { OUTPUT_MESSAGE_WINNER } from "./constants.js";
+import Input from "./Input.js";
+import Race from "./Race.js";
+import { print } from "./utils.js";
 
 class App {
   async run() {

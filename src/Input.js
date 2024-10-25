@@ -4,13 +4,13 @@ import {
   ERROR_MESSAGE_USER_INPUT,
   INPUT_MESSAGE_CAR_NAMES,
   INPUT_MESSAGE_TRY_COUNT,
-} from "./constants";
+} from "./constants.js";
 import {
   checkArrayAllUnique,
   readLineAsync,
   splitIntoArray,
   validatePositiveInteger,
-} from "./utils";
+} from "./utils.js";
 
 class Input {
   static #CAR_NAME_REGEXP = /^\w{1,5}$/;
