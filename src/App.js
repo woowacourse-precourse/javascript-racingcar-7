@@ -3,6 +3,7 @@ import { getCarsName, getAttemptNumber } from "./inputView.js";
 import { checkAttemptNum, checkCarsName } from "./validate.js";
 import Car from './Car.js'
 import Race from './Race.js';
+import { printEachRoundResult } from "./outputView.js";
 
 class App {
   async run() {
@@ -14,6 +15,10 @@ class App {
     const attemptNum = await getAttemptNumber();
 
     checkAttemptNum(attemptNum);
+
+    const carRace = new Race(carsList);
+
+    printEachRoundResult(carRace, attemptNum);
   }
 }
 

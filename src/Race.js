@@ -2,9 +2,8 @@ import { Console } from '@woowacourse/mission-utils';
 import Car from './Car.js';
 
 class Race {
-    constructor(carsList, round) {
+    constructor(carsList) {
         this.cars = carsList.map(name => new Car(name));
-        this.round = round;
     }
 
     start() {
