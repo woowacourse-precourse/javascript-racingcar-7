@@ -1,5 +1,6 @@
 import checkDuplicateCarName from "./checkDuplicateCarName.js";
 import createCarObjectList from "./createCarObjectList.js";
+import extractWinners from "./extractWinners.js";
 import getCarNameList from "./getCarNameList.js";
 import getUserInput from "./getUserInput.js";
 import startCarRace from "./startCarRace.js";
@@ -16,6 +17,7 @@ class App {
     const raceCount = await getUserInput("시도할 횟수는 몇 회인가요?\n");
     validateRaceCount(raceCount);
     startCarRace(carObjectList, raceCount);
+    const winners = extractWinners(carObjectList);
   }
 }
 
