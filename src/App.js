@@ -15,6 +15,10 @@ class App {
         }
 
         const inputTryCnt = await Console.readLineAsync("시도할 횟수는 몇 회인가요?");
+
+        if (isNaN(inputTryCnt)) {
+            throw new Error("[ERROR] 시도할 횟수는 숫자로 입력해야합니다.");
+        }
     }
 }
 
