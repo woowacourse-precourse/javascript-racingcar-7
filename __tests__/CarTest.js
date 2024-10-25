@@ -1,8 +1,13 @@
 import Car from '../src/Car';
 import { MissionUtils } from '@woowacourse/mission-utils';
 
-const mockCanMoveForward = (input) => {
-  Car.canMoveForward = jest.fn().mockReturnValue(input);
+const mockCanMoveForward = (results) => {
+  Car.canMoveForward = jest.fn();
+
+  results.reduce(
+    (acc, result) => acc.mockReturnValueOnce(result),
+    Car.canMoveForward,
+  );
 };
 
 const mockRandoms = (number) => {
@@ -15,7 +20,7 @@ describe('자동차 클래스', () => {
     const car = new Car('pobi');
 
     //when
-    const carName = car.getName();
+    const carName = car.name;
 
     //then
     expect(carName).toEqual('pobi');
@@ -51,15 +56,17 @@ describe('자동차 클래스', () => {
   });
 
   test.each([
-    [true, 1],
-    [false, 0],
+    [[true, true, false, true], 3],
+    [[true, false, false], 1],
   ])('전진횟수 증가 메서드 테스트', (inputs, expected) => {
     //given
     const car = new Car('pobi');
     mockCanMoveForward(inputs);
 
     //when
-    car.tryMoveForward();
+    for (let i = 0; i < inputs.length; i++) {
+      car.tryMoveForward();
+    }
 
     //then
     expect(car.moveCnt).toBe(expected);
