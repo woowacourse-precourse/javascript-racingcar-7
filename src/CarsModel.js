@@ -18,7 +18,7 @@ class CarsModel {
   }
 
   moveCars() {
-    for (const [carName, carMoveCount] of this.#carsMap) {
+    this.#carsMap.forEach((carMoveCount, carName) => {
       const randomNum = MissionUtils.Random.pickNumberInRange(
         RULES.RANDOM_MIN,
         RULES.RANDOM_MAX,
@@ -26,15 +26,17 @@ class CarsModel {
       if (randomNum >= RULES.MOVE_THRESHOLD) {
         this.#carsMap.set(carName, carMoveCount + 1);
       }
-    }
+    });
   }
 
   getWinners() {
     const winningMoveCount = Math.max(...this.#carsMap.values());
+
     const winners = [];
-    for (const [carName, carMoveCount] of this.#carsMap) {
+    this.#carsMap.forEach((carMoveCount, carName) => {
       if (carMoveCount === winningMoveCount) winners.push(carName);
-    }
+    });
+
     return winners;
   }
 }

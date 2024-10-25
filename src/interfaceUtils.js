@@ -7,10 +7,10 @@ export function getInputAsync(message) {
 
 export function printCarsMove(carsMap) {
   Console.print("");
-  for (const [carName, carMoveCount] of carsMap) {
+  carsMap.forEach((carMoveCount, carName) => {
     const moveDash = "-".repeat(carMoveCount);
     Console.print(`${carName} : ${moveDash}`);
-  }
+  });
 }
 
 export function printWinners(winners) {
