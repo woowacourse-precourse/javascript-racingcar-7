@@ -18,7 +18,10 @@ class App {
     );
 
     for (let i = 0; i < inputRounds; i++) {
-      for (let j = 0; j < carNames.length; j++) {}
+      for (let j = 0; j < carNames.length; j++) {
+        if (Random.pickNumberInRange(0, 9) >= 4) {
+        }
+      }
     }
   }
 }
