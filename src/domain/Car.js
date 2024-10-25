@@ -16,20 +16,10 @@ class Car {
   getWinnerList() {
     const maxForwardNum = Math.max(...this.forwardCounts);
 
-    let findIndexs = this.forwardCounts.indexOf(maxForwardNum);
-    let winnerIndexList = [];
-    while (findIndexs !== -1) {
-      winnerIndexList.push(findIndexs);
-      findIndexs = this.forwardCounts.indexOf(maxForwardNum, findIndexs + 1);
-    }
-
-    let winnerList = [];
-    this.carNames.filter((carName, carIndex) => {
-      const checkFindIndex = (index) => index === carIndex;
-      if (winnerIndexList.some(checkFindIndex)) {
-        winnerList.push(carName);
-      }
+    const winnerList = this.carNames.filter((_, carIndex) => {
+      return this.forwardCounts[carIndex] === maxForwardNum
     });
+
     return winnerList;
   }
 }
