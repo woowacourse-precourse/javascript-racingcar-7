@@ -1,37 +1,37 @@
-import {Random} from "@woowacourse/mission-utils";
+import { Random } from "@woowacourse/mission-utils";
 
-class RaceController{
+class RaceController {
 
-    createPlayersPositions(playerNumber){
-      const positions = Array(playerNumber).fill(0);
-      return positions;
-    }
-    movePlayersRandomly(peopleList){
-  
-      const updatedList = [...peopleList];
-  
-      for (let i = 0; i< peopleList.length; i++){
-        const num = Random.pickNumberInRange(0,9);
-        if (num >= 4){
-          updatedList[i] += 1;
-        }
+  createPlayersPositions(playerNumber) {
+    const positions = Array(playerNumber).fill(0);
+    return positions;
+  }
+  movePlayersRandomly(peopleList) {
+
+    const updatedList = [...peopleList];
+
+    for (let i = 0; i < peopleList.length; i++) {
+      const num = Random.pickNumberInRange(0, 9);
+      if (num >= 4) {
+        updatedList[i] += 1;
       }
-      return updatedList;
     }
-  
-    getRaceWinnersIndex (players, positions){
-      let maxValue = Math.max(...positions);
-      let winnersIndex = [];
-  
-      positions.forEach((value,index)=>{
-        if(value === maxValue){
-          winnersIndex.push(index);
-        }
-      })
-  
-      return winnersIndex;
-  
-    }
+    return updatedList;
   }
 
-  export default RaceController;
+  getRaceWinnersIndex(players, positions) {
+    let maxValue = Math.max(...positions);
+    let winnersIndex = [];
+
+    positions.forEach((value, index) => {
+      if (value === maxValue) {
+        winnersIndex.push(index);
+      }
+    })
+
+    return winnersIndex;
+
+  }
+}
+
+export default RaceController;

@@ -5,7 +5,7 @@ import UserInput from "./views/UserInput";
 import DisplayController from "./views/DisplayController";
 
 class App {
-  constructor (){
+  constructor() {
     this.userInput = new UserInput();
     this.validator = new Validator();
     this.raceController = new RaceController();
@@ -23,15 +23,15 @@ class App {
 
     this.validator.validateRound(userInputCount);
 
-    
+
     // Game start
     Console.print("\n실행 결과");
-    for (let i = 0; i < userInputCount; i++){
-      
+    for (let i = 0; i < userInputCount; i++) {
+
       let nextPostions = this.raceController.movePlayersRandomly(positions);
 
       positions = nextPostions;
-      this.displayController.displayPlayerPositions(userInputArray , positions);
+      this.displayController.displayPlayerPositions(userInputArray, positions);
     }
 
     let winnerArray = this.raceController.getRaceWinners(userInputArray, positions);
