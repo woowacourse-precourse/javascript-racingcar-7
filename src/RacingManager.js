@@ -8,7 +8,7 @@ class RacingManager {
     this.#nameInput = nameInput;
   }
 
-  #acceptCarNames() {
+  #normalizeCarNames() {
     const MAX_NAME_LENGTH = 5;
     const nameInput = this.#nameInput;
     const parsedNames = RacingManager.parseCarNames(nameInput);
@@ -17,7 +17,7 @@ class RacingManager {
   }
 
   register() {
-    const nameList = this.#acceptCarNames();
+    const nameList = this.#normalizeCarNames();
     const registeredCars = nameList.map((name) => new Car(name));
     return registeredCars;
   }
