@@ -3,12 +3,17 @@ import { INPUT_ERROR } from '../src/constants/errorMessages';
 import CarsInputParser from '../src/features/CarsInput/parser';
 import validateCars from '../src/features/CarsInput/validations';
 import validateCount from '../src/features/CountInput/validations';
+import throwError from '../src/utils/throwError';
 
 jest.mock('../src/utils/throwError', () =>
   jest.fn((message) => {
     throw new Error(`[ERROR] ${message}`);
   }),
 );
+
+test('should mock throwError correctly', () => {
+  expect(jest.isMockFunction(throwError)).toBe(true);
+});
 
 describe('features/CarsInput', () => {
   describe('parser', () => {

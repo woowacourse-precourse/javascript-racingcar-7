@@ -61,4 +61,10 @@
   - [x] CountInput 비정상 입력 시 올바른 오류를 출력하는지 확인한다.
 - [x] filterWinner.spec.js: finalPositions 배열을 받아 올바른 우승자 index를 리턴하는지 확인한다.
 
+- [x] runRace.spec.js
+
+  - [x] runRace가 자동차 위치를 올바르게 업데이트하는지 확인한다.
+  - [x] runRace가 올바른 파라미터로 printRaceStatus를 호출하는지 확인한다.
+  - [x] runRace가 moveForward의 반환 값을 사용하여 위치를 올바르게 업데이트하는지 확인한다.
+
 - 폴더 구조
