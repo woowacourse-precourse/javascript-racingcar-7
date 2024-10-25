@@ -1,5 +1,6 @@
 import App from '../src/App.js';
 import { MissionUtils } from '@woowacourse/mission-utils';
+import { ERROR_DETAILS } from '../src/constants.js';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -56,5 +57,20 @@ describe('자동차 경주', () => {
 
     // then
     await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('공백으로 입력된 자동차 이름이 있으면 에러를 던진다', async () => {
+    // given
+    const inputs = [''];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    app.run()
+      .catch(
+        (error) => expect(error.message).toMatch(ERROR_DETAILS.CARNAME_EMPTY),
+      );
   });
 });
