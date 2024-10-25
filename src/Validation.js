@@ -51,6 +51,13 @@ class Validation {
 
     return targetNames;
   }
+
+  static totalRounds(totalRounds) {
+    this.isNumber(totalRounds);
+    this.isValidTotalRounds(totalRounds);
+
+    return totalRounds;
+  }
 }
 
 export default Validation;
