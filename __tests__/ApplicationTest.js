@@ -1,5 +1,6 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
+import { ERROR_BLANK,ERROR_STRING_OVER_5,ERROR_DUPLICATE,ERROR_INVALID_MOVE_COUNT,ERROR_INVALID_INPUT_TYPE } from "../src/constants/errorContants.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -118,7 +119,7 @@ describe("자동차 경주", () => {
     const app = new App();
   
     // then
-    await expect(app.run()).rejects.toThrow("[ERROR] : 공백은 입력될 수 없습니다.");
+    await expect(app.run()).rejects.toThrow(ERROR_BLANK);
   });
 
   test.each([
@@ -135,7 +136,7 @@ describe("자동차 경주", () => {
     const app = new App();
   
     // then
-    await expect(app.run()).rejects.toThrow("[ERROR] : 자동차 이름은 5자 이하만 가능합니다.");
+    await expect(app.run()).rejects.toThrow(ERROR_STRING_OVER_5);
   });
 
   test.each([
@@ -152,7 +153,7 @@ describe("자동차 경주", () => {
     const app = new App();
   
     // then
-    await expect(app.run()).rejects.toThrow("[ERROR] : 중복된 이름은 입력할 수 없습니다.");
+    await expect(app.run()).rejects.toThrow(ERROR_DUPLICATE);
   });
   
 });

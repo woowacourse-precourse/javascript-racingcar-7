@@ -1,4 +1,6 @@
 import { Console, Random } from "@woowacourse/mission-utils";
+import { ERROR_BLANK,ERROR_STRING_OVER_5,ERROR_DUPLICATE,ERROR_INVALID_MOVE_COUNT,ERROR_INVALID_INPUT_TYPE,throwError } from "../src/constants/errorContants.js";
+
 
 class App {
   async run() {
@@ -39,21 +41,15 @@ function validateInput(cars) {
 }
 
 function validateBlank(car) {
-  if (car == "") {
-    throw Error(["[ERROR] : 공백은 입력될 수 없습니다."]);
-  }
+  if (car == "") throwError(ERROR_BLANK);
 }
 
 function validateOver5(car) {
-  if (car.length > 5) {
-    throw Error(["[ERROR] : 자동차 이름은 5자 이하만 가능합니다."]);
-  }
+  if (car.length > 5) throwError(ERROR_STRING_OVER_5);
 }
 
 function validateDuplicate(cars) {
-  if (cars.length !== new Set(cars).size) {
-    throw Error(["[ERROR] : 중복된 이름은 입력할 수 없습니다."]);
-  }
+  if (cars.length !== new Set(cars).size) throwError(ERROR_DUPLICATE);
 }
 async function inputMoveCount() {
   const inputCount = String(
@@ -63,15 +59,9 @@ async function inputMoveCount() {
   return Number(inputCount);
 }
 function validateInputCount(count) {
-  if (count == "") {
-    throw Error(["[ERROR] : 공백이 입력되었습니다."]);
-  }
-  if (isNaN(count)) {
-    throw Error(["[ERROR] : 숫자를 입력해주세요."]);
-  }
-  if (count <= 0) {
-    throw Error(["[ERROR] : 1 이상의 시도횟수를 입력해주세요."]);
-  }
+  if (count == "") throwError(ERROR_BLANK);
+  if (isNaN(count)) throwError(ERROR_INVALID_INPUT_TYPE);
+  if (count <= 0) throwError(ERROR_INVALID_MOVE_COUNT)
 }
 
 function startRace(cars, moveCount) {
