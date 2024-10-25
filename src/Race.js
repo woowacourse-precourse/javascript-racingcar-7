@@ -65,7 +65,8 @@ export default class Race {
       MissionUtils.Console.print("");
     }
   }
-  logRaceResult() {
+
+  printRaceResult() {
     this.cars.forEach((car) => {
       car.move();
       MissionUtils.Console.print(
@@ -74,7 +75,7 @@ export default class Race {
     });
   }
 
-  logWinners() {
+  printWinners() {
     const maxDistance = Math.max(...this.cars.map((car) => car.distance));
     const winners = this.cars
       .filter((car) => car.distance === maxDistance)
