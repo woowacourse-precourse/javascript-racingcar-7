@@ -9,9 +9,10 @@ class RacingManager {
   }
 
   #acceptCarNames() {
+    const MAX_NAME_LENGTH = 5;
     const nameInput = this.#nameInput;
     const parsedNames = RacingManager.parseCarNames(nameInput);
-    const carNames = Validation.carNames(parsedNames);
+    const carNames = Validation.carNames(parsedNames, MAX_NAME_LENGTH);
     return carNames;
   }
 
