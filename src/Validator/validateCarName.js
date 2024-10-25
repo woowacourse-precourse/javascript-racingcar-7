@@ -34,14 +34,6 @@ const checkOneCarInput = (carNames) => {
 };
 
 /**@type {ValidationFunction} */
-const checkContainCommaCarName = (carNames) => {
-  if (carNames.some((name) => name.trim() === ''))
-    throwError(CAR_NAME_ERROR_MESSAGE.CONTAIN_COMMA);
-
-  return carNames;
-};
-
-/**@type {ValidationFunction} */
 const checkIncludeSpace = (carNames) => {
   if (carNames.some((name) => name.includes(' ')))
     throwError(CAR_NAME_ERROR_MESSAGE.INCLUDE_SPACE);
@@ -68,7 +60,6 @@ const validateCarName = _pipe(
   checkEmpty,
   checkCarNameRange,
   checkOneCarInput,
-  checkContainCommaCarName,
   checkIncludeSpace,
   checkDuplicateCarName
 );
