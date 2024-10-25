@@ -1,18 +1,20 @@
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
 import CarNameValidations from "../validations/CarNameValidations.js";
+import RaceCountValidations from "../validations/RaceCountValidations.js";
 import parseCarNames from "../helpers/parseCarNames.js";
 
+// TODO: 컨트롤러 로직 별로 분리
 class Controller {
   async start() {
-    const carNamesInput = await InputView.readCarNameInput();
-    const carNames = parseCarNames(carNamesInput);
-    CarNameValidations(carNames);
+    // const carNamesInput = await InputView.readCarNameInput();
+    // const carNames = parseCarNames(carNamesInput);
+    // CarNameValidations(carNames);
 
     const raceCount = await InputView.readRaceCountInput();
     RaceCountValidations(raceCount);
 
-    // (Car) carNames 쉼표 기준으로 분리하여 배열로 저장
+
     // (Race) raceCount 만큼 경주 진행
     // (Race) 무작위 값 생성
     // (Car) 각 자동차별 무작위 값이 4 이상인지 확인 후 '-' 추가
