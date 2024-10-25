@@ -23,6 +23,8 @@ class App {
     const TRY_COUNT = await Console.readLineAsync(
       '시도할 횟수는 몇회인가요?\n'
     );
+
+    Console.print(`실행 결과\n`);
   }
 }
 
