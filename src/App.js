@@ -23,9 +23,10 @@ class App {
       car.distance += 1;
     }
 
-    // * 자동차의 거리만큼 '-' 출력
+    // * 자동차의 거리만큼 '-' 출력 //pobi : --
     const printCurrentCarDistanceResult = (car) => {
-      Console.print(`${car.name} : ${'-'.repeat(car.distance)}`); //pobi : --
+      Console.print(`${car.name} : ${"-".repeat(car.distance)}`); 
+      
     }
 
     try{
@@ -45,13 +46,31 @@ class App {
 
 
       // ! 자동차 경주하기 ==== //
-      const randomValue = getRandomValue();
+      // * n번 경주한다.
+      Console.print('\n실행 결과');
+      for (let i =0; i < n ; i++){
+        const randomValue = getRandomValue();
 
-      if (isValueMoreThanFour(randomValue)) {
-        increaseCarDistance(carArray[0]);
+        carArray.forEach((car) => {
+          if (isValueMoreThanFour(randomValue)) {
+            increaseCarDistance(car);
+          }
+        });
+        // console.log(carArray);
+        // * 경주가 끝나면 자동차를 순회하며 각 자동차 거리 출력    
+        carArray.forEach((car) => {
+          printCurrentCarDistanceResult(car);
+        });  
+
+        Console.print("");
+
       }
 
-      Console.print(printCurrentCarDistanceResult(carArray[0]));
+
+
+
+
+      
       // ! =================== //
     
     } catch(error) {

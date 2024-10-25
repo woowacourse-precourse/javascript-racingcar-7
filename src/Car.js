@@ -22,9 +22,9 @@ class Car {
 export default Car;
 
 // * 사용 예시
-const car = new Car({name : 'tesla'});
-console.log(car.distance); // get 명령으로 () 안 붙어도 됨
-car.distance = 123;
-console.log(car.distance);
+// const car = new Car({name : 'tesla'});
+// console.log(car.distance); // get 명령으로 () 안 붙어도 됨
+// car.distance = 123;
+// console.log(car.distance);
 
 
