@@ -1,35 +1,52 @@
-import { CAR_NAME_ERROR_MESSAGE } from '../constants/messages';
-import User from '../user/User.js';
-import { validateCarName } from './validateCarName';
+import { CAR_NAME_ERROR_MESSAGE } from '../constants/messages.js';
+import { validateCarName } from './validateCarName.js';
 
-describe('자동차 이름 유효성 검증', () => {
-  /**@type {User} */
+describe('자동차 이름 입력 유효성 검사', () => {
+  describe('입력 값 검증', () => {
+    test('유효한 자동차 이름 입력시 에러를 던지지 않는다.', () => {
+      expect(() => validateCarName('car1,car2')).not.toThrow();
+    });
 
-  test('공백으로 입력하면 에러를 던진다', async () => {
-    expect(() => validateCarName('').toThrow(CAR_NAME_ERROR_MESSAGE.NO_INPUT));
+    test.each([
+      ['', CAR_NAME_ERROR_MESSAGE.NO_INPUT],
+      [',', CAR_NAME_ERROR_MESSAGE.NO_INPUT],
+      ['car1', CAR_NAME_ERROR_MESSAGE.ONE_CAR_NAME],
+      ['car1,', CAR_NAME_ERROR_MESSAGE.NO_INPUT],
+      [',car1', CAR_NAME_ERROR_MESSAGE.NO_INPUT],
+    ])('입력값 %s에 대해 에러를 던진다', (input, errorMessage) => {
+      expect(() => validateCarName(input)).toThrow(errorMessage);
+    });
   });
 
-  test('자동차 이름을 5자 이상 입력하면 에러를 던진다', () => {
-    expect(() => validateCarName('popeyes')).toThrow(
-      CAR_NAME_ERROR_MESSAGE.OUT_OF_RANGE
-    );
+  describe('자동차 입력 길이 검증', () => {
+    test('5자 이하로 입력할 경우 에러를 던지지 않는다', () => {
+      expect(() => validateCarName('abcd,abcde')).not.toThrow();
+    });
+    test.each([
+      ['123456', CAR_NAME_ERROR_MESSAGE.OUT_OF_RANGE],
+      ['12345,123456', CAR_NAME_ERROR_MESSAGE.OUT_OF_RANGE],
+    ])('5자를 초과하는 이름 %s에 대해 에러를 던진다', (input, errorMessage) => {
+      expect(() => validateCarName(input)).toThrow(errorMessage);
+    });
   });
 
-  test('자동차를 한 대만 입력했을 때 에러를 던진다', () => {
-    expect(() => validateCarName('car1')).toThrow(
-      CAR_NAME_ERROR_MESSAGE.ONE_CAR_NAME
-    );
+  describe('자동차 이름 공백 검증', () => {
+    test.each([
+      ['car 1,car2', CAR_NAME_ERROR_MESSAGE.INCLUDE_SPACE],
+      [' car1,car2', CAR_NAME_ERROR_MESSAGE.INCLUDE_SPACE],
+      ['car1, car2', CAR_NAME_ERROR_MESSAGE.INCLUDE_SPACE],
+      ['car1,car2 ', CAR_NAME_ERROR_MESSAGE.INCLUDE_SPACE],
+      ['car1,car 2', CAR_NAME_ERROR_MESSAGE.INCLUDE_SPACE],
+    ])('공백을 포함한 이름 %s에 대해 에러를 던진다', (input, errorMessage) => {
+      expect(() => validateCarName(input)).toThrow(errorMessage);
+    });
   });
 
-  test('자동차 이름에 공백을 포함하면 에러를 던진다', () => {
-    expect(() => validateCarName('car1,car2 ')).toThrow(
-      CAR_NAME_ERROR_MESSAGE.INCLUDE_SPACE
-    );
-  });
-
-  test('자동차 이름이 중복되면 에러를 던진다', () => {
-    expect(() => validateCarName('car1,car1')).toThrow(
-      CAR_NAME_ERROR_MESSAGE.DUPLICATE_CAR_NAME
-    );
+  describe('자동차 이름 중복 검증', () => {
+    test('자동차 이름이 중복되었을 경우 에러를 던진다', () => {
+      expect(() => validateCarName('car1,car2,car1')).toThrow(
+        CAR_NAME_ERROR_MESSAGE.DUPLICATE_CAR_NAME
+      );
+    });
   });
 });
