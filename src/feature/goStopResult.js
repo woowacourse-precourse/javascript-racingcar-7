@@ -1,3 +1,5 @@
+import { Random } from "@woowacourse/mission-utils";
+
 function goStopResult() {
   /** TODO:
    * 1. Random.pickNumberInRange 를 활용하여 0 ~ 9 사이의 무작위 숫자를 생성
@@ -6,4 +8,16 @@ function goStopResult() {
    *  - 4 이상일 경우 "-" 를 result에 할당
    * 4. result를 반환
    */
-}
+
+  const RANDOM_NUMBER = Random.pickNumberInRange(0,9);
+
+  let result = '';
+
+  if(RANDOM_NUMBER >= 4) {
+    result = '-';
+  };
+
+  return result;
+};
+
+export default goStopResult;
