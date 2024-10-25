@@ -8,14 +8,17 @@ class App {
     let arrCarName = inputCarName.split(",");
     let numberOfCars = arrCarName.length;
     carNameValidation(arrCarName);
+
     Console.print("시도할 횟수는 몇 회인가요?");
     let playTimes = await Console.readLineAsync("");
     playTimesValidation(playTimes);
+    
     Console.print("\n실행 결과");
     let cars = arrCarName.map((name) => new Car(name));
     for (let count = 0; count < playTimes; count++) {
       RoundResultPrint(cars);
     }
+    
     getWinner(cars);
   }
 }
