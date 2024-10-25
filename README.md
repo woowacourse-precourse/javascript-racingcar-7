@@ -40,7 +40,7 @@ MVC 패턴을 통한 기능 구현을 목표했습니다.
 
 - [ ] 게임 초기화
 - [ ] 게임 진행
-- [ ] 우승자 결정 함수
+- [ ] 우승자 결정
 
 ### 🛠 Utils
 
@@ -51,7 +51,7 @@ MVC 패턴을 통한 기능 구현을 목표했습니다.
 
 #### random.js (난수 생성)
 
-- [ ] 난수 생성 함수
+- [x] 난수 생성
   - MissionUtils.Random.pickNumberInRange 사용
 
 #### constants.js (상수 정의)
