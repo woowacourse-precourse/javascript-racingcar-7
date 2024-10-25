@@ -19,7 +19,7 @@ class CarRacingInputReader {
     return parseInt(input);
   }
 
-  validateInput(input) {
+  static validateInput(input) {
     if (!input.trim()) {
       throw new Error(`[ERROR] 값을 제대로 입력해주세요.`);
     }
