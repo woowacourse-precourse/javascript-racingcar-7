@@ -1,16 +1,16 @@
-import { printFinalWinner } from '../Views/outputView.js';
+import { printWinner } from '../Views/outputView.js';
 
-const findWinner = (carNamesInput, progressionNumForEachRacer) => {
-  const maxProgression = Math.max(...progressionNumForEachRacer);
+const findWinner = (carNamesInput, progressionNumForRacer) => {
+  const maxProgression = Math.max(...progressionNumForRacer);
 
-  let FindingMaxNumIndex = progressionNumForEachRacer.indexOf(maxProgression);
+  let FindingMaxNumIndex = progressionNumForRacer.indexOf(maxProgression);
   let winnerName = [];
 
   while (FindingMaxNumIndex != -1) {
     winnerName.push(carNamesInput[FindingMaxNumIndex]);
-    FindingMaxNumIndex = progressionNumForEachRacer.indexOf(maxProgression, FindingMaxNumIndex + 1);
+    FindingMaxNumIndex = progressionNumForRacer.indexOf(maxProgression, FindingMaxNumIndex + 1);
   }
-  printFinalWinner(winnerName);
+  printWinner(winnerName);
 };
 
 export { findWinner };

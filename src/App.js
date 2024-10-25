@@ -1,18 +1,18 @@
 import { getCarNamesInput, getRacingCountInput } from './views/inputView.js';
-import { isCarNamesInputNoEmpty, isCarNamesInputTypeOfNum, isCarNamesInputValidatedLength } from './errors/carNamesErrors.js';
+import { validateNotEmpty, validateStringInput, validateLength } from './validations/carNamesValidator.js';
 import splitAndTrimCarName from './models/carNamesTrimmer.js';
-import { isRacingCountInputNoEmpty, isRacingCountTypeNumber } from './errors/racingCountErrors.js';
+import { isRacingCountInputNoEmpty, isRacingCountTypeNumber } from './validations/racingCountValidator.js';
 import findProgressionLength from './models/racingProgressionLength.js';
 
 class App {
   async run() {
     const carNamesInput = await getCarNamesInput();
-    isCarNamesInputNoEmpty(carNamesInput);
+    validateNotEmpty(carNamesInput);
  
     const carNameWords = splitAndTrimCarName(carNamesInput);
-    isCarNamesInputTypeOfNum(carNameWords);
+    validateStringInput(carNameWords);
 
-    if (isCarNamesInputValidatedLength(carNameWords)) {
+    if (validateLength(carNameWords)) {
       const racingCountInput = await getRacingCountInput();
       isRacingCountInputNoEmpty(racingCountInput);
       isRacingCountTypeNumber(racingCountInput);

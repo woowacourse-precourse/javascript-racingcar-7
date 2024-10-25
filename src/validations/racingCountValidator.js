@@ -10,9 +10,7 @@ const isRacingCountTypeNumber = racingCountInput => {
   if (!isNaN(racingCountInput)) {
     return true;
   }
-  if (isNaN(racingCountInput)) {
-    throw new Error(ERROR_MESSAGES.NOT_NUMBER);
-  }
+  throw new Error(ERROR_MESSAGES.NOT_NUMBER);
 };
 
 export { isRacingCountInputNoEmpty, isRacingCountTypeNumber };

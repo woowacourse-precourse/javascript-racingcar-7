@@ -1,13 +1,13 @@
 import { Random } from '@woowacourse/mission-utils';
-import { printNotificationExecutionResult, printRacingProgressOutput } from '../Views/outputView.js';
+import { printNotificationExecutionResult, printRacerAndRacingOutput } from '../Views/outputView.js';
 import { findWinner } from './findingWinner.js';
 
-let progressionNumberForEachRacer = [];
-let progressionLengthForEachRacer = [];
+let racingLengthNum = [];
+let racingLengthStr = [];
 
 const assignZeroToArray = carNamesInput => {
   for (let i = 0; i < carNamesInput.length; i++) {
-    progressionNumberForEachRacer.push(Number('0'));
+    racingLengthNum.push(Number('0'));
   }
 };
 
@@ -17,15 +17,15 @@ const findProgressionLength = (carNamesInput, racingCountInput) => {
 
   for (let i = 0; i < racingCountInput; i++) {
     for (let j = 0; j < carNamesInput.length; j++) {
-      const randomNumber = Random.pickNumberInRange(0, 9);
-      if (randomNumber >= 4) {
-        progressionNumberForEachRacer[j] += 1;
+      const randomNum = Random.pickNumberInRange(0, 9);
+      if (randomNum >= 4) {
+        racingLengthNum[j] += 1;
       }
-      progressionLengthForEachRacer[j] = '-'.repeat(progressionNumberForEachRacer[j]);
+      racingLengthStr[j] = '-'.repeat(racingLengthNum[j]);
     }
-    printRacingProgressOutput(carNamesInput, progressionLengthForEachRacer);
+    printRacerAndRacingOutput(carNamesInput, racingLengthStr);
   }
-  findWinner(carNamesInput, progressionNumberForEachRacer);
+  findWinner(carNamesInput, racingLengthNum);
 };
 
 export default findProgressionLength;

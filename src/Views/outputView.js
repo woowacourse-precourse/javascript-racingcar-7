@@ -4,15 +4,15 @@ const printNotificationExecutionResult = () => {
   Console.print('\n실행 결과');
 };
 
-const printRacingProgressOutput = (carNamesInput, progressionLengthForEachRacer) => {
+const printRacerAndRacingOutput = (carNamesInput, progressionLengthForRacers) => {
   for (let i = 0; i < carNamesInput.length; i += 1) {
-    Console.print(`${carNamesInput[i]} : ${progressionLengthForEachRacer[i]}`);
+    Console.print(`${carNamesInput[i]} : ${progressionLengthForRacers[i]}`);
   }
   Console.print('\n');
 };
 
-const printFinalWinner = MaxNumberNames => {
+const printWinner = MaxNumberNames => {
   Console.print('최종 우승자 : ' + MaxNumberNames.join(', '));
 };
 
-export { printNotificationExecutionResult, printRacingProgressOutput, printFinalWinner };
+export { printNotificationExecutionResult, printRacerAndRacingOutput, printWinner };
