@@ -8,8 +8,8 @@ export const GAME_PROGRESS_MESSAGE = Object.freeze({
 
 export const ERROR_MESSAGE = Object.freeze({
   NO_WHITESPACE: '입력값에 공백이 포함되어서는 안 됩니다.',
-  INVALID_SEPARATOR: '쉼표(,) 외의 다른 구분자를 사용할 수 없습니다.',
+  INVALID_SPECIAL_CHARACTERS: '이름에 특수문자를 사용할 수 없습니다.',
   MAX_LENGTH_EXCEEDED: '자동차 이름은 5자 이하만 가능합니다.',
-  INVALID_CHARACTERS: '자동차 이름은 문자만 포함해야 합니다.',
-  NON_POSITIVE_NUMBER: '시도할 횟수는 양수여야 합니다.',
+  INVALID_NUMERIC_CHARACTERS: '자동차 이름에는 숫자를 사용할 수 없습니다.',
+  NON_POSITIVE_NUMBER: '시도할 횟수는 양의 정수여야 합니다.',
 });

@@ -6,7 +6,7 @@ function validateNoWhiteSpace(carName) {
 
 function validateOnlyLetters(carName) {
   if (/\d/.test(carName))
-    throw new Error(`${ERROR_MESSAGE.INVALID_CHARACTERS}`);
+    throw new Error(`${ERROR_MESSAGE.INVALID_NUMERIC_CHARACTERS}`);
 }
 
 function validateMaxFiveChars(carName) {
