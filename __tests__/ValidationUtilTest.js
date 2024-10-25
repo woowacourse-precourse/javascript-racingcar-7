@@ -11,17 +11,18 @@ import {
 } from '../src/util/validationUtil';
 
 describe('validateUtil 함수 테스트', () => {
-  test('빈 문자열 입력시 예외 처리', () => {
-    const emptyInput = '';
-    const whitespaceInput = '   ';
-    expect(() => checkEmptyString(emptyInput)).toThrow(ERROR.EMPTY_STRING);
-    expect(() => checkEmptyString(whitespaceInput)).toThrow(ERROR.EMPTY_STRING);
+  test.each([
+    [{ input: '', error: ERROR.EMPTY_STRING }],
+    [{ input: '  ', error: ERROR.EMPTY_STRING }],
+  ])('빈 문자열 입력시 예외 처리', ({ input, error }) => {
+    expect(() => checkEmptyString(input)).toThrow(error);
   });
 
-  test('자동차 이름을 1개 이하로 입력시 예외 처리', () => {
-    const input = ['pobi'];
-
-    expect(() => checkMinCarNumber(input)).toThrow(ERROR.MIN_CAR_NUMBER);
+  test.each([
+    [{ input: ['pobi'], error: ERROR.MIN_CAR_NUMBER }],
+    [{ input: [''], error: ERROR.MIN_CAR_NUMBER }],
+  ])('자동차 이름을 1개 이하로 입력시 예외 처리 ', ({ input, error }) => {
+    expect(() => checkMinCarNumber(input)).toThrow(error);
   });
 
   test('자동차 이름 21개 이상 입력시 예외 처리', () => {
@@ -44,34 +45,30 @@ describe('validateUtil 함수 테스트', () => {
     );
   });
 
-  test('시도 횟수 1이하인 경우 예외 처리', () => {
-    const negativeInput = '-1';
-    const zeroInput = '0';
-
-    expect(() => checkMinTryNumber(negativeInput)).toThrow(
-      ERROR.MIN_TRY_NUMBER,
-    );
-    expect(() => checkMinTryNumber(zeroInput)).toThrow(ERROR.MIN_TRY_NUMBER);
+  test.each([
+    { input: -1, error: ERROR.MIN_TRY_NUMBER },
+    { input: 0, error: ERROR.MIN_TRY_NUMBER },
+    { input: -5, error: ERROR.MIN_TRY_NUMBER },
+  ])('시도 횟수 1 이하인 경우 예외 처리', ({ input, error }) => {
+    expect(() => checkMinTryNumber(input)).toThrow(error);
   });
 
   test(`시도 횟수 10001번 이상인 경우 예외 처리`, () => {
-    const failInput = '10001';
-    const trueInput = '10000';
+    const failInput = 10001;
+    const trueInput = 10000;
 
     expect(() => checkMaxTryNumber(trueInput)).not.toThrow();
     expect(() => checkMaxTryNumber(failInput)).toThrow(ERROR.MAX_TRY_NUMBER);
   });
 
-  test('시도 횟수가 정수가 아닌 경우 예외 처리', () => {
-    const floatInput = '2.55';
-    const textInput = 'ab';
-
-    expect(() => checkIntegerTryNumber(floatInput)).toThrow(
-      ERROR.INTEGER_TRY_NUMBER,
-    );
-
-    expect(() => checkIntegerTryNumber(textInput)).toThrow(
-      ERROR.INTEGER_TRY_NUMBER,
-    );
-  });
+  test.each([
+    { input: 2.55, error: ERROR.INTEGER_TRY_NUMBER },
+    { input: 'ab', error: ERROR.INTEGER_TRY_NUMBER },
+    { input: 1.5, error: ERROR.INTEGER_TRY_NUMBER },
+  ])(
+    '시도 횟수가 정수가 아닌 경우 예외 처리 (입력값: %s)',
+    ({ input, error }) => {
+      expect(() => checkIntegerTryNumber(input)).toThrow(error);
+    },
+  );
 });

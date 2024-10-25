@@ -28,18 +28,34 @@ const getLogSpy = () => {
 };
 
 describe('RacingCarController 클래스 테스트', () => {
-  test('실제 어플리케이션 동작 테스트', async () => {
-    const inputs = ['pobi,woni,yeon', 2];
-    const randomValue = [5, 1, 7, 4, 4, 6];
-    const logs = [
-      'pobi : -',
-      'woni : ',
-      'yeon : -',
-      'pobi : --',
-      'woni : -',
-      'yeon : --',
-      '최종 우승자 : pobi, yeon',
-    ];
+  test.each([
+    {
+      inputs: ['pobi,woni,yeon', 2],
+      randomValue: [5, 1, 7, 4, 4, 6],
+      logs: [
+        'pobi : -',
+        'woni : ',
+        'yeon : -',
+        'pobi : --',
+        'woni : -',
+        'yeon : --',
+        '최종 우승자 : pobi, yeon',
+      ],
+    },
+    {
+      inputs: ['pobi,woni,yeon', 2],
+      randomValue: [6, 6, 9, 5, 6, 6],
+      logs: [
+        'pobi : -',
+        'woni : -',
+        'yeon : -',
+        'pobi : --',
+        'woni : --',
+        'yeon : --',
+        '최종 우승자 : pobi, woni, yeon',
+      ],
+    },
+  ])('실제 어플리케이션 동작 테스트', async ({ inputs, randomValue, logs }) => {
     const logSpy = getLogSpy();
 
     mockQuestions(inputs);

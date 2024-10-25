@@ -25,7 +25,7 @@ describe('OutputView 테스트', () => {
     ];
     const output = ['pobi : ', 'woni : ---', 'yeongi : -----'];
 
-    outputView.printAdvancedResult(cars);
+    outputView.advancedResult(cars);
 
     output.forEach((log) =>
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log)),
@@ -33,7 +33,7 @@ describe('OutputView 테스트', () => {
   });
 
   test('빈 문자열 출력', () => {
-    outputView.printEmptyLine();
+    outputView.emptyLine();
 
     expect(logSpy).toHaveBeenCalledWith('');
   });
@@ -41,7 +41,7 @@ describe('OutputView 테스트', () => {
   test('인수로 전달 받은 문자열 출력', () => {
     const string = OUTPUT.EXCUTION_RESULT;
 
-    outputView.printString(string);
+    outputView.string(string);
 
     expect(logSpy).toHaveBeenCalledWith(OUTPUT.EXCUTION_RESULT);
   });
@@ -49,7 +49,7 @@ describe('OutputView 테스트', () => {
   test('우승자 출력', () => {
     const winners = ['pobi', 'yeongi'];
 
-    outputView.printWinners(winners);
+    outputView.winners(winners);
 
     expect(logSpy).toHaveBeenCalledWith('최종 우승자 : pobi, yeongi');
   });

@@ -24,38 +24,40 @@ describe('RacingCarService 테스트', () => {
     expect(racingCarService.cars[2].getName()).toBe('yeon');
   });
 
-  test('저장된 모든 자동차 움직임 처리하기', () => {
-    const randoms = [4, 1, 9];
+  test.each([
+    {
+      randoms: [4, 1, 9],
+      result: [
+        { name: 'pobi', advancedCount: 1 },
+        { name: 'woni', advancedCount: 0 },
+        { name: 'yeon', advancedCount: 1 },
+      ],
+    },
+    {
+      randoms: [6, 1, 0],
+      result: [
+        { name: 'pobi', advancedCount: 1 },
+        { name: 'woni', advancedCount: 0 },
+        { name: 'yeon', advancedCount: 0 },
+      ],
+    },
+  ])('저장된 모든 자동차 움직임 처리하기', ({ randoms, result }) => {
     mockRandom(randoms);
-
-    const output = [
-      { name: 'pobi', advancedCount: 1 },
-      { name: 'woni', advancedCount: 0 },
-      { name: 'yeon', advancedCount: 1 },
-    ];
-
-    expect(racingCarService.processCarMovement()).toEqual(output);
+    expect(racingCarService.processCarMovement()).toEqual(result);
   });
 
-  test('우승자 가져오기 (동점인 경우)', () => {
-    const randoms = [4, 1, 9];
-    const output = ['pobi', 'yeon'];
-
+  test.each([
+    {
+      randoms: [4, 1, 9],
+      result: ['pobi', 'yeon'],
+    },
+    {
+      randoms: [6, 1, 0],
+      result: ['pobi'],
+    },
+  ])('우승자 가져오기', ({ randoms, result }) => {
     mockRandom(randoms);
-
     racingCarService.processCarMovement();
-
-    expect(racingCarService.getWinners()).toEqual(output);
-  });
-
-  test('우승자 가져오기 (우승자가 한명인 경우))', () => {
-    const randoms = [6, 1, 0];
-    const output = ['pobi'];
-
-    mockRandom(randoms);
-
-    racingCarService.processCarMovement();
-
-    expect(racingCarService.getWinners()).toEqual(output);
+    expect(racingCarService.getWinners()).toEqual(result);
   });
 });

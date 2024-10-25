@@ -13,7 +13,7 @@ describe('InputView 테스트', () => {
   test('자동차 이름 입력 받기', async () => {
     Console.readLineAsync.mockResolvedValue('pobi,woni,yeongi');
 
-    const carNames = await inputView.inputCarNames();
+    const carNames = await inputView.carNames();
 
     expect(carNames).toEqual('pobi,woni,yeongi');
     expect(Console.readLineAsync).toHaveBeenCalledWith(INPUT.CAR_NAMES);
@@ -22,7 +22,7 @@ describe('InputView 테스트', () => {
   test('시도 횟수 입력 받기', async () => {
     Console.readLineAsync.mockResolvedValue('5');
 
-    const tryNumber = await inputView.inputTryNumber();
+    const tryNumber = await inputView.tryNumber();
 
     expect(tryNumber).toEqual('5');
     expect(Console.readLineAsync).toHaveBeenCalledWith(INPUT.TRY_NUMBER);
