@@ -13,6 +13,7 @@ class App {
 
     this.handleCarInputString(carInput);
     this.simulateRaceRounds(numberInput);
+    this.selectWinner();
   }
 
   // carInput을 받아서 carObject에 저장하는 함수
@@ -21,7 +22,6 @@ class App {
     carNames.forEach((carName) => {
       this.carObject[carName] = 0; // 임시로 0 대입
     });
-    Console.print(carNames);
   }
 
   //numberInput 바탕으로 각 라운드를 시뮬레이션하여 랜덤값 부여 함수
@@ -40,6 +40,15 @@ class App {
   moveOrStop(randomNumber) {
     if (randomNumber >= 4) return 1;
     return 0;
+  }
+
+  //최종 우승자 판별 함수
+  selectWinner() {
+    const maxDistance = Math.max(...Object.values(this.carObject));
+    const winners = Object.keys(this.carObject).filter(
+      (carName) => this.carObject[carName] === maxDistance
+    );
+    Console.print(`최종 우승자 : ${winners.join(", ")}`);
   }
 }
 
