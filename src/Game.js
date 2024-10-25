@@ -14,6 +14,7 @@ export class Game {
       const roundResult = cars.map((car) => this.#game(car));
       this.#printRoundResult.print(roundResult);
     }
+    return this.#getWinners(cars);
   }
 
   #game(car) {
@@ -22,5 +23,11 @@ export class Game {
       car.move(DISTANCE);
     }
     return { name: car.getName(), length: car.getLength() }
+  }
+
+  #getWinners(cars) {
+    const maxLength = cars.reduce((max, car) => Math.max(max, car.getLength()), 0);
+    const winnerCars = cars.filter((car) => car.getLength() === maxLength);
+    return winnerCars.map((car) => car.getName());
   }
 }

@@ -21,8 +21,8 @@ class App {
     const namesArr = await this.#inputName.read();
     const cars = namesArr.map((name) => new Car(name))
     const attemptCount = await this.#inputAttemptCount.read();
-    this.#game.play(attemptCount, cars);
-    this.#printWinner.printWinners(cars);
+    const winnerNamesArr = this.#game.play(attemptCount, cars);
+    this.#printWinner.print(winnerNamesArr);
   }
 }
 
