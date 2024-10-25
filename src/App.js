@@ -24,12 +24,14 @@ async function inputCars() {
     await Console.readLineAsync(
       "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
     )
-  ).split(",").map((car)=>car.trim());
+  )
+    .split(",")
+    .map((car) => car.trim());
   validateInput(cars);
   return cars.map((car) => new Car(car));
 }
 function validateInput(cars) {
-  cars = cars.forEach((car) => {
+  cars.forEach((car) => {
     if (car == "") {
       throw Error(["[ERROR] : 공백은 입력될 수 없습니다."]);
     }
@@ -37,6 +39,16 @@ function validateInput(cars) {
       throw Error(["[ERROR] : 자동차 이름은 5자 이하만 가능합니다."]);
     }
   });
+  if (isDuplicate(cars)) {
+    throw Error(["[ERROR] : 중복된 이름은 입력할 수 없습니다."]);
+  }
+}
+
+function isDuplicate(cars) {
+  if (cars.length !== new Set(cars).size) {
+    return true;
+  }
+  return false;
 }
 async function inputMoveCount() {
   const inputCount = String(
@@ -86,7 +98,7 @@ function checkWinner(cars) {
   let finalWinner = [];
   let maxScore = "";
   cars.forEach((car) => {
-    if (maxScore.length  < car.distance.length) {
+    if (maxScore.length < car.distance.length) {
       maxScore = car.distance;
     }
   });

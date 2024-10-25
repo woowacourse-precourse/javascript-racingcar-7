@@ -137,5 +137,22 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR] : 자동차 이름은 5자 이하만 가능합니다.");
   });
+
+  test.each([
+    [["pobi,jamso,jamso"]],
+    [[" jonny, woker,jonny"]] ,
+    [["talis, jack,jack  "]], 
+    [["dani, dani "]],
+    [["danie, danie "]]
+  ])("⚠️ 예외 : 중복되는 자동차 이름 입력 테스트 %#", async (inputs) => {
+    // given
+    mockQuestions(inputs);
+  
+    // when
+    const app = new App();
+  
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR] : 중복된 이름은 입력할 수 없습니다.");
+  });
   
 });
