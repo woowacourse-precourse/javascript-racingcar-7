@@ -1,4 +1,4 @@
-import random from '../util/random';
+import random from '../util/random.js';
 
 class Car {
   constructor(name) {

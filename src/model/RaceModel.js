@@ -1,5 +1,6 @@
 //@ts-check
 
+import outputView from '../view/outputView.js';
 import Car from './Car.js';
 
 class Race {
@@ -9,13 +10,15 @@ class Race {
 
   /**@param {string[]} carNames  */
   initializeCars(carNames) {
-    this.cars = carNames.map((car) => new Car(car.trim()));
+    this.cars = carNames.map((car) => new Car(car));
   }
 
   /**@param {number} attempts  */
   race(attempts) {
+    const cars = this.getCars();
     for (let i = 0; i < attempts; i++) {
       this.moveForward();
+      outputView.printRaceStatus(cars);
     }
   }
 
