@@ -1,6 +1,13 @@
 import { Console, Random } from '@woowacourse/mission-utils';
 import { ERROR_MESSAGE, FORWARD_DASH, SYSTEM_MESSAGE } from './constants.js';
-import { invalidCharacter, invalidDuplicate, invalidLength } from './validators.js';
+import {
+  invalidCharacter,
+  invalidDuplicate,
+  invalidInteger,
+  invalidLength,
+  invalidNumber,
+  invalidRange,
+} from './validators.js';
 
 class App {
   async run() {
@@ -22,6 +29,7 @@ class App {
     }, {});
 
     this.count = await Console.readLineAsync(SYSTEM_MESSAGE.ENTER_COUNT);
+    this.validateCount(this.count);
   }
 
   carsMoveForward() {
@@ -48,6 +56,12 @@ class App {
     if (invalidCharacter(namesArray)) throw new Error(ERROR_MESSAGE.INVALID_CHARACTER);
     if (invalidLength(namesArray)) throw new Error(ERROR_MESSAGE.INVALID_LENGTH);
     if (invalidDuplicate(namesArray)) throw new Error(ERROR_MESSAGE.INVALID_DUPLICATE);
+  }
+
+  validateCount(count) {
+    if (invalidRange(count)) throw new Error(ERROR_MESSAGE.INVALID_RANGE);
+    if (invalidInteger(count)) throw new Error(ERROR_MESSAGE.INVALID_INTEGER);
+    if (invalidNumber(count)) throw new Error(ERROR_MESSAGE.INVALID_NUMBER);
   }
 }
 

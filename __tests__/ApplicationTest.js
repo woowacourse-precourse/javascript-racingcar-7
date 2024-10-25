@@ -1,7 +1,7 @@
-import App from "../src/App.js";
-import { MissionUtils } from "@woowacourse/mission-utils";
+import { MissionUtils } from '@woowacourse/mission-utils';
+import App from '../src/App.js';
 
-const mockQuestions = (inputs) => {
+const mockQuestions = inputs => {
   MissionUtils.Console.readLineAsync = jest.fn();
 
   MissionUtils.Console.readLineAsync.mockImplementation(() => {
@@ -10,27 +10,28 @@ const mockQuestions = (inputs) => {
   });
 };
 
-const mockRandoms = (numbers) => {
+const mockRandoms = numbers => {
   MissionUtils.Random.pickNumberInRange = jest.fn();
 
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, MissionUtils.Random.pickNumberInRange);
+  numbers.reduce(
+    (acc, number) => acc.mockReturnValueOnce(number),
+    MissionUtils.Random.pickNumberInRange,
+  );
 };
 
 const getLogSpy = () => {
-  const logSpy = jest.spyOn(MissionUtils.Console, "print");
+  const logSpy = jest.spyOn(MissionUtils.Console, 'print');
   logSpy.mockClear();
   return logSpy;
 };
 
-describe("자동차 경주", () => {
-  test("기능 테스트", async () => {
+describe('자동차 경주', () => {
+  test('기능 테스트', async () => {
     // given
     const MOVING_FORWARD = 4;
     const STOP = 3;
-    const inputs = ["pobi,woni", "1"];
-    const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
+    const inputs = ['pobi,woni', '1'];
+    const logs = ['pobi : -', 'woni : ', '최종 우승자 : pobi'];
     const logSpy = getLogSpy();
 
     mockQuestions(inputs);
@@ -41,20 +42,113 @@ describe("자동차 경주", () => {
     await app.run();
 
     // then
-    logs.forEach((log) => {
+    logs.forEach(log => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
 
-  test("예외 테스트", async () => {
+  test('기능 테스트', async () => {
     // given
-    const inputs = ["pobi,javaji"];
+    const MOVING_FORWARD = 4;
+    const STOP = 3;
+    const inputs = ['pobi,woni', '2'];
+    const logs = ['pobi : -', 'woni : -', '최종 우승자 : pobi, woni'];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([MOVING_FORWARD, STOP, STOP, MOVING_FORWARD]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    logs.forEach(log => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
+  test('예외 테스트', async () => {
+    // given
+    const inputs = ['pobi,jason', '0'];
     mockQuestions(inputs);
 
     // when
     const app = new App();
 
     // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('예외 테스트', async () => {
+    // given
+    const inputs = ['pobi,jason', '1.5'];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('예외 테스트', async () => {
+    // given
+    const inputs = ['pobi,jason', 'n'];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('예외 테스트', async () => {
+    // given
+    const inputs = ['pobi,javaji'];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('예외 테스트', async () => {
+    // given
+    const inputs = ['1234,5678'];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('예외 테스트', async () => {
+    // given
+    const inputs = ['pobi/java'];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('예외 테스트', async () => {
+    // given
+    const inputs = [',pobi'];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow('[ERROR]');
   });
 });

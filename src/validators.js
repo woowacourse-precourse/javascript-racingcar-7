@@ -10,4 +10,17 @@ const invalidCharacter = namesArray => {
   return namesArray.some(name => !regex.test(name));
 };
 
-export { invalidLength, invalidDuplicate, invalidCharacter };
+const invalidRange = count => count < 1;
+
+const invalidInteger = count => Number(count) !== Math.floor(count);
+
+const invalidNumber = count => Number.isNaN(Number(count));
+
+export {
+  invalidLength,
+  invalidDuplicate,
+  invalidCharacter,
+  invalidRange,
+  invalidInteger,
+  invalidNumber,
+};
