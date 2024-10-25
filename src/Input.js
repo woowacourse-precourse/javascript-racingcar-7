@@ -16,27 +16,27 @@ class Input {
   static #CAR_NAME_REGEXP = /^\w{1,5}$/;
   static #SEPARATOR = ",";
 
-  #rawCarNames;
+  #rawCars;
   #rawTryCount;
 
   constructor() {
-    this.#rawCarNames = "";
+    this.#rawCars = "";
     this.#rawTryCount = "";
   }
 
   async getUserInput() {
     try {
-      this.#rawCarNames = await readLineAsync(INPUT_MESSAGE_CAR_NAMES);
+      this.#rawCars = await readLineAsync(INPUT_MESSAGE_CAR_NAMES);
       this.#rawTryCount = await readLineAsync(INPUT_MESSAGE_TRY_COUNT);
     } catch (e) {
       throw new Error(ERROR_MESSAGE_USER_INPUT);
     }
   }
 
-  parseCarNames() {
-    const carNameArray = splitIntoArray(this.#rawCarNames, Input.#SEPARATOR);
-    this.#validateCarNameArray(carNameArray);
-    return carNameArray;
+  parseCars() {
+    const carArray = splitIntoArray(this.#rawCars, Input.#SEPARATOR);
+    this.#validateCarArray(carArray);
+    return carArray;
   }
 
   parseTryCount() {
@@ -45,15 +45,14 @@ class Input {
     return tryCount;
   }
 
-  #validateCarNameArray(carNameArray) {
-    const isAllCarNameValid = carNameArray.every((carName) =>
-      Input.#CAR_NAME_REGEXP.test(carName)
+  #validateCarArray(carArray) {
+    const isAllCarValid = carArray.every((car) =>
+      Input.#CAR_NAME_REGEXP.test(car)
     );
-    if (!isAllCarNameValid) throw new Error(ERROR_MESSAGE_CAR_NAME_INVALID);
+    if (!isAllCarValid) throw new Error(ERROR_MESSAGE_CAR_NAME_INVALID);
 
-    const isAllCarNameUnique = checkArrayAllUnique(carNameArray);
-    if (!isAllCarNameUnique)
-      throw new Error(ERROR_MESSAGE_CAR_NAME_DUPLICATION);
+    const isAllCarUnique = checkArrayAllUnique(carArray);
+    if (!isAllCarUnique) throw new Error(ERROR_MESSAGE_CAR_NAME_DUPLICATION);
   }
 }
 

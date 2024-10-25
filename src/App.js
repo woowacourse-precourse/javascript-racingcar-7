@@ -5,25 +5,25 @@ import { print } from "./utils.js";
 
 class App {
   async run() {
-    const { carNameArray, tryCount } = await this.#getInput();
-    const winnerCarArray = this.#runRace(carNameArray, tryCount);
+    const { carArray, tryCount } = await this.#getInput();
+    const winnerCarArray = this.#runRace(carArray, tryCount);
     this.#printOutput(winnerCarArray);
   }
 
   async #getInput() {
     const input = new Input();
     await input.getUserInput();
-    const carNameArray = input.parseCarNames();
+    const carArray = input.parseCars();
     const tryCount = input.parseTryCount();
 
     return {
-      carNameArray,
+      carArray,
       tryCount,
     };
   }
 
-  #runRace(carNameArray, tryCount) {
-    const race = new Race(carNameArray, tryCount);
+  #runRace(carArray, tryCount) {
+    const race = new Race(carArray, tryCount);
     const winnerArray = race.run();
     return winnerArray;
   }

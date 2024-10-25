@@ -13,15 +13,15 @@ class Race {
   static #MOVE_FORWARD_THRESHOLD = 4;
   static #TRACE_CHARACTER = "-";
 
-  #carNameArray;
+  #carArray;
   #tryCount;
   #carTraceMap;
 
-  constructor(carNameArray, tryCount) {
-    this.#carNameArray = carNameArray;
+  constructor(carArray, tryCount) {
+    this.#carArray = carArray;
     this.#tryCount = tryCount;
 
-    this.#carTraceMap = getMapFilledZeroValue(this.#carNameArray);
+    this.#carTraceMap = getMapFilledZeroValue(this.#carArray);
   }
 
   run() {
@@ -32,10 +32,10 @@ class Race {
   }
 
   #runOneRound() {
-    for (const carName of this.#carNameArray) {
-      const newPosition = this.#moveCarForward(this.#carTraceMap.get(carName));
-      this.#carTraceMap.set(carName, newPosition);
-      this.#printCarPosition(carName, newPosition);
+    for (const car of this.#carArray) {
+      const newPosition = this.#moveCarForward(this.#carTraceMap.get(car));
+      this.#carTraceMap.set(car, newPosition);
+      this.#printCarPosition(car, newPosition);
     }
   }
 
@@ -50,13 +50,13 @@ class Race {
     return num >= Race.#MOVE_FORWARD_THRESHOLD;
   }
 
-  #printCarPosition(carName, position) {
+  #printCarPosition(car, position) {
     const repeatedTraceChracter = getRepeatedString(
       Race.#TRACE_CHARACTER,
       position
     );
 
-    print(`${carName} : ${repeatedTraceChracter}`);
+    print(`${car} : ${repeatedTraceChracter}`);
   }
 
   get winnerArray() {
