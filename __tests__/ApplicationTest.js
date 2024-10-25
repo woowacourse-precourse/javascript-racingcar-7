@@ -9,7 +9,8 @@ export const mockQuestions = (inputs) => {
     return Promise.resolve(input);
   });
 };
-const mockRandoms = (numbers) => {
+
+export const mockRandoms = (numbers) => {
   MissionUtils.Random.pickNumberInRange = jest.fn();
 
   numbers.reduce(
@@ -18,7 +19,7 @@ const mockRandoms = (numbers) => {
   );
 };
 
-const getLogSpy = () => {
+export const getLogSpy = () => {
   const logSpy = jest.spyOn(MissionUtils.Console, 'print');
   logSpy.mockClear();
   return logSpy;
