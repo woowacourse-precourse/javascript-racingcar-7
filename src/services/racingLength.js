@@ -1,6 +1,6 @@
 import { Console, Random } from '@woowacourse/mission-utils';
 import { printRacerAndRacingOutput } from '../views/outputView.js';
-import { findWinners } from './findingWinners.js';
+import findWinners from './findingWinners.js';
 
 const racingLengthNum = [];
 const racingLengthStr = [];

@@ -13,4 +13,4 @@ const findWinners = (carNames, progressionNumForRacer) => {
   printWinners(winners);
 };
 
-export { findWinners };
+export default findWinners;
