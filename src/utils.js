@@ -37,7 +37,7 @@ export const getRepeatedString = (str, repeatNum) => str.repeat(repeatNum);
 
 export const getMaxValueInMap = (map) => Math.max(...map.values());
 
-export const getKeyArrayHasSameValueInMap = (map, targetValue) => {
+export const getKeyArrayHasTargetValueInMap = (map, targetValue) => {
   const array = [];
   for (const [key, value] of map) {
     if (value === targetValue) array.push(key);

@@ -1,5 +1,5 @@
 import {
-  getKeyArrayHasSameValueInMap,
+  getKeyArrayHasTargetValueInMap,
   getMapFilledZero,
   getMaxValueInMap,
   getRepeatedString,
@@ -61,7 +61,7 @@ class Race {
 
   get winnerArray() {
     const maxTrace = getMaxValueInMap(this.#carTraceMap);
-    const winnerCarArray = getKeyArrayHasSameValueInMap(
+    const winnerCarArray = getKeyArrayHasTargetValueInMap(
       this.#carTraceMap,
       maxTrace
     );
