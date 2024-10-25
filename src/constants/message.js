@@ -13,5 +13,6 @@ export const ERROR_MESSAGES = Object.freeze({
   NO_DUPLICATE: "자동차 이름은 중복될 수 없습니다.",
   NO_BLANK: "자동차 이름에 공백이 포함되어 있습니다.",
   NOT_NUMBER: "시도 횟수는 숫자만 입력 가능합니다.",
+  NOT_INTEGER: "정수만 입력 가능합니다.",
   NOT_NEGATIVE: "음수는 입력할 수 없습니다.",
 });

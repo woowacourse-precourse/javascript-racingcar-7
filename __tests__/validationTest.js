@@ -57,6 +57,14 @@ describe("시도 횟수 유효성 검사 테스트", () => {
     });
   });
 
+  const notIntegerInputs = [3.5, 1.465, 243.6693];
+  test.each(notIntegerInputs)("정수가 아닌 경우", async (input) => {
+    expect(isTrialInputValid(input)).toEqual({
+      isTrialValid: false,
+      errTrialMessage: ERROR_MESSAGES.NOT_INTEGER,
+    });
+  });
+
   const negativeInputs = [-3, -82, -12356];
   test.each(negativeInputs)("음수인 경우", async (input) => {
     expect(isTrialInputValid(input)).toEqual({

@@ -27,6 +27,10 @@ export function isTrialInputValid(input) {
     return { isTrialValid: false, errTrialMessage: ERROR_MESSAGES.NOT_NUMBER };
   }
 
+  if (!Number.isInteger(numInput)) {
+    return { isTrialValid: false, errTrialMessage: ERROR_MESSAGES.NOT_INTEGER };
+  }
+
   if (numInput < 0) {
     return {
       isTrialValid: false,
