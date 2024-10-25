@@ -1,7 +1,11 @@
+import Printer from '../Printer.js';
+
 // (Car[], number) => void
 const runCarRacing = (carList, turn) => {
   for (let i = 0; i < turn; i++) {
     actionAllCarOneTurn(carList);
+    Printer.currentStatus(carList);
+    Printer.blankLine();
   }
 };
 
