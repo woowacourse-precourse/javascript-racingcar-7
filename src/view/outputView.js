@@ -19,14 +19,12 @@ const outputView = {
     cars.forEach((car) => {
       this.printMessage(`${car.name} : ${'-'.repeat(car.position)}`);
     });
-    this.printMessage('\n');
+    this.printMessage(''); //줄바꿈
   },
 
   /**@param {Car[]} winners  */
   announceWinner(winners) {
-    // const winners = this.determineWinners();
     const winnersName = winners.map((winner) => winner.name).join(', ');
-
     this.printMessage(`${GAME_MESSAGE.FINAL_WINNER} ${winnersName}`);
   },
 };
