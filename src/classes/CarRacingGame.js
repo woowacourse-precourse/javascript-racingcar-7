@@ -20,15 +20,18 @@ class CarRacingGame {
   }
 
   determineWinners() {
-    const winner = this.cars.reduce((winnerCar, currentCar) => {
-      if (winnerCar.distance < currentCar.distance) {
-        return currentCar;
+    const winners = this.cars.reduce((winnerCars, currentCar) => {
+      if (
+        winnerCars.length === 0 ||
+        winnerCars[0].distance < currentCar.distance
+      ) {
+        return [currentCar];
+      } else if (winnerCars[0].distance === currentCar.distance) {
+        return [...winnerCars, currentCar];
       }
+    }, []);
 
-      return winnerCar;
-    });
-
-    return winner.name;
+    return winners.map((car) => car.name);
   }
 }
 
