@@ -1,5 +1,7 @@
+import { Console } from "@woowacourse/mission-utils";
+
 const printCarMovement = (car) =>
-  `${car.name} : ${"-".repeat(car.movementCount)}`;
+  Console.print(`${car.name} : ${"-".repeat(car.movementCount)}`);
 
 const isCarNameLengthOver = (value) => {
   const carList = value.split(",");
