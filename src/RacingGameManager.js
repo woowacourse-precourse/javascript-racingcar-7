@@ -1,6 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import Car from './Car.js';
-import { CONSOLE_MESSAGE } from './constant.js';
+import { CONSOLE_MESSAGE, ERROR_MESSAGE } from './constant.js';
 import {
   errorString,
   getUserInput,
@@ -10,13 +10,16 @@ import {
 } from './util.js';
 
 class RacingGameManager {
-  #cars = [];
-
-  #tryCount = 0;
+  #cars;
+  #tryCount;
 
   static MAX_CAR_COUNT = 50;
-
   static MAX_TRY_COUNT = 500;
+
+  constructor() {
+    this.#cars = [];
+    this.#tryCount = 0;
+  }
 
   async playGame() {
     const carInput = await getUserInput(CONSOLE_MESSAGE.CAR_INPUT_MESSAGE);
@@ -30,17 +33,19 @@ class RacingGameManager {
     this.#tryCount = Number(tryCountInput);
 
     this.#startGame();
+
+    this.#printWinner();
   }
 
   #validateCarInput(input) {
     if (!input.includes(',')) {
-      throw new Error(errorString(CONSOLE_MESSAGE.MIN_CAR_COUNT_ERROR));
+      throw new Error(errorString(ERROR_MESSAGE.MIN_CAR_COUNT));
     }
 
     const carNames = input.split(',');
     const deduplicatedCarNames = new Set(carNames);
     if (carNames.length !== deduplicatedCarNames.size) {
-      throw new Error(errorString(CONSOLE_MESSAGE.DUPLICATED_CAR_NAME_ERROR));
+      throw new Error(errorString(ERROR_MESSAGE.DUPLICATED_CAR_NAME));
     }
 
     if (carNames.length > RacingGameManager.MAX_CAR_COUNT) {
@@ -56,13 +61,11 @@ class RacingGameManager {
     const inputToNumber = Number(input);
 
     if (!isNumber(inputToNumber)) {
-      throw new Error(
-        errorString(CONSOLE_MESSAGE.INVALID_TRY_COUNT_TYPE_ERROR),
-      );
+      throw new Error(errorString(ERROR_MESSAGE.INVALID_TRY_COUNT_TYPE));
     }
 
     if (!isPositiveNumber(inputToNumber) || !isIntegerNumber(inputToNumber)) {
-      throw new Error(errorString(CONSOLE_MESSAGE.MIN_TRY_COUNT_ERROR));
+      throw new Error(errorString(ERROR_MESSAGE.MIN_TRY_COUNT));
     }
 
     if (inputToNumber > RacingGameManager.MAX_TRY_COUNT) {
@@ -75,7 +78,7 @@ class RacingGameManager {
   }
 
   #startGame() {
-    Console.print('\n실행 결과');
+    Console.print(CONSOLE_MESSAGE.GAME_START_MESSAGE);
     for (let i = 0; i < this.#tryCount; i++) {
       this.#cars.forEach((car) => {
         car.move();
@@ -84,6 +87,8 @@ class RacingGameManager {
       Console.print('');
     }
   }
+
+  #printWinner() {}
 }
 
 export default RacingGameManager;

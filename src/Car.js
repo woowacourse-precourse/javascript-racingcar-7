@@ -1,10 +1,9 @@
 import { Console, Random } from '@woowacourse/mission-utils';
-import { CONSOLE_MESSAGE } from './constant.js';
+import { ERROR_MESSAGE } from './constant.js';
 import { errorString } from './util.js';
 
 class Car {
   #name;
-
   #position;
 
   static MAX_CAR_NAME_LENGTH = 5;
@@ -18,11 +17,11 @@ class Car {
 
   #validateName(name) {
     if (name.trim().length === 0) {
-      throw new Error(errorString(CONSOLE_MESSAGE.MIN_CAR_NAME_LENGTH_ERROR));
+      throw new Error(errorString(ERROR_MESSAGE.MIN_CAR_NAME_LENGTH));
     }
 
     if (name.length > Car.MAX_CAR_NAME_LENGTH) {
-      throw new Error(errorString(CONSOLE_MESSAGE.MAX_CAR_NAME_LENGTH_ERROR));
+      throw new Error(errorString(ERROR_MESSAGE.MAX_CAR_NAME_LENGTH));
     }
   }
 

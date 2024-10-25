@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { CONSOLE_MESSAGE } from './constant.js';
+import { ERROR_MESSAGE } from './constant.js';
 
 export const errorString = (message) => `[ERROR] ${message}`;
 
@@ -8,7 +8,7 @@ export const isInputEmpty = (input) => input.trim().length === 0;
 export const getUserInput = async (message) => {
   const input = await Console.readLineAsync(message);
   if (isInputEmpty(input)) {
-    throw new Error(errorString(CONSOLE_MESSAGE.EMPTY_INPUT_ERROR));
+    throw new Error(errorString(ERROR_MESSAGE.EMPTY_INPUT));
   }
 
   return input;
