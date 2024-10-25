@@ -17,15 +17,19 @@ class CarsModel {
     return this.#carsMap;
   }
 
+  #isCarMove() {
+    const randomNum = MissionUtils.Random.pickNumberInRange(
+      RULES.RANDOM_MIN,
+      RULES.RANDOM_MAX,
+    );
+
+    if (randomNum >= RULES.MOVE_THRESHOLD) return true;
+    return false;
+  }
+
   moveCars() {
     this.#carsMap.forEach((carMoveCount, carName) => {
-      const randomNum = MissionUtils.Random.pickNumberInRange(
-        RULES.RANDOM_MIN,
-        RULES.RANDOM_MAX,
-      );
-      if (randomNum >= RULES.MOVE_THRESHOLD) {
-        this.#carsMap.set(carName, carMoveCount + 1);
-      }
+      if (this.#isCarMove()) this.#carsMap.set(carName, carMoveCount + 1);
     });
   }
 
