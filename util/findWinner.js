@@ -8,5 +8,5 @@ export function findWinner(cars, carMoveHashMap, ATTEMPT_COUNT) {
         setWinner(car, carMoveHashMap, winners, ATTEMPT_COUNT);
     }
 
-    printWinner(winners);
+    printWinner(winners, carMoveHashMap);
 }
