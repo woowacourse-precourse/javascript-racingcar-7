@@ -20,7 +20,10 @@ class App {
       const cars = inputNames
         .split(',')
         .filter((name) => name !== '');
-      const RacingCountObject = {};
+
+      const carsMap = new Map(
+        cars.map((name) => [name, ''])
+      );
 
       cars.forEach((name) => {
         if (name.length > 5) {
@@ -28,12 +31,6 @@ class App {
             '자동차 이름은 5자 이하만 가능합니다.'
           );
         }
-        RacingCountObject[name] = 0;
-        console.log(
-          name,
-          'isMovingFoward :',
-          isMovingFoward()
-        );
       });
 
       const numberOfTry = Number(
@@ -41,7 +38,30 @@ class App {
           '시도할 횟수는 몇 회인가요?'
         )
       );
+      if (!numberOfTry) {
+        throw Error('횟수는 숫자로 입력해주세요.');
+      }
+
+      let result = '';
+      const playOneRace = () => {
+        cars.forEach((name) => {
+          if (isMovingFoward()) {
+            carsMap.set(name, carsMap.get(name) + '-');
+          }
+        });
+
+        carsMap.forEach((value, key) => {
+          result += `${key} : ${value}\n`;
+        });
+        result += `\n`;
+      };
+
+      for (let i = 0; i < numberOfTry; i++) {
+        playOneRace();
+      }
       Console.print(numberOfTry);
+      Console.print('실행 결과');
+      Console.print(result);
     } catch (error) {
       throw Error('[ERROR]' + error.message);
     }
