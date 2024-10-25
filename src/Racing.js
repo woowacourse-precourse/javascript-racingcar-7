@@ -8,7 +8,7 @@ class Racing {
   #result;
 
   constructor(totalRounds, cars) {
-    this.#totalRounds = Racing.normalizeTotalRounds(totalRounds);
+    this.#totalRounds = totalRounds;
     this.#cars = cars;
     this.#result = [];
   }
