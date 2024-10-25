@@ -173,6 +173,32 @@ describe("자동차 경주", () => {
   expect(cars[1].getName()).toBe('bora');
   expect(cars[2].getName()).toBe('nana');
   })
+
+  test('단일 우승자 확인', () => {
+    // given
+    const names = ['pobi', 'bora', 'nana'];
+    const playTime = 5;
+    const cars = settingRace(names);
+
+    // when
+    const result = playRace(cars, playTime);
+
+    // then
+    expect(names).toContain(result);
+  });
+
+  test('다중 우승자 확인', () => {
+    // given
+    const names = ['pobi', 'bora'];
+    const playTime = 5;
+    const cars = settingRace(names);
+
+    // when
+    const result = playRace(cars, playTime);
+
+    // then
+    expect(result.split(', ').every(winner => names.includes(winner))).toBe(true);
+  });
 });
   // given
   
