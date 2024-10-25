@@ -5,13 +5,12 @@ import RacingManager from './RacingManager.js';
 class App {
   async run() {
     const carNames = await App.askCarNames();
-    const racingManager = new RacingManager(carNames);
-    const cars = racingManager.register();
+    const cars = RacingManager.register(carNames);
 
     const totalRounds = await App.askTotalRounds();
-    const convertedTotalRounds = App.totalRoundsToNumber(totalRounds);
-    const racing = new Racing(convertedTotalRounds, cars);
+    const validTotalRounds = RacingManager.normalizeTotalRounds(totalRounds);
 
+    const racing = new Racing(validTotalRounds, cars);
     racing.play();
     racing.announceWinners();
   }
@@ -29,10 +28,6 @@ class App {
       await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
 
     return totalRounds;
-  }
-
-  static totalRoundsToNumber(totalRounds) {
-    return Number(totalRounds);
   }
 }
 
