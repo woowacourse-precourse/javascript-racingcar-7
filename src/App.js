@@ -3,13 +3,18 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 const ERROR_MESSAGE = "[ERROR]";
 const NUMBER_REGEX = /^[0-9]*$/;
 
+const CAR_NAMES_INPUT_DESCRIPTION =
+  "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n";
+
+const ROUND_INPUT_DESCRIPTION = "시도할 횟수는 몇 회인가요?\n";
+
 class App {
   #car = {};
   #round = 0;
 
   async #readCarNames() {
     let carNamesInput = await MissionUtils.Console.readLineAsync(
-      "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
+      CAR_NAMES_INPUT_DESCRIPTION
     );
 
     let carNames = carNamesInput.split(",");
@@ -31,7 +36,7 @@ class App {
 
   async #readRound() {
     let roundInput = await MissionUtils.Console.readLineAsync(
-      "시도할 횟수는 몇 회인가요?\n"
+      ROUND_INPUT_DESCRIPTION
     );
 
     if (this.#checkRoundError(roundInput)) {
