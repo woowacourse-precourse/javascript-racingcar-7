@@ -6,6 +6,12 @@ const Parser = {
     Validator.carNameList(carNameList);
     return carNameList;
   },
+
+  turnInput(input) {
+    Validator.turn(input);
+    const turnNumber = Number(input);
+    return turnNumber;
+  },
 };
 
 export default Parser;
