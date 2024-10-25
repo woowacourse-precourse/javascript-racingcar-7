@@ -38,7 +38,7 @@ class Car {
   }
 
   getRandomNumber() {
-    return Random.pickNumberInRange(1, 9);
+    return Random.pickNumberInRange(0, 9);
   }
 
   moveProgress() {
