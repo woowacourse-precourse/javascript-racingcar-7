@@ -62,6 +62,21 @@ class LacingController {
 
     return this;
   }
+
+  /**
+   * @returns {Array<{ name: string; track: number; }[]>}
+   */
+  getRacingResult() {
+    const cars = this.getCars();
+    const length = this.getRound();
+
+    return Array.from({ length }, (_, round) => {
+      return cars.map((car) => ({
+        name: car.getName(),
+        track: car.getTrack(round),
+      }));
+    });
+  }
 }
 
 export default LacingController;
