@@ -32,23 +32,28 @@ async function inputCars() {
 }
 function validateInput(cars) {
   cars.forEach((car) => {
-    if (car == "") {
-      throw Error(["[ERROR] : 공백은 입력될 수 없습니다."]);
-    }
-    if (car.length > 5) {
-      throw Error(["[ERROR] : 자동차 이름은 5자 이하만 가능합니다."]);
-    }
+    validateBlank(car);
+    validateOver5(car);
   });
-  if (isDuplicate(cars)) {
-    throw Error(["[ERROR] : 중복된 이름은 입력할 수 없습니다."]);
+  validateDuplicate(cars);
+}
+
+function validateBlank(car) {
+  if (car == "") {
+    throw Error(["[ERROR] : 공백은 입력될 수 없습니다."]);
   }
 }
 
-function isDuplicate(cars) {
-  if (cars.length !== new Set(cars).size) {
-    return true;
+function validateOver5(car) {
+  if (car.length > 5) {
+    throw Error(["[ERROR] : 자동차 이름은 5자 이하만 가능합니다."]);
   }
-  return false;
+}
+
+function validateDuplicate(cars) {
+  if (cars.length !== new Set(cars).size) {
+    throw Error(["[ERROR] : 중복된 이름은 입력할 수 없습니다."]);
+  }
 }
 async function inputMoveCount() {
   const inputCount = String(
@@ -95,18 +100,25 @@ function printCurScore(cars) {
 }
 
 function checkWinner(cars) {
-  let finalWinner = [];
-  let maxScore = "";
-  cars.forEach((car) => {
-    if (maxScore.length < car.distance.length) {
-      maxScore = car.distance;
-    }
-  });
-  cars.forEach((car) => {
-    if (car.distance == maxScore) {
-      finalWinner.push(car.name);
-    }
-  });
+  const maxScore = getMaxDistance(cars);
+  const finalWinner = determineWinners(cars, maxScore);
+
   Console.print(`최종 우승자 : ${finalWinner.join(", ")}`);
 }
+
+function getMaxDistance(cars) {
+  return cars.reduce(compareDistance, "");
+}
+
+function compareDistance(maxScore, car) {
+  if (maxScore.length < car.distance.length) {
+    return car.distance;
+  }
+  return maxScore;
+}
+
+function determineWinners(cars, maxScore) {
+  return cars.filter((car) => car.distance === maxScore).map((car) => car.name);
+}
+
 export default App;
