@@ -1,4 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
+import displayRaceResults from "./displayRaceResults.js";
 import updateRunCount from "./updateRunCount.js"
 
 const startCarRace = (carObjectList, raceCount) => {
@@ -6,6 +7,7 @@ const startCarRace = (carObjectList, raceCount) => {
   for (let i = 0; i < raceCount; i++) {
     carObjectList.map((car) => {
       updateRunCount(car);
+      displayRaceResults(car);
     })
     Console.print("");
   }
