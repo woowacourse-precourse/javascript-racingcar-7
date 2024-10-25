@@ -1,12 +1,12 @@
 import { Console } from '@woowacourse/mission-utils';
-import Car from './Car.js';
 import Racing from './Racing.js';
+import RacingManager from './RacingManager.js';
 
 class App {
   async run() {
     const carNames = await App.askCarNames();
-    const parsedNames = App.parseCarNames(carNames);
-    const cars = parsedNames.map((name) => new Car(name));
+    const racingManager = new RacingManager(carNames);
+    const cars = racingManager.register();
 
     const totalRounds = await App.askTotalRounds();
     const convertedTotalRounds = App.totalRoundsToNumber(totalRounds);
