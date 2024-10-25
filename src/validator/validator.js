@@ -47,10 +47,17 @@ const checkValidRange = function checkValidRangeFunc(inputForTryCount) {
   }
 };
 
+const checkIsNull = function checkIsNullFunc(inputString) {
+  if (!inputString) {
+    throw new Error('[ERROR]: 아무것도 입력되지 않았습니다.');
+  }
+};
+
 export {
   checkOnlyAlphabetAndComma,
   checkValidNameLength,
   checkDuplicateNames,
   checkOnlyNumber,
   checkValidRange,
+  checkIsNull,
 };
