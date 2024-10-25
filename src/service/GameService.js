@@ -1,5 +1,6 @@
 import CarService from './CarService.js';
 import OutputView from '../view/OutputView.js';
+import CONSTANT from '../utils/constants/CONSTANT.js';
 
 class GameServices {
   constructor() {
@@ -9,7 +10,7 @@ class GameServices {
 
   moveCar(carNameList, gameRound) {
     let carObj = this.carService.getCarList(carNameList);
-    for (let round = 0; round < gameRound; round++) {
+    for (let round = CONSTANT.START_ROUND; round < gameRound; round++) {
       this.carService.checkMovement(carObj);
       this.outputView.gameResult(carObj);
     }

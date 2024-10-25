@@ -1,4 +1,5 @@
 import MESSAGE from '../constants/MESSAGE.js';
+import CONSTANT from '../constants/CONSTANT.js';
 
 class GameCountValidator {
   runAllFunction(gameCount) {
@@ -7,13 +8,13 @@ class GameCountValidator {
   }
 
   validateGameCount(gameCount) {
-    if (/[^\d]/.test(gameCount)) {
+    if (CONSTANT.GAME_ROUND_CONDITION.test(gameCount)) {
       throw new Error(MESSAGE.GAME_ROUND_ERROR);
     }
   }
 
   validateBlankCount(gameCount) {
-    if (gameCount === '') {
+    if (gameCount === CONSTANT.BLANK) {
       throw new Error(MESSAGE.GAME_ROUND_ERROR);
     }
   }

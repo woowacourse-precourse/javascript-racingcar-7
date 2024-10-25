@@ -1,4 +1,5 @@
 import MESSAGE from '../constants/MESSAGE.js';
+import CONSTANT from '../constants/CONSTANT.js';
 
 class NameValidator {
   runAllFunction(carNameList) {
@@ -11,19 +12,19 @@ class NameValidator {
   }
 
   validateLength(carName) {
-    if (carName.length > 4) {
+    if (carName.length > CONSTANT.MAX_CAR_NAME_LENGTH) {
       throw new Error(MESSAGE.CAR_NAME_ERROR);
     }
   }
 
   validateSeparator(carName) {
-    if (/[^a-zA-Z0-9가-힣ㄱ-ㅎ]/g.test(carName)) {
+    if (CONSTANT.CAR_NAME_CONDITION.test(carName)) {
       throw new Error(MESSAGE.CAR_NAME_ERROR);
     }
   }
 
   validateBlankName(carName) {
-    if (carName === '') {
+    if (carName === CONSTANT.BLANK) {
       throw new Error(MESSAGE.CAR_NAME_ERROR);
     }
   }

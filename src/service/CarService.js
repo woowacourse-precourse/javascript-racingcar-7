@@ -1,5 +1,6 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import CarList from '../model/CarList.js';
+import CONSTANT from '../utils/constants/CONSTANT.js';
 
 class CarServices {
   constructor() {
@@ -12,9 +13,12 @@ class CarServices {
 
   checkMovement(carObj) {
     carObj.forEach((car) => {
-      let number = MissionUtils.Random.pickNumberInRange(0, 9);
+      let number = MissionUtils.Random.pickNumberInRange(
+        CONSTANT.MIN_RANDOM_NUMBER,
+        CONSTANT.MAX_RANDOM_NUMBER,
+      );
 
-      if (number >= 4) {
+      if (number >= CONSTANT.MIN_MOVEMENT_CONDITION_NUMBER) {
         car.distance += '-';
       }
     });
