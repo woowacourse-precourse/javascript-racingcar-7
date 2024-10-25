@@ -174,12 +174,10 @@ MissionUtils.Random.pickNumberInRange(0, 9);
 #### Utils
 
 - **getCarName(), getTryNum()** 경주에 참여하는 자동차 이름과 이동할 횟수는 `Console.readLineAsync()`로 입력 받는다.
-- **carCountLimitCheck()** `return`을 사용해 자동차를 최대 5대만 받는다.
-- **checkSpace()** `isEmpty()`를 사용해 공백을 확인한다.
-- **separateCarName()** `map`과 `split`를 사용해 쉼표(,)를 기준으로 구분한다.
+- **carCountLimitCheck()**을 사용해 자동차를 최대 5대만 받는다.
+- **checkSpace()** 공백을 확인한다.
 - **duplicateCheck()** 중복 검사는 `string.includes()`으로 한다.
-- 딕셔너리에 추가한다.
-- **checkTryNum()**`^[1-9]+$/.test()` 정규표현식 검사로 1~9인지 확인한다.
+- **checkTryNum()**`^[1-9]+$/.test()` 1~9인지 확인한다.
 
 #### reacingCar
 
