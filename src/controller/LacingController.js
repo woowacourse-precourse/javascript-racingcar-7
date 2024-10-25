@@ -1,3 +1,4 @@
+import Input from '../view/Input.js';
 import Output from '../view/Output.js';
 import Car from '../model/Car.js';
 
@@ -105,6 +106,14 @@ class LacingController {
     Output.printTitle();
     Output.printRacingResult(result);
     Output.printWinner(winner);
+  }
+
+  async run() {
+    const carNames = await Input.readCarNames();
+    const times = await Input.readTimes();
+    this.init(carNames, times);
+    this.play();
+    this.printResult();
   }
 }
 
