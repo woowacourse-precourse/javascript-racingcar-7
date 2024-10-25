@@ -1,9 +1,9 @@
 import { Console } from "@woowacourse/mission-utils";
-import { PROMPT_MESSAGES, FORWARD_SYMBOL } from "../constants/constants.js";
+import { FORWARD_SYMBOL, OUTPUT_MESSAGES } from "../constants/constants.js";
 
 const OutputView = {
   printRaceStartMessage() {
-    Console.print(PROMPT_MESSAGES.OUTPUT_RACE_RESULT);
+    Console.print(OUTPUT_MESSAGES.RACE_RESULT);
   },
 
   printRoundResult(carName, moveCounts) {
@@ -12,11 +12,11 @@ const OutputView = {
   },
   
   printWinner(winner) {
-    Console.print(`${PROMPT_MESSAGES.OUTPUT_WINNER}${winner}`);
+    Console.print(`${OUTPUT_MESSAGES.WINNER}${winner}`);
   },
 
   printErrorMessage(errorMessage) {
-    throw new Error(`${PROMPT_MESSAGES.OUTPUT_ERROR} ${errorMessage}`);
+    throw new Error(`${OUTPUT_MESSAGES.ERROR} ${errorMessage}`);
   }
 }
 

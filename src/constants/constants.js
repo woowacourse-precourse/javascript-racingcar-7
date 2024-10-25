@@ -1,13 +1,15 @@
 export const FORWARD_SYMBOL = '-';
 export const RACE_MAX_NUM = 100;
 
-export const PROMPT_MESSAGES = {
-  INPUT_CAR_NAME: '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
-  INPUT_RACE_COUNT: '시도할 횟수는 몇 회인가요?\n',
+export const INPUT_MESSAGES = {
+  CAR_NAME: '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
+  RACE_COUNT: '시도할 횟수는 몇 회인가요?\n',
+}
 
-  OUTPUT_RACE_RESULT: '\n실행 결과\n',
-  OUTPUT_WINNER: '최종 우승자 : ',
-  OUTPUT_ERROR: '[ERROR]',
+export const OUTPUT_MESSAGES = {
+  RACE_RESULT: '\n실행 결과\n',
+  WINNER: '최종 우승자 : ',
+  ERROR: '[ERROR]',
 }
 
 // TODO: 에러 메시지 검증 도메인 별로 분리
