@@ -5,7 +5,7 @@ describe('출력', () => {
     const WINNER_NAMES = ['pobi', 'woni', 'jun'];
     const OUTPUT = 'pobi, woni, jun';
 
-    expect(formatWinnerNames(WINNER_NAMES)).toEqual(OUTPUT);
+    expect(formatWinnerNames(WINNER_NAMES)).toBe(OUTPUT);
   });
 
   test('자동차의 위치 값만큼 ' - ' 문자열로 반환한다.', () => {
