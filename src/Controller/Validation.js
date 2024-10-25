@@ -5,41 +5,38 @@ import Car from '../Model/Car.js';
 
 function validateCarNames(carNames) {
   if (consecutiveDelimiterPattern.test(carNames)) {
-    throwError(ERROR_MESSAGES.CONSECUTIVE_DELIMITERS);
+    throwError(ERROR_MESSAGES.names.CONSECUTIVE_DELIMITERS);
   }
 
   const carNamesSplit = carNames.split(',').map((name) => name.trim());
 
   if (carNamesSplit.some((name) => name === '')) {
-    throwError(ERROR_MESSAGES.EMPTY_NAME);
+    throwError(ERROR_MESSAGES.names.EMPTY_NAME);
   }
 
   if (carNamesSplit.some((name) => name.length > 5)) {
-    throwError(ERROR_MESSAGES.NAME_TOO_LONG);
+    throwError(ERROR_MESSAGES.names.NAME_TOO_LONG);
   }
 
   if (checkDuplicate(carNamesSplit)) {
-    throwError(ERROR_MESSAGES.DUPLICATED_NAMES);
+    throwError(ERROR_MESSAGES.names.DUPLICATED_NAMES);
   }
 
   return carNamesSplit;
 }
 
-// TODO: REFACTOR THIS
 function validateRounds(input) {
   const rounds = Number(input);
   if (Number.isNaN(rounds)) {
-    throwError(ERROR_MESSAGES.ONLY_NUMBER_ALLOWED);
+    throwError(ERROR_MESSAGES.rounds.ONLY_NUMBER_ALLOWED);
   }
 
-  // 정수가 아닌 경우
   if (!Number.isInteger(rounds)) {
-    throwError(ERROR_MESSAGES.ONLY_INTEGER_ALLOWED);
+    throwError(ERROR_MESSAGES.rounds.ONLY_INTEGER_ALLOWED);
   }
 
-  // 음수인 경우
   if (rounds <= 0) {
-    throwError(ERROR_MESSAGES.ONLY_POSITIVE_ALLOWED);
+    throwError(ERROR_MESSAGES.rounds.ONLY_POSITIVE_ALLOWED);
   }
 
   const parsedRounds = parseInt(rounds, 10);
@@ -48,11 +45,11 @@ function validateRounds(input) {
 
 function isCarLegit(car) {
   if (car === null || car === undefined || !(car instanceof Car)) {
-    throwError(ERROR_MESSAGES.ILLEGAL_CAR);
+    throwError(ERROR_MESSAGES.cars.ILLEGAL_CAR);
   }
 }
 
-//Type sanity check
+//실제로 발생할 확률은 매우 낮지만, type sanity check
 function validateCars(cars) {
   cars.forEach((car) => {
     isCarLegit(car);

@@ -7,7 +7,6 @@ import {
   getLogSpy,
   validateLogs,
 } from '../src/Test/Test.js';
-// Mocking utility for inputs
 
 // Test cases for winners
 const winnerTestCases = [
@@ -36,49 +35,47 @@ const exceptionTestCases = [
   {
     description: '이름이 공백일 경우 예외 처리 테스트',
     inputs: ['pobi, ,woni'],
-    expectedError: `${ERROR_PREFIX}${ERROR_MESSAGES.EMPTY_NAME}`,
+    expectedError: `${ERROR_PREFIX}${ERROR_MESSAGES.names.EMPTY_NAME}`,
   },
   {
     description: '시도 횟수가 0일 때 예외 처리 테스트',
     inputs: ['pobi,woni,honux', '0'],
-    expectedError: `${ERROR_PREFIX}${ERROR_MESSAGES.ONLY_POSITIVE_ALLOWED}`,
+    expectedError: `${ERROR_PREFIX}${ERROR_MESSAGES.rounds.ONLY_POSITIVE_ALLOWED}`,
   },
-
   {
     description: '빈 이름을 입력할 경우 예외 처리 테스트',
     inputs: [''],
-    expectedError: `${ERROR_PREFIX}${ERROR_MESSAGES.EMPTY_NAME}`,
+    expectedError: `${ERROR_PREFIX}${ERROR_MESSAGES.names.EMPTY_NAME}`,
   },
   {
     description: '시도 횟수가 음수일 경우 예외 처리 테스트',
     inputs: ['pobi,woni,honux', '-3'],
-    expectedError: `${ERROR_PREFIX}${ERROR_MESSAGES.ONLY_POSITIVE_ALLOWED}`,
+    expectedError: `${ERROR_PREFIX}${ERROR_MESSAGES.rounds.ONLY_POSITIVE_ALLOWED}`,
   },
-
   {
     description: '이름에 공백만 포함될 경우 예외 처리 테스트',
     inputs: [' , , '],
-    expectedError: `${ERROR_PREFIX}${ERROR_MESSAGES.EMPTY_NAME}`,
+    expectedError: `${ERROR_PREFIX}${ERROR_MESSAGES.names.EMPTY_NAME}`,
   },
   {
     description: '시도 횟수가 숫자가 아닌 문자열일 경우 예외 처리 테스트',
     inputs: ['pobi,woni,honux', 'three'],
-    expectedError: `${ERROR_PREFIX}${ERROR_MESSAGES.ONLY_NUMBER_ALLOWED}`,
+    expectedError: `${ERROR_PREFIX}${ERROR_MESSAGES.rounds.ONLY_NUMBER_ALLOWED}`,
   },
   {
     description: '이름에 길이가 너무 긴 경우 예외 처리 테스트',
     inputs: ['pobi12345678901234567890,woni,honux'],
-    expectedError: `${ERROR_PREFIX}${ERROR_MESSAGES.NAME_TOO_LONG}`,
+    expectedError: `${ERROR_PREFIX}${ERROR_MESSAGES.names.NAME_TOO_LONG}`,
   },
   {
     description: '쉼표로만 구분된 빈 이름들이 입력될 경우 예외 처리 테스트',
     inputs: [',,'],
-    expectedError: `${ERROR_PREFIX}${ERROR_MESSAGES.CONSECUTIVE_DELIMITERS}`,
+    expectedError: `${ERROR_PREFIX}${ERROR_MESSAGES.names.CONSECUTIVE_DELIMITERS}`,
   },
   {
     description: '시도 횟수가 소수일 경우 예외 처리 테스트',
     inputs: ['pobi,woni,honux', '3.5'],
-    expectedError: `${ERROR_PREFIX}${ERROR_MESSAGES.ONLY_INTEGER_ALLOWED}`,
+    expectedError: `${ERROR_PREFIX}${ERROR_MESSAGES.rounds.ONLY_INTEGER_ALLOWED}`,
   },
 ];
 
