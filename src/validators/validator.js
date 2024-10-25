@@ -1,41 +1,33 @@
+import ERROR_MESSAGES from '../constants/errorMessages.js';
+import throwError from '../utils/error.js';
+
 export function checkCommaSeparatedNames(input) {
   const pattern = /^[a-zA-Z0-9가-힣,\s]+$/;
 
-  if (!pattern.test(input)) {
-    throw new Error('입력 형식이 올바르지 않습니다. 쉼표(,)로만 구분해주세요.');
-  }
+  if (!pattern.test(input)) throwError(ERROR_MESSAGES.INVALID_FORMAT);
 }
 
 function checkCarNameLength(name) {
-  if (name.length > 5) {
-    throw new Error('자동차 이름은 5자 이하만 가능합니다.');
-  }
+  if (name.length > 5) throwError(ERROR_MESSAGES.NAME_LENGTH_EXCEEDED);
 }
 
 function checkAllowedCharacters(name) {
   const pattern = /^[a-zA-Z가-힣\s]+$/;
 
-  if (!pattern.test(name)) {
-    throw new Error('자동차 이름은 한글과 영어만 가능합니다.');
-  }
+  if (!pattern.test(name)) throwError(ERROR_MESSAGES.NAME_INVALID_CHARACTERS);
 }
 
 function checkEmptyString(name) {
-  if (name === '') {
-    throw new Error('자동차 이름은 공백일 수 없습니다.');
-  }
+  if (name === '') throwError(ERROR_MESSAGES.NAME_EMPTY);
 }
 
 function checkCarNameDuplicates(names) {
-  if (new Set(names).size !== names.length) {
-    throw new Error('자동차 이름이 중복되었습니다.');
-  }
+  if (new Set(names).size === names.length) return;
+  throwError(ERROR_MESSAGES.NAME_DUPLICATE);
 }
 
 function checkMinimumCars(names) {
-  if (names.length < 2) {
-    throw new Error('자동차는 최소 2대 이상이어야 합니다.');
-  }
+  if (names.length < 2) throwError(ERROR_MESSAGES.MINIMUM_CARS);
 }
 
 export function checkCarNames(carNames) {
@@ -52,21 +44,17 @@ export function checkCarNames(carNames) {
 }
 
 function checkPositiveInteger(roundCount) {
-  if (!Number.isInteger(roundCount) || roundCount < 1) {
-    throw new Error('게임 시도 횟수는 양의 정수만 입력 가능합니다.');
-  }
+  if (!Number.isInteger(roundCount) || roundCount < 1)
+    throwError(ERROR_MESSAGES.POSITIVE_INTEGER_REQUIRED);
 }
 
 function checkRoundLimit(roundCount, maxRounds) {
-  if (roundCount > maxRounds) {
-    throw new Error(`게임 시도 횟수는 ${maxRounds} 이하만 가능합니다.`);
-  }
+  if (roundCount > maxRounds)
+    throwError(ERROR_MESSAGES.ROUND_LIMIT_EXCEEDED(maxRounds));
 }
 
 function checkIsNumber(roundCount) {
-  if (Number.isNaN(roundCount)) {
-    throw new Error('숫자 이외의 문자가 입력되었습니다.');
-  }
+  if (Number.isNaN(roundCount)) throwError(ERROR_MESSAGES.INVALID_NUMBER_INPUT);
 }
 
 export function validateRoundCount(roundCountInput, maxRounds = 100) {
