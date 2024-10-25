@@ -1,8 +1,8 @@
 export const COMMON_MESSAGE = {
   INPUT_CARS: Object.freeze(
-    "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)"
+    "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
   ),
-  INPUT_COUNT: Object.freeze("시도할 횟수는 몇 회인가요?"),
+  INPUT_COUNT: Object.freeze("시도할 횟수는 몇 회인가요?\n"),
   EXECUTE: Object.freeze("실행 결과"),
   OUTPUT: Object.freeze("최종 우승자 :"),
 };
