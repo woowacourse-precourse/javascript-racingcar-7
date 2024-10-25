@@ -1,10 +1,10 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 
-function generateProgressBar(position) {
+export function generateProgressBar(position) {
   return '-'.repeat(position);
 }
 
-function formatWinnerNames(names) {
+export function formatWinnerNames(names) {
   return names.map((name) => name).join(', ');
 }
 
