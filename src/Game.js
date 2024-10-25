@@ -1,31 +1,60 @@
 import { Console } from '@woowacourse/mission-utils';
-import { generateRandomNumber } from './utils/index.js';
+import Car from './Car.js';
 
 class Game {
-  constructor(input, count) {
-    this.input = input;
-    this.count = count;
-    this.record = '';
-    this.result = new Map();
+  #winners = [];
+
+  #cars = [];
+
+  #totalRounds;
+
+  #roundRecord;
+
+  constructor(cars, totalRounds) {
+    this.#cars = cars.map((car) => new Car(car));
+    this.#totalRounds = totalRounds;
+    this.#roundRecord = '';
   }
 
   start() {
-    this.input.forEach((car) => {
-      const result = generateRandomNumber();
-      const isMovingForward = result >= 4;
-      if (isMovingForward) {
-        const score = this.result.get(car) ?? 0;
-        this.result.set(car, score + 1);
-      }
-
-      this.record += `${car} : ${'-'.repeat(this.result.get(car))} \n`;
-    });
-    Console.print(`${this.record}\n`);
-    this.record = '';
+    Console.print('\n실행 결과\n');
+    for (let i = 0; i < this.#totalRounds; i++) {
+      this.#playRound();
+    }
+    this.#determineWinners();
   }
 
-  gameResult() {
-    return this.result;
+  #playRound() {
+    this.#cars.forEach((car) => {
+      // 자동차 움직이고
+      car.move();
+      // 점수 기록하고
+      this.#roundRecord += `${car.record()} \n`;
+    });
+    Console.print(this.#roundRecord);
+    this.#roundRecord = '';
+  }
+
+  #determineWinners() {
+    let maxScore = 0;
+
+    this.#cars.forEach((car) => {
+      const { score } = car;
+      if (maxScore > score) return;
+
+      if (score > maxScore) {
+        this.#winners.length = 0;
+        maxScore = score;
+      }
+
+      this.#winners.push(car.name);
+    });
+
+    this.#winners.join(', ');
+  }
+
+  printGameResult() {
+    Console.print(`최종 우승자 : ${this.#winners}`);
   }
 }
 
