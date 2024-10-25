@@ -24,10 +24,18 @@ class App {
         }
       }
       cars.forEach((char, index) => {
-        Console.print(`${char} : ${'-'.repeat(distances[index])}`);
+        Console.print(`${char} : ${'-'.repeat(distances[index])}`); // 차수별 실행 결과
       })
       Console.print("\n");
     }
+    const maxDistance = Math.max(...distances); // 가장 긴 거리 찾기
+    const winnerCar = array.reduce((acc, value, index) => {
+      if (value === maxDistance) {
+        acc.push(cars[index]);
+      }
+      return acc;
+    }, []);
+    Console.print(`최종 우승자 : ${winnerCar.join(', ')}`) // 최종 우승자 ,로 구분하여 출력
   }
 }
 
