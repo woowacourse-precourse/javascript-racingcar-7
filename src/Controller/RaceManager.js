@@ -1,5 +1,6 @@
 import { Car } from '../Model/Car.js';
 import { getRandomNumber } from '../util/getRandomNumber.js';
+import { isValidName } from '../validator/isValidName.js';
 import { printDistance } from '../View/printDistance.js';
 
 import { printWinner } from '../View/printWinner.js';
@@ -10,6 +11,7 @@ export class RaceManager {
   }
 
   makeCar(name) {
+    isValidName(name);
     this.carArray = [...this.carArray, new Car(name)];
   }
 
