@@ -2,6 +2,7 @@ import Input from "./Component/Input.js";
 import { checkCarNames, checkAttemptNumber } from "./Component/Check.js";
 import { makeCarScore } from "./Component/CarScore.js";
 import { startCarRacing } from "./Component/CarRacing.js";
+import { maxScoreCar } from "./Component/SearchMaxScore.js";
 
 class App {
   async run() {
@@ -25,6 +26,9 @@ class App {
       car_score_arr,
       attempt_number
     );
+
+    // 가장 높은 점수를 얻은 자동차 찾기
+    maxScoreCar(car_names_arr, car_racing_result);
   }
 }
 
