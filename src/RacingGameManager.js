@@ -7,6 +7,7 @@ import {
   isIntegerNumber,
   isNumber,
   isPositiveNumber,
+  printEmptyString,
 } from './util.js';
 
 class RacingGameManager {
@@ -23,26 +24,24 @@ class RacingGameManager {
 
   async playGame() {
     const carInput = await getUserInput(CONSOLE_MESSAGE.CAR_INPUT_MESSAGE);
-    this.#validateCarInput(carInput);
-    this.#cars = carInput.split(',').map((carName) => new Car(carName));
+    this.#cars = this.#getValidatedCar(carInput);
 
     const tryCountInput = await getUserInput(
       CONSOLE_MESSAGE.TRY_COUNT_INPUT_MESSAGE,
     );
-    this.#validateTryCountInput(tryCountInput);
-    this.#tryCount = Number(tryCountInput);
+    this.#tryCount = this.#getValidatedTryCount(tryCountInput);
 
     this.#startGame();
 
     this.#printWinner();
   }
 
-  #validateCarInput(input) {
-    if (!input.includes(',')) {
+  #getValidatedCar(car) {
+    if (!car.includes(',')) {
       throw new Error(errorString(ERROR_MESSAGE.MIN_CAR_COUNT));
     }
 
-    const carNames = input.split(',');
+    const carNames = car.split(',');
     const deduplicatedCarNames = new Set(carNames);
     if (carNames.length !== deduplicatedCarNames.size) {
       throw new Error(errorString(ERROR_MESSAGE.DUPLICATED_CAR_NAME));
@@ -55,26 +54,30 @@ class RacingGameManager {
         ),
       );
     }
+
+    return carNames.map((carName) => new Car(carName));
   }
 
-  #validateTryCountInput(input) {
-    const inputToNumber = Number(input);
+  #getValidatedTryCount(tryCount) {
+    const parsedTryCount = Number(tryCount);
 
-    if (!isNumber(inputToNumber)) {
+    if (!isNumber(parsedTryCount)) {
       throw new Error(errorString(ERROR_MESSAGE.INVALID_TRY_COUNT_TYPE));
     }
 
-    if (!isPositiveNumber(inputToNumber) || !isIntegerNumber(inputToNumber)) {
+    if (!isPositiveNumber(parsedTryCount) || !isIntegerNumber(parsedTryCount)) {
       throw new Error(errorString(ERROR_MESSAGE.MIN_TRY_COUNT));
     }
 
-    if (inputToNumber > RacingGameManager.MAX_TRY_COUNT) {
+    if (parsedTryCount > RacingGameManager.MAX_TRY_COUNT) {
       throw new Error(
         errorString(
           `시도 횟수는 ${RacingGameManager.MAX_TRY_COUNT} 이하만 가능합니다.`,
         ),
       );
     }
+
+    return parsedTryCount;
   }
 
   #startGame() {
@@ -84,7 +87,7 @@ class RacingGameManager {
         car.move();
         car.printCarPosition();
       });
-      Console.print('');
+      printEmptyString();
     }
   }
 

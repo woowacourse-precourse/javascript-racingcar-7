@@ -33,12 +33,12 @@ class Car {
     }
   }
 
-  #switchPositionToDash() {
-    return '-'.repeat(this.#position);
-  }
-
   printCarPosition() {
     Console.print(`${this.#name} : ${this.#switchPositionToDash()}`);
+  }
+
+  #switchPositionToDash() {
+    return '-'.repeat(this.#position);
   }
 }
 
