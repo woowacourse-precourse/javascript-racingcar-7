@@ -9,3 +9,7 @@ export function printEachRoundResult(carRace, attemptNum) {
         Console.print('');
     }
 }
+
+export function printWinner(winner) {
+    Console.print(`최종 우승자 : ${winner.join(', ')}`);
+}
