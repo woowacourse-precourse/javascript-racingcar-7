@@ -19,7 +19,7 @@ export async function getUserInputCarName() {
   const playerNames = userInput.trim().split(',');
 
   validatePlayerNames(playerNames);
-  return playerNames;
+  return formatUserInputForGameResult(playerNames);
 }
 
 function validatePlayerNames(playerNames) {
@@ -27,8 +27,6 @@ function validatePlayerNames(playerNames) {
   const regex = /^[a-zA-Z0-9ㄱ-ㅣ가-힣]{1,5}$/;
   if (!playerNames.some((player) => player.match(regex)))
     throw new Error('[ERROR]');
-
-  return formatUserInputForGameResult(playerNames);
 }
 
 function formatUserInputForGameResult(playerNames) {
@@ -40,22 +38,19 @@ function formatUserInputForGameResult(playerNames) {
   return formattedUserInput;
 }
 
-function createCarRacing(playerNames, moveCount) {
+function createCarRacing(formattedUserInput, moveCount) {
   for (let i = 0; i < moveCount; i++) {
-    displayResult(playerNames);
+    displayResult(formattedUserInput);
     // TODO: 여기 있으니 줄바꿈이 moveCount만큼 되고 있음
     Console.print('\n');
   }
 }
 
-// TODO... 객체로 바꿔서 그 객체의 score를 올려줘야할듯
-
 // [ 'pobi', 'woni' ]
-function displayResult(playerNames) {
-  let score = 0;
-  playerNames.forEach((player) => {
-    if (Random.pickNumberInRange(0, 9) > 4) score++;
-    Console.print(`${player} : ${printHyphen(score)}\n`);
+function displayResult(formattedUserInput) {
+  formattedUserInput.forEach((player) => {
+    if (Random.pickNumberInRange(0, 9) > 4) player.score += 1;
+    Console.print(`${player.name} : ${printHyphen(player.score)}\n`);
   });
 }
 
