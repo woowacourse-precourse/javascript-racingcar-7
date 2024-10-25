@@ -78,11 +78,13 @@ describe("자동차 경주", () => {
 
   test("기능 단위 예외 테스트: carNameInput()", async () => {
     // given
-    const input = [',,aaaa', 'aaaaa,bbbb,ccccccc'];
+    const input = [',,aaaa', 'aaaaa,bbbb,ccccccc', 'aaa,aaa,bbb,bbb,c'];
+
     mockQuestions(input);
 
+
     // then
-    await expect(carNameInput()).rejects.toThrow('자동차 이름이 설정되지 않았습니다.' || '자동차 이름이 5글자를 초과 합니다.');
+    await expect(carNameInput()).rejects.toThrow('자동차 이름이 설정되지 않았습니다.' || '자동차 이름이 5글자를 초과 합니다.' || '중복된 자동차 이름이 존재 합니다.');
   })
 
   test.each([
