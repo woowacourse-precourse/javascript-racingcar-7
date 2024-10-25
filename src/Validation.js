@@ -1,5 +1,4 @@
 import { ERROR_MESSAGE } from "./constants/message.js";
-import { LETTER } from "./constants/constant.js";
 
 const NUMBER_REGEX = /^[1-9]\d*$/;
 
