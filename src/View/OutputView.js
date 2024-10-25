@@ -22,6 +22,10 @@ class OutputView {
       this.printCarProgress(carName, forwardCount[index]);
     });
   }
+
+  printWinners(winner) {
+    this.printOutput(`최종 우승자 : ${winner}`);
+  }
 }
 
 export default OutputView;
