@@ -1,32 +1,6 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
-
-class Car {
-  constructor(name) {
-    this.name = name;
-    this.distance = 0;
-  }
-
-  generateRandomNumber() {
-    const randomValue = MissionUtils.Random.pickNumberInRange(0, 9);
-    return randomValue;
-  }
-
-  canMoveForward(randomValue) {
-    if (randomValue >= 4) return true;
-    return false;
-  }
-
-  move() {
-    const randomValue = this.generateRandomNumber();
-    if (this.canMoveForward(randomValue)) this.distance += 1;
-  }
-
-  getDistance() {
-    return this.distance;
-  }
-}
-
-export default class Race {
+import Car from "./Car.js";
+class Race {
   constructor(input, tries) {
     this.cars = this.getValidCarNames(input);
     this.tries = this.convertToNumber(tries);
@@ -51,9 +25,9 @@ export default class Race {
 
   convertToNumber(tries) {
     const tryNum = Number(tries);
-    if (isNaN(tryNum) || tryNum < 0) {
-      // 변환 값이 NaN이거나 음수인 경우 Error
-      throw new Error("[ERROR] 0 이상의 숫자를 입력해주세요");
+    if (isNaN(tryNum) || tryNum <= 0) {
+      // 변환 값이 NaN이거나 0,음수인 경우 Error
+      throw new Error("[ERROR] 1 이상의 숫자를 입력해주세요");
     }
     return tryNum;
   }
@@ -87,3 +61,5 @@ export default class Race {
     MissionUtils.Console.print(`최종 우승자 : ${winners.join(", ")}`);
   }
 }
+
+export default Race;
