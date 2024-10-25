@@ -50,4 +50,16 @@ describe('자동차 경주', () => {
 
     expect(app.getMaxPosition()).toBe(9);
   });
+
+  test('가장 큰 위치의 값을 가진 자동차는 1대이다.', () => {
+    app.carList = [
+      { name: 'pobi', position: 2 },
+      { name: 'woni', position: 9 },
+      { name: 'jun', position: 3 },
+    ];
+    const WINNER = ['woni'];
+    const MAX_POSITION = 9;
+
+    expect(app.findCarWithMaxPosition(MAX_POSITION)).toEqual(WINNER);
+  });
 });
