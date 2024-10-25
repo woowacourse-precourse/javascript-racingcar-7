@@ -8,6 +8,8 @@ class App {
     const moveAttemptCountInput = await this.getMoveAttemptCount();
 
     const carsData = this.changeCarNamesInputToCarsData(carNamesInput);
+
+    this.printExecutionResultMessage();
   }
 
   async getCarNamesInput() {
@@ -32,6 +34,10 @@ class App {
 
   canMoveForward() {
     return Random.pickNumberInRange(0, 9) >= 4;
+  }
+
+  printExecutionResultMessage() {
+    Console.print(PRINT_MESSAGE.EXECUTION_RESULT);
   }
 }
 
