@@ -147,10 +147,10 @@ describe("자동차 경주", () => {
   test('랜덤 값이 4 이상이면 전진할 수 있는지', () => {
     // given
     const randomNumber = pickRandomNumber();
-    
+
     // when
     const canMove = canMoveForward(randomNumber);
-  
+
     // then
     if (randomNumber >= 4) {
       expect(canMove).toBe(true);
@@ -158,4 +158,23 @@ describe("자동차 경주", () => {
       expect(canMove).toBe(false);
     }
   });
+
+  test('레이스 초기 상태 설정', () => {
+  // given
+  const names = ['pobi','bora', 'nana'];
+
+  // when
+  const cars = settingRace(names);
+        
+  // then
+  expect(cars).toHaveLength(3);
+  expect(cars[0].getName()).toBe('pobi');
+  expect(cars[1].getName()).toBe('bora');
+  expect(cars[2].getName()).toBe('nana');
+  })
 });
+  // given
+  
+  // when
+  
+  // then
