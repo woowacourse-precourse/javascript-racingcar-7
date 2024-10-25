@@ -1,4 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
+import { getErrorMessage } from "./ErrorMessageMaker.js";
 
 class IOHandler {
     static async input(message) {
@@ -6,7 +7,7 @@ class IOHandler {
             const value = await Console.readLineAsync(message);
             return value;
         } catch (error) {
-            throw new Error(`[ERROR] ${error.message}`);
+            throw new Error(getErrorMessage(`${error.message}`));
         }
     }
 
