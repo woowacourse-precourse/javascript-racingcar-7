@@ -1,5 +1,10 @@
-import getMovePostion from './racingGameUtils.js';
 import { printCarsMoving, printNewLine } from '../utils/ioModule.js';
+import {
+  getMovePosition,
+  getMaxMoveCount,
+  filterWinningCars,
+  getCarNames,
+} from './racingGameUtils.js';
 
 class RacingGame {
   constructor(cars, tryCount) {
@@ -16,21 +21,16 @@ class RacingGame {
 
   printCurrentState() {
     this.cars.forEach((car) => {
-      const movePosition = getMovePostion(car);
+      const movePosition = getMovePosition(car);
       printCarsMoving(car.getName(), movePosition);
     });
     printNewLine();
   }
 
-  getWinner() {
-    const maxMoveCount = Math.max(
-      ...this.cars.map((car) => car.getMoveCount()),
-    );
-    const winners = this.cars.filter(
-      (car) => car.getMoveCount() === maxMoveCount,
-    );
-
-    return winners.map((winner) => winner.getName());
+  getWinnerNames() {
+    const maxMoveCount = getMaxMoveCount(this.cars);
+    const winningCars = filterWinningCars(this.cars, maxMoveCount);
+    return getCarNames(winningCars);
   }
 }
 
