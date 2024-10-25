@@ -36,7 +36,7 @@ class RaceManager {
     }
 
     async #setRacingCountFromInput() {
-        const inputCount = await IOHandler.input("시도할 횟수는 몇 회인가요\n");
+        const inputCount = await IOHandler.input("시도할 횟수는 몇 회인가요?\n");
         checkLessThanOrEqualMaxCount(inputCount, this.#MAX_RACE_COUNT);
         this.#setRacingCount(inputCount);
     }
