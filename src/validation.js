@@ -21,7 +21,7 @@ export function isCarNamesValid(cars) {
 }
 
 export function isTrialInputValid(input) {
-  if (isNaN(input)) {
+  if (Number.isNaN(input)) {
     return { isTrialValid: false, errTrialMessage: ERROR_MESSAGES.NOT_NUMBER };
   }
 
