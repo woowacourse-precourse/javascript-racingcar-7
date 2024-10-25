@@ -130,7 +130,7 @@ describe('자동차 경주', () => {
     // then
     app.run()
       .catch(
-        (error) => expect(error.message).toMatch(ERROR_DETAILS.SECONDS_NOT_INTEGER),
+        (error) => expect(error.message).toMatch(ERROR_DETAILS.SECONDS_NOT_SAFE_INTEGER),
       );
   });
 });
