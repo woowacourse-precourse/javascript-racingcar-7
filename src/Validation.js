@@ -12,6 +12,7 @@ function validateCarName(carName) {
     validateNoNumber(carName);
     validateNoSpecialCharacters(carName);
     validateMaxFiveChars(carName);
+    validateNoEmptyAroundComma(carName);
   } catch (err) {
     throw new Error(`[ERROR] ${err.message}`);
   }
@@ -34,6 +35,11 @@ function validateNoSpecialCharacters(carName) {
 function validateMaxFiveChars(carName) {
   if (carName.length > 5)
     throw new Error(`${ERROR_MESSAGE.MAX_LENGTH_EXCEEDED}`);
+}
+
+function validateNoEmptyAroundComma(carName) {
+  if (carName.length === 0)
+    throw new Error(`${ERROR_MESSAGE.INVALID_COMMA_USAGE}`);
 }
 
 export function validatePositiveNumber(numberOfMove) {
