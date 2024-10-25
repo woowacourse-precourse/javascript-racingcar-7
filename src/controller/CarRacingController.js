@@ -10,10 +10,8 @@ export default class CarRacingController {
   }
 
   async startGame() {
-    const carNamesInput = await this.view.getCarNames();
-    ValidateCarNamesInput.validate(carNamesInput);
-    const tryCountInput = await this.view.getTryCount();
-    ValidateTryCountInput.validate(tryCountInput);
+    const carNamesInput = await this.getCarNamesInput();
+    const tryCountInput = await this.getTryCountInput();
 
     this.view.showRacingResult();
 
@@ -22,5 +20,17 @@ export default class CarRacingController {
 
     const winners = this.model.getWinners();
     this.view.showWinners(winners);
+  }
+
+  async getCarNamesInput() {
+    const carNamesInput = await this.view.getCarNames();
+    ValidateCarNamesInput.validate(carNamesInput);
+    return carNamesInput;
+  }
+
+  async getTryCountInput() {
+    const tryCountInput = await this.view.getTryCount();
+    ValidateTryCountInput.validate(tryCountInput);
+    return tryCountInput;
   }
 }
