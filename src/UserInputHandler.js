@@ -1,4 +1,9 @@
-import { CONSOLE_MESSAGE, ERROR_MESSAGE } from './constant.js';
+import {
+  CONSOLE_MESSAGE,
+  ERROR_MESSAGE,
+  MAX_CAR_COUNT,
+  MAX_TRY_COUNT,
+} from './constant.js';
 import {
   errorString,
   getUserInput,
@@ -8,9 +13,6 @@ import {
 } from './util.js';
 
 class UserInputHandler {
-  static MAX_CAR_COUNT = 50;
-  static MAX_TRY_COUNT = 500;
-
   async getCarNames() {
     try {
       const carInput = await getUserInput(CONSOLE_MESSAGE.CAR_INPUT_MESSAGE);
@@ -46,12 +48,8 @@ class UserInputHandler {
       throw new Error(errorString(ERROR_MESSAGE.DUPLICATED_CAR_NAME));
     }
 
-    if (carNames.length > UserInputHandler.MAX_CAR_COUNT) {
-      throw new Error(
-        errorString(
-          `경주할 자동차는 ${UserInputHandler.MAX_CAR_COUNT}대 이하만 가능합니다.`,
-        ),
-      );
+    if (carNames.length > MAX_CAR_COUNT) {
+      throw new Error(errorString(ERROR_MESSAGE.MAX_CAR_COUNT));
     }
   }
 
@@ -66,12 +64,8 @@ class UserInputHandler {
       throw new Error(errorString(ERROR_MESSAGE.MIN_TRY_COUNT));
     }
 
-    if (parsedTryCount > UserInputHandler.MAX_TRY_COUNT) {
-      throw new Error(
-        errorString(
-          `시도 횟수는 ${UserInputHandler.MAX_TRY_COUNT} 이하만 가능합니다.`,
-        ),
-      );
+    if (parsedTryCount > MAX_TRY_COUNT) {
+      throw new Error(errorString(ERROR_MESSAGE.MAX_TRY_COUNT));
     }
   }
 }
