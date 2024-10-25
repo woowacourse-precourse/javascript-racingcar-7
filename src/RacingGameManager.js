@@ -22,20 +22,16 @@ class RacingGameManager {
   #startGame() {
     Console.print(CONSOLE_MESSAGE.GAME_START_MESSAGE);
     for (let i = 0; i < this.#tryCount; i++) {
-      this.#cars.forEach((car) => {
-        car.move();
-        car.printCarPosition();
-      });
+      this.#printTryResult();
       printEmptyString();
     }
   }
 
-  #printWinner(winners) {
-    const winnerNames = winners.map((winner) => winner.getName());
-
-    Console.print(
-      CONSOLE_MESSAGE.ANNOUNCE_WINNER_MESSAGE + winnerNames.join(', '),
-    );
+  #printTryResult() {
+    this.#cars.forEach((car) => {
+      car.move();
+      car.printCarPosition();
+    });
   }
 
   #selectWinner() {
@@ -48,6 +44,14 @@ class RacingGameManager {
     );
 
     return maxCars;
+  }
+
+  #printWinner(winners) {
+    const winnerNames = winners.map((winner) => winner.getName());
+
+    Console.print(
+      CONSOLE_MESSAGE.ANNOUNCE_WINNER_MESSAGE + winnerNames.join(', '),
+    );
   }
 }
 
