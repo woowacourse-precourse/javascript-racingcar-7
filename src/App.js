@@ -9,7 +9,8 @@ class App {
     const raceRoundsInput = await MissionUtils.Console.readLineAsync(
       "시도할 횟수는 몇 회인가요?\n"
     );
-    const rounds = this.validateRaceRounds(raceRoundsInput);
+    const raceRounds = this.validateRaceRounds(raceRoundsInput);
+    this.startRace(carNames, raceRounds);
   }
 
   validateCarNames(input) {
@@ -26,6 +27,30 @@ class App {
       throw new Error("[ERROR] 시도횟수가 양의 정수가 아님");
     }
     return rounds;
+  }
+
+  startRace(carNames, raceRounds) {
+    const raceResults = carNames.map((name) => ({ name, position: 0 }));
+    for (let i = 0; i < raceRounds; i++) {
+      this.raceRound(raceResults);
+      this.printRaceStatus(raceResults);
+      MissionUtils.Console.print("\n");
+    }
+    this.printRaceStatus(raceResults);
+  }
+
+  raceRound(raceResults) {
+    raceResults.forEach((car) => {
+      if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) {
+        car.position += 1;
+      }
+    });
+  }
+
+  printRaceStatus(raceResults) {
+    raceResults.forEach((car) => {
+      console.log(`${car.name} : ${"-".repeat(car.position)}`);
+    });
   }
 }
 
