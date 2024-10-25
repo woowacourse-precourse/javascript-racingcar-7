@@ -9,7 +9,7 @@ import {
   validateRacingCountNumber,
   validateRacingCountType,
 } from "./Validation.js";
-import { LETTER } from "./constants/constant.js";
+import LETTER from "./constants/constant.js";
 
 class App {
   getRacingCarName = async () => {
@@ -35,7 +35,7 @@ class App {
     return input;
   };
 
-  calculateWinner = (cars) => {
+  totalWinner = (cars) => {
     const maxForward = Math.max(...cars.map((car) => car.distance));
     return cars.filter((car) => car.distance === maxForward);
   };
@@ -72,7 +72,7 @@ class App {
 
       this.printRacingResult(cars, count);
 
-      const winner = this.calculateWinner(cars);
+      const winner = this.totalWinner(cars);
       this.printWinner(winner);
     } catch (err) {
       Console.print(err.message);
@@ -82,5 +82,3 @@ class App {
 }
 
 export default App;
-
-//자동차 이름을 입력 받는다 → 시도할 횟수를 받는다 -> 횟수만큼 이동 → 차수별 실행 결과를 보여준다 → 우승자를 안내한다
