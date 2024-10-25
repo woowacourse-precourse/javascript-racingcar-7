@@ -42,7 +42,7 @@ class App {
         }
 
         if (!carName.match(regExp)) {
-            throw false;
+            return false;
         }
 
         return true;
@@ -135,12 +135,11 @@ class App {
 
     printResult() {
         const racingCarNames = this.getRacingCarNames();
+
         for (const carName of racingCarNames) {
             const carPosition = this.getRacingCarPosition(carName);
             Console.print(this.makePrintableResult(carName, carPosition));
         }
-
-        Console.print("\n");
     }
 
     solve(userInputCarNames, userInputTryCount) {
@@ -149,9 +148,13 @@ class App {
 
         this.initializeRacingCars(validatedCarNames);
 
+        Console.print("\n실행 결과");
+
         while (validatedTryCount--) {
             this.progressRacing();
             this.printResult();
+
+            Console.print("");
         }
 
         return this.findMaxPositionUser();
