@@ -1,13 +1,13 @@
-import { Validate } from '../src/Validate';
+import { validateError } from '../src/Validate.js';
 
-const validate = new Validate();
-// add 함수 테스트 코드 정의
-describe('add test', () => {
+describe('validate test', () => {
   test('만욱,노미,재걸,동호', () => {
-    expect(validate.validater('만욱,노미,재걸,동호')).toBe(false); // 두 인자를 전달
+    expect(
+      validateError({ car: '만욱,노미,재걸,동호', count: 123123 }),
+    ).toThrow('[ERROR] 길이가 5글자를 초과했습니다'); // 두 인자를 전달
   });
 
-  test('123123,123123123', () => {
-    expect(validate.validater('123123,123123123')).toBe(true); // 두 인자를 전달
+  test('두루미,김수한무거북이와 , 123123', () => {
+    expect(validateError('123123,123123123')).toBe(true); // 두 인자를 전달
   });
 });

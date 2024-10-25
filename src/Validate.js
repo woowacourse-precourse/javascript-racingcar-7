@@ -1,11 +1,14 @@
-export class Validate {
-  validateError = (input) => {
-    if (!this.checkLengthError(input)) return true;
-    return false;
-  };
+import { ERROR_MESSAGE } from './const';
 
-  checkLengthError = (input) => {
-    if (input.length > 5) return true;
-    return false;
-  };
-}
+const checkLengthError = (input) => {
+  if (input.length > 5) throw new Error(ERROR_MESSAGE.LENGTH_ERROR);
+};
+
+const checkCountError = (input) => {
+  if (input.length > 5) throw new Error(ERROR_MESSAGE.BIGNUM_ERROR);
+};
+const validateError = ({ car, count }) => {
+  checkLengthError(car);
+  checkCountError(count);
+};
+export default { validateError };
