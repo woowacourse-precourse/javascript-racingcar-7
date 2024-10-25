@@ -12,7 +12,12 @@ class App {
     this.printExecutionResultMessage();
 
     for (let i = 0; i < Number(moveAttemptCountInput); i++) {
-      carsData.forEach((car) => this.moveForward(car));
+      carsData.forEach((car) => {
+        this.moveForward(car);
+        this.printRoundResult(car);
+      });
+
+      Console.print('');
     }
   }
 
@@ -42,6 +47,10 @@ class App {
 
   printExecutionResultMessage() {
     Console.print(PRINT_MESSAGE.EXECUTION_RESULT);
+  }
+
+  printRoundResult(car) {
+    Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
   }
 
   moveForward(car) {
