@@ -7,8 +7,6 @@ class Validation {
     if (name.length < 1) {
       throw new Error('[ERROR] 자동차 이름은 1자 이상이어야 합니다.');
     }
-
-    return true;
   }
 
   static isNoDuplicated(names) {
@@ -16,8 +14,6 @@ class Validation {
     if (nameSet.size !== names.length) {
       throw new Error('[ERROR] 자동차 이름은 중복해서 입력할 수 없습니다.');
     }
-
-    return true;
   }
 
   static isNumber(totalRounds) {
@@ -26,8 +22,6 @@ class Validation {
         '[ERROR] 자동차 이동 시도 횟수는 숫자로만 입력 가능합니다.',
       );
     }
-
-    return true;
   }
 
   static isValidTotalRounds(totalRounds) {
@@ -40,8 +34,6 @@ class Validation {
     if (totalRounds < 1) {
       throw new Error('[ERROR] 자동차 이동 시도 횟수는 1회 이상이어야 합니다.');
     }
-
-    return true;
   }
 
   static carNames(names, maxNameLength) {
