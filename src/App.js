@@ -16,7 +16,9 @@ class App {
       const race = new Race(splitedUserInput, tryCount);
       race.startRace();
 
-      Console.print(race.carPositions);
+      const carScores = race.getScores();
+      const winners = race.determineWinners(carScores);
+      Console.print(`최종 우승자 : ${winners.join(", ")}`);
     }
   }
 }
