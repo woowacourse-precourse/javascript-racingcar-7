@@ -10,6 +10,14 @@ class App {
       return MissionUtils.Random.pickNumberInRange(0,9);
     }
 
+    // * 무작위 값이 4 이상인 경우, true
+    const isValueMoreThanFour = (value) => {
+      if (value >= 4){
+        return true;
+      }
+      return false;
+    }
+
 
 
 
