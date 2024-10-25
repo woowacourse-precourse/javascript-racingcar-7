@@ -4,6 +4,7 @@ import carNameInput from "../src/UI/carNameInput.js";
 import trialCountInput from "../src/UI/trialCountInput.js";
 import createRacerInformation from "../src/racerData/racer.js";
 import goStopResult from "../src/feature/goStopResult.js";
+import raceProgression from "../src/feature/raceProgression.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -137,4 +138,25 @@ describe("자동차 경주", () => {
       // then
       expect(fnResult).toBe(result);
     });
+
+  test('기능 단위 테스트: raceProgression()', () => {
+    // given
+    const carList = ['carA', 'carB', 'carC', 'carD', 'carE', 'carF'];
+    const initialRaceHistory = new Map(carList.map((car) => [car, '']));
+    const trialCount = 1;
+    const randomNumber = [9,0,0,0,0,0];
+    const logs = ["carA : -", "carB : ", "carC : ", "carD : ", "carE : ", "carF : "];
+    const logSpy = getLogSpy();
+
+    mockRandoms(randomNumber);
+
+    // when
+    const raceResult = raceProgression(carList, initialRaceHistory, trialCount);
+
+    // then
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+    expect(raceResult).toContainEqual(['carA', '-'] && ['carB', ''] && ['carC', ''] && ['carD', ''] && ['carE', ''] && ['carF', '']);
+  });
 });
