@@ -51,10 +51,11 @@ class Validation {
   }
 
   carNames(names) {
-    Validation.isNoDuplicated(names);
-    names.forEach((name) => this.#isValidLength(name));
+    const targetNames = [...names];
+    Validation.isNoDuplicated(targetNames);
+    targetNames.forEach((name) => this.#isValidLength(name));
 
-    return names;
+    return targetNames;
   }
 }
 
