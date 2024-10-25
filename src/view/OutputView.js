@@ -8,7 +8,7 @@ class OutputView {
   }
 
   static printWinner(winners) {
-    Console.print(`\n${OUTPUT_MESSAGE.FINAL_WINNER + winners.join(',')}`);
+    Console.print(`\n${OUTPUT_MESSAGE.FINAL_WINNER + winners.join(', ')}`);
   }
 }
 
