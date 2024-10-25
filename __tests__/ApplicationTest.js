@@ -1,5 +1,6 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import App from '../src/App.js';
+import NameValidator from '../src/utils/validators/NameValidator.js';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -58,22 +59,36 @@ describe('자동차 경주', () => {
     // then
     await expect(app.run()).rejects.toThrow('[ERROR]');
   });
+});
 
-  test('예외 테스트 - 자동차 이름이 공백인 경우', async () => {
-    const inputs = ['pobi,javaji,'];
-    mockQuestions(inputs);
+describe('자동차 이름 검증', () => {
+  let nameValidator;
 
-    const app = new App();
-
-    await expect(app.run()).rejects.toThrow('[ERROR]');
+  beforeEach(() => {
+    nameValidator = new NameValidator();
   });
 
-  test('예외 테스트 - 게임 횟수가 공백인 경우', async () => {
-    const inputs = [''];
-    mockQuestions(inputs);
+  test('자동차 이름이 5글자 초과일 때, 에러 처리', async () => {
+    const inputs = ['우테코,합격하고싶어요'];
 
-    const app = new App();
+    await expect(async () => {
+      await nameValidator.runAllFunction(inputs);
+    }).rejects.toThrow('[ERROR]');
+  });
 
-    await expect(app.run()).rejects.toThrow('[ERROR]');
+  test('자동차 이름에 쉼표 아닌 다른 구분자가 있는 경우, 에러 처리', async () => {
+    const inputs = ['우테코.,합격기원'];
+
+    await expect(async () => {
+      await nameValidator.runAllFunction(inputs);
+    }).rejects.toThrow('[ERROR]');
+  });
+
+  test('자동차 이름에 공백이 있는 경우, 에러 처리', async () => {
+    const inputs = ['우테코,'];
+
+    await expect(async () => {
+      await nameValidator.runAllFunction(inputs);
+    }).rejects.toThrow('[ERROR]');
   });
 });
