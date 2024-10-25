@@ -33,8 +33,12 @@ class RacingGame {
       throw new Error(ERROR_DETAILS.CARNAME_NOT_STRING);
     }
 
-    if (carName.trim() === '') {
+    if (carName === '') {
       throw new Error(ERROR_DETAILS.CARNAME_EMPTY);
+    }
+
+    if (carName.length > 5) {
+      throw new Error(ERROR_DETAILS.CARNAME_LENGTH);
     }
   }
 
