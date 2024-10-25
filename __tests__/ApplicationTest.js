@@ -31,14 +31,14 @@ describe('자동차 경주', () => {
     const app = new App();
     const inputs = ['test'];
     mockQuestions(inputs);
-    const NAMES = await app.getInput(IO_MESSAGE.INPUT_CAR_NAME);
-    expect(NAMES).toEqual('test');
+    const CARS = await app.getCars(IO_MESSAGE.INPUT_CAR_NAME);
+    expect(CARS[0].name).toEqual('test');
   });
 
   test('자동차 생성 테스트', async () => {
     const car = new Car('test');
-    expect(car._name).toEqual('test');
-    expect(car._count).toBe(0);
+    expect(car.name).toEqual('test');
+    expect(car.count).toBe(0);
   });
 
   test('자동차 생성 예외 테스트(5자 초과)', async () => {
@@ -73,8 +73,8 @@ describe('자동차 경주', () => {
     const numbers = [4, 5, 6, 7, 8, 9];
     mockRandoms(numbers);
     numbers.forEach((number, idx) => {
-      car.run();
-      expect(car._count).toBe(idx + 1);
+      car.moveOrStop();
+      expect(car.count).toBe(idx + 1);
     });
   });
 
@@ -83,8 +83,8 @@ describe('자동차 경주', () => {
     const numbers = [0, 1, 2, 3];
     mockRandoms(numbers);
     numbers.forEach(() => {
-      car.run();
-      expect(car._count).toBe(0);
+      car.moveOrStop();
+      expect(car.count).toBe(0);
     });
   });
 
