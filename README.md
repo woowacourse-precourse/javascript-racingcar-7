@@ -1,1 +1,9 @@
-# javascript-racingcar-precourse
+# javascript-racingcar-precourse 구현할 기능 목록
+
+
+1. 필수 라이브러리 import, 필요한 기본 입출력 처리하기
+2. 조건에 맞는 입력에 대해서 자동차 이름 부여하기
+3. 이동할 횟수 입력받고 해당 횟수만큼 이동 수행시키기
+4. 이동 종료 후 결과 출력하기
+5. 다양한 입력에 대한 테스트 및 에러 처리
+   
