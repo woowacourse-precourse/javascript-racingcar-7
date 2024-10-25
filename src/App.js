@@ -59,9 +59,9 @@ class App {
   }
 
   validateCount(count) {
+    if (invalidNumber(count)) throw new Error(ERROR_MESSAGE.INVALID_NUMBER);
     if (invalidRange(count)) throw new Error(ERROR_MESSAGE.INVALID_RANGE);
     if (invalidInteger(count)) throw new Error(ERROR_MESSAGE.INVALID_INTEGER);
-    if (invalidNumber(count)) throw new Error(ERROR_MESSAGE.INVALID_NUMBER);
   }
 }
 
