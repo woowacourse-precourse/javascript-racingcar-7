@@ -6,7 +6,7 @@ class Car {
 
   constructor(name) {
     this.#name = name;
-    this.#positionHistory = [];
+    this.#positionHistory = [0];
   }
 
   static canMoveForward() {
@@ -18,18 +18,17 @@ class Car {
     return this.#name;
   }
 
-  runForSeconds(seconds) {
-    this.#positionHistory = Array(seconds + 1);
-    this.#positionHistory[0] = 0;
+  runAt(second) {
+    this.ensureSecondInRange(second);
 
-    for (let index = 1; index <= seconds; ++index) {
-      const hasMoved = Car.canMoveForward();
-      this.#positionHistory[index] = this.#positionHistory[index - 1] + Number(hasMoved);
-    }
+    const isMovingForward = Car.canMoveForward();
+    this.#positionHistory.push(
+      this.#positionHistory[second - 1] + Number(isMovingForward)
+    );
   }
 
   ensureSecondInRange(second) {
-    if (second < 0 || second > this.#positionHistory.length) {
+    if (second <= 0 || second > this.#positionHistory.length) {
       throw new Error(ERROR_DETAILS.INVALID_SECOND);
     }
   }

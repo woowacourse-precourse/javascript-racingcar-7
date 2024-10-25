@@ -69,11 +69,13 @@ class RacingGame {
 
   playFor(seconds) {
     RacingGame.validateSeconds(seconds);
-
     this.#ranForSeconds = seconds;
-    this.#cars.forEach((car) => {
-      car.runForSeconds(seconds);
-    });
+
+    for (let second = 1; second <= seconds; ++second) {
+      this.#cars.forEach((car) => {
+        car.runAt(second);
+      });
+    }
 
     return this;
   }
