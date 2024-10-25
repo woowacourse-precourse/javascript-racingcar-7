@@ -10,11 +10,13 @@ const MAX_CAR_NAME_LEN = 5;
 
 const MIN_TRY_COUNT = 1;
 
-const MAX_TRY_COUNT = 300;
+const MAX_TRY_COUNT = 1000;
 
 const MIN_RANDOM_NUM = 0;
 
 const MAX_RANDOM_NUM = 9;
+
+const MAX_CAR_COUNT = 1000;
 
 export {
   INIT_NUM,
@@ -26,4 +28,5 @@ export {
   MAX_TRY_COUNT,
   MIN_RANDOM_NUM,
   MAX_RANDOM_NUM,
+  MAX_CAR_COUNT,
 };

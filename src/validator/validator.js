@@ -3,6 +3,7 @@ import {
   MIN_CAR_NAME_LEN,
   MIN_TRY_COUNT,
   MAX_TRY_COUNT,
+  MAX_CAR_COUNT,
 } from '../constants/constants.js';
 import { ERROR_MESSAGE } from '../constants/messages.js';
 import { ALPHABET_AND_COMMA_REGEX, NUMBER_REGEX } from '../constants/regex.js';
@@ -65,6 +66,13 @@ const checkIsNull = function checkIsNullFunc(inputString) {
   return inputString;
 };
 
+const checkCarCountLimit = function checkCarCountLimitFunc(carNamesArray) {
+  if (carNamesArray.length > MAX_CAR_COUNT) {
+    throw new Error(ERROR_MESSAGE.LIMIT_CAR_COUNT);
+  }
+  return carNamesArray;
+};
+
 export {
   checkOnlyAlphabetAndComma,
   checkValidNameLength,
@@ -72,4 +80,5 @@ export {
   checkOnlyNumber,
   checkValidRange,
   checkIsNull,
+  checkCarCountLimit,
 };

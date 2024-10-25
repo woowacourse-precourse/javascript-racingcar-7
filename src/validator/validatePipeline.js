@@ -5,6 +5,7 @@ import {
   checkOnlyNumber,
   checkValidNameLength,
   checkValidRange,
+  checkCarCountLimit,
 } from './validator.js';
 
 const pipeline = function pipelineFunc(functions, input) {
@@ -16,7 +17,10 @@ const validateRacingCarInput = function validateRacingCarInputFunc(input) {
 };
 
 const validateCarNames = function validateCarNamesFunc(input) {
-  return pipeline([checkValidNameLength, checkDuplicateNames], input);
+  return pipeline(
+    [checkValidNameLength, checkDuplicateNames, checkCarCountLimit],
+    input,
+  );
 };
 
 const validateTryCount = function validateTryCountFunc(input) {

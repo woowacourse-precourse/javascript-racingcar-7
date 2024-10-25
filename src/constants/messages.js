@@ -1,3 +1,5 @@
+import { MAX_CAR_COUNT } from './constants.js';
+
 const PRINT_MESSAGES = {
   INPUT: {
     CAR_NAME: '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)',
@@ -19,6 +21,6 @@ const ERROR_MESSAGE = {
   INVALID_NUMBER_RANGE:
     '[ERROR] 시도 횟수는 1이상 300이하의 숫자만 입력 가능합니다.',
   NULL_INPUT: '[ERROR] 입력값이 비어 있습니다. 값을 입력해 주세요.',
+  LIMIT_CAR_COUNT: `[ERROR] 자동차 개수는 최대 ${MAX_CAR_COUNT}대를 초과할 수 없습니다.`,
 };
-
 export { PRINT_MESSAGES, ERROR_MESSAGE };
