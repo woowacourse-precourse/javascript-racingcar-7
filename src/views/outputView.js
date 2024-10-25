@@ -5,10 +5,14 @@ const OutputView = {
     Console.print('\n실행 결과');
   },
 
+  formatCarStatus(car) {
+    const position = '-'.repeat(car.getPosition());
+    return `${car.getName()} : ${position}`;
+  },
+
   printRoundStatus(cars) {
     cars.forEach((car) => {
-      const position = '-'.repeat(car.getPosition());
-      Console.print(`${car.getName()} : ${position}`);
+      Console.print(this.formatCarStatus(car));
     });
     Console.print('');
   },
