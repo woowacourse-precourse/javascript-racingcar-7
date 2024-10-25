@@ -1,12 +1,6 @@
 class Validation {
-  #maxNameLength;
-
-  constructor(maxNameLength) {
-    this.#maxNameLength = maxNameLength;
-  }
-
-  #isValidLength(name) {
-    if (name.length > this.#maxNameLength) {
+  static isValidLength(name, maxNameLength) {
+    if (name.length > maxNameLength) {
       throw new Error('[ERROR] 자동차 이름은 5자를 초과할 수 없습니다.');
     }
 
@@ -50,10 +44,10 @@ class Validation {
     return true;
   }
 
-  carNames(names) {
+  static carNames(names, maxNameLength) {
     const targetNames = [...names];
-    Validation.isNoDuplicated(targetNames);
-    targetNames.forEach((name) => this.#isValidLength(name));
+    this.isNoDuplicated(targetNames);
+    targetNames.forEach((name) => this.isValidLength(name, maxNameLength));
 
     return targetNames;
   }
