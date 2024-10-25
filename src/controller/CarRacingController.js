@@ -1,5 +1,6 @@
 import CarRacingModel from "../model/CarRacingModel.js";
 import ValidateCarNamesInput from "../utils/validateCarNamesInput.js";
+import ValidateTryCountInput from "../utils/ValidateTryCountInput.js";
 import CarRacingView from "../view/CarRacingView.js";
 
 export default class CarRacingController {
@@ -10,13 +11,13 @@ export default class CarRacingController {
 
   async startGame() {
     const carNamesInput = await this.view.getCarNames();
-    const validatedCarNamesInput =
-      ValidateCarNamesInput.validate(carNamesInput);
+    ValidateCarNamesInput.validate(carNamesInput);
     const tryCountInput = await this.view.getTryCount();
+    ValidateTryCountInput.validate(tryCountInput);
 
     this.view.showRacingResult();
 
-    this.model = new CarRacingModel(validatedCarNamesInput);
+    this.model = new CarRacingModel(carNamesInput);
     this.model.runRace(parseInt(tryCountInput, 10));
 
     const winners = this.model.getWinners();
