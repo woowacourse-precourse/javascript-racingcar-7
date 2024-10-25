@@ -6,6 +6,10 @@ class App {
     const carNames = await inputView.readCarNames();
 
     console.log(carNames);
+
+    const attemptCount = await inputView.readAttemptCount();
+
+    console.log(attemptCount);
   }
 }
 

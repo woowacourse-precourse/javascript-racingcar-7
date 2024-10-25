@@ -22,6 +22,15 @@ class InputView {
 
     return carNames;
   }
+
+  async readAttemptCount() {
+    let attemptCount = 0;
+
+    const input = await this.readInput('시도할 횟수는 몇 회인가요?\n');
+    attemptCount = Number(input);
+
+    return attemptCount;
+  }
 }
 
 export default InputView;
