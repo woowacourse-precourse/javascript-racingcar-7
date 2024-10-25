@@ -1,7 +1,20 @@
 import { Console } from '@woowacourse/mission-utils';
+import Car from './Car.js';
+import Racing from './Racing.js';
 
 class App {
-  async run() {}
+  async run() {
+    const carNames = await App.askCarNames();
+    const parsedNames = App.parseCarNames(carNames);
+    const cars = parsedNames.map((name) => new Car(name));
+
+    const totalRounds = await App.askTotalRounds();
+    const convertedTotalRounds = App.totalRoundsToNumber(totalRounds);
+    const racing = new Racing(convertedTotalRounds, cars);
+
+    racing.play();
+    racing.announceWinners();
+  }
 
   static async askCarNames() {
     const carNames = await Console.readLineAsync(
