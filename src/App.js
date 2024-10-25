@@ -18,7 +18,10 @@ class App {
   }
 
   #parseEntries(input) {
-    const carNames = input.split(',');
+    const carNames = input
+      .split(',') //
+      .map((name) => name.trim());
+
     carNames.forEach(this.#validateCarName);
     return carNames;
   }
