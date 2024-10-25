@@ -1,3 +1,4 @@
+import InputView from '../src/View/InputView';
 import { mockQuestions } from './ApplicationTest';
 
 describe('InputView', () => {
