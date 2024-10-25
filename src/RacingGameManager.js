@@ -41,7 +41,7 @@ class RacingGameManager {
       throw new Error(errorString(ERROR_MESSAGE.MIN_CAR_COUNT));
     }
 
-    const carNames = car.split(',');
+    const carNames = car.split(',').map((carName) => carName.trim());
     const deduplicatedCarNames = new Set(carNames);
     if (carNames.length !== deduplicatedCarNames.size) {
       throw new Error(errorString(ERROR_MESSAGE.DUPLICATED_CAR_NAME));
@@ -91,7 +91,26 @@ class RacingGameManager {
     }
   }
 
-  #printWinner() {}
+  #printWinner() {
+    const winners = this.#selectWinner();
+    const winnerNames = winners.map((winner) => winner.getName());
+
+    Console.print(
+      CONSOLE_MESSAGE.ANNOUNCE_WINNER_MESSAGE + winnerNames.join(', '),
+    );
+  }
+
+  #selectWinner() {
+    const maxCarPosition = Math.max(
+      ...this.#cars.map((car) => car.getPosition()),
+    );
+
+    const maxCars = this.#cars.filter(
+      (car) => car.getPosition() === maxCarPosition,
+    );
+
+    return maxCars;
+  }
 }
 
 export default RacingGameManager;

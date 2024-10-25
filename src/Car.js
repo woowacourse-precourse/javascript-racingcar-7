@@ -40,6 +40,14 @@ class Car {
   #switchPositionToDash() {
     return '-'.repeat(this.#position);
   }
+
+  getPosition() {
+    return this.#position;
+  }
+
+  getName() {
+    return this.#name;
+  }
 }
 
 export default Car;
