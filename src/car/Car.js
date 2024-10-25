@@ -1,4 +1,4 @@
-import { Random } from '@woowacourse/mission-utils';
+import { Random, Console } from '@woowacourse/mission-utils';
 import { hasSpecialCharacter } from '../common/stringUtil.js';
 import { ERROR_MESSAGE } from '../common/message.js';
 import { CAR } from './constant.js';
@@ -19,6 +19,10 @@ class Car {
   moveOrStop() {
     const num = Random.pickNumberInRange(CAR.RUN_RANDOM_RANGE_MIN, CAR.RUN_RANDOM_RANGE_MAX);
     if (num >= CAR.RUN_CONDITION_VALUE) this.count++;
+  }
+
+  peekResult() {
+    Console.print(`${this.name} : ${'-'.repeat(this.count)}`);
   }
 }
 

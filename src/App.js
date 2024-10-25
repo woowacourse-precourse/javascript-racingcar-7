@@ -10,9 +10,10 @@ class App {
     const TRY_COUNT = await this.getTryCount();
     Console.print(IO_MESSAGE.OUTPUT_ANNOUNCE_MESSAGE);
     for (let i = 0; i < TRY_COUNT; i++) {
-      CARS.forEach(car => car.moveOrStop());
-      this.peekResult(CARS);
+      this.moveAndPeek(CARS);
     }
+    const RESULT = this.getFinalResult(CARS);
+    Console.print(`최종 우승자 : ${RESULT.join(', ')}`);
   }
 
   async getCars() {
@@ -33,11 +34,25 @@ class App {
     return TRY_COUNT;
   }
 
+  moveAndPeek(cars) {
+    cars.forEach(car => {
+      car.moveOrStop();
+      car.peekResult();
+      Console.print('');
+    });
+  }
+
   peekResult(cars) {
     cars.forEach(car => {
       Console.print(`${car.name} : ${'-'.repeat(car.count)}`);
     });
     Console.print('');
+  }
+
+  getFinalResult(cars) {
+    cars.sort((a, b) => b.count - a.count);
+    const MAX = cars[0].count;
+    return cars.filter(car => car.count === MAX).map(car => car.name);
   }
 }
 
