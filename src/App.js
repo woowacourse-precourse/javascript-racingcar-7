@@ -1,8 +1,9 @@
 import RacingCar from "./RacingCar.js";
 class App {
-  async run() {}
-  racingCar = new this.RacingCar();
+  async run() {
+    const racingCar = new RacingCar();
+    racingCar.getCarName();
+  }
 }
 
-RacingCar.getCarName();
 export default App;
