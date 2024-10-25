@@ -8,3 +8,8 @@ function validateOnlyLetters(carName) {
   if (/\d/.test(carName))
     throw new Error(`${ERROR_MESSAGE.INVALID_CHARACTERS}`);
 }
+
+function validateMaxFiveChars(carName) {
+  if (carName.length > 5)
+    throw new Error(`${ERROR_MESSAGE.MAX_LENGTH_EXCEEDED}`);
+}
