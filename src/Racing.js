@@ -58,7 +58,9 @@ class Racing {
   announceWinners() {
     const winners = this.#findWinners();
     const winnersName = winners.map((winner) => winner.name);
-    return winnersName;
+    const winnersNameToString = winnersName.join(', ');
+
+    Console.print(`최종 우승자 : ${winnersNameToString}`);
   }
 }
 
