@@ -10,6 +10,10 @@ class App {
     const carsData = this.changeCarNamesInputToCarsData(carNamesInput);
 
     this.printExecutionResultMessage();
+
+    for (let i = 0; i < Number(moveAttemptCountInput); i++) {
+      carsData.forEach((car) => this.moveForward(car));
+    }
   }
 
   async getCarNamesInput() {
@@ -38,6 +42,12 @@ class App {
 
   printExecutionResultMessage() {
     Console.print(PRINT_MESSAGE.EXECUTION_RESULT);
+  }
+
+  moveForward(car) {
+    if (this.canMoveForward()) {
+      car.position += 1;
+    }
   }
 }
 
