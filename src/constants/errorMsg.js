@@ -1,4 +1,4 @@
-const ERROR_PREFIX = '[Error]';
+const ERROR_PREFIX = '[ERROR]';
 
 export const ERROR_MESSAGES = {
   INVALID_CAR_NAME: `${ERROR_PREFIX} 자동차 이름은 5자 이하만 가능합니다.`,
