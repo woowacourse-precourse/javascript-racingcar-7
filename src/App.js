@@ -1,4 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
+import { MissionUtils } from '@woowacourse/mission-utils';
 
 class App {
   async run() {
@@ -14,9 +15,25 @@ class App {
         throw new Error('[ERROR] 자동차 이름은 5자 이하여야 합니다.');
       }
 
+      const carsInfo = carNames.reduce((acc, name) => {
+        acc[name] = 0;
+        return acc;
+      }, {});
+
       const attemps = await Console.readLineAsync(
         '시도할 횟수는 몇 회인가요?\n'
       );
+
+      for (let i = 0; i < attemps; i++) {
+        Object.entries(carsInfo).forEach(([key, value]) => {
+          const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
+          if (randomNumber > 3) {
+            carsInfo[key] = value + 1;
+          }
+          Console.print(`${key} : ${carsInfo[key]}`);
+        });
+        Console.print('');
+      }
     } catch (error) {
       Console.print(error.message);
       throw error;
