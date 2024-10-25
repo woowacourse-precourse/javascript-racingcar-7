@@ -1,5 +1,4 @@
 # javascript-racingcar-precourse
-# javascript-calculator-precourse
 
 ## 기능 구현
 1. 입출력 기능
