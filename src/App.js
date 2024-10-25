@@ -1,5 +1,13 @@
+import RacingController from './controller/racingController.js';
+
 class App {
-  async run() {}
+  constructor() {
+    this.controller = new RacingController();
+  }
+
+  async run() {
+    await this.controller.getCarNames();
+  }
 }
 
 export default App;
