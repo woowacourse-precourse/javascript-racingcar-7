@@ -5,6 +5,7 @@ import trialCountInput from "../src/UI/trialCountInput.js";
 import createRacerInformation from "../src/racerData/racer.js";
 import goStopResult from "../src/feature/goStopResult.js";
 import raceProgression from "../src/feature/raceProgression.js";
+import getWinner from "../src/feature/getWinner.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -158,5 +159,28 @@ describe("자동차 경주", () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
     expect(raceResult).toContainEqual(['carA', '-'] && ['carB', ''] && ['carC', ''] && ['carD', ''] && ['carE', ''] && ['carF', '']);
+  });
+
+  test('기능 단위 테스트: getWinner()', () => {
+    // given
+    const carList = ['carA', 'carB', 'carC', 'carD', 'carE', 'carF'];
+    const raceProgress = new Map([
+      ['carA', ''],
+      ['carB', '--'],
+      ['carC', '----------'],
+      ['carD', '---'],
+      ['carE', '-'],
+      ['carF', '----------'],
+    ]);
+    const logs = ['최종 우승자 : carC, carF'];
+    const logSpy = getLogSpy();
+
+    // when
+    getWinner(carList, raceProgress);
+
+    // then
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
   });
 });
