@@ -55,7 +55,9 @@ class App {
       (car) => car.position === Math.max(...CARS.map((car) => car.position))
     );
 
-    console.log(WINNERS);
+    Console.print(
+      `최종 우승자: ${WINNERS.map((winner) => winner.name).join(', ')}`
+    );
   }
 }
 
