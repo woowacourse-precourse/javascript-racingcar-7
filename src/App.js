@@ -47,7 +47,7 @@ class App {
 
   #executeRace() {
     Object.entries(this.#car).forEach(([carName, move]) => {
-      if (Math.floor(Math.random() * 10) >= 4) {
+      if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) {
         this.#car[carName] = move + 1;
       }
 
