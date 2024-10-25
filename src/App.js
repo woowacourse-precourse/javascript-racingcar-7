@@ -21,6 +21,10 @@ class App {
   static parseCarNames(names) {
     return names.split(',');
   }
+
+  static totalRoundsToNumber(totalRounds) {
+    return Number(totalRounds);
+  }
 }
 
 export default App;
