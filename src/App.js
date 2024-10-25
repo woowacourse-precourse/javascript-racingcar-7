@@ -18,7 +18,10 @@ class App {
       return false;
     }
 
-
+    // * 자동차 한칸 전진 
+    const increaseCarDistance = (car) => {
+      car.distance += 1;
+    }
 
 
     try{
