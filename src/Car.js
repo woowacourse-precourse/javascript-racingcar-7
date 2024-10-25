@@ -1,5 +1,5 @@
 import { NAME_LENGTH_ERROR_MESSAGE } from "./constants/Messages.js";
-import { DISTANCE, MAX_NAME_LENGTH } from "./constants/Constants.js";
+import { MAX_NAME_LENGTH } from "./constants/Constants.js";
 
 export class Car {
   #name;
@@ -14,8 +14,8 @@ export class Car {
     if (name.length > MAX_NAME_LENGTH) throw new Error(NAME_LENGTH_ERROR_MESSAGE);
   }
 
-  move() {
-    this.#length += DISTANCE;
+  move(distance) {
+    this.#length += distance;
   }
 
   getName() {

@@ -1,6 +1,6 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import { PrintRoundResult } from "./handler/PrintRoundResult.js";
-import { MAX_RANDOM_NUMBER, MIN_RANDOM_NUMBER, WINNING_NUMBER } from "./constants/Constants.js";
+import { DISTANCE, MAX_RANDOM_NUMBER, MIN_RANDOM_NUMBER, WINNING_NUMBER } from "./constants/Constants.js";
 
 export class Game {
   #printRoundResult;
@@ -19,7 +19,7 @@ export class Game {
   #game(car) {
     const randomNumber = MissionUtils.Random.pickNumberInRange(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER);
     if (randomNumber >= WINNING_NUMBER) {
-      car.move();
+      car.move(DISTANCE);
     }
     return { name: car.getName(), length: car.getLength() }
   }
