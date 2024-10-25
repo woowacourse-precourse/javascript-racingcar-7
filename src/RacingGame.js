@@ -43,7 +43,26 @@ class RacingGame {
     }
   }
 
+  static validateSeconds(seconds) {
+    if (Number.isNaN(seconds)) {
+      throw new Error(ERROR_DETAILS.SECONDS_NAN);
+    }
+
+    if (!Number.isInteger(seconds)) {
+      throw new Error(ERROR_DETAILS.SECONDS_NOT_INTEGER);
+    }
+
+    if (!Number.isSafeInteger(seconds)) {
+      throw new Error(ERROR_DETAILS.SECONDS_NOT_SAFE_INTEGER);
+    }
+
+    if (seconds <= 0) {
+      throw new Error(ERROR_DETAILS.SECONDS_NOT_POSITIVE);
+    }
+  }
+
   playFor(seconds) {
+    RacingGame.validateSeconds(seconds);
   }
 }
 
