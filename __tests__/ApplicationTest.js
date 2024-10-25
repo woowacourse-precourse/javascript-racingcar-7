@@ -137,10 +137,24 @@ describe("자동차 경주", () => {
   test('랜덤 숫자 뽑기', () => {
     // when
     const randomNumber = pickRandomNumber();
-  
+
     // then
     expect(randomNumber).toBeGreaterThanOrEqual(1);
     expect(randomNumber).toBeLessThanOrEqual(9);
   });
 
+  test('랜덤 값이 4 이상이면 전진할 수 있는지', () => {
+    // given
+    const randomNumber = pickRandomNumber();
+    
+    // when
+    const canMove = canMoveForward(randomNumber);
+  
+    // then
+    if (randomNumber >= 4) {
+      expect(canMove).toBe(true);
+    } else {
+      expect(canMove).toBe(false);
+    }
+  });
 });
