@@ -12,9 +12,9 @@ class App {
     const validatedNames = this.validator.ValidateName(nameInput.trim());
 
     const tryInput = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
-    const validatedTries = this.validator.ValidateTry(+tryInput);
+    const validatedCounts = this.validator.ValidateTry(+tryInput);
 
-    const result = this.racingGame.play(validatedNames, validatedTries);
+    const result = this.racingGame.play(validatedNames, validatedCounts);
     Console.print(`최종 우승자 : ${result}`);
   }
 }

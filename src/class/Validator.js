@@ -1,22 +1,26 @@
+import { ERROR_MESSAGES } from '../constants/errorMessages';
+
 class Validator {
   ValidateName(nameString) {
     const names = nameString.split(',');
 
-    if (names.length < 2) throw new Error('[ERROR] 두 명 이상의 이름을 입력해주세요.');
-    if (new Set(names).size !== names.length) throw new Error('[ERROR] 중복되지 않는 이름을 입력해주세요.');
+    if (names.length < 2) throw new Error(ERROR_MESSAGES.name.MIN_NAMES);
+    if (new Set(names).size !== names.length) throw new Error(ERROR_MESSAGES.name.DUPLICATEED);
 
     names.some((name) => {
-      if (name === '') throw new Error('[ERROR] 이름을 입력해주세요.');
-      if (name.length > 5) throw new Error('[ERROR] 5자 이내의 이름을 입력해주세요.');
+      if (name === '') throw new Error(ERROR_MESSAGES.name.EMPTY);
+      if (name.includes(' ')) throw new Error(ERROR_MESSAGES.name.HAS_SPACING);
+      if (name.length > 5) throw new Error(ERROR_MESSAGES.name.MAX_LENGTH);
     });
 
     return names;
   }
 
   ValidateTry(tries) {
-    if (tries < 1) throw new Error('[ERROR] 1 이상의 시도 횟수를 입력해주세요.');
-    if (isNaN(tries)) throw new Error('[ERROR] 시도 횟수에 숫자만 입력해주세요.');
-    if (tries.toString().length > 15) throw new Error('[ERROR] 15자리수 이내의 시도 횟수를 입력해주세요.');
+    if (tries < 1) throw new Error(ERROR_MESSAGES.count.MIN_TRIES);
+    if (isNaN(tries)) throw new Error(ERROR_MESSAGES.count.NOT_NUMBER);
+    if (tries.toString().includes('.')) throw new Error(ERROR_MESSAGES.count.NOT_NATURAL_NUMBER);
+    if (tries.toString().length > 15) throw new Error(ERROR_MESSAGES.count.MAX_LENGTH);
 
     return tries;
   }

@@ -35,9 +35,9 @@ class RacingGame {
     this.winner = winningCarsName.join(', ');
   }
 
-  play(names, tries) {
+  play(names, counts) {
     this.createCars(names);
-    this.repeatTries(tries);
+    this.repeatTries(counts);
     this.getWinner(this.getHighestScore());
 
     return this.winner;
