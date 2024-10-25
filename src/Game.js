@@ -11,10 +11,14 @@ export class Game {
 
   play(attemptCount, cars) {
     for (let i = 0; i < attemptCount; i++) {
-      const roundResult = cars.map((car) => this.#game(car));
-      this.#printRoundResult.print(roundResult);
+      this.#playRound(cars);
     }
     return this.#getWinners(cars);
+  }
+
+  #playRound(cars) {
+    const roundResult = cars.map((car) => this.#game(car));
+    this.#printRoundResult.print(roundResult);
   }
 
   #game(car) {
