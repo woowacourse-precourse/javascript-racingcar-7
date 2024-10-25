@@ -33,6 +33,7 @@ class App {
 
   startRace(carNames, raceRounds) {
     const raceResults = carNames.map((name) => ({ name, position: 0 }));
+    MissionUtils.Console.print("\n실행 결과");
     for (let i = 0; i < raceRounds; i++) {
       this.raceRound(raceResults);
       this.printRaceStatus(raceResults);
