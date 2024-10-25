@@ -20,9 +20,19 @@ export const pickNumberInRange = (start, end) => {
 export const splitIntoArray = (str, separator) => str.split(separator);
 
 export const validatePositiveInteger = (num) => {
-  if (Number.isNaN(num)) throw new Error(ERROR_MESSAGE_NOT_NUMBER);
-  if (num <= 0) throw new Error(ERROR_MESSAGE_NOT_POSITIVE_POSITIVE);
-  if (!Number.isInteger(num)) throw new Error(ERROR_MESSAGE_NOT_INTEGER);
+  const isNumeric = getIsNumeric(num);
+  if (!isNumeric) throw new Error(ERROR_MESSAGE_NOT_NUMBER);
+
+  const isPositiveNumeric = num > 0;
+  if (!isPositiveNumeric) throw new Error(ERROR_MESSAGE_NOT_POSITIVE_POSITIVE);
+
+  const isInteger = Number.isInteger(num);
+  if (!isInteger) throw new Error(ERROR_MESSAGE_NOT_INTEGER);
+};
+
+export const getIsNumeric = (num) => {
+  if (typeof num != "number") return false;
+  return !isNaN(num) && !isNaN(parseFloat(num));
 };
 
 export const getMapFilledZero = (array) => {
