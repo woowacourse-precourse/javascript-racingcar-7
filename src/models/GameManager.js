@@ -4,7 +4,8 @@ import OutputView from '../views/OutputView.js';
 class GameManager {
   static #addOneRandomValue(map) {
     map.forEach((value, key) => {
-      const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
+      let randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
+      if (randomNumber < 4) randomNumber = 0;
       map.set(key, value + randomNumber);
     });
     OutputView.printCurrentGame(map);
