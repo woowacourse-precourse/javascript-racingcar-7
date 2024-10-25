@@ -6,6 +6,10 @@ import Car from '../src/Car.js';
 describe('자동차 경주', () => {
   let app;
 
+  const CAR_LIST = [{ name: 'pobi', position: 2 },
+    { name: 'woni', position: 9 },
+    { name: 'jun', position: 3 }];
+
   beforeEach(() => {
     app = new App();
   });
@@ -37,26 +41,19 @@ describe('자동차 경주', () => {
     const NAMES = ['pobi', 'woni', 'jun'];
 
     const carList = app.makeCars(NAMES);
+
     expect(carList[0].getName()).toBe(NAMES[0]);
     expect(carList[1].getName()).toBe(NAMES[1]);
   });
 
   test('자동차들이 가진 위치 값 중에서 가장 큰 위치의 값을 찾는다.', () => {
-    app.carList = [
-      { name: 'pobi', position: 2 },
-      { name: 'woni', position: 9 },
-      { name: 'jun', position: 3 },
-    ];
+    app.carList = CAR_LIST;
 
     expect(app.getMaxPosition()).toBe(9);
   });
 
   test('가장 큰 위치의 값을 가진 자동차는 1대이다.', () => {
-    app.carList = [
-      { name: 'pobi', position: 2 },
-      { name: 'woni', position: 9 },
-      { name: 'jun', position: 3 },
-    ];
+    app.carList = CAR_LIST;
     const WINNER = ['woni'];
     const MAX_POSITION = 9;
 
@@ -64,11 +61,7 @@ describe('자동차 경주', () => {
   });
 
   test('가장 큰 위치의 값을 가진 자동차는 1대 이상이다.', () => {
-    app.carList = [
-      { name: 'pobi', position: 2 },
-      { name: 'woni', position: 9 },
-      { name: 'jun', position: 9 },
-    ];
+    app.carList = CAR_LIST;
     const WINNER = ['woni', 'jun'];
     const MAX_POSITION = 9;
 
