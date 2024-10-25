@@ -24,11 +24,25 @@ class App {
         "[ERROR] 자동차 이름은 문자만 가능합니다. 프로그램을 종료합니다."
       );
     }
+
+    let roundCountString = await MissionUtils.Console.readLineAsync(
+      "시도할 횟수는 몇 회인가요?\n"
+    );
+
+    if (isNaN(roundCountString)) {
+      throw new Error(
+        "[ERROR] 숫자가 아닌 값을 입력하셨습니다. 프로그램을 종료합니다."
+      );
+    }
+
+    let roundCount = Number(roundCountString);
+    if (roundCount < 0) {
+      throw new Error("[ERROR] 음수를 입력하셨습니다. 프로그램을 종료합니다.");
+    }
   }
 }
 
 function hasLongCarName(carNames) {
-  // 배열 각 요소가 6자미만인지 확인
   for (const carName of carNames) {
     if (carName.length > 5) return false;
   }
