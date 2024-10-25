@@ -8,6 +8,7 @@ class App {
     );
     const carArr = inputCar.split(',');
     this.isValidate(carArr); //입력값 검증
+
     const n = parseInt(
       await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n'),
     );
@@ -50,6 +51,7 @@ class App {
         resultArr.push(carArr[idx]);
       }
     });
+
     return resultArr;
   }
 
