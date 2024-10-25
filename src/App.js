@@ -62,6 +62,23 @@ class App {
     Console.print('\n');
   }
 
+  findWinner() {
+    const winner = [''];
+    let max = 0;
+    for (let [key, value] of this.nameMap) {
+      if (value.length === max) {
+        winner.push(key);
+        max = value.length;
+      }
+      if (value.length > max) {
+        winner.pop();
+        winner.push(key);
+        max = value.length;
+      }
+    }
+    return winner.join(',');
+  }
+
   async run() {
     await this.getCarNames();
     this.validateCarNames();
@@ -71,6 +88,8 @@ class App {
       this.moveCars();
       this.number -= 1;
     }
+    const winner = this.findWinner();
+    Console.print(`최종 우승자 : ${winner}`);
   }
 }
 
