@@ -6,4 +6,13 @@ const PRINT_MESSAGE = {
   WINNERS: '최종 우승자 : ',
 };
 
-export { PRINT_MESSAGE };
+const ERROR_MESSAGE = {
+  INVALID_NAME_LENGTH: '[ERROR] 자동차 이름은 2자 이상, 5자 이하만 가능합니다.',
+  DUPLICATE_NAME: '[ERROR] 자동차 이름은 중복될 수 없습니다.',
+  CARS_LESS_THAN_TWO:
+    '[ERROR] 자동차는 최소 2대 이상이어야 하고, 쉼표(,)로 구분해야 합니다.',
+  ONLY_SYMBOL_AND_NUMBER:
+    '[ERROR] 자동차 이름은 영문이나 한글이 포함되어야 합니다.',
+};
+
+export { PRINT_MESSAGE, ERROR_MESSAGE };

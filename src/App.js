@@ -1,10 +1,12 @@
 import { Console, Random } from '@woowacourse/mission-utils';
 
 import { PRINT_MESSAGE } from './constants.js';
+import { validateCarNamesInput } from './validator.js';
 
 class App {
   async run() {
     const carNamesInput = await this.getCarNamesInput();
+    validateCarNamesInput(carNamesInput);
     const moveAttemptCountInput = await this.getMoveAttemptCount();
 
     const carsData = this.changeCarNamesInputToCarsData(carNamesInput);
