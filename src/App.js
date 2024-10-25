@@ -1,13 +1,13 @@
-import { Console, Random } from "@woowacourse/mission-utils";
+import { Console, Random } from '@woowacourse/mission-utils';
 
 function getCarNames(userInput) {
-  const carNames = userInput.split(",");
+  const carNames = userInput.split(',');
   carNames.map((carName) => {
-    if (carName.trim() === "") {
-      throw new Error("[ERROR] 공백은 이름이 될 수 없습니다.");
+    if (carName.trim() === '') {
+      throw new Error('[ERROR] 공백은 이름이 될 수 없습니다.');
     }
     if (carName.length > 5) {
-      throw new Error("[ERROR] 이름은 5글자를 초과할 수 없습니다.");
+      throw new Error('[ERROR] 이름은 5글자를 초과할 수 없습니다.');
     }
   });
   return carNames;
@@ -17,11 +17,11 @@ function checkN(N) {
   const MINUS_REGEX = /-\d+/;
 
   if (MINUS_REGEX.test(N)) {
-    throw new Error("[ERROR] 음수를 입력할 수 없습니다.");
+    throw new Error('[ERROR] 음수를 입력할 수 없습니다.');
   }
 
   if (isNaN(N)) {
-    throw new Error("[ERROR] 숫자를 입력해주세요.");
+    throw new Error('[ERROR] 숫자를 입력해주세요.');
   }
 
   return N;
@@ -42,11 +42,10 @@ function moveOneStep(permissionToGo, N, carsResults) {
   for (let i = 0; i < N; i++) {
     const permission = permissionToGo();
     if (permission) {
-      carsResults[i].position += "-";
+      carsResults[i].position += '-';
     }
     Console.print(`${carsResults[i].name} : ${carsResults[i].position}`);
   }
-  return;
 }
 
 function checkMaxPosition(carsResults) {
@@ -77,28 +76,29 @@ function checkDuplicationValue(carsNames) {
   const CARS_NAMES = new Set(trimedNames);
 
   if (trimedNames.length !== CARS_NAMES.size) {
-    throw new Error("[ERROR] 중복된 이름이 있습니다.");
+    throw new Error('[ERROR] 중복된 이름이 있습니다.');
   }
 }
 
 class App {
   async run() {
     const carNamesUserInput = await Console.readLineAsync(
-      "경주할 자동차 이름을 입력하세요.\n"
+      '경주할 자동차 이름을 입력하세요.\n'
     );
     const carNames = getCarNames(carNamesUserInput);
 
-    let carsResults = carNames.map((carName) => {
-      return { name: carName.trim(), position: "" };
-    });
+    let carsResults = carNames.map((carName) => ({
+      name: carName.trim(),
+      position: '',
+    }));
     checkDuplicationValue(carNames);
-    const N = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+    const N = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
     checkN(N);
 
-    Console.print("실행 결과");
+    Console.print('실행 결과');
     for (let i = 0; i < N; i++) {
       moveOneStep(canMove, carNames.length, carsResults);
-      Console.print("");
+      Console.print('');
     }
     const winners = determineWinner(carsResults, checkMaxPosition(carsResults));
     Console.print(`최종 우승자 : ${winners.join()}`);
