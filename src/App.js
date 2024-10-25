@@ -41,7 +41,17 @@ class App {
       // ! ============///
 
 
+      // ! 자동차 경주하기 ==== //
+      const randomValue = getRandomValue();
 
+      if (isValueMoreThanFour) {
+        increaseCarDistance(carArray[0]);
+      }
+
+      console.log(carArray);
+
+
+      // ! =================== //
     
     } catch(error) {
       return Promise.reject(error); // 예외 던지기
