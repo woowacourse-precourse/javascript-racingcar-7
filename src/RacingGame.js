@@ -1,11 +1,16 @@
+import Car from './Car.js';
 import { ERROR_HEAD, ERROR_DETAILS } from './constants.js';
 
 class RacingGame {
   #cars;
+  #ranForSeconds;
 
   constructor(carNames) {
     RacingGame.validateCarNames(carNames);
     RacingGame.ensureCarNamesNotDuplicate(carNames);
+
+    this.#cars = carNames.map((carName) => new Car(carName));
+    this.#ranForSeconds = 0;
   }
 
   static validateCarNames(carNames) {
@@ -63,6 +68,11 @@ class RacingGame {
 
   playFor(seconds) {
     RacingGame.validateSeconds(seconds);
+
+    this.#ranForSeconds = seconds;
+    this.#cars.forEach((car) => {
+      car.runForSeconds(seconds);
+    });
   }
 }
 
