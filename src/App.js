@@ -83,10 +83,6 @@ class App {
   }
 
   generateGameResult() {
-    return this.calculateMaxProgressCount();
-  }
-
-  calculateMaxProgressCount() {
     const winner = [];
     let maximum = Number.MIN_SAFE_INTEGER;
 
