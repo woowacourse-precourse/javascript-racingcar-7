@@ -17,14 +17,24 @@ class App {
       '시도할 횟수는 몇 회인가요?\n'
     );
 
-    let raceCount = new Array(carNames.length).fill(0);
+    const printRaceCount = (count) => {
+      let string = '';
+      for (let i = 0; i < count; i++) {
+        string += '-';
+      }
+      return string;
+    };
 
+    let raceCount = new Array(carNames.length).fill(0);
+    Console.print('\n실행 결과');
     for (let i = 0; i < inputRounds; i++) {
       for (let j = 0; j < carNames.length; j++) {
         if (Random.pickNumberInRange(0, 9) >= 4) {
           raceCount[j] += 1;
         }
+        Console.print(`${carNames[j]} : ${printRaceCount(raceCount[j])}`);
       }
+      Console.print('');
     }
   }
 }
