@@ -13,4 +13,8 @@ const filterWinningCars = function getWinningCarsFunc(cars, maxMoveCount) {
   return cars.filter((car) => car.getMoveCount() === maxMoveCount);
 };
 
-export { getMovePosition, getMaxMoveCount, filterWinningCars };
+const getCarNames = function getCarNamesFunc(cars) {
+  return cars.map((car) => car.getName());
+};
+
+export { getMovePosition, getMaxMoveCount, filterWinningCars, getCarNames };
