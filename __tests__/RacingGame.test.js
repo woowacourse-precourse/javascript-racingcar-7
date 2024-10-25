@@ -10,7 +10,7 @@ const mockRandoms = (numbers) => {
   );
 };
 
-describe(' 기능 테스트', () => {
+describe('레이싱 게임 기능 테스트', () => {
   const TEST_CASES = [
     [
       ['pobi', 'lisa', 'jun'],
