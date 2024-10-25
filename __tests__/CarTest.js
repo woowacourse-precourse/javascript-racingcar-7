@@ -1,4 +1,9 @@
 import Car from '../src/Car';
+import { MissionUtils } from '@woowacourse/mission-utils';
+
+const mockRandoms = (number) => {
+  MissionUtils.Random.pickNumberInRange = jest.fn().mockReturnValue(number);
+};
 
 describe('자동차 클래스', () => {
   test('자동차 이름 getter 테스트', () => {
@@ -28,5 +33,16 @@ describe('자동차 클래스', () => {
       //then
       expect(() => new Car(carName)).not.toThrow();
     }
+  });
+
+  test.each([
+    [1, false],
+    [4, true],
+  ])('전진가능여부 메서드 테스트', (inputs, expected) => {
+    //given
+    mockRandoms(inputs);
+
+    //when, then
+    expect(Car.canMoveForward()).toBe(expected);
   });
 });

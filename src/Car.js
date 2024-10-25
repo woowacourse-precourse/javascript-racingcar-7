@@ -1,3 +1,5 @@
+import { MissionUtils } from '@woowacourse/mission-utils';
+
 class Car {
   #name;
 
@@ -14,6 +16,15 @@ class Car {
 
   static validateCarName(name) {
     return name.length <= 5;
+  }
+
+  static canMoveForward() {
+    const randomValue = MissionUtils.Random.pickNumberInRange(0, 9);
+    console.log(randomValue);
+    if (randomValue >= 4) {
+      return true;
+    }
+    return false;
   }
 }
 
