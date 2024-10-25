@@ -3,7 +3,7 @@ import RaceManager from "./race/RaceManager.js";
 class App {
   async run() {
     const raceManager = new RaceManager();
-    raceManager.racing();
+    await raceManager.racing();
   }
 }
 
