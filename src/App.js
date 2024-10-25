@@ -81,6 +81,15 @@ class App {
       }
     };
 
+    const printDistanceOfCarList = () => {
+      const distanceOfCarList = carList.reduce(
+        (acc, _, index) =>
+          `${acc}${carList[index]} : ${carsDistances[index]}\n`,
+        '',
+      );
+      Console.print(distanceOfCarList);
+    };
+
     for (let count = 1; count <= gameCount; count++) {
       const carsCanMove = Array.from(
         { length: carList.length },
@@ -88,6 +97,8 @@ class App {
       );
 
       moveCar(carsCanMove);
+
+      printDistanceOfCarList();
     }
   }
 }
