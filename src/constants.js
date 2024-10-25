@@ -9,6 +9,7 @@ const ERROR_DETAILS = Object.freeze({
   'CARNAMES_EMPTY': `${ERROR_HEAD}: carNames must not be empty.`,
   'CARNAMES_NOT_STRING': `${ERROR_HEAD}: carName must be a string.`,
   'CARNAME_EMPTY': `${ERROR_HEAD}: carName must not be empty.`,
+  'CARNAMES_DUPLICATE': `${ERROR_HEAD}: carNames must not have duplicates.`,
 });
 
 export {

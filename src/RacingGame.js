@@ -7,6 +7,7 @@ class RacingGame {
     this.#cars = [];
 
     RacingGame.validateCarNames(carNames);
+    RacingGame.ensureCarNamesNotDuplicate(carNames);
   }
 
   static validateCarNames(carNames) {
@@ -30,6 +31,17 @@ class RacingGame {
 
     if (carName.trim() === '') {
       throw new Error(ERROR_DETAILS.CARNAME_EMPTY);
+    }
+  }
+
+  static ensureCarNamesNotDuplicate(carNames) {
+    if (!Array.isArray(carNames)) {
+      throw new Error(ERROR_DETAILS.CARNAMES_NOT_ARRAY);
+    }
+
+    const carNamesSet = new Set(carNames);
+    if (carNamesSet.size !== carNames.length) {
+      throw new Error(ERROR_DETAILS.CARNAMES_DUPLICATE);
     }
   }
 }
