@@ -42,5 +42,5 @@ export function validatePositiveNumber(numberOfMove) {
     isNaN(numberOfMove) ||
     numberOfMove < 1
   )
-    throw new Error(`${ERROR_MESSAGE.NON_POSITIVE_NUMBER}`);
+    throw new Error(`[ERROR] ${ERROR_MESSAGE.NON_POSITIVE_NUMBER}`);
 }
