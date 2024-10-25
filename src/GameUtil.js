@@ -5,3 +5,9 @@ function extractMoveValue(numberOfCars) {
     Random.pickNumberInRange(0, 9)
   );
 }
+
+function calculateTotalMoveValue(carDataList, moveValues) {
+  for (let i = 0; i < carDataList.length; i++) {
+    addIfAboveFour(carDataList[i], moveValues[i]);
+  }
+}
