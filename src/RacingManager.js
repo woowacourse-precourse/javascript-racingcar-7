@@ -21,6 +21,16 @@ class RacingManager {
     const trimmedNames = splittedNames.map((name) => name.trim());
     return trimmedNames;
   }
+
+  static normalizeTotalRounds(totalRounds) {
+    const parsedTotalRounds = this.parseTotalRounds(totalRounds);
+    const validTotalRounds = Validation.totalRounds(parsedTotalRounds);
+    return validTotalRounds;
+  }
+
+  static parseTotalRounds(totalRounds) {
+    return Number(totalRounds);
+  }
 }
 
 export default RacingManager;
