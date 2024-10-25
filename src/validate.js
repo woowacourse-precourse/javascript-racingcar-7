@@ -1,32 +1,32 @@
-import { ERROR_MESSAGE } from "./message";
-import REGEX from "./regex";
+import { ERROR_MESSAGE } from "./message.js";
+import REGEX from "./regex.js";
 import { isCarNameLengthOver, regularExpressionCheck } from './util/util.js';
 
 export const validateCars = {
-  validation(cars) {
-    this.CarsNoEntered(cars);
-    this.DelimiterStartEndEntered(cars);
-    this.DelimiterTwice(cars);
-    this.EachCarNameLengthOver(cars);
+  validation: (cars) => {
+    validateCars.carsNoEntered(cars);
+    validateCars.delimiterStartEndEntered(cars);
+    validateCars.delimiterTwice(cars);
+    validateCars.eachCarNameLengthOver(cars);
   },
-  CarsNoEntered(value) {
+  carsNoEntered(value) {
     if (!value) {
       throw new Error(ERROR_MESSAGE.CARS_NO_ENTERED);
     }
   },
-  EachCarNameLengthOver(value) {
+  eachCarNameLengthOver(value) {
     if (isCarNameLengthOver(value)) {
       throw new Error(ERROR_MESSAGE.CAR_NAME_LENGTH_OVER);
     }
   },
-  DelimiterTwice(value) {
-    if (!regularExpressionCheck(value, REGEX.CONSECUTIVE_DELIMITERS)) {
+  delimiterTwice(value) {
+    if (regularExpressionCheck(value, REGEX.CONSECUTIVE_DELIMITERS)) {
       throw new Error(ERROR_MESSAGE.DELIMITER_TWICE);
     }
   },
-  DelimiterStartEndEntered(value) {
+  delimiterStartEndEntered(value) {
     if (
-      !regularExpressionCheck(value, REGEX.DELIMITER_START_OR_END)
+      regularExpressionCheck(value, REGEX.DELIMITER_START_OR_END)
     ) {
       throw new Error(ERROR_MESSAGE.DELIMITER_START_OR_END_ENTERED);
     }
@@ -34,28 +34,28 @@ export const validateCars = {
 };
 
 export const validateCount = {
-  validation(count) {
-    this.CountNoEntered(count);
-    this.CountCharEntered(count);
-    this.CountPointEntered(count);
-    this.CountNegativeEntered(count);
+  validation: (count) => {
+    validateCount.countNoEntered(count);
+    validateCount.countCharEntered(count);
+    validateCount.countPointEntered(count);
+    validateCount.countNegativeEntered(count);
   },
-  CountNoEntered(value) {
+  countNoEntered(value) {
     if (!value) {
       throw new Error(ERROR_MESSAGE.COUNT_NO_ENTERED);
     }
   },
-  CountCharEntered(value) {
+  countCharEntered(value) {
     if (isNaN(+value)) {
       throw new Error(ERROR_MESSAGE.COUNT_CHAR_ENTERED);
     }
   },
-  CountPointEntered(value) {
+  countPointEntered(value) {
     if (regularExpressionCheck(+value, REGEX.POINT_NUMBER)) {
       throw new Error(ERROR_MESSAGE.COUNT_POINT);
     }
   },
-  CountNegativeEntered(value) {
+  countNegativeEntered(value) {
     if (!regularExpressionCheck(+value, REGEX.POSITIVE_NUMBER)) {
       throw new Error(ERROR_MESSAGE.COUNT_NEGATIVE);
     }
