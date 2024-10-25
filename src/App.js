@@ -25,7 +25,7 @@ class App {
 
     if (!CAR_NAMES_INPUT) {
       Console.print('[ERROR] 자동차 이름을 입력해주세요.');
-      return;
+      throw new Error('자동차 이름을 입력해주세요.');
     }
 
     const CAR_NAMES = CAR_NAMES_INPUT.split(',');
@@ -33,7 +33,7 @@ class App {
     CAR_NAMES.forEach((car) => {
       if (car.length > 5 || car.length === 0) {
         Console.print('[ERROR] 자동차 이름은 5자 이하여야 합니다.');
-        return;
+        throw new Error('자동차 이름은 5자 이하여야 합니다.');
       }
     });
 
