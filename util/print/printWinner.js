@@ -1,6 +1,6 @@
 import { Console } from "@woowacourse/mission-utils";
 
-import { setWinner } from "../setWinner";
+import { setWinner } from "../setWinner.js";
 
 export function printWinner(cars, carMoveHashMap, ATTEMPT_COUNT) {
     const winners = [];
