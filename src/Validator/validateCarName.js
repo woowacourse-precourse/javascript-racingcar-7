@@ -63,7 +63,7 @@ const checkDuplicateCarName = (carNames) => {
  */
 const splitCarNames = (input) => input.split(',');
 
-const validateInput = _pipe(
+const validateCarName = _pipe(
   splitCarNames,
   checkEmpty,
   checkCarNameRange,
@@ -73,4 +73,4 @@ const validateInput = _pipe(
   checkDuplicateCarName
 );
 
-export { validateInput };
+export { validateCarName };
