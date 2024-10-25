@@ -1,6 +1,3 @@
-import validateError from '../src/Validate.js'; // default export를 중괄호 없이 가져오기
-import { ERROR_MESSAGE } from '../src/const/errorMessage.js';
-
 describe('validate test', () => {
   test('만욱,노미,재걸,동호', () => {
     expect(() => {

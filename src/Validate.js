@@ -7,8 +7,8 @@ const checkLengthError = (input) => {
 const checkCountError = (input) => {
   if (input.length > 5) throw new Error(ERROR_MESSAGE.BIGNUM_ERROR);
 };
-const validateError = ({ car, count }) => {
+const validateInput = ({ car, count }) => {
   checkLengthError(car);
   checkCountError(count);
 };
-export default { validateError };
+export default { validateInput };

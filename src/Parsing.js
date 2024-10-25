@@ -1,2 +1,2 @@
-const parse = (input) => input.split(',');
-export default { parse };
+const parseInputs = (input) => input.split(',');
+export default { parseInputs };
