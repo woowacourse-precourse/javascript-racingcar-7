@@ -1,5 +1,5 @@
-import { isCarNamesValid, isTrialInputValid } from "../src/validation";
-import { ERROR_MESSAGES } from "../src/constants/message";
+import { isCarNamesValid, isTrialInputValid } from "../src/validation.js";
+import { ERROR_MESSAGES } from "../src/constants/message.js";
 
 describe("자동차 이름 유효성 검사 테스트", () => {
   const overMaxInputs = [

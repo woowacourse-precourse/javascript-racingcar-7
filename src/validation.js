@@ -3,7 +3,10 @@ import RULES from "./constants/rule.js";
 
 export function isCarNamesValid(cars) {
   if (cars.some((car) => car.length > RULES.CAR_NAME_MAX_LENGTH)) {
-    return { isCarValid: false, errCarMessage: ERROR_MESSAGES.OVER_CAR_NAME_LENGTH };
+    return {
+      isCarValid: false,
+      errCarMessage: ERROR_MESSAGES.OVER_CAR_NAME_LENGTH,
+    };
   }
 
   if (new Set(cars).size !== cars.length) {
@@ -23,7 +26,10 @@ export function isTrialInputValid(input) {
   }
 
   if (input < 0) {
-    return { isTrialValid: false, errTrialMessage: ERROR_MESSAGES.NOT_NEGATIVE };
+    return {
+      isTrialValid: false,
+      errTrialMessage: ERROR_MESSAGES.NOT_NEGATIVE,
+    };
   }
 
   return { isTrialValid: true };

@@ -1,6 +1,10 @@
 import CarsModel from "./CarsModel.js";
 import { ERROR_MESSAGES, MESSAGES } from "./constants/message.js";
-import { getInputAsync, printCarsMove, printWinners } from "./interfaceUtils.js";
+import {
+  getInputAsync,
+  printCarsMove,
+  printWinners,
+} from "./interfaceUtils.js";
 import { isCarNamesValid, isTrialInputValid } from "./validation.js";
 
 class App {
@@ -8,7 +12,9 @@ class App {
     const carsUserInput = await getInputAsync(MESSAGES.INPUT_CAR_NAMES);
     const carsModel = new CarsModel(carsUserInput);
 
-    const { isCarValid, errCarMessage } = isCarNamesValid(carsModel.getCarNames());
+    const { isCarValid, errCarMessage } = isCarNamesValid(
+      carsModel.getCarNames(),
+    );
     if (!isCarValid) throw new Error(ERROR_MESSAGES.PREFIX + errCarMessage);
 
     const trialCountUserInput = await getInputAsync(MESSAGES.INPUT_TRIAL_COUNT);
