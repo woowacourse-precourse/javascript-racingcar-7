@@ -10,21 +10,21 @@ import {
 } from './util/validationUtil.js';
 
 export default class Validator {
-  static validateUserInput(input) {
+  static userInput(input) {
     checkEmptyString(input);
   }
 
-  static validateCarName(cars) {
+  static carName(cars) {
     checkConflictingCarName(cars);
     checkCarNameLength(cars);
   }
 
-  static validateCarNumber(cars) {
+  static carNumber(cars) {
     checkMaxCarNumber(cars);
     checkMinCarNumber(cars);
   }
 
-  static validateTryNumber(tryNumber) {
+  static tryNumber(tryNumber) {
     checkIntegerTryNumber(tryNumber);
     checkMinTryNumber(tryNumber);
     checkMaxTryNumber(tryNumber);

@@ -13,22 +13,22 @@ export default class RacingCarController {
   }
 
   async run() {
-    const carNamesString = await this.#inputView.inputCarNames();
-    Validator.validateUserInput(carNamesString);
+    const carNamesString = await this.#inputView.carNames();
+    Validator.userInput(carNamesString);
     this.#racingCarService.saveCars(carNamesString);
 
-    const tryNumber = Number(await this.#inputView.inputTryNumber());
-    Validator.validateTryNumber(tryNumber);
+    const tryNumber = Number(await this.#inputView.tryNumber());
+    Validator.tryNumber(tryNumber);
 
-    this.#ouputView.printEmptyLine();
-    this.#ouputView.printString(OUTPUT.EXCUTION_RESULT);
+    this.#ouputView.emptyLine();
+    this.#ouputView.string(OUTPUT.EXCUTION_RESULT);
     for (let i = 0; i < tryNumber; i++) {
       const advancedResult = this.#racingCarService.processCarMovement();
-      this.#ouputView.printAdvancedResult(advancedResult);
-      this.#ouputView.printEmptyLine();
+      this.#ouputView.advancedResult(advancedResult);
+      this.#ouputView.emptyLine();
     }
 
     const winners = this.#racingCarService.getWinners();
-    this.#ouputView.printWinners(winners);
+    this.#ouputView.winners(winners);
   }
 }

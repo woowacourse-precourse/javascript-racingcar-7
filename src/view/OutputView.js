@@ -2,21 +2,21 @@ import { Console } from '@woowacourse/mission-utils';
 import { DASH, OUTPUT } from '../../constant.js';
 
 export class OutputView {
-  printAdvancedResult(cars) {
+  advancedResult(cars) {
     cars.forEach((car) => {
       Console.print(`${car.name} : ${DASH.repeat(car.advancedCount)}`);
     });
   }
 
-  printEmptyLine() {
+  emptyLine() {
     Console.print('');
   }
 
-  printString(string) {
+  string(string) {
     Console.print(string);
   }
 
-  printWinners(winners) {
+  winners(winners) {
     Console.print(`${OUTPUT.WINNERS}${winners.join(', ')}`);
   }
 }
