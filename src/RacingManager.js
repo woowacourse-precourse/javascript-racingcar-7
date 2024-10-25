@@ -10,8 +10,8 @@ class RacingManager {
     return validCarNames;
   }
 
-  static register() {
-    const nameList = this.normalizeCarNames();
+  static register(nameInput) {
+    const nameList = this.normalizeCarNames(nameInput);
     const registeredCars = nameList.map((name) => new Car(name));
     return registeredCars;
   }
