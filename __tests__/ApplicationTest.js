@@ -25,36 +25,43 @@ const getLogSpy = () => {
 };
 
 describe("자동차 경주", () => {
-  test("기능 테스트", async () => {
-    // given
-    const MOVING_FORWARD = 4;
-    const STOP = 3;
-    const inputs = ["pobi,woni", "1"];
-    const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
-    const logSpy = getLogSpy();
+  test.each`
+    #    | firstRandomValue | secondRandomValue | moves                       | winner
+    ${1} | ${0}             | ${0}              | ${["pobi : ", "woni : "]}   | ${"pobi, woni"}
+    ${2} | ${0}             | ${9}              | ${["pobi : ", "woni : -"]}  | ${"woni"}
+    ${3} | ${9}             | ${0}              | ${["pobi : -", "woni : "]}  | ${"pobi"}
+    ${4} | ${9}             | ${9}              | ${["pobi : -", "woni : -"]} | ${"pobi, woni"}
+  `(
+    `case $# : 첫 번째 사람의 움직임이 $firstRandomValue, 두 번째 사람의 움직임이 $secondRandomValue 라면, 우승자는 $winner 입니다.`,
+    async ({ firstRandomValue, secondRandomValue, moves, winner }) => {
+      // given
+      const inputs = ["pobi,woni", "1"];
+      const logs = [...moves, `최종 우승자 : ${winner}`];
+      const logSpy = getLogSpy();
 
-    mockQuestions(inputs);
-    mockRandoms([MOVING_FORWARD, STOP]);
+      mockQuestions(inputs);
+      mockRandoms([firstRandomValue, secondRandomValue]);
 
-    // when
-    const app = new App();
-    await app.run();
+      // when
+      const app = new App();
+      await app.run();
 
-    // then
-    logs.forEach((log) => {
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-    });
-  });
+      // then
+      logs.forEach((log) => {
+        expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+      });
+    }
+  );
+});
 
-  test("예외 테스트", async () => {
-    // given
-    const inputs = ["pobi,javaji"];
-    mockQuestions(inputs);
+test("예외 테스트", async () => {
+  // given
+  const inputs = ["pobi,javaji"];
+  mockQuestions(inputs);
 
-    // when
-    const app = new App();
+  // when
+  const app = new App();
 
-    // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
-  });
+  // then
+  await expect(app.run()).rejects.toThrow("[ERROR]");
 });
