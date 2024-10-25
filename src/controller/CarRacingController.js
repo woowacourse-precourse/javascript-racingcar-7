@@ -1,8 +1,8 @@
-import { MissionUtils } from "@woowacourse/mission-utils";
 import Car from "../domain/Car.js";
 import InputValidator from "../utils/InputValidator.js";
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
+import RandomNumber from "../utils/RandomNumber.js";
 
 export default class CarRacingController {
   constructor() {
@@ -37,7 +37,7 @@ export default class CarRacingController {
 
   moveAllCars() {
     this.cars.forEach(car => {
-      const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
+      const randomNumber = RandomNumber.pickNumberInRange(0, 9);
       car.move(randomNumber);
     });
   }
