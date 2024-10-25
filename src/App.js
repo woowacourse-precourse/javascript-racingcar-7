@@ -21,8 +21,8 @@ class App {
 
   #runRace(carArray, tryCount) {
     const race = new Race(carArray, tryCount);
-    const winnerArray = race.run();
-    return winnerArray;
+    const winnerCarArray = race.run();
+    return winnerCarArray;
   }
 
   #printOutput(winnerCarArray) {
