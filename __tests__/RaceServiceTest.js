@@ -1,3 +1,5 @@
+import RaceService from '../src/Service/RaceService';
+
 describe('RaceService', () => {
   test('0에서 9사이의 무작위 값을 생성한다', async () => {
     const raceService = new RaceService();
