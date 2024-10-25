@@ -1,4 +1,3 @@
-import { Console } from '@woowacourse/mission-utils';
 import { getGameInput, printGameResult } from './utils/ioHandler.js';
 import { ValidationError } from './Error/ValidationError.js';
 import { Record } from './Record.js';
