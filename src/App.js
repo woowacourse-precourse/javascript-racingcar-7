@@ -1,4 +1,5 @@
 import Input from "./Input.js";
+import Validator from "./Validator.js";
 import { Console } from "@woowacourse/mission-utils";
 
 class App {
@@ -7,9 +8,14 @@ class App {
     const splitedUserInput = Input.splitUserInput(userInput);
     const tryCount = await Input.getTryCount();
 
-    Console.print(userInput);
-    Console.print(splitedUserInput);
-    Console.print(tryCount);
+    if (
+      Validator.validateCarName(splitedUserInput) &&
+      Validator.validateTryCount(tryCount)
+    ) {
+      Console.print("입력 값 검증 성공");
+    } else {
+      Console.print("입력 값 검증 실패");
+    }
   }
 }
 
