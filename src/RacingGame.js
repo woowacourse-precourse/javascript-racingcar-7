@@ -54,10 +54,6 @@ class RacingGame {
       throw new Error(ERROR_DETAILS.SECONDS_NAN);
     }
 
-    if (!Number.isInteger(seconds)) {
-      throw new Error(ERROR_DETAILS.SECONDS_NOT_INTEGER);
-    }
-
     if (!Number.isSafeInteger(seconds)) {
       throw new Error(ERROR_DETAILS.SECONDS_NOT_SAFE_INTEGER);
     }
