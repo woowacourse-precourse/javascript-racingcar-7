@@ -31,12 +31,6 @@ class App {
     return totalRounds;
   }
 
-  static parseCarNames(names) {
-    const splittedNames = names.split(',');
-    const trimmedNames = splittedNames.map((name) => name.trim());
-    return trimmedNames;
-  }
-
   static totalRoundsToNumber(totalRounds) {
     return Number(totalRounds);
   }
