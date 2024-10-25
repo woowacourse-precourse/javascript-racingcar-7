@@ -4,11 +4,8 @@ import Validation from './Validation.js';
 class RacingManager {
   #nameInput;
 
-  #totalRoundsInput;
-
-  constructor(nameInput, totalRoundsInput) {
+  constructor(nameInput) {
     this.#nameInput = nameInput;
-    this.#totalRoundsInput = totalRoundsInput;
   }
 
   #acceptCarNames() {
