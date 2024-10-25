@@ -71,7 +71,7 @@ describe('자동차 경주', () => {
       );
   });
 
-  test('중복된 레이서 이름이 있는지 있으면 에러를 던진다', async () => {
+  test('중복된 레이서 이름이 있으면 에러를 던진다', async () => {
     // given
     const inputs = ['pobi,pobi'];
     mockQuestions(inputs);
