@@ -1,7 +1,12 @@
 import getRandomNum from '../utils/getRandomNum.js';
+import {
+  MIN_MOVABLE_NUM,
+  MOVE_INCREMENT,
+  INIT_NUM,
+} from '../constants/constants.js';
 
 class Car {
-  constructor(name, moveCount = 0) {
+  constructor(name, moveCount = INIT_NUM) {
     this.name = name;
     this.moveCount = moveCount;
   }
@@ -15,8 +20,8 @@ class Car {
   }
 
   move() {
-    if (getRandomNum() >= 4) {
-      this.moveCount += 1;
+    if (getRandomNum() >= MIN_MOVABLE_NUM) {
+      this.moveCount += MOVE_INCREMENT;
     }
   }
 }

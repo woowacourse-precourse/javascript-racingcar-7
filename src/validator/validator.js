@@ -1,3 +1,9 @@
+import {
+  MAX_CAR_NAME_LEN,
+  MIN_CAR_NAME_LEN,
+  MIN_TRY_COUNT,
+  MAX_TRY_COUNT,
+} from '../constants/constants.js';
 import { ERROR_MESSAGE } from '../constants/messages.js';
 
 const checkOnlyAlphabetAndComma = function checkOnlyAlphabetAndCommaFunc(
@@ -13,7 +19,12 @@ const checkOnlyAlphabetAndComma = function checkOnlyAlphabetAndCommaFunc(
 };
 
 const checkValidNameLength = function checkValidNameLengthFunc(carNamesArray) {
-  if (!carNamesArray.every((name) => name.length >= 1 && name.length <= 5)) {
+  if (
+    !carNamesArray.every(
+      (name) =>
+        name.length >= MIN_CAR_NAME_LEN && name.length <= MAX_CAR_NAME_LEN,
+    )
+  ) {
     throw new Error(ERROR_MESSAGE.INVALID_CAR_NAME_LENGTH);
   }
   return carNamesArray;
@@ -40,7 +51,7 @@ const checkOnlyNumber = function checkOnlyNumberFunc(inputForTryCount) {
 const checkValidRange = function checkValidRangeFunc(inputForTryCount) {
   const checkNumber = Number(inputForTryCount);
 
-  if (checkNumber < 1 || checkNumber > 300) {
+  if (checkNumber < MIN_TRY_COUNT || checkNumber > MAX_TRY_COUNT) {
     throw new Error(ERROR_MESSAGE.INVALID_NUMBER_RANGE);
   }
   return inputForTryCount;
