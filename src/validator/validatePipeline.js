@@ -1,4 +1,3 @@
-import { splitByComma } from '../utils/stringUtils.js';
 import {
   checkDuplicateNames,
   checkIsNull,
@@ -12,21 +11,16 @@ const pipeline = function pipelineFunc(functions, input) {
   return functions.reduce((result, fn) => fn(result), input);
 };
 
-const validateForRacingCars = function validateForRacingCarsFunc(input) {
-  return pipeline(
-    [
-      checkIsNull,
-      checkOnlyAlphabetAndComma,
-      splitByComma,
-      checkValidNameLength,
-      checkDuplicateNames,
-    ],
-    input,
-  );
+const validateRacingCarInput = function validateRacingCarInputFunc(input) {
+  return pipeline([checkIsNull, checkOnlyAlphabetAndComma], input);
 };
 
-const validateForTryCount = function validateForRacingCarsFunc(input) {
+const validateCarNames = function validateCarNamesFunc(input) {
+  return pipeline([checkValidNameLength, checkDuplicateNames], input);
+};
+
+const validateTryCount = function validateTryCountFunc(input) {
   return pipeline([checkIsNull, checkOnlyNumber, checkValidRange], input);
 };
 
-export { validateForRacingCars, validateForTryCount };
+export { validateRacingCarInput, validateCarNames, validateTryCount };
