@@ -61,7 +61,7 @@ export default class Race {
   start() {
     MissionUtils.Console.print("실행 결과");
     for (let i = 0; i < this.tries; i++) {
-      this.logRaceResult();
+      this.printRaceResult();
       MissionUtils.Console.print("");
     }
   }
@@ -74,13 +74,16 @@ export default class Race {
       );
     });
   }
-
-  printWinners() {
+  getWinners() {
     const maxDistance = Math.max(...this.cars.map((car) => car.distance));
     const winners = this.cars
       .filter((car) => car.distance === maxDistance)
       .map((car) => car.name);
 
+    return winners;
+  }
+  printWinners() {
+    const winners = this.getWinners();
     MissionUtils.Console.print(`최종 우승자 : ${winners.join(", ")}`);
   }
 }
