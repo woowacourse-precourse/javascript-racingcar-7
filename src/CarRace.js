@@ -6,7 +6,9 @@ class CarRace {
   async race() {
     const {cars, totalLaps} = await this.getAllInputs();
     cars.map((name) => this.carInstances.push(new Car(name)));
-
+    this.executeTotalLapsAndDisplay(totalLaps);
+    const winner = this.determineWinner();
+    Console.print(`최종 우승자 : ${winner.join(", ")}`)
   };
 
   async getInputCars() {
@@ -46,6 +48,16 @@ class CarRace {
       this.runSingleLap();
       this.displayRoundStatus();
     }
+  }
+
+  getMaxDistance() {
+    return Math.max(...this.carInstances.map(car => car.distance));
+  }
+
+  determineWinner() {
+    const maxDistance = this.getMaxDistance();
+    const winners = this.carInstances.filter(car => car.distance === maxDistance).map(car => car.name);
+    return winners;
   }
 };
 

@@ -44,8 +44,36 @@ describe("레이스 테스트", () => {
 
     const carRace = new CarRace();
     await carRace.race();
-    carRace.executeTotalLapsAndDisplay(3);
+    expect(logSpy).toHaveBeenCalledTimes(13);
+  })
 
-    expect(logSpy).toHaveBeenCalledTimes(12);
+  test("우승자 결정", async () => {
+    const inputs = ["ferrari,redbull,mercedes,mclaren", "3"];
+    mockQuestions(inputs);
+    const logSpy = getLogSpy();
+
+    const carRace = new CarRace();
+    await carRace.race();
+    carRace.carInstances.find(car => car.name === "ferrari").distance = 5;
+    carRace.carInstances.find(car => car.name === "redbull").distance = 3;
+    carRace.carInstances.find(car => car.name === "mercedes").distance = 2;
+    carRace.carInstances.find(car => car.name === "mclaren").distance = 2;
+    const winner = carRace.determineWinner();
+    expect(winner).toEqual(["ferrari"])
+  })
+
+  test("우승자 결정", async () => {
+    const inputs = ["ferrari,redbull,mercedes,mclaren", "3"];
+    mockQuestions(inputs);
+    const logSpy = getLogSpy();
+
+    const carRace = new CarRace();
+    await carRace.race();
+    carRace.carInstances.find(car => car.name === "ferrari").distance = 5;
+    carRace.carInstances.find(car => car.name === "redbull").distance = 5;
+    carRace.carInstances.find(car => car.name === "mercedes").distance = 2;
+    carRace.carInstances.find(car => car.name === "mclaren").distance = 2;
+    const winner = carRace.determineWinner();
+    expect(winner).toEqual(["ferrari", "redbull"])
   })
 });
