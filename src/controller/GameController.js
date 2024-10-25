@@ -1,7 +1,6 @@
-import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 import RacingGame from '../model/RacingGame.js';
-import { validateCarNames, validatePositiveInteger } from '../utils/validate.js';
+import { readAndValidateCarNames, readAndValidateTryNumber } from '../utils/reader.js';
 
 class GameController {
   #racingGame;
@@ -12,18 +11,22 @@ class GameController {
   }
 
   async #createRacingGameFromUserInput() {
-    const carNames = await InputView.readCarNames();
-    validateCarNames(carNames);
-
-    const tryNumber = await InputView.readTryNumber();
-    validatePositiveInteger(tryNumber);
+    const carNames = await readAndValidateCarNames();
+    const tryNumber = await readAndValidateTryNumber();
 
     this.#racingGame = new RacingGame(carNames, tryNumber);
   }
 
   #execute() {
-    OutputView.racingStartIntro();
+    this.#displayRaceResult();
+    this.#displayWinner();
+  }
+
+  #displayRaceResult() {
     OutputView.printRaceResult(this.#racingGame.race());
+  }
+
+  #displayWinner() {
     OutputView.printWinner(this.#racingGame.getWinners());
   }
 }

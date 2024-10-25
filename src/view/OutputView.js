@@ -3,11 +3,8 @@ import { OUTPUT_MESSAGE } from '../constant/index.js';
 
 class OutputView {
   static printRaceResult(raceResult) {
-    Console.print(raceResult.map((inner) => inner.join('\n')).join('\n\n'));
-  }
-
-  static racingStartIntro() {
     Console.print(OUTPUT_MESSAGE.RACING_START_INTRO);
+    Console.print(raceResult.map((inner) => inner.join('\n')).join('\n\n'));
   }
 
   static printWinner(winners) {
