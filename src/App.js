@@ -17,6 +17,10 @@ class App {
 
     return totalRounds;
   }
+
+  static parseCarNames(names) {
+    return names.split(',');
+  }
 }
 
 export default App;
