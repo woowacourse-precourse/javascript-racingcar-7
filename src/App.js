@@ -1,18 +1,20 @@
 import { Console, Random } from '@woowacourse/mission-utils';
-import { FORWARD_DASH, SYSTEM_MESSAGE } from './constants.js';
+import { ERROR_MESSAGE, FORWARD_DASH, SYSTEM_MESSAGE } from './constants.js';
+import { invalidCharacter, invalidDuplicate, invalidLength } from './validators.js';
 
 class App {
   async run() {
     await this.enterInput();
 
     Console.print(SYSTEM_MESSAGE.RESULT);
-    this.generateRandomNumber();
+    this.carsMoveForward();
     this.printWinner();
   }
 
   async enterInput() {
     const namesString = await Console.readLineAsync(SYSTEM_MESSAGE.ENTER_NAME);
     this.namesArray = namesString.split(',');
+    this.validateCarName(this.namesArray);
 
     this.carsForward = this.namesArray.reduce((acc, item) => {
       acc[item] = 0;
@@ -40,6 +42,12 @@ class App {
     );
 
     Console.print(`${SYSTEM_MESSAGE.WINNER}${winners.join(', ')}`);
+  }
+
+  validateCarName(namesArray) {
+    if (invalidCharacter(namesArray)) throw new Error(ERROR_MESSAGE.INVALID_CHARACTER);
+    if (invalidLength(namesArray)) throw new Error(ERROR_MESSAGE.INVALID_LENGTH);
+    if (invalidDuplicate(namesArray)) throw new Error(ERROR_MESSAGE.INVALID_DUPLICATE);
   }
 }
 
