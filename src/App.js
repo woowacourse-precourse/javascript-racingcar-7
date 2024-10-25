@@ -13,8 +13,8 @@ class App {
   async #getInput() {
     const input = new Input();
     await input.getUserInput();
-    const carNameArray = input.processCarNames();
-    const tryCount = input.processTryCount();
+    const carNameArray = input.parseCarNames();
+    const tryCount = input.parseTryCount();
 
     return {
       carNameArray,

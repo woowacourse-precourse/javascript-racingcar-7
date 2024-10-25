@@ -33,13 +33,13 @@ class Input {
     }
   }
 
-  processCarNames() {
+  parseCarNames() {
     const carNameArray = splitIntoArray(this.#rawCarNames, Input.#SEPARATOR);
     this.#validateCarNameArray(carNameArray);
     return carNameArray;
   }
 
-  processTryCount() {
+  parseTryCount() {
     const tryCount = +this.#rawTryCount;
     validatePositiveInteger(tryCount);
     return tryCount;
