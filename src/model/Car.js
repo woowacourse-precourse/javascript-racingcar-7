@@ -1,6 +1,6 @@
 import NameValidator from '../utils/validators/NameValidator.js';
 
-class CarList {
+class Car {
   constructor() {
     this.nameValidator = new NameValidator();
   }
@@ -11,16 +11,6 @@ class CarList {
     this.nameValidator.runAllFunction(carNameList);
     return carNameList;
   }
-
-  createCarObj(carNameList) {
-    const carList = carNameList.map((name) => ({
-      name,
-      distance: '',
-      ranking: 0,
-    }));
-
-    return carList;
-  }
 }
 
-export default CarList;
+export default Car;

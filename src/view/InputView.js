@@ -1,17 +1,17 @@
 import { Console } from '@woowacourse/mission-utils';
 import MESSAGE from '../utils/constants/MESSAGE.js';
-import CarList from '../carList/CarList.js';
+import Car from '../model/Car.js';
 import GameCountValidator from '../utils/validators/GameCountValidator.js';
 
 class InputView {
   constructor() {
-    this.carList = new CarList();
+    this.car = new Car();
     this.gameCountValidator = new GameCountValidator();
   }
 
   async getCarNameInput() {
     let userCarName = await Console.readLineAsync(MESSAGE.CAR_NAME_PROMPT);
-    userCarName = this.carList.getUserCarNameList(userCarName);
+    userCarName = this.car.getUserCarNameList(userCarName);
     return userCarName;
   }
 

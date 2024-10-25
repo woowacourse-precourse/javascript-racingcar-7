@@ -1,13 +1,13 @@
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
-import MoveCar from '../MoveCar.js';
+import GameService from '../service/GameService.js';
 import Winner from '../Winner.js';
 
 class GameController {
   constructor() {
     this.inputView = new InputView();
     this.outputView = new OutputView();
-    this.moveCar = new MoveCar();
+    this.gameService = new GameService();
     this.winner = new Winner();
   }
 
@@ -20,7 +20,7 @@ class GameController {
 
   runGame(carNames, gameRound) {
     this.outputView.gameResultHeader();
-    const carObj = this.moveCar.moveCar(carNames, gameRound);
+    const carObj = this.gameService.moveCar(carNames, gameRound);
 
     return carObj;
   }

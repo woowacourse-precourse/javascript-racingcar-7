@@ -2,10 +2,6 @@ import { Console } from '@woowacourse/mission-utils';
 import MESSAGE from '../utils/constants/MESSAGE.js';
 
 class OutputView {
-  spacing() {
-    Console.print('');
-  }
-
   gameResultHeader() {
     Console.print(MESSAGE.GAME_RESULT_HEADER);
   }
