@@ -1,4 +1,5 @@
 import checkDuplicateCarName from "./checkDuplicateCarName.js";
+import createCarObject from "./createCarObject.js";
 import getCarNameList from "./getCarNameList.js";
 import getUserInput from "./getUserInput.js";
 import validateCarNameString from "./validateCarNameString.js";
@@ -10,6 +11,7 @@ class App {
     validateCarNameString(carNameInputString);
     const carNameList = getCarNameList(carNameInputString);
     checkDuplicateCarName(carNameList);
+    const carObject = createCarObject(carNameList);
     const numberOfAttemps = await getUserInput("시도할 횟수는 몇 회인가요?\n");
     validateNumberOfAttemps(numberOfAttemps);
   }
