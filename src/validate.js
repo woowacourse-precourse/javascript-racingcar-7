@@ -61,3 +61,9 @@ export const validateCount = {
     }
   },
 };
+
+export const validateWinner = (winners) => {
+  if (winners.length === 0) {
+    throw new Error(ERROR_MESSAGE.NO_CHAMPION);
+  }
+};
