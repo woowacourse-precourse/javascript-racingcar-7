@@ -33,6 +33,13 @@ class Race {
       attempt++;
     }
   }
+
+  getScores() {
+    return Object.entries(this.carPositions).map(([car, score]) => [
+      car,
+      score.length,
+    ]);
+  }
 }
 
 export default Race;
