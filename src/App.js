@@ -11,10 +11,10 @@ class App {
     const n = parseInt(
       await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n'),
     );
-    let lenMovedArr = new Array(n).fill(0);
+    let lenMovedArr = new Array(carArr.length).fill(0);
 
     Console.print('\n실행 결과');
-    this.runCompetiton(lenMovedArr, carArr, n);
+    this.runCompetition(lenMovedArr, carArr, n);
 
     Console.print(
       `최종 우승자 : ${this.getWinner(lenMovedArr, carArr).join(',')}`,
@@ -31,13 +31,12 @@ class App {
     });
   }
 
-  runCompetiton(lenMovedArr, carArr, n) {
+  runCompetition(lenMovedArr, carArr, n) {
     for (let i = 0; i < n; i++) {
       carArr.forEach((car, idx) => {
         lenMovedArr[idx] += this.getIsForward(); //전진 상황 업데이트
         Console.print(`${car} : ${'-'.repeat(lenMovedArr[idx])}`);
       });
-      Console.print(' ');
     }
   }
 
