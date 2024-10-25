@@ -1,10 +1,15 @@
-import { printCarsMoving, printNewLine } from '../utils/ioModule.js';
+import {
+  printCarsMoving,
+  printNewLine,
+  printPrevNewLine,
+} from '../utils/ioModule.js';
 import {
   getMovePosition,
   getMaxMoveCount,
   filterWinningCars,
   getCarNames,
 } from './racingGameUtils.js';
+import { PRINT_MESSAGES } from '../constants/messages.js';
 
 class RacingGame {
   constructor(cars, tryCount) {
@@ -13,6 +18,8 @@ class RacingGame {
   }
 
   play() {
+    printPrevNewLine(PRINT_MESSAGES.OUTPUT.RESULT);
+
     for (let i = 0; i < this.tryCount; i += 1) {
       this.cars.forEach((car) => car.move());
       this.printCurrentState();

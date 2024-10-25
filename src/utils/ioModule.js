@@ -13,4 +13,8 @@ const printNewLine = function printNewLineFunc() {
   Console.print('');
 };
 
-export { getUserInput, printCarsMoving, printNewLine };
+const printPrevNewLine = function printPrevNewLineFunc(string) {
+  Console.print(`\n${string}`);
+};
+
+export { getUserInput, printCarsMoving, printNewLine, printPrevNewLine };
