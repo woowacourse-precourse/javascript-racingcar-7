@@ -32,6 +32,8 @@ async function trialCountInput() {
       const ERROR = new Error(ERROR_MESSAGE);
       throw ERROR;
     }
+
+    return TRIAL_COUNT;
   } catch (error) {
     throw error;
   }
