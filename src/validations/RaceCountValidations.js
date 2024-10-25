@@ -7,7 +7,7 @@ const validateIsNum = (count) => {
   }
 }
 
-const validateIsNotPositiveInteger = (count) => {
+const validateIsPositiveInteger = (count) => {
   if (count <= 0) {
     OutputView.printErrorMessage(RACE_COUNT_VALIDATION_ERROR.IS_NOT_POSITIVE_INTEGER);
   }
@@ -23,7 +23,7 @@ const RaceCountValidations = (raceCount) => {
   const count = Number(raceCount.trim());
 
   validateIsNum(count);
-  validateIsNotPositiveInteger(count);
+  validateIsPositiveInteger(count);
   validateIsExceedingMax(count);
 }
 
