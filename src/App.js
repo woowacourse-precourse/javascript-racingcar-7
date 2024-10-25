@@ -1,6 +1,7 @@
 import Input from "./Component/Input.js";
 import { checkCarNames, checkAttemptNumber } from "./Component/Check.js";
-import { MakeCarScore } from "./Component/CarScore.js";
+import { makeCarScore } from "./Component/CarScore.js";
+import { startCarRacing } from "./Component/CarRacing.js";
 
 class App {
   async run() {
@@ -15,10 +16,15 @@ class App {
     const attempt_number = await new Input().getAttemptNumber();
     checkAttemptNumber(attempt_number);
 
-    // 자동차 전진에 필요한 점수 배열 만들기
-    const car_score_arr = MakeCarScore(car_names_arr);
+    // 자동차 경주에 필요한 점수 배열 만들기
+    const car_score_arr = makeCarScore(car_names_arr);
 
-    console.log(car_score_arr);
+    // 자동차 경주 시작하고 결과값 얻기
+    const car_racing_result = startCarRacing(
+      car_names_arr,
+      car_score_arr,
+      attempt_number
+    );
   }
 }
 
