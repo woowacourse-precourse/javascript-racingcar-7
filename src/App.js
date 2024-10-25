@@ -70,6 +70,8 @@ class App {
     const carNames = await this.getCarNames();
     const count = await this.getAttemptCount();
     const winnners = await this.getWinners(carNames, count);
+
+    Console.print(`최종 우승자 : ${winnners.join(', ')}`);
   }
 }
 
