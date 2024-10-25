@@ -3,38 +3,10 @@ import { Console, Random } from '@woowacourse/mission-utils';
 function getCarNames(userInput) {
   const carNames = userInput.split(',');
   carNames.map((carName) => {
-    checkBlankValue(carName);
-    checkNameLength(carName);
+    handleBlankError(carName);
+    handleLengthError(carName);
   });
   return carNames;
-}
-
-function checkBlankValue(value) {
-  if (value.trim() === '') {
-    throw new Error('[ERROR] 공백은 이름이 될 수 없습니다.');
-  }
-  return;
-}
-
-function checkNameLength(name) {
-  if (name.length > 5) {
-    throw new Error('[ERROR] 이름은 5글자를 초과할 수 없습니다.');
-  }
-  return;
-}
-
-function checkN(N) {
-  const MINUS_REGEX = /-\d+/;
-
-  if (MINUS_REGEX.test(N)) {
-    throw new Error('[ERROR] 음수를 입력할 수 없습니다.');
-  }
-
-  if (isNaN(N)) {
-    throw new Error('[ERROR] 숫자를 입력해주세요.');
-  }
-
-  return N;
 }
 
 function canMove() {
@@ -102,6 +74,34 @@ function checkDuplicationValue(carsNames) {
   handleDuplicationError(trimedNames, CARS_NAMES);
 }
 
+function handleBlankError(value) {
+  if (value.trim() === '') {
+    throw new Error('[ERROR] 공백은 이름이 될 수 없습니다.');
+  }
+  return;
+}
+
+function handleLengthError(name) {
+  if (name.length > 5) {
+    throw new Error('[ERROR] 이름은 5글자를 초과할 수 없습니다.');
+  }
+  return;
+}
+
+function handleTypeError(N) {
+  const MINUS_REGEX = /-\d+/;
+
+  if (MINUS_REGEX.test(N)) {
+    throw new Error('[ERROR] 음수를 입력할 수 없습니다.');
+  }
+
+  if (isNaN(N)) {
+    throw new Error('[ERROR] 숫자를 입력해주세요.');
+  }
+
+  return N;
+}
+
 function handleDuplicationError(firstValue, secondValue) {
   if (firstValue.length !== secondValue.size) {
     throw new Error('[ERROR] 중복된 이름이 있습니다.');
@@ -122,7 +122,7 @@ class App {
     }));
     checkDuplicationValue(carNames);
     const N = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
-    checkN(N);
+    handleTypeError(N);
 
     Console.print('실행 결과');
     for (let i = 0; i < N; i++) {
