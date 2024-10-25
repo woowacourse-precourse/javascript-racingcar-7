@@ -2,7 +2,7 @@ import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 import carNameInput from "../src/UI/carNameInput.js";
 import trialCountInput from "../src/UI/trialCountInput.js";
-import createRacerInformation from "../src/racerData/\bcreateRacerInformation.js";
+import createRacerInformation from "../src/racerData/createRacerInformation.js";
 import goStopResult from "../src/feature/goStopResult.js";
 import raceProgression from "../src/feature/raceProgression.js";
 import getWinner from "../src/feature/getWinner.js";
@@ -76,16 +76,21 @@ describe("자동차 경주", () => {
     expect(carList).toContain('aaaa' && 'bbbb' && 'cccc' && 'dddd');
   });
 
-  test("기능 단위 예외 테스트: carNameInput()", async () => {
-    // given
-    const input = [',,aaaa', 'aaaaa,bbbb,ccccccc', 'aaa,aaa,bbb,bbb,c'];
+  test.each([
+    [',,aaaa', '자동차 이름이 설정되지 않았습니다.'],
+    ['aaaaa,bbbb,ccccccc', '자동차 이름이 5글자를 초과 합니다.'],
+    ['aaa,aaa,bbb,bbb,c', '중복된 자동차 이름이 존재 합니다.']
+  ])('기능 단위 예외 테스트: carNameInput() { input: %s, result: %d }', 
+    async (input, result) => {
+      // given
+      const userInput = [input];
 
-    mockQuestions(input);
+      mockQuestions(userInput);
+      // when
 
-
-    // then
-    await expect(carNameInput()).rejects.toThrow('자동차 이름이 설정되지 않았습니다.' || '자동차 이름이 5글자를 초과 합니다.' || '중복된 자동차 이름이 존재 합니다.');
-  })
+      // then
+      await expect(carNameInput()).rejects.toThrow(result);
+  });
 
   test.each([
     ['4', 4],
