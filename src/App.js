@@ -25,7 +25,6 @@ class App {
 
         let tryCnt = 0;
         while (tryCnt < Number(inputTryCnt)) {
-            // 각 자동차에 대해 0~9 사이의 무작위 값 구하기
             for (let i = 0; i < carCnt; i++) {
                 const randomNumber = Random.pickNumberInRange(0, 9);
                 if (randomNumber >= 4) {
@@ -53,6 +52,20 @@ class App {
 
         Console.print("\n실행 결과");
         Console.print(result.join("\n"));
+
+        let winner = [];
+        let maxCnt = -1;
+        for (let i = 0; i < carCnt; i++) {
+            const finalCnt = runCntArr[i][+inputTryCnt - 1];
+            if (maxCnt < finalCnt) {
+                maxCnt = finalCnt;
+                winner = [splittedCarNames[i]];
+            } else if (maxCnt === finalCnt) {
+                winner.push(splittedCarNames[i]);
+            }
+        }
+
+        Console.print(`최종 우승자 : ${winner.join(", ")}`);
     }
 }
 
