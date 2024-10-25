@@ -16,15 +16,10 @@ export const validateCarNameList = (carNameListProp) => {
   }
 
   const carNameList = carNameListProp.split(",");
+
   if (carNameList.length === 1) {
     throw new Error(ONE_CAR_MESSAGE);
   }
-
-  // carNameList.forEach((elem) => {
-  //   if (elem.length > 5) {
-  //     throw new Error(MAX_NAME_MESSAGE);
-  //   }
-  // });
 };
 
 export const validateTryCount = (tryCount) => {

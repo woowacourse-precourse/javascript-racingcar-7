@@ -1,6 +1,7 @@
 export const ONE_CAR_MESSAGE = "[ERROR] 하나의 자동차 이름만 입력되었습니다.";
 export const WRONG_SEPARATOR_MESSAGE = "[ERROR] 잘못된 구분자입니다.";
 export const MAX_NAME_MESSAGE = "[ERROR] 이름은 최대 5자까지만 가능합니다.";
+export const EMPTY_NAME_MESSAGE = "[ERROR] 빈 이름은 경주가 불가능합니다.";
 
 export const ZERO_NUMBER_MESSAGE = "[ERROR] 0입니다.";
 export const MINUS_NUMBER_MESSAGE = "[ERROR] 음수입니다.";
