@@ -1,5 +1,6 @@
+import { Console } from '@woowacourse/mission-utils';
 import Car from './Car.js';
-import { ERROR_HEAD, ERROR_DETAILS } from './constants.js';
+import { ERROR_DETAILS } from './constants.js';
 
 class RacingGame {
   #cars;
@@ -73,6 +74,19 @@ class RacingGame {
     this.#cars.forEach((car) => {
       car.runForSeconds(seconds);
     });
+
+    return this;
+  }
+
+  printHistory() {
+    Console.print('\n실행 결과')
+
+    for (let second = 1; second <= this.#ranForSeconds; ++second) {
+      this.#cars.forEach((car) => {
+        Console.print(car.getStateAtSecond(second));
+      });
+      Console.print('');
+    }
   }
 }
 

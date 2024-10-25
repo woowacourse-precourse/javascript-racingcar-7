@@ -10,7 +10,8 @@ class App {
     const race = new RacingGame(carNames);
 
     const seconds = Number(await Console.readLineAsync(QUERIES.SECONDS));
-    race.playFor(seconds);
+    race.playFor(seconds)
+      .printHistory();
   }
 }
 

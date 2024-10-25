@@ -23,6 +23,17 @@ class Car {
       this.#positionHistory[index] = this.#positionHistory[index - 1] + Number(hasMoved);
     }
   }
+
+  ensureSecondInRange(second) {
+    if (second < 0 || second > this.#positionHistory.length) {
+      throw new Error(ERROR_DETAILS.INVALID_SECOND);
+    }
+  }
+
+  getStateAtSecond(second) {
+    this.ensureSecondInRange(second);
+    return `${this.#name} : ${'-'.repeat(this.#positionHistory[second])}`;
+  }
 }
 
 export default Car;
