@@ -2,7 +2,7 @@ const createCarObjectList = (carNameList) => {
   return carNameList.map((carName) => {
     return {
       name: carName,
-      numberOfRun: 0,
+      runCount: 0,
     };
   })
 }
