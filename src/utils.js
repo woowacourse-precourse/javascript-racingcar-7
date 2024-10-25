@@ -20,7 +20,7 @@ export const pickNumberInRange = (start, end) => {
 export const splitIntoArray = (str, separator) => str.split(separator);
 
 export const validatePositiveInteger = (num) => {
-  if (isNaN(num)) throw new Error(ERROR_MESSAGE_NOT_NUMBER);
+  if (Number.isNaN(num)) throw new Error(ERROR_MESSAGE_NOT_NUMBER);
   if (num <= 0) throw new Error(ERROR_MESSAGE_NOT_POSITIVE_POSITIVE);
   if (!Number.isInteger(num)) throw new Error(ERROR_MESSAGE_NOT_INTEGER);
 };
