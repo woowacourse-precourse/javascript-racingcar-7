@@ -77,6 +77,26 @@ class LacingController {
       }));
     });
   }
+
+  /**
+   * @param {Array<{ name: string; track: number; }[]>} racingResult
+   * @returns {string[]}
+   */
+  computeWinner(racingResult) {
+    const round = this.getRound();
+    const result = racingResult[round - 1];
+    const maxTrack = result.reduce((max, car) => {
+      if (max < car.track) return car.track;
+
+      return max;
+    }, 0);
+
+    return result.reduce((winner, car) => {
+      if (car.track === maxTrack) return [...winner, car.name];
+
+      return winner;
+    }, []);
+  }
 }
 
 export default LacingController;
