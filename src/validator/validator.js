@@ -5,13 +5,15 @@ import {
   MAX_TRY_COUNT,
 } from '../constants/constants.js';
 import { ERROR_MESSAGE } from '../constants/messages.js';
+import { ALPHABET_AND_COMMA_REGEX, NUMBER_REGEX } from '../constants/regex.js';
 
 const checkOnlyAlphabetAndComma = function checkOnlyAlphabetAndCommaFunc(
   inputForRacingCars,
 ) {
-  const AlphabetAndCommaRegex = /^[a-zA-Z,]$/;
   if (
-    ![...inputForRacingCars].every((char) => AlphabetAndCommaRegex.test(char))
+    ![...inputForRacingCars].every((char) =>
+      ALPHABET_AND_COMMA_REGEX.test(char),
+    )
   ) {
     throw new Error(ERROR_MESSAGE.INVALID_CAR_INPUT);
   }
@@ -40,9 +42,7 @@ const checkDuplicateNames = function checkDuplicateNamesFunc(carNamesArray) {
 };
 
 const checkOnlyNumber = function checkOnlyNumberFunc(inputForTryCount) {
-  const numberRegex = /^[0-9]+$/;
-
-  if (!numberRegex.test(inputForTryCount)) {
+  if (!NUMBER_REGEX.test(inputForTryCount)) {
     throw new Error(ERROR_MESSAGE.INVALID_NUMBER_INPUT);
   }
   return inputForTryCount;
