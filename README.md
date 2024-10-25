@@ -72,3 +72,7 @@ MVC 패턴을 통한 기능 구현을 목표했습니다.
 
 - 게임 실행 함수 (run)
   - GameController 통해 게임 진행
+
+## ♻️ 리팩토링 목록
+
+- outputView.js에서 printRoundStatus 메서드를 단일 책임 원칙에 따라 두 개의 메서드로 분리
