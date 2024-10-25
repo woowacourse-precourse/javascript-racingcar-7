@@ -4,6 +4,6 @@
 //동일한 value가 있을 시 포함하여 리턴한다
 
 export const finalRace = (totalWinner)=>{
-    const maxWins=Math.max(...Object.values(totalWinner))
-    return Object.keys(totalWinner).filter(name=>totalWinner[name]===maxWins)
+    const maxWins = Math.max(...Object.values(totalWinner))
+    return Object.keys(totalWinner).filter(name=>totalWinner[name] === maxWins)
 }

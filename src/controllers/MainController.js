@@ -17,17 +17,16 @@ export class MainController{
             InputValid.isEmptyInput(rawNames,raceCount)
             InputValid.isRaceCountPositive(raceCount)
             
-            
+    
             const names = sepateInput(rawNames)
             InputValid.validPlayerName(names)
             OutputView.printRace();
             const totalWinner = decisionFinalWinner(raceCount,names)
+
             const finalWinner = finalRace(totalWinner)
             OutputView.printFinalResult(finalWinner)
         
         }catch(error){
-            //console.error("에러 발생:", error.message);
-            //throw new Error("[ERROR]")
             throw error//에러 메세지를 덮어쓰지 않기 위함
         }
     }

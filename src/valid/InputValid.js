@@ -12,7 +12,6 @@ export class InputValid {
   }
 
   static isRaceCountPositive(raceCount) {
-    console.log(raceCount)
     if (raceCount < 0) {
         console.log(typeof raceCount)
       throw new Error("[ERROR] 경주 횟수는 음수가 될 수 없습니다.");
