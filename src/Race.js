@@ -1,4 +1,4 @@
-import { MIN_MOVE_THRESHOLD } from "./Constants.js";
+import { MIN_MOVE_THRESHOLD, ERROR_MESSAGES } from "./Constants.js";
 import { Console, Random } from "@woowacourse/mission-utils";
 
 class Race {
@@ -39,6 +39,19 @@ class Race {
       car,
       score.length,
     ]);
+  }
+
+  determineWinners(carScores) {
+    const maxValue = Math.max(...carScores.map(([, score]) => score));
+    // 모든 자동차가 시작점에 멈춰있는 경우
+    if (maxValue === 0) {
+      Console.print(ERROR_MESSAGES.noMovementError);
+      throw new Error("[ERROR]");
+    }
+    // 가장 많이 움직인 자동차들을 filter해서 자동차 이름들만 담은 배열을 반환
+    return carScores
+      .filter(([, score]) => score === maxValue)
+      .map(([car]) => car);
   }
 }
 
