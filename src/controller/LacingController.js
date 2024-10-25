@@ -36,6 +36,18 @@ class LacingController {
     this.cars = cars;
     return this;
   }
+
+  /**
+   * @param {string[]} carNames
+   * @param {number} times
+   * @returns {LacingController}
+   */
+  init(carNames, times) {
+    const cars = Array.from(carNames, (name) => new Car(name));
+    this.setCars(cars);
+    this.setRound(times);
+    return this;
+  }
 }
 
 export default LacingController;
