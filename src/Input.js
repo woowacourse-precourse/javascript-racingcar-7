@@ -35,7 +35,7 @@ class Input {
 
   processCarNames() {
     const carNameArray = splitIntoArray(this.#rawCarNames, Input.#SEPARATOR);
-    this.validateCarNameArray(carNameArray);
+    this.#validateCarNameArray(carNameArray);
     return carNameArray;
   }
 
@@ -45,7 +45,7 @@ class Input {
     return tryCount;
   }
 
-  validateCarNameArray(carNameArray) {
+  #validateCarNameArray(carNameArray) {
     const isAllCarNameValid = carNameArray.every((carName) =>
       Input.#CAR_NAME_REGEXP.test(carName)
     );
