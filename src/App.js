@@ -1,5 +1,8 @@
+import RacingGame from "./racingGame.js";
 class App {
-  async run() {}
+  async run() {
+    new RacingGame();
+  }
 }
 
 export default App;
