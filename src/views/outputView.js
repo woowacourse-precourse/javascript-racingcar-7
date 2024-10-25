@@ -12,6 +12,15 @@ const OutputView = {
     });
     Console.print('');
   },
+
+  formatWinners(winners) {
+    return winners.map((car) => car.getName()).join(', ');
+  },
+
+  printWinners(winners) {
+    const winnerText = this.formatWinners(winners);
+    Console.print(`최종 우승자 : ${winnerText}`);
+  },
 };
 
 export default OutputView;
