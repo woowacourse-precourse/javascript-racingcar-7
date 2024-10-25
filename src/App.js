@@ -42,18 +42,17 @@ class App {
         throw Error('횟수는 숫자로 입력해주세요.');
       }
 
-      let result = '';
+      let racingResult = '';
       const playOneRace = () => {
         cars.forEach((name) => {
-          if (isMovingFoward()) {
+          isMovingFoward() &&
             carsMap.set(name, carsMap.get(name) + '-');
-          }
         });
 
         carsMap.forEach((value, key) => {
-          result += `${key} : ${value}\n`;
+          racingResult += `${key} : ${value}\n`;
         });
-        result += `\n`;
+        racingResult += `\n`;
       };
 
       for (let i = 0; i < numberOfTry; i++) {
@@ -61,7 +60,18 @@ class App {
       }
       Console.print(numberOfTry);
       Console.print('실행 결과');
-      Console.print(result);
+      Console.print(racingResult);
+
+      const fastestDistance = Math.max(
+        ...[...carsMap.values()].map((v) => v.length)
+      );
+      const winner = [];
+      carsMap.forEach((v, k) => {
+        if (v == '-'.repeat(fastestDistance)) {
+          winner.push(k);
+        }
+      });
+      Console.print(`최종 우승자 : ${winner.toString()}`);
     } catch (error) {
       throw Error('[ERROR]' + error.message);
     }
