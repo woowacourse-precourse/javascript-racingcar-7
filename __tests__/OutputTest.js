@@ -9,6 +9,6 @@ describe('출력', () => {
   });
 
   test('자동차의 위치 값만큼 ' - ' 문자열로 반환한다.', () => {
-    expect(generateProgressBar(3).toBe('---'));
+    expect(generateProgressBar(3)).toBe('---');
   });
 });
