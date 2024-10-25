@@ -1,5 +1,11 @@
 import { ERROR_MESSAGE } from './Message.js';
 
+export function validateAllCarNames(carNameArray) {
+  carNameArray.forEach((carName) => {
+    validateCarName(carName);
+  });
+}
+
 function validateCarName(carName) {
   try {
     validateNoWhiteSpace(carName);
