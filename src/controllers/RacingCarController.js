@@ -1,6 +1,9 @@
+import Cars from "../models/Car.js";
 import { InputView } from "../views/InputView.js";
 
 class RacingCarController {
+
+    #cars;
 
     async racingCarProcess() {
         await this.getInputCarNames();
@@ -8,6 +11,7 @@ class RacingCarController {
 
     async getInputCarNames() {
         const INPUT_RACING_CARS = await InputView.getRacingCarNamesInput();
+        this.#cars = Cars.getRacingCarNames(INPUT_RACING_CARS);
     }
 }
 
