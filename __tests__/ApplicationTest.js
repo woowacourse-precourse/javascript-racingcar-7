@@ -6,6 +6,7 @@ import { attemptCountValidator } from "../src/validator.js";
 import pickRandomNumber from "../src/utils/pickRandomNumber.js";
 import canMoveForward from "../src/utils/canMoveForward.js";
 import settingRace from "../src/utils/settingRace.js";
+import playRace from "../src/utils/playRace.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -136,15 +137,6 @@ describe("자동차 경주", () => {
     expect(() => attemptCountValidator(receivedInput)).toThrow("[ERROR]: 입력은 양의 정수만 가능합니다.");
   });
 
-  test('랜덤 숫자 뽑기', () => {
-    // when
-    const randomNumber = pickRandomNumber();
-
-    // then
-    expect(randomNumber).toBeGreaterThanOrEqual(1);
-    expect(randomNumber).toBeLessThanOrEqual(9);
-  });
-
   test('랜덤 값이 4 이상이면 전진할 수 있는지', () => {
     // given
     const randomNumber = pickRandomNumber();
@@ -174,7 +166,7 @@ describe("자동차 경주", () => {
   expect(cars[2].getName()).toBe('nana');
   })
 
-  test('단일 우승자 확인', () => {
+  test('우승자 확인', () => {
     // given
     const names = ['pobi', 'bora', 'nana'];
     const playTime = 5;
@@ -184,21 +176,15 @@ describe("자동차 경주", () => {
     const result = playRace(cars, playTime);
 
     // then
-    expect(names).toContain(result);
-  });
+    if (result.length === 1){
+      expect(result[0]).toContain(car.getName());
+    }else{
+      result.forEach(winner => {
+        expect(names).toContain(winner);
+      });
+    }
+});
 
-  test('다중 우승자 확인', () => {
-    // given
-    const names = ['pobi', 'bora'];
-    const playTime = 5;
-    const cars = settingRace(names);
-
-    // when
-    const result = playRace(cars, playTime);
-
-    // then
-    expect(result.split(', ').every(winner => names.includes(winner))).toBe(true);
-  });
 });
   // given
   

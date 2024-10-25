@@ -1,4 +1,5 @@
 import { inputCarNames, inputPlayTime } from "./utils/customInput.js";
+import playRace from "./utils/playRace.js";
 import settingRace from "./utils/settingRace.js";
 import splitName from "./utils/splitInput.js";
 import { eachNameLengthValidator, userInputValidator, attemptCountValidator } from "./validator.js";
@@ -16,6 +17,8 @@ class App {
     const attemptCount = parseInt(inputAttemptCount);
 
     const cars = settingRace(splitCarNames);
+    
+    playRace(cars,attemptCount);
   }
 }
 
