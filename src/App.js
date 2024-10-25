@@ -99,9 +99,14 @@ function checkDuplicationValue(carsNames) {
   });
   const CARS_NAMES = new Set(trimedNames);
 
-  if (trimedNames.length !== CARS_NAMES.size) {
+  handleDuplicationError(trimedNames, CARS_NAMES);
+}
+
+function handleDuplicationError(firstValue, secondValue) {
+  if (firstValue.length !== secondValue.size) {
     throw new Error('[ERROR] 중복된 이름이 있습니다.');
   }
+  return;
 }
 
 class App {
