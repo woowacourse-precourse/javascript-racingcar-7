@@ -1,3 +1,5 @@
+import { MIN_MOVE_THRESHOLD } from "./Constants.js";
+
 class Race {
   constructor(cars, tryCount) {
     this.cars = cars;
@@ -11,6 +13,10 @@ class Race {
       carPositions[car] = "";
     });
     return carPositions;
+  }
+
+  canMoveToForward(num) {
+    return num >= MIN_MOVE_THRESHOLD;
   }
 }
 

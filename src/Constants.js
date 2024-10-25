@@ -13,3 +13,5 @@ export const ERROR_MESSAGES = {
     "[ERROR] 모든 자동차가 시작지점에 있으므로 우승자는 없습니다.",
   duplicateCarName: "[ERROR] 중복된 자동차 이름이 있습니다.",
 };
+
+export const MIN_MOVE_THRESHOLD = 4;
