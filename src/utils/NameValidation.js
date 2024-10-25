@@ -3,7 +3,7 @@ import {
   MORE_THAN_FIVE_LETTERS,
   SAME_CAR_NAME_ERROR,
   ONE_CAR_NAME_ERROR,
-} from '../constants/Error';
+} from '../constants/Error.js';
 
 class NameValidation {
   static isValid(carNames) {

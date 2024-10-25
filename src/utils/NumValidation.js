@@ -1,4 +1,4 @@
-import { INVALID_NUMBER, TOO_BIG_NUMBER } from '../constants/Error';
+import { INVALID_NUMBER, TOO_BIG_NUMBER } from '../constants/Error.js';
 
 class NumValidation {
   static isValidNum(tryCount) {
