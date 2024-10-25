@@ -3,7 +3,7 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 import Car from './Car.js';
 
 import { getCarName, splitCarName, getAttemptCount } from './InputUtils.js';
-import { printWinnerCar } from './OutputUtils.js';
+import { printCarPosition, printWinnerCar } from './OutputUtils.js';
 
 class App {
   constructor() {
@@ -42,7 +42,10 @@ class App {
 
   repeat(number) {
     for (let i = 0; i < number; i++) {
-      this.carList.forEach((car) => this.moveCarForward(car));
+      this.carList.forEach((car) => {
+        this.moveCarForward(car);
+        printCarPosition(car.name, car.position);
+      });
     }
   }
 
