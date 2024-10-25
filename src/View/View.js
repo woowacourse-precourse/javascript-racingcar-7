@@ -28,7 +28,11 @@ class View {
    */
   outputResult(cars) {
     ViewUtils.output(VIEW_MSG.OUTPUT_RESULT);
-    cars.map((car) => ViewUtils.output(`${car.name}:${car.distance}`));
+    cars.map((car) => ViewUtils.output(`${car.name} : ${car.distance}`));
+  }
+
+  outputWinner(winnerNames) {
+    ViewUtils.output(`${VIEW_MSG.OUTPUT_WINNER}${winnerNames.join(", ")}`);
   }
 }
 
