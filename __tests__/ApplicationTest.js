@@ -1,6 +1,7 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 import carNameInput from "../src/UI/carNameInput.js";
+import trialCountInput from "../src/UI/trialCountInput.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -70,4 +71,40 @@ describe("자동차 경주", () => {
     // then
     expect(carList).toContain('aaaa' && 'bbbb' && 'cccc' && 'dddd');
   });
+
+  test.each([
+    ['4', 4],
+    ['123', 123],
+    ['1', 1],
+    ['10', 10],
+  ])("기능 단위 테스트: trialCountInput() { input: %s, result: %s }",
+    async (input, result) => {
+      // given
+      const userInput = [input];
+      mockQuestions(userInput);
+
+      // when
+      const trialCount = await trialCountInput();
+
+      // then
+      expect(trialCount).toBe(result);
+    }
+  )
+
+  test.each([
+    ['사', '입력하신 값이 숫자가 아닙니다.'],
+    ['0', '입력하신 값이 1보다 작아서 레이스를 진행 할 수 없습니다.'],
+    ['1.1', '입력하신 값이 정수가 아닙니다.'],
+  ])("기능 단위 예외 테스트: trialCountInput() { input: %s , result: %s }",
+    async (input, result) => {
+      // given
+      const userInput = [input];
+      mockQuestions(userInput);
+
+      // when
+
+
+      // then
+      await expect(trialCountInput()).rejects.toThrow(`${result}`);
+  })
 });
