@@ -53,7 +53,9 @@
 
 ## 🤔 Focus
 
-### 테스트코드
+### ✅ 테스트코드
+
+각 함수가 독립적으로 올바른 동작을 하는지를 확인하기 위해 유닛 테스트 작성
 
 - [x] Input.spec.js
   - [x] CarsInput 정상 입력 시 올바른 배열을 리턴하는지 확인한다.
@@ -67,4 +69,38 @@
   - [x] runRace가 올바른 파라미터로 printRaceStatus를 호출하는지 확인한다.
   - [x] runRace가 moveForward의 반환 값을 사용하여 위치를 올바르게 업데이트하는지 확인한다.
 
-- 폴더 구조
+### 📂 폴더 구조
+
+```
+javascript-racingcar-7
+├─ __tests__
+│  ├─ ApplicationTest.js
+│  ├─ Input.spec.js
+│  ├─ filterWinner.spec.js
+│  └─ runRace.spec.js
+└─ src
+   ├─ App.js
+   ├─ index.js
+   ├─ constants
+   │  ├─ count.js
+   │  ├─ errorMessages.js
+   │  └─ promptMessage.js
+   ├─ features
+   │  ├─ CarsInput
+   │  │  ├─ index.js -> CarsInput 진입점
+   │  │  ├─ input.js
+   │  │  ├─ parser.js
+   │  │  └─ validations.js
+   │  ├─ CountInput
+   │  │  ├─ index.js -> CountInput 진입점
+   │  │  ├─ input.js
+   │  │  └─ validations.js
+   │  └─ Race
+   │     ├─ display.js
+   │     ├─ filterWinner.js
+   │     ├─ index.js -> Race 진입점
+   │     ├─ moveForward.js
+   │     └─ runRace.js
+   └─ utils
+      └─ throwError.js
+```
