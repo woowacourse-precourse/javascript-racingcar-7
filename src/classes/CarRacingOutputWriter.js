@@ -5,7 +5,7 @@ class CarRacingOutputWriter {
     let results = '';
 
     cars.forEach((car) => {
-      results += `${car.name} : ${car.distance}\n`;
+      results += `${car.name} : ${'-'.repeat(car.distance)}\n`;
     });
 
     Console.print(results);
