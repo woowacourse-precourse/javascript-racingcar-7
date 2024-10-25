@@ -41,6 +41,16 @@ class App {
       '시도할 횟수는 몇회인가요?\n'
     );
 
+    if (!TRY_COUNT) {
+      Console.print('[ERROR] 시도 횟수를 입력해주세요.');
+      throw new Error('[ERROR] 시도 횟수를 입력해주세요.');
+    }
+
+    if (Number.isNaN(Number(TRY_COUNT))) {
+      Console.print('[ERROR] 시도 횟수는 숫자여야 합니다.');
+      throw new Error('[ERROR] 시도 횟수는 숫자여야 합니다.');
+    }
+
     Console.print(`실행 결과`);
 
     const CARS = CAR_NAMES.map((name) => new Car(name));
