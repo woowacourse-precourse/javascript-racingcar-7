@@ -4,8 +4,6 @@ class RacingGame {
   #cars;
 
   constructor(carNames) {
-    this.#cars = [];
-
     RacingGame.validateCarNames(carNames);
     RacingGame.ensureCarNamesNotDuplicate(carNames);
   }
@@ -43,6 +41,9 @@ class RacingGame {
     if (carNamesSet.size !== carNames.length) {
       throw new Error(ERROR_DETAILS.CARNAMES_DUPLICATE);
     }
+  }
+
+  playFor(seconds) {
   }
 }
 
