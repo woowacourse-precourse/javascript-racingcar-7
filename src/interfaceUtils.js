@@ -7,12 +7,12 @@ export function getInputAsync(message) {
 
 export function printCarsMove(carsMap) {
   Console.print("");
-  for (const [carName, carLength] of carsMap) {
-    const lengthDash = "-".repeat(carLength);
-    Console.print(`${carName} : ${lengthDash}`);
+  for (const [carName, carMoveCount] of carsMap) {
+    const moveDash = "-".repeat(carMoveCount);
+    Console.print(`${carName} : ${moveDash}`);
   }
 }
 
-export function printWinners(winnerCars) {
-  Console.print(MESSAGES.PRINT_WINNERS + winnerCars.join(", "));
+export function printWinners(winners) {
+  Console.print(MESSAGES.PRINT_WINNERS + winners.join(", "));
 }

@@ -22,8 +22,8 @@ class App {
       printCarsMove(carsModel.getCarsMap());
     }
 
-    const winnerCars = carsModel.getWinners();
-    printWinners(winnerCars);
+    const winners = carsModel.getWinners();
+    printWinners(winners);
   }
 }
 

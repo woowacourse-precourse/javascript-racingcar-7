@@ -18,24 +18,24 @@ class CarsModel {
   }
 
   moveCars() {
-    for (const [carName, carCount] of this.#carsMap) {
+    for (const [carName, carMoveCount] of this.#carsMap) {
       const randomNum = MissionUtils.Random.pickNumberInRange(
-        RULES.RANDOM_NUM_MIN,
-        RULES.RANDOM_NUM_MAX
+        RULES.RANDOM_MIN,
+        RULES.RANDOM_MAX,
       );
       if (randomNum >= RULES.MOVE_THRESHOLD) {
-        this.#carsMap.set(carName, carCount + 1);
+        this.#carsMap.set(carName, carMoveCount + 1);
       }
     }
   }
 
   getWinners() {
-    const winningLength = Math.max(...this.#carsMap.values());
-    const winnerCars = [];
-    for (const [carName, carCount] of this.#carsMap) {
-      if (carCount === winningLength) winnerCars.push(carName);
+    const winningMoveCount = Math.max(...this.#carsMap.values());
+    const winners = [];
+    for (const [carName, carMoveCount] of this.#carsMap) {
+      if (carMoveCount === winningMoveCount) winners.push(carName);
     }
-    return winnerCars;
+    return winners;
   }
 }
 
