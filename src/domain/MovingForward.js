@@ -3,35 +3,56 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 class MovingForward {
   static #RANDOM_RANGE = { start: 0, end: 9 };
 
+  static #SEPARATOR = '\n';
+
   static #RANGE = 4;
 
   #cars;
 
   #number;
 
-  constructor(cars, numberOfMoves) {
+  #progress = [];
+
+  constructor(cars, numberOfGame) {
     this.#cars = cars;
-    this.#number = numberOfMoves;
+    this.#number = numberOfGame;
+    this.#moveForwardCars();
   }
 
   #judgeMovement() {
     const { start, end } = MovingForward.#RANDOM_RANGE;
 
-    this.#cars.forEach((value, key) => {
+    this.#cars.forEach((numberOfMoves, carName) => {
       const random = MissionUtils.Random.pickNumberInRange(start, end);
 
       if (random >= MovingForward.#RANGE) {
-        this.#cars.set(key, value + 1);
+        this.#cars.set(carName, numberOfMoves + 1);
       }
     });
   }
 
-  moveForwardCars() {
+  #recordMovement() {
+    let record = '';
+    const separator = MovingForward.#SEPARATOR;
+
+    this.#cars.forEach((numberOfMoves, carName) => {
+      record += `${separator}${carName} : ${'-'.repeat(numberOfMoves)}`;
+    });
+
+    this.#progress.push(record);
+  }
+
+  #moveForwardCars() {
     for (let index = 0; index < this.#number; index += 1) {
       this.#judgeMovement();
+      this.#recordMovement();
     }
+  }
 
-    return this.#cars;
+  getMoveResults() {
+    const separator = MovingForward.#SEPARATOR;
+
+    return { cars: this.#cars, progress: this.#progress.join(separator) };
   }
 }
 
