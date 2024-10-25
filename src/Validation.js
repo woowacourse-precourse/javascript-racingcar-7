@@ -9,7 +9,7 @@ export function validateAllCarNames(carNameArray) {
 function validateCarName(carName) {
   try {
     validateNoWhiteSpace(carName);
-    validateOnlyLetters(carName);
+    validateNoNumber(carName);
     validateNoSpecialCharacters(carName);
     validateMaxFiveChars(carName);
   } catch (err) {
@@ -21,7 +21,7 @@ function validateNoWhiteSpace(carName) {
   if (carName.includes(' ')) throw new Error(`${ERROR_MESSAGE.NO_WHITESPACE}`);
 }
 
-function validateOnlyLetters(carName) {
+function validateNoNumber(carName) {
   if (/\d/.test(carName))
     throw new Error(`${ERROR_MESSAGE.INVALID_NUMERIC_CHARACTERS}`);
 }
