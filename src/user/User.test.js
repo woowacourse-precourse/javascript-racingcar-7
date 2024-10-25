@@ -57,9 +57,5 @@ describe('User', () => {
       expect(readLineAsyncSpy).toHaveBeenCalledWith(message);
       expect(result).toBe(expectedInput);
     });
-    // test('시도한 횟수에 숫자를 입력하지 않을 경우', async () => {
-    //   const result = await user.readAttemptsInput('a');
-    //   expect(result).rejects.toThrow('[ERROR]');
-    // });
   });
 });
