@@ -17,7 +17,7 @@ import {
 
 describe("유틸 함수", () => {
   describe("pickNumberInRange", () => {
-    test("a부터 b사이의 수를 리턴한다.", () => {
+    test("a와 b사이의 수를 반환한다.", () => {
       for (let i = 0; i < 100; i++) {
         const num = pickNumberInRange(0, 9);
         expect(num).toBeGreaterThanOrEqual(0);
@@ -27,7 +27,7 @@ describe("유틸 함수", () => {
   });
 
   describe("splitIntoArray", () => {
-    test(".으로 분리한 배열을 리턴한다.", () => {
+    test("인자로 주어진 구분자로 문자열을 구분하여 반환한다.", () => {
       const result = splitIntoArray("a.b.c.d.e", ".");
       expect(result).toEqual(["a", "b", "c", "d", "e"]);
     });
@@ -55,25 +55,26 @@ describe("유틸 함수", () => {
   });
 
   describe("getIsNumeric", () => {
-    test("숫자가 아닌 경우 false를 리턴한다.", () => {
+    test("숫자인 경우 true를 반환한다.", () => {
+      expect(getIsNumeric(0)).toBe(true);
+      expect(getIsNumeric(9999999)).toBe(true);
+      expect(getIsNumeric(5.5)).toBe(true);
+      expect(getIsNumeric(-99999)).toBe(true);
+    });
+    test("숫자가 아닌 경우 false를 반환한다.", () => {
       expect(getIsNumeric("a")).toBe(false);
       expect(getIsNumeric([])).toBe(false);
       expect(getIsNumeric([1, 2, 3])).toBe(false);
       expect(getIsNumeric({})).toBe(false);
       expect(getIsNumeric(undefined)).toBe(false);
       expect(getIsNumeric(null)).toBe(false);
+      expect(getIsNumeric(Symbol())).toBe(false);
       expect(getIsNumeric(NaN)).toBe(false);
-    });
-    test("숫자인 경우 true를 리턴한다.", () => {
-      expect(getIsNumeric(0)).toBe(true);
-      expect(getIsNumeric(9999999)).toBe(true);
-      expect(getIsNumeric(5.5)).toBe(true);
-      expect(getIsNumeric(-99999)).toBe(true);
     });
   });
 
   describe("getMapFilledZero", () => {
-    test("주어진 배열의 인자로 접근할 경우 0을 반환한다.", () => {
+    test("주어진 배열의 인자로 접근할 경우 값을 반환한다.", () => {
       const mapFilledZero = getMapFilledZero(["a", "b", "c"]);
       expect(mapFilledZero.get("a")).toBe(0);
       expect(mapFilledZero.get("b")).toBe(0);
@@ -103,7 +104,6 @@ describe("유틸 함수", () => {
           ])
         )
       ).toBe(3);
-
       expect(
         getMaxValueInMap(
           new Map([
@@ -135,7 +135,6 @@ describe("유틸 함수", () => {
     test("중복되는 값이 없을 경우 true롤 반환한다.", () => {
       expect(checkArrayAllUnique(["a", "b", "c"])).toBe(true);
     });
-
     test("중복되는 값이 있을 경우 false롤 반환한다.", () => {
       expect(checkArrayAllUnique(["a", "a", "c"])).toBe(false);
     });
