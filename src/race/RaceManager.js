@@ -1,6 +1,7 @@
 import IOHandler from "../utils/IOHandler.js";
 import { checkValidNameLength, checkLessThanOrEqualMaxCount } from "./Validator.js";
 import RaceExcutor from "./RaceExecutor.js";
+import { getWinners } from "./WinnerSelector.js";
 import Car from "./Car.js";
 
 class RaceManager {
@@ -38,11 +39,19 @@ class RaceManager {
         this.#setRacingCount(inputCount);
     }
 
+    #printWinners(winnerNames) {
+        const winnerMessage = `최종 우승자 : ${winnerNames.join(', ')}`;
+        IOHandler.output(winnerMessage);
+    }
+
     async racing() {
         await this.#prepareRacing();
 
         const raceExcutor = new RaceExcutor();
         raceExcutor.executeForRaceCount(this.#carList, this.#racingCount);
+
+        const winnerNames = getWinners(this.#carList);
+        this.#printWinners(winnerNames);
     }
 }
 
