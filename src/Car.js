@@ -1,6 +1,3 @@
-import { Random } from "@woowacourse/mission-utils";
-import { NUMBER } from "./Constants/constants.js";
-
 class Car {
   #position;
   #name;
@@ -8,10 +5,6 @@ class Car {
   constructor(name) {
     this.#name = name;
     this.#position = "";
-  }
-
-  async getRandomNumber() {
-    return Random.pickNumberInRange(NUMBER.RANDOM_MIN, NUMBER.RANDOM_MAX);
   }
 
   async getAttemptResult() {

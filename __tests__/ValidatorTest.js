@@ -1,5 +1,5 @@
-import { NUMBER } from "../src/Constants/constants.js";
-import { Validator } from "../src/Validator.js";
+import { Validator } from "../src/utils/Validator.js";
+import { NUMBER } from "../src/utils/constants.js";
 
 describe("자동차 이름 유효성 검사 테스트", () => {
   test(`자동차 이름이 ${NUMBER.CAR_NAME_MIN}글자 미만일 경우 에러 발생`, () => {

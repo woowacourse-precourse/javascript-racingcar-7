@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE, NUMBER } from "./Constants/constants.js";
+import { ERROR_MESSAGE, NUMBER } from "./constants.js";
 
 export class Validator {
   static carNameLength(arr) {

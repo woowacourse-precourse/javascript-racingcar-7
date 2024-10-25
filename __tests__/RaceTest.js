@@ -1,6 +1,6 @@
 import Race from "../src/Race.js";
 import Car from "../src/Car.js";
-import { NUMBER } from "../src/Constants/constants.js";
+import { NUMBER } from "../src/utils/constants.js";
 
 describe("전진 메소드(Race.checkProgress()) 테스트", () => {
   const car = new Car("su");

@@ -1,8 +1,8 @@
-import { Validator } from "./Validator.js";
 import { InputView } from "./View/InputView.js";
 import { OutputView } from "./View/OutputView.js";
-import { DELIMITER } from "./Constants/constants.js";
+import { DELIMITER } from "./utils/constants.js";
 import Race from "./Race.js";
+import { Validator } from "./utils/Validator.js";
 
 class App {
   #race;

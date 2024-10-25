@@ -1,5 +1,6 @@
 import Car from "./Car.js";
-import { NUMBER } from "./Constants/constants.js";
+import { NUMBER } from "./utils/constants.js";
+import { Function } from "./utils/Function.js";
 
 class Race {
   #cars;
@@ -10,7 +11,7 @@ class Race {
 
   async progressCar() {
     for (const car of this.#cars) {
-      const randomNumber = await car.getRandomNumber();
+      const randomNumber = await Function.getRandomNumber();
       await this.checkProgress(randomNumber, car);
     }
   }
@@ -40,27 +41,11 @@ class Race {
 
     const sortResult = result.sort((a, b) => b.position - a.position);
 
-    return this.checkJoint(
+    return Function.checkJoint(
       sortResult,
       sortResult[0].position,
       sortResult[0].name
     );
-  }
-
-  checkJoint(arr, winnersPosition, winnersName) {
-    let winners = [winnersName];
-
-    for (let i = 1; i < arr.length; i++) {
-      const isSamePosition = winnersPosition === arr[i].position;
-
-      if (isSamePosition) {
-        winners.push(arr[i].name);
-      }
-
-      if (!isSamePosition) break;
-    }
-
-    return winners;
   }
 }
 

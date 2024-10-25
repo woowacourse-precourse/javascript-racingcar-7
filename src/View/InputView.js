@@ -1,5 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
-import { MESSAGE } from "../Constants/constants.js";
+import { MESSAGE } from "../utils/constants.js";
 
 export class InputView {
   static carNameList() {
