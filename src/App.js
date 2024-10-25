@@ -3,6 +3,7 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 import Car from './Car.js';
 
 import { getCarName, splitCarName, getAttemptCount } from './InputUtils.js';
+import { printWinnerCar } from './OutputUtils.js';
 
 class App {
   constructor() {
@@ -16,6 +17,9 @@ class App {
 
     this.carList = this.makeCars(splittedCarName);
     this.repeat(attemptCount);
+
+    const winnerNames = this.findCarWithMaxPosition(this.getMaxPosition());
+    printWinnerCar(winnerNames);
   }
 
   makeCars(names) {
