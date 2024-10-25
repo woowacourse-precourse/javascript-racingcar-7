@@ -7,22 +7,29 @@ class Car {
   }
 }
 
+function isRepeat(arr) {  // 중복 요소 확인 함수
+  return arr.some((element) => {
+    return arr.indexOf(element) !== arr.lastIndexOf(element)
+  });
+}
+
 class App {
   async run() {
     try {
       // 자동차 이름 입력받기
       MissionUtils.Console.print('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)');
       const inputName = await MissionUtils.Console.readLineAsync('');
-      
       // 쉼표를 기준으로 구분하기
-      const carList = inputName.split(',');
-      
+      let carList = inputName.split(',');
+      carList = carList.map(element => element.trim())  // 공백 제거
+      if (isRepeat(carList)) throw Error('[ERROR] 자동차 이름을 중복으로 사용할 수 없습니다.');
+
       // 이름마다 각각 Car 인스턴스 생성하기
       for (let i = 0; i < carList.length; i += 1) {
-        if (carList[i].trim().length > 5) throw Error('[ERROR] 자동차 이름은 5글자를 넘을 수 없습니다.'); 
-        carList[i] = new Car(carList[i].trim());
+        if (carList[i].length == 0) throw Error('[ERROR] 자동차 이름은 공백으로 할 수 없습니다.');
+        if (carList[i].length > 5) throw Error('[ERROR] 자동차 이름은 5글자를 넘을 수 없습니다.');
+        carList[i] = new Car(carList[i]);
       }
-      console.log(carList)
 
       // 몇 번 이동할 건지 입력받기
       MissionUtils.Console.print('시도할 횟수는 몇 회인가요?');
@@ -33,7 +40,7 @@ class App {
         throw Error(`[ERROR] 숫자를 입력해주세요.`);
       if (tryTime.includes('.'))
         throw Error(`[ERROR] 소수는 입력할 수 없습니다. 정수를 입력해주세요.`)
-      
+
       // 차수별 실행 결과 출력하기
       MissionUtils.Console.print('실행 결과');
       for (let n = 0; n < tryTime; n += 1) {  // n번 반복
@@ -41,11 +48,11 @@ class App {
           if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) {
             carList[i].movement += 1;
           }
-          MissionUtils.Console.print(`${carList[i].name} : ${'-'.repeat(carList[i].movement )}`);
+          MissionUtils.Console.print(`${carList[i].name} : ${'-'.repeat(carList[i].movement)}`);
         }
         MissionUtils.Console.print('');
       }
-      
+
       // 우승자 출력하기
       const max = Math.max(...carList.map(player => player.movement));
 
