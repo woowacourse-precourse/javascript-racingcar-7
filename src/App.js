@@ -41,6 +41,18 @@ class App {
                 runCntArr[i][j] += runCntArr[i][j - 1];
             }
         }
+
+        const result = [];
+
+        for (let i = 0; i < +inputTryCnt; i++) {
+            for (let j = 0; j < carCnt; j++) {
+                result.push(`${splittedCarNames[j]} : ${"-".repeat(runCntArr[j][i])}`);
+            }
+            result.push("");
+        }
+
+        Console.print("\n실행 결과");
+        Console.print(result.join("\n"));
     }
 }
 
