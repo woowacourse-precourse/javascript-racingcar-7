@@ -19,7 +19,7 @@ class RaceController {
     return updatedList;
   }
 
-  getRaceWinnersIndex(players, positions) {
+  getRaceWinnersIndex(positions) {
     let maxValue = Math.max(...positions);
     let winnersIndex = [];
 
