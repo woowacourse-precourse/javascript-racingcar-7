@@ -1,9 +1,10 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 
 class App {
   constructor() {
     this.names = '';
     this.number = null;
+    this.nameMap = new Map();
   }
 
   async getCarNames() {
@@ -22,7 +23,9 @@ class App {
       if (carName.length > 5) {
         throw new Error('[ERROR] 자동차 이름은 5글자 이하여야 합니다.');
       }
+      this.nameMap.set(carName, 0);
     });
+    this.nameArray = [...splitedNames];
   }
 
   async getNumber() {
@@ -33,19 +36,37 @@ class App {
   }
 
   validateNumber(tempNumber) {
-    if (!Number.isInteger(tempNumber)) {
-      throw new Error('[ERROR] 횟수는 정수로 입력해야 합니다.');
+    if (!Number.isNaN(tempNumber)) {
+      if (!Number.isInteger(Number(tempNumber))) {
+        throw new Error('[ERROR] 횟수는 정수로 입력해야 합니다.');
+      }
+      if (tempNumber < 1) {
+        throw new Error('[ERROR] 횟수는 1번 이상이어야 합니다.');
+      }
+      this.number = tempNumber;
     }
-    if (tempNumber < 1) {
-      throw new Error('[ERROR] 횟수는 1번 이상이어야 합니다.');
+  }
+
+  moveCars() {
+    for (let i = 0; i < this.names.length; i += 1) {
+      const randomNumber = Random.pickNumberInRange(0, 9);
+
+      if (randomNumber >= 4) {
+        const beforeValue = this.nameMap.get(this.nameArray[i]);
+        this.nameMap.set(this.nameArray[i], beforeValue + 1);
+      }
     }
-    this.number = tempNumber;
   }
 
   async run() {
     await this.getCarNames();
     this.validateCarNames();
     await this.getNumber();
+    Console.print('실행 결과');
+    while (this.number) {
+      this.moveCars();
+      this.number -= 1;
+    }
   }
 }
 
