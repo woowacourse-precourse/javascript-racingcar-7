@@ -17,7 +17,7 @@ export function displayCarMovement(carDataList, moveValue) {
   for (let i = 0; i < moveValue.length; i++) {
     Console.print(`${carDataList[i].name} : ${'_ '.repeat(moveValue[i])}`);
   }
-  Console.print('');
+  Console.print('\n');
 }
 
 export function announceWinner(winner) {

@@ -3,7 +3,7 @@ import { displayCarMovement } from './UserInterface.js';
 import { GAME_PROGRESS_MESSAGE } from './Message.js';
 
 export default function progressGame(carDataList, numberOfMove) {
-  Console.print(`${GAME_PROGRESS_MESSAGE.EXECUTION_RESULT}`);
+  Console.print(`\n${GAME_PROGRESS_MESSAGE.EXECUTION_RESULT}`);
   for (let i = 0; i < numberOfMove; i++) {
     const moveValues = extractMoveValue(carDataList.length);
     displayCarMovement(carDataList, moveValues);
