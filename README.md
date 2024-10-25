@@ -55,7 +55,7 @@
 
 ### 3️⃣ 최종 결과 출력
 
--   [ ] `@woowacourse/mission-utils` 의 `Console.print()` 을 사용해 우승자 출력
+-   [x] `@woowacourse/mission-utils` 의 `Console.print()` 을 사용해 우승자 출력
 -   단독 우승자 안내 문구
     ```
     최종 우승자 : pobi
