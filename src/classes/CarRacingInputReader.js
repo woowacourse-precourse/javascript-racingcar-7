@@ -1,7 +1,7 @@
 import { Console } from '@woowacourse/mission-utils';
 
 class CarRacingInputReader {
-  async getCarNames() {
+  static async getCarNames() {
     const input = await Console.readLineAsync(
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n'
     );
@@ -11,7 +11,7 @@ class CarRacingInputReader {
     return input.split(',');
   }
 
-  async getTotalRounds() {
+  static async getTotalRounds() {
     const input = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
 
     this.validateInput(input);

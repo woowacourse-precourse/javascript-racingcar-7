@@ -1,7 +1,7 @@
 import { Console } from '@woowacourse/mission-utils';
 
 class CarRacingOutputWriter {
-  printRoundResults(cars) {
+  static printRoundResults(cars) {
     let results = '';
 
     cars.forEach((car) => {
@@ -11,7 +11,7 @@ class CarRacingOutputWriter {
     Console.print(results);
   }
 
-  printWinners(winners) {
+  static printWinners(winners) {
     Console.print(`최종 우승자 : ${winners.join(', ')}`);
   }
 }
