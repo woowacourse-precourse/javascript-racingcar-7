@@ -26,9 +26,10 @@ class App {
 
       let nameArray = input.split(',');
       let moveArray = Array.from({length: nameArray.length}, () => '');
+      let winnerArray = [];
 
       // 전진 중...
-      Console.print('실행 결과');
+      Console.print('\n실행 결과');
       for (let i = 0; i < count; i++) {
         nameArray.map((value, index) => {
           var randNum = Random.pickNumberInRange(0, 9);
@@ -39,6 +40,21 @@ class App {
         Console.print('');
       }
 
+      // 최종 우승자 확인
+      let maxLength = 0;
+      for (let i = 0; i < moveArray.length; i++) {
+        if (moveArray[i].length >= maxLength)
+          maxLength = moveArray[i].length;
+      }
+      for (let i = 0; i < moveArray.length; i++) {
+        if (moveArray[i].length == maxLength) 
+          winnerArray.push(nameArray[i]);
+      }
+
+      let answer = `최종 우승자 : ${winnerArray.join(',')}`;
+      
+      Console.print(answer);
+      
     } catch (error) {
       throw new Error('[ERROR]');
     }
