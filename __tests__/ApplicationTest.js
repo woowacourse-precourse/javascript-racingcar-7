@@ -47,7 +47,7 @@ describe('자동차 경주', () => {
   });
 
   test.each([[['pobi,javaji']], [[',javaji']]])(
-    '예외 테스트: %s',
+    '자동차 이름 입력 예외 테스트: %s',
     async (inputs) => {
       // given
       mockQuestions(inputs);
@@ -59,4 +59,19 @@ describe('자동차 경주', () => {
       await expect(app.run()).rejects.toThrow('[ERROR]');
     }
   );
+
+  test.each([
+    [['pobi,haesa', '-1']],
+    [['pobi,haesa', '1.1']],
+    [['pobi,haesa', 'a']],
+  ])('시도 횟수 입력 예외 테스트: %s', async (inputs) => {
+    // given
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
 });
