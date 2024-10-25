@@ -1,11 +1,11 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, MissionUtils } from "@woowacourse/mission-utils";
 import Car from "./car.js";
 
 class RacingGame {
   constructor() {
     this.cars = [];
-    this.init();
     this.counts = 0;
+    this.startGame();
   }
 
   async init() {
@@ -15,12 +15,21 @@ class RacingGame {
     );
     names = userInputNames.split(",");
     names.forEach((element) => {
-      this.cars.push(new Car(element, 0));
+      this.cars.push(new Car(element));
     });
     const userInputCounts = await Console.readLineAsync(
       "시도할 횟수는 몇 회인가요?"
     );
     this.counts = userInputCounts;
+  }
+
+  getScores() {
+    this.cars.forEach((element) => {
+      if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) {
+        element.score += 1;
+      }
+    });
+    console.log(this.cars);
   }
 }
 
