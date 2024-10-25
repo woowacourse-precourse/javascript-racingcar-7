@@ -2,17 +2,17 @@ import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
 import CarNameValidations from "../validations/CarNameValidations.js";
 import RaceCountValidations from "../validations/RaceCountValidations.js";
-import parseCarNames from "../helpers/parseCarNames.js";
+import parseStringToArray from "../utils/parseStringToArray.js";
+import parseArrayToString from "../utils/parseArrayToString.js";
 import Car from "../domain/Car.js";
 import getRandomNumber from "../utils/getRandomNumber.js";
 import { Console } from "@woowacourse/mission-utils";
-
 
 // TODO: 컨트롤러 로직 별로 분리
 class RaceController {
   async start() {
     const carNamesInput = await InputView.readCarNameInput();
-    const carNames = parseCarNames(carNamesInput);
+    const carNames = parseStringToArray(carNamesInput);
     CarNameValidations(carNames);
 
     const raceCount = await InputView.readRaceCountInput();
@@ -32,7 +32,7 @@ class RaceController {
       Console.print('');
     }
 
-    const winner = car.getWinnerList().join(', ');
+    const winner = parseArrayToString(car.getWinnerList());
     OutputView.printWinner(winner);
   }
 }
