@@ -33,6 +33,10 @@ class RacingGame {
     });
     this.currentRound += 1;
   }
+
+  isGameFinished() {
+    return this.currentRound >= this.totalRounds;
+  }
 }
 
 export default RacingGame;
