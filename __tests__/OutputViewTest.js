@@ -37,4 +37,15 @@ describe('OutputView', () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
+
+  test('우승자를 출력한다', () => {
+    const winner = 'pobi';
+    const log = '최종 우승자 : pobi';
+    const logSpy = getLogSpy();
+
+    const outputView = new OutputView();
+    outputView.printWinners(winner);
+
+    expect(logSpy).toHaveBeenCalledWith(log);
+  });
 });
