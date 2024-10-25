@@ -1,6 +1,6 @@
 import {
   getKeyArrayHasSameValueInMap,
-  getMapFilledZeroValue,
+  getMapFilledZero,
   getMaxValueInMap,
   getRepeatedString,
   pickNumberInRange,
@@ -21,7 +21,7 @@ class Race {
     this.#carArray = carArray;
     this.#tryCount = tryCount;
 
-    this.#carTraceMap = getMapFilledZeroValue(this.#carArray);
+    this.#carTraceMap = getMapFilledZero(this.#carArray);
   }
 
   run() {

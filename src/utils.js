@@ -25,7 +25,7 @@ export const validatePositiveInteger = (num) => {
   if (!Number.isInteger(num)) throw new Error(ERROR_MESSAGE_NOT_INTEGER);
 };
 
-export const getMapFilledZeroValue = (array) => {
+export const getMapFilledZero = (array) => {
   const map = new Map();
   for (const item of array) {
     map.set(item, 0);
