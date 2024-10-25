@@ -86,8 +86,6 @@ describe("자동차 경주", () => {
     const MOVING_FORWARD = 4;
     const STOP = 3;
     const inputs = ["pobi,woni", "3"];
-    const logs = ["pobi : --", "woni : -"];
-    const logSpy = getLogSpy();
 
     mockQuestions(inputs);
     mockRandoms([MOVING_FORWARD, STOP, MOVING_FORWARD, MOVING_FORWARD, STOP, STOP]);
