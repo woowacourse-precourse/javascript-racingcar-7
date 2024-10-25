@@ -51,10 +51,14 @@ function canMove() {
 function moveOneStep(permissionToGo, N, carsResults) {
   for (let i = 0; i < N; i++) {
     const permission = permissionToGo();
-    if (permission) {
-      carsResults[i].position += '-';
-    }
+    addMoving(permission, carsResults, i);
     Console.print(`${carsResults[i].name} : ${carsResults[i].position}`);
+  }
+}
+
+function addMoving(permission, value, index) {
+  if (permission) {
+    value[index].position += '-';
   }
 }
 
