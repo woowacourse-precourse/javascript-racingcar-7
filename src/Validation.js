@@ -13,3 +13,12 @@ function validateMaxFiveChars(carName) {
   if (carName.length > 5)
     throw new Error(`${ERROR_MESSAGE.MAX_LENGTH_EXCEEDED}`);
 }
+
+export function validatePositiveNumber(numberOfMove) {
+  if (
+    !Number.isInteger(numberOfMove) ||
+    isNaN(numberOfMove) ||
+    numberOfMove < 1
+  )
+    throw new Error(`${ERROR_MESSAGE.NON_POSITIVE_NUMBER}`);
+}
