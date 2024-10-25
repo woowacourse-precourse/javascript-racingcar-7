@@ -1,4 +1,4 @@
-const createCarObject = (carNameList) => {
+const createCarObjectList = (carNameList) => {
   return carNameList.map((carName) => {
     return {
       name: carName,
@@ -7,4 +7,4 @@ const createCarObject = (carNameList) => {
   })
 }
 
-export default createCarObject;
+export default createCarObjectList;
