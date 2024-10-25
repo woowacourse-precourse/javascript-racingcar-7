@@ -7,22 +7,24 @@ import {
   validateRacingCarInput,
   validateTryCount,
 } from './validator/validatePipeline.js';
+import { PRINT_MESSAGES } from './constants/messages.js';
 
 class App {
   async run() {
-    const inputForRacingCars = await getUserInput('입력');
+    const inputForRacingCars = await getUserInput(
+      PRINT_MESSAGES.INPUT.CAR_NAME,
+    );
     validateRacingCarInput(inputForRacingCars);
     const carNamesArray = splitByComma(inputForRacingCars);
     validateCarNames(carNamesArray);
-
-    const inputForTryCount = await getUserInput('시도할 횟수를 입력하세요');
+    const inputForTryCount = await getUserInput(PRINT_MESSAGES.INPUT.TRY_COUNT);
     validateTryCount(inputForTryCount);
 
     const racingCars = carNamesArray.map((name) => new Car(name));
     const game = new Game(racingCars, Number(inputForTryCount));
     game.play();
     const winners = game.getWinnerNames();
-    printCarsMoving('최종 우승자', joinByComma(winners));
+    printCarsMoving(PRINT_MESSAGES.OUTPUT.WINNER, joinByComma(winners));
   }
 }
 
