@@ -12,7 +12,7 @@ class CarRaceManager {
 
   constructor(cars, tryCount) {
     this.#cars = cars.map((car) => new Car(car));
-    this.#tryCount = tryCount;
+    this.#tryCount = Number(tryCount);
     this.#winners = [];
   }
 
