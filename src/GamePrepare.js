@@ -1,4 +1,4 @@
-import { validateAllCarNames, validatePositiveNumber } from './Validation';
+import { validateAllCarNames, validatePositiveNumber } from './Validation.js';
 
 export function prepareCarData(carNames) {
   const carNameArray = extractCarName(carNames);
