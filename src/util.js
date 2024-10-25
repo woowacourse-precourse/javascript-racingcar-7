@@ -7,7 +7,7 @@ export const isInputEmpty = (input) => input.trim().length === 0;
 
 export const getUserInput = async (message) => {
   const input = await Console.readLineAsync(message);
-  if (isInputEmpty(input)) {
+  if (!input || isInputEmpty(input)) {
     throw new Error(errorString(ERROR_MESSAGE.EMPTY_INPUT));
   }
 
