@@ -1,3 +1,4 @@
+import Output from '../view/Output.js';
 import Car from '../model/Car.js';
 
 class LacingController {
@@ -96,6 +97,14 @@ class LacingController {
 
       return winner;
     }, []);
+  }
+
+  printResult() {
+    const result = this.getRacingResult();
+    const winner = this.computeWinner(result);
+    Output.printTitle();
+    Output.printRacingResult(result);
+    Output.printWinner(winner);
   }
 }
 
