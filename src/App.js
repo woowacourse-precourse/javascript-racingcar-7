@@ -24,12 +24,7 @@ class App {
     }
 
     const cars = carname.split(",");
-    const carObjs = [];
-
-    for (let i = 0; i < cars.length; i++) {
-      const car = new Car(cars[i]);
-      carObjs.push(car);
-    }
+    const carObjs = cars.map((name) => new Car(name));
 
     function printResult() {
       for (let i = 0; i < carObjs.length; i++) {
