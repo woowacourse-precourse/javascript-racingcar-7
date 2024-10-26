@@ -3,6 +3,7 @@ const MESSAGES = Object.freeze({
   TRY_COUNT: "시도할 횟수는 몇 회인가요?\n",
   EXECUTION_RESULT: "\n실행 결과\n",
   FINAL_WINNER: "최종우승자 : ",
+  ADVANCE: "-",
 });
 
 export default MESSAGES;
