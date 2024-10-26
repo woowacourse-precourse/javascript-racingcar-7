@@ -1,5 +1,5 @@
 import { ERROR_MESSAGES, throwError } from '../Model/Error.js';
-import { checkDuplicate } from '../Util/util.js';
+import checkDuplicate from '../Util/checkDuplicate.js';
 import { consecutiveDelimiterPattern, isNumber } from '../Util/Regex.js';
 import Car from '../Model/Car.js';
 
