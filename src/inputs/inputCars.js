@@ -1,6 +1,12 @@
 import { Console } from "@woowacourse/mission-utils";
 import Car from "../model/Car";
-import { ERROR_CAR_AMOUNT,ERROR_BLANK,ERROR_STRING_OVER_5,ERROR_DUPLICATE,throwError } from "../constants/errorContants.js";
+import {
+  ERROR_CAR_AMOUNT,
+  ERROR_BLANK,
+  ERROR_STRING_OVER_5,
+  ERROR_DUPLICATE,
+  throwError,
+} from "../constants/errorContants.js";
 
 export async function inputCars() {
   const cars = String(
@@ -13,6 +19,7 @@ export async function inputCars() {
   validateInput(cars);
   return cars.map((car) => new Car(car));
 }
+
 function validateInput(cars) {
   cars.forEach((car) => {
     validateBlank(car);
@@ -37,4 +44,3 @@ function validateOver5(car) {
 function validateDuplicate(cars) {
   if (cars.length !== new Set(cars).size) throwError(ERROR_DUPLICATE);
 }
-
