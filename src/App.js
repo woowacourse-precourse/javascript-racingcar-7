@@ -65,44 +65,43 @@ class App {
 
     Console.print('\n실행 결과');
 
-    const carList = carNames.split(',');
-    const carsDistances = Array.from({ length: carList.length }, () => '');
+    const cars = carNames.split(',');
+    const carDistances = Array.from({ length: cars.length }, () => '');
 
-    const moveCar = (carsCanMove) => {
+    const moveCars = (carsCanMove) => {
       carsCanMove.forEach((canMove, index) => {
         if (canMove) {
-          carsDistances[index] += '-';
+          carDistances[index] += '-';
         }
       });
     };
 
-    const printDistanceOfCarList = () => {
-      const distanceOfCarList = carList.reduce(
-        (acc, _, index) =>
-          `${acc}${carList[index]} : ${carsDistances[index]}\n`,
+    const printCarDistances = () => {
+      const distanceOfCars = cars.reduce(
+        (acc, _, index) => `${acc}${cars[index]} : ${carDistances[index]}\n`,
         '',
       );
-      Console.print(distanceOfCarList);
+      Console.print(distanceOfCars);
     };
 
     for (let count = 1; count <= gameCount; count++) {
       const carsCanMove = Array.from(
-        { length: carList.length },
+        { length: cars.length },
         () => Random.pickNumberInRange(0, 9) >= 4,
       );
 
-      moveCar(carsCanMove);
+      moveCars(carsCanMove);
 
-      printDistanceOfCarList();
+      printCarDistances();
     }
 
     const maxDistance = Math.max(
-      ...carsDistances.map((distance) => distance.length),
+      ...carDistances.map((distance) => distance.length),
     );
 
-    const winners = [...carsDistances.keys()]
-      .filter((index) => carsDistances[index].length === maxDistance)
-      .map((index) => carList[index]);
+    const winners = [...carDistances.keys()]
+      .filter((index) => carDistances[index].length === maxDistance)
+      .map((index) => cars[index]);
     Console.print(`최종 우승자 : ${winners.join(', ')}`);
   }
 }
