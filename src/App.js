@@ -31,6 +31,20 @@ class App {
 
     return carNames;
   }
+
+  validateAttemptCount(input) {
+    const attemptCount = parseInt(input, 10);
+
+    if (Number.isNaN(attemptCount)) {
+      throw new Error('[ERROR] 숫자를 입력해주세요.');
+    }
+
+    if (attemptCount <= 0) {
+      throw new Error('[ERROR] 시도 횟수는 0보다 커야 합니다.');
+    }
+
+    return attemptCount;
+  }
 }
 
 export default App;
