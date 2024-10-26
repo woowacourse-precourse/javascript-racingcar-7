@@ -1,7 +1,12 @@
 import { getCarName, getAttempt } from './utils.js';
 import { validateCarName, validateAttemptCount } from './validators.js';
+import Car from './Car.js';
 
 class Race {
+
+  constructor() {
+    this.cars = [];
+  }
 
   async startRace() {
     await this.setCarName();
@@ -11,7 +16,7 @@ class Race {
   async setCarName() {
     const carNameInput = await getCarName();  
     validateCarName(carNameInput);       
-    return carNameInput.split(',').map(name => name.trim());               
+    this.cars = carNameInput.split(',').map(name => new Car(name.trim()));             
   }
 
   async setAttemptCount() {
