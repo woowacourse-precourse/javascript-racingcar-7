@@ -4,7 +4,7 @@ import Car from "./car.js";
 class RacingGame {
   constructor() {
     this.cars = [];
-    this.counts = 0;
+    this.counts = "";
     this.startGame();
   }
 
@@ -18,22 +18,24 @@ class RacingGame {
       this.cars.push(new Car(element));
     });
     const userInputCounts = await Console.readLineAsync(
-      "시도할 횟수는 몇 회인가요?"
+      "시도할 횟수는 몇 회인가요? \n"
     );
     this.counts = userInputCounts;
   }
 
   getScores() {
-    this.cars.forEach((element) => {
+    this.cars.forEach((car) => {
       if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) {
-        element.score += 1;
+        car.score += "-";
       }
+      Console.print(`${car.name} : ${car.score} `);
     });
-    console.log(this.cars);
+    Console.print("");
   }
 
   async startGame() {
     await this.init();
+    Console.print("실행 결과");
     for (let i = 0; i < this.counts; i++) {
       this.getScores();
     }
