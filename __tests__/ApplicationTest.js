@@ -1,5 +1,5 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
-import { getUserInput } from '../src/views/View.js';
+import { getUserInput, printRacingState } from '../src/views/View.js';
 import {
   divisionCarName,
   createCarObject,
@@ -115,5 +115,15 @@ describe('Custom Test', () => {
     expect(getCarPositionsRepresentation(CAR_MOVES)).toEqual(expectedOutput);
   });
 
-  
+  test('현재 게임 상태 출력', () => {
+    const carData = ['car1 : --', 'car2 : ---'];
+    const logSpy = getLogSpy();
+    printRacingState(carData);
+    // 첫 번째 라인 출력 검증
+    expect(logSpy).toHaveBeenCalledWith('car1 : --');
+    // 두 번째 라인 출력 검증
+    expect(logSpy).toHaveBeenCalledWith('car2 : ---');
+    // 빈 줄 출력 검증
+    expect(logSpy).toHaveBeenCalledWith('');
+  });
 });
