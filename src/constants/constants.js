@@ -1,5 +1,6 @@
 export const MIN_RANDOM_NUMBER = 0;
 export const MAX_RANDOM_NUMBER = 9;
+export const GAP = " ";
 
 export const RUN_MESSAGE = {
   INPUT_ATTEMPTS_NUMBER: "시도할 횟수는 몇 회인가요?\n",
