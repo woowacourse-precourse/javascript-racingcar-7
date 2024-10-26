@@ -1,18 +1,19 @@
-// RacingView.js
+import { Console } from '@woowacourse/mission-utils';
+
 class RacingView {
   static printRaceStatus(cars) {
     cars.forEach((car) => {
-      console.log(`${car.getName()} : ${car.getPositionString()}`);
+      Console.print(`${car.getName()} : ${car.getPositionString()}`);
     });
-    console.log('');
+    Console.print('');
   }
 
   static printWinners(winners) {
-    console.log(`최종 우승자 : ${winners.join(', ')}`);
+    Console.print(`최종 우승자 : ${winners.join(', ')}`);
   }
 
   static printError(message) {
-    console.error(`[ERROR] ${message}`);
+    Console.print(`[ERROR] ${message}`);
   }
 }
 

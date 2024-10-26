@@ -6,7 +6,7 @@ class RacingModel {
     this.count = count;
   }
 
-  rece() {
+  race() {
     this.cars.forEach((element) => element.move());
   }
 
@@ -15,6 +15,10 @@ class RacingModel {
     return this.cars
       .filter((car) => car.getPosition() === maxPosition)
       .map((car) => car.getName());
+  }
+
+  getCars() {
+    return this.cars;
   }
 }
 export default RacingModel;

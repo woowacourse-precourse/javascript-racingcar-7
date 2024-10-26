@@ -7,12 +7,7 @@ class App {
   }
 
   async run() {
-    try {
-      await this.controller.getCarNames();
-      await this.controller.getCount();
-    } catch (error) {
-      Console.print(error);
-    }
+    await this.controller.start();
   }
 }
 
