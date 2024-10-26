@@ -16,4 +16,14 @@ class CarModel {
   getPosition() {
     return '-'.repeat(this.position);
   }
+
+  getName() {
+    return this.name;
+  }
+
+  getPosition() {
+    return this.position;
+  }
 }
+
+export default CarModel;

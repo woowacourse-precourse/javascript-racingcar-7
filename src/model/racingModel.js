@@ -1,3 +1,5 @@
+import CarModel from './carModel';
+
 class RacingModel {
   constructor(carNames, count) {
     this.cars = carNames.map((name) => new CarModel(name));
