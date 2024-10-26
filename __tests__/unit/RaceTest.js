@@ -82,6 +82,17 @@ describe("Race 클래스 테스트", () => {
         const winners = race.getWinners();
         expect(winners).toEqual(["Audi"]);
       });
+
+      test("최종 우승자가 여러 명일 때도 올바르게 결정해야 한다", async () => {
+        await race.setCarName();
+
+        race.cars[0].move(5); 
+        race.cars[1].move(5); 
+        race.cars[2].move(3); 
+  
+        const winners = race.getWinners();
+        expect(winners).toEqual(["Audi", "BMW"]);
+      });
     });
   });
 });
