@@ -16,6 +16,12 @@ class RacingCar {
         this.name = name;
     }
 
+    goForward(num) {
+        if (num >= 4) {
+            this.distance++
+        }
+    }
+
 }
 
 export default RacingCar

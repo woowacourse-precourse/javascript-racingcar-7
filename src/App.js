@@ -1,6 +1,7 @@
 import IOHandler from "./utils/IOHandler.js";
 import datas from "./datas/datas.js";
 import RacingCar from "./RacingCar.js";
+import {Random} from '@woowacourse/mission-utils';
 
 class App {
     async run() {
@@ -11,7 +12,14 @@ class App {
             carList.push(new RacingCar(player))
         })
 
-        const tryNumber = await IOHandler.getInput(datas.INSTRUCTION_TRY_NUMBER)
+        let tryNumber = await IOHandler.getInput(datas.INSTRUCTION_TRY_NUMBER)
+
+        while (tryNumber--) {
+            carList.forEach(car => {
+                car.goForward(Random.pickNumberInRange(0, 9))
+            })
+        }
+
     }
 }
 
