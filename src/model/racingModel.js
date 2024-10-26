@@ -2,6 +2,7 @@ class RacingModel {
   constructor() {
     this.car = {};
     this.count;
+    this.winners = [];
   }
 
   updateCar(car) {
@@ -10,6 +11,10 @@ class RacingModel {
 
   getCount(count) {
     this.count = count;
+  }
+
+  updateWinner(winners) {
+    this.winners = [...winners];
   }
 }
 export default RacingModel;
