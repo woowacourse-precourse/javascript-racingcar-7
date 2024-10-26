@@ -2,7 +2,7 @@
 class RacingView {
   static printRaceStatus(cars) {
     cars.forEach((car) => {
-      console.log(`${car.name} : ${car.getPositionAsString()}`);
+      console.log(`${car.name} : ${car.getPosition()}`);
     });
     console.log('');
   }
