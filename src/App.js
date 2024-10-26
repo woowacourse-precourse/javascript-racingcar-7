@@ -11,12 +11,20 @@ class App {
     this.printWinners(carNames, distances);
   }
 
-    const carName = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
-    const carNames = carName.split(",");
-    Validator.validateCarNames(carNames);
+  async getCarNames() {
+    const carNameInput = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
+    const carNames = carNameInput.split(",");
+    Validator.CarNames(carNames);
+    
+    return carNames;
+  }
 
-    const playNum = await Console.readLineAsync("시도할 횟수는 몇 회 인가요?\n");
-    Validator.validatePlayNum(playNum)
+  async getRaceRounds() {
+    const raceRounds = await Console.readLineAsync("시도할 횟수는 몇 회 인가요?\n");
+    Validator.RaceRounds(raceRounds);
+    
+    return raceRounds;
+  }
 
     const results = {};
 
