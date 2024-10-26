@@ -6,9 +6,13 @@ class RacingGame {
   }
 
   createCars(namesInput) {
-    const carNames = namesInput.split(",").map((name) => name.trim());
+    const carNames = this.separateCarNames(namesInput);
     this.validateDuplicateCarName(carNames);
     this.cars = carNames.map((name) => new Car(name));
+  }
+
+  separateCarNames(namesInput) {
+    return namesInput.split(",").map((name) => name.trim());
   }
 
   validateDuplicateCarName(names) {
