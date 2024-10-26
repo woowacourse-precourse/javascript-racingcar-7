@@ -8,6 +8,7 @@ class Car {
 
   moveCar() {
     const number = MissionUtils.Random.pickNumberInRange(0, 9);
+    if (number >= 4) this.move += 1;
   }
 }
 
