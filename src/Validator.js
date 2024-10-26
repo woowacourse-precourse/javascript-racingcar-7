@@ -1,10 +1,9 @@
-import checkMinRounds from './utils/checkMinRounds.js';
-import { checkArrayLength, checkIsEmpty, checkStringLength, handleError } from './utils/index.js';
+import { checkArrayLength, checkIsEmptyOrNull, checkMinRounds, checkStringLength, handleError } from './utils/index.js';
 
 class Validator {
   static IsEmpty(value) {
-    if (checkIsEmpty(value)) {
-      handleError('[ERROR] : 자동차 이름에는 공백을 넣을 수 없어요.');
+    if (checkIsEmptyOrNull(value)) {
+      handleError('[ERROR] : 자동차 이름 입력된 값은 비어 있거나 공백을 포함할 수 없어요.');
     }
   }
 
