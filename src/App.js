@@ -1,7 +1,9 @@
 import { Console } from '@woowacourse/mission-utils';
+import { MissionUtils } from '@woowacourse/mission-utils';
 import NameValidation from './utils/NameValidation.js';
 import NumValidation from './utils/NumValidation.js';
 import Car from './utils/Car.js';
+import RaceJudge from './utils/RaceJudge.js';
 
 class App {
   async run() {
@@ -19,12 +21,14 @@ class App {
 
       for (let i = 0; i < Number(countInput); i++) {
         carList.forEach(car => {
-          car.getRandomNum();
-          car.move();
+          const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9); // 랜덤 숫자 생성
+          car.move(randomNumber);
           Console.print(car.getPosition());
         });
         Console.print('');
       }
+      const judge = new RaceJudge(carList);
+      Console.print(`최종 우승자 : ${judge.decideWinners().join('')}`);
     }
   }
 }
