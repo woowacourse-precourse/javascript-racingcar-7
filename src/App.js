@@ -12,7 +12,7 @@ class App {
       await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n')
     ).trim();
 
-    class gameCar {
+    class gameCarName {
       constructor(userInput) {
         this.name = this.splitName(userInput);
       }
@@ -23,7 +23,7 @@ class App {
     }
 
     try {
-      new gameCar(userInputGameStart);
+      new gameCarName(userInputGameStart);
     } catch (error) {
       throw new Error('[ERROR]' + error.message);
     }
