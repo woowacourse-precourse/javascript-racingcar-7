@@ -1,14 +1,17 @@
 class Car {
   #name;
   #forwardCount;
+  #records;
 
   constructor(name) {
     this.#name = name;
     this.#forwardCount = 0;
+    this.#records = [];
   }
 
   moveForward() {
     this.#forwardCount += 1;
+    this.#records.push(this.#forwardCount);
   }
 
   getForwardCount() {
@@ -17,6 +20,10 @@ class Car {
 
   getName() {
     return this.#name;
+  }
+
+  getRecords() {
+    return this.#records;
   }
 }
 

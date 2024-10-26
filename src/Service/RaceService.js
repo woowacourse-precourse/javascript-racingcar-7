@@ -1,60 +1,43 @@
-import { MissionUtils } from '@woowacourse/mission-utils';
-import Car from '../Model/Car.js';
-import OutputView from '../View/OutputView.js';
+import CarManagementService from './CarManagementService.js';
+import DetermineWinnerService from './DetermineWinnerService.js';
+import CarMovementService from './CarMovementService.js';
 
 class RaceService {
-  #cars;
+  #winners;
 
   constructor() {
-    this.#cars = [];
-    this.outputView = new OutputView();
+    this.carService = new CarManagementService();
+    this.carMovementService = new CarMovementService();
+    this.determineWinnerService = new DetermineWinnerService();
+    this.#winners = null;
   }
 
   start(carNames, attemptCount) {
-    for (let i = 0; i < carNames.length; i++) {
-      this.#cars.push(new Car(carNames[i]));
+    this.setupCars(carNames);
+    this.runRace(attemptCount);
+    this.determineWinner();
+  }
+
+  setupCars(carNames) {
+    carNames.forEach(carName => this.carService.addCar(carName));
+  }
+
+  runRace(attemptCount) {
+    const cars = this.carService.getCars();
+
+    for (let i = 0; i < attemptCount; i++) {
+      this.carMovementService.moveCars(cars);
     }
-
-    this.outputView.printExecutionResults();
-    for (let i = 0; i <= attemptCount; i++) {
-      this.moveCar(this.#cars);
-      this.outputView.printAllCarProgress(
-        this.#cars.map(car => car.getName()),
-        this.#cars.map(car => car.getForwardCount())
-      );
-    }
-
-    const winnners = this.determineWinners(this.#cars);
-    this.outputView.printWinners(winnners);
   }
 
-  generateRandomNumber() {
-    const randomValue = MissionUtils.Random.pickNumberInRange(0, 9);
-    return randomValue;
+  determineWinner() {
+    const cars = this.carService.getCars();
+
+    this.#winners = this.determineWinnerService.determineWinners(cars);
   }
 
-  decideMoveForward() {
-    if (this.generateRandomNumber() >= 4) {
-      return true;
-    }
-    return false;
-  }
-
-  moveCar(cars) {
-    cars.map(car => {
-      if (this.decideMoveForward()) {
-        car.moveForward();
-      }
-    });
-  }
-
-  determineWinners(cars) {
-    const maxDistance = Math.max(...cars.map(car => car.getForwardCount()));
-    const winnners = cars
-      .filter(car => car.getForwardCount() === maxDistance)
-      .map(car => car.getName());
-
-    return winnners;
+  getWinners() {
+    return this.#winners;
   }
 }
 
