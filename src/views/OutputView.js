@@ -15,6 +15,11 @@ class OutputView {
       Console.print(output);
     });
   }
+
+  static printWinners(winners) {
+    const winnersOutput = winners.join(', ');
+    Console.print(`최종 우승자: ${winnersOutput}`);
+  }
 }
 
 export default OutputView;
