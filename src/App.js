@@ -8,6 +8,10 @@ class App {
   getCarList(str) {
     const cars = str.split(",");
 
+    if (!cars.every(car => car.length <= 5)) {
+      this.throwError('자동차 이름은 5자 이하만 가능합니다.')
+    }
+    
     return cars
   }
 
