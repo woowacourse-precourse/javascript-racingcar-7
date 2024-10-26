@@ -24,7 +24,7 @@ const getLogSpy = () => {
   return logSpy;
 };
 
-describe.skip('자동차 경주', () => {
+describe('자동차 경주', () => {
   test('기능 테스트', async () => {
     // given
     const MOVING_FORWARD = 4;

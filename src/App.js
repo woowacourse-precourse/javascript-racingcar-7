@@ -1,13 +1,21 @@
 import { Console, Random } from '@woowacourse/mission-utils';
 
-// TODO: ApplicationTest.js 테스트 파일은 현재 skip 상태
+// TODO: ApplicationTest.js 테스트 파일은 현재 skip 상태 풀기
+// TODO: 상수 처리
 
 class App {
   async run() {
-    const playerNames = await getUserInputCarName();
-    const moveCount = await Console.readLineAsync('시도할 횟수는 몇 회인가요?');
-    const playerScore = createCarRacing(playerNames, moveCount);
-    Console.print(`최종 우승자 : ${findGameWinner(playerScore)}`);
+    try {
+      const playerNames = await getUserInputCarName();
+      const moveCount = await Console.readLineAsync(
+        '시도할 횟수는 몇 회인가요?'
+      );
+      const playerScore = createCarRacing(playerNames, moveCount);
+      Console.print(`최종 우승자 : ${findGameWinner(playerScore)}`);
+    } catch (error) {
+      Console.print(error.message);
+      throw error;
+    }
   }
 }
 
@@ -27,7 +35,7 @@ export async function getUserInputCarName() {
 function validatePlayerNames(playerNames) {
   // [ERROR] 5자를 초과하하거나 쉼표가 아닌 구분자
   const regex = /^[a-zA-Z0-9ㄱ-ㅣ가-힣]{1,5}$/;
-  if (!playerNames.some((player) => player.match(regex)))
+  if (!playerNames.every((player) => player.match(regex)))
     throw new Error('[ERROR]');
 }
 
@@ -54,22 +62,16 @@ function createCarRacing(formattedUserInput, moveCount) {
 // ];
 function displayResult(formattedUserInput) {
   // return하여 map으로 변환하기
-  const updatedGameResultPlayer = formattedUserInput.map((player) => {
-    const updatedGameScore = player.score;
-    if (Random.pickNumberInRange(0, 9) > 4) player.score += 1;
-    return { ...player, score: updatedGameScore };
+  formattedUserInput.forEach((player) => {
+    if (Random.pickNumberInRange(0, 9) >= 4) player.score += 1;
   });
 
-  updatedGameResultPlayer.forEach((player) => {
-    Console.print(`${player.name} : ${printHyphen(player.score)}`);
+  formattedUserInput.forEach((player) => {
+    Console.print(`${player.name} : ${'-'.repeat(player.score)}`);
   });
   // TODO: 줄바꿈이 여러번 되고 있음
   Console.print('\n');
-  return updatedGameResultPlayer;
-}
-
-function printHyphen(score) {
-  return '-'.repeat(score);
+  return formattedUserInput;
 }
 
 function findGameWinner(playerScore) {
