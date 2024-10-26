@@ -77,4 +77,32 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
+  test("음수 입력 예외 테스트", async () => {
+    const inputs = ["a,b", "-1"];
+    mockQuestions(inputs);
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("이름 크기 초과 예외 테스트", async () => {
+    const inputs = ["a,b12345", "1"];
+    mockQuestions(inputs);
+    
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  })
+
+  test("입력 없을 시 예외 테스트", async () => {
+    const inputs = ["", "5"];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  })
 });
+
+
