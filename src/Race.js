@@ -1,5 +1,6 @@
 import { getCarName, getAttempt, getRandomNumber } from './utils.js';
 import { validateCarName, validateAttemptCount } from './validators.js';
+import { GAME_RULES } from './constants.js';
 import Car from './Car.js';
 
 class Race {
@@ -29,7 +30,7 @@ class Race {
   generateRandomDistances() {
     this.cars.forEach(car => {
       const randomDistance = getRandomNumber(0, 9);  
-      if (randomDistance >= 4) { 
+      if (randomDistance >= GAME_RULES.MOVE_THRESHOLD) { 
         car.move(1);             
       }                    
     });

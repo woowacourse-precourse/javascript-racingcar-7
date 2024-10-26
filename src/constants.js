@@ -14,8 +14,13 @@ const TAG = Object.freeze({
   ERROR_TAG: "[ERROR]",
 });
 
+const GAME_RULES = Object.freeze({
+  MOVE_THRESHOLD: 4, 
+});
+
 export {
   ERROR_MESSAGE, 
   LOG_MESSAGE,
   TAG,
+  GAME_RULES,
 };
