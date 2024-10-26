@@ -1,18 +1,20 @@
 import {
   isDuplicateName,
-  isNoName,
+  isNoTurnInput,
+  isNoNameInput,
   isNotNumber,
   isOverName,
 } from './checkError.js';
 
 export const validateCarNameList = (carNameList) => {
   carNameList.forEach((carName) => {
-    isNoName(carName);
+    isNoNameInput(carName);
     isOverName(carName);
   });
   isDuplicateName(carNameList);
 };
 
 export const validateTurnString = (turnString) => {
+  isNoTurnInput(turnString);
   isNotNumber(turnString);
 };
