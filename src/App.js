@@ -19,6 +19,8 @@ class App {
         .every((carName) => carName.length <= 5);
       if (!carNameLengthLimit)
         throw new Error("자동차 이름은 5자 이하만 가능합니다.");
+
+      const movesNumber = await getInput("시도할 횟수는 몇 회인가요?\n");
     } catch (error) {
       Console.print(`[ERROR] ${error.message}`);
     }
