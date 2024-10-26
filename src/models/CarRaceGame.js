@@ -1,19 +1,21 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 
+const DELIMITER = ",";
+
 class CarRaceGame {
   constructor(carProgressRecords, tryCount) {
     this.carProgressRecords = carProgressRecords;
     this.tryCount = tryCount;
   }
 
-  shouldMoveForward() {
+  #shouldMoveForward() {
     const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
     return randomNumber >= 4;
   }
 
   determineEachCarMovement() {
     this.carProgressRecords.forEach((car) => {
-      if (this.shouldMoveForward()) {
+      if (this.#shouldMoveForward()) {
         car.position += 1;
       }
     });
@@ -27,6 +29,7 @@ class CarRaceGame {
       );
       order += 1;
     });
+    MissionUtils.Console.print("");
   }
 
   runRaceRound() {
@@ -35,6 +38,9 @@ class CarRaceGame {
   }
 
   startRace() {
+    MissionUtils.Console.print("");
+    MissionUtils.Console.print("실행 결과");
+
     while (this.tryCount) {
       this.runRaceRound();
       this.tryCount -= 1;
