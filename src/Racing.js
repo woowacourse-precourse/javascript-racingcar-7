@@ -13,10 +13,10 @@ class Racing {
     this.#result = [];
   }
 
-  #try() {
+  #tryRound() {
     const cars = [...this.#cars];
-    const distances = cars.map((car) => car.driving());
-    return distances;
+    const roundResult = cars.map((car) => car.driving());
+    return roundResult;
   }
 
   play() {
@@ -27,7 +27,7 @@ class Racing {
     );
 
     rounds.forEach((round) => {
-      const result = this.#try();
+      const result = this.#tryRound();
       this.#result = result;
 
       this.#showResult(round);
