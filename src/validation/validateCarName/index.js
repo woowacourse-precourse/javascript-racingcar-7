@@ -6,7 +6,7 @@ import { validateCarNameOnlyLetters } from "./validateCarNameOnlyLetters.js";
 
 export function validateCarName(inputCarName) {
   const inputCarNameArray = inputCarName.split(",");
-  validateCarNameSeparator(inputCarName);
+  validateCarNameSeparator(inputCarNameArray);
   validateCarNameLength(inputCarNameArray);
   validateCarNameOnlyLetters(inputCarNameArray);
   validateCarNameCount(inputCarNameArray);
