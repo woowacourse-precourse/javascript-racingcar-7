@@ -91,6 +91,13 @@ describe("Car 클래스 테스트", () => {
     car.moveCar(3);
     expect(car.position).toBe(0);
   });
+
+  test("현재 상태 출력 테스트", () => {
+    const car = new Car("pobi");
+    car.moveCar(4);
+    car.moveCar(7);
+    expect(car.getCurrentStatus()).toBe("pobi : --");
+  });
 });
 
 describe("RacingGame 클래스 테스트", () => {
@@ -137,5 +144,20 @@ describe("RacingGame 클래스 테스트", () => {
 
     expect(game.cars[0].position).toBe(1);
     expect(game.cars[1].position).toBe(0);
+  });
+
+  test("모든 자동차 상태 출력 테스트", () => {
+    const game = new RacingGame();
+    const logSpy = getLogSpy();
+
+    game.createCars("pobi, jini");
+
+    mockRandoms([6, 3]);
+
+    game.moveAllCars();
+    game.printAllStatus();
+
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining("pobi : -"));
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining("jini : "));
   });
 });

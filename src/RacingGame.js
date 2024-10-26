@@ -1,4 +1,4 @@
-import { MissionUtils } from "@woowacourse/mission-utils";
+import { Random, Console } from "@woowacourse/mission-utils";
 import Car from "./Car";
 
 class RacingGame {
@@ -15,7 +15,7 @@ class RacingGame {
   // 모든 자동차들의 움직임을 결정하는 메서드
   moveAllCars() {
     this.cars.forEach((car) => {
-      const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
+      const randomNumber = Random.pickNumberInRange(0, 9);
       car.moveCar(randomNumber);
     });
   }
@@ -43,6 +43,14 @@ class RacingGame {
     }
 
     return count;
+  }
+
+  // 모든 자동차들의 현재 상태를 출력하는 메서드
+  printAllStatus() {
+    this.cars.forEach((car) => {
+      Console.print(car.getCurrentStatus());
+    });
+    Console.print("\n");
   }
 }
 
