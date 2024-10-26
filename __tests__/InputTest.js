@@ -1,0 +1,29 @@
+import { MissionUtils } from "@woowacourse/mission-utils";
+import App from "../src/App.js";
+
+const mockQuestions = (inputs) => {
+  MissionUtils.Console.readLineAsync = jest.fn();
+
+  MissionUtils.Console.readLineAsync.mockImplementation(() => {
+    const input = inputs.shift();
+    return Promise.resolve(input);
+  });
+};
+
+describe("입력", () => {
+  describe("자동차 이름을 입력받는다.", () => {
+    test("어플리케이션이 생성되었고, 어플리케이션이 실행되면, 입력 스크립트를 출력한다.", () => {
+      // given
+      const app = new App();
+      const inputs = ["pobi,ham"];
+
+      mockQuestions(inputs);
+
+      // when
+      app.run();
+
+      // then
+      expect(MissionUtils.Console.readLineAsync).toHaveBeenCalledWith("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
+    });
+  });
+});
