@@ -35,11 +35,6 @@ class Validator {
   static validateGameCount(input) {
     const gameCount = Number(input);
 
-    // 입력받은 횟수가 숫자인지 확인
-    if (isNaN(gameCount)) {
-      throw new Error(ERROR_MESSAGES.INVALID_GAME_COUNT_TYPE);
-    }
-
     // 입력받은 횟수가 정수인지 확인
     if (!Number.isInteger(gameCount)) {
       throw new Error(ERROR_MESSAGES.INVALID_GAME_COUNT_INTEGER);
