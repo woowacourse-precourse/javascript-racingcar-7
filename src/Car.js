@@ -1,22 +1,32 @@
-import { Random } from '@woowacourse/mission-utils';
+import { Random } from "@woowacourse/mission-utils";
 
 class Car {
+  #name = "";
+  #mileage = 0;
   constructor(name) {
-    this._name = name;
-    this._mileage = 0;
+    this.#name = name;
+    this.#mileage = 0;
   }
 
-  get name() {
-    return this._name;
+  getName() {
+    return this.#name;
   }
 
-  get mileage() {
-    return this._mileage;
+  getMileage() {
+    return this.#mileage;
+  }
+
+  showMileage() {
+    let mileageStr = '';
+    for (let i = 0; i < this.#mileage; ++i) {
+      mileageStr += '-'
+    }
+    return this.#name + ' : ' + mileageStr;
   }
 
   move() {
-    if(Random.pickNumberInRange(0, 9) >= 4) {
-        ++this._mileage;
+    if (Random.pickNumberInRange(0, 9) >= 4) {
+      ++this.#mileage;
     }
   }
 }

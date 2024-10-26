@@ -32,7 +32,7 @@ class CarRacing {
     this.#attemptNumber = this.#validationAttemptNumber(inputNumber);
   }
 
-  #validationAttemptNumber(number=0) {
+  #validationAttemptNumber(number) {
     const isSatisfyCondition = !Number.isNaN(number) && number % 1 === 0 && number > 0;
     if(!isSatisfyCondition) {
       throw new Error('[Error]');
@@ -40,10 +40,25 @@ class CarRacing {
     return number;
   }
 
+  #moveCars() {
+    this.#carList.forEach((car) => {
+      car.move();
+      Console.print(car.showMileage());
+    });
+    Console.print('');
+  }
+
   async initCarRacing() {
     await this.#getCarNames();
     this.#generateCars();
-    this.#getAttemptNumber();
+    await this.#getAttemptNumber();
+  }
+
+  runCarRacing() {
+    Console.print('\n실행결과');
+    for(let i = 0; i < this.#attemptNumber; ++i) {
+      this.#moveCars();
+    }
   }
 }
 
