@@ -65,10 +65,50 @@ describe('자동차 경주', () => {
     [',,', `[ERROR]자동차 이름을 1개 이상 입력해주세요.`],
     ['pobi,jun,', `[ERROR]구분자는 자동차 이름 사이에 1개씩만 쓰여야 합니다.`],
     ['pobipobi,jun', `[ERROR]자동차 이름은 5자 이하만 가능합니다.`],
-  ])('validateCarNames(%s) returns %s', async (carInput, expected) => {
+  ])('validateCarNames(%s) throws %s', async (carInput, expected) => {
     mockQuestions([carInput]);
 
     const app = new App();
     await expect(app.run()).rejects.toThrow(expected);
   });
+
+  test.each([
+    {
+      carInput: 'pobi,jun',
+      gameCount: '0',
+      expected: `[ERROR]음수 혹은 0은 안됩니다.`,
+    },
+
+    {
+      carInput: 'pobi,jun',
+      gameCount: '-2',
+      expected: `[ERROR]음수 혹은 0은 안됩니다.`,
+    },
+
+    {
+      carInput: 'pobi',
+      gameCount: 'NaN',
+      expected: `[ERROR]양수 정수만 가능합니다.`,
+    },
+
+    {
+      carInput: 'pobi,jun',
+      gameCount: 'Infinity',
+      expected: `[ERROR]양수 정수만 가능합니다.`,
+    },
+
+    {
+      carInput: 'pobi,jun',
+      gameCount: 'ch',
+      expected: `[ERROR]양수 정수만 가능합니다.`,
+    },
+  ])(
+    'validateGameCount($gameCount) throws $expected',
+    async ({ carInput, gameCount, expected }) => {
+      mockQuestions([carInput, gameCount]);
+
+      const app = new App();
+      await expect(app.run()).rejects.toThrow(expected);
+    },
+  );
 });
