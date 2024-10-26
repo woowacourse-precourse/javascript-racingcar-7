@@ -19,18 +19,28 @@ class App {
       } catch (error) {}
     }
 
-    function printResults(CAR_NAMES_LIST, RACE_COUNT) {
+    function startRace(CAR_NAMES_LIST, RACE_COUNT) {
       MissionUtils.Console.print("실행 결과");
       for (let i = 0; i < CAR_NAMES_LIST.length; i++) {
-        const CAR_MOVES = "-".repeat(RACE_COUNT);
-        MissionUtils.Console.print(CAR_NAMES_LIST[i] + CAR_MOVES);
+        const CAR_MOVES = trackRace(RACE_COUNT);
+        MissionUtils.Console.print(CAR_NAMES_LIST[i] + "-".repeat(CAR_MOVES));
       }
+    }
+
+    function trackRace(RACE_COUNT) {
+      let MOVE_COUNT = 0;
+      let RANDOM_NUM = 0;
+      for (let c = 0; c < RACE_COUNT; c++) {
+        RANDOM_NUM = MissionUtils.Random.pickNumberInRange(1, 10);
+        if (RANDOM_NUM >= 4) MOVE_COUNT += 1;
+      }
+      return MOVE_COUNT;
     }
 
     async function main() {
       const CAR_NAMES_LIST = await inputCarNames();
       const RACE_COUNT = await inputRaceCount();
-      printResults(CAR_NAMES_LIST, RACE_COUNT);
+      startRace(CAR_NAMES_LIST, RACE_COUNT);
     }
 
     main();
