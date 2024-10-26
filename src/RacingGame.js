@@ -6,13 +6,13 @@ export default class RacingGame {
 
   cars;
 
-  constructor(repeatCount, cars) {
+  constructor(repeatCount, carNames) {
     this.repeatCount = repeatCount;
-    this.cars = RacingGame.formatStringToCars(cars);
+    this.cars = RacingGame.formatNamesToCars(carNames);
   }
 
-  static formatStringToCars(carString) {
-    return carString.split(",").map((name) => new Car(name));
+  static formatNamesToCars(carNames) {
+    return carNames.map((name) => new Car(name));
   }
 
   start() {

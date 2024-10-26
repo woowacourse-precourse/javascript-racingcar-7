@@ -22,7 +22,7 @@ describe("출력", () => {
     test("경주 게임이 있고 우승자가 한명인 경우, 경주 게임이 끝나고 우승자를 출력하면, 단독 우승자 안내 문구를 출력한다.", () => {
       // given
       const REPEAT_COUNT = 2;
-      const CARS = "ham";
+      const CARS = ["ham"];
       const game = new RacingGame(REPEAT_COUNT, CARS);
       const logSpy = getLogSpy();
 
@@ -37,7 +37,7 @@ describe("출력", () => {
     test("경주 게임이 있고 우승자가 두명인 경우, 경주 게임이 끝나고 우승자를 출력하면, 공동 우승자 안내 문구를 출력한다.", () => {
       // given
       const REPEAT_COUNT = 1;
-      const CARS = "ham,pobi";
+      const CARS = ["ham", "pobi"];
       const game = new RacingGame(REPEAT_COUNT, CARS);
       mockRandoms([1, 1]);
       const logSpy = getLogSpy();
@@ -55,7 +55,7 @@ describe("출력", () => {
     test("경주 게임이 있고 게임을 2번 반복하는 경우, 경주 게임의 차수마다, 실행 결과를 출력한다.", () => {
       // given
       const REPEAT_COUNT = 2;
-      const CARS = "ham,pobi";
+      const CARS = ["ham", "pobi"];
       const game = new RacingGame(REPEAT_COUNT, CARS);
       mockRandoms([1, 4, 1, 4]);
       const logSpy = getLogSpy();

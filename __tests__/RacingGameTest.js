@@ -24,7 +24,7 @@ describe("경주 게임", () => {
     test("경주 게임이 있고 반복 횟수가 2회인 경우, 경주 게임을 시작하면, 게임을 두 번 반복한다.", () => {
       // given
       const REPEAT_COUNT = 2;
-      const CARS = "pobi,ham";
+      const CARS = ["pobi", "ham"];
       const game = mockGame(REPEAT_COUNT, CARS);
 
       // when
@@ -37,7 +37,7 @@ describe("경주 게임", () => {
     test("경주 게임이 있고 반복 횟수 2회와 자동차 두 대가 주어진 경우, 경주 게임을 시작하면, 각 자동차는 자동차는 두 번 전진 또는 멈춘다.", () => {
       // given
       const REPEAT_COUNT = 2;
-      const CARS = "ham,pobi";
+      const CARS = ["ham", "pobi"];
       const game = mockGame(REPEAT_COUNT, CARS);
 
       // when
@@ -55,7 +55,7 @@ describe("경주 게임", () => {
       const MOVING_FORWARD = 4;
       const STOP = 3;
 
-      const CARS = "pobi,ham";
+      const CARS = ["pobi", "ham"];
       const game = mockGame(REPEAT_COUNT, CARS);
       mockRandoms([MOVING_FORWARD, STOP]);
 
