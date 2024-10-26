@@ -3,11 +3,11 @@ export default class Comparator {
     return num >= 4;
   }
 
-  static selectFurthestCars(carList) {
+  static determineWinners(cars) {
     let winners = [];
     let maxDistance = 0;
 
-    carList.forEach((car) => {
+    cars.forEach((car) => {
       const distance = car.getDistance();
       const name = car.getName();
 

@@ -1,42 +1,49 @@
 export default class Validator {
-  static validateCarNames(carNamesArray) {
-    this.validateCarNameWhitespace(carNamesArray);
-    this.validateCarNameLength(carNamesArray);
-    this.validateDuplicateCarName(carNamesArray);
+  static #ERROR_EMPTY_CAR_NAME = '[ERROR] 자동차 이름에 공백을 입력하였습니다.';
+  static #ERROR_CAR_NAME_TOO_LONG =
+    '[ERROR] 자동차 이름은 5자 이하로 입력해야 합니다.';
+  static #ERROR_DUPLICATE_CAR_NAME = '[ERROR] 중복된 자동차 이름 :';
+  static #ERROR_INVALID_TOTAL_ROUNDS =
+    '[ERROR] 시도 횟수는 1 이상의 정수를 입력해야 합니다.';
+
+  static validateCarNames(carNames) {
+    this.validateCarNameWhitespace(carNames);
+    this.validateCarNameLength(carNames);
+    this.validateDuplicateCarName(carNames);
   }
 
-  static validateCarNameWhitespace(carNamesArray) {
-    carNamesArray.forEach((carName) => {
+  static validateCarNameWhitespace(carNames) {
+    carNames.forEach((carName) => {
       if (carName == '') {
-        throw new Error('[ERROR] 자동차 이름에 공백을 입력하였습니다.');
+        throw new Error(this.#ERROR_EMPTY_CAR_NAME);
       }
     });
   }
 
-  static validateCarNameLength(carNamesArray) {
-    carNamesArray.forEach((carName) => {
+  static validateCarNameLength(carNames) {
+    carNames.forEach((carName) => {
       if (carName.length > 5) {
-        throw new Error('[ERROR] 자동차 이름은 5자 이하로 입력해야 합니다.');
+        throw new Error(this.#ERROR_CAR_NAME_TOO_LONG);
       }
     });
   }
 
-  static validateDuplicateCarName(carNamesArray) {
-    const carNamesSet = new Set();
+  static validateDuplicateCarName(carNames) {
+    const uniqueCarNames = new Set();
 
-    carNamesArray.forEach((carName) => {
-      if (carNamesSet.has(carName)) {
-        throw new Error(`[ERROR] 중복된 자동차 이름: ${carName}`);
+    carNames.forEach((carName) => {
+      if (uniqueCarNames.has(carName)) {
+        throw new Error(`${this.#ERROR_DUPLICATE_CAR_NAME} ${carName}`);
       }
 
-      carNamesSet.add(carName);
+      uniqueCarNames.add(carName);
     });
   }
 
-  static validateAttemptCount(attemptCount) {
-    const isValid = /^\d+$/.test(attemptCount);
-    if (!isValid || Number(attemptCount) === 0) {
-      throw new Error('[ERROR] 시도 횟수는 1 이상의 정수를 입력해야 합니다.');
+  static validateTotalRounds(totalRounds) {
+    const isValid = /^\d+$/.test(totalRounds);
+    if (!isValid || Number(totalRounds) === 0) {
+      throw new Error(this.#ERROR_INVALID_TOTAL_ROUNDS);
     }
   }
 }

@@ -6,45 +6,50 @@ import RandomNumber from './utils/RandomNumber.js';
 import Validator from './utils/Validator.js';
 
 export default class Game {
-  #carList = [];
-  #attemptCount = 0;
+  #cars = [];
+  #totalRounds = 0;
+  #RESULT_MESSAGE = '\n실행 결과';
 
   async start() {
-    const carNamesInputString = await Console.getCarsName();
-    const carNamesArray = Parser.splitStringByComma(carNamesInputString);
-    Validator.validateCarNames(carNamesArray);
-    this.#carList = carNamesArray.map((carName) => new Car(carName));
+    const carNamesInput = await Console.getCarsName();
+    const carNames = Parser.splitByComma(carNamesInput);
+    Validator.validateCarNames(carNames);
+    this.#initializeCars(carNames);
 
-    this.#attemptCount = await Console.getAttemptCount();
-    Validator.validateAttemptCount(this.#attemptCount);
+    this.#totalRounds = await Console.getTotalRounds();
+    Validator.validateTotalRounds(this.#totalRounds);
 
     this.#runRace();
-    this.#selectWinners();
+
+    const winners = Comparator.determineWinners(this.#cars);
+    Console.printWinners(winners);
+  }
+
+  #initializeCars(carNames) {
+    this.#cars = carNames.map((carName) => new Car(carName));
   }
 
   #runRace() {
-    Console.print('\n실행 결과');
+    Console.print(this.#RESULT_MESSAGE);
 
-    for (let attempt = 0; attempt < this.#attemptCount; attempt++) {
-      for (const car of this.#carList) {
-        this.#attemptMove(car);
-        Console.printDistance(car);
-      }
-
+    for (let round = 0; round < this.#totalRounds; round++) {
+      this.#processRound();
       Console.print('');
     }
   }
 
-  #attemptMove(car) {
+  #processRound() {
+    for (const car of this.#cars) {
+      this.#tryMoveCar(car);
+      Console.printDistance(car);
+    }
+  }
+
+  #tryMoveCar(car) {
     const randomNumber = RandomNumber.generateNumberZeroToNine();
 
     if (Comparator.checkAtLeastFour(randomNumber)) {
       car.move();
     }
-  }
-
-  #selectWinners() {
-    const winnersArray = Comparator.selectFurthestCars(this.#carList);
-    Console.printWinners(winnersArray);
   }
 }
