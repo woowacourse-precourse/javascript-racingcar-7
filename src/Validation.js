@@ -16,6 +16,15 @@ class Validation {
     }
   }
 
+  static hasMeetMinimalCompetition(names) {
+    const nameSet = new Set(names);
+    if (nameSet.size === 1) {
+      throw new Error(
+        '[ERROR] 출전할 자동차 이름은 최소 2개 이상 입력해야 합니다. 각 자동차는 쉼표(,)로 구분해주세요.',
+      );
+    }
+  }
+
   static isNumber(totalRounds) {
     if (Number.isNaN(totalRounds)) {
       throw new Error(
@@ -39,6 +48,7 @@ class Validation {
   static checkCarNames(names, maxNameLength) {
     const targetNames = [...names];
     this.isNoDuplicated(targetNames);
+    this.hasMeetMinimalCompetition(targetNames);
     targetNames.forEach((name) => this.isValidLength(name, maxNameLength));
 
     return targetNames;
