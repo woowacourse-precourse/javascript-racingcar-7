@@ -63,7 +63,7 @@ describe("기능 테스트", () => {
   });
 });
 
-describe("자동차 입력 예외 테스트", () => {
+describe("입력 예외 테스트", () => {
   const testCases = [
     {
       inputs: ["pobi,javaji"],
@@ -76,6 +76,10 @@ describe("자동차 입력 예외 테스트", () => {
     {
       inputs: ["pobi, pobi"],
       expectedError: "[ERROR] 자동차 이름은 중복 입력할 수 없습니다.",
+    },
+    {
+      inputs: ["pobi, woni, jun", "k"],
+      expectedError: "[ERROR] 시행 횟수는 1 이상의 숫자로 입력해야 합니다.",
     }
   ];
 
