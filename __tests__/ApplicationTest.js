@@ -41,6 +41,19 @@ describe('구현할 기능 목록 테스트 코드 작성', () => {
 
     expect(result).toEqual(expectedResult);
   });
+
+  test('총 시도할 횟수를 입력받기.', async () => {
+    // given
+    const QUERY = '시도할 횟수는 몇 회인가요?\n';
+    const STOP = 5;
+
+    const app = new App();
+
+    mockQuestions([STOP]);
+    const result = await app.getTryNumber(query);
+
+    expect(result).toEqual(String(STOP));
+  });
 });
 
 describe('자동차 경주', () => {
