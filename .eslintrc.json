@@ -34,7 +34,10 @@
     "jsdoc/require-param-description": "off",
     "jsdoc/require-returns-description": "off",
     // auto-js-extension
-    "auto-js-extension/auto-js-extension": "warn"
+    "auto-js-extension/auto-js-extension": "warn",
+
+    // custom
+    "class-methods-use-this": "off"
   },
   "overrides": [
     {
