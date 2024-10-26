@@ -1,4 +1,5 @@
 import { inputCarNames, inputTryCount } from './input.js';
+import { printExecutionResult } from './output.js';
 import { validateCarName, validateTryCount } from './validation.js';
 
 export async function carRacingProceed() {
@@ -28,7 +29,10 @@ export async function carRacingProceed() {
   const tryCount = await inputTryCount();
   validateTryCount(tryCount);
 
+  Console.print('\n실행결과');
+
   for (let i = 0; i < tryCount; i++) {
     carList.forEach((car) => car.move());
+    printExecutionResult(carList);
   }
 }
