@@ -25,6 +25,7 @@ class Race {
     validateAttemptCount(attemptCount);
     this.attemptCount = Number(attemptCount);
   }
+
 }
 
 export default Race;
