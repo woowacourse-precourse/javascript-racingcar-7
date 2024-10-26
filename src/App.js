@@ -32,4 +32,10 @@ const randomNum = async (carsCnt) => {
   return carsRandomNumArr;
 };
 
+const racingCar = async (result, randomNumArr) => {
+  randomNumArr.map((num, index) => num >= 4 && (result[index] += 1));
+
+  return result;
+};
+
 export default App;
