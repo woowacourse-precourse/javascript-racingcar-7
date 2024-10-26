@@ -24,6 +24,17 @@ class Race {
     return this.#time;
   }
 
+  static printWinner(winners) {
+    let winnerStr = '최종 우승자 : ';
+    for (let i = 0; i < winners.length; i += 1) {
+      winnerStr += `${winners[i].name}`;
+      if (i !== winners.length - 1) {
+        winnerStr += ', ';
+      }
+    }
+    MissionUtils.Console.print(winnerStr);
+  }
+
   moveCars() {
     let movedFlag = false;
     for (let i = 0; i < this.#cars.length; i += 1) {

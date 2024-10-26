@@ -69,4 +69,20 @@ describe('경주 클래스', () => {
     //then
     expect(winners).toEqual([car1, car3]);
   });
+
+  test.each([
+    [[new Car('car1'), new Car('car2')], '최종 우승자 : car1, car2'],
+    [[new Car('car1')], '최종 우승자 : car1'],
+  ])('결과 출력 메서드', (inputs, expected) => {
+    //given
+    const winners = inputs;
+    const logSpy = jest.spyOn(MissionUtils.Console, 'print');
+    logSpy.mockClear();
+
+    //when
+    Race.printWinner(winners);
+
+    //then
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(expected));
+  });
 });
