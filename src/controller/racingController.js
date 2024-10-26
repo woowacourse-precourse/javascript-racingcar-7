@@ -40,7 +40,7 @@ class RacingController {
     }
   }
 
-  validatecarNamesInput(carNamesInput) {
+  static validatecarNamesInput(carNamesInput) {
     // 최소  알파벳으로 이루어진 2개 이상의 이름과 ","로 이루어져야하며 이름은 5자리 이하여야한다.
     const NAMES_LIST_PATTERN = /^([a-zA-Z]{1,5})(,[a-zA-Z]{1,5})*$/;
 
@@ -55,7 +55,7 @@ class RacingController {
     return true;
   }
 
-  validateConut(conutInput) {
+  static validateConut(conutInput) {
     if (isNaN(conutInput) || Number(conutInput) === 0) {
       console.log('에러 발생');
       throw new Error('count는 0 이외의 숫자 값만 받을 수 있습니다.');
