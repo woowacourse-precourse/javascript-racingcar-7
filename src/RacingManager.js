@@ -11,7 +11,11 @@ class RacingManager {
   static normalizeCarNames(nameInput) {
     const MAX_NAME_LENGTH = 5;
     const parsedNames = this.parseCarNames(nameInput);
-    const validCarNames = Validation.carNames(parsedNames, MAX_NAME_LENGTH);
+    const validCarNames = Validation.checkCarNames(
+      parsedNames,
+      MAX_NAME_LENGTH,
+    );
+
     return validCarNames;
   }
 
@@ -23,7 +27,7 @@ class RacingManager {
 
   static normalizeTotalRounds(totalRounds) {
     const parsedTotalRounds = this.parseTotalRounds(totalRounds);
-    const validTotalRounds = Validation.totalRounds(parsedTotalRounds);
+    const validTotalRounds = Validation.checkTotalRounds(parsedTotalRounds);
     return validTotalRounds;
   }
 

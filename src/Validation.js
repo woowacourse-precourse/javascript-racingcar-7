@@ -36,7 +36,7 @@ class Validation {
     }
   }
 
-  static carNames(names, maxNameLength) {
+  static checkCarNames(names, maxNameLength) {
     const targetNames = [...names];
     this.isNoDuplicated(targetNames);
     targetNames.forEach((name) => this.isValidLength(name, maxNameLength));
@@ -44,7 +44,7 @@ class Validation {
     return targetNames;
   }
 
-  static totalRounds(totalRounds) {
+  static checkTotalRounds(totalRounds) {
     this.isNumber(totalRounds);
     this.isValidTotalRounds(totalRounds);
 
