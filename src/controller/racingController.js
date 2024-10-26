@@ -8,7 +8,14 @@ class RacingController {
     this.view = new RacingView();
   }
 
-  static async getCarNames() {
+  static async start() {
+    try {
+      await this.inputCarNames();
+      await this.inputCount();
+    } catch (error) {}
+  }
+
+  static async inputCarNames() {
     const carNamesInput = await Console.readLineAsync(
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
     );
@@ -23,13 +30,13 @@ class RacingController {
     }
   }
 
-  static async getCount() {
+  static async inputCount() {
     const conutInput =
       await Console.readLineAsync(`시도할 횟수는 몇회인가요 ?\n`);
 
     if (this.validateConut(conutInput)) {
       const conut = Number(conutInput);
-      this.model.getCount(Number(conut));
+      this.model.inputCount(Number(conut));
     }
   }
 
