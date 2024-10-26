@@ -13,11 +13,15 @@ const view = {
     return answer;
   },
 
+  printStartMessage() {
+    Console.print(GAME_MESSAGES.executeResult);
+  },
+
   printProgress(name, progress) {
-    Console.print(name + STRINGS.outputNameDelimiter + STRINGS.progressBar.repeat(progress));
+    Console.print(name + STRINGS.resultDelimiter + STRINGS.progressBar.repeat(progress));
   },
   printLineBreak() {
-    Console.print('\n');
+    Console.print('');
   },
 };
 
