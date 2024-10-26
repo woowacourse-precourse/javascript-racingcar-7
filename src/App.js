@@ -7,7 +7,7 @@ class App {
     });
   }
 
-  validateInput(carNames, attempts) {
+  validateCarNames(carNames) {
     carNames.split(",").forEach((carName) => {
       if (!carName.trim()) {
         throw new Error("[ERROR]: 자동차 이름을 입력해주세요.");
@@ -16,31 +16,33 @@ class App {
         throw new Error("[ERROR]: 자동차 이름은 5자 이하만 가능합니다.");
       }
     });
+  }
 
+  validateAttempts(attempts) {
     if (!attempts.trim()) {
       throw new Error("[ERROR]: 시도 횟수를 입력해주세요.");
-    }
-
-    if (attempts < 1) {
-      throw new Error("[ERROR]: 시도 횟수는 1 이상만 가능합니다.");
     }
 
     if (isNaN(attempts)) {
       throw new Error("[ERROR]: 시도 횟수는 숫자만 입력 가능합니다.");
     }
+
+    if (attempts < 1) {
+      throw new Error("[ERROR]: 시도 횟수는 1 이상만 가능합니다.");
+    }
   }
+
   async getCarNameAndAttempts() {
     try {
       const carName = await Console.readLineAsync(
         "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
       );
-
+      this.validateCarNames(carName);
       const attempts = await Console.readLineAsync(
         "시도할 횟수는 몇 회인가요?\n"
       );
+      this.validateAttempts(attempts);
       Console.print("\n");
-
-      this.validateInput(carName, attempts);
 
       const cars = this.parseCarNames(carName);
       return { cars, attempts };
