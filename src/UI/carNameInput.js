@@ -7,7 +7,7 @@ async function carNameInput() {
     const CAR_LIST = USER_INPUT.split(',');
 
     checkCarName(CAR_LIST);
-  
+
     return CAR_LIST;
   } catch (error) {
     throw error;

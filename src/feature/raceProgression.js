@@ -3,11 +3,11 @@ import goStopResult from "./goStopResult.js";
 
 function raceProgression(carList, initialRaceHistory, trialCount) {
   const RACE_PROGRESS = initialRaceHistory;
-  
-  for(let count = 0; count < trialCount; count++) {
+
+  for (let count = 0; count < trialCount; count++) {
     let singleRace = '';
 
-    if(count !== 0) {
+    if (count !== 0) {
       singleRace = `\n`;
     }
 
@@ -19,7 +19,7 @@ function raceProgression(carList, initialRaceHistory, trialCount) {
       singleRace = `${singleRace}
       ${car} : ${PROGRESS_RESULT}`;
     });
-    
+
     Console.print(singleRace);
   };
 
