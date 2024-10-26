@@ -18,7 +18,7 @@ class RaceHandler {
         Object.entries(raceBoard).forEach(([carName, moves]) => {
             Console.print(`${carName} : ${moves}`);
         });
-        Console.print('\n');
+        Console.print('');
     }
 
     showWinner(raceBoard, carNames) {
