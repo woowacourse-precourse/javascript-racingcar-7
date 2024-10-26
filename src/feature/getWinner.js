@@ -1,5 +1,6 @@
 import { Console } from "@woowacourse/mission-utils";
 import getResultCountArray from "./parse/getResultCountArray";
+import getRaceWinners from "./parse/getRaceWinners";
 
 function getWinner(carList, raceProgress) {
   /** TODO: 
@@ -14,32 +15,19 @@ function getWinner(carList, raceProgress) {
    */
 
   const RESULT_DEFAULT_TEXT = '최종 우승자 : ';
-  const WINNERS = [];
 
   const RACE_RESULT_COUNT = getResultCountArray(carList, raceProgress);
 
   RACE_RESULT_COUNT.sort((carA, carB) => carB[1] - carA[1]);
 
-  RACE_RESULT_COUNT.forEach((car, index) => {
-    const RACE_LENGTH = car[1];
+  const RACE_WINNERS = getRaceWinners(RACE_RESULT_COUNT);
 
-    if(index === 0) {
-      WINNERS.push(car);
-      return;
-    };
-
-    if(WINNERS[0][1] === RACE_LENGTH) {
-      WINNERS.push(car);
-      return;
-    };
-  });
-
-  const WINNER_NAMES = WINNERS.map((winner) => winner[0]);
-
+  const WINNER_NAMES = RACE_WINNERS.map((winner) => winner[0]);
   const WINNER_TEXT = WINNER_NAMES.join(', ');
-  const FINAL_TEXT = `${RESULT_DEFAULT_TEXT}${WINNER_TEXT}`;
 
-  Console.print(FINAL_TEXT);
+  const RESULT_TEXT = `${RESULT_DEFAULT_TEXT}${WINNER_TEXT}`;
+
+  Console.print(RESULT_TEXT);
 };
 
 export default getWinner;
