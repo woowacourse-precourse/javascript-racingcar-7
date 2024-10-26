@@ -1,5 +1,4 @@
 import RandomNum from "./RandomNumber.js";
-import { Console } from "@woowacourse/mission-utils";
 
 const randomnumber = new RandomNum();
 
@@ -12,13 +11,9 @@ class Race {
   async advance(car, arr) {
     for (let j = 0; j < car.length; j++) {
       const number = await randomnumber.RNumber();
-      const progress = this.getProgress(number);
-      arr[j] += progress;
+      arr[j] += number;
     }
-  }
-  getProgress(number){
-    if(number >= 4) return 1;
-    return 0;
+    return arr;
   }
 }
 
