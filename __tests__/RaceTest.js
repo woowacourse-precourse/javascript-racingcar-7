@@ -26,7 +26,7 @@ const getLogSpy = () => {
 
 describe("레이스 테스트", () => {
   test("한 라운드 실행 테스트", async () => {
-    const inputs = ["ferrari,redbull,mercedes,mclaren", "1"];
+    const inputs = ["ferra,rdbll,merc, mclrn", "1"];
     mockQuestions(inputs);
     const logSpy = getLogSpy();
 
@@ -38,7 +38,7 @@ describe("레이스 테스트", () => {
   })
 
   test("총 레이스 진행 테스트", async () => {
-    const inputs = ["ferrari,redbull,mercedes,mclaren", "3"];
+    const inputs = ["ferra,rdbll,merc, mclrn", "3"];
     mockQuestions(inputs);
     const logSpy = getLogSpy();
 
@@ -48,32 +48,32 @@ describe("레이스 테스트", () => {
   })
 
   test("우승자 결정", async () => {
-    const inputs = ["ferrari,redbull,mercedes,mclaren", "3"];
+    const inputs = ["ferra,rdbll,merc, mclrn", "3"];
     mockQuestions(inputs);
     const logSpy = getLogSpy();
 
     const carRace = new CarRace();
     await carRace.race();
-    carRace.carInstances.find(car => car.name === "ferrari").distance = 5;
-    carRace.carInstances.find(car => car.name === "redbull").distance = 3;
-    carRace.carInstances.find(car => car.name === "mercedes").distance = 2;
-    carRace.carInstances.find(car => car.name === "mclaren").distance = 2;
+    carRace.carInstances.find(car => car.name === "ferra").distance = 5;
+    carRace.carInstances.find(car => car.name === "rdbll").distance = 3;
+    carRace.carInstances.find(car => car.name === "merc").distance = 2;
+    carRace.carInstances.find(car => car.name === "mclrn").distance = 2;
     const winner = carRace.determineWinner();
-    expect(winner).toEqual(["ferrari"])
+    expect(winner).toEqual(["ferra"])
   })
 
   test("우승자 결정", async () => {
-    const inputs = ["ferrari,redbull,mercedes,mclaren", "3"];
+    const inputs = ["ferra,rdbll,merc, mclrn", "3"];
     mockQuestions(inputs);
     const logSpy = getLogSpy();
 
     const carRace = new CarRace();
     await carRace.race();
-    carRace.carInstances.find(car => car.name === "ferrari").distance = 5;
-    carRace.carInstances.find(car => car.name === "redbull").distance = 5;
-    carRace.carInstances.find(car => car.name === "mercedes").distance = 2;
-    carRace.carInstances.find(car => car.name === "mclaren").distance = 2;
+    carRace.carInstances.find(car => car.name === "ferra").distance = 5;
+    carRace.carInstances.find(car => car.name === "rdbll").distance = 5;
+    carRace.carInstances.find(car => car.name === "merc").distance = 2;
+    carRace.carInstances.find(car => car.name === "mclrn").distance = 2;
     const winner = carRace.determineWinner();
-    expect(winner).toEqual(["ferrari", "redbull"])
+    expect(winner).toEqual(["ferra", "rdbll"])
   })
 });

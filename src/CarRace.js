@@ -1,5 +1,6 @@
 import { MissionUtils, Console } from "@woowacourse/mission-utils";
 import Car from "./Car";
+import Validator from "./Validator";
 
 class CarRace {
   carInstances = [];
@@ -13,19 +14,24 @@ class CarRace {
 
   async getInputCars() {
     try {
-      const carsList = await Console.readLineAsync("경주할 자동차들의 이름을 입력해주세요.(*쉼표로 구분)");
-      return carsList.split(","); 
+      const cars = await Console.readLineAsync("경주할 자동차들의 이름을 입력해주세요.(*쉼표로 구분)");
+      const carsList = cars.replace(/\s+/g, "").split(","); 
+      Validator.isNameDuplicate(carsList);
+      return carsList;
     } catch (error) {
-      
+      throw error;
     }
   };
 
   async getInputLaps() {
     try {
       const laps = await Console.readLineAsync("경주를 시도할 횟수는 몇 회인가요?(숫자만 입력)");
-      return Number(laps);
+      return Validator.isNaturalNumber(Number(laps));
+      // const lapCount = Number(laps);
+      // Validator.isNaturalNumber(lapCount);
+      // return lapCount;
     } catch (error) {
-
+      throw error;
     }
   };
 
@@ -40,7 +46,7 @@ class CarRace {
   };
 
   displayRoundStatus() {
-    this.carInstances.forEach(car => Console.print(car.name + ":" + "-".repeat(car.distance)));
+    this.carInstances.forEach(car => Console.print(car.name + " : " + "-".repeat(car.distance)));
   };
 
   executeTotalLapsAndDisplay(totalLaps) {
