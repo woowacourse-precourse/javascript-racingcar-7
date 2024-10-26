@@ -1,4 +1,4 @@
-import { Random } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 
 const getRandomSingleDigit = () => {
   return Random.pickNumberInRange(0, 9);
@@ -10,19 +10,25 @@ class Car {
     this.score = 0;
   }
 
-  canMoveForward(num) {
-    return num >= 4;
+  canMoveForward(number) {
+    return number >= 4;
   }
 
   moveForward() {
     this.score += 1;
   }
 
-  tryMove() {
+  printScore() {
+    Console.print(`${this.name} : ${'-'.repeat(this.score)}`);
+  }
+
+  attemptMove() {
     const randomNumber = getRandomSingleDigit();
     if (this.canMoveForward(randomNumber)) {
       this.moveForward();
     }
+
+    this.printScore();
   }
 }
 
