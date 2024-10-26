@@ -80,6 +80,15 @@ const Validator = {
       );
     }
   },
+
+  validateGameRounds(rounds) {
+    this.validateEmptyGameRounds(rounds);
+    this.validateIsNumber(rounds);
+    this.validateIsNotNegative(rounds);
+    this.validateIsNotZero(rounds);
+    this.validateIsInteger(rounds);
+    this.validateIsNotOverflow(rounds);
+  },
 };
 
 export default Validator;
