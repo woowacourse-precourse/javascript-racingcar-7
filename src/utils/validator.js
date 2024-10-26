@@ -37,6 +37,12 @@ const Validator = {
     this.validateNameLength(carNames);
     this.validateDuplicateNames(carNames);
   },
+
+  validateEmptyGameRounds(rounds) {
+    if (!rounds || rounds.trim().length === 0) {
+      OutputView.throwError('시도 횟수는 빈 값이나 공백일 수 없습니다.');
+    }
+  },
 };
 
 export default Validator;
