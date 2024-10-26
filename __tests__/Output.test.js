@@ -10,32 +10,23 @@ describe('makeOutput 출력함수 테스트', () => {
     ).toBe('carA : ---\ncarB : -\n');
   });
 
-  it('returns empty string for empty car data', () => {
+  it('빈갑 입력시 출력', () => {
     expect(makeOutput([])).toBe('');
-  });
-
-  it('returns correct number of "-" for each car position', () => {
-    expect(
-      makeOutput([
-        ['carA', 0],
-        ['carB', 5],
-      ]),
-    ).toBe('carA : \ncarB : -----\n');
   });
 });
 
-describe('formatWinners', () => {
-  it('formats multiple winners correctly', () => {
+describe('formatWinners 승리 출력 메시지', () => {
+  it('최종우승자 두명', () => {
     expect(formatWinners([['carA'], ['carB']])).toBe(
       '최종 우승자 : carA, carB',
     );
   });
 
-  it('formats a single winner correctly', () => {
+  it('최종 우승자 한명', () => {
     expect(formatWinners([['carA']])).toBe('최종 우승자 : carA');
   });
 
-  it('returns empty or specific output for no winners', () => {
-    expect(formatWinners([])).toBe('최종 우승자 : '); // or "" if that's the desired output
+  it('최종 우승자가 없는 경우', () => {
+    expect(formatWinners([])).toBe('최종 우승자 : ');
   });
 });

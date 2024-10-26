@@ -13,8 +13,16 @@ const checkCarCountError = (carInput) => {
 const checkCountError = (countInput) => {
   if (countInput > 10000) throw new Error(ERROR_MESSAGE.COUNT_ERROR);
 };
+
+const checkCarRepeat = (carInput) => {
+  const uniqueCars = new Set(carInput);
+  if (uniqueCars.size !== carInput.length) {
+    throw new Error(ERROR_MESSAGE.COUNT_ERROR);
+  }
+};
 export const validateInput = ({ car, count }) => {
   checkLengthError(car);
   checkCarCountError(car);
+  checkCarRepeat(car);
   checkCountError(count);
 };
