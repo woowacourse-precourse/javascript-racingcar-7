@@ -19,6 +19,7 @@ class RaceController {
     for (let i = 0; i < peopleList.length; i++) {
       this.updatePlayersPositions(updatedList, i);
     }
+    return updatedList;
   }
 
   getMaxValue(positions) {
