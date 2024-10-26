@@ -11,6 +11,10 @@ class RacingCalc {
       for (let carIdx = 0; carIdx < this.carArr.length; carIdx++) {
         let random = Random.pickNumberInRange(0, 9);
         if (random >= 4) this.moveCntArr[carIdx]++;
+
+        Console.print(
+          `${this.carArr[carIdx]} : ${"-".repeat(this.moveCntArr[carIdx])}`
+        );
       }
     }
   }
