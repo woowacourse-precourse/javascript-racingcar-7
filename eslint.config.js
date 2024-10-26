@@ -10,6 +10,9 @@ export default [
       // 세미콜론을 항상 사용
       'semi': ['error', 'always'],
 
+      // 삼항연산자 금지
+      'no-ternary': 'error',
+
       // 사용되지 않는 변수를 오류로 처리
       'no-unused-vars': 'error',
 
