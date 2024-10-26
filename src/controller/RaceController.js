@@ -13,9 +13,11 @@ class RaceController {
 
     Array.from({ length: raceCount }, () => {
       const raceRoundResult = raceService.performRaceRound();
+
       raceRoundResult.forEach(({ carName, forwardCount }) => {
         OutputView.printRoundResult(carName, forwardCount);
       });
+
       OutputView.printNewLine();
     });
 

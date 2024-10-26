@@ -11,14 +11,17 @@ class RaceService {
     const raceRoundResult = this.car.carNames.map((carName, carIndex) => {
       const randomNumber = getRandomNumber();
       this.car.isForwardMovementValid(randomNumber, carIndex);
-      return { carName: carName, forwardCount: this.car.forwardCounts[carIndex] };
+
+      const forwardCount = this.car.forwardCounts[carIndex];
+      return { carName, forwardCount };
     });
+
     return raceRoundResult;
   }
 
   getRaceWinner() {
-    const winner = parseArrayToString(this.car.getWinnerList());
-    return winner;
+    const winnerList = parseArrayToString(this.car.getWinnerList());
+    return winnerList;
   }
 }
 
