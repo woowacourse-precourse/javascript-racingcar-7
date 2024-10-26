@@ -7,6 +7,7 @@ class App {
   async run() {
     const { names, repetitionString } = await this.inputHandler.get();
     const game = new Game(names, Number(repetitionString));
+    const winners = game.play();
   }
 }
 

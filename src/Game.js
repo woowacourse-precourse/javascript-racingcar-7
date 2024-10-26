@@ -1,3 +1,5 @@
+import { Console } from '@woowacourse/mission-utils';
+
 class Game {
   #CARS_LIST = [];
 
@@ -14,6 +16,12 @@ class Game {
 
   allocateCars(nameList) {
     return nameList.map((name) => new Car(name));
+  }
+
+  play() {
+    while (this.currentRepeat !== this.repetitionNumber) {
+      this.currentRepeat += 1;
+    }
   }
 }
 
