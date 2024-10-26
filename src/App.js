@@ -77,7 +77,7 @@ class App {
   printCurrentStatus(carNames, carMovementTracker) {
     carNames.forEach((carName) => {
       const moveCount = carMovementTracker[carName];
-      Console.print(`${carName}: ${'-'.repeat(moveCount)}`);
+      Console.print(`${carName} : ${'-'.repeat(moveCount)}`);
     });
     Console.print('');
   }
@@ -92,7 +92,7 @@ class App {
       }
     });
 
-    Console.print(`최종 우승자: ${winner.join(', ')}`);
+    Console.print(`최종 우승자 : ${winner.join(', ')}`);
   }
 }
 
