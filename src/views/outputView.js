@@ -1,8 +1,9 @@
 import { Console } from '@woowacourse/mission-utils';
+import { OUTPUT_MESSAGES } from '../utils/constants.js';
 
 const OutputView = {
   printGameStart() {
-    Console.print('\n실행 결과');
+    Console.print(OUTPUT_MESSAGES.GAME_START);
   },
 
   formatCarStatus(car) {
@@ -23,11 +24,11 @@ const OutputView = {
 
   printWinners(winners) {
     const winnerText = this.formatWinners(winners);
-    Console.print(`최종 우승자 : ${winnerText}`);
+    Console.print(`${OUTPUT_MESSAGES.WINNERS_PREFIX}${winnerText}`);
   },
 
   throwError(message) {
-    throw new Error(`[ERROR] ${message}`);
+    throw new Error(`${OUTPUT_MESSAGES.ERROR_PREFIX} ${message}`);
   },
 };
 
