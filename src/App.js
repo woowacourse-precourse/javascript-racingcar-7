@@ -1,8 +1,12 @@
-import main from "./controllers/main.js";
+import Main from "./controllers/Main";
 
 class App {
   async run() {
-    main();
+    try {
+      Main();
+    } catch {
+      throw new Error("[ERROR]");
+    }
   }
 }
 
