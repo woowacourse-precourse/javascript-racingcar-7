@@ -3,6 +3,7 @@ import {
   ERR_ISDUP,
   ERR_POSITIVE,
   ERR_ISNUMBER,
+  ERR_ISINT,
 } from "../src/Component/Error.js";
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
@@ -35,6 +36,15 @@ describe("예외 테스트", () => {
     [["z,a,a,d,d,e"], ERR_ISDUP()],
     [["a,a,b,c,d,e"], ERR_ISDUP()],
   ])("자동차 이름에 중복이 있을 경우", async (input, expectedError) => {
+    mockQuestions(input);
+    const app = new App();
+    await expect(app.run()).rejects.toThrow(expectedError);
+  });
+
+  test.each([
+    [["choi,lee", "1.5"], ERR_ISINT()],
+    [["kim", "-2.5"], ERR_ISINT()],
+  ])("1 이상의 숫자를 입력하지 않은 경우", async (input, expectedError) => {
     mockQuestions(input);
     const app = new App();
     await expect(app.run()).rejects.toThrow(expectedError);
