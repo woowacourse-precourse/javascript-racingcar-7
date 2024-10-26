@@ -8,11 +8,10 @@ class App {
   }
 
   validateInput(carNames, attempts) {
-    if (!carNames.trim()) {
-      throw new Error("[ERROR]: 자동차 이름을 입력해주세요.");
-    }
-
     carNames.split(",").forEach((carName) => {
+      if (!carName.trim()) {
+        throw new Error("[ERROR]: 자동차 이름을 입력해주세요.");
+      }
       if (carName.trim().length > 5) {
         throw new Error("[ERROR]: 자동차 이름은 5자 이하만 가능합니다.");
       }
@@ -76,6 +75,7 @@ class App {
   printWinner(winner) {
     Console.print(`최종 우승자 : ${winner.join(", ")}`);
   }
+
   simulateRaces(cars, attempts) {
     for (let i = 0; i < attempts; i++) {
       cars.forEach((car) => {
@@ -85,6 +85,7 @@ class App {
       Console.print("\n");
     }
   }
+
   async run() {
     try {
       const { cars, attempts } = await this.getCarNameAndAttempts();
