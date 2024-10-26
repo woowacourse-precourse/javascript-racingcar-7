@@ -21,6 +21,8 @@ class App {
     const carProgressRecords = this.createCarProgressRecords(carsStr);
 
     const carRaceGame = new RacingCar(carProgressRecords, tryCount);
+
+    carRaceGame.startRace();
   }
 }
 

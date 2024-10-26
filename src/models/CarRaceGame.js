@@ -5,6 +5,14 @@ class CarRaceGame {
     this.carProgressRecords = carProgressRecords;
     this.tryCount = tryCount;
   }
+  shouldMoveForward() {
+    const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
+    return randomNumber >= 4;
+  }
+
+  startRace() {
+    this.shouldMoveForward();
+  }
 }
 
 export default CarRaceGame;
