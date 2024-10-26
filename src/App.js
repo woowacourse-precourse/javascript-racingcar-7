@@ -23,7 +23,15 @@ const updateCarState = (carState, movesNumber) => {
         car.distance += "-";
       }
     });
+    printRaceState(carState);
   }
+};
+
+const printRaceState = (carState) => {
+  carState.forEach((car) => {
+    Console.print(`${car.carName} : ${car.distance}`);
+  });
+  Console.print("");
 };
 
 class App {
@@ -42,9 +50,9 @@ class App {
 
       const carState = createCarState(carsName);
 
-      updateCarState(carState, movesNumber);
-
       Console.print("\n실행 결과");
+
+      updateCarState(carState, movesNumber);
     } catch (error) {
       Console.print(`[ERROR] ${error.message}`);
     }
