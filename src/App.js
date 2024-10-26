@@ -1,4 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
+import Car from './car.js';
 
 class App {
   constructor() {
@@ -11,7 +12,13 @@ class App {
   }
 
   createCars(carNamesInput) {
-    return carNamesInput.split(',').map(name => name);
+    return carNamesInput.split(',').map(name => this.createCar(name));
+  }
+
+  createCar(name) {
+    if (name.length > 5) throw new Error('[ERROR] 자동차의 이름은 5자 이하만 가능합니다.');
+
+    return name;
   }
 }
 
