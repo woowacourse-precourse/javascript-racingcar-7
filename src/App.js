@@ -34,8 +34,8 @@ class App {
       const USER_INPUT = await MissionUtils.Console.readLineAsync(
         "시도할 횟수는 몇 회인가요? "
       );
-      const NUM = parseInt(USER_INPUT);
-      if (USER_INPUT + NUM == USER_INPUT + "1") return NUM;
+      const NUM = parseInt(USER_INPUT.trim());
+      if (NUM.toString() == USER_INPUT) return NUM;
       else throwError("숫자가 아닌 것을 입력하셨습니다");
     }
 
@@ -45,16 +45,21 @@ class App {
         TRACK_CARS[CAR_NAMES_LIST[IDX]] = parseInt(0);
       MissionUtils.Console.print("실행 결과");
       for (let COUNT = 0; COUNT < RACE_COUNT; COUNT++) {
-        for (let IDX = 0; IDX < CAR_NAMES_LIST.length; IDX++) {
-          if (moveOrStop()) TRACK_CARS[CAR_NAMES_LIST[IDX]] += 1;
-          MissionUtils.Console.print(
-            `${CAR_NAMES_LIST[IDX]} : ${"-".repeat(
-              TRACK_CARS[CAR_NAMES_LIST[IDX]]
-            )}`
-          );
-        }
-        MissionUtils.Console.print("");
+        TRACK_CARS = raceStatus(CAR_NAMES_LIST, TRACK_CARS);
       }
+      return TRACK_CARS;
+    }
+
+    function raceStatus(CAR_NAMES_LIST, TRACK_CARS) {
+      for (let IDX = 0; IDX < CAR_NAMES_LIST.length; IDX++) {
+        if (moveOrStop()) TRACK_CARS[CAR_NAMES_LIST[IDX]] += 1;
+        MissionUtils.Console.print(
+          `${CAR_NAMES_LIST[IDX]} : ${"-".repeat(
+            TRACK_CARS[CAR_NAMES_LIST[IDX]]
+          )}`
+        );
+      }
+      MissionUtils.Console.print("");
       return TRACK_CARS;
     }
 
