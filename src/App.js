@@ -29,17 +29,19 @@ function getNames(str) {
   return names;
 }
 
-function checkNames(arr) {
-  let isError = false;
+function checkNameInput(arr) {
   arr.forEach((name) => {
     if (name.length > 5 || name.length < 1) {
-      isError = true;
+      throw new Error(
+        '[ERROR] 이름은 최소 1자 이상, 최대 5자 이하여야 합니다.'
+      );
     }
   });
   if (arr.length < 2) {
-    isError = true;
+    throw new Error(
+      '[ERROR] 자동차 경주에는 최소 2명 이상의 인원이 필요합니다.'
+    );
   }
-  if (isError) throw new Error('[ERROR]');
 }
 
 function checkCount(input) {
@@ -53,10 +55,9 @@ function checkCount(input) {
 
 function whoIsWinner(cars) {
   let arr = [...cars];
-  let countArr = [];
 
-  arr.map((car) => {
-    countArr.push(car.getCount());
+  let countArr = arr.map((car) => {
+    return car.getCount();
   });
 
   let max = 0;
@@ -81,7 +82,7 @@ class App {
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n'
     );
     const names = getNames(inputNames);
-    checkNames(names);
+    checkNameInput(names);
 
     const inputCount = await Console.readLineAsync(
       `시도할 횟수는 몇 회인가요?\n`
