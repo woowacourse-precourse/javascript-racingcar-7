@@ -19,7 +19,7 @@ class RacingGame {
 
     racing(arr) {
         const [carArr, tryCnt] = arr
-        const resultArr = []
+        Console.print("실행결과")
         for (let i = 0; i < tryCnt; i++) {
             for (const car of carArr) {
                 const randomNum = this.setRandomNum()
@@ -27,10 +27,20 @@ class RacingGame {
                     car.cnt++
                 }
             }
-            carArr.map((elem) => Console.print(`${elem.carName} : ${elem.cnt}`))
+            carArr.map((elem) => Console.print(`${elem.carName} : ${"-".repeat(elem.cnt)}`))
             Console.print("\n")
         }
-        console.log(resultArr)
+
+        this.setWinner(carArr)
+    }
+
+    setWinner(arr){
+        const winnerArr = arr
+            .sort((a,b)=> b.cnt-a.cnt)
+            .filter((elem)=>elem.cnt === arr[0].cnt)
+            .map((elem)=>elem.carName)
+        const winner = winnerArr.join(", ")
+        Console.print(`최종 우승자 : ${winner}`)
     }
 
     setRandomNum() {
