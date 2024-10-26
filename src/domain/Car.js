@@ -1,6 +1,7 @@
 import { FORWARD_NUM } from "../constants/constants.js";
 import getElementsWithMatchingValue from "../utils/getElementsWithMatchingValue.js";
 import getMaxValue from "../utils/getMaxValue.js";
+import initializeArray from "../utils/initializeArray.js";
 
 class Car {
   carNames;
@@ -8,7 +9,7 @@ class Car {
 
   constructor(carNames) {
     this.carNames = carNames;
-    this.forwardCounts = Array(this.carNames.length).fill(0);
+    this.forwardCounts = initializeArray(this.carNames.length, 0);
   }
 
   validateForward(randomNumber, carIndex) {
