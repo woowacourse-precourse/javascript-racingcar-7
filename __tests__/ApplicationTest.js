@@ -80,7 +80,7 @@ describe("자동차 경주", () => {
     [',,aaaa', '자동차 이름이 설정되지 않았습니다.'],
     ['aaaaa,bbbb,ccccccc', '자동차 이름이 5글자를 초과 합니다.'],
     ['aaa,aaa,bbb,bbb,c', '중복된 자동차 이름이 존재 합니다.']
-  ])('기능 단위 예외 테스트: carNameInput() { input: %s, result: %d }', 
+  ])('기능 단위 예외 테스트: carNameInput() { input: %s, result: %d }',
     async (input, result) => {
       // given
       const userInput = [input];
@@ -90,7 +90,7 @@ describe("자동차 경주", () => {
 
       // then
       await expect(carNameInput()).rejects.toThrow(result);
-  });
+    });
 
   test.each([
     ['4', 4],
@@ -126,7 +126,7 @@ describe("자동차 경주", () => {
 
       // then
       await expect(trialCountInput()).rejects.toThrow(`${result}`);
-  });
+    });
 
   test('기능 단위 테스트: createRacerInformation', () => {
     // given
@@ -140,11 +140,11 @@ describe("자동차 경주", () => {
   });
 
   test.each([
-  [4, '-'],
-  [5, '-'],
-  [0, ''],
-  [3, '']
-  ])('기능 단위 테스트: goStopResult() { randomNumber: %s, result: %s }' ,
+    [4, '-'],
+    [5, '-'],
+    [0, ''],
+    [3, '']
+  ])('기능 단위 테스트: goStopResult() { randomNumber: %s, result: %s }',
     (randomNumer, result) => {
       // given
       mockRandoms([randomNumer]);
@@ -161,7 +161,7 @@ describe("자동차 경주", () => {
     const carList = ['carA', 'carB', 'carC', 'carD', 'carE', 'carF'];
     const initialRaceHistory = new Map(carList.map((car) => [car, '']));
     const trialCount = 1;
-    const randomNumber = [9,0,0,0,0,0];
+    const randomNumber = [9, 0, 0, 0, 0, 0];
     const logs = ["carA : -", "carB : ", "carC : ", "carD : ", "carE : ", "carF : "];
     const logSpy = getLogSpy();
 
