@@ -20,8 +20,16 @@ class Game {
 
   play() {
     while (this.currentRepeat !== this.repetitionNumber) {
+      this.startRound();
       this.currentRepeat += 1;
     }
+  }
+
+  startRound() {
+    this.#CARS_LIST.forEach((car) => {
+      if (!this.canMoveForward()) return;
+      car.moveForward();
+    });
   }
 }
 
