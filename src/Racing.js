@@ -30,18 +30,26 @@ class Racing {
       const result = this.#try();
       this.#result = result;
 
-      this.#showResult();
+      this.#showResult(round);
     });
   }
 
-  #showResult() {
+  #showResult(round) {
     const raceResult = this.#result;
+    const FIRST_ROUND = 1;
+
+    if (round === FIRST_ROUND) {
+      Console.print('\n실행 결과');
+    }
+
     raceResult.forEach(({ name, distance }) => {
       const DISTANCE_MARK = '-';
       const distanceGraph = DISTANCE_MARK.repeat(distance);
 
       Console.print(`${name} : ${distanceGraph}`);
     });
+
+    Console.print('');
   }
 
   #findWinners() {
