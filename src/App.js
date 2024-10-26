@@ -26,11 +26,14 @@ class App {
     return raceRounds;
   }
 
-    const results = {};
-
+  initializeDistances(carNames) {
+    const distances = {};
     carNames.forEach(name => {
-      results[name] = "";
+      distances[name] = "";
     });
+
+    return distances;
+  }
     Console.print("\n실행 결과");
 
     for (let i = 0; i < playNum; i++) {
