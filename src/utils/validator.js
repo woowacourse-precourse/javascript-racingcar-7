@@ -71,6 +71,15 @@ const Validator = {
       OutputView.throwError('시도 횟수는 정수여야 합니다.');
     }
   },
+
+  validateIsNotOverflow(rounds) {
+    const number = Number(rounds);
+    if (number > Number.MAX_SAFE_INTEGER) {
+      OutputView.throwError(
+        `시도 횟수는 ${Number.MAX_SAFE_INTEGER}보다 작거나 같아야 합니다.`,
+      );
+    }
+  },
 };
 
 export default Validator;
