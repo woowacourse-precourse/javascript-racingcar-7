@@ -9,6 +9,10 @@ class Car {
     this.distance += distance;
   }
 
+  getDistance() {
+    return this.distance; 
+  }
+
 }
 
 export default Car;

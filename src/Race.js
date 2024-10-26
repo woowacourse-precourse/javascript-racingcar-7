@@ -36,6 +36,14 @@ class Race {
     });
   }
 
+  printRaceStatus() {
+    this.cars.forEach(car => {
+      const distanceSymbol = '-'.repeat(car.getDistance()); 
+      console.log(`${car.name} : ${distanceSymbol}`);
+    });
+    console.log(''); 
+  }
+
 }
 
 export default Race;
