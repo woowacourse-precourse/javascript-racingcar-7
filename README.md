@@ -130,7 +130,7 @@ Number(), parseInt(), parseFloat()
 
 for await ?
 
-# 📢 1. 프리코스 2주차 과제 요구사항
+# 5. 프리코스 2주차 과제 요구사항
 
 우아한테크코스 2주차 미션이 시작됐다!
 https://github.com/woowacourse-precourse/javascript-calculator-7

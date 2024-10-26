@@ -48,6 +48,7 @@ const Main = async () => {
 
   const raceController = () => {
     raceRound();
+    raceRoundResult();
   };
 
   const raceRound = () => {
@@ -56,6 +57,15 @@ const Main = async () => {
     if (randomResult >= 4) {
       myCar.addAdvance();
     }
+  };
+
+  const raceRoundResult = () => {
+    const generateAdvanceSymbol = (advance) => {
+      const ADVANCE_SYMBOL = "-";
+      return ADVANCE_SYMBOL.repeat(advance);
+    };
+    const resultAdvanceSymbol = generateAdvanceSymbol(myCar.advance);
+    Console.print(`${myCar.name} : ` + `${resultAdvanceSymbol}`);
   };
 
   gameController(parseNumber);
