@@ -1,7 +1,14 @@
-import { INVALID_NUMBER, TOO_BIG_NUMBER } from '../constants/Error.js';
+import {
+  NOT_NUMBER,
+  INVALID_NUMBER,
+  TOO_BIG_NUMBER,
+} from '../constants/Error.js';
 
 class NumValidation {
   static isValidNum(tryCount) {
+    if (Number.isNaN(tryCount) === false) {
+      throw new Error(NOT_NUMBER);
+    }
     if (tryCount === '0') {
       throw new Error(INVALID_NUMBER);
     }
