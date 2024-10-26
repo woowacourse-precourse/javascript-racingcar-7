@@ -25,15 +25,18 @@ class RaceController {
     return Math.max(...positions);
   }
 
+  addWinnerIndex(value, maxValue, index, winnersIndex) {
+    if (value === maxValue) {
+      winnersIndex.push(index);
+    }
+  }
   getRaceWinnersIndex(positions) {
     const maxValue = this.getMaxValue(positions);
     const winnersIndex = [];
 
     positions.forEach((value, index) => {
-      value === maxValue && winnersIndex.push(index)
-
-    })
-
+      this.addWinnerIndexIfMax(value, maxValue, index, winnersIndex)
+    });
     return winnersIndex;
 
   }
