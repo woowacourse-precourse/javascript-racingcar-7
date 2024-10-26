@@ -1,17 +1,19 @@
-import RandomNum from "./RandomNumber";
+import RandomNum from "./RandomNumber.js";
+import { Console } from "@woowacourse/mission-utils";
 
 const randomnumber = new RandomNum();
 
-class Race{
-  async race(car, trynumber,arr){
-    for(i=0; i<trynumber;i++){
-      await this.advance(car,arr);
+class Race {
+  async race(car, arr, trynumber) {
+    for (let i = 0; i < trynumber; i++) {
+      await this.advance(car, arr);
     }
   }
-  async advance(car,arr){
-    for(j=0;j<car.length;j++){
-      const number= await randomnumber.RNumber();
-      arr[i] += getProgress(number);
+  async advance(car, arr) {
+    for (let j = 0; j < car.length; j++) {
+      const number = await randomnumber.RNumber();
+      const progress = this.getProgress(number);
+      arr[j] += progress;
     }
   }
   getProgress(number){
@@ -19,6 +21,7 @@ class Race{
     return 0;
   }
 }
+
 
 export default Race;
 
