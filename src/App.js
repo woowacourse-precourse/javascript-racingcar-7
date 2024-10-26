@@ -1,6 +1,6 @@
 import { Console } from '@woowacourse/mission-utils'
 import { determineEachMove } from './determineMove.js';
-import Car from './Car.js';
+import Car from './class/Car.js';
 import { printCarsDistance } from './printCarsDistance.js';
 import { determineWinner } from './determineWinner.js';
 import { checkValidCarInput, checkValidTimeInput } from './checkValidInput.js';
