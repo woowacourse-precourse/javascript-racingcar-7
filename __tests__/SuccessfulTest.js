@@ -7,7 +7,25 @@ import {
 } from '../src/Test/Test.js';
 
 // Successful Test cases
-const validNameTestCases = [
+const validTestCases = [
+  {
+    description: '우승자가 여러 명일 때 테스트',
+    inputs: ['pobi,woni,honux', '3'],
+    randoms: [8, 8, 8, 8, 8, 8, 8, 8, 8],
+    expectedLogs: [
+      'pobi : -',
+      'woni : -',
+      'honux : -',
+      'pobi : --',
+      'woni : --',
+      'honux : --',
+      'pobi : ---',
+      'woni : ---',
+      'honux : ---',
+      '최종 우승자 : pobi, woni, honux',
+    ],
+  },
+
   {
     description: '이름에 특수 문자가 포함된 경우 성공 테스트',
     inputs: ['pobi,@woni,#dux', '3'],
@@ -40,10 +58,35 @@ const validNameTestCases = [
     ],
   },
   {
+    description: '이름에 이모지가 포함된 경우 성공 테스트',
+    inputs: ['pobi,😀😀😀😀😀,honux', '2'],
+    randoms: [3, 8, 3, 6, 8, 7],
+    expectedLogs: [
+      'pobi : ',
+      '😀😀😀😀😀 : -',
+      'honux : ',
+      'pobi : -',
+      '😀😀😀😀😀 : --',
+      'honux : -',
+      '최종 우승자 : 😀😀😀😀😀',
+    ],
+  },
+  {
     description: '이름이 하나인 경우 성공 테스트',
     inputs: ['pobi', '3'],
     randoms: [8, 8, 8],
     expectedLogs: ['pobi : -', 'pobi : --', 'pobi : ---', '최종 우승자 : pobi'],
+  },
+  {
+    description: '이름이 일본어인 경우 성공 테스트',
+    inputs: ['たんぽぽ', '3'],
+    randoms: [8, 8, 8],
+    expectedLogs: [
+      'たんぽぽ : -',
+      'たんぽぽ : --',
+      'たんぽぽ : ---',
+      '최종 우승자 : たんぽぽ',
+    ],
   },
   {
     description: '이름에 특수 문자와 이모지가 모두 포함된 경우 성공 테스트',
@@ -82,7 +125,7 @@ const validNameTestCases = [
 ];
 
 describe('SuccessfulTestcase', () => {
-  test.each(validNameTestCases)(
+  test.each(validTestCases)(
     '$description',
     async ({ inputs, randoms, expectedLogs }) => {
       // given

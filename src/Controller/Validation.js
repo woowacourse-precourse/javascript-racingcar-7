@@ -1,9 +1,13 @@
 import { ERROR_MESSAGES, throwError } from '../Model/Error.js';
 import { checkDuplicate } from '../Util/util.js';
-import { consecutiveDelimiterPattern } from '../Util/regex.js';
+import { consecutiveDelimiterPattern, isNumber } from '../Util/Regex.js';
 import Car from '../Model/Car.js';
 
 function validateCarNames(carNames) {
+  if (typeof carNames !== 'string') {
+    throwError(ERROR_MESSAGES.names.INVALID_INPUT);
+  }
+
   if (consecutiveDelimiterPattern.test(carNames)) {
     throwError(ERROR_MESSAGES.names.CONSECUTIVE_DELIMITERS);
   }
@@ -14,7 +18,7 @@ function validateCarNames(carNames) {
     throwError(ERROR_MESSAGES.names.EMPTY_NAME);
   }
 
-  if (carNamesSplit.some((name) => name.length > 5)) {
+  if (carNamesSplit.some((name) => Array.from(name).length > 5)) {
     throwError(ERROR_MESSAGES.names.NAME_TOO_LONG);
   }
 
@@ -26,21 +30,17 @@ function validateCarNames(carNames) {
 }
 
 function validateRounds(input) {
-  const rounds = Number(input);
-  if (Number.isNaN(rounds)) {
-    throwError(ERROR_MESSAGES.rounds.ONLY_NUMBER_ALLOWED);
-  }
-
-  if (!Number.isInteger(rounds)) {
+  if (!isNumber.test(input)) {
     throwError(ERROR_MESSAGES.rounds.ONLY_INTEGER_ALLOWED);
   }
 
-  if (rounds <= 0) {
+  const rounds = BigInt(input);
+  // sanity check
+  if (rounds <= 0n) {
     throwError(ERROR_MESSAGES.rounds.ONLY_POSITIVE_ALLOWED);
   }
 
-  const parsedRounds = parseInt(rounds, 10);
-  return parsedRounds;
+  return rounds;
 }
 
 function isCarLegit(car) {
@@ -49,7 +49,7 @@ function isCarLegit(car) {
   }
 }
 
-//실제로 발생할 확률은 매우 낮지만, type sanity check
+// 실제로 발생할 확률은 매우 낮지만, type sanity check
 function validateCars(cars) {
   cars.forEach((car) => {
     isCarLegit(car);
