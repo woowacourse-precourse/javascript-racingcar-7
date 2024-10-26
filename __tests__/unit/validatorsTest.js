@@ -1,4 +1,4 @@
-import { validateCarName } from '../../src/validators.js';
+import { validateCarName, validateAttemptCount } from '../../src/validators.js';
 
 describe("validators 테스트", () => {
 
@@ -27,5 +27,40 @@ describe("validators 테스트", () => {
         validateCarName("Audi,BMW,Hyundai,Kia"); 
       }).not.toThrow();
     });
+  });
+
+  describe("validateAttemptCount() 테스트", () => {
+
+    const INVALID_ATTEMPTS_COUNT_CASES = [
+      // 숫자가 아닌 값을 넣었을 때
+      "1e",
+      "1234q",
+      
+      // 0일 때
+      "0",
+      
+      // 0보다 작은 값일 때
+      "-1",
+      "-100",
+      
+      // 정수가 아닌 값일 때
+      "1.5",
+      "3.14",
+    ];
+    
+    test("시도할 횟수를 입력해야 한다 (빈 문자열일 경우)", () => {
+      expect(() => {
+        validateAttemptCount(""); 
+      }).toThrow("[ERROR]");
+    });
+
+    test.each(INVALID_ATTEMPTS_COUNT_CASES)(
+      "시도 횟수에는 양의 정수값만 입력해야 한다",
+      (input) => {
+        expect(() => {
+          validateAttemptCount(input);
+        }).toThrow("[ERROR]");
+      }
+    );
   });
 });

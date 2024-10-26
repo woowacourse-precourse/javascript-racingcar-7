@@ -3,7 +3,7 @@ import { ERROR_MESSAGE } from './constants.js';
 
 const validateCarName = (input) => {
   if (!input) {
-    throwError(ERROR_MESSAGE.INVALID_INPUT);
+    throwError(ERROR_MESSAGE.EMPTY_INPUT);
   }
 
   input
@@ -16,6 +16,19 @@ const validateCarName = (input) => {
     });  
 };
 
+const validateAttemptCount = (input) => {
+  if (!input) {
+    throwError(ERROR_MESSAGE.EMPTY_INPUT);
+  }
+
+  if (!/^[1-9]\d*$/.test(input)) {
+    throwError(ERROR_MESSAGE.INVALID_ATTEMPTS_COUNT);
+  }
+
+  return true;
+};
+
 export {
   validateCarName,
+  validateAttemptCount
 };
