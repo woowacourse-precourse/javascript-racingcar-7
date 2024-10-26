@@ -89,9 +89,9 @@ MVC 패턴을 통한 기능 구현을 목표했습니다.
 
 ### 🎯 Application
 
-#### app.js (애플리케이션 진입점)
+#### App.js (애플리케이션 진입점)
 
-- [ ] 게임의 시작점으로서 GameController 초기화 및 실행
+- [x] 게임의 시작점으로서 GameController 초기화 및 실행
 
 ## ♻️ 리팩토링 목록
 
