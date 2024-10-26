@@ -37,6 +37,10 @@ class App {
 
   startRace() {
     Console.print('\n실행결과');
+
+    for (let count = 1; count <= this.tryCount; count++) {
+      this.cars.forEach(car => car.move());
+    }
   }
 }
 
