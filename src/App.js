@@ -19,9 +19,8 @@ class App {
     const inputRound = await Console.readLineAsync(Message.roundNumber);
     let round = parseRound(inputRound);
     const processResult = processInputToOutput(players, round);
-    Console.print( formatOutput(processResult) );
+    Console.print(formatOutput(processResult));
   }
-
 }
 
 export default App;

@@ -6,20 +6,14 @@ const Random = MissionUtils.Random;
 export function processInputToOutput(driverArray, totalPhase)
 {
     let result = [];
-    let resultObject = {};
-    driverArray.forEach( (value) => {
-        resultObject[value] = 0;
-    });
-    for (let i = 0; i < totalPhase; i++)
-    {
-        driverArray.forEach( (value) => {
+    let resultElementObject = {};
+    driverArray.forEach((value) => resultElementObject[value] = 0);
+    for (let i = 0; i < totalPhase; i++) {
+        driverArray.forEach((value) => {
             const randomNumber = Random.pickNumberInRange(0, 9);
-            if (randomNumber >= 4)
-            {
-                resultObject[value] += 1;
-            }
+            if (randomNumber >= 4) resultElementObject[value] += 1;
         });
-        result.push(resultObject);
+        result.push(resultElementObject);
     }
     return result;
 }
