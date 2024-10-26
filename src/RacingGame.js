@@ -1,5 +1,6 @@
 import { Random } from "@woowacourse/mission-utils";
 import Car from "./Car.js";
+import Validator from "./Validator.js";
 
 class RacingGame {
   constructor() {
@@ -8,7 +9,7 @@ class RacingGame {
 
   createCars(namesInput) {
     const carNames = this.separateCarNames(namesInput);
-    this.validateDuplicateCarName(carNames);
+    Validator.validateCarNames(carNames);
     this.cars = carNames.map((name) => new Car(name));
   }
 
@@ -24,30 +25,13 @@ class RacingGame {
     return namesInput.split(",").map((name) => name.trim());
   }
 
-  validateDuplicateCarName(names) {
-    const uniqueNames = new Set(names); // Set은 중복 허용 x
-    if (uniqueNames.size !== names.length) {
-      throw new Error("[ERROR] 중복된 이름이 있습니다.");
-    }
-  }
-
-  validateTryCount(countInput) {
-    const count = Number(countInput);
-
-    if (count <= 0) {
-      throw new Error("[ERROR] 시도 횟수는 1이상이어야 합니다.");
-    }
-
-    if (Number.isNaN(count)) {
-      throw new Error("[ERROR] 시도 횟수는 숫자여야 합니다.");
-    }
-
-    return count;
-  }
-
   // 모든 자동차들의 현재 상태를 리턴하는 메서드
   getCarsStatus() {
     return this.cars.map((car) => car.getCurrentStatus());
+  }
+
+  validateTryCount(countInput) {
+    return Validator.validateTryCount(countInput);
   }
 
   findMaxPosition() {
