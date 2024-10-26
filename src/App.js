@@ -39,11 +39,12 @@ const printWinners = (carState) => {
     ...carState.map((car) => car.distance.length)
   );
 
-  carState.forEach((car) => {
-    if (car.distance.length === winnerDistance) {
-      Console.print(`최종 우승자 : ${car.carName}`);
-    }
-  });
+  const winners = carState
+    .filter((car) => car.distance.length === winnerDistance)
+    .map((car) => car.carName)
+    .join(", ");
+
+  Console.print(`최종 우승자 : ${winners}`);
 };
 
 class App {
