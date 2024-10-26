@@ -15,7 +15,9 @@ class RacingController {
       const carNames = carNamesInput.split(',');
       this.model.addCars(carNames);
     }
+  }
 
+  async getCount() {
     const conutInput =
       await Console.readLineAsync(`시도할 횟수는 몇회인가요 ?\n`);
 
@@ -40,10 +42,10 @@ class RacingController {
     return true;
   }
 
-  validateConut(conut) {
-    if (isNaN(conut)) {
+  validateConut(conutInput) {
+    if (isNaN(conutInput) || Number(conutInput) === 0) {
       console.log('에러 발생');
-      throw new Error('count는 숫자 값만 받을 수 있습니다.');
+      throw new Error('count는 0 이외의 숫자 값만 받을 수 있습니다.');
     }
 
     return true;
