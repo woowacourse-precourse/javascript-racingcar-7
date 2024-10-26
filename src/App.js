@@ -39,6 +39,7 @@ class App {
       const attempts = await Console.readLineAsync(
         "시도할 횟수는 몇 회인가요?\n"
       );
+      Console.print("\n");
 
       this.validateInput(carName, attempts);
 
@@ -75,19 +76,21 @@ class App {
   printWinner(winner) {
     Console.print(`최종 우승자 : ${winner.join(", ")}`);
   }
-
+  simulateRaces(cars, attempts) {
+    for (let i = 0; i < attempts; i++) {
+      cars.forEach((car) => {
+        this.moveCar(car);
+        this.printResult(car);
+      });
+      Console.print("\n");
+    }
+  }
   async run() {
     try {
       const { cars, attempts } = await this.getCarNameAndAttempts();
 
       Console.print("실행 결과");
-      for (let i = 0; i < attempts; i++) {
-        cars.forEach((car) => {
-          this.moveCar(car);
-          this.printResult(car);
-        });
-        Console.print("\n");
-      }
+      this.simulateRaces(cars, attempts);
       const winner = this.determineWinner(cars);
       this.printWinner(winner);
     } catch (error) {
