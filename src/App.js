@@ -20,17 +20,30 @@ class Car {
 
 class RacingCar {
   constructor(cars, attempts) {
-
+    this.cars = cars;
+    this.attempts = attempts;
   }
   // 게임 실행 메서드
-
   play () {
+    for(let i=0; i<this.attempts; i++){
+      this.cars.forEach(car => {
+        const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
+        car.move(randomNumber);
+      });
 
+      MissionUtils.Console.print(this.cars.map(car => car.getCurrentPosition()));
+      MissionUtils.Console.print('');
+    }
   }
 
   // 우승자 판별 메서드
   getWinners() {
+    const maxPosition = Math.max(...this.cars.map(car => car.position));
+    const winners = this.cars
+        .filter(car => car.position === maxPosition)
+        .map(car => car.name);
 
+    return `최종 우승자 : ${winners.join(', ')}`
   }
 }
 
