@@ -10,7 +10,9 @@ class App {
       const record = new Record(carString);
       const game = new Game(record, count);
       game.play();
-      printGameResult(game.getWinner());
+
+      const winnner = game.getWinner();
+      printGameResult(winnner);
     } catch (error) {
       if (error instanceof ValidationError) {
         throw error;
