@@ -15,20 +15,20 @@ class InputView{
 
   async getinputexception(car){
     for(let i=0;i<car.length;i++){
-      if(car[i].length > 6) {
-        throw new Error ("[Error] 자동차 이름을 5글자 이하로 작성해주세요.");
+      if(car[i].length > 5) {
+        throw new Error ("[ERROR] 자동차 이름을 5글자 이하로 작성해주세요.");
       }
       if(car ==''){
-        throw new Error ("[Error] 자동차 이름을 적어주세요.");
+        throw new Error ("[ERROR] 자동차 이름을 적어주세요.");
       }
     }
   }
   async gettryNumberexception(tryNumber){
     if(tryNumber < 0){
-      throw new Error ("[Error] 음수는 입력할 수 없습니다.")
+      throw new Error ("[ERROR] 음수는 입력할 수 없습니다.")
     }
     if(tryNumber == ''){
-      throw new Error ("[Error] 시도 횟수를 입력해주세요.");
+      throw new Error ("[ERROR] 시도 횟수를 입력해주세요.");
     }
   }
 }
