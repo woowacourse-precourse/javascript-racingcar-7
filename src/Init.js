@@ -1,16 +1,12 @@
 import { Console } from "@woowacourse/mission-utils";
-import Race from "./Race";
+import Race from "./Race.js";
 
 class Init {
   async start() {
-    try {
-        const carsArray = await this.getCarNames();
-        const numberOfTries = await this.getNumberOfTries();
-        const RacingGame = new Race();
-        await RacingGame.start(carsArray, numberOfTries);
-    } catch (error) {
-      Console.print(`[ERROR] ${error.message}`);
-    }
+    const carsArray = await this.getCarNames();
+    const numberOfTries = await this.getNumberOfTries();
+    const RacingGame = new Race();
+    await RacingGame.start(carsArray, numberOfTries);
   }
   async getCarNames() {
     Console.print("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
@@ -18,7 +14,8 @@ class Init {
     Console.print(name);
     const carNameList = name.split(",").map((item) => item.trim());
     if (!this.isValidCarNames(carNameList)) {
-      throw new Error("자동차의 이름 형식이 올바르지 않습니다.");
+        Console.print("[ERROR] 자동차의 이름 형식이 올바르지 않습니다.");
+        throw new Error("[ERROR]");
     }
     return this.createCarArray(carNameList);
   }
@@ -33,7 +30,8 @@ class Init {
     const tryNum = Number(await Console.readLineAsync());
     Console.print(tryNum);
     if (!this.isValidNumberOfTries(tryNum)) {
-      throw new Error("숫자가 잘못된 형식입니다.");
+        Console.print("[ERROR] 숫자가 잘못된 형식입니다.");
+        throw new Error("[ERROR]");
     }
     return tryNum;
   }

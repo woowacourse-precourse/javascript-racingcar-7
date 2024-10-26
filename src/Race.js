@@ -1,5 +1,5 @@
 import { Console, Random } from "@woowacourse/mission-utils";
-import Result from "./Result";
+import Result from "./Result.js";
 
 class Race {
   async start(carsArray, numberOfTries) {
