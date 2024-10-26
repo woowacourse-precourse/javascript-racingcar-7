@@ -1,9 +1,11 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 import { LOG_MESSAGE, TAG } from './constants.js'; 
 
 const getCarName = () => { return Console.readLineAsync(LOG_MESSAGE.START_MESSAGE); }
 
 const getAttempt = () => { return Console.readLineAsync(LOG_MESSAGE.ATTEMPT_COUNT_MESSAGE); }
+
+const getRandomNumber = (min, max) => { return Random.pickNumberInRange(min, max); };
 
 const throwError = (message) => {
   const errorMessage = `${TAG.ERROR_TAG} ${message}`;
@@ -14,4 +16,5 @@ export {
   getCarName,
   getAttempt,
   throwError,
+  getRandomNumber,
 };
