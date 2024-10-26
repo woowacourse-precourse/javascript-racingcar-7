@@ -9,6 +9,7 @@ class RaceController {
 
   updatePlayersPositions(positions, i) {
     const num = Random.pickNumberInRange(0, 9);
+
     if (num >= 4) {
       positions[i] += 1;
     }
@@ -16,9 +17,11 @@ class RaceController {
   movePlayersRandomly(peopleList) {
 
     const updatedList = [...peopleList];
+
     for (let i = 0; i < peopleList.length; i++) {
       this.updatePlayersPositions(updatedList, i);
     }
+
     return updatedList;
   }
 

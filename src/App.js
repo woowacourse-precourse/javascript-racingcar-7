@@ -26,6 +26,7 @@ class App {
 
     // Game start
     Console.print("\n실행 결과");
+
     for (let i = 0; i < userInputCount; i++) {
 
       const nextPostions = this.raceController.movePlayersRandomly(positions);

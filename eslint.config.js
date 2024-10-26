@@ -1,5 +1,6 @@
 export default [
   {
+
     rules: {
       // 들여쓰기 깊이를 2로 제한
       'max-depth': ['error', 2],
@@ -29,7 +30,16 @@ export default [
       'eqeqeq': ['error', 'always'],
 
       // 콘솔 사용을 경고로 처리 (필요에 따라 비활성화 가능)
-      'no-console': 'warn'
+      'no-console': 'warn',
+
+      // Updated padding line rule with more comprehensive cases
+      'padding-line-between-statements': [
+        'error',
+        // { blankLine: 'always', prev: '*', next: 'function' },
+        // { blankLine: 'always', prev: 'function', next: '*' },
+        { blankLine: 'always', prev: 'multiline-block-like', next: '*' },
+        { blankLine: 'always', prev: '*', next: 'multiline-block-like' },
+      ]
     }
   }
 ];
