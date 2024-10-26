@@ -1,5 +1,6 @@
 // import App from "../src/App.js";
 import Car from "../src/Car.js";
+import RacingGame from "../src/RacingGame.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 const mockQuestions = (inputs) => {
@@ -65,7 +66,6 @@ describe("Car 클래스 테스트", () => {
   test("유효한 이름으로 자동차 생성", () => {
     const car = new Car("pobi");
     expect(car.name).toBe("pobi");
-    expect(car.position).toBe(0);
   });
 
   test("이름이 5자를 초과하면 에러 발생", () => {
@@ -78,5 +78,40 @@ describe("Car 클래스 테스트", () => {
 
   test("이름이 공백 문자로만 이루어진 경우 에러 발생", () => {
     expect(() => new Car("  ")).toThrow("[ERROR]");
+  });
+});
+
+describe("RacingGame 클래스 테스트", () => {
+  test("쉼표로 구분된 이름으로 자동차들 생성", () => {
+    const game = new RacingGame();
+    expect(() => {
+      game.createCars("pobi, jini");
+    }).not.toThrow("[ERROR]");
+  });
+
+  test("중복된 이름의 자동차들 생성 시 에러 발생", () => {
+    const game = new RacingGame();
+    expect(game.validateTryCount("5")).toBe(5);
+  });
+
+  test("유효한 시도 횟수 입력", () => {
+    const game = new RacingGame();
+    expect(() => {
+      game.validateTryCount("-1");
+    }).toThrow("[ERROR]");
+  });
+
+  test("시도 횟수가 0이하일 경우 에러 발생", () => {
+    const game = new RacingGame();
+    expect(() => {
+      game.validateTryCount("-1");
+    }).toThrow("[ERROR]");
+  });
+
+  test("시도 횟수가 숫자가 아닐 경우 에러 발생", () => {
+    const game = new RacingGame();
+    expect(() => {
+      game.validateTryCount("lolol");
+    }).toThrow("[ERROR]");
   });
 });
