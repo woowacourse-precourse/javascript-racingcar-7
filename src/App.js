@@ -15,10 +15,13 @@ class App {
     const input = await Console.readLineAsync(INPUT_MESSAGE.carName);
     validateInputBlank(input);
     validateRacingCarSeparator(input);
-    const carVariety = input.split(',').map((carName) => {
-      validateCarNameLength(carName);
-      return carName;
-    });
+    const carVariety = input
+      .toLowerCase()
+      .split(',')
+      .map((carName) => {
+        validateCarNameLength(carName);
+        return carName;
+      });
 
     validateCarNameOverlap(carVariety);
 
