@@ -5,14 +5,14 @@ import { initRandomName } from './makeRandomName.js';
 
 export const initGame = ({ car, count }) => {
   const carNamesWithRandom = initRandomName(...car);
-  let carCountList = carNamesWithRandom.map((carName) => ({
+  let carAndLocationList = carNamesWithRandom.map((carName) => ({
     name: carName,
     location: 0,
   }));
   for (let idx = 0; idx < count; idx++) {
-    carCountList = moveCarEvent(carCountList);
-    print(makeOutput(carCountList));
+    carAndLocationList = moveCarEvent(carAndLocationList);
+    print(makeOutput(carAndLocationList));
   }
-  const winner = getWinner(carCountList);
+  const winner = getWinner(carAndLocationList);
   print(formatWinners(winner));
 };

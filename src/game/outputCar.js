@@ -7,7 +7,7 @@ export const makeOutput = (carData) => {
 };
 
 export const formatWinners = (winners) => {
-  const winnerString = winners.map((win) => win[0]).join(', ');
+  const winnerString = winners.map((winner) => winner.name).join(', ');
   const output = `최종 우승자 : ${winnerString}`;
   return output;
 }; // 우승자 이름들을 공백 , 으로 구분하여 출력

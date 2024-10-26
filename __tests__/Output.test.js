@@ -17,13 +17,18 @@ describe('makeOutput 출력함수 테스트', () => {
 
 describe('formatWinners 승리 출력 메시지', () => {
   it('최종우승자 두명', () => {
-    expect(formatWinners([['carA'], ['carB']])).toBe(
-      '최종 우승자 : carA, carB',
-    );
+    expect(
+      formatWinners([
+        { name: 'carA', location: 3 },
+        { name: 'carB', location: 3 },
+      ]),
+    ).toBe('최종 우승자 : carA, carB');
   });
 
   it('최종 우승자 한명', () => {
-    expect(formatWinners([['carA']])).toBe('최종 우승자 : carA');
+    expect(formatWinners([{ name: 'carA', location: 3 }])).toBe(
+      '최종 우승자 : carA',
+    );
   });
 
   it('최종 우승자가 없는 경우', () => {

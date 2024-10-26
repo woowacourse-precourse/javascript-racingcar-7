@@ -15,11 +15,14 @@ const checkCountError = (countInput) => {
 };
 
 const checkCarRepeat = (carInput) => {
-  const uniqueCars = new Set(carInput); // set 객체를 이용해서 고유한 배열만 남도록
-  if (uniqueCars.size !== carInput.length) {
+  // 빈 문자열을 제외한 요소들만으로 Set을 생성해 중복 검사
+  const uniqueCars = new Set(carInput.filter((car) => car !== ''));
+
+  if (uniqueCars.size !== carInput.filter((car) => car !== '').length) {
     throw new Error(ERROR_MESSAGE.REPEAT_ERROR);
   }
 };
+
 export const validateInput = ({ car, count }) => {
   checkLengthError(car);
   checkCarCountError(car);
