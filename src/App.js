@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, MissionUtils } from "@woowacourse/mission-utils";
 
 class App {
   async run() {
@@ -18,7 +18,11 @@ class App {
       this.validateMoveCount(inputCount);
 
       const cars = this.initializeCars(names);
-      Console.print(`실행 결과 \n`);
+
+      Console.print(`\n`);
+      Console.print(`실행 결과`);
+      this.startRace(cars, parseInt(inputCount));
+
       // Console.print(`결과 : ${names}`);
     } catch (error) {
       Console.print(error.message);
@@ -40,6 +44,17 @@ class App {
 
   initializeCars(names) {
     return names.map((name) => ({ name, position: 0 }));
+  }
+
+  startRace(cars, moves) {
+    for (let i = 0; i < moves; i++) {
+      this.runRound(cars);
+    }
+  }
+
+  runRound(cars) {
+    cars.forEach((car) => this.moveCar(car));
+    this.printRoundResults(cars);
   }
 }
 export default App;
