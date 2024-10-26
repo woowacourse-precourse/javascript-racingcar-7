@@ -6,6 +6,7 @@ class RacingCarName {
     if (CarNameValidation.checkIsEmpty(name)) throw new Error(ERROR.prefix + ERROR.empty);
     if (CarNameValidation.checkNameLength(name)) throw new Error(ERROR.prefix + ERROR.nameLength);
     if (CarNameValidation.checkDuplicate(name)) throw new Error(ERROR.prefix + ERROR.nameDuplicate);
+    if (CarNameValidation.checkNameCount(name)) throw new Error(ERROR.prefix + ERROR.nameCount);
   }
 }
 
