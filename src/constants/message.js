@@ -1,14 +1,14 @@
 const INPUT_MESSAGE = Object.freeze({
-  carName: "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n",
-  attemptNumber: "시도할 횟수는 몇 회인가요?\n",
+  carName: '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
+  attemptNumber: '시도할 횟수는 몇 회인가요?\n',
 });
 
 const OUTPUT_MESSAGE = Object.freeze({
-  winner: "최종 우승자 : ",
-  racingResult: "실행 결과",
+  winner: '최종 우승자 : ',
+  racingResult: '실행 결과',
 });
 
-const PREFIX_ERROR = "[ERROR]";
+const PREFIX_ERROR = '[ERROR]';
 
 const ERROR_MESSAGE = Object.freeze({
   blank: `${PREFIX_ERROR} 값을 입력해주십시오.`,

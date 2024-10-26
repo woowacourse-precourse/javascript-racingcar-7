@@ -1,6 +1,6 @@
-import { Console } from "@woowacourse/mission-utils";
-import { INPUT_MESSAGE, OUTPUT_MESSAGE } from "./constants/message.js";
-import Racingcar from "./model/racingcar.js";
+import { Console } from '@woowacourse/mission-utils';
+import { INPUT_MESSAGE, OUTPUT_MESSAGE } from './constants/message.js';
+import Racingcar from './model/racingcar.js';
 import {
   validateInputBlank,
   validateCarNameLength,
@@ -8,15 +8,15 @@ import {
   validateCarNameOverlap,
   validateRacingCountNumber,
   validateRacingCountType,
-} from "./Validation.js";
-import LETTER from "./constants/constant.js";
+} from './Validation.js';
+import LETTER from './constants/constant.js';
 
 class App {
   getRacingCarName = async () => {
     const input = await Console.readLineAsync(INPUT_MESSAGE.carName);
     validateInputBlank(input);
     validateRacingCarSeparator(input);
-    const carVariety = input.split(",").map((carName) => {
+    const carVariety = input.split(',').map((carName) => {
       validateCarNameLength(carName);
       return carName;
     });
@@ -61,7 +61,7 @@ class App {
     Console.print(
       `${OUTPUT_MESSAGE.winner}${winner
         .map((winner) => winner.name)
-        .join(", ")}`
+        .join(', ')}`
     );
   };
 

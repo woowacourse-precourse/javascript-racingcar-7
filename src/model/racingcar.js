@@ -1,4 +1,4 @@
-import { Random } from "@woowacourse/mission-utils";
+import { Random } from '@woowacourse/mission-utils';
 
 class Racingcar {
   constructor(name) {

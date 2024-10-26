@@ -1,5 +1,5 @@
 const LETTER = Object.freeze({
-  runResult: "-",
+  runResult: '-',
 });
 
 export default LETTER;
