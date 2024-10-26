@@ -21,8 +21,16 @@ function checkSpace(carInput) {
     duplicateCheck(carInput);
   }
 }
-function duplicateCheck(carInput) {
+export function duplicateCheck(carInput) {
   // 중복 검사
+  const carName = {};
+  for (const i of carInput) {
+    if (i in carName) {
+      throw new Error(ERROR_MESSAGE.DUPLICATE_VALUE);
+    } else {
+      carName[i] = "";
+    }
+  }
 }
 // }
 export default Utils;
