@@ -1,8 +1,12 @@
 import { Console } from "@woowacourse/mission-utils";
-import { MESSAGES } from "./constants/message.js";
+import { ERROR_MESSAGES, MESSAGES } from "./constants/message.js";
 
 export function getInputAsync(message) {
-  return Console.readLineAsync(message);
+  try {
+    return Console.readLineAsync(message);
+  } catch (error) {
+    throw new Error(ERROR_MESSAGES.PREFIX + ERROR_MESSAGES.GET_INPUT);
+  }
 }
 
 export function printCarsMove(carsMap) {
