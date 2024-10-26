@@ -16,3 +16,9 @@ export const INPUT_MESSAGES = {
   CAR_NAMES: '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
   GAME_ROUNDS: '시도할 횟수는 몇 회인가요?\n',
 };
+
+export const OUTPUT_MESSAGES = {
+  GAME_START: '\n실행 결과',
+  WINNERS_PREFIX: '최종 우승자 : ',
+  ERROR_PREFIX: '[ERROR]',
+};
