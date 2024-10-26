@@ -4,7 +4,7 @@ import {
   validateCarNames,
   validateCars,
   validateRounds,
-} from './Validation.js';
+} from '../Validation/Validation.js';
 import { getWinners } from '../Util/util.js';
 import runRounds from '../Util/runRounds.js';
 import SYSTEM_MESSAGES from '../Model/SystemMessages.js';
