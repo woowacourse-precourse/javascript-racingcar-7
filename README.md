@@ -7,7 +7,7 @@
 ---
 
 ![Generic badge](https://img.shields.io/badge/precourse-week2-green.svg)
-![Generic badge](https://img.shields.io/badge/test-6_passed-blue.svg)
+![Generic badge](https://img.shields.io/badge/test-5_passed-blue.svg)
 
 > 우아한테크코스 7기 2주차 미션, 자동차 경주 게임을 구현한 저장소입니다.
 
