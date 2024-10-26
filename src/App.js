@@ -34,7 +34,7 @@ class App {
       this.displayController.displayPlayerPositions(userInputArray, positions);
     }
 
-    let winnerArray = this.raceController.getRaceWinners(userInputArray, positions);
+    let winnerArray = this.raceController.getRaceWinnersIndex(positions);
 
     this.displayController.displayWinners(userInputArray, winnerArray);
 
