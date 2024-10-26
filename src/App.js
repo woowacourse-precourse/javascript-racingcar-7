@@ -51,9 +51,15 @@ class App {
         cars[i].distance +="-"
       }
     }
-
+    this.printProgress(cars)
+    Console.print('')
   }
 
+  printProgress(cars){
+    cars.forEach((car)=>{
+      Console.print(`${car.name} : ${car.distance} `)
+    })
+  }
 }
 
 export default App;
