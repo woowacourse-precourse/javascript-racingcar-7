@@ -11,7 +11,7 @@ class App {
 
     let cars = this.validateCarInput(INPUT);
     let times = this.validTimesInput(TIMES_INPUT);
-
+    this.playCarRacing(cars, times);
   }
   
   validateCarInput(input) {
@@ -36,6 +36,22 @@ class App {
       throw new Error("[ERROR] 시도 횟수는 양의 정수여야 합니다.");
     }
     return times;
+  }
+
+  playCarRacing(cars, times) {
+    while(times > 0){
+      this.movingForward(cars)
+      times --
+    }      
+  }
+  movingForward(cars){
+    for (let i = 0; i < cars.length; i++){
+      let randomNumber = Random.pickNumberInRange(0,9)
+      if(randomNumber >=4){
+        cars[i].distance +="-"
+      }
+    }
+
   }
 
 }
