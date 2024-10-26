@@ -11,3 +11,5 @@ const GAME = Obejct.freeze({
   maxRandomNumber: 9,
   moveThreshold: 4,
 });
+
+export default GAME;
