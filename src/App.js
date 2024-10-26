@@ -12,9 +12,10 @@ class App {
       );
       const names = inputName.split(",").map((name)=>name.trim())
       this.validateCarNames(names);
-      const inputTry = await Console.readLineAsync(
+      const inputCount = await Console.readLineAsync(
         "시도할 횟수는 몇 회인가요? \n"
       );
+      this.validateMoveCount(inputCount);
       Console.print(`실행 결과 \n`);
       // Console.print(`결과 : ${names}`);
     } catch (error) {
@@ -27,6 +28,12 @@ class App {
     names.forEach((name) => {
       if (name.length > 5) throw new Error("[ERROR]");
     });
+  }
+
+  validateMoveCount(count) {
+    if (!Number.isInteger(parseInt(count)) || parseInt(count) <= 0) {
+      throw new Error("[ERROR]");
+    }
   }
 }
 export default App;
