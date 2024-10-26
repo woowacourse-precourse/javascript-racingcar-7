@@ -5,3 +5,5 @@ class RacingGame {
     this.cars = cars;
   }
 }
+
+export default RacingGame
