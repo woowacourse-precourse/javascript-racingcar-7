@@ -4,6 +4,7 @@ class App {
   async run() {
     const cars = await inputCars();
     const count = await inputCount();
+    const result = await racingCount(count, cars.length);
   }
 }
 
@@ -34,6 +35,17 @@ const randomNum = async (carsCnt) => {
 
 const racingCar = async (result, randomNumArr) => {
   randomNumArr.map((num, index) => num >= 4 && (result[index] += 1));
+
+  return result;
+};
+
+const racingCount = async (count, carsCnt) => {
+  let result = new Array(carsCnt).fill(0);
+
+  for (let i = 0; i < count; i++) {
+    const randomNumArr = await randomNum(carsCnt);
+    result = await racingCar(result, randomNumArr);
+  }
 
   return result;
 };
