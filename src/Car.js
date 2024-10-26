@@ -17,9 +17,13 @@ class Car {
     return this.#move;
   }
 
+  setMove(move) {
+    this.#move += move;
+  }
+
   moveCar() {
     const number = MissionUtils.Random.pickNumberInRange(0, 9);
-    if (number >= 4) this.#move += 1;
+    if (number >= 4) this.setMove(1);
   }
 
   printCar() {
