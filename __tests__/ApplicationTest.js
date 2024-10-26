@@ -45,16 +45,28 @@ describe("자동차 경주", () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
-
-  test("예외 테스트", async () => {
-    // given
-    const inputs = ["pobi,javaji"];
-    mockQuestions(inputs);
-
-    // when
-    const app = new App();
-
-    // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
-  });
 });
+
+describe("예외 테스트", () => {
+  const testCases = [
+    {
+      inputs: ["pobi,javaji"],
+      expectedError: "[ERROR] 모든 자동차 이름은 다섯 글자 이하로 입력해야 합니다.",
+    },
+    {
+      inputs: [", pobi, "],
+      expectedError: "[ERROR] 모든 자동차 이름은 한 글자 이상 입력해야 합니다.",
+    },
+  ];
+
+  test.each(testCases)(
+    "입력: $inputs 에 대한 예외 테스트",
+    async ({ inputs, expectedError }) => {
+      mockQuestions(inputs);
+
+      const app = new App();
+
+      await expect(app.run()).rejects.toThrow(expectedError);
+    }
+  )
+})
