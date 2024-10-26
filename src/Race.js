@@ -1,4 +1,4 @@
-import { getCarName, getAttempt } from './utils.js';
+import { getCarName, getAttempt, getRandomNumber } from './utils.js';
 import { validateCarName, validateAttemptCount } from './validators.js';
 import Car from './Car.js';
 
@@ -24,6 +24,13 @@ class Race {
     const attemptCount = await getAttempt();
     validateAttemptCount(attemptCount);
     this.attemptCount = Number(attemptCount);
+  }
+
+  generateRandomDistances() {
+    this.cars.forEach(car => {
+      const randomDistance = getRandomNumber(0, 9);  
+      car.move(randomDistance);                      
+    });
   }
 
 }

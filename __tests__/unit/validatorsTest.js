@@ -24,7 +24,7 @@ describe("validators 테스트", () => {
 
     test("유효한 자동차 이름을 입력했을 때는 예외가 발생하지 않아야 한다", () => {
       expect(() => {
-        validateCarName("Audi,BMW,Hyundai,Kia"); 
+        validateCarName("Audi,BMW,Kia"); 
       }).not.toThrow();
     });
   });

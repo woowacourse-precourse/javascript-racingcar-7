@@ -24,7 +24,7 @@ describe("Race 클래스 테스트", () => {
     });
   });
 
-  describe("generateRandomDistance() 테스트", () => {
+  describe("generateRandomDistances() 테스트", () => {
 
     test("Car 객체마다 무작위 거리가 부여되어야 한다", async () => {
       getRandomNumber.mockReturnValueOnce(3)
