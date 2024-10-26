@@ -1,3 +1,4 @@
+import App from '../src/App.js';
 import {
   validateCarNamesInput,
   validateAttemptCount,
@@ -43,5 +44,25 @@ describe('validator 테스트', () => {
     inputs.forEach((input) => {
       expect(() => validateAttemptCount(input)).not.toThrow();
     });
+  });
+});
+
+describe('App 메서드 테스트', () => {
+  let app;
+
+  beforeEach(() => {
+    app = new App();
+  });
+
+  test('자동차 이름 입력 -> carsData 변환 테스트', () => {
+    const input = 'pobi,java';
+    const expected = [
+      { name: 'pobi', position: 0 },
+      { name: 'java', position: 0 },
+    ];
+
+    const result = app.changeCarNamesInputToCarsData(input);
+
+    expect(result).toEqual(expected);
   });
 });
