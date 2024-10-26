@@ -22,6 +22,10 @@ class App {
             );
 
             const cars = inputCar.split(",").map((car) => new Car(car.trim()));
+
+            const inputRound = await Console.readLineAsync(
+                "시도할 횟수는 몇 회인가요?\n"
+            );
         } catch (error) {
             Console.print(`${error.message}`);
             throw error;
