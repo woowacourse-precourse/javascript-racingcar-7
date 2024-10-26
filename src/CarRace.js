@@ -8,7 +8,7 @@ class CarRace {
     const {carNames, totalLaps} = await this.getAllInputs();
     carNames.forEach((name) => this.cars.push(new Car(name)));
     this.executeTotalLapsAndDisplay(totalLaps);
-    const winner = this.determineWinner();
+    const winner = this.getLeadingCars();
     Console.print(`최종 우승자 : ${winner.join(", ")}`)
   };
 
@@ -48,6 +48,8 @@ class CarRace {
     for(let i = 0 ; i < totalLaps ; i++) {
       this.runSingleLap();
       this.displayLapStatus(i+1);
+      const currentLeader = this.getLeadingCars().join(", ");
+      Console.print(`현재 1등: ${currentLeader}\n`);
     }
   }
 
@@ -55,7 +57,7 @@ class CarRace {
     return Math.max(...this.cars.map(car => car.distance));
   }
 
-  determineWinner() {
+  getLeadingCars() {
     const maxDistance = this.getMaxDistance();
     const winners = this.cars.filter(car => car.distance === maxDistance).map(car => car.name);
     return winners;

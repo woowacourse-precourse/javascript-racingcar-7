@@ -48,7 +48,7 @@ describe("레이스 테스트", () => {
     carRace.cars.find(car => car.name === "rdbll").distance = 3;
     carRace.cars.find(car => car.name === "merc").distance = 2;
     carRace.cars.find(car => car.name === "mclrn").distance = 2;
-    const winner = carRace.determineWinner();
+    const winner = carRace.getLeadingCars();
     expect(winner).toEqual(["ferra"])
   })
 
@@ -63,7 +63,7 @@ describe("레이스 테스트", () => {
     carRace.cars.find(car => car.name === "rdbll").distance = 5;
     carRace.cars.find(car => car.name === "merc").distance = 2;
     carRace.cars.find(car => car.name === "mclrn").distance = 2;
-    const winner = carRace.determineWinner();
+    const winner = carRace.getLeadingCars();
     expect(winner).toEqual(["ferra", "rdbll"])
   })
 });
