@@ -29,6 +29,7 @@ class CarRaceGame {
       );
       order += 1;
     });
+
     MissionUtils.Console.print("");
   }
 
@@ -53,8 +54,8 @@ class CarRaceGame {
         return car.position;
       }
       return max;
-    }, 0); 
-  } 
+    }, 0);
+  }
 
   getWinnersList(maxPosition) {
     return this.carProgressRecords
@@ -65,6 +66,7 @@ class CarRaceGame {
   printRaceResults() {
     const maxPosition = this.#getMaxPosition();
     const winnersList = this.getWinnersList(maxPosition);
+    
     MissionUtils.Console.print(`최종 우승자 : ${winnersList.join(DELIMITER)}`);
   }
 }
