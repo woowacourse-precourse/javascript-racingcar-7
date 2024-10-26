@@ -25,6 +25,10 @@ const getLogSpy = () => {
 };
 
 describe("자동차 경주", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   test("자동차 이름을 쉼표로 구분하여 객체 배열로 변환", () => {
     // given
     const app = new App();
@@ -69,7 +73,7 @@ describe("자동차 경주", () => {
     // Mock 함수 설정
     app.getCarNameAndAttempts = jest.fn().mockResolvedValue({
       cars: mockCars,
-      attemps: mockAttempts,
+      attempts: mockAttempts,
     });
     MissionUtils.Random.pickNumberInRange = jest.fn().mockReturnValue(5);
 
@@ -80,6 +84,38 @@ describe("자동차 경주", () => {
     mockCars.forEach((car) => {
       expect(car.result).toBe("---");
     });
+  });
+
+  test("run 함수가 자동차 경주 결과를 올바르게 출력하는지 확인", async () => {
+    // Arrange
+    const app = new App();
+    const mockCars = [
+      { name: "pobi", result: "" },
+      { name: "crong", result: "" },
+    ];
+    const mockAttempts = 2;
+
+    // getCarNameAndAttempts를 모의로 설정하여 자동차 목록과 시도 횟수를 반환하도록 설정
+    app.getCarNameAndAttempts = jest
+      .fn()
+      .mockResolvedValue({ cars: mockCars, attempts: mockAttempts });
+
+    // Random.pickNumberInRange를 모의로 설정 (항상 5를 반환하여 자동차가 항상 이동하도록)
+    MissionUtils.Random.pickNumberInRange = jest.fn().mockReturnValue(5);
+
+    // Console.print를 모의로 설정
+    const consoleSpy = jest.spyOn(MissionUtils.Console, "print");
+
+    // Act
+    await app.run();
+
+    // Assert
+    expect(consoleSpy).toHaveBeenCalledWith("실행 결과");
+    expect(consoleSpy).toHaveBeenCalledWith("pobi : -");
+    expect(consoleSpy).toHaveBeenCalledWith("crong : -");
+    expect(consoleSpy).toHaveBeenCalledWith("pobi : --");
+    expect(consoleSpy).toHaveBeenCalledWith("crong : --");
+    expect(consoleSpy).toHaveBeenCalledWith("\n");
   });
 
   test("기능 테스트", async () => {

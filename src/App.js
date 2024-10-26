@@ -57,11 +57,21 @@ class App {
     }
   }
 
+  printResult(car) {
+    Console.print(`${car.name} : ${car.result}`);
+  }
+
   async run() {
     try {
-      const { cars, attemps } = await this.getCarNameAndAttempts();
-      for (let i = 0; i < attemps; i++) {
-        cars.forEach((car) => this.moveCar(car));
+      const { cars, attempts } = await this.getCarNameAndAttempts();
+
+      Console.print("실행 결과");
+      for (let i = 0; i < attempts; i++) {
+        cars.forEach((car) => {
+          this.moveCar(car);
+          this.printResult(car);
+        });
+        Console.print("\n");
       }
     } catch (error) {
       throw error;
