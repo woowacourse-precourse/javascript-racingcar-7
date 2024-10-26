@@ -51,7 +51,7 @@ function isCarLegit(car) {
 
 // 실제로 발생할 확률은 매우 낮지만, type sanity check
 function validateCars(cars) {
-  if (cars.length === 0) {
+  if (cars.length < 0) {
     throwError(ERROR_MESSAGES.cars.ILLEGAL_CAR_ARRAY);
   }
   cars.forEach((car) => {
