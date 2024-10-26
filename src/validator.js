@@ -40,4 +40,30 @@ const validateCarNamesInput = (carNamesInput) => {
   });
 };
 
-export { validateCarNamesInput };
+const isNumber = (attemptCount) => {
+  if (isNaN(attemptCount)) {
+    throw new Error(ERROR_MESSAGE.NOT_A_NUMBER);
+  }
+};
+
+const isDecimal = (attemptCount) => {
+  if (attemptCount % 1 !== 0) {
+    throw new Error(ERROR_MESSAGE.NOT_AN_INTEGER);
+  }
+};
+
+const isInRange = (attemptCount) => {
+  if (attemptCount < 1 || attemptCount > 10) {
+    throw new Error(ERROR_MESSAGE.NOT_IN_RANGE);
+  }
+};
+
+const validateAttemptCount = (attemptCount) => {
+  const attemptNumber = Number(attemptCount);
+
+  isNumber(attemptNumber);
+  isDecimal(attemptNumber);
+  isInRange(attemptNumber);
+};
+
+export { validateCarNamesInput, validateAttemptCount };

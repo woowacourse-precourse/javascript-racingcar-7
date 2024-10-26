@@ -13,6 +13,9 @@ const ERROR_MESSAGE = {
     '[ERROR] 자동차는 최소 2대 이상이어야 하고, 쉼표(,)로 구분해야 합니다.',
   ONLY_SYMBOL_AND_NUMBER:
     '[ERROR] 자동차 이름은 영문이나 한글이 포함되어야 합니다.',
+  NOT_A_NUMBER: '[ERROR] 시도할 횟수는 숫자만 가능합니다.',
+  NOT_AN_INTEGER: '[ERROR] 시도할 횟수는 정수만 가능합니다.',
+  NOT_IN_RANGE: '[ERROR] 시도할 횟수는 1 이상 10 이하만 가능합니다.',
 };
 
 export { PRINT_MESSAGE, ERROR_MESSAGE };
