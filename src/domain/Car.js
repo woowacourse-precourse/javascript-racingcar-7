@@ -7,8 +7,7 @@ class Car {
     this.forwardCounts = Array(this.carNames.length).fill(0);
   }
 
-  // TODO: 함수명 수정
-  isForwardMovementValid(randomNumber, carIndex) {
+  validateForward(randomNumber, carIndex) {
     if (randomNumber >= 4) {
       this.forwardCounts[carIndex]++;
     }

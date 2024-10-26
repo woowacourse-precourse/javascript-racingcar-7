@@ -10,7 +10,7 @@ class RaceService {
   performRaceRound() {
     const raceRoundResult = this.car.carNames.map((carName, carIndex) => {
       const randomNumber = getRandomNumber();
-      this.car.isForwardMovementValid(randomNumber, carIndex);
+      this.car.validateForward(randomNumber, carIndex);
 
       const forwardCount = this.car.forwardCounts[carIndex];
       return { carName, forwardCount };
