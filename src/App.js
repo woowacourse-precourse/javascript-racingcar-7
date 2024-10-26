@@ -14,9 +14,11 @@ import {
 class App {
   getRacingCarName = async () => {
     const input = await Console.readLineAsync(INPUT_MESSAGE.carName);
+
     validateInputBlank(input);
     validateInputSpecialCharacter(input);
     validateRacingCarSeparator(input);
+
     const carVariety = input
       .toLowerCase()
       .split(',')
@@ -32,6 +34,7 @@ class App {
 
   getRacingAttmeptCount = async () => {
     const input = await Console.readLineAsync(INPUT_MESSAGE.attemptNumber);
+
     validateInputBlank(input);
     validateInputSpecialCharacter(input);
     validateRacingCountType(input);
