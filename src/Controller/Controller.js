@@ -1,19 +1,15 @@
 import Car from '../Model/Car.js';
-import { getInput, printWinners, printCarPositions } from '../View/View.js';
+import { getInput, printCarPositions, printWinners } from '../View/View.js';
 import {
   validateCarNames,
   validateCars,
   validateRounds,
 } from './Validation.js';
 import { getWinners } from '../Util/util.js';
+import runRounds from '../Util/runRounds.js';
 
 // Controller에서 전체 로직을 처리
-function runRounds(cars, rounds) {
-  for (let i = 0; i < rounds; i++) {
-    cars.forEach((car) => car.moveForward());
-    printCarPositions(cars); // 자동차 위치 출력
-  }
-}
+
 class Controller {
   async run() {
     const carNames = await getInput('자동차 이름을 입력해 주세요');
@@ -24,13 +20,13 @@ class Controller {
 
     const cars = validatedCarNames.map((carName) => new Car(carName));
     const validatedCars = validateCars(cars);
-    // Car 객체 생성
-    runRounds(validatedCars, validatedRounds);
+
+    runRounds(validatedCars, validatedRounds, printCarPositions);
 
     const maxPosition = Math.max(...validatedCars.map((car) => car.position));
     const winners = getWinners(cars, maxPosition);
 
-    printWinners(winners); // 우승자 출력
+    printWinners(winners);
   }
 }
 
