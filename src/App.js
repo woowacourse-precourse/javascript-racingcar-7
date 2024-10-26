@@ -66,6 +66,15 @@ class App {
       return dash;
     };
     Console.print(racing());
+
+    const putResultToUser = () => {
+      for (let u = 0; u < userNames.length; u++) {
+        userRacingResult[u] = racing();
+      }
+      return userRacingResult;
+    };
+    Console.print(userRacingResult);
+    Console.print(putResultToUser());
   }
 }
 
