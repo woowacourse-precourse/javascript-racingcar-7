@@ -52,6 +52,7 @@ class App {
 
   printWinners() {
     const topMoveCount = Math.max(...this.cars.map(car => car.moveCount));
+    const winners = this.cars.filter(car => car.moveCount === topMoveCount).map(car => car.name);
   }
 }
 
