@@ -10,6 +10,35 @@ const mockQuestions = (inputs) => {
   });
 };
 
+const mockRandoms = (numbers) => {
+  MissionUtils.Random.pickNumberInRange = jest.fn();
+
+  numbers.reduce((acc, number) => {
+    return acc.mockReturnValueOnce(number);
+  }, MissionUtils.Random.pickNumberInRange);
+};
+
+const getLogSpy = () => {
+  const logSpy = jest.spyOn(MissionUtils.Console, 'print');
+  logSpy.mockClear();
+  return logSpy;
+};
+
+const successCase = [
+  {
+    name: '공동 우승',
+    MOVING: [3, 3, 4, 4],
+    inputs: ['pobi,woni', '2'],
+    logs: ['최종 우승자 : pobi, woni'],
+  },
+  {
+    name: '최종 우승',
+    MOVING: [4, 3],
+    inputs: ['pobi,woni', '1'],
+    logs: ['최종 우승자 : pobi'],
+  },
+];
+
 const failCase = [
   {
     name: '사용자가 차 이름의 값을 undefined로 입력했을 때',
@@ -84,6 +113,27 @@ const failCase = [
     error: ['[ERROR] 시도 횟수는 소수점이 아닌 양수로만 입력해주세요!'],
   },
 ];
+
+describe('레이싱 게임 성공', () => {
+  successCase.map(({ name, MOVING, inputs, logs }) => {
+    it(name, async () => {
+      // given
+      const logSpy = getLogSpy();
+      mockQuestions(inputs);
+      mockRandoms(MOVING);
+
+      // when
+      const app = new App();
+      await app.run();
+
+      // then
+      logs.forEach((log) => {
+        expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+      });
+    });
+    return { name, MOVING, inputs, logs };
+  });
+});
 
 describe('레이싱 게임 예외처리', () => {
   failCase.map(({ name, inputs, error }) => {
