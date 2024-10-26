@@ -16,7 +16,12 @@ class RacingCalc {
           `${this.carArr[carIdx]} : ${"-".repeat(this.moveCntArr[carIdx])}`
         );
       }
+      Console.print("");
     }
+    this.printWinner();
+  }
+  printWinner() {
+    let maxScore = Math.max(...this.moveCntArr);
   }
 }
 
