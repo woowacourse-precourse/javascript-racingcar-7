@@ -1,4 +1,4 @@
-import Validator from '../utils/validator.js';
+import Validator from '../../utils/validator.js';
 import InputView from '../views/InputView.js';
 import OutputView from '../views/OutputView.js';
 import Game from '../models/Game.js';
