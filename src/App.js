@@ -1,19 +1,20 @@
 import { Console } from '@woowacourse/mission-utils';
 import { getCarNames, getCount } from "./IO.js";
+import { randomRacing } from "./racing.js";
+import { displayResults } from "./IO.js";
 
 class App {
   async run() {
     try {
       const carNames = await getCarNames();
-      const attempts = await getCount();
-      console.log(`경주할 자동차 이름: ${carNames.join(', ')}`);
-      console.log(`시도할 횟수: ${attempts}`);
-      // 여기에 경주 로직 추가
-    } catch (error) {
-      console.error(error.message);
+      const chance = await getCount();
+      Console.print("\n실행 결과");
+      const results = randomRacing(carNames, chance, displayResults);
+      } catch (error) {
+        Console.print(`오류가 발생했습니다: ${error.message}`);
+      }
     }
   }
 
-  }
-
 export default App;
+
