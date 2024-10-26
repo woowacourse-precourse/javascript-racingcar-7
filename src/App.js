@@ -42,6 +42,9 @@ function checkNameInput(arr) {
       '[ERROR] 자동차 경주에는 최소 2명 이상의 인원이 필요합니다.'
     );
   }
+  if (new Set(arr).size !== arr.length) {
+    throw new Error(`[ERROR] 같은 이름은 사용할 수 없습니다.`);
+  }
 }
 
 function checkCountInput(input) {
