@@ -35,6 +35,12 @@ class Controller {
     for (let i = 0; i < trialCount; i += 1) {
       this.executeOnce();
     }
+    this.printWinner();
+  }
+
+  printWinner() {
+    const winners = Car.getWinner();
+    view.printWinner(winners);
   }
 }
 

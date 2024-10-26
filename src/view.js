@@ -23,6 +23,11 @@ const view = {
   printLineBreak() {
     Console.print('');
   },
+
+  printWinner(winners) {
+    const winnerString = winners.join(STRINGS.outputNameDelimiter);
+    Console.print(GAME_MESSAGES.winner + winnerString);
+  },
 };
 
 export default view;
