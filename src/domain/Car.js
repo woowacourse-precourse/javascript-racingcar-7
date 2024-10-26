@@ -1,4 +1,5 @@
-import getMaxValue from "../utils/getMaxValue";
+import getElementsWithMatchingValue from "../utils/getElementsWithMatchingValue.js";
+import getMaxValue from "../utils/getMaxValue.js";
 
 class Car {
   carNames;
@@ -17,11 +18,7 @@ class Car {
   
   getWinnerList() {
     const maxForwardNum = getMaxValue(this.forwardCounts);
-
-    const winnerList = this.carNames.filter((_, carIndex) => {
-      return this.forwardCounts[carIndex] === maxForwardNum;
-    });
-
+    const winnerList = getElementsWithMatchingValue(this.carNames, this.forwardCounts, maxForwardNum);
     return winnerList;
   }
 }
