@@ -23,6 +23,7 @@ class App {
             Console.print('') //개행
         }
 
+        carList.sort((a, b) => b.getDistance() - a.getDistance())
     }
 }
 

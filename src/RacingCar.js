@@ -16,6 +16,10 @@ class RacingCar {
         this.name = name;
     }
 
+    getDistance() {
+        return this.distState.length;
+    }
+
     goForward(num) {
         if (num >= 4) {
             this.distState += "-"
