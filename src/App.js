@@ -35,7 +35,7 @@ class App {
     Console.print(inputCount + "회");
 
     const checkCount = () => {
-      if (inputCount !== Number) {
+      if (isNaN(inputCount) || inputCount === "") {
         throw new Error("[ERROR] 숫자를 입력해주새요.");
       }
     };
@@ -49,11 +49,11 @@ class App {
     Console.print(randomNum());
 
     const userNames = checkNames();
-    const process = () => {
+    const userRacingResult = () => {
       const conditions = Array.from({ length: userNames.length });
       return conditions;
     };
-    Console.print(process());
+    Console.print(userRacingResult());
     Console.print(userNames);
 
     const racing = () => {
@@ -68,6 +68,10 @@ class App {
       return dash;
     };
     Console.print(racing());
+
+    const putResultToUser = () => {
+      for (let u = 0; u < userNames.length; u++) {}
+    };
   }
 }
 
