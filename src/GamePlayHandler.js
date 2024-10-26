@@ -2,12 +2,12 @@ import { Random, Console } from '@woowacourse/mission-utils';
 import { displayCarMovement } from './UserInterface.js';
 import { GAME_PROGRESS_MESSAGE } from './Message.js';
 
-export default function progressGame(carDataList, numberOfMove) {
+export default function progressGame(carDataList, moveCount) {
   Console.print(`\n${GAME_PROGRESS_MESSAGE.EXECUTION_RESULT}`);
-  for (let i = 0; i < numberOfMove; i++) {
-    const moveValues = extractMoveValue(carDataList.length);
-    displayCarMovement(carDataList, moveValues);
-    calculateTotalMoveValue(carDataList, moveValues);
+  for (let i = 0; i < moveCount; i++) {
+    const moveConditionValues = extractMoveValue(carDataList.length);
+    displayCarMovement(carDataList, moveConditionValues);
+    calculateTotalMoveValue(carDataList, moveConditionValues);
   }
   return carDataList;
 }
@@ -18,12 +18,12 @@ function extractMoveValue(numberOfCars) {
   );
 }
 
-function calculateTotalMoveValue(carDataList, moveValues) {
+function calculateTotalMoveValue(carDataList, moveConditionValues) {
   for (let i = 0; i < carDataList.length; i++) {
-    addIfAboveFour(carDataList[i], moveValues[i]);
+    addIfAboveFour(carDataList[i], moveConditionValues[i]);
   }
 }
 
-function addIfAboveFour(carData, moveValue) {
-  if (moveValue >= 4) carData.totalMoveValue += moveValue;
+function addIfAboveFour(carData, moveConditionValue) {
+  if (moveConditionValue >= 4) carData.totalMoveValue += moveConditionValue;
 }
