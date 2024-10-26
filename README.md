@@ -1,4 +1,7 @@
-# 🏎️ 자동차 경주 (우아한 프리코스 2차 과제) | 노션 링크 : url[notion](https://almond-drip-5f0.notion.site/2-126221c9c513812ca23dfb9fc02c4ce9?pvs=4)
+# 🏎️ 자동차 경주 (우아한 프리코스 2차 과제)
+
+## ✍️ 노션 정리
+[notion](https://almond-drip-5f0.notion.site/2-126221c9c513812ca23dfb9fc02c4ce9?pvs=4)
 
 ## ➡️ 기능 요구 사항
 
