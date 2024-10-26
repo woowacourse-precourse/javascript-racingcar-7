@@ -46,9 +46,15 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트", async () => {
+  test.each([
+    ["pobi,javaji"],
+    ["apple,b+na,tree"],
+    ["apple"],
+    ["a,b,c,d,e,f,g,h,i,j,k"],
+    ["apple,apple,apple"],
+  ])("입력 받은 자동차 이름 테스트", async (input) => {
     // given
-    const inputs = ["pobi,javaji"];
+    const inputs = [input];
     mockQuestions(inputs);
 
     // when
