@@ -1,4 +1,5 @@
-import { inputCarNames, inputPlayTime } from "./utils/customInput.js";
+import { MESSAGE } from "./utils/constants.js";
+import { woowahanInput } from "./utils/customInput.js";
 import { displayResult } from "./utils/displayResult.js";
 import playRace from "./utils/playRace.js";
 import settingRace from "./utils/settingRace.js";
@@ -7,13 +8,13 @@ import { eachNameLengthValidator, userInputValidator, attemptCountValidator } fr
 
 class App {
   async run() {
-    const carNames = await inputCarNames();
+    const carNames = await woowahanInput(MESSAGE.INPUT_CAR_NAMES);
     userInputValidator(carNames);
 
     const splitCarNames = splitName(carNames);
     eachNameLengthValidator(splitCarNames);
 
-    const inputAttemptCount = await inputPlayTime();
+    const inputAttemptCount = await woowahanInput(MESSAGE.INPUT_PLAY_TIME);
     attemptCountValidator(inputAttemptCount);
     const attemptCount = parseInt(inputAttemptCount);
 

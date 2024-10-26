@@ -1,6 +1,6 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
-import { inputCarNames, inputPlayTime } from "../src/utils/customInput.js";
+import { woowahanInput } from "../src/utils/customInput.js";
 import splitNames from "../src/utils/splitInput.js";
 import { attemptCountValidator } from "../src/validator.js";
 import pickRandomNumber from "../src/utils/pickRandomNumber.js";
@@ -71,7 +71,7 @@ describe("자동차 경주", () => {
     mockQuestions(inputs);
 
     // when
-    const receivedInput = await inputCarNames();
+    const receivedInput = await woowahanInput();
 
     // then
     expect(receivedInput).toEqual('pobi,woni');
@@ -107,7 +107,7 @@ describe("자동차 경주", () => {
     mockQuestions(attemptCount);
 
     // when
-    const receivedInput = await inputPlayTime();
+    const receivedInput = await woowahanInput();
 
     // then
     expect(receivedInput).toEqual("5");
@@ -119,7 +119,7 @@ describe("자동차 경주", () => {
     mockQuestions(attemptCount);
 
     // when
-    const receivedInput = await inputPlayTime();
+    const receivedInput = await woowahanInput();
 
     // then
     expect(() => attemptCountValidator(receivedInput)).toThrow("[ERROR]: 입력은 양의 정수만 가능합니다.");
@@ -131,7 +131,7 @@ describe("자동차 경주", () => {
     mockQuestions(attemptCount);
 
     // when
-    const receivedInput = await inputPlayTime();
+    const receivedInput = await woowahanInput();
 
     // then
     expect(() => attemptCountValidator(receivedInput)).toThrow("[ERROR]: 입력은 양의 정수만 가능합니다.");
