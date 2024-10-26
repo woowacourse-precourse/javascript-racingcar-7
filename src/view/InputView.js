@@ -7,6 +7,7 @@ class InputView{
     await this.getinputexception(car);
 
     const tryNumber = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+    await this.gettryNumberexception(tryNumber);
     Console.print('\n');
 
     return {car, tryNumber};
@@ -17,6 +18,17 @@ class InputView{
       if(car[i].length > 6) {
         throw new Error ("[Error] 자동차 이름을 5글자 이하로 작성해주세요.");
       }
+      if(car ==''){
+        throw new Error ("[Error] 자동차 이름을 적어주세요.");
+      }
+    }
+  }
+  async gettryNumberexception(tryNumber){
+    if(tryNumber < 0){
+      throw new Error ("[Error] 음수는 입력할 수 없습니다.")
+    }
+    if(tryNumber == ''){
+      throw new Error ("[Error] 시도 횟수를 입력해주세요.");
     }
   }
 }
