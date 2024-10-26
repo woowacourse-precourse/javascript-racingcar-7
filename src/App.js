@@ -61,5 +61,12 @@ class App {
     const randomNum = MissionUtils.Random.pickNumberInRange(0, 9);
     if (randomNum >= 4) car.position++;
   }
+
+  printRoundResults(cars) {
+    cars.forEach((car) => {
+      Console.print(`${car.name}: ${'-'.repeat(car.position)}`);
+    });
+    Console.print(`\n`);
+  }
 }
 export default App;
