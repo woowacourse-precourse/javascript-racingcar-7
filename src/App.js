@@ -43,6 +43,7 @@ class App {
       this.validateInput(carName, attempts);
 
       const cars = this.parseCarNames(carName);
+      return { cars, attempts };
     } catch (error) {
       Console.print(error.message);
       throw error;
