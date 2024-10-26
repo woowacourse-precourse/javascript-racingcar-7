@@ -24,9 +24,16 @@ class CarRaceGame {
     });
   }
 
-  startRace() {
+  runRaceRound() {
     this.determineEachCarMovement();
     this.printCarProgress();
+  }
+
+  startRace() {
+    while (this.tryCount) {
+      this.runRaceRound();
+      tryCount -= 1;
+    }
   }
 }
 
