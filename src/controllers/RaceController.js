@@ -17,7 +17,7 @@ class RaceController {
 
     const updatedList = [...peopleList];
     for (let i = 0; i < peopleList.length; i++) {
-      updatePlayersPositions(updatedList, i);
+      this.updatePlayersPositions(updatedList, i);
     }
   }
 
