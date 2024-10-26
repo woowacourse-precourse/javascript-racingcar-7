@@ -30,6 +30,12 @@ class Validator {
       handleError('[ERROR] : 경주를 진행할 횟수를 1회 이상 입력해주세요.');
     }
   }
+
+  static carName(carNames) {
+    this.isEmpty(carNames);
+    this.arraySize(carNames);
+    this.length(carNames);
+  }
 }
 
 export default Validator;
