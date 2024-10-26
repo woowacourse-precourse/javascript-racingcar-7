@@ -5,6 +5,10 @@ class Car {
     this.distance = 0;     
   }
 
+  move(distance) {
+    this.distance += distance;
+  }
+
 }
 
 export default Car;

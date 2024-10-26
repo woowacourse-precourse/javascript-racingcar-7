@@ -29,7 +29,9 @@ class Race {
   generateRandomDistances() {
     this.cars.forEach(car => {
       const randomDistance = getRandomNumber(0, 9);  
-      car.move(randomDistance);                      
+      if (randomDistance >= 4) { 
+        car.move(1);             
+      }                    
     });
   }
 
