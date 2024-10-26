@@ -4,7 +4,8 @@ class App {
   async run() {
     const { carNames, attemptCount } = await this.getUserInput();
     Console.print('\n실행결과');
-    this.startRace(carNames, attemptCount);
+    const resultBoard = this.startRace(carNames, attemptCount);
+    this.printWinner(carNames, resultBoard);
   }
 
   async getUserInput() {
@@ -57,6 +58,8 @@ class App {
     for (let i = 0; i < attemptCount; i++) {
       carMovementTracker = this.moveCars(carNames, carMovementTracker);
     }
+
+    return carMovementTracker;
   }
 
   moveCars(carNames, prevMovement) {
@@ -77,6 +80,19 @@ class App {
       Console.print(`${carName}: ${'-'.repeat(moveCount)}`);
     });
     Console.print('');
+  }
+
+  printWinner(carNames, resultBoard) {
+    const winner = [];
+    const maxCount = Math.max(...Object.values(resultBoard));
+
+    carNames.forEach((carName) => {
+      if (resultBoard[carName] === maxCount) {
+        winner.push(carName);
+      }
+    });
+
+    Console.print(`최종 우승자: ${winner.join(', ')}`);
   }
 }
 
