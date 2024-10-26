@@ -9,5 +9,11 @@ class TryNumberValidation {
     const number = Number(tryNumber);
     return !Number.isInteger(number) || isNaN(number);
   }
+
+  static checkInRange(tryNumber) {
+    const min = GAME.minTryCount;
+    const max = GAME.maxTryCount;
+    return tryNumber < min || tryNumber > max;
+  }
 }
 export default TryNumberValidation;
