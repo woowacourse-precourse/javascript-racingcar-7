@@ -38,3 +38,9 @@ export function validateCarNames(names) {
   validateCarNameLength(names);
   validateCarsLength(names);
 }
+
+export function validateAttemptCount(attemptCount) {
+  if (attemptCount < 1) {
+    throw new Error('[ERROR]');
+  }
+}
