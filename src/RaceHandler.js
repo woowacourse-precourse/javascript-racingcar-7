@@ -35,8 +35,15 @@ class RaceHandler {
             }
         });
 
+        this.validateWinner(maxMoves);
         const result = winners.join(', ');
         Console.print(`최종 우승자 : ${result}`);
+    }
+
+    validateWinner(maxMoves) {
+        if (maxMoves === 0) {
+            throw new Error('[ERROR] 왜 아무도 출발하지 않았죠? 이런, 오리 가족이 길을 건너고 있었네요! 귀여워라!');
+        }
     }
 }
 
