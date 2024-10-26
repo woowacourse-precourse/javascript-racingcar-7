@@ -16,7 +16,7 @@ class Racing {
   #tryRound() {
     const cars = [...this.#cars];
     const roundResult = cars.map((car) => car.driving());
-    return roundResult;
+    this.#result.push(roundResult);
   }
 
   play() {
@@ -26,11 +26,8 @@ class Racing {
       (arrayLike, index) => index + 1,
     );
 
-    rounds.forEach((round) => {
-      const result = this.#tryRound();
-      this.#result = result;
-
-      this.#showResult(round);
+    rounds.forEach(() => {
+      this.#tryRound();
     });
   }
 
