@@ -7,6 +7,7 @@ import {
   shouldAdvance,
   getAdvanceResult,
   executionLoop,
+  getWinner,
 } from "../src/utils/index.js";
 
 describe("배열의 중복을 체크한다.", () => {
@@ -118,5 +119,18 @@ describe("반복 횟수 만큼 실행 리스트에 있는 함수들을 실행합
     executionLoop(2, [fn1, fn2]);
 
     expect(calls).toEqual(["fn1", "fn2", "fn1", "fn2"]);
+  });
+});
+
+describe("전진 카운트가 가장 높은 자동차들을 문자열(우승자 형식)로 변환하여 리턴합니다.", () => {
+  test("자동차 이름과 전진 횟수를 받아 대시로 변환하고, 결과를 줄바꿈으로 구분된 문자열로 반환한다.", () => {
+    const advanceCounts = [2, 3, 3];
+    const carsInfoEntries = [
+      ["a", 2],
+      ["b", 3],
+      ["c", 3],
+    ];
+    const result = "b, c";
+    expect(getWinner(advanceCounts, carsInfoEntries)).toBe(result);
   });
 });
