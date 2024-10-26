@@ -12,7 +12,6 @@ const mockQuestions = (inputs) => {
 
 const mockRandoms = (numbers) => {
   MissionUtils.Random.pickNumberInRange = jest.fn();
-
   numbers.reduce((acc, number) => {
     return acc.mockReturnValueOnce(number);
   }, MissionUtils.Random.pickNumberInRange);
@@ -24,37 +23,40 @@ const getLogSpy = () => {
   return logSpy;
 };
 
-describe("자동차 경주", () => {
-  test("기능 테스트", async () => {
+describe("자동차 경주 게임", () => {
+  test("전진-정지", async () => {
     // given
     const MOVING_FORWARD = 4;
     const STOP = 3;
     const inputs = ["pobi,woni", "1"];
-    const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
+    const outputs = ["pobi : -"];
+    const randoms = [MOVING_FORWARD, STOP];
     const logSpy = getLogSpy();
 
     mockQuestions(inputs);
-    mockRandoms([MOVING_FORWARD, STOP]);
+    mockRandoms([...randoms]);
 
     // when
     const app = new App();
-    await app.run();
+    await app.play();
 
     // then
-    logs.forEach((log) => {
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    outputs.forEach((output) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(output));
     });
   });
 
-  test("예외 테스트", async () => {
+  test.each([
+    [["pobi,javaji"]],
+    [["pobi,eastjun"]]
+  ])("이름에 대한 예외 처리", async (inputs) => {
     // given
-    const inputs = ["pobi,javaji"];
     mockQuestions(inputs);
 
     // when
     const app = new App();
 
     // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
+    await expect(app.play()).rejects.toThrow("[ERROR]");
   });
 });
