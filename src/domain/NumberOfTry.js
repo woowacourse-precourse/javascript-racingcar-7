@@ -1,6 +1,7 @@
+import utils from '../utils/utils.js';
+
 class NumberOfTry {
   static #ERROR_MESSAGE = {
-    empty: '[ERROR] 빈 문자열입니다.',
     character: '[ERROR] 숫자가 아닌 문자를 입력했습니다.',
     range: '[ERROR] 1 이상의 숫자를 입력해주세요.',
   };
@@ -15,15 +16,9 @@ class NumberOfTry {
   }
 
   #validate() {
-    this.#validateEmpty();
+    utils.validateEmpty(this.#input);
     this.#validateCharacter();
     this.#validateRange();
-  }
-
-  #validateEmpty() {
-    if (this.#input.length === 0) {
-      throw new Error(NumberOfTry.#ERROR_MESSAGE.empty);
-    }
   }
 
   #validateCharacter() {
