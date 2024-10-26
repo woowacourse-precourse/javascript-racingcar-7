@@ -29,5 +29,8 @@ export default class Input {
     if (this.car.some((car) => car.length > 5)) {
       throw new Error("[ERROR] 자동차 이름은 5자 이하여야 합니다.");
     }
+    if (new Set(this.car).size !== this.car.length) {
+      throw new Error("[ERROR] 중복된 자동차 이름이 있습니다.");
+    }
   }
 }
