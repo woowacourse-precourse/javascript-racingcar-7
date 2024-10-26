@@ -13,6 +13,8 @@ class App {
 
     const tryCountInput = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
     this.tryCount = this.convertToNumber(tryCountInput);
+
+    this.startRace();
   }
 
   createCars(carNamesInput) {
@@ -31,6 +33,10 @@ class App {
     if (!isNumber) throw new Error('[ERROR] 시도할 횟수가 숫자가 아닙니다.');
 
     return +tryCountInput.trim();
+  }
+
+  startRace() {
+    Console.print('\n실행결과');
   }
 }
 
