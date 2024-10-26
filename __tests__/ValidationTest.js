@@ -92,6 +92,17 @@ describe('자동차 이름 입력 유효성 검사', () => {
     );
   });
 
+  test('자동차 이름 특수문자 입력 시 오류 발생', async () => {
+    const input = ['haku.!@$#'];
+
+    const app = new App();
+    mockQuestions(input);
+
+    await expect(async () => await app.getRacingCarName()).rejects.toThrow(
+      ERROR_MESSAGE.special
+    );
+  });
+
   test('자동차 이름 구분자 , 아닐 시 오류 발생', async () => {
     const input = ['haku.haul'];
 
@@ -156,6 +167,17 @@ describe('자동차 경주 시도 횟수 입력 유효성 검사', () => {
 
     await expect(async () => await app.getRacingAttmeptCount()).rejects.toThrow(
       ERROR_MESSAGE.attemptNumber.invalidInteger
+    );
+  });
+
+  test('시도횟수 특수문자 입력 시 오류 발생', async () => {
+    const input = ['#@#'];
+
+    const app = new App();
+    mockQuestions(input);
+
+    await expect(async () => await app.getRacingAttmeptCount()).rejects.toThrow(
+      ERROR_MESSAGE.special
     );
   });
 });
