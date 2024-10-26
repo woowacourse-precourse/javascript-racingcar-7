@@ -19,5 +19,9 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  rules: { 'max-depth': ['error', 2] },
-}
+  rules: {
+    'max-depth': ['error', 2],
+    'import/extensions': ['error', 'ignorePackages'],
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+  },
+};
