@@ -31,15 +31,19 @@ class App {
     //{자동차이름: 전진값} 객체 생성
     const cars = carNames.map(name => ({name, moving:0}));
 
+    Console.print('\n실행 결과');
     for(let i=0; i< games; i++){
       for(let car of cars){
         const randomNum = Random.pickNumberInRange(0, 9);
         if (randomNum > 4) {
           car.moving += 1;
-        } 
+        }
+        Console.print(`${car.name} : `+'-'.repeat(car.moving));
       }
-      cars.forEach(car => Console.print(car.name+ " : "+car.moving));
+      Console.print(' ');
     }
+
+
   }
 }
 
