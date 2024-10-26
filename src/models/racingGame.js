@@ -27,7 +27,7 @@ class RacingGame {
   }
 
   playOneRound() {
-    this.cars.foreach((car) => {
+    this.cars.forEach((car) => {
       const moveNumber = getRandomNumber();
       car.move(moveNumber);
     });
