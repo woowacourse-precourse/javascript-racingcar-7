@@ -30,6 +30,7 @@ class RaceGame {
   start() {
     Console.print(USER.RACE_RESULT_BEFORE_MESSAGE);
     Array.from({ length: this.tryCount }).forEach(() => this.carRacing());
+    this.winner();
   }
 
   carRacing() {
@@ -40,6 +41,20 @@ class RaceGame {
     });
 
     Console.print('');
+  }
+
+  winner() {
+    const maxMoveLength = Math.max(
+      ...this.carList.map((car) => car.getMoveHistory.length),
+    );
+
+    const winner = this.carList
+      .filter(
+        (car) => parseInt(car.getMoveHistory.length, 10) === maxMoveLength,
+      )
+      .map((car) => car.getName);
+
+    Console.print(`${USER.WINNER_MESSAGE}${winner.join(', ')}`);
   }
 }
 
