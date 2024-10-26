@@ -13,13 +13,13 @@ class App {
     }
     let carNames = carNamesString.split(SEPARATOR);
 
-    if (!hasLongCarName(carNames)) {
+    if (!this.hasLongCarName(carNames)) {
       throw new Error(
         "[ERROR] 구분자는 있으나, 자동차 이름은 5자 이하만 가능합니다. 프로그램을 종료합니다."
       );
     }
 
-    if (hasCarNameStartingWithNumber(carNames)) {
+    if (this.hasCarNameStartingWithNumber(carNames)) {
       throw new Error(
         "[ERROR] 자동차 이름은 문자만 가능합니다. 프로그램을 종료합니다."
       );
@@ -36,9 +36,24 @@ class App {
     }
 
     let roundCount = Number(roundCountString);
-    if (roundCount < 0) {
-      throw new Error("[ERROR] 음수를 입력하셨습니다. 프로그램을 종료합니다.");
+    if (roundCount <= 0) {
+      throw new Error(
+        "[ERROR] 시도 횟수는 1회 이상이어야 합니다. 프로그램을 종료합니다."
+      );
     }
+
+    const carsMap = this.createCarPositionMap(carNames);
+    for (let i = 0; i < roundCount; i++) {
+      for (const car of carsMap) {
+        if (MissionUtils.Random.pickNumberInRange(0, 9) > 3) {
+          car.position++;
+        }
+      }
+    }
+  }
+
+  createCarPositionMap(carNames) {
+    return carNames.map((name) => ({ name, position: 0 }));
   }
 
   hasLongCarName(carNames) {
