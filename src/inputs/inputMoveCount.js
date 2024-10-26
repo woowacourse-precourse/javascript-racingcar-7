@@ -4,7 +4,7 @@ import {
   ERROR_INVALID_MOVE_COUNT,
   ERROR_INVALID_INPUT_TYPE,
   throwError,
-} from "../src/constants/errorContants.js";
+} from "../constants/errorContants.js";
 
 export async function inputMoveCount() {
   const inputCount = String(

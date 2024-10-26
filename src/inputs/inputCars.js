@@ -1,5 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
-import Car from "../model/Car";
+import Car from "../model/Car.js";
 import {
   ERROR_CAR_AMOUNT,
   ERROR_BLANK,
@@ -7,6 +7,7 @@ import {
   ERROR_DUPLICATE,
   throwError,
 } from "../constants/errorContants.js";
+
 
 export async function inputCars() {
   const cars = String(
