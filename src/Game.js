@@ -1,6 +1,13 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import { PrintRoundResult } from "./handler/PrintRoundResult.js";
-import { DISTANCE, MAX_RANDOM_NUMBER, MIN_RANDOM_NUMBER, WINNING_NUMBER } from "./constants/Constants.js";
+import {
+  DISTANCE,
+  MAX_RANDOM_NUMBER,
+  MIN_ATTEMPT_COUNT,
+  MIN_RANDOM_NUMBER,
+  WINNING_NUMBER
+} from "./constants/Constants.js";
+import { ATTEMPT_COUNT_ERROR_MESSAGE } from "./constants/Messages.js";
 
 export class Game {
   #printRoundResult;
@@ -10,10 +17,16 @@ export class Game {
   }
 
   play(attemptCount, cars) {
+    this.#checkAttemptCountRange(attemptCount);
+
     for (let i = 0; i < attemptCount; i++) {
       this.#playRound(cars);
     }
     return this.#getWinners(cars);
+  }
+
+  #checkAttemptCountRange(attemptCount) {
+    if (attemptCount < MIN_ATTEMPT_COUNT) throw new Error(ATTEMPT_COUNT_ERROR_MESSAGE);
   }
 
   #playRound(cars) {
