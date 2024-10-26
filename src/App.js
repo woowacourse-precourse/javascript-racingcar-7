@@ -23,7 +23,7 @@ const inputCars = async () => {
     "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
   );
   const cars = inputCars.split(",").map((car) => car.trim());
-  Console.print(cars);
+
   inputCarsException(cars);
   return cars;
 };
@@ -32,6 +32,7 @@ const inputCount = async () => {
   const count = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
 
   inputCountException(count);
+  Console.print("\n");
   return count;
 };
 
@@ -59,6 +60,9 @@ const racingCount = async (count, cars) => {
 };
 
 const getWinners = (cars, result) => {
+  if (result.every((num) => num === 0)) {
+    return "전진한 자동차가 없어 우승자가 없습니다.";
+  }
   const maxScore = Math.max(...result);
   return cars.filter((_, index) => result[index] === maxScore).join(", ");
 };
