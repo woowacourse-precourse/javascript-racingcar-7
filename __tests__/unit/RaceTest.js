@@ -26,7 +26,7 @@ describe("Race 클래스 테스트", () => {
 
   describe("generateRandomDistances() 테스트", () => {
 
-    test("Car 객체마다 무작위 거리가 부여되어야 한다", async () => {
+    test("무작위 값이 4 이상일 때만 Car 객체가 이동해야 한다", async () => {
       getRandomNumber.mockReturnValueOnce(3)
                      .mockReturnValueOnce(5)
                      .mockReturnValueOnce(7);
@@ -35,9 +35,9 @@ describe("Race 클래스 테스트", () => {
 
       race.generateRandomDistances();
 
-      expect(race.cars[0].distance).toBe(3); 
-      expect(race.cars[1].distance).toBe(5); 
-      expect(race.cars[2].distance).toBe(7); 
+      expect(race.cars[0].distance).toBe(0); 
+      expect(race.cars[1].distance).toBe(1); 
+      expect(race.cars[2].distance).toBe(1); 
     });
   });
 });
