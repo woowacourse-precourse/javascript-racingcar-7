@@ -4,13 +4,13 @@ class RacingCar {
         this._distance = 0;
     }
     get distance() {
-        return this.distance;
+        return this._distance;
     }
     get name() {
-        return this.name;
+        return this._name;
     }
     moveForward() {
-        this.distance += 1;
+        this._distance += 1;
     }
 }
 

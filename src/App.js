@@ -1,5 +1,6 @@
 import { Console } from '@woowacourse/mission-utils'
 import RacingCar from './RacingCar.js';
+import { determineEachMove } from './determineMove.js';
 class App {
   async run() {
     const RACINGCARLIST = [];
@@ -8,13 +9,13 @@ class App {
     const INPUTTIMES = await Console.readLineAsync("시도할 횟수는 몇 회인가요?");
 
     let racingCarNamesList = INPUTRACINGCAR.split(",");
-    //Console.print(racingCarNamesList);
-    //Console.print(INPUTTIMES);
+
     for(let i = 0; i < racingCarNamesList.length; i++){
       let racingCar = new RacingCar(racingCarNamesList[i]);
       RACINGCARLIST.push(racingCar);
     }
-    //Console.print(RACINGCARLIST);
+
+    determineEachMove(RACINGCARLIST);
   }
 }
 
