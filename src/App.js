@@ -1,3 +1,4 @@
+import startGame from "./game/gameFunc.js";
 import PrintFunc from "./print/printFunc.js";
 import { Console } from "@woowacourse/mission-utils";
 
@@ -9,7 +10,8 @@ class App {
   async gatherUserInputs() {
     const carNames = await this.checkCarNameInput();
     const raceRap = await this.checkRacingInputRap();
-    PrintFunc.printParams(`${carNames},${raceRap}`);
+
+    startGame(carNames, raceRap);
   }
 
   async checkCarNameInput() {
