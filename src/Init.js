@@ -1,10 +1,13 @@
 import { Console } from "@woowacourse/mission-utils";
+import Race from "./Race";
+
 class Init {
   async start() {
     try {
-      const carNames = await this.getCarNames();
-      const numberOfTries = await this.getNumberOfTries();
-      // 레이싱 게임 시작
+        const carsArray = await this.getCarNames();
+        const numberOfTries = await this.getNumberOfTries();
+        const RacingGame = new Race();
+        RacingGame.start(carsArray, numberOfTries);
     } catch (error) {
       Console.print(`[ERROR] ${error.message}`);
     }
