@@ -49,17 +49,15 @@ class App {
     Console.print(randomNum());
 
     const userNames = checkNames();
-    const userRacingResult = () => {
-      const conditions = Array.from({ length: userNames.length });
-      return conditions;
-    };
-    Console.print(userRacingResult());
+    const userRacingResult = Array.from({ length: userNames.length });
+
+    Console.print(userRacingResult);
     Console.print(userNames);
 
     const racing = () => {
-      const randomNumber = randomNum();
       let dash = "";
       for (let r = 0; r < inputCount; r++) {
+        const randomNumber = randomNum();
         Console.print(randomNumber);
         if (4 <= randomNumber) {
           dash += "-";
@@ -68,10 +66,6 @@ class App {
       return dash;
     };
     Console.print(racing());
-
-    const putResultToUser = () => {
-      for (let u = 0; u < userNames.length; u++) {}
-    };
   }
 }
 
