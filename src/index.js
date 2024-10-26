@@ -1,3 +1,4 @@
 import App from './App.js';
 
-App.run();
+const app = new App();
+await app.run();

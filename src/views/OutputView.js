@@ -11,7 +11,7 @@ class OutputView {
 
   static printGame(carList) {
     carList.forEach(car => {
-      const output = `${car.name}: ` + '-'.repeat(car.distance);
+      const output = `${car.name} : ` + '-'.repeat(car.distance);
       Console.print(output);
     });
   }
