@@ -3,40 +3,42 @@ import RacingGame from "./RacingGame.js";
 import OutputView from "./OutputView.js";
 
 class App {
-  constructor() {
-    this.inputView = new InputView();
-    this.outputView = new OutputView();
-    this.game = new RacingGame();
+  constructor(
+    inputView = new InputView(),
+    outputView = new OutputView(),
+    game = new RacingGame()
+  ) {
+    this.inputView = inputView;
+    this.outputView = outputView;
+    this.game = game;
   }
 
   async run() {
-    const game = this.game;
-
     try {
-      await this.initializeGame(game);
-      await this.playGame(game);
+      await this.initializeGame();
+      await this.playGame();
     } catch (error) {
       throw new Error(error.message);
     }
   }
 
-  async initializeGame(game) {
+  async initializeGame() {
     const namesInput = await this.inputView.inputCarNames();
     this.game.createCars(namesInput);
 
     const countInput = await this.inputView.inputTryCount();
-    this.tryCount = game.validateTryCount(countInput);
+    this.tryCount = this.game.validateTryCount(countInput);
   }
 
-  async playGame(game) {
+  async playGame() {
     this.outputView.printGameStartMessage();
 
     for (let i = 0; i < this.tryCount; i++) {
-      game.moveAllCars();
-      game.printAllStatus();
+      this.game.moveAllCars();
+      this.game.printAllStatus();
     }
 
-    game.printWinners();
+    this.game.printWinners();
   }
 }
 
