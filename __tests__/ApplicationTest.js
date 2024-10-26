@@ -65,6 +65,27 @@ describe("자동차 경주", () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
+  test("기능 테스트3",  async () => {
+    const MOCK_RANDOMS = [5, 1, 5, 1, 1, 5];
+    const inputs = ["A,B,C", "2"];
+    const logs = [
+      "A : -", "B : ", "C : -",
+      "A : -", "B : ", "C : --",
+      "최종 우승자 : C"
+    ];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms(MOCK_RANDOMS);
+
+    const app = new App();
+    await app.run();
+
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    })
+  })
+
 
   test("예외 테스트", async () => {
     // given
