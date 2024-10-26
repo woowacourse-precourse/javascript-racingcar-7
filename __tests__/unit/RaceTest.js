@@ -69,5 +69,19 @@ describe("Race 클래스 테스트", () => {
 
       expect(printRaceStatusSpy).toHaveBeenCalledTimes(5); 
     });
+
+    describe("getWinners() 테스트", () => {
+
+      test("최종 우승자를 올바르게 결정해야 한다", async () => {
+        await race.setCarName();
+
+        race.cars[0].move(6); 
+        race.cars[1].move(4); 
+        race.cars[2].move(2); 
+
+        const winners = race.getWinners();
+        expect(winners).toEqual(["Audi"]);
+      });
+    });
   });
 });
