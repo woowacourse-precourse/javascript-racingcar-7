@@ -1,6 +1,6 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import App from '../src/App';
-import { ERROR_MESSAGE, IO_MESSAGE } from '../src/common/message';
+import { ERROR_MESSAGE } from '../src/common/message';
 import Car from '../src/car/Car';
 
 const mockQuestions = (inputs) => {
@@ -137,7 +137,7 @@ describe('자동차 경주 예외', () => {
     const inputs = ['', null];
     mockQuestions([...inputs]);
     const app = new App();
-    inputs.forEach(async (input) => {
+    inputs.forEach(async () => {
       await expect(app.setCars()).rejects.toThrow(ERROR_MESSAGE.EMPTY_STRING);
     });
   });
@@ -146,7 +146,7 @@ describe('자동차 경주 예외', () => {
     const inputs = ['', null, undefined];
     mockQuestions([...inputs]);
     const app = new App();
-    inputs.forEach(async (input) => {
+    inputs.forEach(async () => {
       await expect(app.setTryCount()).rejects.toThrow(ERROR_MESSAGE.EMPTY_STRING);
     });
   });
@@ -155,7 +155,7 @@ describe('자동차 경주 예외', () => {
     const inputs = ['값', 'value', '12a', 'a12', '✌️✌️', ';)', '1+2', '1-2'];
     mockQuestions([...inputs]);
     const app = new App();
-    inputs.forEach(async (input) => {
+    inputs.forEach(async () => {
       await expect(app.setTryCount()).rejects.toThrow(ERROR_MESSAGE.INVALID_NUMBER);
     });
   });
@@ -164,7 +164,7 @@ describe('자동차 경주 예외', () => {
     const inputs = ['-1', '0', '1.23', '0.0', '-0', '+0', '-1.23'];
     mockQuestions([...inputs]);
     const app = new App();
-    inputs.forEach(async (input) => {
+    inputs.forEach(async () => {
       await expect(app.setTryCount()).rejects.toThrow(ERROR_MESSAGE.NOT_POSITIVE_INTEGER);
     });
   });
@@ -173,7 +173,7 @@ describe('자동차 경주 예외', () => {
     const inputs = ['301', '999999999999999999999999999999', '999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999'];
     mockQuestions([...inputs]);
     const app = new App();
-    inputs.forEach(async (input) => {
+    inputs.forEach(async () => {
       await expect(app.setTryCount()).rejects.toThrow(ERROR_MESSAGE.TOO_BIG_TRY_COUNT);
     });
   });
