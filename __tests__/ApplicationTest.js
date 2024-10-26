@@ -54,6 +54,18 @@ describe('구현할 기능 목록 테스트 코드 작성', () => {
 
     expect(result).toEqual(STOP);
   });
+
+  test('경주 점수 산출을 위한 객체 생성', async () => {
+    // given
+    const carNames = ['pobi', 'woni', 'jun'];
+    const expectedResult = { pobi: 0, woni: 0, jun: 0 };
+
+    const app = new App();
+
+    const result = app.setGame(carNames);
+
+    expect(result).toEqual(expectedResult);
+  });
 });
 
 describe('자동차 경주', () => {
