@@ -9,12 +9,13 @@ class Car {
     }
 
     printMoveScore() {
-        Console.print(this.moveScore);
+        Console.print(`${this.name} : ${"-".repeat(this.moveScore)}`);
     }
 
     move() {
         const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
         if (randomNumber > 3) this.moveScore++;
+        this.printMoveScore();
     }
 }
 
@@ -38,6 +39,7 @@ class App {
 
         for (let i = 0; i < inputRound; i++) {
             cars.map((car) => car.move());
+            Console.print("\n");
         }
     }
 }
