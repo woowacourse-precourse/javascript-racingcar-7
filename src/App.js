@@ -1,4 +1,4 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 
 class App {
   async run() {
@@ -10,6 +10,7 @@ class App {
       this.printWinners(cars);
     } catch (error) {
       Console.print(error.message);
+      throw error;
     }
   }
 
