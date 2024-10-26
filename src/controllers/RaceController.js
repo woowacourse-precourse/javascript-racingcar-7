@@ -16,18 +16,23 @@ class RaceController {
   movePlayersRandomly(peopleList) {
 
     const updatedList = [...peopleList];
-
     for (let i = 0; i < peopleList.length; i++) {
       updatePlayersPositions(updatedList, i);
     }
   }
 
+  getMaxValue(positions) {
+    return Math.max(...positions);
+  }
 
   getRaceWinnersIndex(positions) {
-    let maxValue = Math.max(...positions);
-    let winnersIndex = [];
+    const maxValue = this.getMaxValue(positions);
+    const winnersIndex = [];
 
-    positions.forEach((value, index) => { value === maxValue && winnersIndex.push(index) })
+    positions.forEach((value, index) => {
+      value === maxValue && winnersIndex.push(index)
+
+    })
 
     return winnersIndex;
 
