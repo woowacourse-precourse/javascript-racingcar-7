@@ -1,3 +1,4 @@
+import RacingGame from '../models/racingGame.js';
 import Validator from '../utils/validator.js';
 import InputView from '../views/inputView.js';
 
@@ -6,11 +7,14 @@ class GameController {
 
   gameRounds;
 
+  racingGame;
+
   async start() {
     await this.readCarNames();
     this.validateCarNames();
     await this.readGameRounds();
     this.validateGameRounds();
+    this.createRacingGame();
   }
 
   async readCarNames() {
@@ -27,6 +31,10 @@ class GameController {
 
   validateGameRounds() {
     Validator.validateGameRounds(this.gameRounds);
+  }
+
+  createRacingGame() {
+    this.racingGame = new RacingGame(this.carNames, this.gameRounds);
   }
 }
 
