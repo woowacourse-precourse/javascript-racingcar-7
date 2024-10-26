@@ -118,8 +118,23 @@ class App {
 
 
     // * == 시도할 횟수(차수) 입력 처리 == // 
+    const isDegreeZero = (degreeInput) => {
+      if (degreeInput == 0) {
+        return true;
+      }
+      return false;
+    }
 
 
+    const checkDegreeInputError = (degreeInput) => {
+      if (isInputFalsy(degreeInput)) {
+        throughErrorMessage("시도할 횟수를 입력해주세요.");
+      }
+
+      if (isDegreeZero(degreeInput)) {
+        throughErrorMessage("시도할 횟수가 0보다 커야 경기가 시작됩니다.");
+      }
+    }
     // * ========================== // 
 
     try{
@@ -137,8 +152,9 @@ class App {
 
       checkCarInputError(carsInput, carArray);
 
-      const degree = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n'); 
+      const degreeInput = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n'); 
       
+      checkDegreeInputError(degreeInput);
       // ! ============///
 
 
@@ -146,7 +162,7 @@ class App {
       // todo : depth 가 2가 되도록 리팩토링 해야한다.
       // * n번 경주한다.
       Console.print('\n실행 결과');
-      for (let i =0; i < degree ; i++){
+      for (let i =0; i < degreeInput ; i++){
         carArray.forEach((car) => {
           const randomValue = getRandomValue(); 
 
