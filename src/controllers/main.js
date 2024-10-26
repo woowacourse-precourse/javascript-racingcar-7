@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 
 const Main = async () => {
   Console.print("프로그램이 실행되었습니다.");
@@ -27,20 +27,38 @@ const Main = async () => {
     throw new Error("[ERROR] 시도할 횟수는 100번 이하여야합니다.");
   }
 
+  class Car {
+    constructor(name) {
+      this.name = name;
+      this.advance = 0;
+    }
+
+    addAdvance() {
+      this.advance++;
+    }
+  }
+
+  const myCar = new Car("nayoung");
+
   const gameController = (parseNumber) => {
-    let i = 0;
-    for (i = 0; i < parseNumber; i++) {
+    for (let i = 0; i < parseNumber; i++) {
       raceController();
     }
   };
 
   const raceController = () => {
-    Console.print("레이스 테스트");
+    raceRound();
+  };
+
+  const raceRound = () => {
+    const randomResult = Random.pickNumberInRange(0, 9);
+
+    if (randomResult >= 4) {
+      myCar.addAdvance();
+    }
   };
 
   gameController(parseNumber);
-
-  Console.print(`${isCarName}, ${isTryNumber}`);
 };
 
 export default Main;
