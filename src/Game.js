@@ -1,4 +1,5 @@
 import { Console, Random } from '@woowacourse/mission-utils';
+import Car from './Car.js';
 
 class Game {
   #CARS_LIST = [];
@@ -22,9 +23,12 @@ class Game {
     Console.print('\n실행 결과');
     while (this.currentRepeat !== this.repetitionNumber) {
       this.startRound();
-      this.printRoundResult();
+      this.printRoundResults();
       this.currentRepeat += 1;
     }
+
+    const winners = this.getWinners();
+    return winners;
   }
 
   startRound() {
@@ -46,6 +50,21 @@ class Game {
   canMoveForward() {
     if (Random.pickNumberInRange(0, 9) >= 4) return true;
     return false;
+  }
+
+  getWinners() {
+    let winners = [];
+    let winnerDistance = 0;
+    this.#CARS_LIST.forEach((car) => {
+      if (car.currentDistance === winnerDistance) {
+        winners.push(car.name);
+      }
+      if (car.currentDistance > winnerDistance) {
+        winnerDistance = car.currentDistance;
+        winners = [car.name];
+      }
+    });
+    return winners;
   }
 }
 
