@@ -40,4 +40,24 @@ describe("Race 클래스 테스트", () => {
       expect(race.cars[2].distance).toBe(1); 
     });
   });
+
+  describe("printRaceStatus() 테스트", () => {
+
+    test("자동차 이동 상태가 올바르게 출력되어야 한다", async () => {
+      getRandomNumber.mockReturnValueOnce(4) 
+                     .mockReturnValueOnce(3) 
+                     .mockReturnValueOnce(4); 
+
+      await race.setCarName();
+      race.generateRandomDistances();
+      console.log = jest.fn(); 
+
+      race.printRaceStatus();
+
+      expect(console.log).toHaveBeenCalledWith("pobi : -");
+      expect(console.log).toHaveBeenCalledWith("woni : ");
+      expect(console.log).toHaveBeenCalledWith("jun : -");
+    });
+  });
+
 });
