@@ -1,4 +1,5 @@
 import InputView from "../view/InputView.js";
+import Validator from "./validator.js";
 
 class CarRace {
   constructor() {}
@@ -6,11 +7,14 @@ class CarRace {
   async getCarNamesFromUserInput() {
     const input = await InputView.readCarNames();
     const carList = this.parseCarNames(input);
-    console.log(carList);
   }
 
   parseCarNames(input) {
     return input.split(",");
+  }
+
+  validateCarNames(carList) {
+    carList.map((carName) => Validator.checkName(carName));
   }
 }
 

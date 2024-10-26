@@ -3,7 +3,7 @@ import { INPUT_MESSAGE } from "../constants/messages.js";
 
 class InputView {
   static async readCarNames() {
-    return await InputView.readInput(INPUT_MESSAGE.carNames);
+    return await InputView.readInput(INPUT_MESSAGE.ENTER_CAR_NAMES);
   }
 
   static async readInput(input) {
