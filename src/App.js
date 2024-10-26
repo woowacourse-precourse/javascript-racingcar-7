@@ -50,6 +50,7 @@ class App {
     for (let i = 0; i < moves; i++) {
       this.runRound(cars);
     }
+    this.getWinners(cars);
   }
 
   runRound(cars) {
@@ -67,6 +68,12 @@ class App {
       Console.print(`${car.name}: ${'-'.repeat(car.position)}`);
     });
     Console.print(`\n`);
+  }
+
+  getWinners(cars) {
+    const maxPosition = Math.max(...cars.map((car) => car.position));
+    const winners = cars.filter((car) => car.position === maxPosition).map((car) => car.name);
+    MissionUtils.Console.print(`최종 우승자 : ${winners.join(", ")}`);
   }
 }
 export default App;
