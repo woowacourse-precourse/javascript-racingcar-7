@@ -1,9 +1,9 @@
 export function initializeCarMoveCount(cars) {
-    const carMoveHashMap = {};
+    const carMoveObj = {};
 
     cars.forEach((car) => {
-        carMoveHashMap[car] = [];
+        carMoveObj[car] = [];
     })
 
-    return carMoveHashMap;
+    return carMoveObj;
 }

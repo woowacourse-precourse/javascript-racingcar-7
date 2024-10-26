@@ -4,11 +4,11 @@ import { getRandomValue } from "../get/getRandomValue.js";
 import { checkMove } from "../validation/checkMove.js";
 import { pushMoveStatus } from "../pushMoveStatus.js";
 
-export function printCarExecution(cars, carMoveHashMap) {
+export function printCarExecution(cars, carMoveObj) {
     for (let car of cars) {
         const isMoved = checkMove(getRandomValue());
-        pushMoveStatus(isMoved, carMoveHashMap, car);
-        Console.print(`${car} : ${carMoveHashMap[car].join('')}`);
+        pushMoveStatus(isMoved, carMoveObj, car);
+        Console.print(`${car} : ${carMoveObj[car].join('')}`);
     }
     Console.print(' ');
 }

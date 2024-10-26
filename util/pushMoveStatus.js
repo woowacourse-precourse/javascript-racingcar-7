@@ -1,3 +1,3 @@
-export function pushMoveStatus(isMoved, carMoveHashMap, car) {
-    if (isMoved) carMoveHashMap[car].push('-');
+export function pushMoveStatus(isMoved, carMoveObj, car) {
+    if (isMoved) carMoveObj[car].push('-');
 }

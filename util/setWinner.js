@@ -1,3 +1,3 @@
-export function setWinner(car, carMoveHashMap, winners, ATTEMPT_COUNT) {
-    if (carMoveHashMap[car].length === ATTEMPT_COUNT) winners.push(car);
+export function setWinner(car, carMoveObj, winners, ATTEMPT_COUNT) {
+    if (carMoveObj[car].length === ATTEMPT_COUNT) winners.push(car);
 }
