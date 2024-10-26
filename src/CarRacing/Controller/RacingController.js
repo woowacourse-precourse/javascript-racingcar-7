@@ -1,13 +1,16 @@
-import Validator from '../Validator.js';
 import View from '../View.js';
+import Validator from '../Validator.js';
+import Race from '../Race.js';
 
 class RacingController {
   #view;
   #validator;
-
-  constructor(view,validator) {
+  #race;
+  
+  constructor(view, validator, race) {
     this.#view = view;
     this.#validator = validator;
+    this.#race = race;
   }
 
   async run() {
@@ -17,8 +20,15 @@ class RacingController {
     const raceCountInput =
       await this.#view.readInput('시도할 횟수는 몇 회인가요?');
 
-    this.#validator.validate(carNamesInput, raceCountInput);
+    const { carNames, raceCount } = this.#validator.validate(
+      carNamesInput,
+      raceCountInput,
+    );
+
+    const { winnerNames, history } = this.#race.result(carNames, raceCount);
+
+    this.#view.printRaceResult(winnerNames, history);
   }
 }
 
-export default new RacingController(new View(), new Validator());
+export default new RacingController(new View(), new Validator(), new Race());
