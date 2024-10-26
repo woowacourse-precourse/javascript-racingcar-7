@@ -1,6 +1,6 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
-import { ERROR_BLANK,ERROR_STRING_OVER_5,ERROR_DUPLICATE,ERROR_INVALID_MOVE_COUNT,ERROR_INVALID_INPUT_TYPE } from "../src/constants/errorContants.js";
+import { ERROR_BLANK,ERROR_STRING_OVER_5,ERROR_CAR_AMOUNT,ERROR_DUPLICATE,ERROR_INVALID_MOVE_COUNT,ERROR_INVALID_INPUT_TYPE } from "../src/constants/errorContants.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -140,6 +140,20 @@ describe("자동차 경주", () => {
   });
 
   test.each([
+    [["한대"]],
+    [[" jonny"]] ,
+  ])("⚠️ 예외 : 1대 이하 자동차 입력 테스트 %#", async (inputs) => {
+    // given
+    mockQuestions(inputs);
+  
+    // when
+    const app = new App();
+  
+    // then
+    await expect(app.run()).rejects.toThrow(ERROR_CAR_AMOUNT);
+  });
+
+  test.each([
     [["pobi,jamso,jamso"]],
     [[" jonny, woker,jonny"]] ,
     [["talis, jack,jack  "]], 
@@ -154,6 +168,48 @@ describe("자동차 경주", () => {
   
     // then
     await expect(app.run()).rejects.toThrow(ERROR_DUPLICATE);
+  });
+
+  test.each([
+    [["jonny, woker,talis",""]] ,
+    [["jonny, woker",""]] ,
+  ])("⚠️ 예외 : 경주 횟수 공백 입력 테스트 %#", async (inputs) => {
+    // given
+    mockQuestions(inputs);
+  
+    // when
+    const app = new App();
+  
+    // then
+    await expect(app.run()).rejects.toThrow(ERROR_BLANK);
+  });
+
+  test.each([
+    [["jonny, woker,talis","!"]] ,
+    [["jonny, woker",")@"]] ,
+  ])("⚠️ 예외 : 경주 횟수 숫자가 아닌 텍스트 입력 테스트 %#", async (inputs) => {
+    // given
+    mockQuestions(inputs);
+  
+    // when
+    const app = new App();
+  
+    // then
+    await expect(app.run()).rejects.toThrow(ERROR_INVALID_INPUT_TYPE);
+  });
+
+  test.each([
+    [["jonny, woker,talis","-1"]] ,
+    [["jonny, woker","0"]] ,
+  ])("⚠️ 예외 : 경주 횟수 0 이하 숫자 입력 테스트 %#", async (inputs) => {
+    // given
+    mockQuestions(inputs);
+  
+    // when
+    const app = new App();
+  
+    // then
+    await expect(app.run()).rejects.toThrow(ERROR_INVALID_MOVE_COUNT);
   });
   
 });
