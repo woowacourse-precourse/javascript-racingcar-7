@@ -1,4 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
+import { Random } from "@woowacourse/mission-utils";
 class App {
   parseCarNames(carNames) {
     return carNames.split(",").map((carName) => {
@@ -47,6 +48,14 @@ class App {
       throw error;
     }
   }
+
+  moveCar(car) {
+    const randomNumber = Random.pickNumberInRange(0, 9);
+    if (randomNumber >= 4) {
+      car.result += "-";
+    }
+  }
+
   async run() {
     try {
       await this.getCarNameAndAttempts();
