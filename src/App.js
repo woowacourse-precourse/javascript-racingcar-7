@@ -1,5 +1,6 @@
-import { Console, MissionUtils } from "@woowacourse/mission-utils";
+import { Console } from "@woowacourse/mission-utils";
 import { Car } from "./model/Car.js";
+import { getWinners } from "./util.js";
 import { SEPARATOR } from "./constant.js";
 import { validateRoundInput } from "./validation.js";
 
@@ -25,6 +26,8 @@ class App {
             cars.map((car) => car.move());
             Console.print("\n");
         }
+
+        Console.print("최종 우승자 : " + getWinners(cars));
     }
 }
 
