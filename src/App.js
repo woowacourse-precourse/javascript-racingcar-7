@@ -69,6 +69,12 @@ class CarRace {
         this.round = round;
     }
 
+    moveCars() {
+        Array.from({ length: this.round }).forEach(() => {
+            this.cars.forEach((car) => car.move());
+        });
+    }
+
     async start() {
         const carNamesString = await MissionUtils.Console.readLineAsync(
             "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
@@ -82,6 +88,8 @@ class CarRace {
 
         this.addCar(carNames);
         this.setRound(round);
+
+        this.moveCars();
     }
 }
 
@@ -89,7 +97,15 @@ class Car {
     constructor(name) {
         Validator.validateCarNameLength(name);
         this.name = name;
-        this.position = 0;
+        this.position = "";
+    }
+
+    move() {
+        const shouldMove = MissionUtils.Random.pickNumberInRange(0, 9) >= 4;
+
+        if (shouldMove) {
+            this.position += "-";
+        }
     }
 }
 
