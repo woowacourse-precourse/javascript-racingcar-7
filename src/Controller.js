@@ -15,6 +15,7 @@ class Controller {
 
   async play() {
     await this.readCars();
+    await this.readTrialCount();
   }
 
   async readCars() {
@@ -27,6 +28,7 @@ class Controller {
   async readTrialCount() {
     const trialCount = Number(await view.readTrialCount());
     validator.validateTrialCount(trialCount);
+    this.execute(trialCount);
   }
 
   executeOnce() {
@@ -36,6 +38,13 @@ class Controller {
       view.printProgress(name, progress);
     });
     view.printLineBreak();
+  }
+
+  execute(trialCount) {
+    view.printExecutionResultMessage();
+    for (let i = 0; i < trialCount; i += 1) {
+      this.executeOnce();
+    }
   }
 }
 
