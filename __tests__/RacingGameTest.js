@@ -44,9 +44,7 @@ describe("경주 게임", () => {
       game.start();
 
       // then
-      Object.keys(game.cars).forEach((name) => {
-        expect(game.cars[name].move).toBeCalledTimes(REPEAT_COUNT);
-      });
+      game.cars.forEach((car) => expect(car.move).toBeCalledTimes(REPEAT_COUNT));
     });
   });
 

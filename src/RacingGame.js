@@ -12,28 +12,27 @@ export default class RacingGame {
   }
 
   static formatStringToCars(carString) {
-    const cars = {};
-    carString.split(",").forEach((name) => {
-      cars[name] = new Car(name);
-    });
-    return cars;
+    return carString.split(",").map((name) => new Car(name));
   }
 
   start() {
     for (let i = 0; i < this.repeatCount; i += 1) {
       this.play();
-      Output.printResult(Object.keys(this.cars).map((name) => this.cars[name]));
+      Output.printResult(this.cars);
     }
   }
 
   play() {
-    Object.keys(this.cars).forEach((name) => {
-      this.cars[name].move();
+    this.cars.forEach((car) => {
+      car.move();
     });
   }
 
   getWinners() {
-    const maxDist = Math.max(...Object.values(this.cars).map((car) => car.dist));
-    return Object.keys(this.cars).filter((name) => this.cars[name].dist === maxDist);
+    const maxDist = Math.max(...this.cars.map((car) => car.dist));
+    return this.cars.reduce((winners, car) => {
+      if (car.dist === maxDist) winners.push(car.name);
+      return winners;
+    }, []);
   }
 }
