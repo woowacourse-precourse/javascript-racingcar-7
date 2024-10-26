@@ -49,23 +49,15 @@ class App {
     Console.print(process());
     Console.print(userNames);
 
-    const makeTable = () => {
-      const info = {};
-
-      userNames.forEach((key) => {
-        info[key] = "";
-      });
-      return info;
-    };
-    const table = makeTable();
-    Console.print(table);
-
-    function show() {
-      for (let key in table) {
-        Console.print(key + " : " + table[key].value);
+    const runOrStop = () => {
+      const randomNumber = randomNum();
+      let dash = "";
+      if (4 <= randomNumber) {
+        dash += "-";
       }
-    }
-    Console.print(show());
+      return dash;
+    };
+    Console.print(runOrStop());
   }
 }
 
