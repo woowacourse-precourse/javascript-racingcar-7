@@ -20,19 +20,16 @@ class Game {
     Console.print('\n실행 결과\n');
     for (let i = 0; i < this.#totalRounds; i++) {
       this.#playRound();
+      this.#printRoundResult();
     }
     this.#determineWinners();
   }
 
   #playRound() {
     this.#cars.forEach((car) => {
-      // 자동차 움직이고
       car.move();
-      // 점수 기록하고
       this.#roundRecord += `${car.record()} \n`;
     });
-    Console.print(this.#roundRecord);
-    this.#roundRecord = '';
   }
 
   #determineWinners() {
@@ -51,6 +48,11 @@ class Game {
     });
 
     this.#winners.join(', ');
+  }
+
+  #printRoundResult() {
+    Console.print(this.#roundRecord);
+    this.#roundRecord = '';
   }
 
   printGameResult() {
