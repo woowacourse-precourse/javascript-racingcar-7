@@ -6,21 +6,45 @@ class App {
     });
   }
 
+  validateInput(carNames, attempts) {
+    if (!carNames.trim()) {
+      throw new Error("[ERROR]: 자동차 이름을 입력해주세요.");
+    }
+
+    carNames.split(",").forEach((carName) => {
+      if (carName.trim().length > 5) {
+        throw new Error("[ERROR]: 자동차 이름은 5자 이하만 가능합니다.");
+      }
+    });
+
+    if (!attempts) {
+      throw new Error("[ERROR]: 시도 횟수를 입력해주세요.");
+    }
+  }
   async getCarNameAndAttempts() {
     try {
       const carName = await Console.readLineAsync(
         "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
       );
 
-      const cars = this.parseCarNames(carName);
-
       const attempts = await Console.readLineAsync(
         "시도할 횟수는 몇 회인가요?\n"
       );
-    } catch (error) {}
+
+      this.validateInput(carName, attempts);
+
+      const cars = this.parseCarNames(carName);
+    } catch (error) {
+      Console.print(error.message);
+      throw error;
+    }
   }
   async run() {
-    this.getCarNameAndAttempts();
+    try {
+      await this.getCarNameAndAttempts();
+    } catch (error) {
+      throw error;
+    }
   }
 }
 
