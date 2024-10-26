@@ -1,5 +1,5 @@
 import { Random, Console } from "@woowacourse/mission-utils";
-import Car from "./Car";
+import Car from "./Car.js";
 
 class RacingGame {
   constructor() {
@@ -50,7 +50,7 @@ class RacingGame {
     this.cars.forEach((car) => {
       Console.print(car.getCurrentStatus());
     });
-    Console.print("\n");
+    Console.print("");
   }
 
   findMaxPosition() {
