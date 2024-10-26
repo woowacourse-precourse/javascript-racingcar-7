@@ -15,6 +15,7 @@ class Display {
     const HEADER = '실행 결과';
 
     if (round === FIRST_ROUND) {
+      this.showLineBreak();
       Console.print(HEADER);
     }
   }
