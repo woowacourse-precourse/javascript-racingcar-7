@@ -29,52 +29,48 @@ class App {
       return separateNames;
     };
 
+    checkNames();
+
     const inputCount = await Console.readLineAsync(
       "시도할 횟수는 몇 회인가요?\n"
     );
-    Console.print(inputCount + "회");
 
     const checkCount = () => {
       if (isNaN(inputCount) || inputCount === "") {
         throw new Error("[ERROR] 숫자를 입력해주새요.");
       }
     };
-    Console.print(checkCount());
+    checkCount();
 
     // 2. 입력받은 값을 통해 게임 구현
 
     const randomNum = () => {
       return MissionUtils.Random.pickNumberInRange(0, 9);
     };
-    Console.print(randomNum());
 
     const userNames = checkNames();
-    const userRacingResult = Array.from({ length: userNames.length });
+    const userRacingResult = Array.from({ length: userNames.length }, () => "");
 
-    Console.print(userRacingResult);
-    Console.print(userNames);
-
+    let dash = "";
     const racing = () => {
-      let dash = "";
       for (let r = 0; r < inputCount; r++) {
-        const randomNumber = randomNum();
-        Console.print(randomNumber);
-        if (4 <= randomNumber) {
-          dash += "-";
+        for (let u = 0; u < userNames.length; u++) {
+          dash = "";
+          userRacingResult[u] += checkRange();
+          Console.print(userNames[u] + " : " + userRacingResult[u]);
         }
+        Console.print("");
+      }
+    };
+
+    const checkRange = () => {
+      let randomNumber = randomNum();
+      if (4 <= randomNumber) {
+        dash = "-";
       }
       return dash;
     };
-    Console.print(racing());
-
-    const putResultToUser = () => {
-      for (let u = 0; u < userNames.length; u++) {
-        userRacingResult[u] = racing();
-      }
-      return userRacingResult;
-    };
-    Console.print(userRacingResult);
-    Console.print(putResultToUser());
+    racing();
   }
 }
 
