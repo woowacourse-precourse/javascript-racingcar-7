@@ -1,12 +1,14 @@
+const ERROR_PREFIX = '[ERROR]';
+
 export const ERROR = Object.freeze({
-  EMPTY_STRING: '[ERROR] 자동차 이름을 입력해주세요',
-  MIN_CAR_NUMBER: '[ERROR] 자동차 이름은 최소 2개 이상 입력해 주세요',
-  MAX_CAR_NUMBER: '[ERROR] 자동차의 개수는 20개 이하로 입력해 주세요',
-  CONFLICTING_CAR_NAME: '[ERROR] 중복되지 않은 자동차 이름을 입력해 주세요',
-  CAR_NAME_LENGTH: '[ERROR] 자동차 이름은 5글자 이하로 입력해 주세요 ',
-  MIN_TRY_NUMBER: '[ERROR] 시도 횟수는 1회 이상 입력해 주세요',
-  MAX_TRY_NUMBER: '[ERROR] 시도 횟수는 10000회 이하로 입력해 주세요',
-  INTEGER_TRY_NUMBER: '[ERROR] 시도 횟수는 정수로 입력해 주세요',
+  EMPTY_STRING: `${ERROR_PREFIX} 자동차 이름을 입력해 주세요`,
+  MIN_CAR_NUMBER: `${ERROR_PREFIX} 자동차 이름은 최소 2개 이상 입력해 주세요`,
+  MAX_CAR_NUMBER: `${ERROR_PREFIX} 자동차의 개수는 1000개 이하로 입력해 주세요`,
+  CONFLICTING_CAR_NAME: `${ERROR_PREFIX} 중복되지 않은 자동차 이름을 입력해 주세요`,
+  CAR_NAME_LENGTH: `${ERROR_PREFIX} 자동차 이름은 5글자 이하로 입력해 주세요`,
+  MIN_TRY_NUMBER: `${ERROR_PREFIX} 시도 횟수는 1회 이상 입력해 주세요`,
+  MAX_TRY_NUMBER: `${ERROR_PREFIX} 시도 횟수는 10000회 이하로 입력해 주세요`,
+  INTEGER_TRY_NUMBER: `${ERROR_PREFIX} 시도 횟수는 정수로 입력해 주세요`,
 });
 
 export const INPUT = Object.freeze({
