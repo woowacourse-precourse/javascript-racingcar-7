@@ -5,9 +5,15 @@ class Race {
 
   #time;
 
+  #winners;
+
+  #maxMoves;
+
   constructor(cars, time) {
     this.#cars = cars;
     this.#time = time;
+    this.#maxMoves = 0;
+    this.#winners = [];
   }
 
   get cars() {
@@ -19,8 +25,14 @@ class Race {
   }
 
   moveCars() {
+    let movedFlag = false;
     for (let i = 0; i < this.#cars.length; i += 1) {
-      this.#cars[i].tryMoveForward();
+      if (this.#cars[i].tryMoveForward()) {
+        movedFlag = true;
+      }
+    }
+    if (movedFlag) {
+      this.#maxMoves += 1;
     }
     this.#time -= 1;
   }
