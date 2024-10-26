@@ -44,7 +44,21 @@ export default class Racingcar {
     return board;
   }
 
-  get() {
-    return [this.#inputArr, this.#tryNum];
+  rank() {
+    let result = [];
+    let max = 0;
+    for (const [key, value] of Object.entries(this.#board)) {
+      if (max < value.length) {
+        result.splice(0);
+        result.push(key);
+        max = value.length;
+      }
+      if (max === value.length) {
+        result.push(key);
+      }
+    }
+    const set = new Set(result);
+    const newArr = [...set];
+    console.log(newArr);
   }
 }
