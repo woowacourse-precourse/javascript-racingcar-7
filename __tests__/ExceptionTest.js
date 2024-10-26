@@ -1,4 +1,4 @@
-import App from '../src/App.js';
+import App, { INVALID_NUMBER_ERROR } from '../src/App.js';
 import { mockQuestions } from '../utils/testUtils.js';
 
 describe('자동차 경주 예외 테스트', () => {
@@ -15,21 +15,9 @@ describe('자동차 경주 예외 테스트', () => {
             [',woni', '1'],
             '[ERROR] 이름이 공백인 자동차가 존재합니다',
         ],
-        [
-            '시도 횟수 음수',
-            ['pobi,woni', '-1'],
-            '[ERROR] 유효한 숫자가 아닙니다',
-        ],
-        [
-            '시도 횟수 소수',
-            ['pobi,woni', '1.5'],
-            '[ERROR] 유효한 숫자가 아닙니다',
-        ],
-        [
-            '시도 횟수 문자열',
-            ['pobi,woni', 'abc'],
-            '[ERROR] 유효한 숫자가 아닙니다',
-        ],
+        ['시도 횟수 음수', ['pobi,woni', '-1'], INVALID_NUMBER_ERROR],
+        ['시도 횟수 소수', ['pobi,woni', '1.5'], INVALID_NUMBER_ERROR],
+        ['시도 횟수 문자열', ['pobi,woni', 'abc'], INVALID_NUMBER_ERROR],
     ])(
         'case: %s, input: %s, output: %s ',
         async (testName, inputs, expectedError) => {
