@@ -8,6 +8,16 @@ const rl = readline.createInterface({
 
 function gameStart(input, count) {
   let carName = input.split(",");
+  let newSet = new Set(carName);
+  for (let i = 0; i < carName.length; i++) {
+    if (
+      carName.includes("") ||
+      newSet.size !== carName.length ||
+      !carName[i].isInteger()
+    ) {
+      throw new Error("입력값에 문제가 있습니다");
+    }
+  }
   let resultObj = {};
   carName.forEach((v) => {
     resultObj[v] = 0;
@@ -42,15 +52,23 @@ function gameFlow(count, carName, resultObj) {
 
 function Ranking(resultObj) {
   let rankingArray = Object.entries(resultObj).sort(([, a], [, b]) => b - a);
-  console.log("순위 :");
+  console.log("배열값 :");
   console.log(rankingArray);
-  
+
+  let initRanking = 1;
+
   rankingArray.forEach(([name, value], index) => {
-    
-    console.log(`${index + 1}위 : ${name} (전진횟수 : ${value})`);
+    if (index > 0 && value === rankingArray[index - 1][1]) {
+      console.log(`${name} 은 공동 ${initRanking}위 입니다`);
+    } else {
+      initRanking = index + 1;
+      console.log(`${name}은 ${initRanking}위 입니다`);
+    }
   });
   return rankingArray;
 }
+
+//
 
 function ChangeNumber(object) {
   for (let key in object) {
@@ -59,23 +77,18 @@ function ChangeNumber(object) {
   return object;
 }
 
-function CarNameException() {
+function CarNameException(input) {
   if (input.length > 5) {
     throw new Error("자동차 이름은 최대 5글자입니다");
   }
-  return true;
-}
 
-function SameWinner(array) {
-  if(array)
+  return true;
 }
 
 // readline을 사용하여 입력받기
 rl.question("자동차 이름을 입력하세요 (쉼표로 구분): ", (input) => {
-  if (CarNameException()) {
-    rl.question("게임을 몇 번 진행하시겠습니까? ", (count) => {
-      console.log(gameStart(input, parseInt(count))); // 입력받은 값을 사용
-      rl.close(); // 입력 종료
-    });
-  }
+  rl.question("게임을 몇 번 진행하시겠습니까? ", (count) => {
+    console.log(gameStart(input, parseInt(count))); // 입력받은 값을 사용
+    rl.close(); // 입력 종료
+  });
 });
