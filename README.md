@@ -12,6 +12,9 @@
 &emsp; :black_circle: **자동차 전진 기능**   
 &emsp; &emsp; :heavy_minus_sign: 0~9의 무작위 값을 구해서 4 이상일 때 전진하는 기능
 
+&emsp; :black_circle: **자동차의 주행거리를 출력하는 기능** 
+&emsp; &emsp; :heavy_minus_sign: 1번의 시도횟수가 끝나면 자동차의 이름과 주행거리를 출력하는 기능
+
 &emsp; :black_circle: **시도 횟수에 도달하면 우승자를 출력하는 기능**   
 &emsp; &emsp; :heavy_minus_sign: 여러명이 동시에 우승할 수 있으며 쉼표(,)로 구분하는 기능
 
