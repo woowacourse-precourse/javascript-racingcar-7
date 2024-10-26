@@ -4,7 +4,6 @@ import { Console } from "@woowacourse/mission-utils";
 class DisplayController {
 
   async displayPlayerPositions(players, positions) {
-    console.log("displayPlayerPositions", players, positions)
     for (let i = 0; i < players.length; i++) {
       Console.print(`${players[i]} : ${RACING_VARIABLES.POSITION_MARKER.repeat(positions[i])}`);
     }
