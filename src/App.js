@@ -29,6 +29,23 @@ class App {
       
     }
 
+    // ! 결과 함수 ===//
+    // * 자동차 중 최대 거리 찾기.
+    const getMaxDistance = (carArray) => {
+      // 자동차 거리 리스트로 뽑기
+      let carDistanceArray =[];
+      carArray.map((car) => {
+        carDistanceArray.push(car.distance); // 자동차의 거리를 배열에 추가.
+      })
+      
+      // 최대 거리 찾기
+      const maxDistance = Math.max(...carDistanceArray); // 자동차 거리중, 최대 거리 찾기
+      return maxDistance; // 자동차 거리가 담긴 배열 저장
+    
+    }
+
+
+
     try{
       // ! 입력  ============///
       const cars = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n'); // pobi,woni,jun
@@ -46,6 +63,7 @@ class App {
 
 
       // ! 자동차 경주하기 ==== //
+      // todo : depth 가 2가 되도록 리팩토링 해야한다.
       // * n번 경주한다.
       Console.print('\n실행 결과');
       for (let i =0; i < n ; i++){
@@ -66,13 +84,14 @@ class App {
 
       }
 
-
-
-
-
-      
       // ! =================== //
-    
+
+      // ! 경주 결과 ========= //
+      const maxDistance = getMaxDistance(carArray); // 최대 거리 찾기
+
+
+      // ! =================== //
+
     } catch(error) {
       return Promise.reject(error); // 예외 던지기
     }
