@@ -40,7 +40,7 @@ MVC 패턴을 통한 기능 구현을 목표했습니다.
 #### gameController.js (게임 로직 제어)
 
 - [x] 자동차 이름 입력받기 (InputView 활용)
-- [ ] 시도 횟수 입력 받기 (InputView 활용)
+- [x] 시도 횟수 입력 받기 (InputView 활용)
 - [ ] 참가자 정보 검증하기 (Validator 활용)
 - [ ] 레이싱 게임 객체 생성하기 (RacingGame 활용)
 - [ ] 자동차들의 이동 처리하기 (RacingGame 활용)
