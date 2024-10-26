@@ -10,20 +10,24 @@ export class Game {
   play() {
     Console.print(GAME.START_MESSAGE);
     for (let i = 0; i < this.count; i++) {
-      const movedCars = this.getMovedCars();
-      this.record.update(movedCars);
-      this.print();
+      this.simulateRound();
     }
   }
 
+  simulateRound() {
+    const movedCars = this.getMovedCars();
+    this.record.update(movedCars);
+    this.print();
+  }
+
   getMovedCars() {
-    const movedCars = [];
-    Object.keys(this.record.table).forEach((key) => {
-      if (Random.pickNumberInRange(0, 9) >= CRITERIA_NUMBER) {
-        movedCars.push(key);
-      }
-    });
-    return movedCars;
+    return Object.keys(this.record.table)
+      .filter(this.shoudCarMove)
+      .map((car) => car);
+  }
+
+  shoudCarMove() {
+    return Random.pickNumberInRange(0, 9) >= CRITERIA_NUMBER;
   }
 
   print() {
