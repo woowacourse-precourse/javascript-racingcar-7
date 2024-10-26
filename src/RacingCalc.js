@@ -30,6 +30,7 @@ class RacingCalc {
       winner.push(this.carArr[winnerIdx]);
       winnerIdx = this.moveCntArr.indexOf(maxScore, winnerIdx + 1);
     }
+    Console.print(`최종 우승자 : ${winner.join(", ")}`);
   }
 }
 
