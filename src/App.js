@@ -31,7 +31,6 @@ class App {
 
   validTimesInput(input) {
     let times = Number(input);
-    // times가 NaN이거나 0보다 작거나 같거나, 정수가 아닌 경우 에러 발생
     if (isNaN(times) || times <= 0 || !Number.isInteger(times)) {
       throw new Error("[ERROR] 시도 횟수는 양의 정수여야 합니다.");
     }
