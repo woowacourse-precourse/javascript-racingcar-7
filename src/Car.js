@@ -3,6 +3,7 @@ import { Random } from "@woowacourse/mission-utils";
 class Car {
   #name = "";
   #mileage = 0;
+  
   constructor(name) {
     this.#name = name;
     this.#mileage = 0;
