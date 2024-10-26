@@ -1,12 +1,17 @@
 import { Console, MissionUtils } from "@woowacourse/mission-utils";
+import { inputCarsException } from "./exceptionHandling.js";
 
 class App {
   async run() {
-    const cars = await inputCars();
-    const count = await inputCount();
-    const result = await racingCount(count, cars);
+    try {
+      const cars = await inputCars();
+      const count = await inputCount();
+      const result = await racingCount(count, cars);
 
-    Console.print("최종 우승자 : " + getWinners(cars, result));
+      Console.print("최종 우승자 : " + getWinners(cars, result));
+    } catch (error) {
+      throw new Error(`[ERROR] ${error.message}`);
+    }
   }
 }
 
@@ -15,7 +20,8 @@ const inputCars = async () => {
     "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
   );
   const cars = inputCars.split(",").map((car) => car.trim());
-
+  Console.print(cars);
+  inputCarsException(cars);
   return cars;
 };
 
