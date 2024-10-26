@@ -1,13 +1,11 @@
 import { Console } from "@woowacourse/mission-utils";
 
-function getCarArray(CAR_STRING) {
-  return CAR_STRING.split(",").map((car) =>
-    car.trim()
-  );
+function getCarArray(str) {
+  return str.split(",").map((car) => car.trim());
 }
 
-function validateCarNames(CAR_ARRAY) {
-  CAR_ARRAY.forEach((element) => {
+function validateCarNames(array) {
+  array.forEach((element) => {
     if (element.length >= 6) {
       throw new Error(
         "[ERROR] 자동차의 이름이 6자 이상입니다."
