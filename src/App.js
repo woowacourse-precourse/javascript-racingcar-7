@@ -86,14 +86,14 @@ class App {
       // * n번 경주한다.
       Console.print('\n실행 결과');
       for (let i =0; i < n ; i++){
-        const randomValue = getRandomValue();
-
         carArray.forEach((car) => {
+          const randomValue = getRandomValue(); 
+
           if (isValueMoreThanFour(randomValue)) {
             increaseCarDistance(car);
           }
         });
-        // console.log(carArray);
+        
         // * 경주가 끝나면 자동차를 순회하며 각 자동차 거리 출력    
         carArray.forEach((car) => {
           printCurrentCarDistanceResult(car);
