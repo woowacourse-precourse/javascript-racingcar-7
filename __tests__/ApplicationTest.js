@@ -107,4 +107,19 @@ describe("예외 처리 테스트", () => {
         // then
         await expect(app.run()).rejects.toThrow("[ERROR]");
     });
+
+    test("아무도 출발하지 않았을 때 지정한 에러 메세지가 출력되는가?", async () => {
+        // given
+        const STOP = 3;
+        const inputs = ["stone,gum", "1"];
+
+        mockQuestions(inputs);
+        mockRandoms([STOP, STOP]);
+    
+        // when
+        const app = new App();
+
+        // then
+        await expect(app.run()).rejects.toThrow("[ERROR] 왜 아무도 출발하지 않았죠? 이런, 오리 가족이 길을 건너고 있었네요! 귀여워라!");
+    }); 
 });
