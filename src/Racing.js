@@ -13,7 +13,7 @@ class Racing {
   start() {
     for (let i = 0; i < this.#totalRound; i += 1) {
       this.#moveForward();
-      Console.print(this.#getResultByRound().join('\n'));
+      Console.print(this.#printResultByRound());
     }
     return this;
   }
@@ -26,10 +26,10 @@ class Racing {
     });
   }
 
-  #getResultByRound() {
-    return this.#racers.map(
-      (racer) => `${racer.getName()} : ${racer.getRaceLine()}`,
-    );
+  #printResultByRound() {
+    return this.#racers
+      .map((racer) => `${racer.getName()} : ${racer.getRaceLine()}`)
+      .join('\n');
   }
 }
 
