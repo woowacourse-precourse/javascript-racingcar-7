@@ -1,5 +1,7 @@
+import throwError from "../utils/throwError";
+
 const validateCarNames = (carName) => {
-  if (carName.length > 5) throw new Error("Invalid car name");
+  if (carName.length > 5) throwError("Invalid car name");
   return carName;
 };
 

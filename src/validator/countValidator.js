@@ -1,15 +1,15 @@
 const validateIsNumber = (value) => {
-  if (isNaN(value)) throw new Error("Input is not a vaild number");
+  if (isNaN(value)) throwError("Input is not a vaild number");
   return parseInt(value);
 };
 
 const validateIsZero = (value) => {
-  if (value === 0) throw new Error("Input is zero");
+  if (value === 0) throwError("Input is zero");
   return value;
 };
 
 const validateIsNonNegative = (value) => {
-  if (value < 0) throw new Error("Input is a nagative number");
+  if (value < 0) throwError("Input is a nagative number");
   return value;
 };
 
