@@ -25,6 +25,23 @@ const getLogSpy = () => {
 };
 
 describe("자동차 경주", () => {
+  test("자동차 이름을 쉼표로 구분하여 객체 배열로 변환", () => {
+    // given
+    const app = new App();
+    const carNames = "pobi,   crong,카 ,기차";
+
+    // when
+    const result = app.parseCarNames(carNames);
+
+    // then
+    expect(result).toEqual([
+      { name: "pobi", result: "" },
+      { name: "crong", result: "" },
+      { name: "카", result: "" },
+      { name: "기차", result: "" },
+    ]);
+  });
+
   test("기능 테스트", async () => {
     // given
     const MOVING_FORWARD = 4;
