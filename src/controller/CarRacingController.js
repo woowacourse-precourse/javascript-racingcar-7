@@ -3,6 +3,7 @@ import InputValidator from "../utils/InputValidator.js";
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
 import RandomNumber from "../utils/RandomNumber.js";
+import { STATIC_NUMBER } from "../static/Static.js";
 
 export default class CarRacingController {
   constructor() {
@@ -37,7 +38,7 @@ export default class CarRacingController {
 
   moveAllCars() {
     this.cars.forEach(car => {
-      const randomNumber = RandomNumber.pickNumberInRange(0, 9);
+      const randomNumber = RandomNumber.pickNumberInRange(STATIC_NUMBER.randomMinNumber, STATIC_NUMBER.randomMaxNumber);
       car.move(randomNumber);
     });
   }

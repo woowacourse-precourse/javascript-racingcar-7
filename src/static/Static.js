@@ -14,8 +14,12 @@ const ERROR_MESSAGE = Object.freeze({
     triesZeroError: "[ERROR] 시도할 횟수는 0보다 커야 합니다.",
 });
 
+const STATIC_NUMBER = Object.freeze({
+    nameLengthLimit : 5,
+    canMoveNumber: 4,
+    randomMinNumber:0,
+    randomMaxNumber:9,
+    moveOneStep :1,
+});
 
-
-
-
-export { PRINT_MESSAGE, ERROR_MESSAGE };
+export { PRINT_MESSAGE, ERROR_MESSAGE,STATIC_NUMBER };

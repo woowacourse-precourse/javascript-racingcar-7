@@ -1,10 +1,10 @@
-import { ERROR_MESSAGE } from "../static/Static.js";
+import { ERROR_MESSAGE,STATIC_NUMBER } from "../static/Static.js";
 
 const InputValidator = {
   validateCarNames(names) {
     const carNames = names.split(',').map(name => name.trim());
     
-    if (carNames.some(name => name.length > 5)) {
+    if (carNames.some(name => name.length > STATIC_NUMBER.nameLengthLimit)) {
       throw new Error(ERROR_MESSAGE.nameLengthError);
     }
     

@@ -1,3 +1,5 @@
+import { STATIC_NUMBER } from "../static/Static.js";
+
 export default class Car {
     constructor(name) {
       this.name = name;
@@ -5,8 +7,8 @@ export default class Car {
     }
   
     move(randomNumber) {
-      if (randomNumber >= 4) {
-        this.position += 1;
+      if (randomNumber >= STATIC_NUMBER.canMoveNumber) {
+        this.position += STATIC_NUMBER.moveOneStep;
       }
     }
   
