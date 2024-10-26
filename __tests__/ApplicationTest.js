@@ -3,7 +3,7 @@ import { getUserInput } from '../src/views/View.js';
 import {
   divisionCarName,
   createCarObject,
-  moveCars,
+  shouldMoveForward,
   getCarPositionsRepresentation,
 } from '../src/models/Model.js';
 import App from '../src/App.js';
@@ -101,20 +101,19 @@ describe('Custom Test', () => {
   // createCarObject 테스트
   testCar('자동차 객체 생성', createCarObject, CAR_NAMES_ARRAY, CAR_OBJECTS);
 
-  // moveCars 테스트
   test('랜덤 값을 이용해 자동차의 전진 수를 올바르게 업데이트하는지 확인', () => {
-    // Mock 처리로 랜덤 값을 고정하여 테스트의 일관성 유지
     const randomSpy = jest.spyOn(MissionUtils.Random, 'pickNumberInRange');
-    // 랜덤 값을 [4, 3, 5]로 고정 설정 (4 이상일 때 전진, 4 미만일 때 그대로)
     randomSpy.mockImplementationOnce(() => 4).mockImplementationOnce(() => 3);
-    expect(moveCars(CAR_OBJECTS)).toEqual(CAR_MOVES);
-    // Mock 복원
+    expect(shouldMoveForward(CAR_OBJECTS)).toEqual(CAR_MOVES);
+
     randomSpy.mockRestore();
   });
 
   // -로 전진 표시 테스트
   test('move 수 만큼 -로 변환', () => {
-    const expectedOutput = ['-', ''];
+    const expectedOutput = ['happy : -', 'car : '];
     expect(getCarPositionsRepresentation(CAR_MOVES)).toEqual(expectedOutput);
   });
+
+  
 });
