@@ -66,10 +66,7 @@ describe('자동차 경주', () => {
 
 const CAR_NAMES_STRING = 'happy,car';
 const CAR_NAMES_ARRAY = ['happy', 'car'];
-const CAR_OBJECTS = [
-  { name: 'happy', forwardNum: 0 },
-  { name: 'car', forwardNum: 0 },
-];
+const CAR_OBJECTS = { names: ['happy', 'car'], positions: [0, 0] };
 
 const testCar = (description, fn, input, expectedOutput) => {
   test(description, () => {
