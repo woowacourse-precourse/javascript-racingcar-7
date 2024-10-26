@@ -5,6 +5,12 @@ class CarRace {
 
   async getCarNamesFromUserInput() {
     const input = await InputView.readCarNames();
+    const carList = this.parseCarNames(input);
+    console.log(carList);
+  }
+
+  parseCarNames(input) {
+    return input.split(",");
   }
 }
 
