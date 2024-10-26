@@ -1,6 +1,7 @@
 import { readUserInput } from './util/missionUtil.js';
 import { START_MESSAGE } from './util/constant.js';
 import Car from './Car.js';
+import { validTryNumber } from './util/validation.js';
 
 class Race {
   #cars;
@@ -14,6 +15,7 @@ class Race {
 
   async handleTryNumber() {
     const tryNumber = await readUserInput(START_MESSAGE.TRY_NUMBER_INPUT);
+    validTryNumber(tryNumber);
     this.setTryNumber(tryNumber);
   }
 
