@@ -21,7 +21,7 @@ describe("Race 클래스 테스트", () => {
       await race.setCarName(); 
 
       expect(race.cars).toHaveLength(3); 
-      expect(race.cars.map(car => car.name)).toEqual(["Audi", "BMW", "Ford"]); 
+      expect(race.cars.map(car => car.getName())).toEqual(["Audi", "BMW", "Ford"]); 
     });
   });
 
@@ -36,9 +36,9 @@ describe("Race 클래스 테스트", () => {
 
       race.generateRandomDistances();
 
-      expect(race.cars[0].distance).toBe(0); 
-      expect(race.cars[1].distance).toBe(1); 
-      expect(race.cars[2].distance).toBe(1); 
+      expect(race.cars[0].getDistance()).toBe(0); 
+      expect(race.cars[1].getDistance()).toBe(1); 
+      expect(race.cars[2].getDistance()).toBe(1); 
     });
   });
 
