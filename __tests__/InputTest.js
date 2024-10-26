@@ -49,6 +49,18 @@ describe("입력", () => {
       // then
       await expect(app.run()).rejects.toThrow("[ERROR]");
     });
+
+    test("어플리케이션이 생성되었고 빈 이름 문자열을 입력으로 가지고 있는 경우, 어플리케이션이 실행되고 입력을 받으면, [ERROR]로 시작하는 메시지와 함께 애플리케이션을 종료한다.", async () => {
+      // given
+      const app = new App();
+      const inputs = ["pobi,hamm,"];
+
+      mockQuestions(inputs);
+
+      // when
+      // then
+      await expect(app.run()).rejects.toThrow("[ERROR]");
+    });
   });
 
   describe("시도할 횟수를 입력받는다.", () => {

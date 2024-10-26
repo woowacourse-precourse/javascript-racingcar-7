@@ -32,5 +32,8 @@ export default class Input {
     if (new Set(this.car).size !== this.car.length) {
       throw new Error("[ERROR] 중복된 자동차 이름이 있습니다.");
     }
+    if (this.car.some((car) => !car)) {
+      throw new Error("[ERROR] 자동차 이름은 비어있지 않은 문자열이어야 합니다.");
+    }
   }
 }
