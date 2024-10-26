@@ -5,3 +5,9 @@ test('양의 정수를 입력했을 때 검증 테스트', () => {
     validateTryCount(3);
   }).not.toThrow('[ERROR]');
 });
+
+test('소수를 입력했을 때 에러 테스트', () => {
+  expect(() => {
+    validateTryCount(3.7);
+  }).toThrow('[ERROR]');
+});
