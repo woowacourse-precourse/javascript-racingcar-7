@@ -10,6 +10,7 @@ import {
   MAX_NAME_LENGTH,
   OUTPUT_PREFIX,
 } from './constants/index.js';
+import Winners from './Winners.js';
 
 class App {
   #totalRound = 0;
@@ -37,10 +38,10 @@ class App {
       racers: this.#racers,
     });
 
-    this.racing.start().getResultByRound();
-    const winners = this.racing.getWinners();
+    this.racing.start();
+    this.winners = new Winners(this.#racers);
 
-    Console.print(`${OUTPUT_PREFIX} ${winners.join(', ')}`);
+    Console.print(`${OUTPUT_PREFIX} ${this.winners.getWinners()}`);
   }
 }
 
