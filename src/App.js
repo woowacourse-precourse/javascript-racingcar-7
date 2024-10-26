@@ -1,14 +1,16 @@
-import { inputCarName, inputCount } from "./input.js";
+import { inputCarNames, inputCount } from "./input.js";
 import parseCarNames from "./utils/parseCarNames.js";
 import validateCarNames from "./validator/carValidator.js";
+import validateCount from "./validator/countValidator.js";
 
 class App {
   async run() {
-    const input = await inputCarName();
-    const carNames = parseCarNames(input);
+    const carNamesInput = await inputCarNames();
+    const carNames = parseCarNames(carNamesInput);
     validateCarNames(carNames);
 
-    const count = await inputCount();
+    const countInput = await inputCount();
+    const count = validateCount(countInput);
   }
 }
 
