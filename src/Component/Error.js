@@ -1,4 +1,4 @@
-const ERR_MESSAGE = "[ERROR]";
+export const ERR_MESSAGE = "[ERROR]";
 
 export const ERR_LENGTH = () => {
   throw new Error(ERR_MESSAGE + " 자동차 이름은 1~5자 사이로 입력해야 합니다.");
