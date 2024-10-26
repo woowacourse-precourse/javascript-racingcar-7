@@ -9,11 +9,11 @@ class App {
 
     const cars = carNames.split(',').map((carName) => new Car(carName.trim()));
 
-    const racingGame = new RacingGame(cars);
-
     const attemptCount = await Console.readLineAsync(
       '시도할 횟수는 몇 회인가요?\n'
     );
+
+    const racingGame = new RacingGame(cars, attemptCount);
   }
 }
 

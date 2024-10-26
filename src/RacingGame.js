@@ -1,9 +1,10 @@
 class RacingGame {
   static FORWARD_INDICATOR = '-';
 
-  constructor(cars) {
+  constructor(cars, attemptCount) {
     this.cars = cars;
+    this.attemptCount = attemptCount;
   }
 }
 
-export default RacingGame
+export default RacingGame;
