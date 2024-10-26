@@ -40,6 +40,7 @@ class App {
         throw new Error("[ERROR] 숫자를 입력해주새요.");
       }
     };
+
     checkCount();
 
     // 2. 입력받은 값을 통해 게임 구현
@@ -71,6 +72,7 @@ class App {
       }
       return dash;
     };
+
     racing();
 
     const checkMaxLength = () => {
