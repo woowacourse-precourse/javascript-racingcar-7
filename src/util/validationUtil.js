@@ -13,7 +13,7 @@ export function checkMinCarNumber(cars) {
 }
 
 export function checkMaxCarNumber(cars) {
-  if (cars.length > 20) {
+  if (cars.length > 1000) {
     throw new Error(ERROR.MAX_CAR_NUMBER);
   }
 }

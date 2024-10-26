@@ -19,39 +19,46 @@ describe('Validator 클래스 테스트', () => {
   test.each([
     { input: [], error: ERROR.MIN_CAR_NUMBER },
     { input: ['pobi'], error: ERROR.MIN_CAR_NUMBER },
-    { input: Array(21).fill('carName'), error: ERROR.MAX_CAR_NUMBER },
+    {
+      input: Array(1001)
+        .fill('0')
+        .map((_, idx) => idx),
+      error: ERROR.MAX_CAR_NUMBER,
+    },
   ])(
-    '자동차 갯수가 1개 이하, 또는 21개 이상인 경우 예외',
+    '자동차 갯수가 1개 이하, 또는 1001개 이상인 경우 예외',
     ({ input, error }) => {
-      expect(() => Validator.carNumber(input)).toThrow(error);
+      expect(() => Validator.car(input)).toThrow(error);
     },
   );
 
   test.each([
     { input: ['pobi', 'yeon', 'woni'] },
-    { input: Array(20).fill('carName') },
+    {
+      input: Array(20)
+        .fill('0')
+        .map((_, idx) => idx),
+    },
   ])('자동차 갯수가 2~20개 경우 통과', ({ input }) => {
-    expect(() => Validator.carNumber(input)).not.toThrow();
+    expect(() => Validator.car(input)).not.toThrow();
   });
 
   test('자동차 이름 길이 검증', () => {
     const failCars = ['pobipobi', 'yeongi'];
     const trueCars = ['pobi', 'woni'];
 
-    expect(() => Validator.carName(failCars)).toThrow(ERROR.CAR_NAME_LENGTH);
+    expect(() => Validator.car(failCars)).toThrow(ERROR.CAR_NAME_LENGTH);
 
-    expect(() => Validator.carName(trueCars)).not.toThrow();
+    expect(() => Validator.car(trueCars)).not.toThrow();
   });
 
   test('자동차 이름 중복 검증', () => {
     const failInput = ['pobi', 'pobi', 'yeon'];
     const trueInput = ['pobi', 'woni', 'yeon'];
 
-    expect(() => Validator.carName(failInput)).toThrow(
-      ERROR.CONFLICTING_CAR_NAME,
-    );
+    expect(() => Validator.car(failInput)).toThrow(ERROR.CONFLICTING_CAR_NAME);
 
-    expect(() => Validator.carName(trueInput)).not.toThrow();
+    expect(() => Validator.car(trueInput)).not.toThrow();
   });
 
   test.each([

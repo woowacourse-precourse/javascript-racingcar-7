@@ -9,8 +9,7 @@ export default class RacingCarService {
 
   saveCars(carsString) {
     const cars = getCars(carsString);
-    Validator.carName(cars);
-    Validator.carNumber(cars);
+    Validator.car(cars);
     cars.forEach((car) => {
       this.cars.push(new CarModel(car));
     });

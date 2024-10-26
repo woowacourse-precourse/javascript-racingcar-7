@@ -14,12 +14,9 @@ export default class Validator {
     checkEmptyString(input);
   }
 
-  static carName(cars) {
+  static car(cars) {
     checkConflictingCarName(cars);
     checkCarNameLength(cars);
-  }
-
-  static carNumber(cars) {
     checkMaxCarNumber(cars);
     checkMinCarNumber(cars);
   }

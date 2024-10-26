@@ -25,8 +25,8 @@ describe('validateUtil 함수 테스트', () => {
     expect(() => checkMinCarNumber(input)).toThrow(error);
   });
 
-  test('자동차 이름 21개 이상 입력시 예외 처리', () => {
-    const input = Array(21).fill('carName');
+  test('자동차 이름 1001개 이상 입력시 예외 처리', () => {
+    const input = Array(1001).fill('carName');
 
     expect(() => checkMaxCarNumber(input)).toThrow(ERROR.MAX_CAR_NUMBER);
   });
