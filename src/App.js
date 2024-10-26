@@ -27,7 +27,7 @@ class App {
 
   excuteRace(carController) {
     carController.updateCarPosition();
-    //carController.printResult();
+    carController.printResult();
   }
 }
 
