@@ -7,7 +7,7 @@ class App {
     const raceRounds = await this.getRaceRounds();
     const distances = this.initializeDistances(carNames);
 
-    this.printRaceResults(carNames, raceRounds, distances);
+    this.printRoundResults(carNames, raceRounds, distances);
     this.printWinners(carNames, distances);
   }
 
@@ -42,16 +42,20 @@ class App {
     }
   }
 
-  printRaceResults(carNames, raceRounds, distances) {
+  printRoundResults(carNames, raceRounds, distances) {
     Console.print("\n실행 결과");
 
     for (let i = 0; i < raceRounds; i++) {
-      carNames.forEach(name => {
-        this.moveCar(name, distances);
-        Console.print(`${name} : ${distances[name]}`);
-      });
+      this.printCarDistance(carNames, distances);
       Console.print(""); // 각 라운드 사이에 여백 추가
     }
+  }
+
+  printCarDistance(carNames, distances) {
+    carNames.forEach(name => {
+      this.moveCar(name, distances);
+      Console.print(`${name} : ${distances[name]}`); 
+    });
   }
 
   printWinners(carNames, distances) {
