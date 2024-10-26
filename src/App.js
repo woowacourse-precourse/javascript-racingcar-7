@@ -23,7 +23,7 @@ class App {
 
   static async #getTotalRounds() {
     const input = await Console.readLineAsync('시도할 횟수는 몇 회인가요? \n');
-    Validator.minRound(input);
+    Validator.rounds(input);
     return input;
   }
 
@@ -31,9 +31,9 @@ class App {
     const input = await App.#getCarNames();
     const carNames = input.split(',');
 
-    Validator.IsEmpty(carNames);
-    Validator.arrayLength(carNames);
-    Validator.stringLength(carNames);
+    Validator.isEmpty(carNames);
+    Validator.arraySize(carNames);
+    Validator.length(carNames);
 
     return carNames;
   }
