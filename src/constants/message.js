@@ -17,7 +17,7 @@ const ERROR_MESSAGE = Object.freeze({
   carName: {
     invalidLength: `${PREFIX_ERROR} 자동차 이름은 5글자 이내입니다.`,
     invalidOverlap: `${PREFIX_ERROR} 자동차 이름이 중복됩니다.`,
-    invalidSeparator: `${PREFIX_ERROR} ,로만 구분해야 합니다.`,
+    invalidSeparator: `${PREFIX_ERROR} ,(쉼표)로 구분 가능해야합니다).`,
   },
 
   attemptNumber: {
