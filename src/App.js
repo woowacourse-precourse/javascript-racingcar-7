@@ -30,7 +30,7 @@ class App {
 
     if (!isNumber) throw new Error('[ERROR] 시도할 횟수가 숫자가 아닙니다.');
 
-    return;
+    return +tryCountInput.trim();
   }
 }
 
