@@ -1,6 +1,7 @@
 import { Console } from '@woowacourse/mission-utils';
 import moveForwardRandomly from './moveForwardRandomly.js';
 import checkError from './checkError.js';
+import decideWinner from './decideWinner.js';
 
 class App {
   async run() {
@@ -12,6 +13,10 @@ class App {
 
     const moveForwardInformation = moveForwardRandomly(carNameArray, Number(attemptNumber));
     Console.print(moveForwardInformation);
+
+    const winnerList = decideWinner(moveForwardInformation);
+    const winnerString = winnerList.join(', ');
+    Console.print(`최종 우승자 : ${winnerString}`);
   }
 }
 
