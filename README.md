@@ -15,45 +15,53 @@
 
 ### 입력 받기
 
-- [] 경주 자동자 이름 입력 받기
-- [] 시도할 횟수 입력 받기
+- [x] 경주 자동자 이름 입력 받기
+- [x] 시도할 횟수 입력 받기
 
-입력값 유효 조건
+자동차 이름 입력값 유효 조건
 
-1. 쉼표로 구분했는지
+1. , 뒤에 공백이 있을 경우 (eg. pobi, white)
 
-- [] 다른 구분자일 경우 : [ERROR] : INVALID_SEPERATOR
+- [x] 공백 제거 후 글자 수 판단
 
 2. 5자 이하인지
 
-- [] 5자 초과일 경우 : [ERROR] : MORE_THAN_5_LETTERS
+- [x] 5자 초과일 경우 : [ERROR] : MORE_THAN_5_LETTERS
 
 3. 경주할 자동차 이름에 두 개 이상 값을 입력햇는지
 
-- [] 빈 문자열 일 경우 : [ERROR] : EMPTY_CAR_NAME_ERROR = [] 하나의 문자열일 경우 : [ERROR] : ONE_CAR_NAME_ERROR
+- [x] 빈 문자열 일 경우 : [ERROR] : EMPTY_CAR_NAME_ERROR
+- [x] 하나의 문자열일 경우 : [ERROR] : ONE_CAR_NAME_ERROR
 
 4. 모두 다른 이름인지
 
-- [] 중복된 이름이 있을 경우 : [ERROR] : SAME_CAR_NAME_ERROR
+- [x] 중복된 이름이 있을 경우 : [ERROR] : SAME_CAR_NAME_ERROR
 
-5. 시도할 횟수가 0 초과인지
+시도 횟수 입력값 유효 조건
 
-- [] 0일 경우 : [ERROR] : INVALID_NUMBER
+1. 시도 횟수가 숫자인지
 
-6. 너무 큰 숫자인지 (메모리 초과여부)
+- [] 숫자가 아닐 경우 : [ERROR] : NOT_NUMBER
 
-- [] 너무 큰 숫자일 경우 : [ERROR] : TOO_BIG_BUMBER
+1. 시도할 횟수가 0 초과인지 -> NumValidation에서 해야 함
+
+- [x] 0일 경우 : [ERROR] : INVALID_NUMBER
+
+2. 너무 큰 숫자인지
+
+- [x] 너무 큰 숫자일 경우 : [ERROR] : TOO_BIG_BUMBER
+  - 100 회로 제한
 
 ### 전진 하기
 
-- [] Random.pickNumberInRange() 함수를 통해 무작위값 구하기
-- [] 값이 4이상일 경우 전진하기
-- [] 최종 우승자 배열에 넣기
+- [x] Random.pickNumberInRange() 함수를 통해 무작위값 구하기
+- [x] 값이 4이상일 경우 전진하기
+- [x] 최종 우승자 배열에 넣기
 
 ### 출력하기
 
-- [] 사용자가 입력한 시도할 횟수 만큼 출력
-- [] 최종 우승자 출력 (배열 - map으로 조인해서 출력)
+- [x] 사용자가 입력한 시도할 횟수 만큼 출력
+- [x] 최종 우승자 출력 (배열 - map으로 조인해서 출력)
 
 ---
 
