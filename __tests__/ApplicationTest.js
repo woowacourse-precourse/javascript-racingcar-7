@@ -56,5 +56,15 @@ describe('자동차 경주', () => {
       '[ERROR] 자동차 이름은 이름은 5자 이하만 가능합니다.'
     );
   });
+
+  test('예외 테스트 : 자동차 이름은 중복되지 않아야 한다', async () => {
+    const inputs = ['pobi,pobi'];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(
+      '[ERROR] 자동차 이름은 중복되지 않아야 합니다.'
+    );
   });
 });
