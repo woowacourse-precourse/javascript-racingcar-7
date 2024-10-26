@@ -1,4 +1,4 @@
-import { Random, Console } from "@woowacourse/mission-utils";
+import { Random } from "@woowacourse/mission-utils";
 import Car from "./Car.js";
 
 class RacingGame {
@@ -45,12 +45,9 @@ class RacingGame {
     return count;
   }
 
-  // 모든 자동차들의 현재 상태를 출력하는 메서드
-  printAllStatus() {
-    this.cars.forEach((car) => {
-      Console.print(car.getCurrentStatus());
-    });
-    Console.print("");
+  // 모든 자동차들의 현재 상태를 리턴하는 메서드
+  getCarsStatus() {
+    return this.cars.map((car) => car.getCurrentStatus());
   }
 
   findMaxPosition() {
@@ -61,11 +58,6 @@ class RacingGame {
     const maxPosition = this.findMaxPosition();
     const winners = this.cars.filter((car) => car.position === maxPosition);
     return winners.map((car) => car.name);
-  }
-
-  printWinners() {
-    const winners = this.findWinners();
-    Console.print(`최종 우승자 : ${winners.join(", ")}`);
   }
 }
 

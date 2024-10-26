@@ -31,14 +31,30 @@ class App {
   }
 
   async playGame() {
-    this.outputView.printGameStartMessage();
+    this.printGameStartMessage();
 
     for (let i = 0; i < this.tryCount; i++) {
       this.game.moveAllCars();
-      this.game.printAllStatus();
+      this.printRoundStatus();
     }
 
-    this.game.printWinners();
+    this.printGameResult();
+  }
+
+  printGameStartMessage() {
+    this.outputView.printGameStartMessage();
+  }
+
+  // 현재 라운드의 자동차 상태를 출력하는 메서드
+  printRoundStatus() {
+    const carsStatus = this.game.getCarsStatus();
+    this.outputView.printCarsStatus(carsStatus);
+  }
+
+  // 최종 결과를 출력하는 메서드
+  printGameResult() {
+    const winners = this.game.findWinners();
+    this.outputView.printWinners(winners);
   }
 }
 
