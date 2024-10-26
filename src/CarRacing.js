@@ -5,6 +5,7 @@ class CarRacing {
   #carList = [];
   #carNames = [];
   #attemptNumber;
+  #maxMileage = 0;
 
   async #getCarNames() {
     const inputNames = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
@@ -44,8 +45,24 @@ class CarRacing {
     this.#carList.forEach((car) => {
       car.move();
       Console.print(car.showMileage());
+      this.#calcMaxMileage(car);
     });
     Console.print('');
+  }
+
+  #calcMaxMileage(car) {
+    const carMileage = car.getMileage();
+    if(carMileage > this.#maxMileage)
+      this.#maxMileage = carMileage;
+  }
+
+  #checkWinner() {
+    let winners = [];
+    this.#carList.forEach((car) => {
+      if(car.getMileage() == this.#maxMileage)
+        winners.push(car.getName());
+    });
+    return winners;
   }
 
   async initCarRacing() {
@@ -59,6 +76,11 @@ class CarRacing {
     for(let i = 0; i < this.#attemptNumber; ++i) {
       this.#moveCars();
     }
+  }
+
+  runAwardsCeremony() {
+    const winners = this.#checkWinner();
+    Console.print('최종 우승자 : ' + winners.map((winner) => winner).join(', '));
   }
 }
 
