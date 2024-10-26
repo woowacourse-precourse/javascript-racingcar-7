@@ -4,15 +4,16 @@ import { GAME_RULES } from './constants.js';
 import Car from './Car.js';
 
 class Race {
-
   constructor() {
     this.cars = [];
-    this.attemptCount = 0;  
+    this.attemptCount = 0;
   }
 
   async startRace() {
     await this.setCarName();
     await this.setAttemptCount();
+    this.generateRandomDistances()
+    this.printRaceStatus();
   }
 
   async setCarName() {
@@ -39,11 +40,10 @@ class Race {
   printRaceStatus() {
     this.cars.forEach(car => {
       const distanceSymbol = GAME_RULES.DISTANCE_SYMBOL.repeat(car.getDistance()); 
-      console.log(`${car.name} : ${distanceSymbol}`);
+      console.log(`${car.getName()} : ${distanceSymbol}`);
     });
     console.log(''); 
   }
-
 }
 
 export default Race;
