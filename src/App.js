@@ -12,6 +12,8 @@ class App {
     const name = await this.getCarName();
     const cars = this.saveCarConstructor(name);
     MissionUtils.Console.print(name);
+    const tryNum = await this.getNumberOfTry();
+    MissionUtils.Console.print(tryNum);
   }
   async getCarName() {
     const name = await MissionUtils.Console.readLineAsync();
@@ -22,7 +24,21 @@ class App {
     const cars = nameList.map((carName) => new App(carName, ""));
     return cars;
   }
-
+  async getNumberOfTry() {
+    MissionUtils.Console.print("시도할 횟수는 몇 회인가요?");
+    const tryNum = await MissionUtils.Console.readLineAsync();
+    return this.isValidNumberOfTry(Number(tryNum));
+  }
+  isValidNumberOfTry(tryNum) {
+    if (Number.isNaN(tryNum)) {
+      MissionUtils.Console.print("[ERROR] 숫자가 잘못된 형식입니다.");
+      throw new Error("[ERROR]");
+    } else {
+      MissionUtils.Console.print(tryNum);
+      MissionUtils.Console.print("");
+      return tryNum;
+    }
+  }
   async run() {}
 }
 
