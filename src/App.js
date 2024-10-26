@@ -1,6 +1,7 @@
 import { Console } from '@woowacourse/mission-utils'
 import { determineEachMove } from './determineMove.js';
 import Car from './Car.js';
+import { printCarsDistance, printEachCarDistance } from './printCarsDistance.js';
 class App {
   async run() {
     const CARLIST = [];
@@ -15,7 +16,11 @@ class App {
       CARLIST.push(car);
     }
 
-    determineEachMove(CARLIST);
+    Console.print("실행 결과");
+    for(let i = 0; i < INPUTTIMES; i++){
+      determineEachMove(CARLIST);
+      printCarsDistance(CARLIST);
+    }
   }
 }
 
