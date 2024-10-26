@@ -23,10 +23,14 @@ class RaceService {
         this.#cars.map(car => car.getForwardCount())
       );
     }
+
+    const winnners = this.determineWinners(this.#cars);
+    this.outputView.printWinners(winnners);
   }
 
   generateRandomNumber() {
-    return MissionUtils.Random.pickNumberInRange(0, 9);
+    const randomValue = MissionUtils.Random.pickNumberInRange(0, 9);
+    return randomValue;
   }
 
   decideMoveForward() {
@@ -42,6 +46,15 @@ class RaceService {
         car.moveForward();
       }
     });
+  }
+
+  determineWinners(cars) {
+    const maxDistance = Math.max(...cars.map(car => car.getForwardCount()));
+    const winnners = cars
+      .filter(car => car.getForwardCount() === maxDistance)
+      .map(car => car.getName());
+
+    return winnners;
   }
 }
 
