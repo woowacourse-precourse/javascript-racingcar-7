@@ -3,7 +3,7 @@ const ERROR_PREFIX = '[ERROR]';
 export const GAME_MESSAGES = {
   readCarsName: '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
   readTrialCount: '시도할 횟수는 몇 회인가요?\n',
-  executeResult: '\n실행 결과',
+  executionResult: '\n실행 결과',
   winner: '최종 우승자 : ',
 };
 

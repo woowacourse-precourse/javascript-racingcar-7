@@ -13,8 +13,8 @@ const view = {
     return answer;
   },
 
-  printStartMessage() {
-    Console.print(GAME_MESSAGES.executeResult);
+  printExecutionResultMessage() {
+    Console.print(GAME_MESSAGES.executionResult);
   },
 
   printProgress(name, progress) {
