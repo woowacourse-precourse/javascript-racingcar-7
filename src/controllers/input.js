@@ -7,7 +7,7 @@ export async function getCarNamesInput() {
   return carNamesInput.trim();
 }
 
-export async function getRoundCount() {
+export async function getRoundCountInput() {
   const roundCountInput =
     await MissionUtils.Console.readLineAsync('시도할 횟수를 입력해주세요.\n');
   return roundCountInput;

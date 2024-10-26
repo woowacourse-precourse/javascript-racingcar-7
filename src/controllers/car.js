@@ -9,7 +9,7 @@ function splitCarNames(carNamesInput) {
   return carNamesInput.split(',').map((name) => name.trim());
 }
 
-export default function prepareCarNames(carNamesInput) {
+export default function parseCarNames(carNamesInput) {
   const carNames = splitCarNames(carNamesInput);
   checkCarNames(carNames);
 
