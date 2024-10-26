@@ -82,11 +82,6 @@ MVC 패턴을 통한 기능 구현을 목표했습니다.
 - [x] 입력 메시지 상수
 - [x] 출력 메시지 상수
 
-#### error.js (에러 처리)
-
-- [ ] 입력값 검증 에러
-- [ ] 게임 진행 에러
-
 ### 🎯 Application
 
 #### App.js (애플리케이션 진입점)
@@ -96,3 +91,6 @@ MVC 패턴을 통한 기능 구현을 목표했습니다.
 ## ♻️ 리팩토링 목록
 
 - outputView.js에서 printRoundStatus 메서드를 단일 책임 원칙에 따라 두 개의 메서드로 분리
+- validator.js에서 기존에 하드코딩되었던 에러 메시지들을 constants.js의 ERROR_MESSAGES로 대체
+- inputView.js에서 기존에 하드코딩되었던 입력 메시지들을 constants.js의 INPUT_MESSAGES로 대체
+- outputView.js에서 기존에 하드코딩되었던 입력 메시지들을 constants.js의 OUTPUT_MESSAGES로 대체
