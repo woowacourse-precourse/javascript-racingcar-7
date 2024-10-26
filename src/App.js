@@ -44,26 +44,24 @@ function createCarRacing(formattedUserInput, moveCount) {
   for (let i = 0; i < moveCount; i++) {
     displayResult(formattedUserInput);
   }
-
-  return displayResult(formattedUserInput);
 }
 
 // const playerNames = [
 //   { name: 'pobi', score: 0 },
 //   { name: 'woni', score: 0 },
 // ];
-function displayResult(formattedUserInput) {
-  // return하여 map으로 변환하기
-  formattedUserInput.forEach((player) => {
-    if (Random.pickNumberInRange(0, 9) >= 4) player.score += 1;
-  });
 
-  formattedUserInput.forEach((player) => {
+// TODO: formattedUserInput 이름 변경
+function displayResult(formattedUserInput) {
+  for (const player of formattedUserInput) {
+    if (Random.pickNumberInRange(0, 9) >= 4) {
+      player.score += 1;
+    }
+    // TODO: 문자열 상수화
     Console.print(`${player.name} : ${'-'.repeat(player.score)}`);
-  });
-  // TODO: 줄바꿈이 여러번 되고 있음
+  }
+
   Console.print('\n');
-  return formattedUserInput;
 }
 
 function findGameWinner(playerScore) {
