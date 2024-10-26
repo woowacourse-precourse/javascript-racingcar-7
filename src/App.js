@@ -45,18 +45,25 @@ class App {
     }
 
     // * 최종 우승 자동차 배열 / 이름 배열 구하기 
-    const getWinnerCarNamesWithMaxValue = (carArray, maxDistance) => {
+    const getWinnerCarNameArrayWithMaxValue = (carArray, maxDistance) => {
       const winnerCars= carArray.filter((car) => 
         car.distance === maxDistance
       ); //distance가 max인것만 뻡는다.
 
       // winnerCars의 names만 뽑는다.
-      const winnerCarNames = winnerCars.map((car) => car.distance);
+      const winnerCarNameArray = winnerCars.map((car) => car.distance);
 
-      return winnerCarNames;
+      return winnerCarNameArray;
     }
 
+    // * 최종 우승자 출력하기 
+    const printWinnerCars = (winnerCarNameArray) => {
+      // name 배열을 '/'로 join한다. 
+      const CarNames = winnerCarNameArray.join(', '); 
 
+      Console.print(`최종 우승자 : ${CarNames}`);
+      
+    }
 
     try{
       // ! 입력  ============///
@@ -100,8 +107,8 @@ class App {
 
       // ! 경주 결과 ========= //
       const maxDistance = getMaxDistance(carArray); // 최대 거리 찾기
-      getWinnerCarNamesWithMaxValue(carArray, maxDistance); // 이긴 자동차 구하기
-
+      const winnerCarNameArray = getWinnerCarNameArrayWithMaxValue(carArray, maxDistance); // 이긴 자동차 이름 배열 구하기
+      printWinnerCars(winnerCarNameArray); // 결과 출력.
       // ! =================== //
 
     } catch(error) {
