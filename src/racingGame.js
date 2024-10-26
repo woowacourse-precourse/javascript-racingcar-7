@@ -1,6 +1,6 @@
 import { Console, MissionUtils } from "@woowacourse/mission-utils";
 import Car from "./car.js";
-import { validateCarName, countValidate } from "./validation.js";
+import { validateCarName, countValidate, resetCarSet } from "./validation.js";
 class RacingGame {
   constructor() {
     this.cars = [];
@@ -23,6 +23,7 @@ class RacingGame {
     } catch (error) {
       Console.print(error.message);
       this.cars = [];
+      resetCarSet();
       await this.init();
     }
   }

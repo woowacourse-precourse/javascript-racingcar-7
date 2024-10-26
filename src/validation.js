@@ -21,3 +21,6 @@ export const countValidate = (input) => {
     throw new Error("[ERROR] 시도할 횟수는 1 이상의 숫자여야 합니다.");
   }
 };
+export const resetCarSet = () => {
+  carSet.clear();
+};
