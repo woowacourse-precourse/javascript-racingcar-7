@@ -1,3 +1,4 @@
+import Game from './Game.js';
 import Input from './Input.js';
 
 class App {
@@ -5,6 +6,7 @@ class App {
 
   async run() {
     const { names, repetitionNumber } = await this.inputHandler.get();
+    const game = new Game(names, Number(repetitionString));
   }
 }
 
