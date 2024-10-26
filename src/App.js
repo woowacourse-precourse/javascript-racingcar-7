@@ -28,13 +28,13 @@ class App {
     Console.print("\n실행 결과");
     for (let i = 0; i < userInputCount; i++) {
 
-      let nextPostions = this.raceController.movePlayersRandomly(positions);
+      const nextPostions = this.raceController.movePlayersRandomly(positions);
 
       positions = nextPostions;
       this.displayController.displayPlayerPositions(userInputArray, positions);
     }
 
-    let winnerArray = this.raceController.getRaceWinnersIndex(positions);
+    const winnerArray = this.raceController.getRaceWinnersIndex(positions);
 
     this.displayController.displayWinners(userInputArray, winnerArray);
 

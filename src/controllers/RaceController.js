@@ -36,7 +36,7 @@ class RaceController {
     const winnersIndex = [];
 
     positions.forEach((value, index) => {
-      this.addWinnerIndex(value, maxValue, index, winnersIndex)
+      this.addWinnerIndex(value, maxValue, index, winnersIndex);
     });
     return winnersIndex;
 

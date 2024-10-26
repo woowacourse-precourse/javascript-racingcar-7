@@ -5,6 +5,6 @@ const RACING_VARIABLES = {
   MAXIMUM_ROUND: 10,
   WINNER_PROMPT: "최종 우승자"
 
-}
+};
 
 export default RACING_VARIABLES;

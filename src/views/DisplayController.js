@@ -11,9 +11,9 @@ class DisplayController {
   }
 
   async displayWinners(players, winners) {
-    const winnerArray = winners.map(idx => players[idx])
+    const winnerArray = winners.map(idx => players[idx]);
 
-    Console.print(`${RACING_VARIABLES.WINNER_PROMPT} : ${winnerArray.join(',')}`)
+    Console.print(`${RACING_VARIABLES.WINNER_PROMPT} : ${winnerArray.join(',')}`);
   }
 }
 
