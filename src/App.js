@@ -16,7 +16,7 @@ class App {
     const carNameArray = carName.split(GAME.inputDelimeterSign).map((name) => name.trim());
     const carController = new CarController(carNameArray);
 
-    Output.printResultHeader(); // TODO: carController내부로 옮기기
+    Output.printResultHeader();
     this.runRaces(carController, Number(tryNumber));
     carController.getWinner();
   }
