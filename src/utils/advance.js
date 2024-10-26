@@ -1,8 +1,8 @@
-import { Random, Console } from "@woowacourse/mission-utils";
+import { Random } from "@woowacourse/mission-utils";
 import { GAME_RULES } from "../constants/index.js";
 
 // 전진 조건 체크
-const shouldAdvance = (randomNumber) => {
+export const shouldAdvance = (randomNumber) => {
   return randomNumber >= GAME_RULES.ADVANCE_NUMBER;
 };
 
