@@ -6,9 +6,9 @@ import { validateRoundCount } from './validators/validator.js';
 class App {
   async run() {
     const carNamesInput = await getCarNamesInput();
-    const roundCountInput = await getRoundCountInput();
-
     const carNames = parseCarNames(carNamesInput);
+
+    const roundCountInput = await getRoundCountInput();
     const roundCount = validateRoundCount(roundCountInput);
 
     await startGame(carNames, roundCount);

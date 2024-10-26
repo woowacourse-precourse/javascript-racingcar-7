@@ -1,4 +1,5 @@
 import ERROR_MESSAGES from '../constants/errorMessages.js';
+import { MAX_CAR_NAME_LENGTH, MAX_ROUNDS } from '../constants/numbers.js';
 import throwError from '../utils/error.js';
 
 export function checkCommaSeparatedNames(input) {
@@ -8,7 +9,8 @@ export function checkCommaSeparatedNames(input) {
 }
 
 function checkCarNameLength(name) {
-  if (name.length > 5) throwError(ERROR_MESSAGES.NAME_LENGTH_EXCEEDED);
+  if (name.length > MAX_CAR_NAME_LENGTH)
+    throwError(ERROR_MESSAGES.NAME_LENGTH_EXCEEDED);
 }
 
 function checkAllowedCharacters(name) {
@@ -30,17 +32,17 @@ function checkMinimumCars(names) {
   if (names.length < 2) throwError(ERROR_MESSAGES.MINIMUM_CARS);
 }
 
+function validateCarName(name) {
+  checkCarNameLength(name);
+  checkEmptyString(name);
+  checkAllowedCharacters(name);
+}
+
 export function checkCarNames(carNames) {
   checkMinimumCars(carNames);
   checkCarNameDuplicates(carNames);
 
-  carNames.forEach((name) => {
-    checkCarNameLength(name);
-    checkEmptyString(name);
-    checkAllowedCharacters(name);
-  });
-
-  return carNames;
+  carNames.forEach(validateCarName);
 }
 
 function checkPositiveInteger(roundCount) {
@@ -57,12 +59,12 @@ function checkIsNumber(roundCount) {
   if (Number.isNaN(roundCount)) throwError(ERROR_MESSAGES.INVALID_NUMBER_INPUT);
 }
 
-export function validateRoundCount(roundCountInput, maxRounds = 100) {
+export function validateRoundCount(roundCountInput) {
   const roundCount = Number(roundCountInput);
 
   checkIsNumber(roundCount);
   checkPositiveInteger(roundCount);
-  checkRoundLimit(roundCount, maxRounds);
+  checkRoundLimit(roundCount, MAX_ROUNDS);
 
   return roundCount;
 }
