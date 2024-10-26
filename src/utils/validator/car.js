@@ -1,6 +1,6 @@
-import { ERROR } from '../constants/message.js';
-import { CARS_MAX_LENGTH } from '../constants/constants.js';
-import throwError from './error.js';
+import { ERROR } from '../../constants/message.js';
+import { THRESHOLD } from '../../constants/threshold.js';
+import throwError from '../error.js';
 
 const validateCarEmpty = (cars) => {
   if (!cars.every((car) => car.length > 0)) {
@@ -10,11 +10,11 @@ const validateCarEmpty = (cars) => {
 
 const validateCarLength = (cars, max) => {
   if (!cars.every((car) => car.length <= max)) {
-    throwError(ERROR.OVER_LENGTH);
+    throwError(ERROR.OVER_MAX_LENGTH);
   }
 };
 
 export const validateCars = (cars) => {
   validateCarEmpty(cars);
-  validateCarLength(cars, CARS_MAX_LENGTH);
+  validateCarLength(cars, THRESHOLD.MAX_NAME_LENGTH);
 };

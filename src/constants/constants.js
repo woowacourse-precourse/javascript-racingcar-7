@@ -1,1 +1,0 @@
-export const CARS_MAX_LENGTH = 5;

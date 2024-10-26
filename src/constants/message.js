@@ -5,5 +5,7 @@ export const INPUT = Object.freeze({
 
 export const ERROR = Object.freeze({
   EMPTY: '값을 입력해주세요.',
-  OVER_LENGTH: '자동차 이름은 5자 이하로 입력해주세요.',
+  VALID: '유효한 값을 입력해주세요.',
+  OVER_MAX_LENGTH: '자동차 이름은 5자 이하로 입력해주세요.',
+  OVER_MIN_COUNT: '시도 횟수는 1회 이상으로 입력해주세요.'
 });

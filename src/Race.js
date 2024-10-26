@@ -1,18 +1,19 @@
 import ViewIn from './view/ViewIn.js';
 import { parseCars } from './utils/parser.js';
-import { validateCars } from './utils/validator.js';
+import { validateCars } from './utils/validator/car.js';
+import { validateCount } from './utils/validator/count.js';
 
 export default class Race {
   #cars;
   #count;
 
-  init() {
-    const cars = ViewIn.getCars();
+  async init() {
+    const cars = await ViewIn.getCars();
+    const count = await ViewIn.getCount();
+
     const carsArray = parseCars(cars);
+
     validateCars(carsArray);
-  }
-
-  start() {
-
+    validateCount(count);
   }
 }
