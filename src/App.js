@@ -5,6 +5,7 @@ import parseCarNames from "./utils/parseCarNames.js";
 import validateCarNames from "./validator/carValidator.js";
 import validateCount from "./validator/countValidator.js";
 import findMaxMoveCars from "./utils/findMaxMoveCars.js";
+import printWinner from "./utils/printWinner.js";
 
 class App {
   async run() {
@@ -27,6 +28,7 @@ class App {
     }
 
     const topCars = findMaxMoveCars(cars);
+    printWinner(topCars);
   }
 }
 
