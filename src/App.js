@@ -17,6 +17,20 @@ class App {
 
     return { carNames, attemptCount };
   }
+
+  validateCarNames(input) {
+    const carNames = input.split(',').map((name) => name.trim());
+
+    carNames.forEach((name) => {
+      if (name.length > 5) {
+        const errorMessage = '[ERROR] 자동차 이름은 5자 이하여야 합니다.';
+        Console.print(errorMessage);
+        throw new Error(errorMessage);
+      }
+    });
+
+    return carNames;
+  }
 }
 
 export default App;
