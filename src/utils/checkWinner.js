@@ -1,3 +1,5 @@
+import { OUTPUT_SEPERATOR } from '../constants/displayConstant.js';
+
 // Car[] => number
 const getMaxPosition = (carList) => {
   return carList.reduce((maxValue, currentCar) => {
@@ -13,7 +15,7 @@ const checkWinner = (carList) => {
   carList.forEach(({ name, position }) => {
     if (position === maxPosition) winnerList.push(name);
   });
-  return winnerList.join(', ');
+  return winnerList.join(OUTPUT_SEPERATOR);
 };
 
 export default checkWinner;

@@ -1,11 +1,16 @@
-import { printBlankLine, printCurrentStatus } from './printData.js';
+import {
+  printTurnSeperator,
+  printCurrentStatus,
+  printStatusTitle,
+} from './printData.js';
 
 // (Car[], number) => void
 const runCarRacing = (carList, turn) => {
+  printStatusTitle();
   for (let i = 0; i < turn; i++) {
     actionAllCarOneTurn(carList);
     printCurrentStatus(carList);
-    printBlankLine();
+    printTurnSeperator();
   }
 };
 

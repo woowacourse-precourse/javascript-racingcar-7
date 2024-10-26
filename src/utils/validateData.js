@@ -3,7 +3,7 @@ import {
   isNoName,
   isNotNumber,
   isOverName,
-} from './checkError';
+} from './checkError.js';
 
 export const validateCarNameList = (carNameList) => {
   carNameList.forEach((carName) => {

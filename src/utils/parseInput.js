@@ -1,9 +1,10 @@
 import Car from '../Car.js';
+import { InputSeperator } from '../constants/displayConstant.js';
 import { validateCarNameList, validateTurnString } from './validateData.js';
 
 // string => Car[]
 export const parseCarNameInput = (input) => {
-  const carNameList = input.split(',');
+  const carNameList = input.split(InputSeperator.MARK);
   validateCarNameList(carNameList);
 
   return createCarList(carNameList);
