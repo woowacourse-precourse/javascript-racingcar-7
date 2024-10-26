@@ -16,6 +16,8 @@ class App {
         "시도할 횟수는 몇 회인가요? \n"
       );
       this.validateMoveCount(inputCount);
+
+      const cars = this.initializeCars(names);
       Console.print(`실행 결과 \n`);
       // Console.print(`결과 : ${names}`);
     } catch (error) {
@@ -34,6 +36,10 @@ class App {
     if (!Number.isInteger(parseInt(count)) || parseInt(count) <= 0) {
       throw new Error("[ERROR]");
     }
+  }
+
+  initializeCars(names) {
+    return names.map((name) => ({ name, position: 0 }));
   }
 }
 export default App;
