@@ -18,6 +18,10 @@ class Car {
   getProgress() {
     Console.print(`${this.name} : ${'-'.repeat(this.moveCount)}`);
   }
+
+  getCount() {
+    return this.moveCount;
+  }
 }
 
 function getNames(str) {
@@ -47,6 +51,30 @@ function checkCount(input) {
   }
 }
 
+function whoIsWinner(cars) {
+  let arr = [...cars];
+  let countArr = [];
+
+  arr.map((car) => {
+    countArr.push(car.getCount());
+  });
+
+  let max = 0;
+  countArr.forEach((e) => {
+    if (e >= max) max = e;
+  });
+
+  let winners = arr.filter((e) => {
+    return e.getCount() === max;
+  });
+
+  let winnerNames = winners.map((e) => {
+    return e.getName();
+  });
+
+  Console.print(`최종 우승자 : ${winnerNames.join(', ')}`);
+}
+
 class App {
   async run() {
     const inputNames = await Console.readLineAsync(
@@ -74,7 +102,8 @@ class App {
       });
       Console.print('');
     }
+
+    whoIsWinner(cars);
   }
 }
-
 export default App;
