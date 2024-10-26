@@ -1,31 +1,31 @@
-import { getErrorMessage } from "../utils/ErrorMessageMaker.js";
+import { ERROR_MESSAGE } from "../utils/ErrorMessage.js";
 
-export function checkValidNameLength(name, length) {
-    if (name.length > length) {
-        throw new Error(getErrorMessage(`이름은 최대 ${length}자까지 설정 가능합니다. (입력값: ${name})`));
+export function checkValidNameLength(name, maxLength) {
+    if (name.length > maxLength) {
+        throw new Error(ERROR_MESSAGE.NAME_LENGTH_EXCEEDED(maxLength, name));
     }
 }
 
 export function checkNotBlank(str) {
     if (!str) {
-        throw new Error(getErrorMessage(`빈 값은 입력할 수 없습니다.`));
+        throw new Error(ERROR_MESSAGE.EMPTY_INPUT_NOT_ALLOW);
     }
 }
 
 export function checkOnlyEnglishCharacters(str) {
     if (!/^[a-zA-Z]+$/.test(str)) {
-        throw new Error(getErrorMessage(`영어 이름만 입력 가능합니다. (입력값: ${str})`));
+        throw new Error(ERROR_MESSAGE.ONLY_USED_ENGLISH(str));
     }
 }
 
 export function checkNumberValue(num) {
     if (!/^[0-9]+$/.test(num)) {
-        throw new Error(getErrorMessage(`숫자만 입력할 수 있습니다. (입력값: ${num})`));
+        throw new Error(ERROR_MESSAGE.ONLY_USED_NUMBER(num));
     }
 }
 
 export function checkLessThanOrEqualMaxCount(count, maxCount) {
     if (count > maxCount) {
-        throw new Error(getErrorMessage(`경기는 최대 ${maxCount}회 시도할 수 있습니다. (입력값: ${count})`));
+        throw new Error(ERROR_MESSAGE.RACING_COUNT_EXCEEDED(maxCount, count));
     }
 }
