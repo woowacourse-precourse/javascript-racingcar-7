@@ -1,5 +1,5 @@
 import Race from '../../src/Race.js';
-import Car from '../../src/Car.js';
+import { getRandomNumber } from '../../src/utils.js';
 
 jest.mock('../../src/utils.js', () => ({
   getCarName: jest.fn().mockResolvedValue("Audi,BMW,Ford"),
