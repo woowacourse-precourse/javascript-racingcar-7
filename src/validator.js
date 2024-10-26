@@ -1,7 +1,7 @@
 import { ERROR_MESSAGE } from './constants.js';
 
 const isOnlySymbolAndNumber = (carName) => {
-  const regex = /^[가-힣A-Za-z]+$/;
+  const regex = /[가-힣A-Za-z]/;
 
   if (!regex.test(carName)) {
     throw new Error(ERROR_MESSAGE.ONLY_SYMBOL_AND_NUMBER);
