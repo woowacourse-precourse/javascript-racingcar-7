@@ -60,7 +60,10 @@ class App {
         this.validateCars(cars);
         this.setState(
             'cars',
-            cars.split(',').map((car) => [car, 0])
+            cars.split(',').map((car) => ({
+                name: car,
+                movement: 0,
+            }))
         );
     }
 
@@ -80,11 +83,11 @@ class App {
     }
 
     moveCars() {
-        const newCars = this.state.cars.map(([name, movement]) => {
+        const newCars = this.state.cars.map(({ name, movement }) => {
             if (getRandom() >= MOVING_FORWARD) {
-                return [name, movement + 1];
+                return { name, movement: movement + 1 };
             } else {
-                return [name, movement];
+                return { name, movement };
             }
         });
         this.setState('cars', newCars);
@@ -92,18 +95,18 @@ class App {
 
     showRaceStatus() {
         this.state.cars.forEach((car) => {
-            const [name, movement] = car;
+            const { name, movement } = car;
             print(`${name} : ${'-'.repeat(movement)}`);
         });
     }
 
     findWinners() {
         const maxMovement = Math.max(
-            ...this.state.cars.map(([name, movement]) => movement)
+            ...this.state.cars.map(({ movement }) => movement)
         );
         const winners = this.state.cars.reduce((acc, cur) => {
-            if (cur[1] === maxMovement) {
-                return [...acc, cur[0]];
+            if (cur.movement === maxMovement) {
+                return [...acc, cur.name];
             }
             return acc;
         }, []);
