@@ -1,5 +1,5 @@
 import { Console, Random } from "@woowacourse/mission-utils";
-import { ERROR_BLANK,ERROR_STRING_OVER_5,ERROR_DUPLICATE,ERROR_INVALID_MOVE_COUNT,ERROR_INVALID_INPUT_TYPE,throwError } from "../src/constants/errorContants.js";
+import { ERROR_CAR_AMOUNT,ERROR_BLANK,ERROR_STRING_OVER_5,ERROR_DUPLICATE,ERROR_INVALID_MOVE_COUNT,ERROR_INVALID_INPUT_TYPE,throwError } from "../src/constants/errorContants.js";
 
 
 class App {
@@ -37,7 +37,12 @@ function validateInput(cars) {
     validateBlank(car);
     validateOver5(car);
   });
+  validateCarAmount(cars);
   validateDuplicate(cars);
+}
+
+function validateCarAmount(cars) {
+  if (cars.length <= 1) throwError(ERROR_CAR_AMOUNT);
 }
 
 function validateBlank(car) {
