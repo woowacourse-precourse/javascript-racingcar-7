@@ -6,6 +6,9 @@ const totalTryInput = async () => {
   } else if (isNaN(total)) {
     throw new Error(ERROR_MESSAGES.NOT_A_NUMBER);
   }
+  else if(total < 1){
+    throw new Error(ERROR_MESSAGES.POSITIVE_NUMBER);
+  }
   return total;
 };
 export default totalTryInput;
