@@ -8,6 +8,7 @@ class App {
     let attemptCnt = await inputView.getMoveCnt();
 
     const racingCalc = new RacingCalc(carName);
+    racingCalc.moveRacing(attemptCnt);
   }
 }
 
