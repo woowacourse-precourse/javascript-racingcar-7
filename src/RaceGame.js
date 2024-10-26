@@ -1,4 +1,4 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 import { USER } from './Constants/Message.js';
 import { nameValidation, tryCountValidation } from './Validation/Validation.js';
 import Car from './Car.js';
@@ -12,6 +12,7 @@ class RaceGame {
   async ready() {
     await this.getUserCarName();
     await this.getUserTryCount();
+    this.start();
   }
 
   async getUserCarName() {
@@ -24,6 +25,26 @@ class RaceGame {
     const inputTryCount = await Console.readLineAsync(USER.INPUT_TRY_COUNT);
     tryCountValidation(inputTryCount);
     this.tryCount = parseInt(inputTryCount, 10);
+  }
+
+  start() {
+    Console.print(USER.RACE_RESULT_BEFORE_MESSAGE);
+    Array.from({ length: this.tryCount }).forEach(() => this.carRacing());
+  }
+
+  carRacing() {
+    this.carList.forEach((car) => {
+      const record = Random.pickNumberInRange(0, 9);
+      this.carMoveAndView({ record, car });
+    });
+
+    Console.print('');
+  }
+
+  static carMoveAndView({ record, car }) {
+    car.move(record);
+
+    Console.print(`${car.getName()} : ${car.getMoveHistory()}`);
   }
 }
 

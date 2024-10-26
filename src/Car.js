@@ -12,8 +12,10 @@ class Car {
     return this.moveHistory;
   }
 
-  move() {
-    this.moveHistory += '-';
+  move(record) {
+    if (record >= 4) {
+      this.moveHistory += '-';
+    }
   }
 }
 
