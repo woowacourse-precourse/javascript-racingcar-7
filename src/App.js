@@ -1,8 +1,9 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 
 class App {
   async run() {
     const { carNames, attemptCount } = await this.getUserInput();
+    const result = this.startRace(carNames, attemptCount);
   }
 
   async getUserInput() {
@@ -44,6 +45,29 @@ class App {
     }
 
     return attemptCount;
+  }
+
+  startRace(carNames, attemptCount) {
+    let moveCountMap = {};
+    carNames.forEach((carName) => {
+      moveCountMap[carName] = 0;
+    });
+
+    for (let i = 0; i < attemptCount; i++) {
+      moveCountMap = this.moveCars(carNames, moveCountMap);
+    }
+  }
+
+  moveCars(carNames, prevCountMap) {
+    const moveCountMap = { ...prevCountMap };
+    carNames.forEach((car) => {
+      const randomNumber = Random.pickNumberInRange(0, 9);
+      if (randomNumber >= 4) {
+        moveCountMap[car] += 1;
+      }
+    });
+    this.printCurrentStatus(carNames, moveCountMap);
+    return moveCountMap;
   }
 }
 
