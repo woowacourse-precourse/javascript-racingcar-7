@@ -1,7 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import { validateCarNames } from "./error.js";
 import { validateCount } from "./error.js";
-
 import { MESSAGE } from "./message.js";
 
 export async function getCarNames() {
@@ -24,4 +23,11 @@ export function displayResults(results) {
   });
   Console.print("");
 }
-
+ 
+export function displayWinner(results) {
+  const maxAdvanceCount = Math.max(...results.map(car => car.advanceCount));
+  const winners = results
+    .filter(car => car.advanceCount === maxAdvanceCount)
+    .map(car => car.name);
+  Console.print(`최종 우승자 : ${winners.join(", ")}`);
+}
