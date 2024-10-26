@@ -81,6 +81,10 @@ describe("Race 클래스 테스트", () => {
 
         const winners = race.getWinners();
         expect(winners).toEqual(["Audi"]);
+
+        console.log = jest.fn();
+        race.printWinners();
+        expect(console.log).toHaveBeenCalledWith("최종 우승자 : Audi");
       });
 
       test("최종 우승자가 여러 명일 때도 올바르게 결정해야 한다", async () => {
@@ -92,6 +96,10 @@ describe("Race 클래스 테스트", () => {
   
         const winners = race.getWinners();
         expect(winners).toEqual(["Audi", "BMW"]);
+
+        console.log = jest.fn(); 
+        race.printWinners();
+        expect(console.log).toHaveBeenCalledWith("최종 우승자 : Audi, BMW");
       });
     });
   });
