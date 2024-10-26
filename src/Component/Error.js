@@ -5,7 +5,7 @@ export const ERR_LENGTH = () => {
 };
 
 export const ERR_POSITIVE = () => {
-  throw new Error(ERR_MESSAGE + " 1 이상의 값을 입력해야 합니다.");
+  throw new Error(ERR_MESSAGE + " 1 이상의 숫자를 입력해야 합니다.");
 };
 
 export const ERR_ISNUMBER = () => {
