@@ -8,13 +8,9 @@ class Car {
   }
 
   move(randomNumber) {
-    if (this.#isMovable(randomNumber)) {
+    if (randomNumber >= 4) {
       this.#position += 1;
     }
-  }
-
-  #isMovable(randomNumber) {
-    return randomNumber >= 4;
   }
 
   getName() {

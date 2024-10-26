@@ -15,7 +15,6 @@ class Game {
   }
 
   play(callback) {
-    // callback 매개변수 추가
     for (let i = 0; i < this.#count; i++) {
       this.#moveCars();
       callback(this.#cars); // 매 라운드마다 현재 상태 전달
