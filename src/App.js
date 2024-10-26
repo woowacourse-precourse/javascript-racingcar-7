@@ -49,15 +49,18 @@ class App {
     Console.print(process());
     Console.print(userNames);
 
-    const runOrStop = () => {
+    const racing = () => {
       const randomNumber = randomNum();
       let dash = "";
-      if (4 <= randomNumber) {
-        dash += "-";
+      for (let r = 0; r < inputCount; r++) {
+        Console.print(randomNumber);
+        if (4 <= randomNumber) {
+          dash += "-";
+        }
       }
       return dash;
     };
-    Console.print(runOrStop());
+    Console.print(racing());
   }
 }
 
