@@ -6,6 +6,10 @@ class Game {
     this.repetitionNumber = repetitionNumber;
     this.currentRepeat = 0;
   }
+
+  parseNames(names) {
+    return names.split(',');
+  }
 }
 
 export default Game;
