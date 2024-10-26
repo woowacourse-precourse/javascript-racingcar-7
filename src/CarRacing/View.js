@@ -6,8 +6,10 @@ class View {
     return rawInput;
   }
 
-  printResult(result) {
-    Console.print(`실행 결과: \n` + result);
+  printRaceResult(winnerNames, history) {
+    Console.print('\n실행 결과');
+    Console.print(`${history} \n`);
+    Console.print(`최종 우승자 : ${winnerNames}`);
   }
 }
 
