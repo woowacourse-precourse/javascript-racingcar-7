@@ -14,6 +14,7 @@ class RaceController {
       positions[i] += 1;
     }
   }
+
   movePlayersRandomly(peopleList) {
 
     const updatedList = [...peopleList];
@@ -34,6 +35,7 @@ class RaceController {
       winnersIndex.push(index);
     }
   }
+
   getRaceWinnersIndex(positions) {
     const maxValue = this.getMaxValue(positions);
     const winnersIndex = [];

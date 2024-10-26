@@ -11,6 +11,7 @@ class App {
     this.raceController = new RaceController();
     this.displayController = new DisplayController();
   }
+
   async run() {
     const userInput = await this.userInput.getUserInputCars();
     const userInputArray = userInput.split(",");

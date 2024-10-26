@@ -32,6 +32,9 @@ export default [
       // 콘솔 사용을 경고로 처리 (필요에 따라 비활성화 가능)
       'no-console': 'warn',
 
+      //lines-between-class-members
+      'lines-between-class-members': ['error', 'always'],
+
       // Updated padding line rule with more comprehensive cases
       'padding-line-between-statements': [
         'error',
