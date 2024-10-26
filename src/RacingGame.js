@@ -16,6 +16,7 @@ export default class RacingGame {
   }
 
   start() {
+    Output.printResultTitle();
     for (let i = 0; i < this.repeatCount; i += 1) {
       this.play();
       Output.printResult(this.cars);

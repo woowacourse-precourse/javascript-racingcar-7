@@ -10,4 +10,8 @@ export default class Output {
       MissionUtils.Console.print(`${car.name} : ${"-".repeat(car.dist)}`);
     });
   }
+
+  static printResultTitle() {
+    MissionUtils.Console.print("\n실행 결과");
+  }
 }
