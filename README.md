@@ -2,14 +2,15 @@
 
 ## 소개
 
-###사용자 입력 예시
-![alt text](image-1.png)
+### 사용자 입력 예시
+![사용자 입력 목록](https://github.com/user-attachments/assets/5d41a73f-2364-42b1-bdb5-f5fc7c643d1e)
 
-###출력 할 결과들
-![alt text](image-2.png)
+### 출력 할 결과들
+![출력 할 목록 예시](https://github.com/user-attachments/assets/75275e1b-8688-4146-abb0-90b7b9eee627)
 
-###전체 실행 시
-![alt text](image.png)
+### 전체 실행 시
+![전체 프로그래밍 과정을 보여주는 이미지](https://github.com/user-attachments/assets/a56db32f-cbec-47c5-af98-7c02d60f78f2)
+
 
 ## 기능 목록
 
