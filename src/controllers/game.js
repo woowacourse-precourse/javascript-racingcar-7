@@ -8,10 +8,7 @@ export default async function startGame(carNames, roundCount) {
 
   game.playAllRounds();
 
-  const winners = game
-    .getWinners()
-    .map((car) => car.getCarName())
-    .sort();
+  const winners = game.getWinners();
 
   printResult(winners);
 }

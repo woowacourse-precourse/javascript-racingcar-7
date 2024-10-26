@@ -1,5 +1,12 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 
+function formatWinnerNames(winners) {
+  return winners
+    .map((car) => car.getCarName())
+    .sort()
+    .join(', ');
+}
+
 function formatRaceProgress(cars) {
   return cars
     .map((car) => `${car.getCarName()} : ${'-'.repeat(car.getPosition())}`)
@@ -12,5 +19,7 @@ export function printRaceProgress(cars) {
 }
 
 export function printResult(winners) {
-  return MissionUtils.Console.print(`최종 우승자 : ${winners.join(', ')}`);
+  return MissionUtils.Console.print(
+    `최종 우승자 : ${formatWinnerNames(winners)}`,
+  );
 }
