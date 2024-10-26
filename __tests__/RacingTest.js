@@ -75,4 +75,27 @@ describe('Racing 메서드 테스트', () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(result));
     });
   });
+
+  test('showResult 메서드에서 1라운드 결과에만 header가 출력되는지 테스트', () => {
+    const TOTAL_ROUNDS = 2;
+    const CAR_NAME = 'woowa';
+
+    const logSpy = getLogSpy();
+
+    const car = new Car(CAR_NAME);
+    const racing = new Racing(TOTAL_ROUNDS, [car]);
+
+    racing.play();
+    racing.showResult();
+
+    expect(logSpy).toHaveBeenNthCalledWith(
+      2,
+      expect.stringContaining('실행 결과'),
+    );
+
+    expect(logSpy).toHaveBeenNthCalledWith(
+      5,
+      expect.not.stringContaining('실행 결과'),
+    );
+  });
 });
