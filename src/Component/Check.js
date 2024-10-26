@@ -1,4 +1,10 @@
-import { ERR_LENGTH, ERR_POSITIVE, ERR_ISNUMBER, ERR_ISDUP } from "./Error.js";
+import {
+  ERR_LENGTH,
+  ERR_POSITIVE,
+  ERR_ISNUMBER,
+  ERR_ISDUP,
+  ERR_ISINT,
+} from "./Error.js";
 
 function isDuplicate(arr) {
   const isDup = arr.some(function (x) {
@@ -25,6 +31,7 @@ export const checkAttemptNumber = (attempt_number) => {
   // 입력한 값이 숫자인지 검사
   const reg = /^[0-9\s]*$/;
 
+  if (attempt_number % 1) throw new Error(ERR_ISINT());
   if (attempt_number <= 0) throw new Error(ERR_POSITIVE());
   if (!reg.test(attempt_number)) throw new Error(ERR_ISNUMBER());
 };

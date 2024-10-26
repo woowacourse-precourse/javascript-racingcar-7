@@ -12,6 +12,10 @@ export const ERR_POSITIVE = () => {
   return ERR_MESSAGE + " 1 이상의 숫자를 입력해야 합니다.";
 };
 
+export const ERR_ISINT = () => {
+  return ERR_MESSAGE + " 정수만 입력이 가능합니다.";
+};
+
 export const ERR_ISNUMBER = () => {
-  return ERR_MESSAGE + " 숫자만 입력이 가능합니다.";
+  return ERR_MESSAGE + " 문자는 입력할 수 없습니다.";
 };
