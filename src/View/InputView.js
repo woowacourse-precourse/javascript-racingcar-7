@@ -20,6 +20,8 @@ class InputView {
 
     const carNames = carNamesInput.split(',').map(name => name.trim());
 
+    this.validateCarNames(carNames);
+
     return carNames;
   }
 
@@ -30,6 +32,15 @@ class InputView {
     attemptCount = Number(input);
 
     return attemptCount;
+  }
+
+  validateCarNames(carNames) {
+    carNames.forEach(name => {
+      if (name.length > 5) {
+        throw new Error('[ERROR] 자동차 이름은 이름은 5자 이하만 가능합니다.');
+      }
+    });
+
   }
 }
 
