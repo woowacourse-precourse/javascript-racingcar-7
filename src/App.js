@@ -1,6 +1,6 @@
 import Car from "./Car.js";
 import { inputNames, splitName, inputNameValidation, inputTryCount } from "./InputValue.js";
-import { extractRandomNumber } from "./Move.js";
+import { raceStart } from "./Move.js";
 
 class App {
   async run() {
@@ -12,10 +12,8 @@ class App {
     const carList = carNames.map(name => new Car(name));
     const inputCount = await inputTryCount();
 
-    let randomNumberList = [];
-
-    for (let index = 0; index < carList.length; index++) {
-      randomNumberList.push(extractRandomNumber());
+    for (let round = 0; round < inputCount; round++){
+      raceStart(carList);
     }
   }
 }
