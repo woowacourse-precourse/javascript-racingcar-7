@@ -48,6 +48,16 @@ class Race {
       MissionUtils.Console.print(carMovedStr);
     }
   }
+
+  selectWinner() {
+    const cars = this.#cars;
+    for (let i = 0; i < cars.length; i += 1) {
+      if (cars[i].moveCnt === this.#maxMoves) {
+        this.#winners.push(cars[i]);
+      }
+    }
+    return this.#winners;
+  }
 }
 
 export default Race;

@@ -10,15 +10,6 @@ const canMoveForwardSpy = (inputs) => {
   jest.spyOn(Car, 'canMoveForward');
 };
 
-const initialRace = () => {
-  const car1 = new Car('car1');
-  const car2 = new Car('car2');
-  canMoveForwardSpy([true, false]);
-
-  const MOVE_CNT = 3;
-  return new Race([car1, car2], MOVE_CNT);
-};
-
 describe('경주 클래스', () => {
   test('각 자동차 별 전진횟수 업데이트', () => {
     //given
@@ -40,7 +31,12 @@ describe('경주 클래스', () => {
 
   test('차수별 실행결과 출력 메서드', () => {
     //given
-    const race = initialRace();
+    const car1 = new Car('car1');
+    const car2 = new Car('car2');
+    canMoveForwardSpy([true, false]);
+
+    const MOVE_CNT = 3;
+    const race = new Race([car1, car2], MOVE_CNT);
     race.moveCars();
 
     const logs = ['car1 : -', 'car2 : '];
@@ -58,13 +54,19 @@ describe('경주 클래스', () => {
 
   test('우승자 판별 메서드', () => {
     //given
-    const race = initialRace();
+    const car1 = new Car('car1');
+    const car2 = new Car('car2');
+    const car3 = new Car('car3');
+    canMoveForwardSpy([true, false, true]);
+
+    const MOVE_CNT = 3;
+    const race = new Race([car1, car2, car3], MOVE_CNT);
     race.moveCars();
 
     //when
-    const winner = race.selectWinner();
+    const winners = race.selectWinner();
 
     //then
-    expect(winner.name).toBe('car1');
+    expect(winners).toEqual([car1, car3]);
   });
 });
