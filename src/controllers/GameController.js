@@ -49,7 +49,10 @@ class GameController {
   }
 
   #announceWinners() {
-    const winners = this.#game.getWinners();
+    const winners = this.#game
+      .getWinners()
+      .map((car) => car.getName())
+      .join(', ');
     this.#outputView.printWinners(winners);
   }
 }

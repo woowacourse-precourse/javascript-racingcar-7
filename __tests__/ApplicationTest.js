@@ -93,7 +93,7 @@ describe('자동차 경주', () => {
       ['자동차 이름이 빈 문자열인 경우', [',car1']],
       ['게임 횟수가 0인 경우', ['car1,car12', '0']],
       ['게임 횟수가 숫자가 아닌 경우', ['car1,car12', 'abc']],
-      ['게임 횟수가 음수인 경우', ['car1,car12', '-1']],
+      ['게임 횟수가 음수인 경우', ['car1,car12', '-2']],
     ])('%s', async (_testName, inputs) => {
       mockQuestions(inputs);
       const app = new App();
