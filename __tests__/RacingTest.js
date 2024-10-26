@@ -30,4 +30,49 @@ describe('Racing 메서드 테스트', () => {
 
     expect(drivingSpy).toHaveBeenCalledTimes(TOTAL_ROUNDS);
   });
+
+  test('showResult 메서드에서 결과가 출력되는지 테스트', () => {
+    const TOTAL_ROUNDS = 2;
+    const CAR_NAME1 = 'woowa';
+    const CAR_NAME2 = 'tech';
+    const printResults = [
+      `${CAR_NAME1} : -`,
+      `${CAR_NAME2} : `,
+      `${CAR_NAME1} : --`,
+      `${CAR_NAME2} : -`,
+    ];
+    const results = [
+      [
+        { name: CAR_NAME1, distance: 1 },
+        { name: CAR_NAME2, distance: 0 },
+      ],
+      [
+        { name: CAR_NAME1, distance: 2 },
+        { name: CAR_NAME2, distance: 1 },
+      ],
+    ];
+
+    const carNames = [CAR_NAME1, CAR_NAME2];
+    const cars = carNames.map((name) => new Car(name));
+    const carSpies = cars.map((carInstance) =>
+      jest.spyOn(carInstance, 'driving'),
+    );
+
+    const logSpy = getLogSpy();
+
+    results.forEach((roundResult) => {
+      const [car1Result, car2Result] = roundResult;
+      const [car1Spy, car2Spy] = carSpies;
+      car1Spy.mockReturnValueOnce(car1Result);
+      car2Spy.mockReturnValueOnce(car2Result);
+    });
+
+    const racing = new Racing(TOTAL_ROUNDS, cars);
+    racing.play();
+    racing.showResult();
+
+    printResults.forEach((result) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(result));
+    });
+  });
 });
