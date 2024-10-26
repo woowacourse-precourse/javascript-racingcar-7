@@ -12,7 +12,7 @@ const mockQuestions = (inputs) => {
 
 describe("입력", () => {
   describe("자동차 이름을 입력받는다.", () => {
-    test("어플리케이션이 생성되었고, 어플리케이션이 실행되면, 입력 스크립트를 출력한다.", () => {
+    test("어플리케이션이 생성되었고, 어플리케이션이 실행되면, 입력 스크립트를 출력한다.", async () => {
       // given
       const app = new App();
       const inputs = ["pobi,ham"];
@@ -20,7 +20,7 @@ describe("입력", () => {
       mockQuestions(inputs);
 
       // when
-      app.run();
+      await app.run();
 
       // then
       expect(MissionUtils.Console.readLineAsync).toHaveBeenCalledWith("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
@@ -36,6 +36,25 @@ describe("입력", () => {
       // when
       // then
       await expect(app.run()).rejects.toThrow("[ERROR]");
+    });
+  });
+
+  describe("시도할 횟수를 입력받는다.", () => {
+    test("어플리케이션이 생성되었고, 어플리케이션이 실행되면, 입력 스크립트를 출력한다.", async () => {
+      // given
+      const app = new App();
+      const inputs = ["pobi,ham", "1"];
+      const logs = ["경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n", "시도할 횟수는 몇 회인가요?\n"];
+
+      mockQuestions(inputs);
+
+      // when
+      await app.run();
+
+      // then
+      logs.forEach((log) => {
+        expect(MissionUtils.Console.readLineAsync).toHaveBeenCalledWith(log);
+      });
     });
   });
 });

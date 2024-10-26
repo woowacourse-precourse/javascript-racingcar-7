@@ -9,6 +9,7 @@ class App {
 
   async run() {
     await this.input.getCarString();
+    await this.input.getRepeatCount();
   }
 }
 

@@ -17,6 +17,11 @@ export default class Input {
     this.validateCarString();
   }
 
+  async getRepeatCount() {
+    const repeatCountString = await MissionUtils.Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+    this.repeatCount = Number(repeatCountString);
+  }
+
   validateCarString() {
     if (this.car.some((car) => car.length > 5)) {
       throw new Error("[ERROR] 자동차 이름은 5자 이하여야 합니다.");
