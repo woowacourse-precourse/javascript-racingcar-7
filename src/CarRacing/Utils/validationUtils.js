@@ -21,7 +21,7 @@ function hasDuplicateValues(values) {
   return null;
 }
 
-function validateMinimumLength(values) {
+function hasMinimumLengthValues(values) {
   if (values.length < 2) {
     return ERROR_MESSAGES['minimumLength'];
   }
@@ -35,7 +35,7 @@ function isNotNumber(value) {
   return null;
 }
 
-function validateMinimumValue(value) {
+function hasMinimumValue(value) {
   if (value < 1) {
     return ERROR_MESSAGES['minimumValue'];
   }
@@ -44,7 +44,7 @@ function validateMinimumValue(value) {
 
 export function throwError(validate) {
   if (validate) {
-    throw new Error('[ERROR]' + validate);
+    throw new Error(`[ERROR] ${validate}`);
   }
 }
 
@@ -52,7 +52,7 @@ export const ValidationUtils = {
   isInvalidNameLength,
   isNotString,
   hasDuplicateValues,
-  validateMinimumLength,
+  hasMinimumLengthValues,
   isNotNumber,
-  validateMinimumValue,
+  hasMinimumValue,
 };

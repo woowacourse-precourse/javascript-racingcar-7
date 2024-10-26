@@ -8,7 +8,7 @@ class Validator {
   }
 
   #validateCarNames(carNames) {
-    throwError(ValidationUtils.validateMinimumLength(carNames));
+    throwError(ValidationUtils.hasMinimumLengthValues(carNames));
     throwError(ValidationUtils.hasDuplicateValues(carNames));
   }
 
@@ -17,14 +17,18 @@ class Validator {
     cars.forEach(carName => this.#validateCarName(carName));
   }
 
-  #validateRaceCountINput(raceCountInput) {
-    throwError(ValidationUtils.isNotNumber(raceCountInput));
-    throwError(ValidationUtils.validateMinimumValue(raceCountInput));
+  #validateRaceCountInput(raceCountInput) {
+    const raceCount = raceCountInput.trim();
+    throwError(ValidationUtils.isNotNumber(raceCount));
+    throwError(ValidationUtils.hasMinimumValue(raceCount));
   }
 
   validate(carNamesInput, raceCountInput) {
-    this.#validateCarNamesInput(Splitter.split(carNamesInput));
-    this.#validateRaceCountINput(raceCountInput.trim());
+    const carNames = Splitter.split(carNamesInput);
+    this.#validateCarNamesInput(carNames);
+    this.#validateRaceCountInput(raceCountInput);
+
+    return { carNames, raceCount: Number(raceCountInput.trim()) };
   }
 }
 export default Validator;
