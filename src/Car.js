@@ -1,4 +1,5 @@
 import { Random } from '@woowacourse/mission-utils';
+import { ERROR_DETAILS } from './constants.js';
 
 class Car {
   #name;
