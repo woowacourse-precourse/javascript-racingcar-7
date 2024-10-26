@@ -9,7 +9,7 @@ describe('입력에 대한 테스트', () => {
   test.each([
     [['abc', 'b sf', 'asw'], true],
     [[' asd', 'bbs ', 'ag'], true],
-    [['absc,', 'asfw', 'bje'], false],
+    [['ab4c,', 'as@w', 'bj%#'], false],
   ])('자동차 이름에 공백이 있는지', (inputs, expected) => {
     expect(validation.hasSpace(inputs)).toBe(expected);
   });
