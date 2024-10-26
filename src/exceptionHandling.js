@@ -9,3 +9,9 @@ export const inputCarsException = (cars) => {
     throw new Error(ERROR_MESSAGES.EXCEED_CAR_LENGTH);
   }
 };
+
+export const inputCountException = (count) => {
+  if (count == null || count <= 0) {
+    throw new Error(ERROR_MESSAGES.NO_COUNT);
+  }
+};
