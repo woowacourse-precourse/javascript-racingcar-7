@@ -16,6 +16,8 @@ describe('util 함수 테스트', () => {
     { input: 'pobi,woni,yeongi', result: ['pobi', 'woni', 'yeongi'] },
     { input: 'pobi,  woni,     yeongi', result: ['pobi', 'woni', 'yeongi'] },
     { input: 'pobi,woni,yeongi,', result: ['pobi', 'woni', 'yeongi'] },
+    { input: ',woni,yeongi,', result: ['woni', 'yeongi'] },
+    { input: 'pobi,,,,woni,,,,,yeongi,', result: ['pobi', 'woni', 'yeongi'] },
   ])('자동차 이름 문자열을 자동차 배열로 반환', ({ input, result }) => {
     expect(getCars(input)).toEqual(result);
   });
