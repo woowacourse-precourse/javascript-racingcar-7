@@ -36,18 +36,15 @@ class Game {
     let maxScore = 0;
 
     this.#cars.forEach((car) => {
-      const { score } = car;
-      if (maxScore > score) return;
+      const { score, name } = car;
 
+      if (maxScore > score) return;
       if (score > maxScore) {
-        this.#winners.length = 0;
+        this.#winners = [];
         maxScore = score;
       }
-
-      this.#winners.push(car.name);
+      this.#winners.push(name);
     });
-
-    this.#winners.join(', ');
   }
 
   #printRoundResult() {
@@ -56,7 +53,7 @@ class Game {
   }
 
   printGameResult() {
-    Console.print(`최종 우승자 : ${this.#winners}`);
+    Console.print(`최종 우승자 : ${this.#winners.join(', ')}`);
   }
 }
 
