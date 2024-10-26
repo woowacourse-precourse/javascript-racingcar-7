@@ -65,6 +65,7 @@ class App {
   findWinner(cars) {
     let maxDistanceLength = 0;
     let winners = [];
+
     cars.forEach((car) => {
       let distanceLength = car.distance.length;
       if (distanceLength > maxDistanceLength) {
@@ -75,8 +76,19 @@ class App {
         winners.push(car.name); 
       }
     });
+    
     return this.printWinner(winners);
   }
+
+  printWinner(winners){
+    if (winners.length <= 1){
+      Console.print(`최종 우승자 : ${winners[0]}`)
+    }
+    else{
+      Console.print(`공동 우승자 : ${winners.join(',')}`)     
+    }
+  }
+
 
 }
 
