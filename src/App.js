@@ -15,6 +15,15 @@ class App {
     );
     this.carNames = this.validateCarNames(input.split(",")); // 자동차 이름 검증
   }
+
+  validateCarNames(names) {
+    names.forEach((name) => {
+      if (name.length > 5) {
+        throw new Error(`[ERROR] 자동차 이름은 5자 이하만 가능합니다.`);
+      }
+    });
+    return names; // 유효한 자동차 이름 반환
+  }
 }
 
 export default App;
