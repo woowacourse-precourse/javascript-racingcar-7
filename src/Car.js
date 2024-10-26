@@ -1,3 +1,5 @@
+import { Random } from '@woowacourse/mission-utils';
+
 class Car {
   constructor(name) {
     this._name = name;
@@ -13,7 +15,9 @@ class Car {
   }
 
   move() {
-    ++this._mileage;
+    if(Random.pickNumberInRange(0, 9) >= 4) {
+        ++this._mileage;
+    }
   }
 }
 
