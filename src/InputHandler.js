@@ -1,8 +1,8 @@
 import { Console } from '@woowacourse/mission-utils';
 import { MAX_CARS, MAX_CAR_NAME_LENGTH, MAX_ATTEMPTS, ERROR_MESSAGES, INFO_MESSAGES, DELIMITERS } from './constants.js';
 
-export const getCarNames = () => {
-    const carNames = Console.readLineAsync(INFO_MESSAGES.CAR_NAME_PROMPT);
+export const getCarNames = async () => {
+    const carNames = await Console.readLineAsync(INFO_MESSAGES.CAR_NAME_PROMPT);
     const trimmedCarNames = carNames.split(DELIMITERS.CAR_NAME).map(car => car.trim());
 
     validateCarNames(trimmedCarNames);
@@ -23,8 +23,8 @@ const validateCarNames = carNames => {
     if (carNames.length !== deduplicatedCarNames.size) throw new Error(ERROR_MESSAGES.DUPLICATE_CAR_NAME);
 }
 
-export const getAttemptCount = () => {
-    const attemptCount = Console.readLineAsync(INFO_MESSAGES.ATTEMPT_COUNT_PROMPT);
+export const getAttemptCount = async () => {
+    const attemptCount = await Console.readLineAsync(INFO_MESSAGES.ATTEMPT_COUNT_PROMPT);
 
     return validateAttemptCount(attemptCount);
 }
