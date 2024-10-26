@@ -12,6 +12,7 @@ class Race {
   static #MAX_RANDOM = 9;
   static #MOVE_FORWARD_THRESHOLD = 4;
   static #TRACE_CHARACTER = '-';
+  static #FORWARD_STEP = 1;
 
   #carArray;
   #tryCount;
@@ -42,7 +43,7 @@ class Race {
   #moveCarForward(currentPosition) {
     const randomNum = pickNumberInRange(Race.#MIN_RANDOM, Race.#MAX_RANDOM);
     const isMoveForward = this.#getIsMoveForward(randomNum);
-    if (isMoveForward) return currentPosition + 1;
+    if (isMoveForward) return currentPosition + Race.#FORWARD_STEP;
     return currentPosition;
   }
 
