@@ -47,12 +47,15 @@ class App {
       const randomNum = MissionUtils.Random.pickNumberInRange(0, 9);
       if (randomNum >= 4) {
         // 전진
-        MissionUtils.Console.print(`${car.carName}전진`);
-      } else {
+        car.forward += "-"; // forward 상태 업데이트
+        MissionUtils.Console.print(`${car.carName} 전진`);
+    } else {
         // 전진 X
-        MissionUtils.Console.print(`${car.carName}전진X`);
-      }
+        MissionUtils.Console.print(`${car.carName} 전진 X`);
+    }
+      MissionUtils.Console.print(`${car.carName} : ${car.forward}`);
     });
+    MissionUtils.Console.print("");
   }
 }
 
