@@ -16,8 +16,13 @@ class RacingController {
       this.model.addCars(carNames);
     }
 
-    const conut = await Console.readLineAsync(`시도할 횟수는 몇회인가요 ?\n`);
-    this.model.setCount(Number(conut));
+    const conutInput =
+      await Console.readLineAsync(`시도할 횟수는 몇회인가요 ?\n`);
+
+    if (this.validateConut(conutInput)) {
+      const conut = Number(conutInput);
+      this.model.setCount(Number(conut));
+    }
   }
 
   validatecarNamesInput(carNamesInput) {
@@ -35,7 +40,14 @@ class RacingController {
     return true;
   }
 
-  validateConut() {}
+  validateConut(conut) {
+    if (isNaN(conut)) {
+      console.log('에러 발생');
+      throw new Error('count는 숫자 값만 받을 수 있습니다.');
+    }
+
+    return true;
+  }
 }
 
 export default RacingController;
