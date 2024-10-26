@@ -1,4 +1,6 @@
-import { splitCarName, validateCarNameLength, validateCarsLength } from '../src/InputUtils';
+import {
+  splitCarName, validateCarNameLength, validateCarsLength, validateAttemptCount,
+} from '../src/InputUtils';
 
 describe('입력', () => {
   test('자동차 이름은 쉼표(,)를 기준으로 구분한다.', () => {
@@ -16,5 +18,9 @@ describe('입력', () => {
   test('자동차는 1대 이상 있어야 한다.', () => {
     const inputs = [];
     expect(() => validateCarsLength(inputs)).toThrow('[ERROR]');
+  });
+
+  test('시도할 횟수는 양의 정수만 입력 가능하다', () => {
+    expect(() => validateAttemptCount(0)).toThrow('[ERROR]');
   });
 });
