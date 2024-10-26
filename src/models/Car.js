@@ -4,10 +4,8 @@ export default class Car {
     this.position = 0;
   }
 
-  move(randomNumber) {
-    if (randomNumber >= 4) {
-      this.position += 1;
-    }
+  move() {
+    this.position += 1;
   }
 
   getCarName() {

@@ -1,3 +1,4 @@
+import { MissionUtils } from '@woowacourse/mission-utils';
 import { printRaceProgress } from '../views/output.js';
 import generateRandomNumber from '../utils/random.js';
 
@@ -8,6 +9,8 @@ export default class Game {
   }
 
   playAllRounds() {
+    MissionUtils.Console.print(`\n실행 결과`);
+
     for (let i = 1; i <= this.rounds; i += 1) {
       this.playSingleRound();
       printRaceProgress(this.cars);
@@ -17,7 +20,10 @@ export default class Game {
   playSingleRound() {
     this.cars.forEach((car) => {
       const randomNumber = generateRandomNumber();
-      car.move(randomNumber);
+
+      if (randomNumber >= 4) {
+        car.move();
+      }
     });
   }
 
