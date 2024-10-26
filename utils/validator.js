@@ -41,7 +41,7 @@ class Validator {
     }
 
     // 입력받은 횟수가 0 이상인지 확인
-    if (gameCount < 0) {
+    if (gameCount <= 0) {
       throw new Error(ERROR_MESSAGES.INVALID_GAME_COUNT);
     }
   }
