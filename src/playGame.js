@@ -1,6 +1,7 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import printProgress from './printProgress.js';
 import isRandomSingleDigitHigherThanThree from './isRandomSingleDigitHigherThanThree.js';
+import printWinner from './printWinner.js';
 
 function playGame(carNames, attempts) {
   const record = {};
@@ -21,6 +22,17 @@ function playGame(carNames, attempts) {
     printProgress(record);
     MissionUtils.Console.print('');
   }
+
+  const HighestRecord = Math.max(...Object.values(record));
+  const winnerArray = [];
+
+  Object.keys(record).forEach((carName) => {
+    if (record[carName] === HighestRecord) {
+      winnerArray.push(carName);
+    }
+  });
+
+  printWinner(winnerArray);
 }
 
 export default playGame;
