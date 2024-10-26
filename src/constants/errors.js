@@ -4,4 +4,5 @@ export const ERROR_MESSAGES = Object.freeze({
   INVALID_DUPLICATE_CARNAME: '[ERROR] 중복된 자동차 이름은 허용되지 않습니다.',
   INVALID_GAME_COUNT: '[ERROR] 시도 횟수는 0 보다 커야 합니다.',
   INVALID_GAME_COUNT_TYPE: '[ERROR] 시도 횟수는 숫자여야 합니다.',
+  INVALID_GAME_COUNT_INTEGER: '[ERROR] 시도 횟수는 양의 정수여야 합니다.',
 });

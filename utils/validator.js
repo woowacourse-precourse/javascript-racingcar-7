@@ -40,6 +40,11 @@ class Validator {
       throw new Error(ERROR_MESSAGES.INVALID_GAME_COUNT_TYPE);
     }
 
+    // 입력받은 횟수가 정수인지 확인
+    if (!Number.isInteger(gameCount)) {
+      throw new Error(ERROR_MESSAGES.INVALID_GAME_COUNT_INTEGER);
+    }
+
     // 입력받은 횟수가 0 이상인지 확인
     if (gameCount <= 0) {
       throw new Error(ERROR_MESSAGES.INVALID_GAME_COUNT);
