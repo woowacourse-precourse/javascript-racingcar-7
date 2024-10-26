@@ -26,16 +26,20 @@ const getLogSpy = () => {
 };
 
 describe('구현할 기능 목록 테스트 코드 작성', () => {
-  test('경주할 자동차의 이름을 쉼표(,)로 구분하여 입력받기', async () => {
+  test('경주할 자동차의 이름을 쉼표(,)로 구분하여 배열로 반환', async () => {
     // given
     const query =
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)';
-    const carNames = ['pobi', 'woni', 'jun'];
+    const userInput = ['pobi,woni ,jun'];
+    const expectedResult = ['pobi', 'woni', 'jun'];
+
+    const logSpy = getLogSpy();
     const app = new App();
 
-    const result = app.getCarNames(query, carNames);
+    mockQuestions(userInput);
+    const result = await app.getCarNames(query);
 
-    expect(result).toEqual(carNames);
+    expect(result).toEqual(expectedResult);
   });
 });
 
