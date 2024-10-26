@@ -37,7 +37,7 @@
   - getter에서는 가공된 carNames와 round를 반환할 수 있도록 함  
  
  2. RaceInfo에서 나온 자동차 이름 배열과 이동횟수를 받아서 게임 결과를 도출할 Race class
-  - field는 경기 결과를 저장할 raceResult 존재
+  - field는 자동차 이름 배열을 저장할 carNames와 이동횟수 저장할 round
   - 배열로 온 자동차 이름을 기반으로 이름이 key가 되고 value가 0이 되는 객체가 들어있는 배열을 초기값으로 셋팅함
   - 초기값을 기반으로 while문을 결과의 length가 이동횟수랑 같아질 때까지 반복함 자동차마다 무작위 값이 4이상이면 전진이면 value에 1을 더해줌
   - 위의 과정을 모든 자동차가 진행되면 결과값을 배열에 push함
