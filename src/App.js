@@ -8,11 +8,13 @@ class Car {
 
   // 전진 메서드
   move(randomNumber) {
-
+    if(randomNumber > 4){
+      this.position += 1;
+    }
   }
   // 현재 상태 반환 메서드
   getCurrentPosition() {
-
+    return(`${this.name} : ${'-'.repeat(this.position)}`);
   }
 }
 
