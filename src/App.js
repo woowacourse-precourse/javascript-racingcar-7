@@ -79,7 +79,7 @@ class App {
 
     // * 이름에 쉼표(,)외의 다른 기호가 들어오는가?
     const isCarsInputSymbolOtherThanComma = (carsInput) => { // str = cars
-      const pattern = /[^,가-힣\w\s]/g; // ,제외한 특수기호 모두 찾기.
+      const pattern = /[^,ㄱ-ㅎㅏ-ㅣ가-힣\w\s]/g; // ,제외한 특수기호 모두 찾기.
       const result = pattern.test(carsInput); // 나머지 특수기호가 있는 경우 true , 없으면 false
       
       return result;
@@ -114,8 +114,13 @@ class App {
       }
 
     }
-    
-    
+    // * ========================== // 
+
+
+    // * == 시도할 횟수(차수) 입력 처리 == // 
+
+
+    // * ========================== // 
 
     try{
       // ! 입력  ============///
@@ -132,7 +137,7 @@ class App {
 
       checkCarInputError(carsInput, carArray);
 
-      const n = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n'); // 경주할 자동차의 이름을 입력받는다.
+      const degree = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n'); 
       
       // ! ============///
 
@@ -141,7 +146,7 @@ class App {
       // todo : depth 가 2가 되도록 리팩토링 해야한다.
       // * n번 경주한다.
       Console.print('\n실행 결과');
-      for (let i =0; i < n ; i++){
+      for (let i =0; i < degree ; i++){
         carArray.forEach((car) => {
           const randomValue = getRandomValue(); 
 
