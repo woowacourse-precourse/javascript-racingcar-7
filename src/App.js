@@ -8,23 +8,24 @@ class App {
   #totalRounds;
 
   async run() {
-    await this.#setCarNames();
-    await this.#setTotalRounds();
+    await this.#processCarNames();
+    await this.#processTotalRounds();
 
     const game = new Game(this.#carNames, this.#totalRounds);
     game.start();
     game.printGameResult();
   }
 
-  async #setCarNames() {
-    this.#carNames = await InputProcessor.get('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분) \n');
-    this.#carNames = this.#carNames.split(',');
+  async #processCarNames() {
+    const input = await InputProcessor.get('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분) \n');
+    this.#carNames = input.split(',');
     Validator.carName(this.#carNames);
   }
 
-  async #setTotalRounds() {
-    this.#totalRounds = await InputProcessor.get('시도할 횟수는 몇 회인가요? \n');
-    Validator.rounds(this.#totalRounds);
+  async #processTotalRounds() {
+    const input = await InputProcessor.get('시도할 횟수는 몇 회인가요? \n');
+    Validator.rounds(input);
+    this.#totalRounds = input;
   }
 }
 
