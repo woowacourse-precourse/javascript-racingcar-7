@@ -54,9 +54,9 @@ describe("Race 클래스 테스트", () => {
 
       race.printRaceStatus();
 
-      expect(console.log).toHaveBeenCalledWith("pobi : -");
-      expect(console.log).toHaveBeenCalledWith("woni : ");
-      expect(console.log).toHaveBeenCalledWith("jun : -");
+      expect(console.log).toHaveBeenCalledWith("Audi : -");
+      expect(console.log).toHaveBeenCalledWith("BMW : ");
+      expect(console.log).toHaveBeenCalledWith("Ford : -");
     });
   });
 
