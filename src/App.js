@@ -5,6 +5,8 @@ class App {
     const cars = await inputCars();
     const count = await inputCount();
     const result = await racingCount(count, cars.length);
+
+    Console.print("최종 우승자 : " + getWinners(cars, result));
   }
 }
 
@@ -48,6 +50,11 @@ const racingCount = async (count, carsCnt) => {
   }
 
   return result;
+};
+
+const getWinners = (cars, result) => {
+  const maxScore = Math.max(...result);
+  return cars.filter((_, index) => result[index] === maxScore).join(", ");
 };
 
 export default App;
