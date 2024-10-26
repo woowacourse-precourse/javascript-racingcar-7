@@ -80,4 +80,23 @@ describe('App 메서드 테스트', () => {
     app.moveOrStop(car, MOVE);
     expect(car.position).toBe(2);
   });
+
+  test('우승자 선별 테스트', () => {
+    const carsData = [
+      [
+        { name: 'pobi', position: 2 },
+        { name: 'woni', position: 1 },
+      ],
+      [
+        { name: 'pobi', position: 2 },
+        { name: 'woni', position: 2 },
+      ],
+    ];
+    const expects = [['pobi'], ['pobi', 'woni']];
+
+    carsData.forEach((data, index) => {
+      const result = app.getWinners(data);
+      expect(result).toEqual(expects[index]);
+    });
+  });
 });
