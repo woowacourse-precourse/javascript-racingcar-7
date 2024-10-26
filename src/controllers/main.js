@@ -27,6 +27,19 @@ const Main = async () => {
     throw new Error("[ERROR] 시도할 횟수는 100번 이하여야합니다.");
   }
 
+  const gameController = (parseNumber) => {
+    let i = 0;
+    for (i = 0; i < parseNumber; i++) {
+      raceController();
+    }
+  };
+
+  const raceController = () => {
+    Console.print("레이스 테스트");
+  };
+
+  gameController(parseNumber);
+
   Console.print(`${isCarName}, ${isTryNumber}`);
 };
 

@@ -127,3 +127,5 @@ number 타입 변환 메소드
 Number(), parseInt(), parseFloat()
 
 시도할 횟수 제한? 일단 100설정
+
+for await ?
