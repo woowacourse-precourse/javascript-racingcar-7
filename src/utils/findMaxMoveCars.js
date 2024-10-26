@@ -1,10 +1,10 @@
 const findMaxMoveCars = (cars) => {
   return cars.reduce((acc, currentCar) => {
     if (acc.length === 0 || currentCar.move > acc[0].move) {
-      return [currentCar];
+      return [currentCar.name];
     }
     if (currentCar.move === acc[0].move) {
-      acc.push(currentCar);
+      acc.push(currentCar.name);
     }
     return acc;
   }, []);
