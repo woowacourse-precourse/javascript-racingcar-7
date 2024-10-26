@@ -4,11 +4,11 @@ class Car {
     this.moveHistory = '';
   }
 
-  getName() {
+  get getName() {
     return this.name;
   }
 
-  getMoveHistory() {
+  get getMoveHistory() {
     return this.moveHistory;
   }
 

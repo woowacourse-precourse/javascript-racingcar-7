@@ -35,16 +35,11 @@ class RaceGame {
   carRacing() {
     this.carList.forEach((car) => {
       const record = Random.pickNumberInRange(0, 9);
-      this.carMoveAndView({ record, car });
+      car.move(record);
+      Console.print(`${car.getName} : ${car.getMoveHistory}`);
     });
 
     Console.print('');
-  }
-
-  static carMoveAndView({ record, car }) {
-    car.move(record);
-
-    Console.print(`${car.getName()} : ${car.getMoveHistory()}`);
   }
 }
 
