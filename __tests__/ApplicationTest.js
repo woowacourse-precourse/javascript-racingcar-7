@@ -66,6 +66,23 @@ describe('구현할 기능 목록 테스트 코드 작성', () => {
 
     expect(result).toEqual(expectedResult);
   });
+
+  test('각 플레이어가 0부터 9 사이의 무작위 값을 생성하여 생성된 값이 4 이상이면 해당 플레이어가 전진', async () => {
+    // given
+    const MOVING_FORWARD_ONE = 5;
+    const MOVING_FORWARD_TWO = 5;
+    const STOP = 3;
+
+    const carNames = ['pobi', 'woni', 'jun'];
+    const expectedResult = { pobi: 1, woni: 0, jun: 1 };
+
+    const app = new App();
+    mockRandoms([MOVING_FORWARD_ONE, STOP, MOVING_FORWARD_TWO]);
+
+    const result = await app.executionResult(carNames);
+
+    expect(result).toEqual(expectedResult);
+  });
 });
 
 describe('자동차 경주', () => {
