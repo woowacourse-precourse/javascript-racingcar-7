@@ -12,13 +12,6 @@ class Car {
       this.distance++;
     }
   };
-
-  getInfo() {
-    return {
-      name: this.name,
-      moveDistance: this.distance,
-    };
-  };
 };
 
 export default Car;

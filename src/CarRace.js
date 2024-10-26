@@ -3,63 +3,55 @@ import Car from "./Car";
 import Validator from "./Validator";
 
 class CarRace {
-  carInstances = [];
+  cars = [];
   async race() {
-    const {cars, totalLaps} = await this.getAllInputs();
-    cars.map((name) => this.carInstances.push(new Car(name)));
+    const {carNames, totalLaps} = await this.getAllInputs();
+    carNames.forEach((name) => this.cars.push(new Car(name)));
     this.executeTotalLapsAndDisplay(totalLaps);
     const winner = this.determineWinner();
     Console.print(`최종 우승자 : ${winner.join(", ")}`)
   };
 
   async getInputCars() {
-    try {
-      const cars = await Console.readLineAsync("경주할 자동차들의 이름을 입력해주세요.(*쉼표로 구분)");
-      const carsList = cars.replace(/\s+/g, "").split(","); 
-      return Validator.isNameDuplicate(carsList);
-    } catch (error) {
-      throw error;
-    }
+    const carNamesInput = await Console.readLineAsync("경주할 자동차들의 이름을 입력해주세요.(*쉼표로 구분)");
+    const carNames = carNamesInput.replace(/\s+/g, "").split(","); 
+    return Validator.isNameDuplicate(carNames);
   };
 
   async getInputLaps() {
-    try {
-      const laps = await Console.readLineAsync("경주를 시도할 횟수는 몇 회인가요?(숫자만 입력)");
-      return Validator.isNaturalNumber(Number(laps));
-    } catch (error) {
-      throw error;
-    }
+    const laps = await Console.readLineAsync("경주를 시도할 횟수는 몇 회인가요?(숫자만 입력)");
+    return Validator.isNaturalNumber(Number(laps));
   };
 
   async getAllInputs() {
-    const cars = await this.getInputCars();
+    const carNames = await this.getInputCars();
     const totalLaps = await this.getInputLaps();
-    return {cars, totalLaps};
+    return {carNames, totalLaps};
   };
 
   runSingleLap() {
-    this.carInstances.forEach(car => car.move());
+    this.cars.forEach(car => car.move());
   };
 
-  displayRoundStatus() {
-    // 가독성 향상
-    this.carInstances.forEach(car => Console.print(car.name.padEnd(5, " ") + ": " + "-".repeat(car.distance)));
+  displayLapStatus(lap) {
+    Console.print(`\n[${lap} 랩]`);
+    this.cars.forEach(car => Console.print(car.name.padEnd(5, " ") + ": " + "-".repeat(car.distance)));
   };
 
   executeTotalLapsAndDisplay(totalLaps) {
     for(let i = 0 ; i < totalLaps ; i++) {
       this.runSingleLap();
-      this.displayRoundStatus();
+      this.displayLapStatus(i+1);
     }
   }
 
   getMaxDistance() {
-    return Math.max(...this.carInstances.map(car => car.distance));
+    return Math.max(...this.cars.map(car => car.distance));
   }
 
   determineWinner() {
     const maxDistance = this.getMaxDistance();
-    const winners = this.carInstances.filter(car => car.distance === maxDistance).map(car => car.name);
+    const winners = this.cars.filter(car => car.distance === maxDistance).map(car => car.name);
     return winners;
   }
 };
