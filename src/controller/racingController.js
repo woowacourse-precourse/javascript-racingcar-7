@@ -40,7 +40,7 @@ class RacingController {
     }
   }
 
-  static validateCarNamesInput(carNamesInput) {
+  validateCarNamesInput(carNamesInput) {
     const names = carNamesInput.split(',').map((name) => name.trim());
     const isValid = names.every((name) => /^[a-zA-Z]{1,5}$/.test(name));
     if (!isValid) {
@@ -51,7 +51,7 @@ class RacingController {
     return true;
   }
 
-  static validateCount(countInput) {
+  validateCount(countInput) {
     const count = Number(countInput);
     if (isNaN(count) || count <= 0) {
       throw new Error('시도 횟수는 0보다 큰 숫자여야 합니다.');

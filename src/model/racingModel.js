@@ -1,4 +1,4 @@
-import CarModel from './carModel';
+import CarModel from './carModel.js';
 
 class RacingModel {
   constructor(carNames, count) {
