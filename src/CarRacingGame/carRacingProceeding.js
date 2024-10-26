@@ -9,6 +9,13 @@ export async function carRacingProceed() {
     constructor(name, number) {
       (this.name = name), (this.number = number);
     }
+
+    move() {
+      let randomNum = Random.pickNumberInRange(0, 9);
+      if (randomNum >= 4) {
+        this.number += 1;
+      }
+    }
   }
 
   const carList = [];
@@ -20,4 +27,8 @@ export async function carRacingProceed() {
 
   const tryCount = await inputTryCount();
   validateTryCount(tryCount);
+
+  for (let i = 0; i < tryCount; i++) {
+    carList.forEach((car) => car.move());
+  }
 }
