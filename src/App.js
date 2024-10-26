@@ -3,7 +3,8 @@ import { Console, Random } from '@woowacourse/mission-utils';
 class App {
   async run() {
     const { carNames, attemptCount } = await this.getUserInput();
-    const result = this.startRace(carNames, attemptCount);
+    Console.print('\n실행결과');
+    this.startRace(carNames, attemptCount);
   }
 
   async getUserInput() {
@@ -48,26 +49,34 @@ class App {
   }
 
   startRace(carNames, attemptCount) {
-    let moveCountMap = {};
+    let carMovementTracker = {};
     carNames.forEach((carName) => {
-      moveCountMap[carName] = 0;
+      carMovementTracker[carName] = 0;
     });
 
     for (let i = 0; i < attemptCount; i++) {
-      moveCountMap = this.moveCars(carNames, moveCountMap);
+      carMovementTracker = this.moveCars(carNames, carMovementTracker);
     }
   }
 
-  moveCars(carNames, prevCountMap) {
-    const moveCountMap = { ...prevCountMap };
+  moveCars(carNames, prevMovement) {
+    const carMovementTracker = { ...prevMovement };
     carNames.forEach((car) => {
       const randomNumber = Random.pickNumberInRange(0, 9);
       if (randomNumber >= 4) {
-        moveCountMap[car] += 1;
+        carMovementTracker[car] += 1;
       }
     });
-    this.printCurrentStatus(carNames, moveCountMap);
-    return moveCountMap;
+    this.printCurrentStatus(carNames, carMovementTracker);
+    return carMovementTracker;
+  }
+
+  printCurrentStatus(carNames, carMovementTracker) {
+    carNames.forEach((carName) => {
+      const moveCount = carMovementTracker[carName];
+      Console.print(`${carName}: ${'-'.repeat(moveCount)}`);
+    });
+    Console.print('');
   }
 }
 
