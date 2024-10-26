@@ -1,4 +1,4 @@
-import { validation, pickRandomNumber } from '../utils/index.js';
+import { validation, pickRandomNumber, sortArr } from '../utils/index.js';
 import { ERRORMESAGE, MAGICNUMBER } from '../constants/index.js';
 
 export default class Racingcar {
@@ -45,20 +45,25 @@ export default class Racingcar {
   }
 
   rank() {
-    let result = [];
+    const firstPlayer = this.#calculateFirstPlayer();
+    const sortFirstPlayer = sortArr(firstPlayer);
+    return sortFirstPlayer;
+  }
+
+  #calculateFirstPlayer() {
+    let firstPlayer = [];
     let max = 0;
     for (const [key, value] of Object.entries(this.#board)) {
       if (max < value.length) {
-        result.splice(0);
-        result.push(key);
+        firstPlayer.splice(0);
+        firstPlayer.push(key);
         max = value.length;
       }
       if (max === value.length) {
-        result.push(key);
+        firstPlayer.push(key);
       }
     }
-    const set = new Set(result);
-    const newArr = [...set];
-    console.log(newArr);
+    const firstPlayerSet = new Set(firstPlayer);
+    return [...firstPlayerSet];
   }
 }
