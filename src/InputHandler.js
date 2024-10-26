@@ -1,8 +1,9 @@
 import { Console } from '@woowacourse/mission-utils';
+import { MAX_CARS, MAX_CAR_NAME_LENGTH, MAX_ATTEMPTS, ERROR_MESSAGES, INFO_MESSAGES, DELIMITERS } from './constants.js';
 
 export const getCarNames = async () => {
-    const carNames = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
-    const trimmedCarNames = carNames.split(',').map(car => car.trim());
+    const carNames = await Console.readLineAsync(INFO_MESSAGES.CAR_NAME_PROMPT);
+    const trimmedCarNames = carNames.split(DELIMITERS.CAR_NAME).map(car => car.trim());
 
     validateCarNames(trimmedCarNames);
 
@@ -10,27 +11,27 @@ export const getCarNames = async () => {
 }
 
 const validateCarNames = (carNames) => {
-    if (carNames.length > 10) {
-        throw new Error('[ERROR] 자동차는 최대 10대까지 등록 가능합니다.');
+    if (carNames.length > MAX_CARS) {
+        throw new Error(ERROR_MESSAGES.TOO_MANY_CARS);
     }
     carNames.forEach((car) => {
         if (car.length === 0) {
-            throw new Error('[ERROR] 자동차 이름으로 공백은 허용되지 않습니다.');
+            throw new Error(ERROR_MESSAGES.EMPTY_CAR_NAME);
         }
-        if (car.length > 5) {
-            throw new Error('[ERROR] 모든 자동차 이름은 5자 이하여야 합니다.');
+        if (car.length > MAX_CAR_NAME_LENGTH) {
+            throw new Error(ERROR_MESSAGES.CAR_NAME_TOO_LONG);
         }
     });
 
     const deduplicatedCarNames = new Set(carNames);
 
     if (carNames.length !== deduplicatedCarNames.size) {
-        throw new Error('[ERROR] 중복되는 자동차 이름이 있습니다.');
+        throw new Error(ERROR_MESSAGES.DUPLICATE_CAR_NAME);
     }
 }
 
 export const getAttemptCount = async () => {
-    const attemptCount = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+    const attemptCount = await Console.readLineAsync(INFO_MESSAGES.ATTEMPT_COUNT_PROMPT);
 
     validateAttemptCount(attemptCount);
 
@@ -41,15 +42,15 @@ const validateAttemptCount = (attemptCount) => {
     const count = Number(attemptCount);
 
     if (isNaN(count)) {
-        throw new Error('[ERROR] 시도 횟수는 숫자여야 합니다.');
+        throw new Error(ERROR_MESSAGES.INVALID_ATTEMPT_NUMBER);
     }
     else if (count < 1) {
-        throw new Error('[ERROR] 시도 횟수는 1 이상의 정수여야 합니다.');
+        throw new Error(ERROR_MESSAGES.ATTEMPT_TOO_LOW);
     }
     else if (!Number.isInteger(count)) {
-        throw new Error('[ERROR] 시도 횟수는 실수가 될 수 없습니다.');
+        throw new Error(ERROR_MESSAGES.ATTEMPT_NOT_INTEGER);
     }
-    else if (count > 100) {
-        throw new Error('[ERROR] 시도 횟수는 최대 100회까지 가능합니다.');
+    else if (count > MAX_ATTEMPTS) {
+        throw new Error(ERROR_MESSAGES.ATTEMPT_TOO_HIGH);
     }
 }

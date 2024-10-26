@@ -1,6 +1,7 @@
 import { Random } from '@woowacourse/mission-utils';
 import { getCarNames, getAttemptCount } from './InputHandler.js';
 import { displayRaceTitle, displayRoundResult, displayFinalWinner } from './OutputHandler.js';
+import { MIN_RANDOM_VALUE, MAX_RANDOM_VALUE, MOVE_THRESHOLD } from './constants.js';
 
 export const startRace = async () => {
     const carNames = await getCarNames();
@@ -31,7 +32,7 @@ export const moveCars = (carNames, carNamesAndResults) => {
     const updatedResults = {...carNamesAndResults};
     
     carNames.forEach((car) => {
-        if (Random.pickNumberInRange(0, 9) >= 4) {
+        if (Random.pickNumberInRange(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE) >= MOVE_THRESHOLD) {
             updatedResults[car] += '-'
         }
     })

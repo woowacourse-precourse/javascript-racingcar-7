@@ -1,7 +1,8 @@
 import { Console } from '@woowacourse/mission-utils';
+import { INFO_MESSAGES, DELIMITERS } from './constants.js';
 
 export const displayRaceTitle = () => {
-    Console.print('\n실행결과\n');
+    Console.print(INFO_MESSAGES.RACE_TITLE);
 };
 
 export const displayRoundResult = (carNames, carNamesAndResults) => {
@@ -16,5 +17,5 @@ export const displayFinalWinner = (raceResult) => {
     const maxDistance = Math.max(...Object.values(raceResult).map(result => result.length));
     const winners = Object.keys(raceResult).filter((car) => raceResult[car].length === maxDistance);
 
-    Console.print(`최종 우승자 : ${winners.join(', ')}`);
+    Console.print(`${INFO_MESSAGES.WINNER_TEXT} ${winners.join(DELIMITERS.WINNER)}`);
 }
