@@ -42,6 +42,46 @@ describe("자동차 경주", () => {
     ]);
   });
 
+  test("기능 테스트: randomNumber가 4 이상일 때 자동차의 결과에 '-' 추가", () => {
+    // given
+    const app = new App();
+    const car = { name: "pobi", result: "" };
+
+    // 랜덤 숫자를 모의로 설정 (4 이상으로 설정하여 자동차가 이동하도록)
+    MissionUtils.Random.pickNumberInRange = jest.fn().mockReturnValue(5);
+
+    // when
+    app.moveCar(car);
+
+    // then
+    expect(car.result).toBe("-");
+  });
+
+  test("기능 테스트: 자동차가 정해진 시도 횟수만큼 이동하는지 확인", async () => {
+    // Arrange
+    const app = new App();
+    const mockCars = [
+      { name: "pobi", result: "" },
+      { name: "crong", result: "" },
+    ];
+    const mockAttempts = 3;
+
+    // Mock 함수 설정
+    app.getCarNameAndAttempts = jest.fn().mockResolvedValue({
+      cars: mockCars,
+      attemps: mockAttempts,
+    });
+    MissionUtils.Random.pickNumberInRange = jest.fn().mockReturnValue(5);
+
+    // Act
+    await app.run();
+
+    // Assert
+    mockCars.forEach((car) => {
+      expect(car.result).toBe("---");
+    });
+  });
+
   test("기능 테스트", async () => {
     // given
     const MOVING_FORWARD = 4;

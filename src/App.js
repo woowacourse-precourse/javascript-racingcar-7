@@ -59,7 +59,10 @@ class App {
 
   async run() {
     try {
-      await this.getCarNameAndAttempts();
+      const { cars, attemps } = await this.getCarNameAndAttempts();
+      for (let i = 0; i < attemps; i++) {
+        cars.forEach((car) => this.moveCar(car));
+      }
     } catch (error) {
       throw error;
     }
