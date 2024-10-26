@@ -26,8 +26,8 @@ class RacingController {
   }
 
   validatecarNamesInput(carNamesInput) {
-    // 최소 2개 이상의 이름과 ","로 이루어져야하며 이름은 5자리 이하여야한다.
-    const NAMES_LIST_PATTERN = /^([a-zA-Z]{1,5})+$/;
+    // 최소  알파벳으로 이루어진 2개 이상의 이름과 ","로 이루어져야하며 이름은 5자리 이하여야한다.
+    const NAMES_LIST_PATTERN = /^([a-zA-Z]{1,5})(,[a-zA-Z]{1,5})*$/;
 
     // 정규표현식 패턴에 일치하지 않는 경우 에러를 던짐
     if (!carNamesInput.match(NAMES_LIST_PATTERN)) {
