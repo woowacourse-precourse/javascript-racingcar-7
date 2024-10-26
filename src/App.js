@@ -6,6 +6,7 @@ class App {
     const tryCount = await this.getTryCount();
     const cars = this.createCars(carNames);
     this.startRace(cars, tryCount);
+    this.printWinners(cars);
   }
 
   async getCarNames() {
@@ -54,6 +55,14 @@ class App {
       });
       Console.print('');
     }
+  }
+
+  printWinners(cars) {
+    const maxPosition = Math.max(...cars.map((car) => car.position));
+    const winners = cars
+      .filter((car) => car.position === maxPosition)
+      .map((car) => car.name);
+    Console.print(`최종 우승자 : ${winners.join(', ')}`);
   }
 }
 
