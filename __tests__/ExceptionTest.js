@@ -2,7 +2,6 @@ import {
   ERR_LENGTH,
   ERR_ISDUP,
   ERR_POSITIVE,
-  ERR_ISNUMBER,
   ERR_ISINT,
 } from "../src/Component/Error.js";
 import App from "../src/App.js";
@@ -42,17 +41,10 @@ describe("예외 테스트", () => {
   });
 
   test.each([
-    [["choi,lee", "1.5"], ERR_ISINT()],
-    [["kim", "-2.5"], ERR_ISINT()],
-  ])("1 이상의 숫자를 입력하지 않은 경우", async (input, expectedError) => {
-    mockQuestions(input);
-    const app = new App();
-    await expect(app.run()).rejects.toThrow(expectedError);
-  });
-
-  test.each([
     [["choi,lee", "0"], ERR_POSITIVE()],
     [["kim", "-2"], ERR_POSITIVE()],
+    [["kim", "-2.5"], ERR_POSITIVE()],
+    [["a,e,u", "0.0"], ERR_POSITIVE()],
   ])("1 이상의 숫자를 입력하지 않은 경우", async (input, expectedError) => {
     mockQuestions(input);
     const app = new App();
@@ -60,11 +52,12 @@ describe("예외 테스트", () => {
   });
 
   test.each([
-    [["choi", "a"], ERR_ISNUMBER()],
-    [["kim", "+:/|-"], ERR_ISNUMBER()],
-    [["haha,hehe", "페라리"], ERR_ISNUMBER()],
-    [["a,b,c,d,e", "+10"], ERR_ISNUMBER()],
-  ])("숫자를 입력하지 않은 경우", async (input, expectedError) => {
+    [["choi", "a"], ERR_ISINT()],
+    [["kim", "+:/|-"], ERR_ISINT()],
+    [["haha,hehe", "페라리"], ERR_ISINT()],
+    [["a,b,c,d,e", "+10"], ERR_ISINT()],
+    [["choi,lee", "1.5"], ERR_ISINT()],
+  ])("정수를 입력하지 않은 경우", async (input, expectedError) => {
     mockQuestions(input);
     const app = new App();
     await expect(app.run()).rejects.toThrow(expectedError);

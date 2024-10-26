@@ -15,7 +15,3 @@ export const ERR_POSITIVE = () => {
 export const ERR_ISINT = () => {
   return ERR_MESSAGE + " 정수만 입력이 가능합니다.";
 };
-
-export const ERR_ISNUMBER = () => {
-  return ERR_MESSAGE + " 문자는 입력할 수 없습니다.";
-};
