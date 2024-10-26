@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, MissionUtils } from "@woowacourse/mission-utils";
 import { SEPARATOR } from "./constant.js";
 import { validateRoundInput, validateName } from "./validation.js";
 class Car {
@@ -8,12 +8,13 @@ class Car {
         this.moveScore = 0;
     }
 
-    printName() {
-        Console.print(this.name);
-    }
-
     printMoveScore() {
         Console.print(this.moveScore);
+    }
+
+    move() {
+        const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
+        if (randomNumber > 3) this.moveScore++;
     }
 }
 
@@ -32,6 +33,12 @@ class App {
         );
 
         validateRoundInput(inputRound);
+
+        Console.print("\n실행 결과");
+
+        for (let i = 0; i < inputRound; i++) {
+            cars.map((car) => car.move());
+        }
     }
 }
 
