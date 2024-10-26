@@ -7,15 +7,16 @@ import {
 } from './Validation.js';
 import { getWinners } from '../Util/util.js';
 import runRounds from '../Util/runRounds.js';
+import SYSTEM_MESSAGES from '../Model/SystemMessages.js';
 
 // Controller에서 전체 로직을 처리
 
 class Controller {
   async run() {
-    const carNames = await getInput('자동차 이름을 입력해 주세요');
+    const carNames = await getInput(SYSTEM_MESSAGES.ASK_CARS_NAME);
     const validatedCarNames = validateCarNames(carNames);
 
-    const roundsInput = await getInput('시도할 횟수는 몇 회인가요?');
+    const roundsInput = await getInput(SYSTEM_MESSAGES.ASK_ROUNDS);
     const validatedRounds = validateRounds(roundsInput);
 
     const cars = validatedCarNames.map((carName) => new Car(carName));
