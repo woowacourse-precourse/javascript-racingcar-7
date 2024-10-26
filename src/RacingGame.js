@@ -20,14 +20,15 @@ class RacingGame {
     racing(arr) {
         const [carArr, tryCnt] = arr
         const resultArr = []
-        for (const car of carArr) {
-            for (let i = 0; i < tryCnt; i++) {
+        for (let i = 0; i < tryCnt; i++) {
+            for (const car of carArr) {
                 const randomNum = this.setRandomNum()
                 if (randomNum >= 4) {
                     car.cnt++
                 }
             }
-            resultArr.push(car)
+            carArr.map((elem) => Console.print(`${elem.carName} : ${elem.cnt}`))
+            Console.print("\n")
         }
         console.log(resultArr)
     }
