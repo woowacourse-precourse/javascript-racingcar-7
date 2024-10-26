@@ -177,6 +177,9 @@ jun : -----
 
 ## 👀 미션 라이브러리 까보기
 
+<details open>
+<summary>자세히 보기</summary>
+
 ```tsx
 // 시작 범위 ~ 끝 범위 내 랜덤 정수를 생성하는 메서드
 static pickNumberInRange(startInclusive, endInclusive) {
@@ -250,6 +253,8 @@ static #validateRange(startInclusive, endInclusive) {
 }
 ```
 
+</details>
+
 ## 🐱 Git 커밋 컨벤션
 
 <details>
@@ -290,6 +295,60 @@ static #validateRange(startInclusive, endInclusive) {
  ┃ ┗ 📜winner.js // 우승자 관련 로직
  ┣ 📜App.js // 애플리케이션 구현
  ┗ 📜index.js // 실행 파일
+```
+
+</details>
+
+## 🚨 트러블 슈팅
+
+<details>
+<summary>자세히 보기</summary>
+
+### Jest의 **`expect`** 객체의 `not` 속성
+
+```tsx
+const assertCondition = (condition, message) => {
+  if (condition) {
+    throw new Error(createErrorMessage(message));
+  }
+};
+
+// 처음 작성한 코드
+test("조건이 false이므로 예외 처리가 발생하지 않습니다.", () => {
+  expect(() => assertCondition(false, errorMessage))
+    .not()
+    .toThrow();
+});
+```
+
+- **`not` 은 함수가 아니고 `expect` 객체의 속성이기 때문에 `.not` 으로 사용해야 한다.**
+
+```tsx
+// 수정 후 코드
+test("조건이 false이므로 예외 처리가 발생하지 않습니다.", () => {
+  expect(() => assertCondition(false, errorMessage)).not.toThrow();
+});
+```
+
+공식 문서에서 `not` 이라는 속성을 보고 내용도 읽지 않고 예측해서 사용하려다 보니깐 실수하는 부분이 있었다.
+
+→ 천천히 읽어보고 사용하는 습관을 길러야 할 것 같다.
+
+</details>
+
+## 😮 배운 것들
+
+<details>
+<summary>자세히 보기</summary>
+
+### **`Number.isInteger`**
+
+전달된 값이 정수인지 여부를 판별한다.
+
+```tsx
+console.log(Number.isInteger(1)); // true
+console.log(Number.isInteger(-1)); // true
+console.log(Number.isInteger(1.1)); // false
 ```
 
 </details>
