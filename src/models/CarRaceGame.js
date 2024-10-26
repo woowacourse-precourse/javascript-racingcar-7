@@ -50,8 +50,15 @@ class CarRaceGame {
     }, 0); 
   } 
 
+  getWinnersList(maxPosition) {
+    return this.carProgressRecords
+      .filter((car) => car.position === maxPosition)
+      .map((car) => car.name);
+  }
+
   printRaceResults() {
     const maxPosition = this.#getMaxPosition();
+    const winnersList = this.getWinnersList(maxPosition);
   }
 }
 
