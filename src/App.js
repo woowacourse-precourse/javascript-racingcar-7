@@ -1,6 +1,6 @@
 import { Console } from "@woowacourse/mission-utils";
 import { Car } from "./model/Car.js";
-import { getWinners } from "./util.js";
+import { runRace, getWinners } from "./util.js";
 import { SEPARATOR } from "./constant.js";
 import { validateRoundInput } from "./validation.js";
 
@@ -21,11 +21,7 @@ class App {
         validateRoundInput(inputRound);
 
         Console.print("\n실행 결과");
-
-        for (let i = 0; i < inputRound; i++) {
-            cars.map((car) => car.move());
-            Console.print("\n");
-        }
+        runRace(cars, inputRound);
 
         Console.print("최종 우승자 : " + getWinners(cars));
     }
