@@ -137,4 +137,15 @@ describe('자동차 경주', () => {
 
     await expect(app.run()).rejects.toThrow('[ERROR] 숫자를 입력해주세요.');
   });
+
+  test('예외 테스트 10 [이름 마지막에 쉼표 입력]', async () => {
+    const inputs = ['pobi,java,c,'];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(
+      '[ERROR] 공백은 이름이 될 수 없습니다.'
+    );
+  });
 });
