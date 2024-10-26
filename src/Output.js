@@ -14,4 +14,8 @@ export default class Output {
   static printResultTitle() {
     MissionUtils.Console.print("\n실행 결과");
   }
+
+  static printNewLine() {
+    MissionUtils.Console.print("\n");
+  }
 }

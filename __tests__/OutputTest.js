@@ -83,5 +83,24 @@ describe("출력", () => {
       expect(logSpy).toHaveBeenCalledWith("ham : ");
       expect(logSpy).toHaveBeenCalledWith("pobi : --");
     });
+
+    test("경주 게임이 있고 게임을 2번 반복하는 경우, 경주 게임의 한 차수가 끝날 때마다, 개행을 출력한다.", () => {
+      // given
+      const REPEAT_COUNT = 2;
+      const CARS = ["ham", "pobi"];
+      const game = new RacingGame(REPEAT_COUNT, CARS);
+      mockRandoms([1, 4, 1, 4]);
+
+      const logs = ["\n", "\n"];
+      const logSpy = getLogSpy();
+
+      // when
+      game.start();
+
+      // then
+      logs.forEach((log) => {
+        expect(logSpy).toHaveBeenCalledWith(log);
+      });
+    });
   });
 });

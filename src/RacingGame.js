@@ -20,6 +20,7 @@ export default class RacingGame {
     for (let i = 0; i < this.repeatCount; i += 1) {
       this.play();
       Output.printResult(this.cars);
+      Output.printNewLine();
     }
     Output.printWinners(this.getWinners());
   }
