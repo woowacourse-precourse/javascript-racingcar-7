@@ -40,6 +40,19 @@ class CarRaceGame {
       this.tryCount -= 1;
     }
   }
+
+  #getMaxPosition() {
+    return this.carProgressRecords.reduce((max, car) => {
+      if (car.position > max) {
+        return car.position;
+      }
+      return max;
+    }, 0); 
+  } 
+
+  printRaceResults() {
+    const maxPosition = this.#getMaxPosition();
+  }
 }
 
 export default CarRaceGame;

@@ -2,6 +2,7 @@ import RacingCar from "./models/CarRaceGame.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 const DELIMITER = ",";
+
 class App {
   createCarProgressRecords(carsStr) {
     return carsStr.split(DELIMITER).map((name) => ({
@@ -21,8 +22,9 @@ class App {
     const carProgressRecords = this.createCarProgressRecords(carsStr);
 
     const carRaceGame = new RacingCar(carProgressRecords, tryCount);
-
+    
     carRaceGame.startRace();
+    carRaceGame.printRaceResults();
   }
 }
 
