@@ -1,5 +1,6 @@
 export const FORWARD_SYMBOL = '-';
 export const RACE_MAX_NUM = 100;
+export const FORWARD_NUM = 4;
 
 export const INPUT_MESSAGES = Object.freeze({
   CAR_NAME: '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',

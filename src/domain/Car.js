@@ -1,3 +1,4 @@
+import { FORWARD_NUM } from "../constants/constants.js";
 import getElementsWithMatchingValue from "../utils/getElementsWithMatchingValue.js";
 import getMaxValue from "../utils/getMaxValue.js";
 
@@ -11,7 +12,7 @@ class Car {
   }
 
   validateForward(randomNumber, carIndex) {
-    if (randomNumber >= 4) {
+    if (randomNumber >= FORWARD_NUM) {
       this.forwardCounts[carIndex]++;
     }
   }
