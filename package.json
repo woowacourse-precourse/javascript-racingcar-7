@@ -13,6 +13,7 @@
     "babel-jest": "^29.6.0",
     "eslint": "^9.13.0",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-auto-js-extension": "^0.1.1",
     "jest": "^29.6.0",
     "prettier": "^3.3.3"
   },
