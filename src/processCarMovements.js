@@ -11,6 +11,8 @@ const processCarMovements = async (cars, raceNum) => {
     await moveCarEachTurn(cars, carMovements);
     showRaceState(cars, carMovements);
   }
+
+  return carMovements;
 };
 
 export default processCarMovements;
