@@ -6,6 +6,7 @@ export const checkNameLength = (name) => {
 const carSet = new Set();
 export const checkNameDuplicate = (name) => {
   if (carSet.has(name)) {
+    carSet.clear();
     throw new Error("자동차 이름이 중복입니다.");
   }
   carSet.add(name);
