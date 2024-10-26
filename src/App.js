@@ -1,4 +1,5 @@
 import Input from './io/Input.js';
+import Output from './io/Output.js';
 import RacingCarName from './game/RacingCarName.js';
 import RacingTryNumber from './game/RacingTryNumber.js';
 import CarController from './game/CarController.js';
@@ -15,6 +16,7 @@ class App {
     const carNameArray = carName.split(GAME.inputDelimeterSign).map((name) => name.trim());
     const carController = new CarController(carNameArray);
 
+    Output.printResultHeader();
     this.runRaces(carController, Number(tryNumber));
   }
 
@@ -25,6 +27,7 @@ class App {
 
   excuteRace(carController) {
     carController.updateCarPosition();
+    //carController.printResult();
   }
 }
 
