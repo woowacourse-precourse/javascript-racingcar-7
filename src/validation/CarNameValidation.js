@@ -5,10 +5,13 @@ class CarNameValidation {
     return name.trim() === '';
   }
   static checkNameLength(name) {
-    return name.split(',').some((car) => {
-      const trimedLength = car.trim().length;
-      return trimedLength < GAME.minNameLength || trimedLength > GAME.maxNameLength;
-    });
+    const nameArr = name.split(',');
+    return nameArr.some(
+      (car) => car.trim().length < GAME.minNameLength || car.trim().length > GAME.maxNameLength,
+    );
+  }
+  static checkDuplicate(name) {
+    return new Set(name.split(',')).size !== name.split(',').length;
   }
 }
 
