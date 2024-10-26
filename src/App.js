@@ -1,4 +1,6 @@
 import { Console } from "@woowacourse/mission-utils";
+import { SEPARATOR } from "./constant.js";
+import { validateRoundInput } from "./validation.js";
 class Car {
     constructor(name) {
         this.name = name;
@@ -16,20 +18,19 @@ class Car {
 
 class App {
     async run() {
-        try {
-            const inputCar = await Console.readLineAsync(
-                "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
-            );
+        const inputCar = await Console.readLineAsync(
+            "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
+        );
 
-            const cars = inputCar.split(",").map((car) => new Car(car.trim()));
+        const cars = inputCar
+            .split(SEPARATOR)
+            .map((car) => new Car(car.trim()));
 
-            const inputRound = await Console.readLineAsync(
-                "시도할 횟수는 몇 회인가요?\n"
-            );
-        } catch (error) {
-            Console.print(`${error.message}`);
-            throw error;
-        }
+        const inputRound = await Console.readLineAsync(
+            "시도할 횟수는 몇 회인가요?\n"
+        );
+
+        validateRoundInput(inputRound);
     }
 }
 
