@@ -1,0 +1,7 @@
+const CONDITIONS = Object.freeze({
+  RANDOM_MIN_NUM: 0,
+  RANDOM_MAX_NUM: 9,
+  ADVANCE_NUM: 4,
+  CAR_NAME_MIN_SIZE: 1,
+  CAR_NAME_MAX_SIZE: 5,
+});

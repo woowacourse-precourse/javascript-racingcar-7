@@ -2,7 +2,7 @@
 
 ## MVC 패턴을 이용, 기능구현 목록
 
-- [ ] constants 폴더
+- [x] constants 폴더
 
   - [x] Messages.js
     - [x] 자동차 이름 입력 메세지
@@ -16,12 +16,12 @@
   - [x] Errors.js
     - [x] 에러 메세지
     1. "[ERROR]"
-  - [ ] Conditions.js
-    - [ ] 전진하는 조건
+  - [x] Conditions.js
+    - [x] 전진하는 조건
     1. 숫자 0
     2. 숫자 9
     3. 숫자 4
-    - [ ] 자동차 이름 길이
+    - [x] 자동차 이름 길이
     1. 최소 1
     2. 최대 5
 
