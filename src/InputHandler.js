@@ -3,14 +3,15 @@ import { Console } from '@woowacourse/mission-utils';
 class InputHandler {
     async getCarNames() {
         const carNames = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
-        if (carNames === '') {
-            throw new Error('[ERROR] 경주 하려면 자동차가 2대 이상 필요해요!');
-        } else {
-            return this.splitCars(carNames);
-        }
+        this.validateCarNames(carNames);
+        return this.splitCars(carNames);
     }
 
-    splitCars(carNames) {
+    validateCarNames(carNames) {
+        if (carNames === '') {
+            throw new Error('[ERROR] 경주 하려면 자동차가 2대 이상 필요해요!');
+        }
+
         const names = carNames.split(',');
         const hasEmptyName = names.some(name => name === '');
         const nameTooLong = names.some(name => name.length > 5);
@@ -25,15 +26,22 @@ class InputHandler {
             throw new Error('[ERROR] 경주 하려면 자동차가 2대 이상 필요해요!');
         } else if (hasDuplicates) {
             throw new Error('[ERROR] 중복된 자동차 이름이 있어요!');
-        } else {
-            return names;
         }
     }
 
+    splitCars(carNames) {
+        return carNames.split(','); 
+    }
+
     async getLaps() {
-        const input = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
-        const laps = Number(input);
-        if (input === '') {
+        const laps = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+        this.validateLaps(laps);
+        return Number(laps);
+    }
+
+    validateLaps(inputLaps) {
+        const laps = Number(inputLaps);
+        if (inputLaps === '') {
             throw new Error('[ERROR] 모든 참가자가 경주를 포기했습니다!');
         } else if (isNaN(laps)) {
             throw new Error('[ERROR] 숫자를 입력해주세요!');

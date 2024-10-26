@@ -25,7 +25,7 @@ const getLogSpy = () => {
 };
 
 describe("자동차 경주", () => {
-    test("기능 테스트", async () => {
+    test("기본 기능", async () => {
         // given
         const MOVING_FORWARD = 4;
         const STOP = 3;
@@ -46,7 +46,7 @@ describe("자동차 경주", () => {
         });
     });
 
-    test("공동 우승자가 있을 때", async () => {
+    test("공동 우승자가 함께 출력되는가?", async () => {
         // given
         const MOVING_FORWARD = 4;
         const STOP = 3;
@@ -67,7 +67,7 @@ describe("자동차 경주", () => {
         });
     });
 
-    test("출력 형식 테스트", async () => {
+    test("각 경기 결과 사이에 한 줄 공백이 존재하는가?", async () => {
         // given
         const MOVING_FORWARD = 4;
         const STOP = 3;
@@ -93,8 +93,10 @@ describe("자동차 경주", () => {
         const actualOutput = logSpy.mock.calls.map(call => call[0]).join("\n"); // 모든 호출을 합쳐서 줄바꿈 포함
         expect(actualOutput).toMatch(expectedOutput);
     });
+});
 
-    test("예외 테스트", async () => {
+describe("예외 처리 테스트", () => {
+    test("에러 메세지가 [ERROR]로 시작하는가?", async () => {
         // given
         const inputs = ["pobi,javaji"];
         mockQuestions(inputs);
