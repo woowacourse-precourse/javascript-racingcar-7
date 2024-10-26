@@ -3,6 +3,8 @@ export default class ValidateCarNamesInput {
     const names = carNames.split(",");
 
     this.validateNumberOfCars(names);
+    this.validateDuplicateCarNames(names);
+
     names.forEach((name) => {
       this.validateCarNameLength(name);
       this.validateCarNameFormat(name);
@@ -26,6 +28,13 @@ export default class ValidateCarNamesInput {
   static validateCarNameFormat(name) {
     if (!/^[a-zA-Z가-힣]+$/.test(name)) {
       throw new Error("[ERROR] 자동차 이름은 영어와 한글만 허용됩니다.");
+    }
+  }
+
+  static validateDuplicateCarNames(names) {
+    const setNames = new Set(names);
+    if (setNames.size !== names.length) {
+      throw new Error("[ERROR] 자동차 이름은 중복될 수 없습니다.");
     }
   }
 }
