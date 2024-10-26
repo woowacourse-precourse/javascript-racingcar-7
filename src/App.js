@@ -44,12 +44,13 @@ function checkNameInput(arr) {
   }
 }
 
-function checkCount(input) {
+function checkCountInput(input) {
+  const count = Number(input);
   if (isNaN(input)) {
-    throw new Error('[ERROR]');
+    throw new Error('[ERROR] 실행 횟수 입력은 숫자여야 합니다.');
   } else {
-    if (Number(input) % 1 === 0) return Number(input);
-    else throw new Error('[ERROR]');
+    if (count % 1 === 0 && count > 0) return count;
+    else throw new Error('[ERROR] 실행 횟수 입력은 1 이상의 정수여야 합니다.');
   }
 }
 
@@ -87,7 +88,7 @@ class App {
     const inputCount = await Console.readLineAsync(
       `시도할 횟수는 몇 회인가요?\n`
     );
-    const trial = checkCount(inputCount);
+    const trial = checkCountInput(inputCount);
 
     //TODO: 정상적인 입력 시 수행할 것 (자동차 배열 만들기)
     const cars = names.map((name) => {
