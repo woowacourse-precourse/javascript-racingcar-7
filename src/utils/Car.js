@@ -1,6 +1,6 @@
 class Car {
   constructor(name) {
-    this.name = name;
+    this.name = name.trim();
     this.position = '';
   }
 
