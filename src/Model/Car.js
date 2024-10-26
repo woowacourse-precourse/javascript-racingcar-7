@@ -34,11 +34,11 @@ export default class Car {
     }
   }
 
-  getPositionString() {
+  #getPositionString() {
     return '-'.repeat(this.#position);
   }
 
   toString() {
-    return `${this.#carName} : ${this.getPositionString()}`;
+    return `${this.#carName} : ${this.#getPositionString()}`;
   }
 }
