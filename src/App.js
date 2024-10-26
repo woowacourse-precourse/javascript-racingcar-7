@@ -8,6 +8,24 @@ const getInput = async (inputMessage) => {
   }
 };
 
+const createCarState = (carsName) => {
+  const carState = carsName
+    .split(",")
+    .map((carName) => ({ carName, distance: "" }));
+  return carState;
+};
+
+const updateCarState = (carState, movesNumber) => {
+  for (let i = 0; i < movesNumber; i++) {
+    carState.forEach((car) => {
+      const advanceCondition = Random.pickNumberInRange(0, 9);
+      if (advanceCondition >= 4) {
+        car.distance += "-";
+      }
+    });
+  }
+};
+
 class App {
   async run() {
     try {
@@ -22,9 +40,9 @@ class App {
 
       const movesNumber = await getInput("시도할 횟수는 몇 회인가요?\n");
 
-      for (let i = 0; i < movesNumber; i++) {
-        const advanceCondition = Random.pickNumberInRange(0, 9);
-      }
+      const carState = createCarState(carsName);
+
+      updateCarState(carState, movesNumber);
     } catch (error) {
       Console.print(`[ERROR] ${error.message}`);
     }
