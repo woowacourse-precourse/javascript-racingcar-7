@@ -11,3 +11,8 @@ export const ERROR_MESSAGES = {
   NOT_INTEGER: '시도 횟수는 정수여야 합니다.',
   OVERFLOW: `시도 횟수는 ${Number.MAX_SAFE_INTEGER}보다 작거나 같아야 합니다.`,
 };
+
+export const INPUT_MESSAGES = {
+  CAR_NAMES: '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
+  GAME_ROUNDS: '시도할 횟수는 몇 회인가요?\n',
+};
