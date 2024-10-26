@@ -1,4 +1,5 @@
 import Input from "./Input.js";
+import RacingGame from "./RacingGame.js";
 
 class App {
   input;
@@ -8,8 +9,11 @@ class App {
   }
 
   async run() {
-    await this.input.getCarString();
-    await this.input.getRepeatCount();
+    const cars = await this.input.getCars();
+    const repeatCount = await this.input.getRepeatCount();
+
+    const game = new RacingGame(repeatCount, cars);
+    game.start();
   }
 }
 
