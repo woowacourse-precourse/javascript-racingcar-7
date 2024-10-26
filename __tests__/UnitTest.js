@@ -65,4 +65,19 @@ describe('App 메서드 테스트', () => {
 
     expect(result).toEqual(expected);
   });
+
+  test('자동차 이동 정지 테스트', () => {
+    const car = { name: 'pobi', position: 0 };
+    const MOVE = true;
+    const STOP = false;
+
+    app.moveOrStop(car, STOP);
+    expect(car.position).toBe(0);
+
+    app.moveOrStop(car, MOVE);
+    expect(car.position).toBe(1);
+
+    app.moveOrStop(car, MOVE);
+    expect(car.position).toBe(2);
+  });
 });
