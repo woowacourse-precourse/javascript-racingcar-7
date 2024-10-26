@@ -14,18 +14,15 @@ export function createCarObject(carNames) {
   return { names, positions };
 }
 
-// 차 전진 여부 결정
-export function moveCars(carData) {
+// 움직인 만큼  위치 추가
+export function shouldMoveForward(carData) {
   const updatedPositions = carData.positions.map((position) => {
     const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
-    // 랜덤 값이 4 이상이면 전진 수를 증가
     if (randomNumber >= 4) {
       return position + 1;
     }
     return position;
   });
-
-  // 새로운 배열 반환
   return { ...carData, positions: updatedPositions };
 }
 
