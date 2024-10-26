@@ -33,16 +33,10 @@ class Racing {
 
   showResult() {
     const raceResult = this.#result;
-
     raceResult.forEach((roundResult, index) => {
       const round = index + 1;
       Display.showRoundResultHeader(round);
-
-      roundResult.forEach((carResult) => {
-        Display.showDistanceGraph(carResult);
-      });
-
-      Display.showLineBreak();
+      Display.showRoundResult(roundResult);
     });
   }
 

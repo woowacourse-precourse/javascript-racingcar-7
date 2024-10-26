@@ -1,6 +1,15 @@
 import { Console } from '@woowacourse/mission-utils';
 
 class Display {
+  static showRoundResult(roundResult) {
+    const roundResultList = [...roundResult];
+    roundResultList.forEach((carInformation) => {
+      this.showDistanceGraph(carInformation);
+    });
+
+    this.showLineBreak();
+  }
+
   static showRoundResultHeader(round) {
     const FIRST_ROUND = 1;
     const HEADER = '실행 결과';
