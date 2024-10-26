@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import Car from './Car.js';
+import { Car } from './index.js';
 
 const printNewline = () => {
   Console.print('');

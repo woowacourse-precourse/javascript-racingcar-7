@@ -1,4 +1,4 @@
-import Cars from './Cars.js';
+import { Cars } from './index.js';
 
 class RacingGame {
   constructor(names) {
