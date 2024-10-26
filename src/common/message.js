@@ -13,7 +13,7 @@ const ERROR_MESSAGE = Object.freeze({
   TOO_LONG_CAR_NAME: '[ERROR] 자동차의 이름이 6자 이상입니다.',
   NOT_ALLOWED_CHARACTER: '[ERROR] 자동차의 이름은 한글, 영문, 숫자만 가능합니다.',
   INVALID_NUMBER: '[ERROR] 정상적인 숫자가 아닙니다.',
-  NOT_POSITIVE_NUMBER: '[ERROR] 양의 정수만 입력 가능합니다.',
+  NOT_POSITIVE_INTEGER: '[ERROR] 양의 정수만 입력 가능합니다.',
   TOO_BIG_TRY_COUNT: `[ERROR] 횟수는 ${COMMON.TRY_COUNT_MAX}회 이하로 입력해주십시오.`,
 });
 
