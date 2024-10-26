@@ -55,7 +55,7 @@ class App {
 
   carNamesToObject(carNames) {
     const cars = carNames.reduce((acc, name) => {
-      acc[name] = 0;
+      acc[name] = '';
       return acc;
     }, {});
 
@@ -100,14 +100,20 @@ class App {
   }
 
   decideMovement(cars, randomNumber, key, value) {
-    if (randomNumber >= MOVE_MINIMUM) cars[key] = value + 1;
+    if (randomNumber >= MOVE_MINIMUM) cars[key] = value + '-';
 
     Console.print(`${key} : ${cars[key]}`);
   }
 
   getWinners(cars) {
-    const max = Math.max(...Object.values(cars));
-    const winners = Object.keys(cars).filter((name) => cars[name] === max);
+    let moves = [];
+    for (const key in cars) {
+      moves.push(cars[key].length);
+    }
+    const max = Math.max(...moves);
+    const winners = Object.keys(cars).filter(
+      (name) => cars[name].length === max
+    );
     return winners;
   }
 
