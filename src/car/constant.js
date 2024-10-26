@@ -5,4 +5,4 @@ const CAR = Object.freeze({
   RUN_CONDITION_VALUE: 4,
 });
 
-export { CAR };
+export default CAR;
