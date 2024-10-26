@@ -4,3 +4,5 @@ const MESSAGES = Object.freeze({
   EXECUTION_RESULT: "\n실행 결과\n",
   FINAL_WINNER: "최종우승자 : ",
 });
+
+export default MESSAGES;

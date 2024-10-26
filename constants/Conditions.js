@@ -5,3 +5,5 @@ const CONDITIONS = Object.freeze({
   CAR_NAME_MIN_SIZE: 1,
   CAR_NAME_MAX_SIZE: 5,
 });
+
+export default CONDITIONS;
