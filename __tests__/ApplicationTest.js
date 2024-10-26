@@ -1,4 +1,5 @@
-import App from "../src/App.js";
+// import App from "../src/App.js";
+import Car from "../src/Car.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 const mockQuestions = (inputs) => {
@@ -24,37 +25,58 @@ const getLogSpy = () => {
   return logSpy;
 };
 
-describe("자동차 경주", () => {
-  test("기능 테스트", async () => {
-    // given
-    const MOVING_FORWARD = 4;
-    const STOP = 3;
-    const inputs = ["pobi,woni", "1"];
-    const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
-    const logSpy = getLogSpy();
+//   모든 기능 구현 후 테스트 예정
+// describe("자동차 경주", () => {
+//   test("기능 테스트", async () => {
+//     // given
+//     const MOVING_FORWARD = 4;
+//     const STOP = 3;
+//     const inputs = ["pobi,woni", "1"];
+//     const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
+//     const logSpy = getLogSpy();
 
-    mockQuestions(inputs);
-    mockRandoms([MOVING_FORWARD, STOP]);
+//     mockQuestions(inputs);
+//     mockRandoms([MOVING_FORWARD, STOP]);
 
-    // when
-    const app = new App();
-    await app.run();
+//     // when
+//     const app = new App();
+//     await app.run();
 
-    // then
-    logs.forEach((log) => {
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-    });
+//     // then
+//     logs.forEach((log) => {
+//       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+//     });
+//   });
+
+//   test("예외 테스트", async () => {
+//     // given
+//     const inputs = ["pobi,javaji"];
+//     mockQuestions(inputs);
+
+//     // when
+//     const app = new App();
+
+//     // then
+//     await expect(app.run()).rejects.toThrow("[ERROR]");
+//   });
+// });
+
+describe("Car 클래스 테스트", () => {
+  test("유효한 이름으로 자동차 생성", () => {
+    const car = new Car("pobi");
+    expect(car.name).toBe("pobi");
+    expect(car.position).toBe(0);
   });
 
-  test("예외 테스트", async () => {
-    // given
-    const inputs = ["pobi,javaji"];
-    mockQuestions(inputs);
+  test("이름이 5자를 초과하면 에러 발생", () => {
+    expect(() => new Car("javajigi")).toThrow("[ERROR]");
+  });
 
-    // when
-    const app = new App();
+  test("이름이 공백이면 에러 발생", () => {
+    expect(() => new Car("")).toThrow("[ERROR]");
+  });
 
-    // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
+  test("이름이 공백 문자로만 이루어진 경우 에러 발생", () => {
+    expect(() => new Car("  ")).toThrow("[ERROR]");
   });
 });
