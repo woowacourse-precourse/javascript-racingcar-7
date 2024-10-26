@@ -7,4 +7,11 @@ const inputCarName = async () => {
   return carNames;
 };
 
-export default inputCarName;
+const inputCount = async () => {
+  const count = await MissionUtils.Console.readLineAsync(
+    "시도할 횟수는 몇 회인가요?\n"
+  );
+  return count;
+};
+
+export { inputCarName, inputCount };
