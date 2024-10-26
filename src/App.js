@@ -1,23 +1,7 @@
 import { Console, MissionUtils } from "@woowacourse/mission-utils";
+import { Car } from "./model/Car.js";
 import { SEPARATOR } from "./constant.js";
-import { validateRoundInput, validateName } from "./validation.js";
-class Car {
-    constructor(name) {
-        validateName(name);
-        this.name = name;
-        this.moveScore = 0;
-    }
-
-    printMoveScore() {
-        Console.print(`${this.name} : ${"-".repeat(this.moveScore)}`);
-    }
-
-    move() {
-        const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
-        if (randomNumber > 3) this.moveScore++;
-        this.printMoveScore();
-    }
-}
+import { validateRoundInput } from "./validation.js";
 
 class App {
     async run() {
