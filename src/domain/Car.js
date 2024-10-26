@@ -7,8 +7,8 @@ export default class Car {
     }
   
     move(randomNumber) {
-      if (randomNumber >= STATIC_NUMBER.canMoveNumber) {
-        this.position += STATIC_NUMBER.moveOneStep;
+      if (randomNumber >= STATIC_NUMBER.game.MOVE_THRESHOLD) {
+        this.position += STATIC_NUMBER.game.MOVE_STEP;
       }
     }
   
