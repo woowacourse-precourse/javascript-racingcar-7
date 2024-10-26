@@ -18,24 +18,18 @@ export const startRace = async () => {
     displayFinalWinner(carNamesAndResults);
 }
 
-export const initializeRaceState = (carNames) => {
-    const carNamesAndResults = {};
-
-    carNames.forEach((car) => {
-        carNamesAndResults[car] = '';
-    });
-
-    return carNamesAndResults;
+export const initializeRaceState = carNames => {
+    return carNames.reduce((acc, car) => {
+        acc[car] = '';
+        return acc;
+    }, {});
 }
 
 export const moveCars = (carNames, carNamesAndResults) => {
-    const updatedResults = {...carNamesAndResults};
-    
-    carNames.forEach((car) => {
+    return carNames.reduce((acc, car) => {
         if (Random.pickNumberInRange(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE) >= MOVE_THRESHOLD) {
-            updatedResults[car] += '-'
+            acc[car] += '-';
         }
-    })
-
-    return updatedResults;
+        return acc;
+    }, {...carNamesAndResults});
 }
