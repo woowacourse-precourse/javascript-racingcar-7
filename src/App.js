@@ -51,7 +51,7 @@ class App {
       ); //distance가 max인것만 뻡는다.
 
       // winnerCars의 names만 뽑는다.
-      const winnerCarNameArray = winnerCars.map((car) => car.distance);
+      const winnerCarNameArray = winnerCars.map((car) => car.name);
 
       return winnerCarNameArray;
     }
