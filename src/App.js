@@ -1,8 +1,9 @@
 import { Console } from "@woowacourse/mission-utils";
 import { SEPARATOR } from "./constant.js";
-import { validateRoundInput } from "./validation.js";
+import { validateRoundInput, validateName } from "./validation.js";
 class Car {
     constructor(name) {
+        validateName(name);
         this.name = name;
         this.moveScore = 0;
     }
