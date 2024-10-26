@@ -1,5 +1,5 @@
 import ERROR_MESSAGES from "../constants/errorMessges.js";
-import { Console, Random } from "@woowacourse/mission-utils";
+import { Console } from "@woowacourse/mission-utils";
 
 const carInput = async () => {
   const cars = await Console.readLineAsync(
