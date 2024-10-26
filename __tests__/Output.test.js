@@ -4,8 +4,8 @@ describe('makeOutput 출력함수 테스트', () => {
   it('car 데이터와 순위를 테스트 ', () => {
     expect(
       makeOutput([
-        ['carA', 3],
-        ['carB', 1],
+        { name: 'carA', location: 3 },
+        { name: 'carB', location: 1 },
       ]),
     ).toBe('carA : ---\ncarB : -\n');
   });

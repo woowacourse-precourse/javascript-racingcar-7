@@ -1,7 +1,7 @@
 export const makeOutput = (carData) => {
   let output = '';
   carData.forEach((car) => {
-    output += `${car[0]} : ${'-'.repeat(car[1])}\n`;
+    output += `${car.name} : ${'-'.repeat(car.location)}\n`;
   });
   return output;
 };
