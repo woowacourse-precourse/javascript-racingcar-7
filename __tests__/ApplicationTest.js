@@ -4,6 +4,7 @@ import {
   divisionCarName,
   createCarObject,
   moveCars,
+  getCarPositionsRepresentation,
 } from '../src/models/Model.js';
 import App from '../src/App.js';
 
@@ -71,6 +72,7 @@ describe('자동차 경주', () => {
 const CAR_NAMES_STRING = 'happy,car';
 const CAR_NAMES_ARRAY = ['happy', 'car'];
 const CAR_OBJECTS = { names: ['happy', 'car'], positions: [0, 0] };
+const CAR_MOVES = { names: ['happy', 'car'], positions: [1, 0] };
 
 const testCar = (description, fn, input, expectedOutput) => {
   test(description, () => {
@@ -103,18 +105,16 @@ describe('Custom Test', () => {
   test('랜덤 값을 이용해 자동차의 전진 수를 올바르게 업데이트하는지 확인', () => {
     // Mock 처리로 랜덤 값을 고정하여 테스트의 일관성 유지
     const randomSpy = jest.spyOn(MissionUtils.Random, 'pickNumberInRange');
-
     // 랜덤 값을 [4, 3, 5]로 고정 설정 (4 이상일 때 전진, 4 미만일 때 그대로)
     randomSpy.mockImplementationOnce(() => 4).mockImplementationOnce(() => 3);
-
-    const expectedOutput = {
-      names: CAR_NAMES_ARRAY,
-      positions: [1, 0], // 첫 번째와 세 번째 자동차만 전진
-    };
-
-    expect(moveCars(CAR_OBJECTS)).toEqual(expectedOutput);
-
+    expect(moveCars(CAR_OBJECTS)).toEqual(CAR_MOVES);
     // Mock 복원
     randomSpy.mockRestore();
+  });
+
+  // -로 전진 표시 테스트
+  test('move 수 만큼 -로 변환', () => {
+    const expectedOutput = ['-', ''];
+    expect(getCarPositionsRepresentation(CAR_MOVES)).toEqual(expectedOutput);
   });
 });
