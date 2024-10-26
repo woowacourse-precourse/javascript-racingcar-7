@@ -5,6 +5,7 @@ class CarRaceGame {
     this.carProgressRecords = carProgressRecords;
     this.tryCount = tryCount;
   }
+
   shouldMoveForward() {
     const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
     return randomNumber >= 4;
@@ -12,15 +13,19 @@ class CarRaceGame {
 
   determineEachCarMovement() {
     this.carProgressRecords.forEach((car) => {
-      if (!shouldMoveForward()) {
+      if (this.shouldMoveForward()) {
         car.position += 1;
       }
     });
   }
 
   printCarProgress() {
+    let order = 1;
     this.carProgressRecords.forEach((car) => {
-      MissionUtils.Console.print(`${car.name} : ${"-".repeat(car.position)}`);
+      MissionUtils.Console.print(
+        `${order}: ${car.name} : ${"-".repeat(car.position)}`
+      );
+      order += 1;
     });
   }
 
@@ -32,7 +37,7 @@ class CarRaceGame {
   startRace() {
     while (this.tryCount) {
       this.runRaceRound();
-      tryCount -= 1;
+      this.tryCount -= 1;
     }
   }
 }
