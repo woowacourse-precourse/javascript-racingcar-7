@@ -8,7 +8,7 @@ async function Input() {
         try {
             cars = await Console.readLineAsync(IO_MESSAGE.INPUT_CAR);
             cars = cars.split(',');
-            if (cars.length === 0 || cars.some((car) => car.trim() === '')) {
+            if (cars.length < 2 || cars.some((car) => car.trim() === '')) {
                 throw new Error(ERROR_MESSAGE.ERROR_CAR);
             }
             cars.map((val) => {
