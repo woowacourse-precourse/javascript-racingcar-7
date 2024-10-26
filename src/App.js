@@ -1,7 +1,7 @@
 import Race from './Race.js';
 
 class App {
-  async run () {
+  async run() {
     const race = new Race;
 
     await race.init();
