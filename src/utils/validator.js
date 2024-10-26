@@ -1,9 +1,10 @@
 import OutputView from '../views/outputView.js';
+import { ERROR_MESSAGES } from './constants.js';
 
 const Validator = {
   validateCarCount(carNames) {
     if (!carNames || carNames.length === 0) {
-      OutputView.throwError('자동차가 최소 1대 이상 있어야 합니다.');
+      OutputView.throwError(ERROR_MESSAGES.NO_CARS);
     }
   },
 
@@ -11,7 +12,7 @@ const Validator = {
     const hasEmptyName = carNames.some((name) => name.trim().length === 0);
 
     if (hasEmptyName) {
-      OutputView.throwError('자동차 이름은 빈 문자열이나 공백일 수 없습니다.');
+      OutputView.throwError(ERROR_MESSAGES.EMPTY_NAME);
     }
   },
 
@@ -19,7 +20,7 @@ const Validator = {
     const hasLongName = carNames.some((name) => name.length > 5);
 
     if (hasLongName) {
-      OutputView.throwError('자동차 이름은 5자 이하만 가능합니다.');
+      OutputView.throwError(ERROR_MESSAGES.NAME_TOO_LONG);
     }
   },
 
@@ -27,7 +28,7 @@ const Validator = {
     const uniqueNames = new Set(carNames);
 
     if (uniqueNames.size !== carNames.length) {
-      OutputView.throwError('자동차 이름은 중복될 수 없습니다.');
+      OutputView.throwError(ERROR_MESSAGES.DUPLICATE_NAME);
     }
   },
 
@@ -40,44 +41,42 @@ const Validator = {
 
   validateEmptyGameRounds(rounds) {
     if (!rounds || rounds.trim().length === 0) {
-      OutputView.throwError('시도 횟수는 빈 값이나 공백일 수 없습니다.');
+      OutputView.throwError(ERROR_MESSAGES.EMPTY_ROUNDS);
     }
   },
 
   validateIsNumber(rounds) {
     const number = Number(rounds);
     if (Number.isNaN(number)) {
-      OutputView.throwError('시도 횟수는 숫자여야 합니다.');
+      OutputView.throwError(ERROR_MESSAGES.NOT_A_NUMBER);
     }
   },
 
   validateIsNotNegative(rounds) {
     const number = Number(rounds);
     if (number < 0) {
-      OutputView.throwError('시도 횟수는 음수일 수 없습니다.');
+      OutputView.throwError(ERROR_MESSAGES.NEGATIVE_NUMBER);
     }
   },
 
   validateIsNotZero(rounds) {
     const number = Number(rounds);
     if (number === 0) {
-      OutputView.throwError('시도 횟수는 0일 수 없습니다.');
+      OutputView.throwError(ERROR_MESSAGES.ZERO_ROUNDS);
     }
   },
 
   validateIsInteger(rounds) {
     const number = Number(rounds);
     if (!Number.isInteger(number)) {
-      OutputView.throwError('시도 횟수는 정수여야 합니다.');
+      OutputView.throwError(ERROR_MESSAGES.NOT_INTEGER);
     }
   },
 
   validateIsNotOverflow(rounds) {
     const number = Number(rounds);
     if (number > Number.MAX_SAFE_INTEGER) {
-      OutputView.throwError(
-        `시도 횟수는 ${Number.MAX_SAFE_INTEGER}보다 작거나 같아야 합니다.`,
-      );
+      OutputView.throwError(ERROR_MESSAGES.OVERFLOW);
     }
   },
 
