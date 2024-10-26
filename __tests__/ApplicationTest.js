@@ -146,7 +146,7 @@ describe("자동차 경주", () => {
         // given
         const MOVING_FORWARD = 4;
         const inputs = ["pobi,woni", "1"];
-        const logs = ["pobi : -", "woni : -", "최종 우승자 : pobi, jun"];
+        const logs = ["pobi : -", "woni : -", "최종 우승자 : pobi, woni"];
         const logSpy = getLogSpy();
 
         mockQuestions(inputs);
