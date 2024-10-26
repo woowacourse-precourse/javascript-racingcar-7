@@ -1,5 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import { GAME_MESSAGES } from './constants/messages.js';
+import { STRINGS } from './constants/values.js';
 
 const view = {
   async readCars() {
@@ -10,6 +11,13 @@ const view = {
   async readTrialCount() {
     const answer = await Console.readLineAsync(GAME_MESSAGES.readTrialCount);
     return answer;
+  },
+
+  printProgress(name, progress) {
+    Console.print(name + STRINGS.outputNameDelimiter + STRINGS.progressBar.repeat(progress));
+  },
+  printLineBreak() {
+    Console.print('\n');
   },
 };
 
