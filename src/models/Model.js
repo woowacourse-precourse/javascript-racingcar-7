@@ -28,5 +28,9 @@ export function shouldMoveForward(carData) {
 
 // 차 전진 -로 표현
 export function getCarPositionsRepresentation(carData) {
-  return carData.positions.map((position) => '-'.repeat(position));
+  return carData.positions.map((position, index) => {
+    const carName = carData.names[index];
+    const carPositionsRepresentation = '-'.repeat(position);
+    return `${carName} : ${carPositionsRepresentation}`;
+  });
 }
