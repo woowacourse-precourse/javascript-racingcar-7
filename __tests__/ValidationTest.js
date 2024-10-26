@@ -37,6 +37,17 @@ describe('자동차 이름 입력 유효성 검사', () => {
     );
   });
 
+  test('자동차 이름 사이 공백 입력 시 오류 발생', async () => {
+    const input = ['ha ku,haku'];
+
+    const app = new App();
+    mockQuestions(input);
+
+    await expect(async () => await app.getRacingCarName()).rejects.toThrow(
+      ERROR_MESSAGE.blank
+    );
+  });
+
   test('자동차 이름 증복 시 오류 발생', async () => {
     const input = ['haku,haku'];
 
