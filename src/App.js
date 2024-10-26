@@ -1,5 +1,5 @@
 import { input, print } from './handler/IoHandller.js';
-import { initGame } from './game/Game.js';
+import { initGame } from './game/game.js';
 import { parseAndValidate } from './parsers/ParseAndValidate.js';
 
 class App {
@@ -11,9 +11,10 @@ class App {
         car: carInput,
         count: countInput,
       });
-      initGame({ car: parsedCarInput, count: countInput });
+      initGame(parsedCarInput);
     } catch (error) {
       print(error.message);
+      throw error;
     }
   }
 }

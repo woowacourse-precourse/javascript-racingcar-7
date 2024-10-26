@@ -1,6 +1,6 @@
 import { VOWEL } from '../const/index.js';
 
-const makeOddChar = () => {
+export const makeOddChar = () => {
   while (true) {
     // 아스키 97~122 a~z
     const randomAscii = Math.floor(Math.random() * (122 - 97 + 1)) + 97;
@@ -11,7 +11,7 @@ const makeOddChar = () => {
   }
 };
 
-const makeEvenChar = () => {
+export const makeEvenChar = () => {
   const randomNum = Math.floor(Math.random() * 10);
   const vowelList = Object.keys(VOWEL);
   if (randomNum < 2) return vowelList[0];
@@ -21,7 +21,7 @@ const makeEvenChar = () => {
   return vowelList[4];
 };
 
-const makeRandomName = () => {
+export const makeRandomName = () => {
   const strLength = 5;
   let rnadomString = '';
   for (let i = 0; i < strLength; i++) {
