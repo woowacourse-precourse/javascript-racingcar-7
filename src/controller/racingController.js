@@ -1,12 +1,14 @@
 import { Console, Random } from '@woowacourse/mission-utils';
 import RacingModel from '../model/racingModel.js';
+import RacingView from '../view/racingView.js';
 
 class RacingController {
   constructor() {
     this.model = new RacingModel();
+    this.view = new RacingView();
   }
 
-  async getCarNames() {
+  static async getCarNames() {
     const carNamesInput = await Console.readLineAsync(
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
     );
@@ -21,7 +23,7 @@ class RacingController {
     }
   }
 
-  async getCount() {
+  static async getCount() {
     const conutInput =
       await Console.readLineAsync(`시도할 횟수는 몇회인가요 ?\n`);
 
@@ -51,7 +53,6 @@ class RacingController {
       console.log('에러 발생');
       throw new Error('count는 0 이외의 숫자 값만 받을 수 있습니다.');
     }
-
     return true;
   }
 }
