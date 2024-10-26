@@ -7,7 +7,7 @@ export default function progressGame(carDataList, moveCount) {
   for (let i = 0; i < moveCount; i++) {
     const moveConditionValues = extractMoveValue(carDataList.length);
     calculateTotalMoveValue(carDataList, moveConditionValues);
-    displayCarMovement(carDataList, moveConditionValues);
+    displayCarMovement(carDataList);
   }
   return carDataList;
 }
