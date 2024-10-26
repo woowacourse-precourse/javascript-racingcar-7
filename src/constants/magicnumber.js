@@ -2,6 +2,7 @@ const MAGICNUMBER = {
   SEPARATOR: ',',
   STARTINCLUSIVE: 0,
   ENDINCLUSIVE: 9,
+  GOCONDITIONNUM: 4,
 };
 
 export default MAGICNUMBER;
