@@ -41,6 +41,10 @@ class InputView {
       }
     });
 
+    const uniqueCarNames = new Set(carNames);
+    if (uniqueCarNames.size !== carNames.length) {
+      throw new Error('[ERROR] 자동차 이름은 중복되지 않아야 합니다.');
+    }
   }
 }
 
