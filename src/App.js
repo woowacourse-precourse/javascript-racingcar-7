@@ -4,7 +4,7 @@ const getInput = async (inputMessage) => {
   try {
     return await Console.readLineAsync(inputMessage);
   } catch (error) {
-    throw error;
+    throw new Error("입력에 에러가 발생했습니다.");
   }
 };
 
@@ -34,6 +34,18 @@ const printRaceState = (carState) => {
   Console.print("");
 };
 
+const printWinners = (carState) => {
+  const winnerDistance = Math.max(
+    ...carState.map((car) => car.distance.length)
+  );
+
+  carState.forEach((car) => {
+    if (car.distance.length === winnerDistance) {
+      Console.print(`최종 우승자 : ${car.carName}`);
+    }
+  });
+};
+
 class App {
   async run() {
     try {
@@ -43,6 +55,7 @@ class App {
       const carNameLengthLimit = carsName
         .split(",")
         .every((carName) => carName.length <= 5);
+
       if (!carNameLengthLimit)
         throw new Error("자동차 이름은 5자 이하만 가능합니다.");
 
@@ -53,8 +66,10 @@ class App {
       Console.print("\n실행 결과");
 
       updateCarState(carState, movesNumber);
+
+      printWinners(carState);
     } catch (error) {
-      Console.print(`[ERROR] ${error.message}`);
+      throw new Error(`[ERROR] ${error.message}`);
     }
   }
 }
