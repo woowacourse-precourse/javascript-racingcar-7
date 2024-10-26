@@ -1,5 +1,5 @@
 // App.js
-import { Race } from './race.js';
+import { Race } from './utils/race.js';
 import { Input } from './views/input.js';
 import { Output } from './views/output.js';
 

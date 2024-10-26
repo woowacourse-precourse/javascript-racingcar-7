@@ -1,4 +1,4 @@
-import ERRORS from './datas/error.js';
+import ERRORS from "../datas/error";
 
 export const validateCarNames = (carNames) => {
   const trimmedNames = carNames.map((name) => name.trim());
