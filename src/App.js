@@ -1,4 +1,15 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
+
+class Car {
+  constructor(name) {
+    this.name = name;
+    this.position = 0;
+  }
+
+  move() {
+    this.position += 1;
+  }
+}
 
 class App {
   async run() {
@@ -13,6 +24,9 @@ class App {
 
       this.validateCarNames(carNames);
 
+      // 자동차 객체 생성
+      const cars = carNames.map((name) => new Car(name));
+
       // 시도 횟수 입력
       const inputTryCount = await Console.readLineAsync(
         '시도할 횟수는 몇 회인가요?\n'
@@ -21,6 +35,11 @@ class App {
       // 시도 횟수 숫자로 변환, 유효성 검사
       const tryCount = Number(inputTryCount);
       this.validateTryCount(tryCount);
+
+      // 경주 시작
+      Console.print('\n실행 결과');
+      //자동차 전진 기능
+      this.moveCars(cars, tryCount);
     } catch (error) {
       throw error;
     }
@@ -45,6 +64,33 @@ class App {
     if (isNaN(tryCount) || tryCount <= 0 || !Number.isInteger(tryCount)) {
       throw new Error('[ERROR] 시도할 횟수는 양의 정수여야 합니다.');
     }
+  }
+  moveCars(cars, tryCount) {
+    for (let i = 0; i < tryCount; i++) {
+      this.moveEachcar(cars);
+      this.printRoundStatus(cars);
+    }
+  }
+
+  moveEachcar(cars) {
+    for (const car of cars) {
+      if (this.shouldMove()) {
+        car.move();
+      }
+    }
+  }
+
+  // 랜덤 숫자가 4 이상이면 전진
+  shouldMove() {
+    const randomNumber = Random.pickNumberInRange(0, 9);
+    return randomNumber >= 4;
+  }
+
+  printRoundStatus(cars) {
+    for (const car of cars) {
+      Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
+    }
+    Console.print('');
   }
 }
 
