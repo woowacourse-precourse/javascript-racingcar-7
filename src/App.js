@@ -34,7 +34,7 @@ class App {
 
     return distances;
   }
-  
+
   moveCar(name, distances) {
     const randomNum = Random.pickNumberInRange(0, 9);
     if (randomNum >= 4) {
@@ -53,10 +53,11 @@ class App {
       Console.print(""); // 각 라운드 사이에 여백 추가
     }
   }
-  
-    const maxMoves = Math.max(...Object.values(results).map((moves) => moves.length)); 
-    const winners = carNames.filter((name) => results[name].length === maxMoves);
-    Console.print(`최종 우승자 : ${winners.join(", ")}`);
+
+  printWinners(carNames, distances) {
+    const maxMoveDistance = Math.max(...Object.values(distances).map(moves => moves.length));
+    const raceWinners = carNames.filter(name => distances[name].length === maxMoveDistance);
+    Console.print(`최종 우승자 : ${raceWinners.join(", ")}`);
   }
 }
 
