@@ -29,6 +29,15 @@
 ┗ 📜index.js       // 애플리케이션 진입점
 ```
 
+***
+
+# 🌟 Class Diagram
+
+![image](https://github.com/user-attachments/assets/efe0a79f-3d46-4339-a15e-8aa1113cafed)
+
+
+***
+
 # 구현 외 목표
 
 - 1. Airbnb 자바스크립트 스타일 가이드 정독
