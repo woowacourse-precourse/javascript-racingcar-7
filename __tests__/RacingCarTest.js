@@ -81,10 +81,10 @@ describe('예외 테스트', () => {
         });
     });
 
-    describe("경주 횟수 유효성 검사", () => {
+    describe("자동차 전진 시도 횟수 유효성 검사", () => {
         const MAX_RACING_COUNT = 100;
 
-        test(`입력된 경주 횟수가 ${MAX_RACING_COUNT}회를 초과할 경우 에러가 발생한다.`, async () => {
+        test(`입력된 전진 시도 횟수가 ${MAX_RACING_COUNT}회를 초과할 경우 에러가 발생한다.`, async () => {
             const racingCount = 101;
 
             // given
@@ -94,5 +94,5 @@ describe('예외 테스트', () => {
 
             await expect(app.run()).rejects.toThrow(ERROR_MESSAGE.RACING_COUNT_EXCEEDED(MAX_RACING_COUNT, racingCount));
         });
-    })
+    });
 });
