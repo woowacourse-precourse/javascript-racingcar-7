@@ -52,6 +52,21 @@ class RacingGame {
     });
     Console.print("\n");
   }
+
+  findMaxPosition() {
+    return Math.max(...this.cars.map((car) => car.position));
+  }
+
+  findWinners() {
+    const maxPosition = this.findMaxPosition();
+    const winners = this.cars.filter((car) => car.position === maxPosition);
+    return winners.map((car) => car.name);
+  }
+
+  printWinners() {
+    const winners = this.findWinners();
+    Console.print(`최종 우승자 : ${winners.join(", ")}`);
+  }
 }
 
 export default RacingGame;

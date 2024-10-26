@@ -160,4 +160,44 @@ describe("RacingGame 클래스 테스트", () => {
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining("pobi : -"));
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining("jini : "));
   });
+
+  test("단독 우승자 테스트", () => {
+    const game = new RacingGame();
+    game.createCars("pobi, jini, cho");
+
+    mockRandoms([6, 3, 1, 6, 3, 1]);
+
+    game.moveAllCars();
+
+    const winner = game.findWinners();
+    expect(winner).toEqual(["pobi"]);
+  });
+
+  test("공동 우승자 테스트", () => {
+    const game = new RacingGame();
+    game.createCars("pobi, jini, cho");
+
+    mockRandoms([4, 4, 3, 4, 4, 2]);
+
+    game.moveAllCars();
+
+    const winners = game.findWinners();
+    expect(winners).toEqual(["pobi", "jini"]);
+  });
+
+  test("최종 우승자 출력 테스트", () => {
+    const game = new RacingGame();
+    const logSpy = getLogSpy();
+
+    game.createCars("pobi, jini, cho");
+
+    mockRandoms([4, 4, 3, 4, 4, 2]);
+
+    game.moveAllCars();
+    game.printWinners();
+
+    expect(logSpy).toHaveBeenCalledWith(
+      expect.stringContaining("최종 우승자 : pobi, jini")
+    );
+  });
 });
