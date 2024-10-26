@@ -17,19 +17,20 @@ class App {
 
     const distances = Array(cars.length).fill(0); // 각 자동차 거리 저장할 배열
     for (let i = 0; i < count; i++) {
-      for (distance of distances) {
+      for (let j = 0; j < distances.length; j++) {
         let randInt = Random.pickNumberInRange(0, 9);
         if (randInt >= 4) { // 4 이상인 경우 자동차 전진
-          distance++;
+          distances[j]++;
         }
       }
+      let distanceResult = "";
       cars.forEach((char, index) => {
-        Console.print(`${char} : ${'-'.repeat(distances[index])}`); // 차수별 실행 결과
+        distanceResult += `${char} : ${'-'.repeat(distances[index])} `; // 차수별 실행 결과
       })
-      Console.print("\n");
+      Console.print(distanceResult);
     }
     const maxDistance = Math.max(...distances); // 가장 긴 거리 찾기
-    const winnerCar = array.reduce((acc, value, index) => {
+    const winnerCar = distances.reduce((acc, value, index) => {
       if (value === maxDistance) {
         acc.push(cars[index]);
       }
