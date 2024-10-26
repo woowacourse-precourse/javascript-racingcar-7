@@ -1,6 +1,6 @@
-import Car from "../domain/Car.js";
-import parseArrayToString from "../utils/parseArrayToString.js";
-import getRandomNumber from "../utils/getRandomNumber.js";
+import Car from '../domain/Car.js';
+import parseArrayToString from '../utils/parseArrayToString.js';
+import getRandomNumber from '../utils/getRandomNumber.js';
 
 class RaceService {
   constructor(carNames) {

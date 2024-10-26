@@ -1,5 +1,5 @@
-import { RACE_COUNT_VALIDATION_ERROR, RACE_MAX_NUM } from "../constants/constants.js"
-import OutputView from "../view/OutputView.js"
+import { RACE_COUNT_VALIDATION_ERROR, RACE_MAX_NUM } from '../constants/constants.js'
+import OutputView from '../view/OutputView.js'
 
 const validateIsNum = (count) => {
   if (isNaN(count)) {

@@ -1,5 +1,5 @@
-import { Console } from "@woowacourse/mission-utils";
-import { FORWARD_SYMBOL, OUTPUT_MESSAGES } from "../constants/constants.js";
+import { Console } from '@woowacourse/mission-utils';
+import { FORWARD_SYMBOL, OUTPUT_MESSAGES } from '../constants/constants.js';
 
 const OutputView = {
   printRaceStartMessage() {

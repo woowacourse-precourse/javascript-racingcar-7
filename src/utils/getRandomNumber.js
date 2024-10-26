@@ -1,4 +1,4 @@
-import { Random } from "@woowacourse/mission-utils";
+import { Random } from '@woowacourse/mission-utils';
 
 const getRandomNumber = () => Random.pickNumberInRange(0, 9);
 

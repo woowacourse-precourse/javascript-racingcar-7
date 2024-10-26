@@ -1,5 +1,5 @@
-import { CAR_NAME_VALIDATION_ERROR } from "../constants/constants.js";
-import OutputView from "../view/OutputView.js";
+import { CAR_NAME_VALIDATION_ERROR } from '../constants/constants.js';
+import OutputView from '../view/OutputView.js';
 
 const validateIsString = (carNames) => {
   const isString = (carName) => typeof carName === 'string';

@@ -1,7 +1,7 @@
-import OutputView from "../view/OutputView.js";
-import RaceService from "../service/RaceService.js";
-import getValidatedCarNames from "../helpers/getValidatedCarNames.js";
-import getValidatedRaceCount from "../helpers/getValidatedRaceCount.js";
+import OutputView from '../view/OutputView.js';
+import RaceService from '../service/RaceService.js';
+import getValidatedCarNames from '../helpers/getValidatedCarNames.js';
+import getValidatedRaceCount from '../helpers/getValidatedRaceCount.js';
 
 class RaceController {
   async start() {

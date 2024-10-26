@@ -1,7 +1,7 @@
-import { FORWARD_NUM } from "../constants/constants.js";
-import getElementsWithMatchingValue from "../utils/getElementsWithMatchingValue.js";
-import getMaxValue from "../utils/getMaxValue.js";
-import initializeArray from "../utils/initializeArray.js";
+import { FORWARD_NUM } from '../constants/constants.js';
+import getElementsWithMatchingValue from '../utils/getElementsWithMatchingValue.js';
+import getMaxValue from '../utils/getMaxValue.js';
+import initializeArray from '../utils/initializeArray.js';
 
 class Car {
   carNames;
