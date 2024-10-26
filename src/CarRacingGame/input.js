@@ -8,3 +8,9 @@ export async function inputCarNames() {
 
   return carNameList;
 }
+
+export async function inputTryCount() {
+  const tryCount = await Console.readLineAsync('시도할 횟수\n');
+
+  return tryCount;
+}
