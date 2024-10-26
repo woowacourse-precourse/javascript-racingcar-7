@@ -1,0 +1,8 @@
+import { validateCarName } from '../src/CarRacingGame/validation.js';
+
+test('조건에 맞는 자동차 이름이 입력되었을 때 검증 테스트', () => {
+  expect(() => {
+    const carNameList = ['apple', 'melon'];
+    validateCarName(carNameList);
+  }).not.toThrow('[ERROR]');
+});
