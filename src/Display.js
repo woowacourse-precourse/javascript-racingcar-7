@@ -9,6 +9,14 @@ class Display {
       Console.print(HEADER);
     }
   }
+
+  static showDistanceGraph(roundResult) {
+    const DISTANCE_MARK = '-';
+    const { name, distance } = roundResult;
+    const distanceGraph = DISTANCE_MARK.repeat(distance);
+
+    Console.print(`${name} : ${distanceGraph}`);
+  }
 }
 
 export default Display;
