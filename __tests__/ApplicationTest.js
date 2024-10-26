@@ -63,7 +63,7 @@ describe("기능 테스트", () => {
   });
 });
 
-describe("예외 테스트", () => {
+describe("자동차 입력 예외 테스트", () => {
   const testCases = [
     {
       inputs: ["pobi,javaji"],
@@ -73,6 +73,10 @@ describe("예외 테스트", () => {
       inputs: [", pobi, "],
       expectedError: "[ERROR] 모든 자동차 이름은 한 글자 이상 입력해야 합니다.",
     },
+    {
+      inputs: ["pobi, pobi"],
+      expectedError: "[ERROR] 자동차 이름은 중복 입력할 수 없습니다.",
+    }
   ];
 
   test.each(testCases)(
@@ -86,3 +90,4 @@ describe("예외 테스트", () => {
     }
   )
 })
+
