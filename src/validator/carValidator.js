@@ -1,12 +1,6 @@
-const isCarNameValid = (carName) => {
-  return carName.length <= 5;
-};
-
-const validateCarNames = (carNames) => {
-  carNames.forEach((name) => {
-    if (!isCarNameValid(name)) throw new Error("Invalid car name");
-  });
-  return carNames;
+const validateCarNames = (carName) => {
+  if (carName.length > 5) throw new Error("Invalid car name");
+  return carName;
 };
 
 export default validateCarNames;
