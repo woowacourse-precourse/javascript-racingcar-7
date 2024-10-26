@@ -1,7 +1,10 @@
+import Car from './Car.js';
 import ViewIn from './view/ViewIn.js';
 import { parseCars } from './utils/parser.js';
 import { validateCars } from './utils/validator/car.js';
 import { validateCount } from './utils/validator/count.js';
+import { Random } from '@woowacourse/mission-utils';
+import { THRESHOLD } from './constants/threshold.js';
 
 export default class Race {
   #cars;
@@ -15,5 +18,27 @@ export default class Race {
 
     validateCars(carsArray);
     validateCount(count);
+
+    this.#cars = carsArray.map(name => new Car(name));
+    this.#count = count;
+  }
+
+  start() {
+    this.#round();
+  }
+
+  #round() {
+    for (let i = 0; i < this.#count; i++) {
+      this.#race();
+    }
+  }
+
+  #race() {
+    this.#cars.forEach(car => {
+      const randomNumber = Random.pickNumberInRange(THRESHOLD.MIN_RANDOM_NUMBER,
+        THRESHOLD.MAX_RANDOM_NUMBER);
+      car.move(randomNumber);
+      console.log(car.getName(), car.getPoints());
+    });
   }
 }
