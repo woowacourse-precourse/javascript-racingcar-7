@@ -40,7 +40,13 @@ class App {
 
     for (let count = 1; count <= this.tryCount; count++) {
       this.cars.forEach(car => car.move());
+      this.printRaceResult();
     }
+  }
+
+  printRaceResult() {
+    this.cars.forEach(car => Console.print(`${car.name} : ${'-'.repeat(car.moveCount)}`));
+    Console.print('\n');
   }
 }
 
