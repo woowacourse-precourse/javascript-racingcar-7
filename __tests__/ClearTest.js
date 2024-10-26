@@ -7,7 +7,7 @@ describe('정상 자동차 경주', () => {
     const MOVING_FORWARD = 4;
     const STOP = 3;
     const inputs = ['min,sung', '1'];
-    const logs = ['min : -', 'sung : ', '최종 우승자 : min'];
+    const logs = ['실행 결과', 'min : -', 'sung : ', '최종 우승자 : min'];
     const logSpy = getLogSpy();
 
     mockQuestions(inputs);
@@ -29,6 +29,7 @@ describe('정상 자동차 경주', () => {
     const STOP = 3;
     const inputs = ['min,sung,je', '3'];
     const logs = [
+      '실행 결과',
       'min : -',
       'sung : ',
       'je : ',

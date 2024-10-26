@@ -30,7 +30,7 @@ describe('자동차 경주', () => {
     const MOVING_FORWARD = 4;
     const STOP = 3;
     const inputs = ['pobi,woni', '1'];
-    const logs = ['pobi : -', 'woni : ', '최종 우승자 : pobi'];
+    const logs = ['실행 결과', 'pobi : -', 'woni : ', '최종 우승자 : pobi'];
     const logSpy = getLogSpy();
 
     mockQuestions(inputs);
