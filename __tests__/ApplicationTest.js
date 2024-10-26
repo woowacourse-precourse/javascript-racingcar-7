@@ -121,5 +121,5 @@ describe("예외 처리 테스트", () => {
 
         // then
         await expect(app.run()).rejects.toThrow("[ERROR] 왜 아무도 출발하지 않았죠? 이런, 오리 가족이 길을 건너고 있었네요! 귀여워라!");
-    }); 
+    });
 });
