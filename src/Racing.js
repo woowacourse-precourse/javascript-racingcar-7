@@ -44,6 +44,7 @@ class Racing {
     const totalResult = this.#result.map((result) => [...result]);
     const finalResult = totalResult.pop();
     const distanceList = finalResult.map(({ distance }) => distance);
+
     const farthestDistance = Math.max(...distanceList);
     const winners = finalResult.filter(
       (car) => car.distance === farthestDistance,
