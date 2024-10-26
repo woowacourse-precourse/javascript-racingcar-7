@@ -1,4 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
+import moveForwardRandomly from './moveForwardRandomly.js';
 import checkError from './checkError.js';
 
 class App {
@@ -8,6 +9,9 @@ class App {
 
     const carNameArray = carNames.split(',');
     checkError(carNameArray);
+
+    const moveForwardInformation = moveForwardRandomly(carNameArray, Number(attemptNumber));
+    Console.print(moveForwardInformation);
   }
 }
 
