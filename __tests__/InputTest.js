@@ -25,5 +25,17 @@ describe("입력", () => {
       // then
       expect(MissionUtils.Console.readLineAsync).toHaveBeenCalledWith("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
     });
+
+    test("어플리케이션이 생성되었고 5자 초과 이름 문자열을 입력으로 가지고 있는 경우, 어플리케이션이 실행되고 입력을 받으면, [ERROR]로 시작하는 메시지와 함께 애플리케이션을 종료한다.", async () => {
+      // given
+      const app = new App();
+      const inputs = ["pobi,hammmm"];
+
+      mockQuestions(inputs);
+
+      // when
+      // then
+      await expect(app.run()).rejects.toThrow("[ERROR]");
+    });
   });
 });
