@@ -1,6 +1,5 @@
 import { Console, Random } from '@woowacourse/mission-utils';
 
-// TODO: ApplicationTest.js 테스트 파일은 현재 skip 상태 풀기
 // TODO: 상수 처리
 
 class App {
@@ -17,13 +16,13 @@ async function main() {
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분\n)'
     );
 
-    const playerNames = userInput.split(',').map((e) => e.trim());
+    const playerNames = convertToPlayerNames(userInput);
     validatePlayerNames(playerNames);
+
     const scoreBoard = createScoreBoard(playerNames);
-
     const moveCount = await Console.readLineAsync('시도할 횟수는 몇 회인가요?');
-
     playGamesByCount(scoreBoard, moveCount);
+
     Console.print(`최종 우승자 : ${findGameWinners(scoreBoard)}`);
   } catch (error) {
     Console.print(error.message);
@@ -31,8 +30,13 @@ async function main() {
   }
 }
 
+function convertToPlayerNames(userInput) {
+  return userInput.split(',').map((e) => e.trim());
+}
+
 function validatePlayerNames(playerNames) {
   // [ERROR] 5자를 초과
+  // TODO: 특수문자
   const regex = /^[a-zA-Z0-9ㄱ-ㅣ가-힣]{1,5}$/;
   if (playerNames.some((player) => !player.match(regex)))
     throw new Error('[ERROR]');
