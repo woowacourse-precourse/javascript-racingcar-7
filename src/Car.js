@@ -8,7 +8,7 @@ class Car {
     return this._name;
   }
 
-  get _mileage() {
+  get mileage() {
     return this._mileage;
   }
 
