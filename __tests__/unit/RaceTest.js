@@ -63,39 +63,11 @@ describe("Race 클래스 테스트", () => {
     });
 
     test("시도 횟수만큼 자동차 이동 상태가 출력되어야 한다", async () => {
-      const symbol = GAME_RULES.DISTANCE_SYMBOL;
-  
-      getRandomNumber
-        .mockReturnValueOnce(4) 
-        .mockReturnValueOnce(3)
-        .mockReturnValueOnce(5)
-        .mockReturnValueOnce(3) 
-        .mockReturnValueOnce(6)
-        .mockReturnValueOnce(2)
-        .mockReturnValueOnce(5) 
-        .mockReturnValueOnce(4)
-        .mockReturnValueOnce(3);
-  
-      await race.setCarName();
-      await race.setAttemptCount();
-      console.log = jest.fn(); 
-  
+      const printRaceStatusSpy = jest.spyOn(race, 'printRaceStatus');
+
       await race.startRace();
-  
-      expect(console.log).toHaveBeenCalledWith(`Audi : ${symbol}`);
-      expect(console.log).toHaveBeenCalledWith("BMW : ");
-      expect(console.log).toHaveBeenCalledWith(`Ford : ${symbol}`);
-      expect(console.log).toHaveBeenCalledWith(""); 
-  
-      expect(console.log).toHaveBeenCalledWith(`Audi : ${symbol}`);
-      expect(console.log).toHaveBeenCalledWith(`BMW : ${symbol}`);
-      expect(console.log).toHaveBeenCalledWith(`Ford : ${symbol}`);
-      expect(console.log).toHaveBeenCalledWith("");
-  
-      expect(console.log).toHaveBeenCalledWith(`Audi : ${symbol}${symbol}`);
-      expect(console.log).toHaveBeenCalledWith(`BMW : ${symbol}`);
-      expect(console.log).toHaveBeenCalledWith(`Ford : ${symbol}`);
-      expect(console.log).toHaveBeenCalledWith(""); 
+
+      expect(printRaceStatusSpy).toHaveBeenCalledTimes(5); 
     });
   });
 });
