@@ -100,6 +100,15 @@ class App {
 
       printDistanceOfCarList();
     }
+
+    const maxDistance = Math.max(
+      ...carsDistances.map((distance) => distance.length),
+    );
+
+    const winners = [...carsDistances.keys()]
+      .filter((index) => carsDistances[index].length === maxDistance)
+      .map((index) => carList[index]);
+    Console.print(`최종 우승자 : ${winners.join(', ')}`);
   }
 }
 
