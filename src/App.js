@@ -18,8 +18,8 @@ class App {
         '시도할 횟수는 몇 회인가요?'
       );
 
-      const playerScore = createCarRacing(formattedUserInput, moveCount);
-      Console.print(`최종 우승자 : ${findGameWinner(playerScore)}`);
+      createCarRacing(formattedUserInput, moveCount);
+      Console.print(`최종 우승자 : ${findGameWinner(formattedUserInput)}`);
     } catch (error) {
       Console.print(error.message);
       throw error;
@@ -46,11 +46,6 @@ function createCarRacing(formattedUserInput, moveCount) {
   }
 }
 
-// const playerNames = [
-//   { name: 'pobi', score: 0 },
-//   { name: 'woni', score: 0 },
-// ];
-
 // TODO: formattedUserInput 이름 변경
 function displayResult(formattedUserInput) {
   for (const player of formattedUserInput) {
@@ -65,17 +60,15 @@ function displayResult(formattedUserInput) {
 }
 
 function findGameWinner(playerScore) {
-  const topScore = playerScore.reduce((prev, current) => {
+  const { score: topScore } = playerScore.reduce((prev, current) => {
     if (prev.score > current.score) return prev;
     else return current;
-  }).score;
+  });
 
-  const topScoringPlayers = playerScore
+  return playerScore
     .filter((player) => {
       return player.score === topScore;
     })
-    .map((player) => player.name);
-
-  return topScoringPlayers.join(', ');
+    .map((player) => player.name)
+    .join(', ');
 }
-//pobi,woni,jun
