@@ -15,6 +15,7 @@ class App {
     this.tryCount = this.convertToNumber(tryCountInput);
 
     this.startRace();
+    this.printWinners();
   }
 
   createCars(carNamesInput) {
@@ -47,6 +48,10 @@ class App {
   printRaceResult() {
     this.cars.forEach(car => Console.print(`${car.name} : ${'-'.repeat(car.moveCount)}`));
     Console.print('\n');
+  }
+
+  printWinners() {
+    const topMoveCount = Math.max(...this.cars.map(car => car.moveCount));
   }
 }
 
