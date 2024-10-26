@@ -7,3 +7,6 @@
 - feat : 차수별 진행 결과를 출력하는 로직 구현
 - feat : 가장 멀리간 자동차를 구하는 로직 구현
 - feat : 이름이 6글자 이상일 경우 에러 구현
+- refactor : Racer 클래스 구현
+- refactor : Racing 클래스 구현
+- refactor : App.js내의 로직을 추상화 클래스로 분리
