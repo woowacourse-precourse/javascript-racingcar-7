@@ -3,7 +3,7 @@ import InputView from "../view/InputView.js";
 class CarRace {
   constructor() {}
 
-  async init() {
+  async getCarNamesFromUserInput() {
     const input = await InputView.readCarNames();
   }
 }
