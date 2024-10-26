@@ -1,11 +1,11 @@
 class RacingModel {
   constructor() {
-    this.cars = [];
+    this.car = {};
     this.count;
   }
 
-  addCars(cars) {
-    this.cars = [...cars];
+  setCar(car, result) {
+    this.car[car] = result;
   }
 
   setCount(count) {
