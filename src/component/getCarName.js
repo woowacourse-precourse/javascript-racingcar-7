@@ -5,7 +5,6 @@ const getCarName = async () => {
    const carName = carsName.split(',');
    carName.forEach((car) => {
       if (car.length > 5) {
-         //5자 이하로 작성해주세요
          throw new Error('[Error] 자동차 이름을 5자 이하로 작성해주세요');
       }
    });
@@ -14,9 +13,8 @@ const getCarName = async () => {
       throw new Error('[Error] 자동차 이름을 입력해주세요');
    }
 
-   Console.print(carName.toString());
+   // Console.print(carName.toString());
 
-   // return carName.toString();
    return carName;
 };
 
