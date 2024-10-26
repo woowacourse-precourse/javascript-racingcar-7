@@ -53,21 +53,35 @@ class App {
 
     Console.print(`실행 결과`);
 
+    const RESULT = this.startRace(CAR_NAMES, Number(TRY_COUNT));
+
+    Console.print(`최종 우승자 : ${RESULT.join(', ')}`);
+  }
+
+  startRace(CAR_NAMES, TRY_COUNT) {
+    Console.print(`실행 결과`);
+
     const CARS = CAR_NAMES.map((name) => new Car(name));
 
     for (let i = 0; i < TRY_COUNT; i++) {
-      CARS.forEach((car) => car.move());
-      CARS.forEach((car) => car.showPosition());
-      Console.print('\n');
+      this.runRound(CARS);
     }
 
+    return this.getWinners(CARS);
+  }
+
+  runRound(CARS) {
+    CARS.forEach((car) => car.move());
+    CARS.forEach((car) => car.showPosition());
+    Console.print('\n');
+  }
+
+  getWinners(CARS) {
     const WINNERS = CARS.filter(
       (car) => car.position === Math.max(...CARS.map((car) => car.position))
     );
 
-    Console.print(
-      `최종 우승자 : ${WINNERS.map((winner) => winner.name).join(', ')}`
-    );
+    return WINNERS.map((winner) => winner.name);
   }
 }
 
