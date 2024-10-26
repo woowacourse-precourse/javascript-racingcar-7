@@ -30,6 +30,13 @@ const Validator = {
       OutputView.throwError('자동차 이름은 중복될 수 없습니다.');
     }
   },
+
+  validateCarNames(carNames) {
+    this.validateCarCount(carNames);
+    this.validateEmptyNames(carNames);
+    this.validateNameLength(carNames);
+    this.validateDuplicateNames(carNames);
+  },
 };
 
 export default Validator;
