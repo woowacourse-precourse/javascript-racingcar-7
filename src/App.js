@@ -1,4 +1,4 @@
-import { Console } from '@woowacourse/mission-utils'
+import { Console, Random } from '@woowacourse/mission-utils'
 
 class App {
   constructor () {
@@ -18,7 +18,7 @@ class App {
 
   hasDuplicateName(list) {
     for (const element of list) {
-      this.carNames.set(element, 0);
+      this.carNames.set(element, '');
     }
     if (this.carNames.size !== list.length) throw new Error('[ERROR] 자동차 이름은 중복될 수 없습니다.');
   }
@@ -41,10 +41,31 @@ class App {
     this.rounds = input;
   }
 
+  startGame() {
+    Console.print('\n실행 결과');
+    for (let i=0; i<this.rounds; i++) {
+      this.playRound();
+      Console.print('\n');
+    }
+  }
+
+  playRound() {
+    for (let carName of this.carNames.keys()) {
+      this.moveCar(carName);
+    }
+  }
+
+  moveCar(carName) {
+    const randomNumber = Random.pickNumberInRange(0, 9);
+    if (randomNumber >= 4) this.carNames.set(carName, this.carNames.get(carName) + '-');
+    Console.print(`${carName} : ${this.carNames.get(carName)}`);
+  }
+
   async run() {
     try {
       await this.getCarNames();
       await this.getRounds();
+      this.startGame();
 
       Console.print(this.carNames);
       Console.print(this.rounds);
