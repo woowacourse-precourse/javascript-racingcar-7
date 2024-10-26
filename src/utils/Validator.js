@@ -1,4 +1,4 @@
-import RACING_VARIABLES from '../constants/RacingVariables';
+import RACING_VARIABLES from '../constants/RacingVariables.js';
 
 class Validator {
 

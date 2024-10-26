@@ -1,8 +1,8 @@
 import { Console } from "@woowacourse/mission-utils";
-import RaceController from "./controllers/RaceController";
-import Validator from "./utils/Validator";
-import UserInput from "./views/UserInput";
-import DisplayController from "./views/DisplayController";
+import RaceController from "./controllers/RaceController.js";
+import Validator from "./utils/Validator.js";
+import UserInput from "./views/UserInput.js";
+import DisplayController from "./views/DisplayController.js";
 
 class App {
   constructor() {

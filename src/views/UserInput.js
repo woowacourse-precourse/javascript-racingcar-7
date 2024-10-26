@@ -1,5 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
-import RACING_VARIABLES from "../constants/RacingVariables";
+import RACING_VARIABLES from "../constants/RacingVariables.js";
 
 class UserInput {
 
