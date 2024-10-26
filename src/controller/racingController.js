@@ -1,5 +1,5 @@
 // RacingController.js
-import { Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 import RacingModel from '../model/RacingModel.js';
 import RacingView from '../view/racingView.js';
 
@@ -9,8 +9,15 @@ class RacingController {
       const carNames = await this.inputCarNames();
       const count = await this.inputCount();
 
-      this.model = new RacingModel(carNames, count);
+      const racingModel = new RacingModel(carNames, count);
+
       Console.print('실행 결과');
+      for (let i = 0; i < racingModel.count; i++) {
+        racingModel.rece();
+        RacingView.printRaceStatus(racingModel.cars);
+      }
+
+      RacingView.printWinners(racingModel.getWinners());
     } catch (error) {
       RacingView.printError(error.message);
     }
@@ -33,7 +40,7 @@ class RacingController {
     }
   }
 
-  validateCarNamesInput(carNamesInput) {
+  static validateCarNamesInput(carNamesInput) {
     const names = carNamesInput.split(',').map((name) => name.trim());
     const isValid = names.every((name) => /^[a-zA-Z]{1,5}$/.test(name));
     if (!isValid) {
@@ -44,7 +51,7 @@ class RacingController {
     return true;
   }
 
-  validateCount(countInput) {
+  static validateCount(countInput) {
     const count = Number(countInput);
     if (isNaN(count) || count <= 0) {
       throw new Error('시도 횟수는 0보다 큰 숫자여야 합니다.');
