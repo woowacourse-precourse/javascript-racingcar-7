@@ -1,5 +1,13 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 
+function saveRandom(carnames, number){
+  for(let i = 0; i < number; i++){
+    carnames.map((car) => {
+      const randomValue = MissionUtils.Random.pickNumberInRange(0, 9);
+    })
+  }
+};
+
 async function getNumber() {
   const input = await MissionUtils.Console.readLineAsync("시도할 횟수는 몇 회인가요? \n");
   const blank = /(\s*)/g;
@@ -18,6 +26,7 @@ class App {
   async run() {
     const carnames = await getCarname();
     const number = await getNumber();
+    saveRandom(carnames, number);
   }
 }
 
