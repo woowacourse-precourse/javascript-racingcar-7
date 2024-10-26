@@ -25,10 +25,6 @@ const getLogSpy = () => {
 };
 
 describe("자동차 경주", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
   test("자동차 이름을 쉼표로 구분하여 객체 배열로 변환", () => {
     // given
     const app = new App();
@@ -116,6 +112,53 @@ describe("자동차 경주", () => {
     expect(consoleSpy).toHaveBeenCalledWith("pobi : --");
     expect(consoleSpy).toHaveBeenCalledWith("crong : --");
     expect(consoleSpy).toHaveBeenCalledWith("\n");
+  });
+  test("가장 멀리 간 자동차가 한 대일 때", () => {
+    const app = new App();
+    // Arrange
+    const mockCars = [
+      { name: "pobi", result: "--" },
+      { name: "crong", result: "-" },
+      { name: "honux", result: "---" },
+    ];
+
+    // Act
+    const winner = app.determineWinner(mockCars);
+
+    // Assert
+    expect(winner).toEqual(["honux"]);
+  });
+
+  test("가장 멀리 간 자동차가 여러 대일 때", () => {
+    const app = new App();
+    // Arrange
+    const mockCars = [
+      { name: "pobi", result: "--" },
+      { name: "crong", result: "--" },
+      { name: "honux", result: "-" },
+    ];
+
+    // Act
+    const winner = app.determineWinner(mockCars);
+
+    // Assert
+    expect(winner).toEqual(["pobi", "crong"]);
+  });
+
+  test("모든 자동차가 같은 거리일 때", () => {
+    const app = new App();
+    // Arrange
+    const mockCars = [
+      { name: "pobi", result: "-" },
+      { name: "crong", result: "-" },
+      { name: "honux", result: "-" },
+    ];
+
+    // Act
+    const winner = app.determineWinner(mockCars);
+
+    // Assert
+    expect(winner).toEqual(["pobi", "crong", "honux"]);
   });
 
   test("기능 테스트", async () => {

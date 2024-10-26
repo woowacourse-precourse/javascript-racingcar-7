@@ -71,6 +71,11 @@ class App {
     });
     return winner;
   }
+
+  printWinner(winner) {
+    Console.print(`최종 우승자 : ${winner.join(", ")}`);
+  }
+
   async run() {
     try {
       const { cars, attempts } = await this.getCarNameAndAttempts();
@@ -83,7 +88,8 @@ class App {
         });
         Console.print("\n");
       }
-      this.determineWinner(cars);
+      const winner = this.determineWinner(cars);
+      this.printWinner(winner);
     } catch (error) {
       throw error;
     }
