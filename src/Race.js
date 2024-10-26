@@ -1,15 +1,15 @@
 import ViewIn from './view/ViewIn.js';
-import CarsInputParser from './utils/parser.js';
+import { parseCars } from './utils/parser.js';
+import { validateCars } from './utils/validator.js';
 
 export default class Race {
   #cars;
   #count;
 
   init() {
-    const inputCars = ViewIn.getCars();
-    const parsedCars = CarsInputParser(inputCars);
-
-
+    const cars = ViewIn.getCars();
+    const carsArray = parseCars(cars);
+    validateCars(carsArray);
   }
 
   start() {
