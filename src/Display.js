@@ -17,6 +17,11 @@ class Display {
 
     Console.print(`${name} : ${distanceGraph}`);
   }
+
+  static showLineBreak() {
+    const BREAK_MARK = '';
+    Console.print(BREAK_MARK);
+  }
 }
 
 export default Display;
