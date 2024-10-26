@@ -4,7 +4,7 @@ class RacingCar {
 
     constructor(name) {
         this.setName(name);
-        this.distance = "";
+        this.distState = "";
     }
 
     setName(name) {
@@ -18,7 +18,7 @@ class RacingCar {
 
     goForward(num) {
         if (num >= 4) {
-            this.distance += "-"
+            this.distState += "-"
         }
     }
 

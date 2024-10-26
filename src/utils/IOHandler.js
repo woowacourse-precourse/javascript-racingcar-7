@@ -8,7 +8,7 @@ class IOHandler {
     }
 
     static printCarDistance(car) {
-        Console.print(car.name + " : " + car.distance);
+        Console.print(car.name + " : " + car.distState);
     }
 }
 

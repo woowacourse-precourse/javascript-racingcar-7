@@ -44,7 +44,7 @@
 ## RacingCar.js
 ### 1. 필드값 :
 - name : 해당 자동차의 이름
-- distance(주행거리): 해당 자동차의 현 주행거리 (string "-"으로 표기)
+- distState(주행상태): 해당 자동차의 현 주행거리 (string "-"으로 표기)
 
 ### 2. getter/setter 설정
 ### 3. 함수
