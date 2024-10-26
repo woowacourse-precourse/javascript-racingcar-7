@@ -1,5 +1,12 @@
+import Race from './Race.js';
+
 class App {
-  async run() {}
+  constructor() {
+    this.race = new Race();  
+  }
+  async run() {
+    await this.race.startRace(); 
+  }
 }
 
 export default App;
