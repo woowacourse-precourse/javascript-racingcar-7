@@ -40,17 +40,12 @@ const validateCarNames = (carNames) => {
 
 const validateGameCount = (gameCount) => {
   const convertedGameCount = Number(gameCount);
-  // 음수
+
   throwNewError(
-    convertedGameCount < 0,
-    `[ERROR]음수는 안됩니다. ${RIGHT_EXAMPLE_OF_GAME_COUNT_INPUT}`,
+    convertedGameCount <= 0,
+    `[ERROR]음수 혹은 0은 안됩니다. ${RIGHT_EXAMPLE_OF_GAME_COUNT_INPUT}`,
   );
-  // 0
-  throwNewError(
-    convertedGameCount === 0,
-    `[ERROR]0은 안됩니다. ${RIGHT_EXAMPLE_OF_GAME_COUNT_INPUT}`,
-  );
-  // 실수(소수점 포함), NaN, 숫자 타입을 제외한 모든 타입
+
   throwNewError(
     !Number.isInteger(convertedGameCount),
     `[ERROR]양수 정수만 가능합니다. ${RIGHT_EXAMPLE_OF_GAME_COUNT_INPUT}`,
