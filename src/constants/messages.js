@@ -6,6 +6,8 @@ const INPUT_MESSAGE = {
 const ERROR_MESSAGE = {
   NAME_TOO_SHORT: "[ERROR] 자동차 이름의 길이는 1자 이상이어야 합니다.",
   NAME_TOO_LONG: "[ERROR] 자동차 이름의 길이는 5자 이하여야 합니다.",
+  SPECIAL_CHARACTERS_NOT_ALLOWED:
+    "[ERROR] 자동차 이름에는 특수문자가 포함될 수 없습니다.",
   ONLY_ENGLISH_AND_KOREAN_ALLOWED:
     "[ERROR] 자동차 이름은 한글이나 영어만 가능합니다.",
 };

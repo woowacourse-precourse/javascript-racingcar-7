@@ -4,6 +4,7 @@ class Validator {
   static checkName(carName) {
     Validator.#checkNameLength(carName);
     Validator.#checkNameLanguage(carName);
+    Validator.#checkSpecialCharacters(carName);
   }
 
   static #checkNameLength(carName) {
@@ -16,12 +17,21 @@ class Validator {
     }
   }
 
+  static #checkSpecialCharacters(carName) {
+    const specialCharRegex = /[!@#$%^&*(),.?":{}|<>~`]/;
+    if (specialCharRegex.test(carName)) {
+      throw new Error(ERROR_MESSAGE.SPECIAL_CHARACTERS_NOT_ALLOWED);
+    }
+  }
+
   static #checkNameLanguage(carName) {
     const regex = /^[a-zA-Z가-힣ㄱ-ㅎㅏ-ㅣ0-9\s]+$/;
     if (!regex.test(carName)) {
       throw new Error(ERROR_MESSAGE.ONLY_ENGLISH_AND_KOREAN_ALLOWED);
     }
   }
+
+  static #checkName;
 }
 
 export default Validator;
