@@ -28,3 +28,7 @@ export const printGameProgress = (gameBoard) => {
 export const printNewLine = () => {
   Console.print(`${IOMESSAGE.NEWLINE}`);
 };
+
+export const printFirstPlayer = (arr) => {
+  Console.print(`${IOMESSAGE.FIRSTPLAYERMESSAGE}${arr.join(', ')}`);
+};

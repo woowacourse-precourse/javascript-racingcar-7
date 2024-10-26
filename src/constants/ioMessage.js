@@ -4,6 +4,7 @@ const IOMESSAGE = {
   TRYNUMBERMESSAGE: '시도할 횟수는 몇 회인가요?',
   PROGRESSRESULT: '실행 결과',
   NEWLINE: '\n',
+  FIRSTPLAYERMESSAGE: '최종 우승자 : ',
 };
 
 export default IOMESSAGE;
