@@ -34,6 +34,20 @@ class RacingGame {
     this.currentRound += 1;
   }
 
+  findWinners() {
+    const furthestPosition = this.getFurthestPosition();
+    return this.getCarsByPosition(furthestPosition);
+  }
+
+  getFurthestPosition() {
+    const positions = this.cars.map((car) => car.getPosition());
+    return Math.max(...positions);
+  }
+
+  getCarsByPosition(targetPosition) {
+    return this.cars.filter((car) => car.getPosition() === targetPosition);
+  }
+
   isGameFinished() {
     return this.currentRound >= this.totalRounds;
   }
