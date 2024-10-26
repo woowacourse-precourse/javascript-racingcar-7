@@ -38,7 +38,7 @@ class Race {
 
   printRaceStatus() {
     this.cars.forEach(car => {
-      const distanceSymbol = '-'.repeat(car.getDistance()); 
+      const distanceSymbol = GAME_RULES.DISTANCE_SYMBOL.repeat(car.getDistance()); 
       console.log(`${car.name} : ${distanceSymbol}`);
     });
     console.log(''); 

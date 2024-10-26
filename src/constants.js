@@ -15,7 +15,8 @@ const TAG = Object.freeze({
 });
 
 const GAME_RULES = Object.freeze({
-  MOVE_THRESHOLD: 4, 
+  MOVE_THRESHOLD: 4,
+  DISTANCE_SYMBOL: '-', 
 });
 
 export {

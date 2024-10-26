@@ -1,5 +1,6 @@
 import Race from '../../src/Race.js';
 import { getRandomNumber } from '../../src/utils.js';
+import { GAME_RULES } from '../../src/constants.js';
 
 jest.mock('../../src/utils.js', () => ({
   getCarName: jest.fn().mockResolvedValue("Audi,BMW,Ford"),
@@ -54,9 +55,11 @@ describe("Race 클래스 테스트", () => {
 
       race.printRaceStatus();
 
-      expect(console.log).toHaveBeenCalledWith("Audi : -");
+      const symbol = GAME_RULES.DISTANCE_SYMBOL;
+
+      expect(console.log).toHaveBeenCalledWith(`Audi : ${symbol}`);
       expect(console.log).toHaveBeenCalledWith("BMW : ");
-      expect(console.log).toHaveBeenCalledWith("Ford : -");
+      expect(console.log).toHaveBeenCalledWith(`Ford : ${symbol}`);
     });
   });
 
