@@ -1,3 +1,4 @@
+import { MissionUtils } from "@woowacourse/mission-utils";
 import Car from "./Car.js";
 import { inputCarNames, inputCount } from "./input.js";
 import parseCarNames from "./utils/parseCarNames.js";
@@ -19,7 +20,9 @@ class App {
     for (let i = 0; i < count; i++) {
       cars.forEach((car) => {
         car.moveCar();
+        car.printCar();
       });
+      MissionUtils.Console.print("\n");
     }
   }
 }
