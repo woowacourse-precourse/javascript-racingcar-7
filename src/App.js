@@ -1,5 +1,4 @@
-import { Console } from '@woowacourse/mission-utils';
-import { MissionUtils } from '@woowacourse/mission-utils';
+import { Console, MissionUtils } from '@woowacourse/mission-utils';
 import NameValidation from './utils/NameValidation.js';
 import NumValidation from './utils/NumValidation.js';
 import Car from './utils/Car.js';
