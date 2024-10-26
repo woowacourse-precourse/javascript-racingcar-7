@@ -33,19 +33,14 @@ export async function getUserInputCarName() {
 }
 
 function validatePlayerNames(playerNames) {
-  // [ERROR] 5자를 초과하하거나 쉼표가 아닌 구분자
+  // [ERROR] 5자를 초과
   const regex = /^[a-zA-Z0-9ㄱ-ㅣ가-힣]{1,5}$/;
-  if (!playerNames.every((player) => player.match(regex)))
+  if (playerNames.some((player) => !player.match(regex)))
     throw new Error('[ERROR]');
 }
 
 function formatUserInputForGameResult(playerNames) {
-  const formattedUserInput = playerNames.map((key) => ({
-    name: key,
-    score: 0,
-  }));
-
-  return formattedUserInput;
+  return playerNames.map((name) => ({ name, score: 0 }));
 }
 
 function createCarRacing(formattedUserInput, moveCount) {
