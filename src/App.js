@@ -69,10 +69,23 @@ class CarRace {
         this.round = round;
     }
 
-    moveCars() {
+    startRound() {
+        this.cars.forEach((car) => car.move());
+        this.cars.forEach((car) => this.printResultByRound(car));
+    }
+
+    startRace() {
+        MissionUtils.Console.print("\n실행 결과");
+
         Array.from({ length: this.round }).forEach(() => {
-            this.cars.forEach((car) => car.move());
+            this.startRound();
+            MissionUtils.Console.print("");
         });
+    }
+
+    printResultByRound(car) {
+        const resultByRound = `${car.getName()} : ${car.getPosition()}`;
+        MissionUtils.Console.print(resultByRound);
     }
 
     async start() {
@@ -89,7 +102,7 @@ class CarRace {
         this.addCar(carNames);
         this.setRound(round);
 
-        this.moveCars();
+        this.startRace();
     }
 }
 
@@ -106,6 +119,14 @@ class Car {
         if (shouldMove) {
             this.position += "-";
         }
+    }
+
+    getName() {
+        return this.name;
+    }
+
+    getPosition() {
+        return this.position;
     }
 }
 
