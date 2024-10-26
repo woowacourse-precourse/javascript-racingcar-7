@@ -1,4 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
+import CarRacingInputValidator from '../validator/CarRacingInputValidator.js';
+import ERROR_MESSAGES from '../utills/errors.js';
 
 class CarRacingInputReader {
   static async getCarNames() {
@@ -6,7 +8,11 @@ class CarRacingInputReader {
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n'
     );
 
-    this.validateInput(input);
+    CarRacingInputValidator.validateNotEmpty(
+      input,
+      ERROR_MESSAGES.INPUT.EMPTY_INPUT
+    );
+    CarRacingInputValidator.validateCarNames(input);
 
     return input.split(',');
   }
@@ -14,15 +20,14 @@ class CarRacingInputReader {
   static async getTotalRounds() {
     const input = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
 
-    this.validateInput(input);
+    CarRacingInputValidator.validateNotEmpty(
+      input,
+      ERROR_MESSAGES.INPUT.EMPTY_INPUT
+    );
+    CarRacingInputValidator.validateTotalRounds(input);
 
-    return parseInt(input);
-  }
-
-  static validateInput(input) {
-    if (!input.trim()) {
-      throw new Error(`[ERROR] 값을 제대로 입력해주세요.`);
-    }
+    return parseInt(input, 10);
   }
 }
+
 export default CarRacingInputReader;
