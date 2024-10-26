@@ -31,6 +31,14 @@ class App {
     const input = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
     this.numberOfRounds = this.validateRounds(input); // 시도 횟수 검증
   }
+
+  validateRounds(input) {
+    const rounds = Number(input);
+    if (isNaN(rounds) || rounds <= 0) {
+      throw new Error(`[ERROR] 유효한 시도 횟수를 입력하세요.`);
+    }
+    return rounds; // 유효한 시도 횟수 반환
+  }
 }
 
 export default App;
