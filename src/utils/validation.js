@@ -1,9 +1,9 @@
 import { MESSAGES, GAME_RULES } from "../constants/index.js";
 
 // 중복 체크
-export const hasDuplicate = (carNames) => {
-  const uniqueCarNames = new Set(carNames);
-  return uniqueCarNames.size !== carNames.length;
+export const hasDuplicate = (array) => {
+  const uniqueArray = new Set(array);
+  return uniqueArray.size !== array.length;
 };
 
 // 길이 수 체크(min 이상, max 이하인지 체크)
