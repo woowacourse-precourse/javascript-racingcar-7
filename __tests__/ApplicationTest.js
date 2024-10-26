@@ -67,4 +67,11 @@ describe("input validation", () => {
     expect(() => checkCarsName([""])).toThrow("[ERROR]");
     expect(() => checkCarsName(["pobi", "woni", ""])).toThrow("[ERROR]");
   });
+
+  test("사용자는 몇 번의 이동을 할 것인지를 입력할 수 있어야 한다.(양의 정수)", () => {
+    expect(() => checkAttemptNum(3)).not.toThrow();
+    expect(() => checkAttemptNum()).toThrow("[ERROR]");
+    expect(() => checkAttemptNum(0)).toThrow("[ERROR]");
+    expect(() => checkAttemptNum(-1)).toThrow("[ERROR]");
+  });
 });

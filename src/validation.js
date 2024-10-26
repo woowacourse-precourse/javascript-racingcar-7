@@ -6,6 +6,6 @@ export function checkCarsName(inputArray) {
 
 export function checkAttemptNum(input) {
     if (!input | input < 0) {
-        throw new Error("[ERROR] 자연수를 입력하세요.");
+        throw new Error("[ERROR] 양의 정수를 입력하세요.");
     }
 }
