@@ -2,25 +2,41 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 class App {
   async run() {
     function throwError(ERROR_MESSAGE) {
-      MissionUtils.Console.print("");
+      MissionUtils.Console.print(`[ERROR] ${ERROR_MESSAGE}`);
       throw new Error();
     }
-    async function inputCarNames() {
-      const CAR_NAMES = await MissionUtils.Console.readLineAsync(
-        "경주할 자동차 이름을 입력하세요. (이름은 쉼표(,) 기준으로 구분) "
-      );
-      const CAR_NAMES_LIST = CAR_NAMES.split(",");
+
+    function checkCarNames(CAR_NAMES_LIST) {
+      for (let IDX = 0; IDX < CAR_NAMES_LIST.length; IDX++) {
+        if (CAR_NAMES_LIST[IDX].length > 5)
+          throwError("차 이름이 5자를 넘습니다");
+        else if (
+          (CAR_NAMES_LIST[IDX] == undefined) |
+          (CAR_NAMES_LIST[IDX].trim() == "")
+        )
+          throwError("쉼표로 입력을 끝냈습니다");
+      }
       return CAR_NAMES_LIST;
     }
 
+    async function inputCarNames() {
+      const USER_INPUT = await MissionUtils.Console.readLineAsync(
+        "경주할 자동차 이름을 입력하세요. (이름은 쉼표(,) 기준으로 구분) "
+      );
+      if ((USER_INPUT == undefined) | (USER_INPUT.trim() == "")) {
+        throwError("이름을 입력하시지 않으셨습니다");
+      } else {
+        return checkCarNames(USER_INPUT.split(","));
+      }
+    }
+
     async function inputRaceCount() {
-      try {
-        const USER_INPUT = await MissionUtils.Console.readLineAsync(
-          "시도할 횟수는 몇 회인가요? "
-        );
-        const RACE_COUNT = parseInt(USER_INPUT);
-        return RACE_COUNT;
-      } catch (error) {}
+      const USER_INPUT = await MissionUtils.Console.readLineAsync(
+        "시도할 횟수는 몇 회인가요? "
+      );
+      const NUM = parseInt(USER_INPUT);
+      if (USER_INPUT + NUM == USER_INPUT + "1") return NUM;
+      else throwError("숫자가 아닌 것을 입력하셨습니다");
     }
 
     function startRace(CAR_NAMES_LIST, RACE_COUNT) {
@@ -70,8 +86,6 @@ class App {
       PRINT_WINNERS += WINNERS_LIST[WINNERS_LIST.length - 1];
       MissionUtils.Console.print(`최종 우승자 : ${PRINT_WINNERS}`);
     }
-
-    function raceStatus() {}
 
     async function main() {
       const CAR_NAMES_LIST = await inputCarNames();
