@@ -12,8 +12,11 @@ class Race {
   async startRace() {
     await this.setCarName();
     await this.setAttemptCount();
-    this.generateRandomDistances()
-    this.printRaceStatus();
+    
+    for (let i = 0; i < this.attemptCount; i++) {
+      this.generateRandomDistances();
+      this.printRaceStatus();
+    }
   }
 
   async setCarName() {
