@@ -41,9 +41,17 @@ class App {
     };
     Console.print(randomNum());
 
+    const userNames = checkNames();
+    const process = () => {
+      const conditions = Array.from({ length: userNames.length });
+      return conditions;
+    };
+    Console.print(process());
+    Console.print(userNames);
+
     const makeTable = () => {
       const info = {};
-      const userNames = checkNames();
+
       userNames.forEach((key) => {
         info[key] = "";
       });
@@ -54,7 +62,7 @@ class App {
 
     function show() {
       for (let key in table) {
-        Console.print(key + " : " + table[key]);
+        Console.print(key + " : " + table[key].value);
       }
     }
     Console.print(show());
