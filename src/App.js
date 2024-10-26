@@ -2,6 +2,7 @@ import { Console } from '@woowacourse/mission-utils'
 import { determineEachMove } from './determineMove.js';
 import Car from './Car.js';
 import { printCarsDistance, printEachCarDistance } from './printCarsDistance.js';
+import { determineWinner } from './determineWinner.js';
 class App {
   async run() {
     const CARLIST = [];
@@ -21,6 +22,7 @@ class App {
       determineEachMove(CARLIST);
       printCarsDistance(CARLIST);
     }
+    determineWinner(CARLIST);
   }
 }
 
