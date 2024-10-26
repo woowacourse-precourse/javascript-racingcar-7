@@ -1,4 +1,4 @@
-class RacingCar {
+class Car {
     constructor(name){
         this._name = name;
         this._distance = 0;
@@ -14,4 +14,4 @@ class RacingCar {
     }
 }
 
-export default RacingCar;
+export default Car;

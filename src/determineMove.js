@@ -1,13 +1,13 @@
-import { Console, MissionUtils } from "@woowacourse/mission-utils";
+import { MissionUtils } from "@woowacourse/mission-utils";
 
 function randomValue () {
     return MissionUtils.Random.pickNumberInRange(0, 9);
 }
 
-export function determineEachMove (RACINGCARLIST) {
-    for(let i = 0; i < RACINGCARLIST.length; i++){
+export function determineEachMove (CARLIST) {
+    for(let i = 0; i < CARLIST.length; i++){
         if(randomValue() >= 4){
-            RACINGCARLIST[i].moveForward();
+            CARLIST[i].moveForward();
         }
     }
 }
