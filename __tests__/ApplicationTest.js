@@ -61,4 +61,19 @@ describe('자동차 경주', () => {
       await expect(app.run()).rejects.toThrow(ERROR_PREFIX);
     }
   });
+
+  test('횟수 입력 예외 테스트', async () => {
+    // given
+    const nameInput = 'pobi,java';
+    const inputs = ['-2', '2.31', 'pobi', '0'];
+    mockQuestions(inputs.flatMap((input) => [nameInput, input]));
+
+    for (const _ of inputs) {
+      // when
+      const app = new App();
+
+      // then
+      await expect(app.run()).rejects.toThrow(ERROR_PREFIX);
+    }
+  });
 });
