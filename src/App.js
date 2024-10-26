@@ -51,14 +51,31 @@ class App {
 
   playRound() {
     for (let carName of this.carNames.keys()) {
-      this.moveCar(carName);
+      const randomNumber = Random.pickNumberInRange(0, 9);
+
+      if (randomNumber >= 4) {
+        this.carNames.set(carName, this.carNames.get(carName) + '-');
+      }
+
+      Console.print(`${carName} : ${this.carNames.get(carName)}`);
     }
   }
 
-  moveCar(carName) {
-    const randomNumber = Random.pickNumberInRange(0, 9);
-    if (randomNumber >= 4) this.carNames.set(carName, this.carNames.get(carName) + '-');
-    Console.print(`${carName} : ${this.carNames.get(carName)}`);
+  getWinner() {
+    let winnerName = ['']
+    let winnerMove = ''
+
+    this.carNames.forEach((move, name) => {
+      if (move.length > winnerMove.length) {
+        winnerName = [name]
+        winnerMove = move
+      } 
+      else if (move.length === winnerMove.length) {
+        winnerName.push(name)
+      }
+    })
+
+    Console.print(`최종 우승자 : ${winnerName.join(', ')}`)
   }
 
   async run() {
@@ -66,9 +83,7 @@ class App {
       await this.getCarNames();
       await this.getRounds();
       this.startGame();
-
-      Console.print(this.carNames);
-      Console.print(this.rounds);
+      this.getWinner();
     } catch(e) {
       Console.print(e.message);
       throw e;
