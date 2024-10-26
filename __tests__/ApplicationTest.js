@@ -13,9 +13,12 @@ const mockQuestions = (inputs) => {
 const mockRandoms = (numbers) => {
   MissionUtils.Random.pickNumberInRange = jest.fn();
 
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, MissionUtils.Random.pickNumberInRange);
+  // numbers.reduce((acc, number) => {
+  //   return acc.mockReturnValueOnce(number);
+  // }, MissionUtils.Random.pickNumberInRange);
+  numbers.forEach(number => {
+    return MissionUtils.Random.pickNumberInRange.mockReturnValueOnce(number);
+  });
 };
 
 const getLogSpy = () => {
@@ -83,8 +86,8 @@ describe("자동차 경주", () => {
 
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-    })
-  })
+    });
+  });
 
 
   test("예외 테스트", async () => {

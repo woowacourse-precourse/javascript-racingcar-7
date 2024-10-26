@@ -1,4 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
+import { MESSAGE } from "../constants/message";
 
 class UserView {
   async printProgress(carName, distance) {
@@ -7,7 +8,7 @@ class UserView {
     Console.print(printArray.join(''));
   }
   async printWinner(winnerList) {
-    const printArray = ["최종 우승자 : "];
+    const printArray = [MESSAGE.WINNER];
     let count=1;
     for (let carName of winnerList){
       if(count === winnerList.length){

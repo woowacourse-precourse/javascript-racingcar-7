@@ -1,8 +1,9 @@
+import { ERROR } from "../constants/error.js";
 
 class Validate{
   inputExist(input){
     if(!input){
-      throw new Error("[ERROR] 값을 입력해 주세요.");
+      throw new Error(ERROR.INPUT_BLANK_ERROR);
     }
   }
 
@@ -10,18 +11,18 @@ class Validate{
     const cars = input.split(',');
     for (let car of cars){
       if(car.length>=6 || car.length < 1){
-        throw new Error("[ERROR] 자동차 이름은 1~5자 이내로 작성하세요.");
+        throw new Error(ERROR.INPUT_STRING_SIZE_ERROR);
       }
     }
   }
   countType(input){
     if(isNaN(Number(input))){
-      throw new Error("[ERROR] 반복횟수는 숫자를 입력하세요.");
+      throw new Error(ERROR.INPUT_TYPE_ERROR);
     }
   }
   countSize(input){
     if(Number(input)<1){
-      throw new Error("[ERROR] 반복횟수는 0보다 크게 입력해주세요.");
+      throw new Error(ERROR.INPUT_NUMBER_ERROR);
     }
   }
 

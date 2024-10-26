@@ -1,6 +1,7 @@
 import { Console, MissionUtils } from "@woowacourse/mission-utils";
 import Validate from "../utils/validate.js";
 import UserView from "../View/UserView.js";
+import { MESSAGE } from "../constants/message.js";
 
 class CarController{
   constructor() {
@@ -21,7 +22,7 @@ class CarController{
   }
 
   async inputCarList() {
-    const carString = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
+    const carString = await Console.readLineAsync(MESSAGE.CAR_NAME_INPUT);
     this.Error.carValidate(carString);
     const carNames = carString.split(',');
     carNames.forEach((name) => {
@@ -30,12 +31,12 @@ class CarController{
   }
 
   async inputCount() {
-    this.count = await Console.readLineAsync("시도할 횟수는 몇 회인가요?");
+    this.count = await Console.readLineAsync(MESSAGE.COUNT_INPUT);
     this.Error.countValidate(this.count);
   }
 
   async moveforward() {
-    Console.print("실행 결과");
+    Console.print(MESSAGE.OUTPUT);
     for (let i=0; i<this.count; i++){
         await this.oneStep();
         Console.print('');
