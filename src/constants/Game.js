@@ -1,4 +1,4 @@
-const GAME = Obejct.freeze({
+const GAME = Object.freeze({
   minNameLength: 1,
   maxNameLength: 5,
   minNameCount: 1,
