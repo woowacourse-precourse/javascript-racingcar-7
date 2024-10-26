@@ -4,14 +4,14 @@ import { ERROR_DETAILS } from './constants.js';
 
 class RacingGame {
   #cars;
-  #ranForSeconds;
+  #runSeconds;
 
   constructor(carNames) {
     RacingGame.validateCarNames(carNames);
     RacingGame.ensureCarNamesNotDuplicate(carNames);
 
     this.#cars = carNames.map((carName) => new Car(carName));
-    this.#ranForSeconds = 0;
+    this.#runSeconds = 0;
   }
 
   static validateCarNames(carNames) {
@@ -69,7 +69,7 @@ class RacingGame {
 
   playFor(seconds) {
     RacingGame.validateSeconds(seconds);
-    this.#ranForSeconds = seconds;
+    this.#runSeconds = seconds;
 
     for (let second = 1; second <= seconds; ++second) {
       this.#cars.forEach((car) => {
@@ -83,10 +83,11 @@ class RacingGame {
   printHistory() {
     Console.print('\n실행 결과')
 
-    for (let second = 1; second <= this.#ranForSeconds; ++second) {
+    for (let second = 1; second <= this.#runSeconds; ++second) {
       this.#cars.forEach((car) => {
-        Console.print(car.getStateAtSecond(second));
+        Console.print(car.getStateAt(second));
       });
+
       Console.print('');
     }
 
@@ -95,11 +96,11 @@ class RacingGame {
 
   getWinnerNames() {
     const furthestPosition = Math.max(
-      ...this.#cars.map((car) => car.getPositionAtSecond(this.#ranForSeconds))
+      ...this.#cars.map((car) => car.getPositionAt(this.#runSeconds))
     );
 
     const winnerNames = this.#cars
-      .filter((car) => car.getPositionAtSecond(this.#ranForSeconds) === furthestPosition)
+      .filter((car) => car.getPositionAt(this.#runSeconds) === furthestPosition)
       .map((car) => car.getName());
 
     return winnerNames;

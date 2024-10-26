@@ -19,7 +19,7 @@ class Car {
   }
 
   runAt(second) {
-    this.ensureSecondInRange(second);
+    this.ensureInRange(second);
 
     const isMovingForward = Car.canMoveForward();
     this.#positionHistory.push(
@@ -27,19 +27,19 @@ class Car {
     );
   }
 
-  ensureSecondInRange(second) {
+  ensureInRange(second) {
     if (second <= 0 || second > this.#positionHistory.length) {
       throw new Error(ERROR_DETAILS.INVALID_SECOND);
     }
   }
 
-  getStateAtSecond(second) {
-    this.ensureSecondInRange(second);
+  getStateAt(second) {
+    this.ensureInRange(second);
     return `${this.#name} : ${'-'.repeat(this.#positionHistory[second])}`;
   }
 
-  getPositionAtSecond(second) {
-    this.ensureSecondInRange(second);
+  getPositionAt(second) {
+    this.ensureInRange(second);
     return this.#positionHistory[second];
   }
 }
