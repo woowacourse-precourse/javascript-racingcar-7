@@ -34,15 +34,12 @@ class App {
 
     return distances;
   }
-    Console.print("\n실행 결과");
-
-    for (let i = 0; i < playNum; i++) {
-      carNames.forEach(name => {
-        const randomNum = Random.pickNumberInRange(0, 9);
-
-        if (randomNum >= 4) {
-          results[name] += "-";
-        }
+  moveCar(name, distances) {
+    const randomNum = Random.pickNumberInRange(0, 9);
+    if (randomNum >= 4) {
+      distances[name] += "-";
+    }
+  }
 
         Console.print(`${name} : ${results[name]}`);
       });
