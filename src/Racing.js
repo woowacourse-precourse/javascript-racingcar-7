@@ -32,7 +32,7 @@ class Racing {
   }
 
   showResult() {
-    const raceResult = this.#result;
+    const raceResult = this.#result.map((result) => [...result]);
     raceResult.forEach((roundResult, index) => {
       const round = index + 1;
       Display.showRoundResultHeader(round);
@@ -41,7 +41,7 @@ class Racing {
   }
 
   #findWinners() {
-    const totalResult = this.#result;
+    const totalResult = this.#result.map((result) => [...result]);
     const finalResult = totalResult.pop();
     const distanceList = finalResult.map(({ distance }) => distance);
     const farthestDistance = Math.max(...distanceList);
