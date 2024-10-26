@@ -4,15 +4,6 @@ import { STRINGS } from './constants/values.js';
 import Car from './Car.js';
 
 class Controller {
-  #cars;
-
-  #progress;
-
-  constructor() {
-    this.#cars = [];
-    this.#progress = {};
-  }
-
   async play() {
     await this.readCars();
     await this.readTrialCount();
@@ -22,7 +13,7 @@ class Controller {
     const carNameAnswer = await view.readCars();
     const carNames = carNameAnswer.split(STRINGS.inputNameDelimiter);
     validator.validateCarNames(carNames);
-    this.#cars = carNames.map((carName) => new Car(carName));
+    carNames.forEach((carName) => new Car(carName));
   }
 
   async readTrialCount() {
@@ -32,9 +23,8 @@ class Controller {
   }
 
   executeOnce() {
-    this.#cars.forEach((car) => {
-      const { name, progress } = car.execute();
-      this.#progress = { ...this.#progress, [name]: progress };
+    const totalCarProgress = Car.executeAllCars();
+    totalCarProgress.forEach(({ name, progress }) => {
       view.printProgress(name, progress);
     });
     view.printLineBreak();

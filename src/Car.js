@@ -2,6 +2,8 @@ import { Random } from '@woowacourse/mission-utils';
 import { VALUES } from './constants/values.js';
 
 class Car {
+  static #instances = [];
+
   #state;
 
   constructor(name) {
@@ -16,8 +18,14 @@ class Car {
     if (value >= VALUES.moveIfOrMore) this.#state.progress += 1;
   }
 
-  execute() {
-    this.#move();
+  static executeAllCars() {
+    return Car.#instances.map((car) => {
+      car.#move();
+      return car.#getState();
+    });
+  }
+
+  #getState() {
     return this.#state;
   }
 }
