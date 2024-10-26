@@ -1,6 +1,7 @@
 import { Random } from "@woowacourse/mission-utils";
 import Car from "./Car.js";
 import Validator from "./Validator.js";
+import Parser from "./Parser.js";
 
 class RacingGame {
   constructor() {
@@ -8,7 +9,7 @@ class RacingGame {
   }
 
   createCars(namesInput) {
-    const carNames = this.separateCarNames(namesInput);
+    const carNames = Parser.parseCarNames(namesInput);
     Validator.validateCarNames(carNames);
     this.cars = carNames.map((name) => new Car(name));
   }
@@ -19,10 +20,6 @@ class RacingGame {
       const randomNumber = Random.pickNumberInRange(0, 9);
       car.moveCar(randomNumber);
     });
-  }
-
-  separateCarNames(namesInput) {
-    return namesInput.split(",").map((name) => name.trim());
   }
 
   // 모든 자동차들의 현재 상태를 리턴하는 메서드
