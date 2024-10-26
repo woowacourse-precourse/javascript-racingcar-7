@@ -3,7 +3,7 @@ import Validator from "./Validator";
 
 class Car {
   constructor(name) {
-    this.name = Validator.isNameOverRange(name);
+    this.name = Validator.checkNameOverRange(name);
     this.distance = 0;
   };
 

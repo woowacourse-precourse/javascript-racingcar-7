@@ -47,13 +47,13 @@ describe("입력 받기", () => {
     const inputs = ["rdbll, rdbll, merc, mclrn", "3"];
     mockQuestions(inputs);
     
-    await expect(racing.race()).rejects.toThrow("[ERROR] : 자동차 이름은 중복되거나 공백일 수 없습니다")
+    await expect(racing.race()).rejects.toThrow("[ERROR] : 자동차 이름은 중복될 수 없습니다")
   });
   test("자동차명이 공백일 경우", async () => {
     const inputs = ["rdbll,rdbll,,mclrn", "3"];
     mockQuestions(inputs);
     
-    await expect(racing.race()).rejects.toThrow("[ERROR] : 동차 이름은 중복되거나 공백일 수 없습니다")
+    await expect(racing.race()).rejects.toThrow("[ERROR]: 자동차 이름은 공백일 수 없습니다")
   });
   test("자동차명이 5자 초과일 경우", async () => {
     const inputs = ["ferrari, redbu, merc, mclrn", "3"];

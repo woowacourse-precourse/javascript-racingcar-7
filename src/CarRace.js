@@ -15,12 +15,18 @@ class CarRace {
   async getInputCars() {
     const carNamesInput = await Console.readLineAsync("경주할 자동차들의 이름을 입력해주세요.(*쉼표로 구분)");
     const carNames = carNamesInput.replace(/\s+/g, "").split(","); 
-    return Validator.isNameDuplicate(carNames);
+    
+    Validator.checkEmptyNames(carNames);
+    Validator.checkNameDuplicate(carNames);
+    return carNames;
   };
 
   async getInputLaps() {
     const laps = await Console.readLineAsync("경주를 시도할 횟수는 몇 회인가요?(숫자만 입력)");
-    return Validator.isNaturalNumber(Number(laps));
+    const lapCount = Number(laps);
+
+    Validator.checkNaturalNumber(lapCount);
+    return lapCount;
   };
 
   async getAllInputs() {
