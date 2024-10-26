@@ -5,10 +5,6 @@ class Racing {
 
   #racers = [];
 
-  #maxScore = 0;
-
-  #winners = [];
-
   #resultByRound = [];
 
   constructor({ totalRound, racers }) {
@@ -41,23 +37,6 @@ class Racing {
     });
 
     return this.#resultByRound;
-  }
-
-  getWinners() {
-    this.#racers.forEach((racer) => {
-      if (racer.getScore() === this.getMaxScore()) {
-        this.#winners.push(racer.getName());
-      }
-    });
-
-    return this.#winners;
-  }
-
-  getMaxScore() {
-    const scoreList = this.#racers.map((racer) => racer.getScore());
-    this.#maxScore = Math.max(...scoreList);
-
-    return this.#maxScore;
   }
 }
 
