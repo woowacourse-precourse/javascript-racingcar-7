@@ -15,7 +15,6 @@ class App {
 
     const racingGame = new RacingGame(cars, attemptCount);
     racingGame.play()
-    console.log(cars)
   }
 }
 

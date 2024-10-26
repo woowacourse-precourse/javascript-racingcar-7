@@ -9,6 +9,6 @@
 - [x] RacingGame 클래스 구현
 - [x] RacingGame 클래스의 인스턴스화
 - [x] RacingGame 클래스 게임 진행 메서드 구현
-- [ ] RacingGame 클래스 차수별 실행 결과 출력 메서드 구현
+- [x] RacingGame 클래스 차수별 실행 결과 출력 메서드 구현
 - [ ] RacingGame 클래스 우승자 출력 메서드 구현
 - [ ] 사용자 입력값 예외 처리

@@ -16,8 +16,18 @@ class RacingGame {
           car.forwardCount++;
         }
       });
+      this.printResultsByStep(this.cars);
       count++;
     }
+  }
+
+  printResultByStep(cars) {
+    this.cars.forEach((car) => {
+      console.log(
+        `${car.name} : ${RacingGame.FORWARD_INDICATOR.repeat(car.forwardCount)}`
+      );
+    });
+    console.log('\n');
   }
 }
 
