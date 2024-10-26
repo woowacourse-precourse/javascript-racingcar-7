@@ -13,3 +13,10 @@ test('중복된 이름이 입력되었을 때 에러 테스트', () => {
     validateCarName(carNameList);
   }).toThrow('[ERROR]');
 });
+
+test('6자 이상의 이름이 입력되었을 때 에러 테스트', () => {
+  expect(() => {
+    const carNameList = ['watermelon', 'cherry'];
+    validateCarName(carNameList);
+  }).toThrow('[ERROR]');
+});
