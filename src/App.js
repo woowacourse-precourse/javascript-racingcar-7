@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 
 const getInput = async (inputMessage) => {
   try {
@@ -21,6 +21,10 @@ class App {
         throw new Error("자동차 이름은 5자 이하만 가능합니다.");
 
       const movesNumber = await getInput("시도할 횟수는 몇 회인가요?\n");
+
+      for (let i = 0; i < movesNumber; i++) {
+        const advanceCondition = Random.pickNumberInRange(0, 9);
+      }
     } catch (error) {
       Console.print(`[ERROR] ${error.message}`);
     }
