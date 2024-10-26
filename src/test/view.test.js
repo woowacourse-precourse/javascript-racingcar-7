@@ -1,4 +1,5 @@
 // @ts-check
+/* eslint-disable auto-js-extension/auto-js-extension */
 import { Console } from '@woowacourse/mission-utils';
 import { input } from '../lib/view';
 

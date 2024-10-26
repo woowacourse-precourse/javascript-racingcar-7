@@ -8,7 +8,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["unused-imports"],
+  "plugins": ["unused-imports", "auto-js-extension"],
   "extends": [
     "eslint:recommended",
     "airbnb-base",
@@ -32,7 +32,9 @@
     ],
     // jsdoc
     "jsdoc/require-param-description": "off",
-    "jsdoc/require-returns-description": "off"
+    "jsdoc/require-returns-description": "off",
+    // auto-js-extension
+    "auto-js-extension/auto-js-extension": "warn"
   },
   "overrides": [
     {
