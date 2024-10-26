@@ -6,13 +6,10 @@ import { OutputView } from './view/OutputView.js';
 class App {
   #racingCarController;
   constructor() {
-    const inputView = new InputView();
-    const outputView = new OutputView();
-    const racingCarService = new RacingCarService();
     this.#racingCarController = new RacingCarController(
-      racingCarService,
-      inputView,
-      outputView,
+      new RacingCarService(),
+      new InputView(),
+      new OutputView(),
     );
   }
 
