@@ -74,11 +74,11 @@ class App {
     const carsDistances = Array.from({ length: carList.length }, () => '');
 
     const moveCar = (carsCanMove) => {
-      for (let index = 0; index < carList.length; index++) {
-        if (carsCanMove[index]) {
+      carsCanMove.forEach((canMove, index) => {
+        if (canMove) {
           carsDistances[index] += '-';
         }
-      }
+      });
     };
 
     const printDistanceOfCarList = () => {
