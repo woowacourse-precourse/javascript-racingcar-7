@@ -20,8 +20,16 @@ class RacingCalc {
     }
     this.printWinner();
   }
+
   printWinner() {
     let maxScore = Math.max(...this.moveCntArr);
+    let winnerIdx = this.moveCntArr.indexOf(maxScore);
+    const winner = [];
+
+    while (winnerIdx != -1) {
+      winner.push(this.carArr[winnerIdx]);
+      winnerIdx = this.moveCntArr.indexOf(maxScore, winnerIdx + 1);
+    }
   }
 }
 
