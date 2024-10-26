@@ -53,18 +53,12 @@ class Game {
   }
 
   getWinners() {
-    let winners = [];
-    let winnerDistance = 0;
-    this.#CARS_LIST.forEach((car) => {
-      if (car.currentDistance === winnerDistance) {
-        winners.push(car.name);
-      }
-      if (car.currentDistance > winnerDistance) {
-        winnerDistance = car.currentDistance;
-        winners = [car.name];
-      }
-    });
-    return winners;
+    const maxDistance = Math.max(
+      ...this.#CARS_LIST.map((car) => car.currentDistance),
+    );
+    return this.#CARS_LIST
+      .filter((car) => car.currentDistance === maxDistance)
+      .map((car) => car.name);
   }
 }
 
