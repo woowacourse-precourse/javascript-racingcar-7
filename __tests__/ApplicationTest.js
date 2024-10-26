@@ -47,51 +47,40 @@ describe('자동차 경주', () => {
     });
   });
 
-  test('예외 테스트', async () => {
-    // given
-    const inputs = ['pobi,javaji'];
-    mockQuestions(inputs);
+  describe('예외 테스트', () => {
+    const errorCases = [
+      {
+        name: '기능 실행 중 에러 발생',
+        inputs: ['pobi,javaji'],
+        errorName: '[ERROR]',
+      },
+      {
+        name: '자동차 이름 입력 안 함',
+        inputs: ['', '1'],
+        errorName: ERRORS.EMPTY_CAR_NAME,
+      },
+      {
+        name: '자동차 이름 허용 길이 초과',
+        inputs: ['pobi, woni, youngju', '1'],
+        errorName: ERRORS.INVALID_CAR_NAME,
+      },
+      {
+        name: '동일한 자동차 이름 입력',
+        inputs: ['pobi, woni, woni', '1'],
+        errorName: ERRORS.DUPLICATE_CAR_NAME,
+      },
+      {
+        name: '잘못된 시도 횟수',
+        inputs: ['pobi, woni', 'a'],
+        errorName: ERRORS.INVALID_TRIAL_COUNT,
+      },
+    ];
 
-    // when
-    const app = new App();
+    test.each(errorCases)('$name', async ({ inputs, errorName }) => {
+      mockQuestions(inputs);
+      const app = new App();
 
-    // then
-    await expect(app.run()).rejects.toThrow('[ERROR]');
-  });
-
-  test('예외 테스트: 자동차 이름 입력 안 함', async () => {
-    const inputs = ['', '1'];
-    mockQuestions(inputs);
-
-    const app = new App();
-
-    await expect(app.run()).rejects.toThrow(ERRORS.EMPTY_CAR_NAME);
-  });
-
-  test('예외 테스트: 자동차 이름 허용 길이 초과', async () => {
-    const inputs = ['pobi, woni, youngju', '1'];
-    mockQuestions(inputs);
-
-    const app = new App();
-
-    await expect(app.run()).rejects.toThrow(ERRORS.INVALID_CAR_NAME);
-  });
-
-  test('예외 테스트: 동일한 자동차 이름 입력', async () => {
-    const inputs = ['pobi, woni, woni', '1'];
-    mockQuestions(inputs);
-
-    const app = new App();
-
-    await expect(app.run()).rejects.toThrow(ERRORS.DUPLICATE_CAR_NAME);
-  });
-
-  test('예외 테스트: 잘못된 시도 횟수', async () => {
-    const inputs = ['pobi, woni', 'a'];
-    mockQuestions(inputs);
-
-    const app = new App();
-
-    await expect(app.run()).rejects.toThrow(ERRORS.INVALID_TRIAL_COUNT);
+      await expect(app.run()).rejects.toThrow(errorName);
+    });
   });
 });
