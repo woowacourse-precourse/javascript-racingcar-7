@@ -17,6 +17,12 @@ class GameController {
     this.validateGameRounds();
     this.createRacingGame();
     OutputView.printGameStart();
+
+    while (!this.racingGame.isGameFinished()) {
+      this.playOneRound();
+    }
+
+    this.announceWinners();
   }
 
   async readCarNames() {
@@ -51,6 +57,11 @@ class GameController {
 
   findWinners() {
     return this.racingGame.findWinners();
+  }
+
+  announceWinners() {
+    const winners = this.findWinners();
+    OutputView.printWinners(winners);
   }
 }
 
