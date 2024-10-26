@@ -1,6 +1,5 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import RacingGame from "../src/RacingGame.js";
-import Output from "../src/Output.js";
 
 const mockRandoms = (numbers) => {
   MissionUtils.Random.pickNumberInRange = jest.fn();
@@ -28,7 +27,6 @@ describe("출력", () => {
 
       // when
       game.start();
-      Output.printWinners(game.getWinners());
 
       // then
       expect(logSpy).toHaveBeenCalledWith("최종 우승자 : ham");
@@ -44,7 +42,6 @@ describe("출력", () => {
 
       // when
       game.start();
-      Output.printWinners(game.getWinners());
 
       // then
       expect(logSpy).toHaveBeenCalledWith("최종 우승자 : ham, pobi");

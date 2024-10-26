@@ -1,5 +1,5 @@
-import Car from "./Car";
-import Output from "./Output";
+import Car from "./Car.js";
+import Output from "./Output.js";
 
 export default class RacingGame {
   repeatCount;
@@ -20,6 +20,7 @@ export default class RacingGame {
       this.play();
       Output.printResult(this.cars);
     }
+    Output.printWinners(this.getWinners());
   }
 
   play() {
