@@ -1,4 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
+import Display from './Display.js';
 
 class Racing {
   #totalRounds;
@@ -36,20 +37,13 @@ class Racing {
 
   #showResult(round) {
     const raceResult = this.#result;
-    const FIRST_ROUND = 1;
+    Display.showRoundResultHeader(round);
 
-    if (round === FIRST_ROUND) {
-      Console.print('\n실행 결과');
-    }
-
-    raceResult.forEach(({ name, distance }) => {
-      const DISTANCE_MARK = '-';
-      const distanceGraph = DISTANCE_MARK.repeat(distance);
-
-      Console.print(`${name} : ${distanceGraph}`);
+    raceResult.forEach((eachResult) => {
+      Display.showDistanceGraph(eachResult);
     });
 
-    Console.print('');
+    Display.showLineBreak();
   }
 
   #findWinners() {
