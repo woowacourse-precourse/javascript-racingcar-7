@@ -4,6 +4,7 @@ class App {
   constructor() {
     this.carNames = []; // 자동차 이름 목록
     this.numberOfRounds = 0; // 시도할 횟수
+    this.roundResults = []; // 각 라운드의 결과
   }
 
   async run() {
@@ -41,10 +42,28 @@ class App {
     return rounds; // 유효한 시도 횟수 반환
   }
 
+  startRace() {
+    for (let roundIndex = 0; roundIndex < this.numberOfRounds; roundIndex++) {
+      const currentRoundResults = this.moveCars(); // 자동차 이동 결과
+      this.roundResults.push(currentRoundResults);
+      this.printRoundResults(roundIndex); // 라운드 결과 출력
+    }
+  }
+
   moveCars() {
     return this.carNames.map((carName) => {
       const randomValue = Random.pickNumberInRange(0, 9);
       return randomValue >= 4 ? carName : ""; // 4 이상일 경우 자동차 이름 반환
+    });
+  }
+
+  printRoundResults(roundIndex) {
+    this.carNames.forEach((carName) => {
+      const totalDistance = this.roundResults
+        .flat()
+        .filter((name) => name === carName).length; // 누적 거리 계산
+      const result = "-".repeat(totalDistance);
+      Console.print(`${carName} : ${result}`); // 라운드 결과 출력
     });
   }
 }
