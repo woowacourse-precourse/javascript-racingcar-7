@@ -12,6 +12,7 @@ class App {
     const carNamesInput = await Console.readLineAsync(
       '경주할 자동차 이름을 입력하세요. (이름은 쉼표(,)로 구분): ',
     );
+
     const attemptCountInput =
       await Console.readLineAsync('시도할 횟수는 몇 회인가요?: ');
 
@@ -51,6 +52,7 @@ class App {
 
   startRace(carNames, attemptCount) {
     let carMovementTracker = {};
+
     carNames.forEach((carName) => {
       carMovementTracker[carName] = 0;
     });
@@ -64,21 +66,27 @@ class App {
 
   moveCars(carNames, prevMovement) {
     const carMovementTracker = { ...prevMovement };
+
     carNames.forEach((car) => {
       const randomNumber = Random.pickNumberInRange(0, 9);
+
       if (randomNumber >= 4) {
         carMovementTracker[car] += 1;
       }
     });
+
     this.printCurrentStatus(carNames, carMovementTracker);
+
     return carMovementTracker;
   }
 
   printCurrentStatus(carNames, carMovementTracker) {
     carNames.forEach((carName) => {
       const moveCount = carMovementTracker[carName];
+
       Console.print(`${carName} : ${'-'.repeat(moveCount)}`);
     });
+
     Console.print('');
   }
 
