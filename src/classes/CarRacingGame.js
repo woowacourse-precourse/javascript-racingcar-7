@@ -7,20 +7,35 @@ class CarRacingGame {
   }
 
   startGame(totalRounds) {
-    CarRacingOutputWriter.printStartMessage();
+    this.printStartMessage();
+    this.playRounds(totalRounds);
+    this.printWinners();
+  }
 
+  printStartMessage() {
+    CarRacingOutputWriter.printStartMessage();
+  }
+
+  playRounds(totalRounds) {
     for (let i = 0; i < totalRounds; i++) {
       this.playRound();
-      CarRacingOutputWriter.printRoundResults(this.cars);
+      this.printRoundResults();
     }
-
-    CarRacingOutputWriter.printWinners(this.determineWinners());
   }
 
   playRound() {
     this.cars.forEach((car) => {
       car.attemptMove();
     });
+  }
+
+  printRoundResults() {
+    CarRacingOutputWriter.printRoundResults(this.cars);
+  }
+
+  printWinners() {
+    const winners = this.determineWinners();
+    CarRacingOutputWriter.printWinners(winners);
   }
 
   determineWinners() {
