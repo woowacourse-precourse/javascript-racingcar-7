@@ -43,6 +43,13 @@ const Validator = {
       OutputView.throwError('시도 횟수는 빈 값이나 공백일 수 없습니다.');
     }
   },
+
+  validateIsNumber(rounds) {
+    const number = Number(rounds);
+    if (Number.isNaN(number)) {
+      OutputView.throwError('시도 횟수는 숫자여야 합니다.');
+    }
+  },
 };
 
 export default Validator;
