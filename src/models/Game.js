@@ -1,6 +1,7 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import { printRaceProgress } from '../views/output.js';
 import generateRandomNumber from '../utils/random.js';
+import { MOVE_THRESHOLD } from '../constants/numbers.js';
 
 export default class Game {
   constructor(cars, rounds) {
@@ -21,7 +22,7 @@ export default class Game {
     this.cars.forEach((car) => {
       const randomNumber = generateRandomNumber();
 
-      if (randomNumber >= 4) {
+      if (randomNumber >= MOVE_THRESHOLD) {
         car.move();
       }
     });
