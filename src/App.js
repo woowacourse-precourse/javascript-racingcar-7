@@ -23,7 +23,7 @@ class App {
       const winners = race.determineWinners();
       this.output.displayWinners(winners);
     } catch (error) {
-      throw new Error(`${error.message}`);
+      throw new Error(`[ERROR] ${error.message}`);
     }
   }
 }
