@@ -8,11 +8,11 @@ export function validateAllCarNames(carNameArray) {
 
 function validateCarName(carName) {
   try {
+    validateNoEmptyAroundComma(carName);
     validateNoWhiteSpace(carName);
     validateNoNumber(carName);
     validateNoSpecialCharacters(carName);
     validateMaxFiveChars(carName);
-    validateNoEmptyAroundComma(carName);
   } catch (err) {
     throw new Error(`[ERROR] ${err.message}`);
   }
