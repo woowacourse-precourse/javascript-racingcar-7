@@ -1,4 +1,5 @@
 import RacingController from './controller/racingController.js';
+import { Console } from '@woowacourse/mission-utils';
 
 class App {
   constructor() {
@@ -6,7 +7,11 @@ class App {
   }
 
   async run() {
-    await this.controller.getCarNames();
+    try {
+      await this.controller.getCarNames();
+    } catch (error) {
+      Console.print(error);
+    }
   }
 }
 
