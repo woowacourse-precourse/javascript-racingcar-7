@@ -19,6 +19,7 @@ class App {
       throw new Error("[ERROR] 잘못된 입력입니다.");
     }
     cars.forEach(this.validateCarNameLength);
+    return cars.map((car) => ({ name: car, distance: "" }));
   }
 
   validateCarNameLength(car) {
@@ -35,7 +36,7 @@ class App {
     }
     return times;
   }
-  
+
 }
 
 export default App;
