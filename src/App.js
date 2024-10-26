@@ -1,8 +1,10 @@
 import { Console } from '@woowacourse/mission-utils';
 
 class App {
-  run() {
-    this.getCarNames();
+  async run() {
+    const carNames = await this.getCarNames();
+    const tryCount = await this.getTryCount();
+    const cars = this.createCars(carNames);
   }
 
   async getCarNames() {
@@ -33,6 +35,10 @@ class App {
 
   validateTryCount(count) {
     return Number.isInteger(count) && count > 0;
+  }
+
+  createCars(names) {
+    return names.map((name) => ({ name, position: 0 }));
   }
 }
 
