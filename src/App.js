@@ -1,4 +1,3 @@
-import { Console } from "@woowacourse/mission-utils";
 import { getCarsName, getAttemptNumber } from "./views/inputView.js";
 import { checkAttemptNum, checkCarsName } from "./validation.js";
 import Race from './Race.js';
