@@ -48,6 +48,10 @@ class GameController {
     const cars = this.racingGame.getCars();
     OutputView.printRoundStatus(cars);
   }
+
+  findWinners() {
+    return this.racingGame.findWinners();
+  }
 }
 
 export default GameController;

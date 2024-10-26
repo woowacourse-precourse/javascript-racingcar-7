@@ -46,7 +46,7 @@ MVC 패턴을 통한 기능 구현을 목표했습니다.
 - [x] 레이싱 게임 객체 생성하기 (RacingGame 활용)
 - [x] 자동차들의 이동 처리하기 (RacingGame 활용)
 - [x] 라운드 진행 상태 보여주기 (OutputView 활용)
-- [ ] 우승자 찾기 (RacingGame 활용)
+- [x] 우승자 찾기 (RacingGame 활용)
 - [ ] 우승자 발표하기 (OutputView 활용)
 
 ### 🛠 Utils
