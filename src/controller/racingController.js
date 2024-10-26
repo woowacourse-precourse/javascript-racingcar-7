@@ -16,7 +16,7 @@ class RacingController {
 
       // 배열을 순회하며 car 객체에 이름과 결과를 동적으로 추가
       carNames.forEach((element) => {
-        this.model.setCar(element, '');
+        this.model.updateCar({ [element]: '' });
       });
     }
   }

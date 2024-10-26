@@ -4,12 +4,16 @@ class RacingModel {
     this.count;
   }
 
-  setCar(car, result) {
-    this.car[car] = result;
+  updateCar(car) {
+    this.car = { ...this.car, ...car };
   }
 
   setCount(count) {
     this.count = count;
+  }
+
+  addresult(carName) {
+    this.car[carName] += '-';
   }
 }
 export default RacingModel;
