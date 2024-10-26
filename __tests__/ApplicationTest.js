@@ -46,7 +46,7 @@ describe('자동차 경주', () => {
 		});
 	});
 
-	test('입력한 자동차 이름 길이 예외 테스트', async () => {
+	test('입력한 자동차 이름 글자 수 예외 테스트', async () => {
 		// given
 		const inputs = ['pobi,javaji'];
 		mockQuestions(inputs);
@@ -61,6 +61,18 @@ describe('자동차 경주', () => {
 	test('공백 예외 테스트', async () => {
 		// given
 		const inputs = [''];
+		mockQuestions(inputs);
+
+		// when
+		const app = new App();
+
+		// then
+		await expect(app.run()).rejects.toThrow('[ERROR]');
+	});
+
+	test('시도할 횟수 입력이 숫자가 아닌경우 예외 테스트', async () => {
+		// given
+		const inputs = ['다섯'];
 		mockQuestions(inputs);
 
 		// when
