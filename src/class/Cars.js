@@ -1,9 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { Car } from './index.js';
-
-const printNewline = () => {
-  Console.print('');
-};
+import { Car, MyUtils } from './index.js';
 
 class Cars {
   constructor(names) {
@@ -26,7 +22,7 @@ class Cars {
     Console.print('\n실행 결과');
     for (let i = 0; i < counts; i += 1) {
       this.attemptMoveAllCars();
-      printNewline();
+      MyUtils.printNewline();
     }
   }
 }

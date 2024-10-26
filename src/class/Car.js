@@ -1,8 +1,5 @@
-import { Console, Random } from '@woowacourse/mission-utils';
-
-const getRandomSingleDigit = () => {
-  return Random.pickNumberInRange(0, 9);
-};
+import { Console } from '@woowacourse/mission-utils';
+import { MyUtils } from './index.js';
 
 class Car {
   constructor(name) {
@@ -23,7 +20,7 @@ class Car {
   }
 
   attemptMove() {
-    const randomNumber = getRandomSingleDigit();
+    const randomNumber = MyUtils.getRandomSingleDigit();
     if (this.canMoveForward(randomNumber)) {
       this.moveForward();
     }
