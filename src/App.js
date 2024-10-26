@@ -14,6 +14,17 @@ class App {
 
     const carNameArray = carName.split(GAME.inputDelimeterSign).map((name) => name.trim());
     const carController = new CarController(carNameArray);
+
+    this.runRaces(carController, Number(tryNumber));
+  }
+
+  runRaces(carController, tryNumber) {
+    const raceCountArray = Array.from({ length: tryNumber }, () => 0);
+    raceCountArray.forEach((count) => this.excuteRace(carController));
+  }
+
+  excuteRace(carController) {
+    carController.updateCarPosition();
   }
 }
 

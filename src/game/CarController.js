@@ -1,4 +1,5 @@
 import Car from './Car.js';
+import generateRandomNumber from './GenerateRandomNumber.js';
 
 class CarController {
   constructor(carNames) {
@@ -9,6 +10,11 @@ class CarController {
   //차 이름 목록으로 차 객체들을 생성한다.
   createCar(carNames) {
     carNames.forEach((name) => this.cars.push(new Car(name)));
+  }
+
+  // 생성한 랜덤넘버를 바탕으로 차의 위치를 움직인다
+  updateCarPosition() {
+    this.cars.forEach((car) => car.moveForward(generateRandomNumber()));
   }
 }
 export default CarController;
