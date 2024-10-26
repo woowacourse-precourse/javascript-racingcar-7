@@ -36,6 +36,10 @@ class GameController {
   createRacingGame() {
     this.racingGame = new RacingGame(this.carNames, this.gameRounds);
   }
+
+  playOneRound() {
+    this.racingGame.playOneRound();
+  }
 }
 
 export default GameController;
