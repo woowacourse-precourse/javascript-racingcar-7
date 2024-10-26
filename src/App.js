@@ -14,6 +14,14 @@ function validateCarNames(array) {
   });
 }
 
+function validateRacingCount(count) {
+  if (isNaN(count)) {
+    throw new Error(
+      "[ERROR] 횟수의 형식이 숫자가 아닙니다."
+    );
+  }
+}
+
 class App {
   async run() {
     try {
@@ -22,6 +30,11 @@ class App {
       );
       const CAR_ARRAY = getCarArray(CAR_STR);
       validateCarNames(CAR_ARRAY);
+      const RACING_COUNT =
+        await Console.readLineAsync(
+          "시도할 횟수는 몇 회인가요?\n"
+        );
+      validateRacingCount(RACING_COUNT);
     } catch (error) {
       Console.print(error.message);
     }
