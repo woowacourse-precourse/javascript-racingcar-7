@@ -56,5 +56,10 @@ class App {
     cars.forEach((car) => this.moveCar(car));
     this.printRoundResults(cars);
   }
+
+  moveCar(car) {
+    const randomNum = MissionUtils.Random.pickNumberInRange(0, 9);
+    if (randomNum >= 4) car.position++;
+  }
 }
 export default App;
