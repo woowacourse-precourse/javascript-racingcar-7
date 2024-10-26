@@ -5,9 +5,20 @@ const MOVING_FORWARD = 4;
 const STOP = 3;
 
 describe('자동차 경주', () => {
-  // 정상 케이스 테스트
   describe('자동차 경주', () => {
     test.each([
+      [
+        '한 대 자동차 테스트',
+        ['pobi', '1'],
+        ['pobi : -', '최종 우승자 : pobi'],
+        [MOVING_FORWARD],
+      ],
+      [
+        '전진하지 않는 자동차들 테스트',
+        ['pobi,woni', '1'],
+        ['pobi : ', 'woni : ', '최종 우승자 : pobi, woni'],
+        [STOP, STOP],
+      ],
       [
         '단독 우승 테스트',
         ['pobi,woni', '1'],
@@ -86,7 +97,6 @@ describe('자동차 경주', () => {
     });
   });
 
-  // 예외 케이스 테스트
   describe('예외 케이스', () => {
     test.each([
       ['자동차 이름이 5자를 초과했을 경우', ['carName12,car1', '1']],
@@ -95,6 +105,7 @@ describe('자동차 경주', () => {
       ['게임 횟수가 0인 경우', ['car1,car12', '0']],
       ['게임 횟수가 숫자가 아닌 경우', ['car1,car12', 'abc']],
       ['게임 횟수가 음수인 경우', ['car1,car12', '-2']],
+      ['게임 횟수가 소수인 경우', ['car1,car12', '1.5']],
     ])('%s', async (_testName, inputs) => {
       mockQuestions(inputs);
       const app = new App();
