@@ -1,5 +1,6 @@
-import App, { MOVING_FORWARD, STOP } from '../src/App.js';
+import App from '../src/App.js';
 import { getLogSpy, mockQuestions, mockRandoms } from '../utils/testUtils.js';
+import { MOVING_FORWARD, STOP } from '../constants.js';
 
 describe('자동차 경주', () => {
     test.each([

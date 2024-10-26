@@ -1,8 +1,12 @@
 import { input, print, getRandom } from '../utils/index.js';
-
-export const MOVING_FORWARD = 4;
-export const STOP = 3;
-export const INVALID_NUMBER_ERROR = `[ERROR] 유효한 숫자가 아닙니다`;
+import {
+    MOVING_FORWARD,
+    INVALID_RACECOUNT_ERROR,
+    INVALID_CARS_ERROR,
+    DUPLICATE_CAR_NAME_ERROR,
+    BLANK_CAR_NAME_ERROR,
+    CAR_NAME_LENGTH_ERROR,
+} from '../constants.js';
 
 class App {
     constructor() {
@@ -21,20 +25,18 @@ class App {
 
     validateCars(value) {
         if (value.length === 0) {
-            throw new Error('[ERROR] 입력값이 유효하지 않습니다');
+            throw new Error(INVALID_CARS_ERROR);
         }
         const parsedString = value.split(',');
         if (parsedString.length !== new Set(parsedString).size) {
-            throw new Error('[ERROR] 중복된 이름이 존재합니다');
+            throw new Error(DUPLICATE_CAR_NAME_ERROR);
         }
         parsedString.forEach((str) => {
             if (str.length === 0) {
-                throw new Error('[ERROR] 이름이 공백인 자동차가 존재합니다');
+                throw new Error(BLANK_CAR_NAME_ERROR);
             }
             if (str.length > 5) {
-                throw new Error(
-                    '[ERROR] 자동차의 이름은 5자 이하로 등록해주세요'
-                );
+                throw new Error(CAR_NAME_LENGTH_ERROR);
             }
         });
     }
@@ -42,13 +44,13 @@ class App {
     validateRaceCount(value) {
         const num = Number(value);
         if (isNaN(num)) {
-            throw new Error(INVALID_NUMBER_ERROR);
+            throw new Error(INVALID_RACECOUNT_ERROR);
         }
         if (num < 0) {
-            throw new Error(INVALID_NUMBER_ERROR);
+            throw new Error(INVALID_RACECOUNT_ERROR);
         }
         if (num !== Math.floor(num)) {
-            throw new Error(INVALID_NUMBER_ERROR);
+            throw new Error(INVALID_RACECOUNT_ERROR);
         }
     }
 
