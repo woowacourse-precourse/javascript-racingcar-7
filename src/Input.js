@@ -20,9 +20,10 @@ export default class Input {
 
   async getRepeatCount() {
     const repeatCountString = await MissionUtils.Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
-    this.repeatCount = Number(repeatCountString);
+    this.repeatCount = repeatCountString;
 
-    return this.repeatCount;
+    this.validateRepeatCount();
+    return Number(this.repeatCount);
   }
 
   validateCarString() {
@@ -34,6 +35,13 @@ export default class Input {
     }
     if (this.car.some((car) => !car)) {
       throw new Error("[ERROR] 자동차 이름은 비어있지 않은 문자열이어야 합니다.");
+    }
+  }
+
+  validateRepeatCount() {
+    const isPlusNumber = /^[1-9]+$/;
+    if (!isPlusNumber.test(this.repeatCount)) {
+      throw new Error("[ERROR] 시도 횟수는 양수여야 합니다.");
     }
   }
 }

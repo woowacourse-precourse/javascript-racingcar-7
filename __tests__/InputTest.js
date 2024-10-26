@@ -15,7 +15,7 @@ describe("입력", () => {
     test("어플리케이션이 생성되었고, 어플리케이션이 실행되면, 입력 스크립트를 출력한다.", async () => {
       // given
       const app = new App();
-      const inputs = ["pobi,ham"];
+      const inputs = ["pobi,ham", "1"];
 
       mockQuestions(inputs);
 
@@ -29,7 +29,7 @@ describe("입력", () => {
     test("어플리케이션이 생성되었고 5자 초과 이름 문자열을 입력으로 가지고 있는 경우, 어플리케이션이 실행되고 입력을 받으면, [ERROR]로 시작하는 메시지와 함께 애플리케이션을 종료한다.", async () => {
       // given
       const app = new App();
-      const inputs = ["pobi,hammmm"];
+      const inputs = ["pobi,hammmm", "1"];
 
       mockQuestions(inputs);
 
@@ -41,7 +41,7 @@ describe("입력", () => {
     test("어플리케이션이 생성되었고 중복된 이름 문자열을 입력으로 가지고 있는 경우, 어플리케이션이 실행되고 입력을 받으면, [ERROR]로 시작하는 메시지와 함께 애플리케이션을 종료한다.", async () => {
       // given
       const app = new App();
-      const inputs = ["pobi,hamm,pobi"];
+      const inputs = ["pobi,hamm,pobi", "1"];
 
       mockQuestions(inputs);
 
@@ -53,7 +53,7 @@ describe("입력", () => {
     test("어플리케이션이 생성되었고 빈 이름 문자열을 입력으로 가지고 있는 경우, 어플리케이션이 실행되고 입력을 받으면, [ERROR]로 시작하는 메시지와 함께 애플리케이션을 종료한다.", async () => {
       // given
       const app = new App();
-      const inputs = ["pobi,hamm,"];
+      const inputs = ["pobi,hamm,", "1"];
 
       mockQuestions(inputs);
 
@@ -79,6 +79,18 @@ describe("입력", () => {
       logs.forEach((log) => {
         expect(MissionUtils.Console.readLineAsync).toHaveBeenCalledWith(log);
       });
+    });
+
+    test("어플리케이션이 생성되었고 양수가 아닌 문자를 입력으로 가지고 있는 경우, 어플리케이션이 실행되고 실행 횟수 입력을 받으면, [ERROR]로 시작하는 메시지와 함께 애플리케이션을 종료한다.", async () => {
+      // given
+      const app = new App();
+      const inputs = ["pobi,ham", "a"];
+
+      mockQuestions(inputs);
+
+      // when
+      // then
+      await expect(app.run()).rejects.toThrow("[ERROR]");
     });
   });
 });
