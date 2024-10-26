@@ -1,6 +1,6 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import { getUserInput } from '../src/views/View.js';
-import { divisionCarName } from '../src/models/Model.js';
+import { divisionCarName, createCarObject } from '../src/models/Model.js';
 import App from '../src/App.js';
 
 const mockQuestions = (inputs) => {
@@ -63,21 +63,36 @@ describe('자동차 경주', () => {
 });
 
 // ------커스텀 테스트-----
-describe('view', () => {
-  test('사용자가 이름을 입력하면', async () => {
+
+const CAR_NAMES_STRING = 'happy,car';
+const CAR_NAMES_ARRAY = ['happy', 'car'];
+const CAR_OBJECTS = [
+  { name: 'happy', forwardNum: 0 },
+  { name: 'car', forwardNum: 0 },
+];
+
+const testCar = (description, fn, input, expectedOutput) => {
+  test(description, () => {
+    const result = fn(input);
+    expect(result).toEqual(expectedOutput);
+  });
+};
+
+describe('Custom Test', () => {
+  test('사용자 입력 확인', async () => {
     const consoleSpy = jest
       .spyOn(MissionUtils.Console, 'readLineAsync')
-      .mockImplementation(() => Promise.resolve('happy,sad'));
-
-    // 비동기 입력값을 받아올 때까지 기다림
+      .mockImplementation(() => Promise.resolve(CAR_NAMES_STRING));
     const input = await getUserInput();
-    expect(input).toBe('happy,sad');
-
+    expect(input).toBe(CAR_NAMES_STRING);
     consoleSpy.mockRestore();
   });
-  test('사용자가 입력한 차 이름 ,로 구분', async () => {
-    const inputs = 'happy,car';
-    const car = divisionCarName(inputs);
-    expect(car).toEqual(['happy', 'car']);
-  });
+
+  testCar(
+    '사용자가 입력한 차 쉼표로 구분',
+    divisionCarName,
+    CAR_NAMES_STRING,
+    CAR_NAMES_ARRAY,
+  );
+  testCar('자동차 객체 생성', createCarObject, CAR_NAMES_ARRAY, CAR_OBJECTS);
 });
