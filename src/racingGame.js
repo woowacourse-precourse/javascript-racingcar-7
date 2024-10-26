@@ -1,6 +1,6 @@
 import { Console, MissionUtils } from "@woowacourse/mission-utils";
 import Car from "./car.js";
-import { validateCarName } from "./validation.js";
+import { validateCarName, countValidate } from "./validation.js";
 class RacingGame {
   constructor() {
     this.cars = [];
@@ -18,6 +18,7 @@ class RacingGame {
       const userInputCounts = await Console.readLineAsync(
         "시도할 횟수는 몇 회인가요? \n"
       );
+      countValidate(userInputCounts);
       this.counts = userInputCounts;
     } catch (error) {
       Console.print(error.message);
