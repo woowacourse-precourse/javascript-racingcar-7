@@ -3,3 +3,9 @@ export const checkNameLength = (name) => {
     return false;
   }
 };
+const carSet = new Set();
+export const checkNameDuplicate = (name) => {
+  if (carSet.has(name)) {
+    return false;
+  }
+};
