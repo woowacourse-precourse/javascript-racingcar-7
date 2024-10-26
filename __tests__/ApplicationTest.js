@@ -50,9 +50,9 @@ describe('구현할 기능 목록 테스트 코드 작성', () => {
     const app = new App();
 
     mockQuestions([STOP]);
-    const result = await app.getTryNumber(query);
+    const result = await app.getTryNumber(QUERY);
 
-    expect(result).toEqual(String(STOP));
+    expect(result).toEqual(STOP);
   });
 });
 
