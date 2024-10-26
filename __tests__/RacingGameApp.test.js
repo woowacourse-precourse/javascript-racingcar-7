@@ -27,4 +27,23 @@ describe("InputValidator", () => {
       );
     });
   });
+
+  describe("validateMoveCount", () => {
+    test("이동 횟수가 올바른 숫자인 경우 통과한다", () => {
+      expect(() => inputValidator.validateMoveCount("3")).not.toThrow();
+      expect(() => inputValidator.validateMoveCount("10")).not.toThrow();
+    });
+
+    test("이동 횟수가 유효하지 않은 경우 에러를 발생시킨다", () => {
+      expect(() => inputValidator.validateMoveCount("0")).toThrow(
+        "[ERROR] 이동 횟수는 1 이상의 숫자여야 합니다."
+      );
+      expect(() => inputValidator.validateMoveCount("-1")).toThrow(
+        "[ERROR] 이동 횟수는 1 이상의 숫자여야 합니다."
+      );
+      expect(() => inputValidator.validateMoveCount("a")).toThrow(
+        "[ERROR] 이동 횟수는 1 이상의 숫자여야 합니다."
+      );
+    });
+  });
 });

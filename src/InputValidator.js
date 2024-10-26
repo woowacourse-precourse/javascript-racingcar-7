@@ -9,6 +9,12 @@ class InputValidator {
       }
     });
   }
+
+  validateMoveCount(moveCount) {
+    if (!/^\d+$/.test(moveCount) || Number(moveCount) < 1) {
+      throw new Error("[ERROR] 이동 횟수는 1 이상의 숫자여야 합니다.");
+    }
+  }
 }
 
 export default InputValidator;
