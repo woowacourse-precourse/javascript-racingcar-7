@@ -36,6 +36,19 @@ class App {
       }
       Console.print('');
     }
+
+    const getWinner = (raceCount) => {
+      let winnerNames = [];
+      const winnerRaceCount = Math.max.apply(null, raceCount);
+      for (let i = 0; i < raceCount.length; i++) {
+        if (winnerRaceCount == raceCount[i]) {
+          winnerNames.push(carNames[i]);
+        }
+      }
+      Console.print(`최종 우승자 : ${winnerNames.join(', ')}`);
+    };
+
+    getWinner(raceCount);
   }
 }
 
