@@ -5,6 +5,7 @@ class App {
     const carNames = await this.getCarNames();
     const tryCount = await this.getTryCount();
     const cars = this.createCars(carNames);
+    this.startRace(cars, tryCount);
   }
 
   async getCarNames() {
@@ -39,6 +40,20 @@ class App {
 
   createCars(names) {
     return names.map((name) => ({ name, position: 0 }));
+  }
+
+  startRace(cars, tryCount) {
+    Console.print('\n실행 결과');
+    for (let i = 0; i < tryCount; i += 1) {
+      cars.forEach((car) => {
+        const randomNumber = Random.pickNumberInRange(0, 9);
+        if (randomNumber >= 4) {
+          car.position += 1;
+        }
+        Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
+      });
+      Console.print('');
+    }
   }
 }
 
