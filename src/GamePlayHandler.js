@@ -25,5 +25,5 @@ function calculateTotalMoveValue(carDataList, moveConditionValues) {
 }
 
 function addIfAboveFour(carData, moveConditionValue) {
-  if (moveConditionValue >= 4) carData.totalMoveValue += moveConditionValue;
+  if (moveConditionValue >= 4) carData.totalMoveValue += 1;
 }

@@ -13,9 +13,11 @@ export async function inputNumberOfMove() {
   );
 }
 
-export function displayCarMovement(carDataList, moveValue) {
-  for (let i = 0; i < moveValue.length; i++) {
-    Console.print(`${carDataList[i].name} : ${'_ '.repeat(moveValue[i])}`);
+export function displayCarMovement(carDataList) {
+  for (let i = 0; i < carDataList.length; i++) {
+    Console.print(
+      `${carDataList[i].name} : ${'- '.repeat(carDataList[i].totalMoveValue)}`
+    );
   }
   Console.print('\n');
 }
