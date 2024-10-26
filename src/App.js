@@ -9,24 +9,28 @@ class App {
       return CAR_NAMES_LIST;
     }
 
-    // async function inputRaceCount() {
-    //   const RACE_COUNT = await MissionUtils.Console.readLineAsync(
-    //     "시도할 횟수는 몇 회인가요?"
-    //   );
-    //   return RACE_COUNT;
-    // }
+    async function inputRaceCount() {
+      try {
+        let RACE_COUNT = await MissionUtils.Console.readLineAsync(
+          "시도할 횟수는 몇 회인가요?"
+        );
+        RACE_COUNT = parseInt(RACE_COUNT);
+        return RACE_COUNT;
+      } catch (error) {}
+    }
 
-    function printResults(CAR_NAMES_LIST) {
+    function printResults(CAR_NAMES_LIST, RACE_COUNT) {
       MissionUtils.Console.print("실행 결과");
       for (let i = 0; i < CAR_NAMES_LIST.length; i++) {
-        MissionUtils.Console.print(CAR_NAMES_LIST[i]);
+        const CAR_MOVES = "-".repeat(RACE_COUNT);
+        MissionUtils.Console.print(CAR_NAMES_LIST[i] + CAR_MOVES);
       }
     }
 
     async function main() {
       const CAR_NAMES_LIST = await inputCarNames();
-      printResults(CAR_NAMES_LIST);
-      // const MOVE_COUNT = InputRaceCount();
+      const RACE_COUNT = await inputRaceCount();
+      printResults(CAR_NAMES_LIST, RACE_COUNT);
     }
 
     main();
