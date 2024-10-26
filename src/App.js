@@ -9,6 +9,7 @@ class App {
   async run() {
     await this.getCarNames(); // 자동차 이름 요청
     await this.getRounds(); // 시도 횟수 요청
+    this.startRace(); // 경주 시작
   }
 
   async getCarNames() {
@@ -38,6 +39,13 @@ class App {
       throw new Error(`[ERROR] 유효한 시도 횟수를 입력하세요.`);
     }
     return rounds; // 유효한 시도 횟수 반환
+  }
+
+  moveCars() {
+    return this.carNames.map((carName) => {
+      const randomValue = Random.pickNumberInRange(0, 9);
+      return randomValue >= 4 ? carName : ""; // 4 이상일 경우 자동차 이름 반환
+    });
   }
 }
 
