@@ -25,7 +25,9 @@ const getLogSpy = () => {
 };
 
 describe('자동차 경주', () => {
-  test('기능 테스트', async () => {
+  const ERROR_PREFIX = '[ERROR]';
+
+  test('기능 통합 테스트', async () => {
     // given
     const MOVING_FORWARD = 4;
     const STOP = 3;
@@ -46,15 +48,17 @@ describe('자동차 경주', () => {
     });
   });
 
-  test('예외 테스트', async () => {
+  test('이름 입력 예외 테스트', async () => {
     // given
-    const inputs = ['pobi,javaji'];
+    const inputs = ['pobi,javaji', 'pobi', 'pobi,pobi,java', ',,'];
     mockQuestions(inputs);
 
     // when
     const app = new App();
 
     // then
-    await expect(app.run()).rejects.toThrow('[ERROR]');
+    for (const _ of inputs) {
+      await expect(app.run()).rejects.toThrow(ERROR_PREFIX);
+    }
   });
 });
