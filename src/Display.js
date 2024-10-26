@@ -18,6 +18,12 @@ class Display {
     Console.print(`${name} : ${distanceGraph}`);
   }
 
+  static showWinners(winnerList) {
+    const winnersNameToString = winnerList.join(', ');
+
+    Console.print(`최종 우승자 : ${winnersNameToString}`);
+  }
+
   static showLineBreak() {
     const BREAK_MARK = '';
     Console.print(BREAK_MARK);
