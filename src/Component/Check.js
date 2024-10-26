@@ -1,20 +1,30 @@
-import { ERR_LENGTH, ERR_POSITIVE, ERR_ISNUMBER } from "./Error.js";
+import { ERR_LENGTH, ERR_POSITIVE, ERR_ISNUMBER, ERR_ISDUP } from "./Error.js";
+
+function isDuplicate(arr) {
+  const isDup = arr.some(function (x) {
+    return arr.indexOf(x) !== arr.lastIndexOf(x);
+  });
+
+  return isDup;
+}
 
 export const checkCarNames = (car_names_arr) => {
+  // 자동차 이름 길이가 1~5 사이인지 검사
   const str_len_check = car_names_arr.some(
     (str) => str.length <= 0 || str.length >= 6
   );
 
-  // 자동차 이름 길이가 1~5 사이인지 검사
-  if (str_len_check) ERR_LENGTH();
+  // 자동차 이름에 중복이 있는지 검사
+  const car_name_dup = isDuplicate(car_names_arr);
+
+  if (str_len_check) throw new Error(ERR_LENGTH());
+  if (car_name_dup) throw new Error(ERR_ISDUP());
 };
 
 export const checkAttemptNumber = (attempt_number) => {
+  // 입력한 값이 숫자인지 검사
   const reg = /^[0-9\s]*$/;
 
-  // 1 이상의 값을 입력했는지 검사
-  if (attempt_number <= 0) ERR_POSITIVE();
-
-  // 입력한 데이터가 숫자인지 아닌지 검사
-  if (!reg.test(attempt_number)) ERR_ISNUMBER();
+  if (attempt_number <= 0) throw new Error(ERR_POSITIVE());
+  if (!reg.test(attempt_number)) throw new Error(ERR_ISNUMBER());
 };
