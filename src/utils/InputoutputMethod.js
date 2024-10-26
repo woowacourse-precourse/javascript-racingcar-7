@@ -1,13 +1,30 @@
 import { Console } from '@woowacourse/mission-utils';
+import { IOMESSAGE } from '../constants/index.js';
 
 export const inputCarName = async () => {
   const carName = await Console.readLineAsync(
-    '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
+    `${IOMESSAGE.INPUTCARNAMEMESSAGE}${IOMESSAGE.NEWLINE}`,
   );
   return carName;
 };
 
 export const inputTryNum = async () => {
-  const tryNum = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+  const tryNum = await Console.readLineAsync(
+    `${IOMESSAGE.TRYNUMBERMESSAGE}${IOMESSAGE.NEWLINE}`,
+  );
   return tryNum;
+};
+
+export const printProgressResult = () => {
+  Console.print(`${IOMESSAGE.NEWLINE}${IOMESSAGE.PROGRESSRESULT}`);
+};
+
+export const printGameProgress = (gameBoard) => {
+  for (const [key, value] of Object.entries(gameBoard)) {
+    Console.print(`${key} : ${value}`);
+  }
+};
+
+export const printNewLine = () => {
+  Console.print(`${IOMESSAGE.NEWLINE}`);
 };
