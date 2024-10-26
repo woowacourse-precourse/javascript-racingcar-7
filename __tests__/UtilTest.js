@@ -1,4 +1,6 @@
-import View from "../src/View/View";
+import { MissionUtils } from "@woowacourse/mission-utils";
+import View from "../src/View/View.js";
+import { Car } from "../src/Model/Car.js";
 
 describe("View Tests", () => {
   let consoleSpy;
@@ -30,5 +32,24 @@ describe("View Tests", () => {
     view.outputWinner(["pobi", "rupi", "wolf"]);
 
     expect(consoleSpy).toHaveBeenCalledWith("최종 우승자 : pobi, rupi, wolf");
+  });
+
+  test("Car Move Test", () => {
+    const car = new Car("pobi");
+    const mockRandom = jest.spyOn(MissionUtils.Random, "pickNumberInRange");
+
+    mockRandom
+      .mockReturnValueOnce(5)
+      .mockReturnValueOnce(1)
+      .mockReturnValueOnce(7);
+
+    const result1 = car.moveForward();
+    expect(result1).toBe(1);
+
+    const result2 = car.moveForward();
+    expect(result2).toBe(1);
+
+    const result3 = car.moveForward();
+    expect(result3).toBe(2);
   });
 });
