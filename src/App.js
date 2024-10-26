@@ -9,7 +9,6 @@ import {
   validateRacingCountNumber,
   validateRacingCountType,
 } from './Validation.js';
-import LETTER from './constants/constant.js';
 
 class App {
   getRacingCarName = async () => {
@@ -41,7 +40,8 @@ class App {
   };
 
   printRacingResult = (cars, count) => {
-    console.log(); // 개행 용도
+    // 개행 용도
+    console.log();
     Console.print(OUTPUT_MESSAGE.racingResult);
 
     Array.from({ length: count }).forEach(() => {
@@ -49,12 +49,15 @@ class App {
     });
   };
 
+  static runResult = '-';
+
   printMoveForwardResult = (cars) => {
     cars.forEach((car) => {
       car.stopAndGo();
-      Console.print(`${car.name} : ${LETTER.runResult.repeat(car.distance)}`);
+      Console.print(`${car.name} : ${App.runResult.repeat(car.distance)}`);
     });
-    console.log(); // 횟수별 개행 용도
+    // 횟수별 개행 용도
+    console.log();
   };
 
   printWinner = (winner) => {
