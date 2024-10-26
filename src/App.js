@@ -71,6 +71,19 @@ class App {
       return dash;
     };
     racing();
+    Console.print(userNames);
+    Console.print(userRacingResult);
+
+    const checkRacingScore = () => {
+      let max = Number.MIN_SAFE_INTEGER;
+      for (let userNum = 0; userNum < userRacingResult.length; userNum++) {
+        if (max <= userRacingResult[userNum].length) {
+          max = userRacingResult[userNum].length;
+        }
+      }
+      return max;
+    };
+    Console.print(checkRacingScore());
   }
 }
 
