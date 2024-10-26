@@ -3,10 +3,12 @@ import { Console } from "@woowacourse/mission-utils";
 class App {
   constructor() {
     this.carNames = []; // 자동차 이름 목록
+    this.numberOfRounds = 0; // 시도할 횟수
   }
 
   async run() {
     await this.getCarNames(); // 자동차 이름 요청
+    await this.getRounds(); // 시도 횟수 요청
   }
 
   async getCarNames() {
@@ -23,6 +25,11 @@ class App {
       }
     });
     return names; // 유효한 자동차 이름 반환
+  }
+
+  async getRounds() {
+    const input = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+    this.numberOfRounds = this.validateRounds(input); // 시도 횟수 검증
   }
 }
 
