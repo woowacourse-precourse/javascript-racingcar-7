@@ -39,6 +39,21 @@ class RacingGame {
     for (let i = 0; i < this.counts; i++) {
       this.getScores();
     }
+    this.printWinner();
+  }
+
+  printWinner() {
+    let winners = "";
+    let maxScore = 0;
+    this.cars.forEach((e) => {
+      if (maxScore == e.score.length) {
+        winners += `, ${e.name}`;
+      } else if (maxScore <= e.score.length) {
+        maxScore = e.score.length;
+        winners = e.name;
+      }
+    });
+    Console.print(`최종 우승자: ${winners}`);
   }
 }
 
