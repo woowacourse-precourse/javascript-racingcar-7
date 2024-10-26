@@ -8,12 +8,8 @@ class RacingModel {
     this.car = { ...this.car, ...car };
   }
 
-  setCount(count) {
+  getCount(count) {
     this.count = count;
-  }
-
-  addresult(carName) {
-    this.car[carName] += '-';
   }
 }
 export default RacingModel;
