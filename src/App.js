@@ -23,26 +23,43 @@ class App {
   }
 
   async initializeGame() {
+    await this.initializeCars();
+    await this.initializeTryCount();
+  }
+
+  // 자동차 이름을 입력받아 게임 시작
+  async initializeCars() {
     const namesInput = await this.inputView.inputCarNames();
     this.game.createCars(namesInput);
+  }
 
+  // 시도 횟수를 입력받아 게임 시작
+  async initializeTryCount() {
     const countInput = await this.inputView.inputTryCount();
     this.tryCount = this.game.validateTryCount(countInput);
   }
 
   async playGame() {
-    this.printGameStartMessage();
-
-    for (let i = 0; i < this.tryCount; i++) {
-      this.game.moveAllCars();
-      this.printRoundStatus();
-    }
-
+    await this.printGameStartMessage();
+    await this.playRounds();
     this.printGameResult();
   }
 
-  printGameStartMessage() {
+  async printGameStartMessage() {
     this.outputView.printGameStartMessage();
+  }
+
+  // 입력된 시도 횟수만큼 게임을 진행하는 메서드
+  async playRounds() {
+    for (let i = 0; i < this.tryCount; i++) {
+      await this.playOneRound();
+    }
+  }
+
+  // 한 라운드를 진행하는 메서드
+  async playOneRound() {
+    this.game.moveAllCars();
+    this.printRoundStatus();
   }
 
   // 현재 라운드의 자동차 상태를 출력하는 메서드
