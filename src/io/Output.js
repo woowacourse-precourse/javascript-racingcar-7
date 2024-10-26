@@ -14,6 +14,11 @@ class Output {
   static printNewLine() {
     return Console.print('\n');
   }
+
+  static printWinner(winners) {
+    const result = GAME_MESSAGE.finalWinner + winners.join(GAME_MESSAGE.winnerDelimeter);
+    return Console.print(result);
+  }
 }
 
 export default Output;

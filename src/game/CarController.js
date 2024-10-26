@@ -22,5 +22,25 @@ class CarController {
     this.cars.forEach((car) => Output.printResult(car.name, car.generateRaceMarker()));
     Output.printNewLine();
   }
+
+  getWinner() {
+    const winnerArray = this.getCarWithMaxPosition();
+    Output.printWinner(winnerArray);
+  }
+
+  getCarWithMaxPosition() {
+    const winners = [];
+    let maxCount = this.cars[0].moveCount;
+
+    // TODO : indet 2로 줄이기
+    this.cars.forEach((car) => {
+      if (car.moveCount > maxCount) maxCount = car.moveCount;
+    });
+    this.cars.forEach((car) => {
+      if (car.moveCount === maxCount) winners.push(car.name);
+    });
+
+    return winners;
+  }
 }
 export default CarController;
