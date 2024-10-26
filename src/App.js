@@ -7,16 +7,23 @@ class App {
 
     Console.print("시도할 횟수는 몇 회인가요?");
     const TIMES_INPUT = await Console.readLineAsync("");
-    
+
     let cars = this.validateCarInput(INPUT);
 
   }
+  
   validateCarInput(input) {
     const cars = input.split(",");
     if (input.indexOf(",") == -1 || input == "") {
       throw new Error("[ERROR] 잘못된 입력입니다.");
     }
     cars.forEach(this.validateCarNameLength);
+  }
+  
+  validateCarNameLength(car) {
+    if (car.length > 5) {
+      throw new Error("[ERROR] 각 자동차 이름은 5자를 초과할 수 없습니다.");
+    }
   }
 }
 
