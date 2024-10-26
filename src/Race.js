@@ -6,6 +6,7 @@ class Race {
 
   constructor() {
     this.cars = [];
+    this.attemptCount = 0;  
   }
 
   async startRace() {
@@ -22,7 +23,7 @@ class Race {
   async setAttemptCount() {
     const attemptCount = await getAttempt();
     validateAttemptCount(attemptCount);
-    return attemptCount;
+    this.attemptCount = Number(attemptCount);
   }
 }
 
