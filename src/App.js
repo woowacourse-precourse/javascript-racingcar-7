@@ -4,6 +4,7 @@ import Car from './car.js';
 class App {
   constructor() {
     this.cars = [];
+    this.tryCount = 0;
   }
 
   async run() {
@@ -11,6 +12,7 @@ class App {
     this.cars = this.createCars(carNamesInput);
 
     const tryCountInput = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+    this.tryCount = this.convertToNumber(tryCountInput);
   }
 
   createCars(carNamesInput) {
@@ -21,6 +23,14 @@ class App {
     if (name.length > 5) throw new Error('[ERROR] 자동차의 이름은 5자 이하만 가능합니다.');
 
     return new Car(name);
+  }
+
+  convertToNumber(tryCountInput) {
+    const isNumber = tryCountInput.trim().match(/^[0-9]+$/);
+
+    if (!isNumber) throw new Error('[ERROR] 시도할 횟수가 숫자가 아닙니다.');
+
+    return;
   }
 }
 
