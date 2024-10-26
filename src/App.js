@@ -22,4 +22,14 @@ const inputCount = async () => {
   return count;
 };
 
+const randomNum = async (carsCnt) => {
+  const carsRandomNumArr = new Array(carsCnt).fill(0);
+
+  for (let i = 0; i < carsCnt; i++) {
+    carsRandomNumArr[i] = MissionUtils.Random.pickNumberInRange(0, 9);
+  }
+
+  return carsRandomNumArr;
+};
+
 export default App;
