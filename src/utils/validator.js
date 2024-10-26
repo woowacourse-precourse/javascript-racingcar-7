@@ -64,6 +64,13 @@ const Validator = {
       OutputView.throwError('시도 횟수는 0일 수 없습니다.');
     }
   },
+
+  validateIsInteger(rounds) {
+    const number = Number(rounds);
+    if (!Number.isInteger(number)) {
+      OutputView.throwError('시도 횟수는 정수여야 합니다.');
+    }
+  },
 };
 
 export default Validator;
