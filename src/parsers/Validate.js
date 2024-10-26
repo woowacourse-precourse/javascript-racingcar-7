@@ -15,7 +15,7 @@ const checkCountError = (countInput) => {
 };
 
 const checkCarRepeat = (carInput) => {
-  const uniqueCars = new Set(carInput);
+  const uniqueCars = new Set(carInput); // set 객체를 이용해서 고유한 배열만 남도록
   if (uniqueCars.size !== carInput.length) {
     throw new Error(ERROR_MESSAGE.COUNT_ERROR);
   }
