@@ -15,7 +15,7 @@ describe('시도할 횟수 테스트', () => {
     expect(() => new NumberOfTry(INPUT)).toThrow(ERROR_MESSAGE.empty);
   });
 
-  test.each([['1e1'], ['\n'], ['1.5'], ['6-4'], ['4/2']])(
+  test.each([['1e1'], ['\n'], ['1.5'], ['6-4'], ['4/2'], ['+-1'], ['-+1']])(
     '숫자가 아닌 문자를 입력하면 에러가 발생한다.',
     (input) => {
       expect(() => new NumberOfTry(input)).toThrow(ERROR_MESSAGE.character);
@@ -31,7 +31,7 @@ describe('시도할 횟수 테스트', () => {
 
   test.each([
     ['7', 7],
-    ['100', 100],
+    ['+100', 100],
   ])('유효성 검사에서 문제가 없으면 숫자가 반환된다.', (input, output) => {
     // when
     const number = new NumberOfTry(input).getNumberOfTry();

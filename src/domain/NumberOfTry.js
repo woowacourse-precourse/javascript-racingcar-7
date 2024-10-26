@@ -5,7 +5,7 @@ class NumberOfTry {
     range: '[ERROR] 1 이상의 숫자를 입력해주세요.',
   };
 
-  static #ONLY_NUMBER = /^-?\d+$/;
+  static #ONLY_NUMBER = /^[+-]?\d+$/;
 
   #input;
 
