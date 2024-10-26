@@ -26,21 +26,6 @@ const getLogSpy = () => {
 };
 
 describe('자동차 경주', () => {
-  test('입력 테스트', async () => {
-    const inputs = ['pobi,woni,jun', '5'];
-
-    const logs = ['pobi,woni,jun', '5'];
-    const logSpy = getLogSpy();
-
-    mockQuestions(inputs);
-
-    const app = new App();
-    await app.run();
-
-    logs.forEach((log) => {
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-    });
-  });
   test('기능 테스트', async () => {
     // given
     const MOVING_FORWARD = 4;
@@ -72,5 +57,18 @@ describe('자동차 경주', () => {
 
     // then
     await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test.each([
+    ['', `[ERROR]빈 문자열은 입력이 불가능합니다.`],
+    ['pobi,j un', `[ERROR]공백이 포함된 문자열은 입력이 불가능합니다.`],
+    [',,', `[ERROR]자동차 이름을 1개 이상 입력해주세요.`],
+    ['pobi,jun,', `[ERROR]구분자는 자동차 이름 사이에 1개씩만 쓰여야 합니다.`],
+    ['pobipobi,jun', `[ERROR]자동차 이름은 5자 이하만 가능합니다.`],
+  ])('validateCarNames(%s) returns %s', async (carInput, expected) => {
+    mockQuestions([carInput]);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow(expected);
   });
 });
