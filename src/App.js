@@ -23,7 +23,7 @@ async function main() {
 
     const moveCount = await Console.readLineAsync('시도할 횟수는 몇 회인가요?');
 
-    createCarRacing(scoreBoard, moveCount);
+    playGamesByCount(scoreBoard, moveCount);
     Console.print(`최종 우승자 : ${findGameWinners(scoreBoard)}`);
   } catch (error) {
     Console.print(error.message);
@@ -42,23 +42,19 @@ function createScoreBoard(playerNames) {
   return playerNames.map((name) => ({ name, score: 0 }));
 }
 
-function createCarRacing(formattedUserInput, moveCount) {
+function playGamesByCount(scoreBoard, moveCount) {
   for (let i = 0; i < moveCount; i++) {
-    displayResult(formattedUserInput);
+    scoreBoard.forEach(playGame);
+    Console.print('\n');
   }
 }
 
-// TODO: formattedUserInput 이름 변경
-function displayResult(formattedUserInput) {
-  for (const player of formattedUserInput) {
-    if (Random.pickNumberInRange(0, 9) >= 4) {
-      player.score += 1;
-    }
-    // TODO: 문자열 상수화
-    Console.print(`${player.name} : ${'-'.repeat(player.score)}`);
+function playGame(player) {
+  if (Random.pickNumberInRange(0, 9) >= 4) {
+    player.score += 1;
   }
-
-  Console.print('\n');
+  // TODO: 문자열 상수화
+  Console.print(`${player.name} : ${'-'.repeat(player.score)}`);
 }
 
 function findGameWinners(playerScore) {
