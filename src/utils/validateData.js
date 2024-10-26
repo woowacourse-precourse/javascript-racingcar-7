@@ -1,22 +1,18 @@
+import {
+  isDuplicateName,
+  isNoName,
+  isNotNumber,
+  isOverName,
+} from './checkError';
+
 export const validateCarNameList = (carNameList) => {
   carNameList.forEach((carName) => {
-    if (carName.length == 0) {
-      throw new Error('[ERROR] 자동차 이름 입력 없음 오류');
-    }
-
-    if (carName.length > 5) {
-      throw new Error('[ERROR] 자동차 이름 길이 입력 오류');
-    }
+    isNoName(carName);
+    isOverName(carName);
   });
-
-  const carNameSet = new Set(carNameList);
-  if (carNameList.length != carNameSet.size) {
-    throw new Error('[ERROR] 중복 이름 입력 오류');
-  }
+  isDuplicateName(carNameList);
 };
 
 export const validateTurnString = (turnString) => {
-  if (!turnString.match(/^[0-9]+$/)) {
-    throw new Error('[ERROR] 숫자가 아닌 문자 입력 오류');
-  }
+  isNotNumber(turnString);
 };
