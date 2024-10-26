@@ -12,6 +12,11 @@ class Controller {
     const carNames = cars.split(STRINGS.inputNameDelimiter);
     validator.validateCarNames(carNames);
   }
+
+  async readTrialCount() {
+    const trialCount = Number(await view.readTrialCount());
+    validator.validateTrialCount(trialCount);
+  }
 }
 
 export default Controller;

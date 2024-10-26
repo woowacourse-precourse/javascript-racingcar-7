@@ -2,7 +2,7 @@ export const VALUES = {
   minLength: 1,
   maxLength: 5,
   minRandom: 0,
-  maxRrandom: 9,
+  maxRandom: 9,
   moveIfOrMore: 4,
 };
 

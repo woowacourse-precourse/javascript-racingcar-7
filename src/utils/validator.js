@@ -21,6 +21,10 @@ const validator = {
   validateBlank(carNames) {
     return carNames.every((car) => car.trim().length === car.length);
   },
+  validateTrialCount(trialCount) {
+    if (!Number.isInteger(trialCount) || trialCount < 1)
+      throw new Error(ERROR_MESSAGES.notPositiveInteger);
+  },
 };
 
 export default validator;
