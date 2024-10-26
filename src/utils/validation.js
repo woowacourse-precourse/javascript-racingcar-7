@@ -1,9 +1,11 @@
 import { MAGICNUMBER } from '../constants/index.js';
 
 const validation = {
-  isLengthBelowFive: function isLengthBelowFive(inputs) {
-    const inputArr = inputs.split(MAGICNUMBER.SEPARATOR);
+  isLengthBelowFive: function isLengthBelowFive(inputArr) {
     return inputArr.every((input) => input.length < 6);
+  },
+  hasSpace: function hasSpace(inputArr) {
+    return inputArr.some((input) => /\s/g.test(input));
   },
 };
 
