@@ -1,4 +1,4 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 
 class Game {
   #CARS_LIST = [];
@@ -30,6 +30,11 @@ class Game {
       if (!this.canMoveForward()) return;
       car.moveForward();
     });
+  }
+
+  canMoveForward() {
+    if (Random.pickNumberInRange(0, 9) >= 4) return true;
+    return false;
   }
 }
 
