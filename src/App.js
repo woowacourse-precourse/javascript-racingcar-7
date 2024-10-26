@@ -1,9 +1,7 @@
 import { Console, Random } from '@woowacourse/mission-utils';
 
-const RIGHT_EXAMPLE_OF_CAR_NAME_INPUT =
-  "ex) 'pobi,jun' 같은 형식으로 입력해주세요.";
-const RIGHT_EXAMPLE_OF_GAME_COUNT_INPUT =
-  "ex) '1' 같은 양수 정수로 입력해주세요.";
+const CAR_NAME_INPUT_GUIDE = "ex) 'pobi,jun' 같은 형식으로 입력해주세요.";
+const GAME_COUNT_INPUT_GUIDE = "ex) '1' 같은 양수 정수로 입력해주세요.";
 
 const throwNewError = (condition, errorMessage) => {
   if (condition) {
@@ -16,25 +14,25 @@ const validateCarNames = (carNames) => {
   const carList = carNames.split(',').filter(Boolean);
   throwNewError(
     carNames.trim() === '',
-    `[ERROR]빈 문자열은 입력이 불가능합니다. ${RIGHT_EXAMPLE_OF_CAR_NAME_INPUT}`,
+    `[ERROR]빈 문자열은 입력이 불가능합니다. ${CAR_NAME_INPUT_GUIDE}`,
   );
   throwNewError(
     carNames.includes(' '),
-    `[ERROR]공백이 포함된 문자열은 입력이 불가능합니다. ${RIGHT_EXAMPLE_OF_CAR_NAME_INPUT}`,
+    `[ERROR]공백이 포함된 문자열은 입력이 불가능합니다. ${CAR_NAME_INPUT_GUIDE}`,
   );
 
   throwNewError(
     carList.length === 0,
-    `[ERROR]자동차 이름을 1개 이상 입력해주세요. ${RIGHT_EXAMPLE_OF_CAR_NAME_INPUT}`,
+    `[ERROR]자동차 이름을 1개 이상 입력해주세요. ${CAR_NAME_INPUT_GUIDE}`,
   );
 
   throwNewError(
     dividerCount !== carList.length - 1,
-    `[ERROR]구분자는 자동차 이름 사이에 1개씩만 쓰여야 합니다. ${RIGHT_EXAMPLE_OF_CAR_NAME_INPUT}`,
+    `[ERROR]구분자는 자동차 이름 사이에 1개씩만 쓰여야 합니다. ${CAR_NAME_INPUT_GUIDE}`,
   );
   throwNewError(
     carList.some((carName) => carName.length > 5),
-    `[ERROR]자동차 이름은 5자 이하만 가능합니다. ${RIGHT_EXAMPLE_OF_CAR_NAME_INPUT}`,
+    `[ERROR]자동차 이름은 5자 이하만 가능합니다. ${CAR_NAME_INPUT_GUIDE}`,
   );
 };
 
@@ -43,12 +41,12 @@ const validateGameCount = (gameCount) => {
 
   throwNewError(
     convertedGameCount <= 0,
-    `[ERROR]음수 혹은 0은 안됩니다. ${RIGHT_EXAMPLE_OF_GAME_COUNT_INPUT}`,
+    `[ERROR]음수 혹은 0은 안됩니다. ${GAME_COUNT_INPUT_GUIDE}`,
   );
 
   throwNewError(
     !Number.isInteger(convertedGameCount),
-    `[ERROR]양수 정수만 가능합니다. ${RIGHT_EXAMPLE_OF_GAME_COUNT_INPUT}`,
+    `[ERROR]양수 정수만 가능합니다. ${GAME_COUNT_INPUT_GUIDE}`,
   );
 };
 
