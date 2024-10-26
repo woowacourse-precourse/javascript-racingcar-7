@@ -1,4 +1,4 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 class App {
   async run() {
     Console.print("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
@@ -9,12 +9,12 @@ class App {
       throw new Error('[ERROR] 입력 형식에 맞지 않습니다.');
     }
     
-    const cars = carNameInput.split(',');
+    const carNames = carNameInput.split(',');
 
     //error: 5자 초과, 공백일 경우(=쉼표중복)
-    for(let car of cars){
-      let carName = car.trim();
-      if(carName.length > 5 || carName.length < 1){
+    for(let carName of carNames){
+      let carNameTrim = carName.trim();
+      if(carNameTrim.length > 5 || carNameTrim.length < 1){
         throw new Error('[ERROR] 자동차 이름은 1자 이상 5자 이하여야 합니다.');
       }
     }
@@ -25,6 +25,20 @@ class App {
     //error: 숫자가 아닌 값을 입력
     if(Number.isNaN(Number(games))) {
       throw new Error('[ERROR] 숫자를 입력해주세요.');
+    }
+
+    //경주
+    //{자동차이름: 전진값} 객체 생성
+    const cars = carNames.map(name => ({name, moving:0}));
+
+    for(let i=0; i< games; i++){
+      for(let car of cars){
+        const randomNum = Random.pickNumberInRange(0, 9);
+        if (randomNum > 4) {
+          car.moving += 1;
+        } 
+      }
+      cars.forEach(car => Console.print(car.name+ " : "+car.moving));
     }
   }
 }
