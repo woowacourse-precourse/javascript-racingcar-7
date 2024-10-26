@@ -19,13 +19,15 @@ export default class Game {
   }
 
   playSingleRound() {
-    this.cars.forEach((car) => {
-      const randomNumber = generateRandomNumber();
+    this.cars.forEach((car) => this.attemptMove(car));
+  }
 
-      if (randomNumber >= MOVE_THRESHOLD) {
-        car.move();
-      }
-    });
+  attemptMove(car) {
+    const randomNumber = generateRandomNumber();
+
+    if (randomNumber >= MOVE_THRESHOLD) {
+      car.move();
+    }
   }
 
   getWinners() {
