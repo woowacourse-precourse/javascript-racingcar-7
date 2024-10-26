@@ -18,7 +18,7 @@ class OutputView {
 
   static printWinners(winners) {
     const winnersOutput = winners.join(', ');
-    Console.print(`최종 우승자: ${winnersOutput}`);
+    Console.print(`최종 우승자 : ${winnersOutput}`);
   }
 }
 
