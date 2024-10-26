@@ -24,19 +24,8 @@ class CarRacingGame {
   }
 
   determineWinners() {
-    const winners = this.cars.reduce((winnerCars, currentCar) => {
-      if (
-        winnerCars.length === 0 ||
-        winnerCars[0].distance < currentCar.distance
-      ) {
-        return [currentCar];
-      } else if (winnerCars[0].distance === currentCar.distance) {
-        return [...winnerCars, currentCar];
-      }
-
-      return winnerCars;
-    }, []);
-
+    const maxDistance = Math.max(...this.cars.map((car) => car.distance));
+    const winners = this.cars.filter((car) => car.distance === maxDistance);
     return winners.map((car) => car.name);
   }
 }
