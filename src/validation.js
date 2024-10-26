@@ -1,5 +1,5 @@
 export const checkNameLength = (name) => {
-  if (name.length > 5) {
+  if (name.length > 5 || name.length < 1) {
     return false;
   }
 };
