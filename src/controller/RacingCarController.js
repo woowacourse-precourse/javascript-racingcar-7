@@ -35,7 +35,7 @@ export default class RacingCarController {
 
   printAdvancedResult(tryNumber) {
     this.#outputView.emptyLine();
-    this.#outputView.string(OUTPUT.EXCUTION_RESULT);
+    this.#outputView.string(OUTPUT.EXECUTION_RESULT);
     for (let i = 0; i < tryNumber; i++) {
       const advancedResult = this.#racingCarService.processCarMovement();
       this.#outputView.advancedResult(advancedResult);

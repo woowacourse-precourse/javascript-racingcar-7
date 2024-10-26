@@ -17,7 +17,7 @@ export const INPUT = Object.freeze({
 });
 
 export const OUTPUT = Object.freeze({
-  EXCUTION_RESULT: '실행 결과',
+  EXECUTION_RESULT: '실행 결과',
   WINNERS: '최종 우승자 : ',
 });
 
