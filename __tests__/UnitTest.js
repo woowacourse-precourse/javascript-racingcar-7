@@ -66,7 +66,7 @@ describe("조건에 따라 에러 메세지와 함께 예외 처리를 발생시
   });
 
   test("조건이 false이므로 예외 처리가 발생하지 않습니다.", () => {
-    expect(() => assertCondition(false, errorMessage)).not.toThrow(errorMessage);
+    expect(() => assertCondition(false, errorMessage)).not.toThrow();
   });
 });
 
