@@ -4,7 +4,7 @@ export function isValidRound(round) {
   if (round === "") {
     throw new Error(ERROR_MESSAGES.EMPTY_INPUT_ROUND);
   }
-  if (isNaN(parseInt(round, 10))) {
+  if (!(parseInt(round, 10) > 0)) {
     throw new Error(ERROR_MESSAGES.INVALID_ROUND_NUMBER);
   }
 }
