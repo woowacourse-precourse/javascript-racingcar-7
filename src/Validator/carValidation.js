@@ -7,12 +7,16 @@ const IS_NAME_LENGTH = (carNames) => carNames.some((name) => name.length > 5);
 const IS_SPECIAL_CHARACTER = (carNames) =>
   carNames.some((name) => /[^a-zA-Z0-9]/.test(name));
 
-const IS_SEPARATED = (carNames) =>
-  carNames.some((name) => /[^a-zA-Z,]/.test(name));
+const IS_CAR_COUNT = (carNames) => carNames.length > 10;
+
+const IS_SEPARATED = (carNames) => !/^([a-zA-Z]+)(,[a-zA-Z]+)*$/.test(carNames);
 
 export const CAR_VALIDATION = (inputCarName) => {
   const carNames = inputCarName.split(',').map((name) => name.trim());
 
+  if (IS_SEPARATED(carNames)) {
+    throw new Error('[ERROR] 자동차 이름의 구분자는 쉼표여야합니다.');
+  }
   if (IS_EMPTY_NAME(carNames)) {
     throw new Error('[ERROR] 자동차 이름은 공백이 될 수 없습니다.');
   }
@@ -27,7 +31,7 @@ export const CAR_VALIDATION = (inputCarName) => {
       '[ERROR] 자동차 이름은 문자가 아닌 값이 포함될 수 없습니다.',
     );
   }
-  if (IS_SEPARATED(carNames)) {
-    throw new Error('[ERROR] 자동차 이름의 구분자는 쉼표여야합니다.');
+  if (IS_CAR_COUNT(carNames)) {
+    throw new Error('[ERROR] 자동차는 10대를 초과할 수 없습니다.');
   }
 };
