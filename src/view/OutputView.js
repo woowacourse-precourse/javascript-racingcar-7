@@ -17,7 +17,11 @@ const OutputView = {
 
   printErrorMessage(errorMessage) {
     throw new Error(`${OUTPUT_MESSAGES.ERROR} ${errorMessage}`);
-  }
+  },
+
+  printNewLine() {
+    Console.print('');
+  },
 }
 
 export default OutputView;

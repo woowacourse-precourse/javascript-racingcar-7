@@ -16,10 +16,10 @@ class RaceController {
     OutputView.printRaceStartMessage();
 
     const car = new Car(carNames);
-
+    
     Array.from({ length: raceCount }, () => {
       this.performRaceRound(car, carNames);
-      Console.print('');
+      OutputView.printNewLine();
     });
 
     this.printRaceWinner(car);
