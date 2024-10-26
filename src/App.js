@@ -34,6 +34,13 @@ class App {
     );
     Console.print(inputCount + "회");
 
+    const checkCount = () => {
+      if (inputCount !== Number) {
+        throw new Error("[ERROR] 숫자를 입력해주새요.");
+      }
+    };
+    Console.print(checkCount());
+
     // 2. 입력받은 값을 통해 게임 구현
 
     const randomNum = () => {
