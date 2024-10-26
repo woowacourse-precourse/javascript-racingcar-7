@@ -25,9 +25,9 @@
     1. 최소 1
     2. 최대 5
 
-- [ ] models 폴더
+- [x] models 폴더
 
-  - [ ] RacingCarModel.js
+  - [x] Car.js
 
   1. 얼마나 앞으로 갔는지
   2. 자동차 이름
