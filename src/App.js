@@ -15,6 +15,12 @@ class App {
 
     const countInput = await inputCount();
     const count = validateCount(countInput);
+
+    for (let i = 0; i < count; i++) {
+      cars.forEach((car) => {
+        car.moveCar();
+      });
+    }
   }
 }
 
