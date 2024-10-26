@@ -41,7 +41,7 @@ class App {
   };
 
   printRacingResult = (cars, count) => {
-    console.log();
+    console.log(); // 개행 용도
     Console.print(OUTPUT_MESSAGE.racingResult);
 
     Array.from({ length: count }).forEach(() => {
@@ -54,7 +54,7 @@ class App {
       car.stopAndGo();
       Console.print(`${car.name} : ${LETTER.runResult.repeat(car.distance)}`);
     });
-    console.log(); // 횟수별 줄바꿈 용도
+    console.log(); // 횟수별 개행 용도
   };
 
   printWinner = (winner) => {
