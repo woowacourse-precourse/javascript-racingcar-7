@@ -24,6 +24,20 @@ class CarManager {
     });
     return stepResult;
   }
+
+  getWinner() {
+    let winners = [];
+    const maxCar = this.carNameArr.reduce((prev, el) => {
+      return prev.getDistance() >= el.getDistance() ? prev : el;
+    });
+    this.carNameArr.forEach((car) => {
+      if (car.getDistance() === maxCar.getDistance()) {
+        winners.push(car.getName());
+      }
+    });
+
+    return winners.join(", ");
+  }
 }
 
 export default CarManager;

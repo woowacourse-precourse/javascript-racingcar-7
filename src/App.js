@@ -21,7 +21,7 @@ class App {
       OutputView.printEachStep(carManager);
     }
 
-    OutputView.printWinner();
+    OutputView.printWinner(carManager);
   }
 }
 

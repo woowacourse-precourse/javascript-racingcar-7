@@ -16,7 +16,7 @@ export const INPUT_MESSAGE = Object.freeze({
 
 export const OUTPUT_MESSAGE = Object.freeze({
   RESULT_TITLE: "\n실행 결과",
-  WINNER_NAMES: "최종 우승자:",
+  WINNER_NAMES: "최종 우승자 :",
 });
 
 export const TRY_MINIMUM_COUNT = 0;

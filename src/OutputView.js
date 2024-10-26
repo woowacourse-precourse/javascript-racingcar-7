@@ -14,7 +14,9 @@ const OutputView = {
     Console.print(carManager.getEachStepResult());
   },
 
-  printWinner() {},
+  printWinner(carManager) {
+    Console.print(`${OUTPUT_MESSAGE.WINNER_NAMES} ${carManager.getWinner()}`);
+  },
 };
 
 export default OutputView;
