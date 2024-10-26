@@ -2,7 +2,9 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 
 async function getNumber() {
   const input = await MissionUtils.Console.readLineAsync("시도할 횟수는 몇 회인가요? \n");
-  return input;
+  const blank = /(\s*)/g;
+  const integerInput = Number(input.replace(blank,''));
+  return integerInput;
 }
 
 async function getCarname() {
