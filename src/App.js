@@ -1,5 +1,9 @@
+import { carRacingProceed } from './CarRacingGame/carRacingProceeding.js';
+
 class App {
-  async run() {}
+  async run() {
+    await carRacingProceed();
+  }
 }
 
 export default App;
