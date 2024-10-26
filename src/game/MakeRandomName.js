@@ -1,17 +1,19 @@
 import { VOWEL } from '../const/index.js';
 
 export const makeOddChar = () => {
+  const vowelList = Object.values(VOWEL);
   while (true) {
     // 아스키 97~122 a~z
     const randomAscii = Math.floor(Math.random() * (122 - 97 + 1)) + 97;
     // 모음이 아닐 때만 반환
-    if (!Object.values(VOWEL).includes(randomAscii)) {
+    if (!vowelList.includes(randomAscii)) {
       return String.fromCharCode(randomAscii);
     }
   }
 };
 
 export const makeEvenChar = () => {
+  // a e i o u 확률적으로 반환
   const randomNum = Math.floor(Math.random() * 10);
   const vowelList = Object.keys(VOWEL);
   if (randomNum < 2) return vowelList[0];
@@ -23,23 +25,18 @@ export const makeEvenChar = () => {
 
 export const makeRandomName = () => {
   const strLength = 5;
-  let rnadomString = '';
+  let randomString = '';
   for (let i = 0; i < strLength; i++) {
-    if (rnadomString.length % 2 === 0) rnadomString += makeOddChar();
-    else if (rnadomString.length % 2 === 1) rnadomString += makeEvenChar();
+    if (randomString.length % 2 === 0) randomString += makeOddChar();
+    else if (randomString.length % 2 === 1) randomString += makeEvenChar();
   }
-  return rnadomString;
+  return randomString;
 };
 
-export const initRandomName = (...parseInput) => {
-  const newArray = [];
-  parseInput.forEach((input) => {
+export const initRandomName = (...parseInput) =>
+  parseInput.map((input) => {
     if (input === '') {
-      const randomName = makeRandomName();
-      newArray.push(randomName);
-    } else {
-      newArray.push(input);
+      return makeRandomName();
     }
+    return input;
   });
-  return newArray;
-};

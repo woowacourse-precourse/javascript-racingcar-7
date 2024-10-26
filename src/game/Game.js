@@ -1,7 +1,7 @@
-import { print } from '../handler/IoHandller.js';
+import { print } from '../handler/IoHandler.js';
 import { moveCarEvent, getWinner } from './carAction.js';
 import { makeOutput, formatWinners } from './outputCar.js';
-import { initRandomName } from './MakeRandomName.js';
+import { initRandomName } from './makeRandomName.js';
 
 export const initGame = ({ car, count }) => {
   const carNamesWithRandom = initRandomName(...car);

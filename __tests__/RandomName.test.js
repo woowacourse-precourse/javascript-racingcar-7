@@ -3,7 +3,7 @@ import {
   makeEvenChar,
   makeRandomName,
   initRandomName,
-} from '../src/game/MakeRandomName.js';
+} from '../src/game/makeRandomName.js';
 import { VOWEL } from '../src/const/index.js';
 
 describe('랜덤 이름 생성기 테스트', () => {
