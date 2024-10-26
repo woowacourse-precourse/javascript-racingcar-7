@@ -13,7 +13,7 @@ class App {
     let times = this.validTimesInput(TIMES_INPUT);
     this.playCarRacing(cars, times);
   }
-  
+
   validateCarInput(input) {
     const cars = input.split(",");
     if (input.indexOf(",") == -1 || input == "") {
@@ -38,27 +38,46 @@ class App {
   }
 
   playCarRacing(cars, times) {
-    while(times > 0){
-      this.movingForward(cars)
-      times --
-    }      
-  }
-  movingForward(cars){
-    for (let i = 0; i < cars.length; i++){
-      let randomNumber = Random.pickNumberInRange(0,9)
-      if(randomNumber >=4){
-        cars[i].distance +="-"
-      }
+    while (times > 0) {
+      this.movingForward(cars);
+      times--;
     }
-    this.printProgress(cars)
-    Console.print('')
+    return this.findWinner(cars);
   }
 
-  printProgress(cars){
-    cars.forEach((car)=>{
-      Console.print(`${car.name} : ${car.distance} `)
-    })
+  movingForward(cars) {
+    for (let i = 0; i < cars.length; i++) {
+      let randomNumber = Random.pickNumberInRange(0, 9);
+      if (randomNumber >= 4) {
+        cars[i].distance += "-";
+      }
+    }
+    this.printProgress(cars);
+    Console.print("");
   }
+
+  printProgress(cars) {
+    cars.forEach((car) => {
+      Console.print(`${car.name} : ${car.distance} `);
+    });
+  }
+
+  findWinner(cars) {
+    let maxDistanceLength = 0;
+    let winners = [];
+    cars.forEach((car) => {
+      let distanceLength = car.distance.length;
+      if (distanceLength > maxDistanceLength) {
+        maxDistanceLength = distanceLength;
+        winners = [car.name]; 
+      } 
+      else if (distanceLength === maxDistanceLength) {
+        winners.push(car.name); 
+      }
+    });
+    return this.printWinner(winners);
+  }
+
 }
 
 export default App;
