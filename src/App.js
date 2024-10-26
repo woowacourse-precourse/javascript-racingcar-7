@@ -11,11 +11,24 @@ class App {
       if (name.length > 5) {
         throw new Error('[ERROR] 자동차 이름은 5자 이하만 입력 가능합니다.');
       }
+      if (name.length == 0) {
+        throw new Error(
+          '[ERROR] 쉼표로 시작 또는 끝나거나 연속 두 번 이상 사용할 수 없습니다.'
+        );
+      }
     });
+
+    if (!carNames[1]) {
+      throw new Error('[ERROR] 경주할 자동차는 2대 이상 입력해야 합니다.');
+    }
 
     const inputRounds = await Console.readLineAsync(
       '시도할 횟수는 몇 회인가요?\n'
     );
+
+    if (isNaN(inputRounds)) {
+      throw new Error('[ERROR] 시도 횟수는 숫자만 입력 가능합니다.');
+    }
 
     const printRaceCount = (count) => {
       let string = '';
