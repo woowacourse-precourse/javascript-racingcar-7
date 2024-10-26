@@ -27,7 +27,7 @@ class RacingController {
 
     if (this.validateConut(conutInput)) {
       const conut = Number(conutInput);
-      this.model.setCount(Number(conut));
+      this.model.getCount(Number(conut));
     }
   }
 
