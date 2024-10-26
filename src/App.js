@@ -5,29 +5,31 @@ import { Console, Random } from '@woowacourse/mission-utils';
 
 class App {
   async run() {
-    try {
-      const userInput = await Console.readLineAsync(
-        '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분\n)'
-      );
-
-      const playerNames = userInput.split(',').map((e) => e.trim());
-      validatePlayerNames(playerNames);
-      const formattedUserInput = formatUserInputForGameResult(playerNames);
-
-      const moveCount = await Console.readLineAsync(
-        '시도할 횟수는 몇 회인가요?'
-      );
-
-      createCarRacing(formattedUserInput, moveCount);
-      Console.print(`최종 우승자 : ${findGameWinners(formattedUserInput)}`);
-    } catch (error) {
-      Console.print(error.message);
-      throw error;
-    }
+    await main();
   }
 }
 
 export default App;
+
+async function main() {
+  try {
+    const userInput = await Console.readLineAsync(
+      '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분\n)'
+    );
+
+    const playerNames = userInput.split(',').map((e) => e.trim());
+    validatePlayerNames(playerNames);
+    const scoreBoard = createScoreBoard(playerNames);
+
+    const moveCount = await Console.readLineAsync('시도할 횟수는 몇 회인가요?');
+
+    createCarRacing(scoreBoard, moveCount);
+    Console.print(`최종 우승자 : ${findGameWinners(scoreBoard)}`);
+  } catch (error) {
+    Console.print(error.message);
+    throw error;
+  }
+}
 
 function validatePlayerNames(playerNames) {
   // [ERROR] 5자를 초과
@@ -36,7 +38,7 @@ function validatePlayerNames(playerNames) {
     throw new Error('[ERROR]');
 }
 
-function formatUserInputForGameResult(playerNames) {
+function createScoreBoard(playerNames) {
   return playerNames.map((name) => ({ name, score: 0 }));
 }
 
