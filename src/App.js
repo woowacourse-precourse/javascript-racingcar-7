@@ -74,16 +74,19 @@ class App {
     Console.print(userNames);
     Console.print(userRacingResult);
 
+    let winner = [];
     const checkRacingScore = () => {
       let max = Number.MIN_SAFE_INTEGER;
       for (let userNum = 0; userNum < userRacingResult.length; userNum++) {
         if (max <= userRacingResult[userNum].length) {
           max = userRacingResult[userNum].length;
+          winner.push(userNames[userNum]);
         }
       }
       return max;
     };
     Console.print(checkRacingScore());
+    Console.print(winner);
   }
 }
 
