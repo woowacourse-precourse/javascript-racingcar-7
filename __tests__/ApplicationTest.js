@@ -109,4 +109,37 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+  test("예외 테스트: 횟수에 문자를 입력했을 경우", async () => {
+    // given
+    const inputs = ["sdf", "a"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+  test("예외 테스트: 횟수가 비어있을 경우", async () => {
+    // given
+    const inputs = ["sdf", "  "];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+  test("예외 테스트: 횟수에 음수를 입력했을 경우", async () => {
+    // given
+    const inputs = ["sdf", "-1"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
 });

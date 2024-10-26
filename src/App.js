@@ -17,8 +17,16 @@ class App {
       }
     });
 
-    if (!attempts) {
+    if (!attempts.trim()) {
       throw new Error("[ERROR]: 시도 횟수를 입력해주세요.");
+    }
+
+    if (attempts < 1) {
+      throw new Error("[ERROR]: 시도 횟수는 1 이상만 가능합니다.");
+    }
+
+    if (isNaN(attempts)) {
+      throw new Error("[ERROR]: 시도 횟수는 숫자만 입력 가능합니다.");
     }
   }
   async getCarNameAndAttempts() {
