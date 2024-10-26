@@ -61,6 +61,16 @@ class App {
     Console.print(`${car.name} : ${car.result}`);
   }
 
+  determineWinner(cars) {
+    const maxDistance = Math.max(...cars.map((car) => car.result.length));
+    const winner = [];
+    cars.forEach((car) => {
+      if (car.result.length === maxDistance) {
+        winner.push(car.name);
+      }
+    });
+    return winner;
+  }
   async run() {
     try {
       const { cars, attempts } = await this.getCarNameAndAttempts();
@@ -73,6 +83,7 @@ class App {
         });
         Console.print("\n");
       }
+      this.determineWinner(cars);
     } catch (error) {
       throw error;
     }
