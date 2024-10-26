@@ -13,6 +13,7 @@ const PREFIX_ERROR = '[ERROR]';
 const ERROR_MESSAGE = Object.freeze({
   blank: `${PREFIX_ERROR} 공백은 입력하실 수 없습니다.`,
   onlyRacer: `${PREFIX_ERROR} 최소 2대부터 경주가 가능합니다.`,
+  special: `${PREFIX_ERROR} 특수문자는 입력하실 수 없습니다.`,
 
   carName: {
     invalidLength: `${PREFIX_ERROR} 자동차 이름은 5글자 이내입니다.`,

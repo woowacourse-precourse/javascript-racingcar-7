@@ -1,6 +1,7 @@
 import { ERROR_MESSAGE } from './constants/message.js';
 
 const NUMBER_REGEX = /^[1-9]\d*$/;
+const NAME_REGEX = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
 
 const validateInputBlank = (input) => {
   if (
@@ -10,6 +11,12 @@ const validateInputBlank = (input) => {
     input.includes(' ')
   ) {
     throw new Error(ERROR_MESSAGE.blank);
+  }
+};
+
+const validateInputSpecialCharacter = (input) => {
+  if (NAME_REGEX.test(input) == true) {
+    throw new Error(ERROR_MESSAGE.special);
   }
 };
 
@@ -50,4 +57,5 @@ export {
   validateRacingCountType,
   validateRacingCountNumber,
   validateRacingCarSeparator,
+  validateInputSpecialCharacter,
 };
