@@ -53,6 +53,7 @@ class App {
 
     let dash = "";
     const racing = () => {
+      Console.print("실행 결과");
       for (let r = 0; r < inputCount; r++) {
         for (let u = 0; u < userNames.length; u++) {
           dash = "";
@@ -71,22 +72,28 @@ class App {
       return dash;
     };
     racing();
-    Console.print(userNames);
-    Console.print(userRacingResult);
 
-    let winner = [];
-    const checkRacingScore = () => {
+    const checkMaxLength = () => {
       let max = Number.MIN_SAFE_INTEGER;
       for (let userNum = 0; userNum < userRacingResult.length; userNum++) {
         if (max <= userRacingResult[userNum].length) {
           max = userRacingResult[userNum].length;
-          winner.push(userNames[userNum]);
         }
       }
       return max;
     };
-    Console.print(checkRacingScore());
-    Console.print(winner);
+
+    const winner = () => {
+      const win = [];
+      const maxScore = checkMaxLength();
+      for (let num = 0; num < userRacingResult.length; num++) {
+        if (maxScore === userRacingResult[num].length) {
+          win.push(userNames[num]);
+        }
+      }
+      return "최종 우승자 : " + win;
+    };
+    Console.print(winner());
   }
 }
 
