@@ -1,4 +1,4 @@
-import { ERROR } from '../../constant.js';
+import { ERROR } from '../constant.js';
 
 export function checkEmptyString(input) {
   if (input.trim() === '') {

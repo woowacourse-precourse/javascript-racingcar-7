@@ -1,6 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import { OutputView } from '../src/view/OutputView.js';
-import { OUTPUT } from '../constant.js';
+import { OUTPUT } from '../src/constant';
 
 const getLogSpy = () => {
   const logSpy = jest.spyOn(Console, 'print');

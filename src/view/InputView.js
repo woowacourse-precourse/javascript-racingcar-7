@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { INPUT } from '../../constant.js';
+import { INPUT } from '../constant.js';
 
 export class InputView {
   async carNames() {

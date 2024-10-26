@@ -1,4 +1,4 @@
-import { ERROR } from '../constant';
+import { ERROR } from '../src/constant';
 import {
   checkEmptyString,
   checkMinCarNumber,

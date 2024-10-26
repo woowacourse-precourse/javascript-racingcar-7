@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { DASH, OUTPUT } from '../../constant.js';
+import { DASH, OUTPUT } from '../constant.js';
 
 export class OutputView {
   advancedResult(cars) {

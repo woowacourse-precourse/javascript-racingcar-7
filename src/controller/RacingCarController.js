@@ -1,4 +1,4 @@
-import { OUTPUT } from '../../constant.js';
+import { OUTPUT } from '../constant.js';
 import Validator from '../Validator.js';
 
 export default class RacingCarController {

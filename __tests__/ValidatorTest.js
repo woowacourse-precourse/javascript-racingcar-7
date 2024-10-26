@@ -1,4 +1,4 @@
-import { ERROR } from '../constant.js';
+import { ERROR } from '../src/constant';
 import Validator from '../src/Validator.js';
 
 describe('Validator 클래스 테스트', () => {
