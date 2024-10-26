@@ -75,11 +75,9 @@ class App {
     };
 
     const printCarDistances = () => {
-      const distanceOfCars = cars.reduce(
-        (acc, _, index) => `${acc}${cars[index]} : ${carDistances[index]}\n`,
-        '',
-      );
-      Console.print(distanceOfCars);
+      cars.forEach((car, index) => {
+        Console.print(`${car} : ${carDistances[index]}`);
+      });
     };
 
     for (let count = 1; count <= gameCount; count++) {
@@ -91,6 +89,9 @@ class App {
       moveCars(carsCanMove);
 
       printCarDistances();
+      if (count !== gameCount) {
+        Console.print('');
+      }
     }
 
     const maxDistance = Math.max(
