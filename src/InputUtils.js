@@ -19,3 +19,14 @@ export function validateCarNameLength(names) {
     }
   });
 }
+
+export function validateCarsLength(names) {
+  if (names.length === 0) {
+    throw new Error('[ERROR]');
+  }
+}
+
+export function validateCarNames(names) {
+  validateCarNameLength(names);
+  validateCarsLength(names);
+}
