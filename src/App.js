@@ -43,6 +43,8 @@ class App {
       const carState = createCarState(carsName);
 
       updateCarState(carState, movesNumber);
+
+      Console.print("\n실행 결과");
     } catch (error) {
       Console.print(`[ERROR] ${error.message}`);
     }
