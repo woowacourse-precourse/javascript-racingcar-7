@@ -37,6 +37,23 @@ class App {
       printResult();
       MissionUtils.Console.print("");
     }
+
+    let finalWinner = carObjs[0];
+    const finalWinners = [];
+
+    for (let i = 1; i < carObjs.length; i++) {
+      if (carObjs[i].result.length > finalWinner.result.length) {
+        finalWinner = carObjs[i];
+        finalWinners.push(finalWinner.name);
+      }
+    }
+    for (let i = 0; i < carObjs.length; i++) {
+      if (carObjs[i].result.length === finalWinner.result.length) {
+        finalWinners.push(carObjs[i].name);
+      }
+    }
+
+    MissionUtils.Console.print(`최종 우승자 : ${finalWinners.join(", ")}`);
   }
 }
 
