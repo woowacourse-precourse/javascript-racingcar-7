@@ -11,7 +11,7 @@ class App {
       throw new Error(ERROR_MESSAGES.empty_car_list);
     }
 
-    const cars = inputCar.split(",");
+    const cars = inputCar.split(",").filter(item => item !== "");
     if (cars.length === 1) { // 자동차가 하나만 입력되었을 때
       throw new Error(ERROR_MESSAGES.only_one_car)
     }
