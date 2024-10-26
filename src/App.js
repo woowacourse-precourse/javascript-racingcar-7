@@ -2,11 +2,15 @@ import { Console } from '@woowacourse/mission-utils';
 
 class App {
   async run() {
-    const carNames = await this.getCarNames();
-    const tryCount = await this.getTryCount();
-    const cars = this.createCars(carNames);
-    this.startRace(cars, tryCount);
-    this.printWinners(cars);
+    try {
+      const carNames = await this.getCarNames();
+      const tryCount = await this.getTryCount();
+      const cars = this.createCars(carNames);
+      this.startRace(cars, tryCount);
+      this.printWinners(cars);
+    } catch (error) {
+      Console.print(error.message);
+    }
   }
 
   async getCarNames() {
