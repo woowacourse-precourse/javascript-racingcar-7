@@ -9,7 +9,7 @@ class CarRaceGame {
     const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
     return randomNumber >= 4;
   }
-  
+
   determineEachCarMovement() {
     this.carProgressRecords.forEach((car) => {
       if (!shouldMoveForward()) {
@@ -18,8 +18,15 @@ class CarRaceGame {
     });
   }
 
+  printCarProgress() {
+    this.carProgressRecords.forEach((car) => {
+      MissionUtils.Console.print(`${car.name} : ${"-".repeat(car.position)}`);
+    });
+  }
+
   startRace() {
     this.determineEachCarMovement();
+    this.printCarProgress();
   }
 }
 
