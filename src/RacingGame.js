@@ -1,3 +1,4 @@
+import { MissionUtils } from "@woowacourse/mission-utils";
 import Car from "./Car";
 
 class RacingGame {
@@ -9,6 +10,14 @@ class RacingGame {
     const carNames = this.separateCarNames(namesInput);
     this.validateDuplicateCarName(carNames);
     this.cars = carNames.map((name) => new Car(name));
+  }
+
+  // 모든 자동차들의 움직임을 결정하는 메서드
+  moveAllCars() {
+    this.cars.forEach((car) => {
+      const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
+      car.moveCar(randomNumber);
+    });
   }
 
   separateCarNames(namesInput) {

@@ -79,6 +79,18 @@ describe("Car 클래스 테스트", () => {
   test("이름이 공백 문자로만 이루어진 경우 에러 발생", () => {
     expect(() => new Car("  ")).toThrow("[ERROR]");
   });
+
+  test("4 이상의 숫자에서 자동차 전진", () => {
+    const car = new Car("pobi");
+    car.moveCar(4);
+    expect(car.position).toBe(1);
+  });
+
+  test("3 이하의 숫자에서 자동차 정지", () => {
+    const car = new Car("pobi");
+    car.moveCar(3);
+    expect(car.position).toBe(0);
+  });
 });
 
 describe("RacingGame 클래스 테스트", () => {
@@ -113,5 +125,17 @@ describe("RacingGame 클래스 테스트", () => {
     expect(() => {
       game.validateTryCount("lolol");
     }).toThrow("[ERROR]");
+  });
+
+  test("모든 자동차 이동 테스트", () => {
+    const game = new RacingGame();
+    game.createCars("pobi, jini");
+
+    mockRandoms([6, 3]);
+
+    game.moveAllCars();
+
+    expect(game.cars[0].position).toBe(1);
+    expect(game.cars[1].position).toBe(0);
   });
 });
