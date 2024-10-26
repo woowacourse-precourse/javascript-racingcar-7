@@ -16,7 +16,9 @@ class App {
 
     for (let i = 0; i < Number(moveAttemptCountInput); i++) {
       carsData.forEach((car) => {
-        this.moveForward(car);
+        const canMoveForward = this.canMoveForward();
+
+        this.moveOrStop(car, canMoveForward);
         this.printRoundResult(car);
       });
 
@@ -63,8 +65,8 @@ class App {
     Console.print(`${PRINT_MESSAGE.WINNERS}${winners.join(', ')}`);
   }
 
-  moveForward(car) {
-    if (this.canMoveForward()) {
+  moveOrStop(car, canMoveForward) {
+    if (canMoveForward) {
       car.position += 1;
     }
   }
