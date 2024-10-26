@@ -6,7 +6,7 @@ class NumValidation {
       throw new Error(INVALID_NUMBER);
     }
 
-    if (Number(tryCount) > 20) {
+    if (Number(tryCount) > 100) {
       throw new Error(TOO_BIG_NUMBER);
     }
 
