@@ -20,10 +20,19 @@ class App {
   async getTryCount() {
     const input = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
     const count = Number(input);
+    if (this.validateTryCount(count)) {
+      return count;
+    } else {
+      throw new Error('[ERROR] 시도 횟수는 1 이상의 숫자여야 합니다.');
+    }
   }
 
   validateCarNames(names) {
     return names.every((name) => name.length > 0 && name.length <= 5);
+  }
+
+  validateTryCount(count) {
+    return Number.isInteger(count) && count > 0;
   }
 }
 
