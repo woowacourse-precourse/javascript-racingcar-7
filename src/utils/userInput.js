@@ -1,6 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import { checkCarInputLength } from '../errors/carError.js';
-import { checkEmptyInput } from '../errors/commonError.js';
+import { checkContents, checkEmptyInput } from '../errors/commonError.js';
 
 const carListValidate = (carName) => {
 	const carList = carName.split(',');
@@ -24,5 +24,6 @@ export async function carNameInputHandler() {
 export async function tryNumberHandler() {
 	const tryNumber = await Console.readLineAsync(`시도할 횟수는 몇 회인가요?\n`);
 	checkEmptyInput(tryNumber);
+	checkContents(tryNumber);
 	return tryNumber;
 }
