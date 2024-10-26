@@ -1,6 +1,8 @@
+
+export const GAP = " ";
 export const MIN_RANDOM_NUMBER = 0;
 export const MAX_RANDOM_NUMBER = 9;
-export const GAP = " ";
+export const LETTER_ONLY_REGEX = /^[ㄱ-ㅎ가-힣a-zA-Z]+$/;
 
 export const RUN_MESSAGE = {
   INPUT_ATTEMPTS_NUMBER: "시도할 횟수는 몇 회인가요?\n",
@@ -10,10 +12,10 @@ export const RUN_MESSAGE = {
 export const CAR_RACE = {
   COLON: " : ",
   CAR_MOVE: "-",
+  NEW_LINE: "\n",
   MOVE_THRESHOLD: 4,
   RUN_RESULT: "\n실행 결과",
   FINAL_WINNER: "최종 우승자 : ",
-  NEW_LINE: "\n",
 };
 
 export const ERROR_MESSAGES = {
