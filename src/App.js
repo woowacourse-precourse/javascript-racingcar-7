@@ -2,7 +2,9 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 
 import Car from './Car.js';
 
-import { getCarName, splitCarName, getAttemptCount } from './InputUtils.js';
+import {
+  getCarName, splitCarName, getAttemptCount, validateCarName,
+} from './InputUtils.js';
 import { printCarPosition, printWinnerCar } from './OutputUtils.js';
 
 class App {
@@ -13,6 +15,8 @@ class App {
   async run() {
     const carNames = await getCarName();
     const splittedCarName = splitCarName(carNames);
+    validateCarName(splittedCarName);
+
     const attemptCount = await getAttemptCount();
 
     this.carList = this.makeCars(splittedCarName);

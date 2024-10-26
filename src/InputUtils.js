@@ -11,3 +11,11 @@ export function splitCarName(name) {
 export async function getAttemptCount() {
   return await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
 }
+
+export function validateCarName(names) {
+  names.forEach((name) => {
+    if (name.length > 5) {
+      throw new Error('[ERROR]');
+    }
+  });
+}
