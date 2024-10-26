@@ -13,7 +13,7 @@ class CarModel {
     }
   }
 
-  getPosition() {
+  getPositionString() {
     return '-'.repeat(this.position);
   }
 
