@@ -1,4 +1,4 @@
-import { VOWEL } from './const/index.js';
+import { VOWEL } from '../const/index.js';
 
 const makeOddChar = () => {
   while (true) {
@@ -22,8 +22,9 @@ const makeEvenChar = () => {
 };
 
 const makeRandomName = () => {
+  const strLength = 5;
   let rnadomString = '';
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < strLength; i++) {
     if (rnadomString.length % 2 === 0) rnadomString += makeOddChar();
     else if (rnadomString.length % 2 === 1) rnadomString += makeEvenChar();
   }
