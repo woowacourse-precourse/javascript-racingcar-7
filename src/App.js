@@ -35,7 +35,7 @@ class App {
     return distances;
   }
 
-  moveCar(name, distances) {
+  processCarMovement(name, distances) {
     const randomNum = Random.pickNumberInRange(0, 9);
     if (randomNum >= 4) {
       distances[name] += "-";
@@ -53,7 +53,7 @@ class App {
 
   printCarDistance(carNames, distances) {
     carNames.forEach(name => {
-      this.moveCar(name, distances);
+      this.processCarMovement(name, distances);
       Console.print(`${name} : ${distances[name]}`); 
     });
   }
