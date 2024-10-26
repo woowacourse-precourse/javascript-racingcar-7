@@ -21,6 +21,9 @@ const checkNameLength = (name) => {
   if (name.length > 5) {
     throw new Error(ERROR.INVALID_CAR_NAME);
   }
+  if (name.length === 0) {
+    throw new Error(ERROR.NO_INPUT_CAR_NAME);
+  }
 };
 
 const checkIsDuplicatedName = (cars) => {
