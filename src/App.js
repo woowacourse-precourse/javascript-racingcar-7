@@ -4,7 +4,7 @@ class App {
   async run() {
     const cars = await inputCars();
     const count = await inputCount();
-    const result = await racingCount(count, cars.length);
+    const result = await racingCount(count, cars);
 
     Console.print("최종 우승자 : " + getWinners(cars, result));
   }
@@ -25,28 +25,24 @@ const inputCount = async () => {
   return count;
 };
 
-const randomNum = async (carsCnt) => {
-  const carsRandomNumArr = new Array(carsCnt).fill(0);
+const randomNum = () => {
+  return MissionUtils.Random.pickNumberInRange(0, 9);
+};
 
-  for (let i = 0; i < carsCnt; i++) {
-    carsRandomNumArr[i] = MissionUtils.Random.pickNumberInRange(0, 9);
+const racingCar = async (cars, result, randomNumArr) => {
+  for (let i = 0; i < cars.length; i++) {
+    if (randomNumArr[i] >= 4) result[i] += 1;
+    Console.print(`${cars[i]} : ${"-".repeat(result[i])}`);
   }
-
-  return carsRandomNumArr;
+  Console.print("\n");
 };
 
-const racingCar = async (result, randomNumArr) => {
-  randomNumArr.map((num, index) => num >= 4 && (result[index] += 1));
-
-  return result;
-};
-
-const racingCount = async (count, carsCnt) => {
-  let result = new Array(carsCnt).fill(0);
+const racingCount = async (count, cars) => {
+  let result = new Array(cars.length).fill(0);
 
   for (let i = 0; i < count; i++) {
-    const randomNumArr = await randomNum(carsCnt);
-    result = await racingCar(result, randomNumArr);
+    const randomNumArr = cars.map(() => randomNum());
+    racingCar(cars, result, randomNumArr);
   }
 
   return result;
