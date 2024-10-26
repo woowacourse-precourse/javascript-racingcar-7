@@ -31,15 +31,19 @@ class Racing {
     });
   }
 
-  #showResult(round) {
+  showResult() {
     const raceResult = this.#result;
-    Display.showRoundResultHeader(round);
 
-    raceResult.forEach((eachResult) => {
-      Display.showDistanceGraph(eachResult);
+    raceResult.forEach((roundResult, index) => {
+      const round = index + 1;
+      Display.showRoundResultHeader(round);
+
+      roundResult.forEach((carResult) => {
+        Display.showDistanceGraph(carResult);
+      });
+
+      Display.showLineBreak();
     });
-
-    Display.showLineBreak();
   }
 
   #findWinners() {
