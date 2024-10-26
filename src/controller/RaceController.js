@@ -3,26 +3,25 @@ import OutputView from "../view/OutputView.js";
 import CarNameValidations from "../validations/CarNameValidations.js";
 import RaceCountValidations from "../validations/RaceCountValidations.js";
 import parseStringToArray from "../utils/parseStringToArray.js";
-import parseArrayToString from "../utils/parseArrayToString.js";
-import Car from "../domain/Car.js";
-import getRandomNumber from "../utils/getRandomNumber.js";
-import { Console } from "@woowacourse/mission-utils";
+import RaceService from "../service/RaceService.js";
 
 class RaceController {
   async start() {
     const carNames = await this.getValidatedCarNames();
     const raceCount = await this.getValidatedRaceCount();
+    const raceService = new RaceService(carNames);
 
     OutputView.printRaceStartMessage();
 
-    const car = new Car(carNames);
-    
     Array.from({ length: raceCount }, () => {
-      this.performRaceRound(car, carNames);
+      const raceRoundResult = raceService.performRaceRound();
+      raceRoundResult.forEach(({ carName, forwardCount }) => {
+        OutputView.printRoundResult(carName, forwardCount);
+      })
       OutputView.printNewLine();
     });
 
-    this.printRaceWinner(car);
+    OutputView.printWinner(raceService.getRaceWinner());
   }
 
   async getValidatedCarNames() {
@@ -36,19 +35,6 @@ class RaceController {
     const raceCount = await InputView.readRaceCountInput();
     RaceCountValidations(raceCount);
     return raceCount;
-  }
-
-  performRaceRound(car, carNames) {
-    carNames.forEach((_, carIndex) => {
-      const randomNumber = getRandomNumber();
-      car.isForwardMovementValid(randomNumber, carIndex);
-      OutputView.printRoundResult(car.carNames[carIndex], car.forwardCounts[carIndex]);
-    });
-  }
-
-  printRaceWinner(car) {
-    const winner = parseArrayToString(car.getWinnerList());
-    OutputView.printWinner(winner);
   }
 }
 
