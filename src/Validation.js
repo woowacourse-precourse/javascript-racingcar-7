@@ -3,7 +3,12 @@ import { ERROR_MESSAGE } from './constants/message.js';
 const NUMBER_REGEX = /^[1-9]\d*$/;
 
 const validateInputBlank = (input) => {
-  if (input === null || input === undefined || input === '') {
+  if (
+    input === null ||
+    input === undefined ||
+    input === '' ||
+    input.includes(' ')
+  ) {
     throw new Error(ERROR_MESSAGE.blank);
   }
 };

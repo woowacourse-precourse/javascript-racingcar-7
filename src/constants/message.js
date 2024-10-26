@@ -11,7 +11,7 @@ const OUTPUT_MESSAGE = Object.freeze({
 const PREFIX_ERROR = '[ERROR]';
 
 const ERROR_MESSAGE = Object.freeze({
-  blank: `${PREFIX_ERROR} 값을 입력해주십시오.`,
+  blank: `${PREFIX_ERROR} 공백은 입력하실 수 없습니다.`,
   onlyRacer: `${PREFIX_ERROR} 최소 2대부터 경주가 가능합니다.`,
 
   carName: {
