@@ -7,11 +7,7 @@ export function divisionCarName(input) {
 }
 
 export function createCarObject(carNames) {
-  // 각 이름마다 car 객체를 생성하여 배열로 반환
-  const cars = carNames.map((name) => ({
-    name: name.trim(),
-    forwardNum: 0,
-  }));
-
-  return cars;
+  const names = carNames.map((name) => name.trim()); // 자동차 이름 배열
+  const positions = new Array(carNames.length).fill(0); // 전진 수 배열, 초기값은 0
+  return { names, positions };
 }
