@@ -1,6 +1,15 @@
 import { Console } from '@woowacourse/mission-utils';
 import Racer from './Racer.js';
 import Racing from './Racing.js';
+import CustomError from './Error.js';
+import ERROR_MESSAGES from './constants/error.js';
+import {
+  FIRST_USER_INPUT_PLACEHOLDER,
+  SECOND_USER_INPUT_PLACEHOLDER,
+  NAME_SEPARATOR,
+  MAX_NAME_LENGTH,
+  OUTPUT_PREFIX,
+} from './constants/index.js';
 
 class App {
   #totalRound = 0;
@@ -9,14 +18,15 @@ class App {
 
   async run() {
     const firstUserInput = await Console.readLineAsync(
-      '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분) \n',
+      FIRST_USER_INPUT_PLACEHOLDER,
     );
-    const secondUserInput =
-      await Console.readLineAsync('시도할 횟수는 몇 회인가요? \n');
+    const secondUserInput = await Console.readLineAsync(
+      SECOND_USER_INPUT_PLACEHOLDER,
+    );
 
-    this.#racers = firstUserInput.split(',').map((racer) => {
-      if (racer.length >= 6) {
-        throw new Error('[ERROR] : 이름은 5글자 이하로 입력해주세요');
+    this.#racers = firstUserInput.split(NAME_SEPARATOR).map((racer) => {
+      if (racer.length > MAX_NAME_LENGTH) {
+        throw new CustomError(ERROR_MESSAGES.LESS_THAN_FIVE_LETTERS);
       }
       return new Racer(racer);
     });
@@ -30,7 +40,7 @@ class App {
     this.racing.start().getResultByRound();
     const winners = this.racing.getWinners();
 
-    Console.print(`최종 우승자 : ${winners.join(', ')}`);
+    Console.print(`${OUTPUT_PREFIX} ${winners.join(', ')}`);
   }
 }
 
