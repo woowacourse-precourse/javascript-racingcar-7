@@ -19,7 +19,7 @@ class App {
       );
 
       createCarRacing(formattedUserInput, moveCount);
-      Console.print(`최종 우승자 : ${findGameWinner(formattedUserInput)}`);
+      Console.print(`최종 우승자 : ${findGameWinners(formattedUserInput)}`);
     } catch (error) {
       Console.print(error.message);
       throw error;
@@ -59,16 +59,19 @@ function displayResult(formattedUserInput) {
   Console.print('\n');
 }
 
-function findGameWinner(playerScore) {
-  const { score: topScore } = playerScore.reduce((prev, current) => {
-    if (prev.score > current.score) return prev;
-    else return current;
-  });
+function findGameWinners(playerScore) {
+  const { score: topScore } = playerScore.reduce(findTopScoredPlayer);
 
   return playerScore
-    .filter((player) => {
-      return player.score === topScore;
-    })
+    .filter((player) => player.score === topScore)
     .map((player) => player.name)
     .join(', ');
+}
+
+function findTopScoredPlayer(prev, current) {
+  if (prev.score > current.score) {
+    return prev;
+  } else {
+    return current;
+  }
 }
