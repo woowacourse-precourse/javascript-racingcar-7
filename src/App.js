@@ -11,6 +11,7 @@ class App {
     await this.getCarNames(); // 자동차 이름 요청
     await this.getRounds(); // 시도 횟수 요청
     this.startRace(); // 경주 시작
+    this.printResults(); // 최종 결과 출력
   }
 
   async getCarNames() {
@@ -65,6 +66,23 @@ class App {
       const result = "-".repeat(totalDistance);
       Console.print(`${carName} : ${result}`); // 라운드 결과 출력
     });
+  }
+
+  printResults() {
+    const winners = this.findWinners(); // 우승자 찾기
+    Console.print(`최종 우승자 : ${winners.join(", ")}`); // 최종 결과 출력
+  }
+
+  findWinners() {
+    const distances = this.carNames.map(
+      (carName) =>
+        this.roundResults.flat().filter((name) => name === carName).length // 각 자동차의 총 이동 거리
+    );
+
+    const maxDistance = Math.max(...distances); // 최대 거리 계산
+    return this.carNames.filter(
+      (carName, index) => distances[index] === maxDistance
+    ); // 우승자 반환
   }
 }
 
