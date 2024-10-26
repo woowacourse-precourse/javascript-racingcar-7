@@ -11,7 +11,7 @@ class NameValidation {
       throw new Error(EMPTY_CAR_NAME_ERROR);
     }
 
-    const nameList = carNames.split(',');
+    const nameList = carNames.split(',').map(name => name.trim());
     nameList.forEach(name => {
       if (name.length > 5) {
         throw new Error(MORE_THAN_FIVE_LETTERS);
