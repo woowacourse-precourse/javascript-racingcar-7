@@ -14,6 +14,14 @@ const Validator = {
       OutputView.throwError('자동차 이름은 빈 문자열이나 공백일 수 없습니다.');
     }
   },
+
+  validateNameLength(carNames) {
+    const hasLongName = carNames.some((name) => name.length > 5);
+
+    if (hasLongName) {
+      OutputView.throwError('자동차 이름은 5자 이하만 가능합니다.');
+    }
+  },
 };
 
 export default Validator;
