@@ -12,7 +12,7 @@ class App {
 
     Console.print("실행 결과\n");
     for(let i = 0; i < this.count; i++){
-      this.getRandomNAdvance();
+      this.updateCarProgressRandomly();
 
     }
   }
@@ -47,7 +47,7 @@ class App {
     });
   }
 
-  getRandomNAdvance(){
+  updateCarProgressRandomly(){
     Object.keys(this.carNameObj).forEach(key => {
       const random = MissionUtils.Random.pickNumberInRange(0,9);
       if(random >= 4){
