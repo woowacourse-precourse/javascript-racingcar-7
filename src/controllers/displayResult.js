@@ -1,8 +1,8 @@
-import RacingResult from '../models/RacingResult.js';
+import RaceResult from '../models/RaceResult.js';
 import OutputView from '../views/OutputView.js';
 
 function displayResult(race) {
-  const winners = RacingResult.determineWinners(race.getCars());
+  const winners = RaceResult.determineWinners(race.getCars());
   OutputView.printResult(race.getCars(), winners);
 }
 

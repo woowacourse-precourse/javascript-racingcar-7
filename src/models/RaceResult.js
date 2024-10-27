@@ -1,6 +1,6 @@
 import getMaxAdvance from '../utils/getMaxAdvance.js';
 
-class RacingGameResult {
+class RaceResult {
   static determineWinners(cars) {
     const maxAdvance = getMaxAdvance();
     return cars
@@ -9,4 +9,4 @@ class RacingGameResult {
   }
 }
 
-export default RacingGameResult;
+export default RaceResult;
