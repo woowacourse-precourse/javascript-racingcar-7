@@ -38,6 +38,8 @@ class App {
   }
 
   playCarRacing(cars, times) {
+    Console.print("");
+    Console.print("실행 결과");
     while (times > 0) {
       this.movingForward(cars);
       times--;
