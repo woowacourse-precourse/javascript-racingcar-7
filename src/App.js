@@ -1,4 +1,5 @@
 import RacingCar from "./models/CarRaceGame.js";
+import Validator from "./Validator/Validator.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 const DELIMITER = ",";
@@ -32,14 +33,22 @@ class App {
   }
 
   async run() {
-    const carNameList = await this.#getCarNames();
-    const tryCount = await this.#getTryCount();
+    try {
+      const carNameList = await this.#getCarNames();
+      const tryCount = await this.#getTryCount();
 
-    const carProgressRecords = this.#getCarProgressRecords(carNameList);
-    const carRaceGame = new RacingCar(carProgressRecords, tryCount);
+      Validator.validateCarNames(carNameList);
+      Validator.validateTryCount(tryCount);
 
-    carRaceGame.startRace();
-    carRaceGame.printRaceResults();
+      const carProgressRecords = this.#getCarProgressRecords(carNameList);
+      const carRaceGame = new RacingCar(carProgressRecords, tryCount);
+
+      carRaceGame.startRace();
+      carRaceGame.printRaceResults();
+    } catch (error) {
+      MissionUtils.Console.print(error.message);
+      throw error;
+    }
   }
 }
 
