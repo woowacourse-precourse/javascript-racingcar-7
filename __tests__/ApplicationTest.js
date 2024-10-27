@@ -49,7 +49,7 @@ describe("자동차 경주", () => {
     expect(() => app.validateCarNames(["pobi,javaji"])).toThrow("[ERROR] 자동차 이름은 최대 5자 이하이어야 합니다.");
   });
 
-  test("유효한 자동차 이름", () => {
+  test("유효한 자동차 이름을 확인한다.", () => {
     const app = new App();
     expect(() => app.validateCarNames(["pobi", "woni"])).not.toThrow();
   });
@@ -61,7 +61,7 @@ describe("자동차 경주", () => {
     expect(() => app.validateMoveCount("0")).toThrow("[ERROR] 시도 횟수는 1 이상의 정수여야 합니다.");
   });
 
-  test("유효한 시도 횟수", () => {
+  test("유효한 시도 횟수를 확인한다.", () => {
     const app = new App();
     expect(() => app.validateMoveCount("3")).not.toThrow();
   });
@@ -90,5 +90,22 @@ describe("자동차 경주", () => {
     const cars = [{ name: "pobi", position: 0 }, { name: "woni", position: 0 }];
     app.runRound(cars);
     expect(moveCarSpy).toHaveBeenCalledTimes(cars.length);
+  });
+
+  // 6. 자동차 이동 시물레이션
+  test("자동차 움직임을 검증하기 위해 무작위 기능을 확인한다.", () => {
+    const app = new App();
+    const car = { name: "pobi", position: 0 };
+    jest.spyOn(MissionUtils.Random, "pickNumberInRange").mockReturnValue(4);
+    app.moveCar(car);
+    expect(car.position).toBe(1);
+  });
+
+  test("무작위 값이 4보다 작으면 자동차를 움직이지 않는다.", () => {
+    const app = new App();
+    const car = { name: "pobi", position: 0 };
+    jest.spyOn(MissionUtils.Random, "pickNumberInRange").mockReturnValue(3);
+    app.moveCar(car);
+    expect(car.position).toBe(0);
   });
 });
