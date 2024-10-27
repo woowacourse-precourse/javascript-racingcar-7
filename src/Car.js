@@ -1,4 +1,4 @@
-class Car{
+export default class Car{
     static #max = 0;
 
     #name;

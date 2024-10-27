@@ -1,4 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
+import Car from "./Car.js";
 
 export function splitComma(string){
     let commaSplitList = string.split(",");
@@ -30,4 +31,13 @@ export function isSameCar(carList){
     if(carList.length !== carSet.size){
         throw new Error("[ERROR] 동일한 차 이름이 있습니다.")
     }
+}
+
+export function makeCarClassList(carList){
+    let carClassList = [];
+    carList.forEach((car)=>{
+        let carClass = new Car(car);
+        carClassList.push(carClass);
+    })
+    return carClassList;
 }
