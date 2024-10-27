@@ -53,7 +53,7 @@
 2. `$ npm install`
 3. `$ npm run start`
 
-## 📂 파일 구조
+## 📂 폴더 구조
 
 ```
 javascript-racingcar-7
@@ -93,3 +93,44 @@ javascript-racingcar-7
 ### 1. JSDoc 미사용
 
 JSDoc을 사용할까 고민을 했어요. 하지만 JSDoc을 적용해봤을 때 코드의 절반 이상이 주석으로 덮여있는 것을 보고 코드의 가독성을 상당히 저해하는 구나 느꼈어요. JSDoc을 작성하지 않음으로써 코드의 안정성보다 코드의 가독성을 선택했어요. 하지만 이에 대한 해결책으로 테스트 코드로 코드의 안정성 또한 극복할 수 있었어요.
+
+## 🧩 클래스 다이어그램
+
+```mermaid
+classDiagram
+  class App{
+	  async run()
+	  #getInput()
+	  #runRace()
+	  #printOutput()
+	}
+	class Input{
+		#CAR_NAME_REGEXP
+	  #SEPARATOR
+	  #rawCars
+	  #rawTryCount
+		async getUserInput()
+		parseCarNames()
+		parseTryCount()
+		validateCarArray()
+	}
+	class Race{
+	  #MIN_RANDOM
+	  #MAX_RANDOM
+	  #MOVE_FORWARD_THRESHOLD
+	  #TRACE_CHARACTER
+	  #FORWARD_STEP
+
+	  #carArray
+	  #tryCount
+	  #carTraceMap
+	  run()
+	  #runOneRound()
+	  #moveCarForward()
+	  #getIsMoveForward()
+	  #printCarPosition()
+	  #getWinnerArray()
+	}
+	App --> Input
+	App --> Race
+```
