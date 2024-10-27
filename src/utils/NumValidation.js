@@ -6,17 +6,18 @@ import {
 
 class NumValidation {
   static isValidNum(tryCount) {
-    if (Number.isNaN(tryCount) === false) {
+    if (Number.isNaN(Number(tryCount))) {
       throw new Error(NOT_NUMBER);
     }
-    if (tryCount === '0') {
+    const count = Number(tryCount);
+
+    if (count === 0) {
       throw new Error(INVALID_NUMBER);
     }
 
-    if (Number(tryCount) > 100) {
+    if (count > 100) {
       throw new Error(TOO_BIG_NUMBER);
     }
-
     return true;
   }
 }
