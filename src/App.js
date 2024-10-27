@@ -20,15 +20,11 @@ class App {
     );
     const names = input.split(',');
     if (!this.validateNameLengths(names)) {
-      throw new Error('[ERROR] 자동차 이름은 1자 이상 5자 이하만 가능합니다.');
+      throw new Error('[ERROR] 자동차 이름은 5자 이하만 가능합니다.');
     }
-
-    // 빈 문자열 체크
     if (!this.validateNoEmptyNames(names)) {
       throw new Error('[ERROR] 자동차 이름은 빈 문자열일 수 없습니다.');
     }
-
-    // 중복 이름 체크
     if (!this.validateNoDuplicateNames(names)) {
       throw new Error('[ERROR] 자동차 이름은 중복될 수 없습니다.');
     }
@@ -46,8 +42,16 @@ class App {
     }
   }
 
-  validateCarNames(names) {
-    return names.every((name) => name.length > 0 && name.length <= 5);
+  validateNameLengths(names) {
+    return names.every((name) => name.length <= 5);
+  }
+
+  validateNoEmptyNames(names) {
+    return names.every((name) => name.trim() !== '');
+  }
+
+  validateNoDuplicateNames(names) {
+    return new Set(names).size === names.length;
   }
 
   validateTryCount(count) {
