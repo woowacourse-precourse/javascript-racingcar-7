@@ -1,5 +1,5 @@
-import App from "../src/App.js";
-import { MissionUtils } from "@woowacourse/mission-utils";
+import App from '../src/App.js';
+import { MissionUtils } from '@woowacourse/mission-utils';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -19,83 +19,19 @@ const mockRandoms = (numbers) => {
 };
 
 const getLogSpy = () => {
-  const logSpy = jest.spyOn(MissionUtils.Console, "print");
+  const logSpy = jest.spyOn(MissionUtils.Console, 'print');
   logSpy.mockClear();
   return logSpy;
 };
 
-describe("입력 검증", () => {
-  test("올바른 입력 테스트", async ()=> {
-    //given
-    const inputs = ["pobi,woni","3"];
-    const logSpy = getLogSpy();
-    mockQuestions(inputs);
 
-    //when
-    const app = new App();
-    await app.run();
-
-    //then
-    expect(logSpy).not.toHaveBeenCalledWith(expect.stringContaining("[ERROR]"));
-  });
-
-  test("예외 테스트: 이름이 5자를 초과할 때", async () => {
-    //given
-    const inputs = ["pobi,longname"];
-    mockQuestions(inputs);
-
-    //when
-    const app = new App();
-
-    //then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
-  });
-
-  test("예외 테스트: 이름이 공백일 때", async () => {
-    //given
-    const inputs = ["pobi,,woni"];
-    mockQuestions(inputs);
-
-    //when
-    const app = new App();
-
-    //then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
-  });
-
-  test("예외 테스트: 쉼표가 없을 때", async () => {
-    //given
-    const inputs = ["pobi.woni"];
-    mockQuestions(inputs);
-
-    //when
-    const app = new App();
-    
-    //then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
-  });
-
-  test("예외 테스트: 경주 횟수가 숫자가 아닐 때", async() => {
-    //given
-    const inputs = ["pobi,woni","three"];
-    mockQuestions(inputs);
-
-    //when
-    const app = new App();
-
-    //then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
-  });
-});
-
-
-describe("자동차 경주", () => {
-  test("기능 테스트", async () => {
+describe('자동차 경주', () => {
+  test('기능 테스트', async () => {
     // given
     const MOVING_FORWARD = 4;
     const STOP = 3;
-    const inputs = ["pobi,woni", "1"];
-    const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
+    const inputs = ['pobi,woni', '1'];
+    const logs = ['pobi : -', 'woni : ', '최종 우승자 : pobi'];
     const logSpy = getLogSpy();
 
     mockQuestions(inputs);
@@ -111,15 +47,52 @@ describe("자동차 경주", () => {
     });
   });
 
- /* test("예외 테스트", async () => {
+  test('예외 테스트: 이름이 5자를 초과할 때', async () => {
     // given
-    const inputs = ["pobi,javaji"];
+    const inputs = ['pobi,javaji'];
     mockQuestions(inputs);
 
     // when
     const app = new App();
 
     // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
-  });*/
-}); 
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+  
+  test('예외 테스트: 이름이 공백일 때', async () => {
+    //given
+    const inputs = ['pobi,,woni'];
+    mockQuestions(inputs);
+
+    //when
+    const app = new App();
+
+    //then
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('예외 테스트: 쉼표가 없을 때', async () => {
+    //given
+    const inputs = ['pobi.woni'];
+    mockQuestions(inputs);
+
+    //when
+    const app = new App();
+
+    //then
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('예외 테스트: 경주 횟수가 숫자가 아닐 때', async () => {
+    //given
+    const inputs = ['pobi,woni', 'three'];
+    mockQuestions(inputs);
+
+    //when
+    const app = new App();
+
+    //then
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+});
