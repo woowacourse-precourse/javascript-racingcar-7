@@ -7,11 +7,19 @@ import runValidators from './run-validator.js';
 */
 export const ERROR_MESSAGES = {
   EMPTY_INPUT: '입력이 비어 있습니다.',
+  EMPTY_CAR_NAME: '자동차 이름에 빈 값이 포함되어 있습니다. 모든 이름을 입력해 주세요.',
   NAME_LENGTH_EXCEEDED: '자동차 이름은 5자를 넘을 수 없습니다.',
 };
 
 const checkForEmptyInput = (carNameList) => {
   if (!carNameList) throwError(ERROR_MESSAGES.EMPTY_INPUT);
+  return carNameList;
+};
+
+const checkEmptyValue = (carNameList) => {
+  if (carNameList.some((carName) => carName === '')) {
+    throwError(ERROR_MESSAGES.EMPTY_CAR_NAME);
+  }
   return carNameList;
 };
 
@@ -25,7 +33,7 @@ const checkNameLengthLimit = (carNameList) => {
 };
 
 const validateCarName = (carNameList) => {
-  runValidators([checkForEmptyInput, checkNameLengthLimit], carNameList);
+  runValidators([checkForEmptyInput, checkEmptyValue, checkNameLengthLimit], carNameList);
 };
 
 export default validateCarName;
