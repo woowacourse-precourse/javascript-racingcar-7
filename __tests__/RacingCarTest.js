@@ -109,4 +109,18 @@ describe("자동차 경주", () => {
       `[ERROR] ${ERROR_MESSAGES.NO_CAR_INPUT}`
     );
   });
+
+  test("예외 테스트 - 실행 횟수에 숫자가 아닌 값이 들어간 경우", async () => {
+    // given
+    const inputs = ["pobi,woni", "zero"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow(
+      `[ERROR] ${ERROR_MESSAGES.INVALID_COUNT_INPUT}`
+    );
+  });
 });
