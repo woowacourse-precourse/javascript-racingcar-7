@@ -7,15 +7,14 @@ class App {
     }
 
     function checkCarNames(CAR_NAMES_LIST) {
-      for (let IDX = 0; IDX < CAR_NAMES_LIST.length; IDX++) {
-        if (CAR_NAMES_LIST[IDX].length > 5)
-          throwError("차 이름이 5자를 넘습니다");
-        else if (
-          (CAR_NAMES_LIST[IDX] == undefined) |
-          (CAR_NAMES_LIST[IDX].trim() == "")
-        )
+      CAR_NAMES_LIST.map((car) => {
+        if (car.trim().length > 5) throwError("차 이름이 5자를 넘습니다");
+        else if (car.trim().length == 0)
+          throwError("일부 차 이름을 입력하시지 않으셨습니다");
+        else if ((car == undefined) | (car.trim() == ""))
           throwError("쉼표로 입력을 끝냈습니다");
-      }
+        else car = car.trim();
+      });
       return CAR_NAMES_LIST;
     }
 
@@ -41,8 +40,7 @@ class App {
 
     function startRace(CAR_NAMES_LIST, RACE_COUNT) {
       let TRACK_CARS = {};
-      for (let IDX = 0; IDX < CAR_NAMES_LIST.length; IDX++)
-        TRACK_CARS[CAR_NAMES_LIST[IDX]] = parseInt(0);
+      CAR_NAMES_LIST.map((car) => (TRACK_CARS[car] = parseInt(0)));
       MissionUtils.Console.print("실행 결과");
       for (let COUNT = 0; COUNT < RACE_COUNT; COUNT++) {
         TRACK_CARS = raceStatus(CAR_NAMES_LIST, TRACK_CARS);
@@ -51,14 +49,10 @@ class App {
     }
 
     function raceStatus(CAR_NAMES_LIST, TRACK_CARS) {
-      for (let IDX = 0; IDX < CAR_NAMES_LIST.length; IDX++) {
-        if (moveOrStop()) TRACK_CARS[CAR_NAMES_LIST[IDX]] += 1;
-        MissionUtils.Console.print(
-          `${CAR_NAMES_LIST[IDX]} : ${"-".repeat(
-            TRACK_CARS[CAR_NAMES_LIST[IDX]]
-          )}`
-        );
-      }
+      CAR_NAMES_LIST.map((car) => {
+        if (moveOrStop()) TRACK_CARS[car] += 1;
+        MissionUtils.Console.print(`${car} : ${"-".repeat(TRACK_CARS[car])}`);
+      });
       MissionUtils.Console.print("");
       return TRACK_CARS;
     }
@@ -83,12 +77,8 @@ class App {
     }
 
     function nameWinners(TRACK_CARS) {
-      let WINNERS_LIST = findWinners(TRACK_CARS);
-      let PRINT_WINNERS = "";
-      for (let IDX = 0; IDX < WINNERS_LIST.length - 1; IDX++) {
-        PRINT_WINNERS += WINNERS_LIST[IDX] + ", ";
-      }
-      PRINT_WINNERS += WINNERS_LIST[WINNERS_LIST.length - 1];
+      const WINNERS_LIST = findWinners(TRACK_CARS);
+      const PRINT_WINNERS = WINNERS_LIST.map((winner) => winner).join(",");
       MissionUtils.Console.print(`최종 우승자 : ${PRINT_WINNERS}`);
     }
 
