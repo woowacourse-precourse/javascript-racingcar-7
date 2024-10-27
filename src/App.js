@@ -32,21 +32,24 @@ function randomRacing(car) {
   if (RANDOM_NUM >= 4) {
     return car + "-";
   }
-  return car + "";
+  return car;
 }
 
 function startRacing(array, count) {
-  const UPDATE_ARRAY = array.map(
+  let UPDATE_ARRAY = array.map(
     (element) => element + " : "
   );
-  let currentCount = 0;
 
-  UPDATE_ARRAY.forEach((element) => {
-    if (currentCount >= count) return;
-    randomRacing(element);
-    Console.print(element);
-    currentCount++;
-  });
+  for (let i = 0; i < count; i++) {
+    UPDATE_ARRAY = UPDATE_ARRAY.map((car) =>
+      randomRacing(car)
+    );
+    UPDATE_ARRAY.forEach((result) =>
+      Console.print(result)
+    );
+
+    Console.print(""); // 줄바꿈
+  }
 
   return UPDATE_ARRAY;
 }
