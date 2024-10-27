@@ -1,4 +1,4 @@
-import { mockRandoms } from './utils/TestUtil.js';
+import { mockRandoms } from '../src/utils/tests/TestUtil.js';
 import RacingCars from '../src/models/RacingCars.js';
 
 describe('RacingCars 클래스 테스트', () => {

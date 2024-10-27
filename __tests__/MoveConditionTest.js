@@ -1,4 +1,4 @@
-import { mockRandoms } from './utils/TestUtil.js';
+import { mockRandoms } from '../src/utils/tests/TestUtil.js';
 import getMoveForward from '../src/utils/MoveCondition.js';
 
 describe('4 이상이면 자동차를 전진하게 해주는 MoveCondition 테스트', () => {
