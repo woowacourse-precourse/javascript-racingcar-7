@@ -19,10 +19,14 @@ class App {
     // 4. 시도할 횟수 유효성 검증
     this.validateTryNumber(tryNumberInput);
 
-    // 5. 본 게임
+    // 5. 본 게임, 6. 실행 결과 출력
     Console.print("\n실행 결과");
     const carList = this.runRace(carNameArray, tryNumberInput);
-    Console.print(carList);
+
+    // 7. 최종 우승자 판정 및 출력
+    const winner = this.decideWinner(carList);
+
+    Console.print("최종 우승자 : " + winner.join(", "));
   }
 
   validateCarName(carNameArray) {
@@ -74,11 +78,11 @@ class App {
 
   runRace(carNames, tryNumber) {
     // 자동차 이름 배열을 객체 배열로 초기화
-    const carList = carNames.map(name => ({ name, distance: 0 }));
-  
+    const carList = carNames.map((name) => ({ name, distance: 0 }));
+
     // 지정된 횟수만큼 반복
     for (let i = 0; i < tryNumber; i++) {
-      carList.forEach(car => {
+      carList.forEach((car) => {
         // 랜덤 값에 따라 distance 증가
         const randomValue = MissionUtils.Random.pickNumberInRange(0, 9);
         if (randomValue >= 4) {
@@ -88,10 +92,21 @@ class App {
       });
       Console.print("\n");
     }
-  
+
     return carList;
   }
 
+  decideWinner(carList) {
+    // 최대 거리 값 구하기
+    const maxDistance = Math.max(...carList.map((car) => car.distance));
+
+    // 최대 거리를 가진 자동차들 찾기
+    const winners = carList
+      .filter((car) => car.distance === maxDistance)
+      .map((car) => car.name);
+
+    return winners;
+  }
 }
 
 export default App;
