@@ -14,7 +14,11 @@ class App {
     const SCORE = [];
     this.initScore(SCORE, CARS_COUNT);
 
-    await this.playGame(ATTEMPTS, SCORE, CARS_COUNT);
+    Console.print('\n실행 결과');
+    await this.playGame(ATTEMPTS, SCORE, CARS_COUNT, CARS);
+
+
+    
   }
 
   async getCarsInput() {
@@ -88,12 +92,16 @@ class App {
     }
   }
 
-  async playGame(ATTEMPTS, SCORE, CARS_COUNT) {
+  async playGame(ATTEMPTS, SCORE, CARS_COUNT, CARS) {
     while (ATTEMPTS > 0) {
       // 각 차마다 rand 뽑기
       const CAN_GO = await this.getRandomNumberForEachCar(CARS_COUNT);
 
+      // 이동
       this.moveCars(CAN_GO, SCORE, CARS_COUNT);
+
+      // 차수별 실행 결과 출력
+      this.printScore(CARS, SCORE, CARS_COUNT);
 
       ATTEMPTS--;
     }
@@ -124,6 +132,21 @@ class App {
         SCORE[i] += 1;
       }
     }
+  }
+
+
+  printScore(CARS, SCORE, CARS_COUNT){
+    for (let i = 0; i < CARS_COUNT; i++) {
+      let MY_SCORE = '';
+      
+      for (let s = 0; s < SCORE[i]; s++) {
+        MY_SCORE += '-';
+      }
+
+      Console.print(CARS[i] + ' : ' + MY_SCORE);
+    }
+
+    Console.print(' ');
   }
 }
 
