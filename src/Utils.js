@@ -1,5 +1,4 @@
 import { ERROR_MESSAGE } from "./content.js";
-import RacingCar from "./RacingCar.js";
 class Utils {
   constructor() {
     this.carInput;
@@ -44,6 +43,26 @@ class Utils {
       }
     }
     return carName;
+  }
+  checkTryNum(tryNum) {
+    // 시도 횟수 유효성 검사
+    if (/^[0-9]+$/.test(tryNum)) {
+      return this.limitingNum(tryNum);
+    } else {
+      throw new Error(ERROR_MESSAGE.ONLY_INTGER);
+    }
+  }
+  limitingNum(tryNum) {
+    //최소, 최대 횟수 제한
+    if (tryNum > 1 || tryNum < 10) {
+      return this.changeInt(tryNum);
+    } else {
+      throw new Error(ERROR_MESSAGE.TRY_NUMBER_LIMIT);
+    }
+  }
+  changeInt(tryNum) {
+    //숫자형으로 바꾸기
+    return parseInt(tryNum);
   }
 }
 
