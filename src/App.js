@@ -20,6 +20,8 @@ class App {
 
     const RACE_RESULT = runRace(CAR_NAME_ARRAY, ATTEMPT_TIMES);
     const WINNERS = getWinners(RACE_RESULT);
+
+    Console.print(`최종 우승자 : ${WINNERS.join(', ')}`);
   }
 }
 
