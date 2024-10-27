@@ -67,9 +67,13 @@ class CarRace {
         this.#round = round;
     }
 
-    startRound() {
+    moveCars() {
         this.#cars.forEach((car) => car.move());
-        this.#cars.forEach((car) => this.printResultByRound(car));
+    }
+
+    startRound() {
+        this.moveCars();
+        this.printResultByRound();
     }
 
     startRace() {
@@ -81,9 +85,11 @@ class CarRace {
         });
     }
 
-    printResultByRound(car) {
-        const resultByRound = `${car.getName()} : ${car.getPosition()}`;
-        MissionUtils.Console.print(resultByRound);
+    printResultByRound() {
+        this.#cars.forEach((car) => {
+            const resultByRound = `${car.getName()} : ${car.getPosition()}`;
+            MissionUtils.Console.print(resultByRound);
+        });
     }
 
     getWinner() {
