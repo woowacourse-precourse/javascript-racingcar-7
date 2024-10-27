@@ -63,7 +63,7 @@ class App {
   }
 
   printWinner(input) {
-    const winnersString = input.join(',');
+    const winnersString = input.join(', ');
     Console.print(`최종 우승자 : ${winnersString}`);
   }
 

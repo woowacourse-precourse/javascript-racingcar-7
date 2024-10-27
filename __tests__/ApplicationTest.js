@@ -137,7 +137,9 @@ describe('구현할 기능 목록 테스트 코드 작성', () => {
 
     app.printWinner(input);
 
-    expect(logSpy).toMatch(expectedResult);
+    expect(logSpy).toHaveBeenCalledWith(
+      expect.stringContaining(expectedResult),
+    );
   });
 });
 
