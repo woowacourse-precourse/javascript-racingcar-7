@@ -14,22 +14,28 @@ describe('자동차 경주: 이동 기능 테스트', () => {
   });
 
   test('자동차가 전진 조건을 만족하는 값인 경우 자동차는 전진한다', () => {
+    // given
     jest
       .spyOn(MissionUtils.Random, 'pickNumberInRange')
       .mockReturnValue(GAME_SETTINGS.MIN_SUCCESS_SCORE);
 
+    // when
     playGame(car);
 
+    // then
     expect(car.score).toBe(1);
   });
 
   test('자동차가 전진 조건을 만족하지 않는 경우 자동차는 멈춘다', () => {
+    // given
     jest
       .spyOn(MissionUtils.Random, 'pickNumberInRange')
       .mockReturnValue(GAME_SETTINGS.MIN_SUCCESS_SCORE - 1);
 
+    // when
     playGame(car);
 
+    // then
     expect(car.score).toBe(0);
   });
 });
