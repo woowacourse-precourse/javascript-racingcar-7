@@ -19,6 +19,9 @@ class App{
       car_names=car_input.split(",");
     // 5. 1-예외 : 자동차 이름 글자수 예외 처리 함수 실행
       car_name_length(car_names);
+    // 6. 1-예외 : 자동차 입력 예외 상황 "[ERROR]" 메세지 설정
+    }else{
+      throw new Error("[ERROR]")
     }
 
     // 5. 예외 처리 1 : 모든 자동차 이름 검사 함수
