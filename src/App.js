@@ -26,7 +26,7 @@ class App {
 function carNameValidation(arrCarName) {
   let carNameResult = arrCarName.every((car) => car.length <= 5);
   if (carNameResult == false) {
-    throw new Error("[Error] 자동차 이름은 5자 이하만 가능합니다.");
+    throw new Error("[ERROR] 자동차 이름은 5자 이하만 가능합니다.");
   }
 }
 
