@@ -16,6 +16,14 @@ class App {
         });
         return carArray;
     }
+
+    async countInput() {
+        const count = await Console.readLineAsync("시도할 회수는 몇 회인가요?");
+        if (count < 1) {
+            throw new Error("[ERROR] 시도 횟수는 1 이상이어야 합니다.");
+        }
+        return count;
+    }
 }
 
 export default App;
