@@ -130,13 +130,9 @@ describe('App 메서드 테스트', () => {
       ];
       const expects = ['pobi : --', 'woni : -'];
 
-      inputs.forEach((input, index) => {
-        app.printRoundResult(input);
+      app.printRoundResult(inputs);
 
-        expect(logSpy).toHaveBeenCalledWith(
-          expect.stringContaining(expects[index]),
-        );
-      });
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(...expects));
     });
   });
 });

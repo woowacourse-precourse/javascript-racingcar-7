@@ -45,8 +45,12 @@ class App {
     Console.print(PRINT_MESSAGE.EXECUTION_RESULT);
   }
 
-  printRoundResult(car) {
-    Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
+  printRoundResult(carsData) {
+    carsData.forEach((car) => {
+      Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
+    });
+
+    Console.print('');
   }
 
   printWinners(winners) {
