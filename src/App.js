@@ -32,9 +32,15 @@ class App {
     // 쉼표로 구분된 자동차 이름 배열 생성
     const names = input.split(",").map((name) => name.trim());
 
+    // 자동차 이름에 빈 이름이 포함되어 있는지 확인
+    const hasEmptyName = names.some((name) => name.length === 0);
+    if (hasEmptyName) {
+      throw new Error(`[ERROR] 자동차 이름은 빈 문자열이 포함될 수 없습니다.`);
+    }
+
     // 자동차 이름에 쉼표(,) 외의 다른 문자가 포함되어 있는지 확인
     const invalidSeparator = names.some(
-      (name) => /[^a-zA-Z0-9가-힣,]/.test(name) // 쉼표 제외
+      (name) => /[^a-zA-Z0-9가-힣]/.test(name) // 쉼표 제외
     );
     if (invalidSeparator) {
       throw new Error(
