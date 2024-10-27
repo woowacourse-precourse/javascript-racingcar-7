@@ -1,7 +1,7 @@
-import { Console, Random } from '@woowacourse/mission-utils';
+import { Random } from '@woowacourse/mission-utils';
 import RaceView from '../view/RaceView.js';
 import CarModel from '../model/CarModel.js';
-import RaceModel from '../model/RaceModal.js';
+import RaceModel from '../model/RaceModel.js';
 
 class RaceController {
   constructor() {
@@ -21,17 +21,22 @@ class RaceController {
 
   runRace(attemptCount) {
     for (let i = 0; i < attemptCount; i++) {
-      this.moveCars();
+      this.determineCarMovements();
     }
   }
 
-  moveCars() {
+  determineCarMovements() {
     this.race.cars.forEach((car) => {
       const randomValue = Random.pickNumberInRange(0, 9);
-      Console.print(`car name : ${car.name}`);
-      Console.print(`car distance : ${car.distance}`);
-      Console.print(`randomValue : ${randomValue}`);
+
+      if (this.canAdvance(randomValue)) {
+        car.advance();
+      }
     });
+  }
+
+  canAdvance(randomValue) {
+    return randomValue >= 4;
   }
 }
 
