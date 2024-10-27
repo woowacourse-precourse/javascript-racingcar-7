@@ -8,6 +8,7 @@ export const ERROR_MESSAGES = {
   NOT_A_NUMBER: '숫자가 아닌 값을 입력하셨습니다.',
   NEGATIVE_NUMBER: '양수만 입력하실 수 있습니다.',
   NOT_INTEGER: '정수가 아닌 값을 입력하셨습니다.',
+  ZERO_NUMBER: '시도할 횟수로 0을 입력할 수 없습니다.',
 };
 
 // 게임 관련 상수

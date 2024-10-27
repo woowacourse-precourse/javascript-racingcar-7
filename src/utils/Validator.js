@@ -8,6 +8,9 @@ class Validator {
     if (input < 0) {
       throw createError(ERROR_MESSAGES.NEGATIVE_NUMBER);
     }
+    if (input === 0) {
+      throw createError(ERROR_MESSAGES.ZERO_NUMBER);
+    }
 
     if (!Number.isInteger(input)) {
       throw createError(ERROR_MESSAGES.NOT_INTEGER);
