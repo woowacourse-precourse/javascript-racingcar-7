@@ -3,6 +3,7 @@ import {
   validateNotEmpty,
   validateStringInput,
   validateLength,
+  validateArrNotDuplication,
 } from './validations/carNamesValidator.js';
 import splitAndTrimCarName from './services/carNamesTrimmer.js';
 import {
@@ -17,6 +18,7 @@ class App {
     validateNotEmpty(carNamesInput);
     const carNameWords = splitAndTrimCarName(carNamesInput);
     validateStringInput(carNameWords);
+    validateArrNotDuplication(carNameWords);
 
     if (validateLength(carNameWords)) {
       const racingCountInput = await getRacingCountInput();
