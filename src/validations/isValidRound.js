@@ -7,5 +7,4 @@ export function isValidRound(round) {
   if (!(Number(round, 10) > 0)) {
     throw new Error(ERROR_MESSAGES.INVALID_ROUND_NUMBER);
   }
-  console.log(parseInt(round, 10));
 }
