@@ -1,8 +1,8 @@
-// RacingController.js
-import { Console, Random } from '@woowacourse/mission-utils';
-import RacingModel from '../model/RacingModel.js';
+import { Console } from '@woowacourse/mission-utils';
 import RacingView from '../view/racingView.js';
-
+import RacingModel from '../model/racingModel.js';
+import ERROR_MESSAGE from '../constant/error.js';
+import NAME_REG_EXP from '../constant/regexPatterns.js';
 class RacingController {
   async start() {
     try {
@@ -13,13 +13,14 @@ class RacingController {
 
       Console.print('실행 결과');
       for (let i = 0; i < racingModel.count; i++) {
-        racingModel.rece();
-        RacingView.printRaceStatus(racingModel.cars);
+        racingModel.race();
+        RacingView.printRaceStatus(racingModel.getCars());
       }
 
       RacingView.printWinners(racingModel.getWinners());
     } catch (error) {
       RacingView.printError(error.message);
+      throw error;
     }
   }
 
@@ -42,11 +43,9 @@ class RacingController {
 
   validateCarNamesInput(carNamesInput) {
     const names = carNamesInput.split(',').map((name) => name.trim());
-    const isValid = names.every((name) => /^[a-zA-Z]{1,5}$/.test(name));
+    const isValid = names.every((name) => NAME_REG_EXP.test(name));
     if (!isValid) {
-      throw new Error(
-        '자동차 이름은 쉼표로 구분되고, 각 이름은 1~5자여야 합니다.',
-      );
+      throw new Error(ERROR_MESSAGE.inputNameError);
     }
     return true;
   }
@@ -54,7 +53,7 @@ class RacingController {
   validateCount(countInput) {
     const count = Number(countInput);
     if (isNaN(count) || count <= 0) {
-      throw new Error('시도 횟수는 0보다 큰 숫자여야 합니다.');
+      throw new Error(ERROR_MESSAGE.inputCountError);
     }
     return true;
   }
