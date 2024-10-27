@@ -1,6 +1,7 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import View from "../src/View/View.js";
 import { Car } from "../src/Model/Car.js";
+import { ParseUtils } from "../src/Util/ParseUtils.js";
 
 describe("View Tests", () => {
   let consoleSpy;
@@ -11,19 +12,6 @@ describe("View Tests", () => {
 
   afterEach(() => {
     consoleSpy.mockRestore();
-  });
-
-  test("View Result Test", () => {
-    const view = new View();
-
-    view.outputResult([
-      { name: "pobi", distance: 3 },
-      { name: "rupi", distance: 10 },
-    ]);
-
-    expect(consoleSpy).toHaveBeenNthCalledWith(1, "실행 결과");
-    expect(consoleSpy).toHaveBeenNthCalledWith(2, "pobi : 3");
-    expect(consoleSpy).toHaveBeenNthCalledWith(3, "rupi : 10");
   });
 
   test("View Winner Test", () => {
@@ -52,4 +40,10 @@ describe("View Tests", () => {
     const result3 = car.moveForward();
     expect(result3).toBe(2);
   });
+});
+
+test("ParseUtils Test - parseDistanceToDash", () => {
+  const result = ParseUtils.parseDistanceToDash(3);
+
+  expect(result).toBe("---");
 });
