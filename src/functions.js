@@ -1,3 +1,5 @@
+import { Console } from "@woowacourse/mission-utils";
+
 export function splitComma(string){
     let commaSplitList = string.split(",");
     isCorrectList(commaSplitList);
@@ -25,7 +27,7 @@ function isExistGap(carName){
 
 export function isSameCar(carList){
     let carSet = new Set(carList);
-    if(carList.length !== carSet.length){
+    if(carList.length !== carSet.size){
         throw new Error("[ERROR] 동일한 차 이름이 있습니다.")
     }
 }
