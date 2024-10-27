@@ -1,4 +1,4 @@
-import { isInputEmpty } from "../src/utils/isInputEmpty.js";
+import { isInputEmpty } from "../src/validations/utils/isInputEmpty.js";
 
 describe("isInputEmpty 함수 테스트 : ", () => {
   test("빈 배열이 들어올 경우 EMPTY_INPUT_NAME 에러를 발생시킨다.", () => {

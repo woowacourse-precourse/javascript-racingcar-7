@@ -1,4 +1,4 @@
-import { eraseWhiteSpace } from "../src/utils/eraseWhiteSpace.js";
+import { eraseWhiteSpace } from "../src/validations/utils/eraseWhiteSpace.js";
 
 describe("eraseWhiteSpace 함수 테스트 : ", () => {
   test("빈 배열이 들어올 경우 빈 배열이 반환된다.", () => {

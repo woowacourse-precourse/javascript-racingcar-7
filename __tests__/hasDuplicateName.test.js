@@ -1,4 +1,4 @@
-import { hasDuplicateName } from "../src/utils/hasDuplicateName.js";
+import { hasDuplicateName } from "../src/validations/utils/hasDuplicateName.js";
 
 describe("hasDuplicateName 함수 테스트 : ", () => {
   test("중복된 이름이 있는 경우 DUPLICATE_NAME 에러를 발생시킨다.", () => {

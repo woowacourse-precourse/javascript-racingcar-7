@@ -1,4 +1,4 @@
-import { extractCarName } from "../src/utils/extractCarName.js";
+import { extractCarName } from "../src/validations/utils/extractCarName";
 
 describe("extractCarName 함수 테스트 : ", () => {
   test("빈 문자열 입력할 경우 빈 문자열이 반환된다.", () => {

@@ -1,4 +1,4 @@
-import { ERROR_MESSAGES } from "../constants/errorConstants.js";
+import { ERROR_MESSAGES } from "../../constants/errorConstants";
 
 function checkDuplicate(name, nameSet) {
   if (nameSet.has(name)) {

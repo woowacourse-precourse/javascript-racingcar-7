@@ -1,4 +1,4 @@
-import { isNameLongerThanFive } from "../src/utils/isNameLongerThanFive.js";
+import { isNameLongerThanFive } from "../src/validations/utils/isNameLongerThanFive.js";
 
 describe("isNameLongerThanFive 함수 테스트 : ", () => {
   test("이름의 길이가 5를 초과하는 경우 CAR_NAME_TOO_LONG 에러를 발생시킨다.", () => {

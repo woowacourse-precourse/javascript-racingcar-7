@@ -1,4 +1,4 @@
-import { ERROR_MESSAGES } from "../constants/errorConstants.js";
+import { ERROR_MESSAGES } from "../constants/errorConstants";
 
 export function isValidRound(round) {
   if (round === "") {

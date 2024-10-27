@@ -1,4 +1,4 @@
-import { isValidRound } from "../src/utils/isValidRound.js";
+import { isValidRound } from "../src/validations/isValidRound.js";
 
 describe("isValidRound 함수 테스트 : ", () => {
   test("아무런 입력도 하지 않은 경우 EMPTY_INPUT_ROUND 에러를 발생시킨다.", () => {

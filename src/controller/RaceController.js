@@ -1,7 +1,7 @@
 import { InputView } from "../view/InputView.js";
 import { OutputView } from "../view/OutputView.js";
-import { isValidCarName } from "../utils/isValidCarName.js";
-import { isValidRound } from "../utils/isValidRound.js";
+import { isValidCarName } from "../validations/isValidCarName.js";
+import { isValidRound } from "../validations/isValidRound.js";
 import { Car } from "../model/Car.js";
 import { determineWinners } from "../utils/determineWinners.js";
 import { moveForwardEachCar } from "../utils/moveForwardEachCar.js";
