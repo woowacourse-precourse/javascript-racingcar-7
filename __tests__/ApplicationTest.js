@@ -96,3 +96,27 @@ describe('기능 테스트', () => {
     });
   });
 });
+
+const exceptionTestTemplate = (string, input) => {
+  test(string, async () => {
+    const inputs = input;
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+};
+
+describe('예외 테스트', () => {
+  exceptionTestTemplate('자동차 이름 5글자 이상', ['pobi,javaji']);
+  exceptionTestTemplate('자동차 이름이 쉼표로 시작', [',pobi,woni']);
+  exceptionTestTemplate('자동차 이름이 쉼표로 끝', ['pobi,woni,']);
+  exceptionTestTemplate('자동차 이름에 연속된 쉼표', ['pobi,,woni']);
+  exceptionTestTemplate('자동차 한 대 입력', ['pobi']);
+  exceptionTestTemplate('자동차 이름 입력 없음', ['']);
+  exceptionTestTemplate('자동차 이름 중복', ['pobi,pobi']);
+  exceptionTestTemplate('시도 횟수 입력 없음', ['pobi,woni', '']);
+  exceptionTestTemplate('시도 횟수 문자 입력', ['pobi,woni', 'jun']);
+  exceptionTestTemplate('시도 횟수 특수문자 입력', ['pobi,woni', '*']);
+});
