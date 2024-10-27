@@ -9,9 +9,7 @@ export const GAME_VALIDATION = (inputGameCount) => {
   if (IS_MIN_COUNT_GAME(gameCount)) {
     throw new Error('[ERROR] 1번 이상의 게임 횟수를 입력해주세요.');
   }
-
   if (IS_MAX_COUNT_GAME(gameCount)) {
     throw new Error('[ERROR] 50번 이하의 게임 횟수를 입력해주세요.');
   }
 };
-//소수점이면 안됨
