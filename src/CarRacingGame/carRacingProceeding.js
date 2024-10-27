@@ -5,24 +5,23 @@ import { validateCarName, validateTryCount } from './validation.js';
 import { Car } from './car.js';
 
 export async function carRacingProceed() {
-  const carList = await creatCarList();
+  const carList = [];
+
+  await creatCarList(carList);
   await runCarRacing(carList);
 
   const maxMoveNum = Math.max(...carList.map((car) => car.number));
   printWinner(carList, maxMoveNum);
 }
 
-async function creatCarList() {
+async function creatCarList(carList) {
   const carNameList = await inputCarNames();
   validateCarName(carNameList);
-  const carList = [];
 
   for (const carName of carNameList) {
     const car = new Car(carName, 0);
     carList.push(car);
   }
-
-  return carList;
 }
 
 async function runCarRacing(carList) {
