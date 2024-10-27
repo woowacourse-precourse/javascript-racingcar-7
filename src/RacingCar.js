@@ -13,11 +13,19 @@ class RacingCar {
 	async runRacingCar() {
 		try {
 			const { carNameValue, tryCountValue } = await this.getUserInput();
-			this.validateCarName(carNameValue);
-			this.validateTryCount(tryCountValue);
+
+			await validateNameLength(carNameValue);
+			await validateMaxCar(carNameValue);
+			await validateMinCar(carNameValue);
+			await validateDuplicateName(carNameValue);
+
+			await validateMaxCount(tryCountValue);
+			await validateString(tryCountValue);
+			await validateMinCount(tryCountValue);
+
+			this.carNamesAndNumberMap = await this.setCarNumberMap();
 		} catch (error) {
-			console.error(error);
-			throw new Error(error.message);
+			throw new Error(`${error.message}`);
 		}
 	}
 
@@ -29,17 +37,15 @@ class RacingCar {
 		return { carNameValue, tryCountValue };
 	}
 
-	async validateCarName(carNameValue) {
-		await validateNameLength(carNameValue);
-		await validateMaxCar(carNameValue);
-		await validateMinCar(carNameValue);
-		await validateDuplicateName(carNameValue);
-	}
+	async setCarNumberMap() {
+		const carNamesAndNumberMap = this.carNames.map((carName) => ({
+			carName,
+			carNumbers: Array.from({ length: this.tryCount }, () =>
+				getRandomInRangeNumber(0, 9)
+			),
+		}));
 
-	async validateTryCount(tryCountValue) {
-		await validateMinCount(tryCountValue);
-		await validateMaxCount(tryCountValue);
-		await validateString(tryCountValue);
+		return carNamesAndNumberMap;
 	}
 }
 
