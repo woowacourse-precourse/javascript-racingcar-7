@@ -1,7 +1,10 @@
 import { ERROR_MESSAGE } from "./content.js";
+import RacingCar from "./RacingCar.js";
 class Utils {
-  constructor(carInput) {
+  constructor(carInput, tryNum) {
     this.carInput = new carInput();
+    this.tryNum = new tryNum();
+    // const racingCar = new RacingCar();
   }
 }
 export function carCountLimitCheck(carInput) {
@@ -31,6 +34,13 @@ export function duplicateCheck(carInput) {
       carName[i] = "";
     }
   }
+  RacingCar.getTryNum();
 }
-// }
+export function checkTryNum(tryNum) {
+  if (/^[1-10]+$/.test(tryNum)) {
+  } else {
+    throw new Error(ERROR_MESSAGE.TRY_NUMBER_LIMIT);
+  }
+}
+
 export default Utils;
