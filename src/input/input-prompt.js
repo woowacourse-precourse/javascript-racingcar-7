@@ -5,14 +5,14 @@ const INPUT_MESSAGE = Object.freeze({
   ATTEMPT_COUNT_INPUT: '시도할 횟수는 몇 회인가요?\n',
 });
 
-class InputView {
-  getCarNames() {
+class InputPrompt {
+  static getCarNames() {
     return Console.readLineAsync(INPUT_MESSAGE.CAR_NAMES_INPUT);
   }
 
-  getAttemptCount() {
+  static getAttemptCount() {
     return Console.readLineAsync(INPUT_MESSAGE.ATTEMPT_COUNT_INPUT);
   }
 }
 
-export default InputView;
+export default InputPrompt;

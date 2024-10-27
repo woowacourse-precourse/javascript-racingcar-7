@@ -1,20 +1,17 @@
-import InputView from './view/input-view.js';
 import validateCarName from './validation/validate-carname.js';
 import validateAttemptCount from './validation/validate-attempt-count.js';
-import Race from './model/race.js';
+import Race from './race/race.js';
+import InputPrompt from './input/input-prompt.js';
+import InputParser from './input/input-parser.js';
 
 class App {
-  constructor() {
-    this.inputView = new InputView();
-  }
-
   async run() {
-    const carNamesInput = await this.inputView.getCarNames();
-    const carNameList = carNamesInput.split(',');
+    const carNamesInput = await InputPrompt.getCarNames();
+    const carNameList = InputParser.parseCarNameInput(carNamesInput);
     validateCarName(carNameList);
 
-    const attemptCountInput = await this.inputView.getAttemptCount();
-    const attemptCount = parseInt(attemptCountInput, 10);
+    const attemptCountInput = await InputPrompt.getAttemptCount();
+    const attemptCount = InputParser.parseAttemptCountInput(attemptCountInput);
     validateAttemptCount(attemptCount);
 
     const race = new Race(carNameList, attemptCount);

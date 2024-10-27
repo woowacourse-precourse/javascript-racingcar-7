@@ -2,7 +2,7 @@ import { Console } from '@woowacourse/mission-utils';
 import Car from './car.js';
 
 const OUTPUT_MESSAGE = Object.freeze({
-  GAME_START: '\n실행 결과',
+  GAME_START: '실행 결과',
   WINNER: '최종 우승자 :',
 });
 
@@ -13,14 +13,8 @@ class Race {
   }
 
   printStartMessage() {
+    Console.print('\n');
     Console.print(OUTPUT_MESSAGE.GAME_START);
-  }
-
-  executeTurn() {
-    this.carList.forEach((car) => {
-      car.move();
-      car.printProgress();
-    });
   }
 
   startRace() {
@@ -28,6 +22,13 @@ class Race {
       this.executeTurn();
       Console.print('\n');
     }
+  }
+
+  executeTurn() {
+    this.carList.forEach((car) => {
+      car.move();
+      car.printProgress();
+    });
   }
 
   getWinners() {
