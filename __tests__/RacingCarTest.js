@@ -70,6 +70,15 @@ describe('예외 테스트', () => {
 
             await expect(app.run()).rejects.toThrow(ERROR_MESSAGE.ONLY_USED_ENGLISH_AND_NUMBER(errorName));
         });
+
+        test("중복된 자동차명은 사용할 수 없습니다.", async () => {
+            // given
+            const duplicateName = 'pobi';
+            const input = [`${duplicateName},woni,${duplicateName}`];
+            mockQuestions(input);
+
+            await expect(app.run()).rejects.toThrow(ERROR_MESSAGE.EXIST_DUPLICATE_NAME(duplicateName));
+        });
     });
 
     describe("자동차 전진 시도 횟수 유효성 검사", () => {
