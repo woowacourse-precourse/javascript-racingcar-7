@@ -7,14 +7,19 @@ class Race {
   #cars;
   #tryNumber;
 
-  async handleCar() {
+  async play() {
+    await this.processCars();
+    await this.processTryNumber();
+  }
+
+  async processCars() {
     const cars = await readUserInput(START_MESSAGE.CAR_NAME_INPUT);
     const carsArray = cars.split(',').map((car) => car.trim());
     validCarName(carsArray);
-    this.setCarNames(carsArray);
+    this.setCar(carsArray);
   }
 
-  async handleTryNumber() {
+  async processTryNumber() {
     const tryNumber = await readUserInput(START_MESSAGE.TRY_NUMBER_INPUT);
     validTryNumber(tryNumber);
     this.setTryNumber(tryNumber);
@@ -24,7 +29,7 @@ class Race {
     this.tryNumber = number;
   }
 
-  setCarNames(cars) {
+  setCar(cars) {
     this.#cars = cars.map((carName) => new Car(carName));
   }
 }
