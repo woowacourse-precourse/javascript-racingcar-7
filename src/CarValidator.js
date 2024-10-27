@@ -1,6 +1,6 @@
 import ERROR_MESSAGES from './constants/errorMessages.js';
 
-class Validator {
+class CarValidator {
   constructor(inputString) {
     this.string = inputString;
     this.cars = [];
@@ -53,4 +53,4 @@ class Validator {
   }
 }
 
-export default Validator;
+export default CarValidator;
