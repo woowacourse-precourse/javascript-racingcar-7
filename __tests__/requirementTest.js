@@ -1,5 +1,9 @@
 import splitAndTrimCarName from '../src/services/carNamesTrimmer.js';
-import { validateNotEmpty, validateStringInput } from '../src/validations/carNamesValidator.js';
+import {
+  validateNotEmpty,
+  validateStringInput,
+  validateArrNotDuplication,
+} from '../src/validations/carNamesValidator.js';
 
 describe('자동차 이름 입력 받기', () => {
   test('쉼표로 구분된 자동차 이름을 배열로 반환한다.', async () => {
@@ -20,5 +24,10 @@ describe('자동차 이름 입력 받기', () => {
   test('자동차 이름에 숫자가 포함되면 에러를 던진다.', () => {
     const inputs = 'pobi, 123jinny';
     expect(() => validateStringInput(inputs)).toThrow('[ERROR]');
+  });
+
+  test('자동차 이름이 중복되면 에러를 던진다.', () => {
+    const inputs = 'pobi, jinny, jinny';
+    expect(() => validateArrNotDuplication(inputs)).toThrow('[ERROR]');
   });
 });
