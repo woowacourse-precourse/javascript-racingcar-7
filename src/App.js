@@ -12,8 +12,10 @@ class App {
     const ATTEMPTS = await this.getAttempts();
 
     const SCORE = [];
+    this.initScore(SCORE, CARS_COUNT);
+
     await this.playGame(ATTEMPTS, SCORE, CARS_COUNT);
-    
+
   }
 
   async getCarsInput() {
@@ -60,45 +62,63 @@ class App {
 
     return CARS;
   }
+  
 
   // 시도 횟수 입력
-  async getAttempts(){
-    const ATTEMPTS = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+  async getAttempts() {
+    const ATTEMPTS = await Console.readLineAsync(
+      '시도할 횟수는 몇 회인가요?\n'
+    );
 
-    if(isNaN(ATTEMPTS)){
-      throw new Error ('[ERROR] 시도할 횟수는 숫자여야 합니다. \n');
+    if (isNaN(ATTEMPTS)) {
+      throw new Error('[ERROR] 시도할 횟수는 숫자여야 합니다. \n');
     }
 
     return ATTEMPTS;
   }
 
-  async playGame(ATTEMPTS, SCORE, CARS_COUNT){
-    while(ATTEMPTS > 0){
-      // 각 차마다 rand 뽑기
-      const CAN_GO = await this.getRandomNumberForEachCar(CARS_COUNT);
-
-      ATTEMPTS --;
+  initScore(SCORE, CARS_COUNT) {
+    for (let i = 0; i < CARS_COUNT; i++) {
+      SCORE[i] = 0;
     }
   }
 
-  async getRandomNumberForEachCar(CARS_COUNT){
+  async playGame(ATTEMPTS, SCORE, CARS_COUNT) {
+    while (ATTEMPTS > 0) {
+      // 각 차마다 rand 뽑기
+      const CAN_GO = await this.getRandomNumberForEachCar(CARS_COUNT);
+
+      this.moveCars(CAN_GO, SCORE, CARS_COUNT);
+
+      ATTEMPTS--;
+    }
+  }
+
+  async getRandomNumberForEachCar(CARS_COUNT) {
     const CAN_GO = [];
-    for(let i = 0; i<CARS_COUNT; i++){
+    for (let i = 0; i < CARS_COUNT; i++) {
       // 무작위 값 뽑기
       const RANDOM_NUMBER = Random.pickNumberInRange(0, 9);
 
       // 전진
-      if(RANDOM_NUMBER >= 4){
+      if (RANDOM_NUMBER >= 4) {
         CAN_GO.push(true);
       // 정지
-      }else{
+      } else {
         CAN_GO.push(false);
       }
     }
 
     return CAN_GO;
+  }
 
-
+  async moveCars(CAN_GO, SCORE, CARS_COUNT) {
+    // can go 배열의 값을 보고 true면 전진. score 값 증가시키기
+    for (let i = 0; i < CARS_COUNT; i++) {
+      if (CAN_GO[i] == true) {
+        SCORE[i] += 1;
+      }
+    }
   }
 }
 
