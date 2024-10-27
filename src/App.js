@@ -98,8 +98,8 @@ class CarRace {
     }
 
     getWinner() {
-        const maxPosition = Math.max(...this.#cars.map((car) => car.getPosition().length));
-        const winningCars = this.#cars.filter((car) => car.getPosition().length === maxPosition);
+        const maxCarPositionLength = Math.max(...this.#cars.map((car) => car.getPosition().length));
+        const winningCars = this.#cars.filter((car) => car.getPosition().length === maxCarPositionLength);
 
         return winningCars;
     }
