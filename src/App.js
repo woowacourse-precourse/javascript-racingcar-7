@@ -1,4 +1,4 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 
 class App {
   static ERROR_MESSAGE = {
@@ -11,6 +11,11 @@ class App {
   async run() {
     const cars = await this.inputCars();
     const attemptCount = await this.inputAttemptCount();
+  }
+
+  isCarMovable() {
+    const randomNumber = Random.pickNumberInRange(0, 9);
+    return randomNumber >= 4;
   }
 
   async input(msg) {
