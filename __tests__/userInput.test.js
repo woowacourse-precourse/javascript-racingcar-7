@@ -1,4 +1,4 @@
-import { mockQuestions } from "./mock.js";
+import { mockQuestions } from "../src/utils/mock.js";
 import { userInput } from "../src/utils/MissionUtils.js";
 
 describe("사용자 입력", () => {
