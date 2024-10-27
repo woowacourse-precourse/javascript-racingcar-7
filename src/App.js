@@ -1,6 +1,7 @@
 import { Console } from "@woowacourse/mission-utils";
 import { splitStringByComma } from "./utils/carName.js";
 import { convertStringToNumber } from "./utils/convertStringToNumber.js";
+import { startRace } from "./utils/race.js";
 
 class App {
   async run() {
@@ -15,6 +16,8 @@ class App {
     const tryNumber = convertStringToNumber(
       (await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n")).trim()
     );
+
+    startRace(tryNumber, carNameObject);
   }
 }
 
