@@ -10,7 +10,6 @@ class CarManagementService {
   addCar(carName) {
     const car = new Car(carName);
     this.#cars.push(car);
-    return car;
   }
 
   getCars() {
