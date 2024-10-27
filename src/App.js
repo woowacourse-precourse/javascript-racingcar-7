@@ -21,6 +21,7 @@ class App {
   playGame(carNames, attempts) {
     const distances = Array(carNames.length).fill(0);
 
+    MissionUtils.Console.print(`\n실행 결과`);
     for (let i = 0; i < attempts; i++) {
       this.moveCars(carNames, distances);
       this.printRoundResult(carNames, distances);
