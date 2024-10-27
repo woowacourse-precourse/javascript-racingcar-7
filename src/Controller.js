@@ -6,6 +6,11 @@ export class raceController {
     this.attemps = inputAttemps;
   }
 
+  startRace() {
+    this.raceAttemps();
+    this.raceWinner();
+  }
+
   raceResult() {
     this.cars.forEach((car) => {
       car.move();
