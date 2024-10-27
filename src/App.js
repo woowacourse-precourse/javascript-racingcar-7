@@ -1,5 +1,5 @@
 import { Console, Random } from '@woowacourse/mission-utils';
-import GAME_MESSAGE from './constant/message';
+import GAME_MESSAGE from './constant/message.js';
 
 class App {
   async run() {
