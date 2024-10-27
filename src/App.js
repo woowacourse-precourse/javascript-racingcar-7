@@ -50,12 +50,16 @@ class App {
   movingForward(cars) {
     for (let i = 0; i < cars.length; i++) {
       let randomNumber = Random.pickNumberInRange(0, 9);
-      if (randomNumber >= 4) {
-        cars[i].distance += "-";
-      }
+      this.forwardCondition(randomNumber,cars,i)
     }
     this.printProgress(cars);
     Console.print("");
+  }
+
+  forwardCondition(randomNumber, cars,i){
+    if (randomNumber >= 4) {
+      cars[i].distance += "-";
+    }
   }
 
   printProgress(cars) {
