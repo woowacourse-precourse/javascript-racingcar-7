@@ -1,5 +1,6 @@
 import {MissionUtils} from "@woowacourse/mission-utils";
 import View from "./View.js";
+import Utils from "./Utils.js";
 
 class App {
   async run() {
@@ -11,11 +12,9 @@ class App {
 
     const tryNumber = await View.readLineTryCount();
 
-    const range = (number) => Array(number).fill('');
-
     const getRacingRoundResult = (array, count) => {
       const rounds = [...array];
-      range(count).forEach(() => {
+      Utils.range(count).forEach(() => {
         rounds.forEach((round) => {
           const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
           if (randomNumber >= 4) {
@@ -33,11 +32,11 @@ class App {
     MissionUtils.Console.print('');
     MissionUtils.Console.print(`실행 결과`);
 
-    range(tryNumber).forEach((_, index) => {
+    Utils.range(tryNumber).forEach((_, index) => {
       racingRoundResult.forEach((count) => {
         const recordsRound = count.records.slice(0, index + 1).filter(Boolean).length;
 
-        const scoreChangeToDash = range(recordsRound).map(() => '-').join('');
+        const scoreChangeToDash = Utils.range(recordsRound).map(() => '-').join('');
         MissionUtils.Console.print(`${count.name} : ${scoreChangeToDash}`);
       });
       MissionUtils.Console.print('');
