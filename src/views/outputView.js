@@ -6,6 +6,7 @@ export default class OutputView{
         Console.print("실행 결과\n")
     }
     static printFinalResult(result){
-        Console.print(`최종 우승자 : ${result}`)
+        const formattedResult = result.join(", ");
+        Console.print(`최종 우승자 : ${formattedResult}`)
     }
 }
