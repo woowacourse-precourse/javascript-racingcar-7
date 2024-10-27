@@ -18,11 +18,31 @@ const InputView = {
     });
   },
 
+  async getRounds() {
+    return new Promise((resolve, reject) => {
+      Console.readLineAsync('시도할 회수는 몇 회인가요?: ').then((input) => {
+        try {
+          const rounds = parseInt(input, 10);
+          this.validateRounds(rounds);
+          resolve(rounds);
+        } catch (error) {
+          reject(error);
+        }
+      });
+    });
+  },
+
   validateCarName(name) {
     if (name.length > 5) {
       throw new Error('[ERROR]');
     }
     return name;
+  },
+
+  validateRounds(rounds) {
+    if (isNaN(rounds) || rounds <= 0) {
+      throw new Error('[ERROR]');
+    }
   },
 };
 
