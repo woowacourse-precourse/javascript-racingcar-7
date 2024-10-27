@@ -108,4 +108,15 @@ describe("자동차 경주", () => {
     app.moveCar(car);
     expect(car.position).toBe(0);
   });
+
+
+  // 7. 시뮬레이션 실행 결과
+  test("자동차 이동 시뮬레이션 출력 결과가 올바른 형식인지 확인한다.", () => {
+    const app = new App();
+    const logSpy = jest.spyOn(MissionUtils.Console, "print");
+    const cars = [{ name: "pobi", position: 1 }, { name: "woni", position: 0 }];
+    app.printRoundResults(cars);
+    expect(logSpy).toHaveBeenCalledWith("pobi : -");
+    expect(logSpy).toHaveBeenCalledWith("woni : ");
+  });
 });
