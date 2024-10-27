@@ -24,6 +24,11 @@ class App {
   }
 
   validateCarNames(input) {
+    // 입력값이 비어 있는지 확인
+    if (!input.trim()) {
+      throw new Error(`[ERROR] 경주할 자동차 이름을 입력하세요.`);
+    }
+
     // 쉼표로 구분된 자동차 이름 배열 생성
     const names = input.split(",").map((name) => name.trim());
 
