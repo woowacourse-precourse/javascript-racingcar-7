@@ -1,7 +1,7 @@
-import { Random } from '@woowacourse/mission-utils';
+import { MissionUtils } from '@woowacourse/mission-utils';
 
 const isRandomMove = () => {
-  const randNum = Random.pickNumberInRange(0, 9);
+  const randNum = MissionUtils.Random.pickNumberInRange(0, 9);
   if (randNum >= 4) return true;
   return false;
 };
