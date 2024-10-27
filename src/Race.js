@@ -19,6 +19,11 @@ class Race {
             throw new Error("[ERROR] 자동차 이름은 중복될 수 없습니다.");
         }
 
+        // 입력된 이름이 하나인 경우 
+        if (names.length < 2) {
+            throw new Error("[ERROR] 최소 2대 이상의 자동차를 입력해야 합니다.");
+        }
+
         this.moveCount = moveCount;
     }
 
