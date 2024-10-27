@@ -9,4 +9,5 @@ export const ERROR_MESSAGE = {
     input_attempt_count_is_not_zero: '이동 횟수는 최소 1 이상이여야 합니다.',
     input_attempt_count_whitespace: '입력 값에 공백이 포함되어 있습니다.',
     input_attempt_count_positive_integer: '이동 횟수에 음수 값은 포함될 수 없습니다.',
+    input_attempt_count_decimal_number: '이동 횟수에 소수점은 포함될 수 없습니다.',
 }
