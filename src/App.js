@@ -1,5 +1,15 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 
+function printWinner(carnames, carProgress){
+  const winValue = Math.max(...carProgress);
+  let winners = [];
+  carProgress.forEach((element, index) => {
+    if(element === winValue)
+      winners.push(carnames[index]);
+  });
+  MissionUtils.Console.print('최종 우승자 : ' + winners.map((win) => win).join(', '));
+}
+
 function saveRandom(carCount, randomArray){
   let array = randomArray;
 
@@ -49,6 +59,7 @@ class App {
     const carnames = await getCarname();
     const number = await getNumber();
     const carProgress = printProgress(carnames, number);
+    printWinner(carnames, carProgress);
   }
 }
 
