@@ -48,6 +48,7 @@ class App {
       MissionUtils.Console.print(`최종 우승자 : ${winners.join(", ")}`);
     } catch (error) {
       MissionUtils.Console.print(error.message); // 오류 발생 시 에러 메시지 출력
+      throw error;
     }
   }
 
