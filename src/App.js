@@ -28,43 +28,24 @@ class Car {
 
 class App {
   async run() {
-    try {
-      const carNames = await this.getCarNames();
-      const attempts = await this.getAttempts();
-      const cars = this.createCars(carNames);
+    const carNames = await this.getCarNames();
+    const attempts = await this.getAttempts();
+    const cars = this.createCars(carNames);
 
-      // Console.print('\n생성된 자동차들');
-      // cars.forEach((car) => {
-      //   Console.print(`${car.getName()} (초기 위치 : ${car.getPosition()})`);
-      // });
-
-      // 전진 기능 테스트
-      // Console.print('\n전진 테스트');
-
-      //   cars.forEach((car) => {
-      //     car.move(true);
-      //     Console.print(`${car.getName()} : ${'-'.repeat(car.getPosition())}`);
-      //   });
-      // } catch (error) {
-      //   Console.print(error.message);
-      // }
-
-      Console.print('\n경주를 시작합니다.');
-
-      for (let i = 0; i < attempts; i++) {
-        Console.print(`\n${i + 1}회차 실행`);
-        await this.playOneRound(cars);
-      }
-    } catch (error) {
-      Console.print(error.message);
+    Console.print('\n경주를 시작합니다.');
+    for (let i = 0; i < attempts; i++) {
+      await this.playOneRound(cars);
     }
+    await this.announceWinners(cars);
   }
 
-  // 자동차 객체 배열 생성
+  // 자동차 객체 생성
   createCars(names) {
     return names.map((name) => new Car(name));
   }
 
+  // 자동차 이름 입력 받기
+  // 쉼표로 구분된 문자열을 입력받아 배열로 변환
   async getCarNames() {
     const input = await Console.readLineAsync(
       '경주할 자동차 이름을 입력하세요 : '
@@ -74,6 +55,8 @@ class App {
     return names;
   }
 
+  // 빈 문자열 체크
+  // 이름 길이 5자 초과 체크
   validateCarNames(names) {
     if (names.some((name) => name.length === 0)) {
       throw new Error('[ERROR] 자동차 이름은 1자 이상이어야 합니다.');
@@ -83,6 +66,7 @@ class App {
     }
   }
 
+  // 시도 횟수 입력 받기
   async getAttempts() {
     const input = await Console.readLineAsync('시도할 횟수는 몇 회인가요? ');
     const attempts = Number(input);
@@ -90,12 +74,15 @@ class App {
     return attempts;
   }
 
+  // 1 이상의 정수인지 확인
   validateAttempts(attempts) {
     if (!Number.isInteger(attempts) || attempts <= 0) {
       throw new Error('[ERROR] 시도 횟수는 1 이상의 정수여야 합니다.');
     }
   }
 
+  // 각 자동차별로 이동 조건 확인 후 이동
+  // 라운드 결과 출력
   async playOneRound(cars) {
     cars.forEach((car) => {
       const shouldMove = Random.pickNumberInRange(0, 9) >= 4;
@@ -104,10 +91,26 @@ class App {
     await this.printRoundResult(cars);
   }
 
+  // 라운드 결과 출력
   async printRoundResult(cars) {
     cars.forEach((car) => {
       Console.print(`${car.getName()} : ${'-'.repeat(car.getPosition())}`);
     });
+  }
+
+  // 우승자 찾기
+  findWinners(cars) {
+    const maxPosition = Math.max(...cars.map((car) => car.getPosition()));
+    return cars
+      .filter((car) => car.getPosition() === maxPosition)
+      .map((car) => car.getName());
+  }
+
+  // 우승자 발표
+
+  async announceWinners(cars) {
+    const winners = this.findWinners(cars);
+    await Console.print(`\n최종 우승자 : ${winners.join(', ')}`);
   }
 }
 
