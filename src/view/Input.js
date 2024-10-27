@@ -11,10 +11,9 @@ const Input = {
 
   async getRepeatCount(callback) {
     const repeatCountString = await MissionUtils.Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
-    const repeatCount = repeatCountString;
 
-    callback(repeatCount);
-    return Number(repeatCount);
+    callback(repeatCountString);
+    return Number(repeatCountString);
   },
 };
 
