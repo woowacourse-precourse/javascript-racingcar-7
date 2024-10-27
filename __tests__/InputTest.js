@@ -1,6 +1,6 @@
 import {
   splitCarName, validateCarNameLength, validateCarsLength, validateAttemptCount,
-} from '../src/InputUtils';
+} from '../src/utils/InputUtils.js';
 
 describe('입력', () => {
   test('자동차 이름은 쉼표(,)를 기준으로 구분한다.', () => {

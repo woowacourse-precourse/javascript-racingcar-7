@@ -4,8 +4,8 @@ import Car from './Car.js';
 
 import {
   getCarName, splitCarName, getAttemptCount, validateCarNames,
-} from './InputUtils.js';
-import { printCarPosition, printWinnerCar } from './OutputUtils.js';
+} from './utils/InputUtils.js';
+import { printCarPosition, printWinnerCar } from './utils/OutputUtils.js';
 
 class App {
   constructor() {
