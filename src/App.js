@@ -28,7 +28,9 @@ class App {
       this.playTurn(racingCars, racingCarsPos);
     }
 
-    Console.print(`최종 우승자 : ${this.pickWinner(racingCarsPos)}`);
+    const winners = this.pickWinner(racingCarsPos);
+
+    Console.print(`최종 우승자 : ${winners.join(", ")}`);
   }
 
   pickWinner(racingCarsPos) {
@@ -36,11 +38,11 @@ class App {
 
     const maxPos = Math.max(...posArray);
 
-    const winner = Object.entries(racingCarsPos).find(
-      ([name, item]) => item.length === maxPos
-    )[0];
+    const winners = Object.entries(racingCarsPos)
+      .filter(([name, item]) => item.length === maxPos)
+      .map(([name]) => name);
 
-    return winner;
+    return winners;
   }
 
   playTurn(racingCars, racingCarsPos) {
