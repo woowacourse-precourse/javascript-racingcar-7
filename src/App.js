@@ -19,9 +19,20 @@ class App {
       throw new Error("[ERROR] 자동차의 이름이 5자보다 깁니다.");
     }
 
+    const racingCarsPos = {};
     racingCars.forEach((car) => {
-      this.getRandomNumber();
+      racingCarsPos[car] = 0;
     });
+
+    racingCars.forEach((car) => {
+      if (this.getRandomNumber() >= 4) {
+        this.moveCar(racingCarsPos, car);
+      }
+    });
+  }
+
+  moveCar(racingCarsPos, car) {
+    racingCarsPos[car] += 1;
   }
 
   getRandomNumber() {
