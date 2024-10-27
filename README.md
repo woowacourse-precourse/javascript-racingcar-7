@@ -10,3 +10,14 @@
 - refactor : Racer 클래스 구현
 - refactor : Racing 클래스 구현
 - refactor : App.js내의 로직을 추상화 클래스로 분리
+- refactor : CustomError 클래스 구현
+- refactor : constants 폴더 생성후 상수 분리
+- refactor : Winners 클래스 구현
+- refactor : racing 클래스내의 winner 로직 삭제
+- refactor : private 메서드로 레이싱 로직 수정
+- refactor : 하드코딩된 값을 상수로 대체
+- refactor : 레이싱 클래스 리팩토링과 우승자 클래스 도입으로 해당 로직 개선
+- refactor : printResultByRound으로 이름 변경
+- refactor : 가독성을 위해 App내의 로직을 메서드로 분리
+- docs : 기능 목록 수정
+- chore : eslint 설정 적용
