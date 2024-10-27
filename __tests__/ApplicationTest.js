@@ -84,21 +84,19 @@ describe('구현할 기능 목록 테스트 코드 작성', () => {
     expect(result).toEqual(expectedResult);
   });
 
-  test('1경기 실행 결과', async () => {
+  test('1경기 실행 결과 츨략', () => {
     // given
-    const MOVING_FORWARD_ONE = 5;
-    const MOVING_FORWARD_TWO = 5;
-    const STOP = 3;
 
-    const input = { pobi: 0, woni: 0, jun: 0 };
-    const expectedResult = { pobi: 1, woni: 0, jun: 1 };
-
+    const input = { pobi: 3, woni: 0, jun: 2 };
+    const logs = ['pobi : -', 'woni : ', 'jun : --'];
+    const logSpy = getLogSpy();
     const app = new App();
-    mockRandoms([MOVING_FORWARD_ONE, STOP, MOVING_FORWARD_TWO]);
 
-    const result = await app.executionResult(input);
+    app.printResult(input);
 
-    expect(result).toEqual(expectedResult);
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
   });
 });
 
