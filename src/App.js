@@ -22,6 +22,23 @@ function validateRacingCount(count) {
   }
 }
 
+function randomRacing() {}
+
+function startRacing(array, count) {
+  const UPDATE_ARRAY = array.map(
+    (element) => element + " : "
+  );
+  let currentCount = 0;
+
+  UPDATE_ARRAY.forEach((element) => {
+    if (currentCount >= count) return;
+    randomRacing(element);
+    currentCount++;
+  });
+
+  return UPDATE_ARRAY;
+}
+
 class App {
   async run() {
     try {
@@ -35,6 +52,7 @@ class App {
           "시도할 횟수는 몇 회인가요?\n"
         );
       validateRacingCount(RACING_COUNT);
+      startRacing(CAR_ARRAY, RACING_COUNT);
     } catch (error) {
       Console.print(error.message);
     }
