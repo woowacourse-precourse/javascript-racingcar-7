@@ -5,6 +5,7 @@ export const findWinnerIndex = carsMovement => {
   carsMovement.map((movement, index) => {
     if (movement > max) {
       winnerIndex = [index];
+      max = movement;
     } else if (movement === max) {
       winnerIndex.push(index);
     }

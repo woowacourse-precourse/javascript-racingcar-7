@@ -25,7 +25,7 @@ class App {
       }
 
       const winnerIndex = findWinnerIndex(racingCarsMovement);
-      printWinner(racingCars, [winnerIndex]);
+      printWinner(racingCars, winnerIndex);
     } catch (error) {
       throw error;
     }
