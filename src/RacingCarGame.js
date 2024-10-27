@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 
 class RacingCarGame {
   static CAR_NAME_SEPARATOR = ",";
@@ -6,6 +6,8 @@ class RacingCarGame {
   static MAX_CAR_NAME_LENGTH = 5;
 
   static MIN_CAR_NAME_LENGTH = 1;
+
+  static MIN_SCORE_TO_MOVE = 4;
 
   validateCarName(carName) {
     return (
@@ -36,6 +38,28 @@ class RacingCarGame {
 
     if (this.validateRoundCount(roundCount)) {
       throw new Error("[ERROR] 유효하지 않은 시도할 횟수가 입력되었습니다.");
+    }
+
+    Console.print("\n실행 결과");
+
+    const pointsMap = new Map();
+
+    carNameList.forEach((carName) => {
+      pointsMap.set(carName, 0);
+    });
+
+    for (let round = 0; round < roundCount; round += 1) {
+      for (const carName of carNameList) {
+        const score = Random.pickNumberInRange(0, 9);
+
+        if (score >= RacingCarGame.MIN_SCORE_TO_MOVE) {
+          pointsMap.set(carName, pointsMap.get(carName) + 1);
+        }
+
+        Console.print(`${carName} : ${"-".repeat(pointsMap.get(carName))}`);
+      }
+
+      Console.print("\n");
     }
   }
 }
