@@ -16,7 +16,15 @@ class App {
 
     async carNameInput() {
         const inputArray = await Console.readLineAsync("경주할 자동차 이름을 입력하세요(이름은 쉼표(,) 기준으로 구분)");
+        inputArray.split(',').forEach(this.validateInput);
         return inputArray.split(',').map(this.formatCarName);
+    }
+
+    validateInput(carName) {
+        const pattern = /^[a-zA-Z0-9]+$/;
+        if (!pattern.test(carName)) {
+            throw new Error("[ERROR] 자동차 이름은 영문자와 숫자만 포함할 수 있습니다.");
+        }
     }
 
     formatCarName(carName) {
