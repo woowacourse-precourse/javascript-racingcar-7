@@ -51,9 +51,6 @@ class App {
     if (nameSet.size !== carNameArray.length) {
       throw new Error("[ERROR] 자동차 이름에 중복된 값이 있습니다.");
     }
-
-    Console.print("자동차 이름이 유효합니다.");
-    Console.print(carNameArray);
   }
 
   validateTryNumber(tryNumberInput) {
@@ -72,8 +69,6 @@ class App {
     if (tryNumber <= 0) {
       throw new Error("[ERROR] 시도할 횟수로 음수 및 0을 입력할 수 없습니다.");
     }
-
-    Console.print("시도할 횟수가 유효합니다.");
   }
 
   runRace(carNames, tryNumber) {
