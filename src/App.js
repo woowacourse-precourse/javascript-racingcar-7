@@ -55,6 +55,9 @@ class App {
         continue;
       }
     }
+
+    // 우승자 출력
+    Console.print(`최종 우승자 : ${winner.map((car) => car.name).join(',')}`);
   }
 }
 
