@@ -1,11 +1,15 @@
 export default {
   validateNames(names) {
-    if (!names) throw new Error('[ERROR] 이름을 입력해주세요.');
+    if (!names)
+      throw new Error(
+        '[ERROR] 이름이 입력되지 않았습니다. 이름을 입력해주세요.',
+      );
     if (!names.match(/^[^,]{1,5}(,[^,]{1,5})+$/)) {
       this.OneName(names);
       this.LongName(names);
       this.CommaEnding(names);
 
+      // UNKNOWN error
       throw new Error('[ERROR] 이름 입력을 다시 확인해주세요.');
     }
   },
@@ -26,10 +30,12 @@ export default {
   },
 
   validateRepetitionString(repetitionString) {
-    if (!repetitionString) throw new Error('[ERROR] 시도 횟수를 입력해주세요.');
-    if (!repetitionString.match(/^\d+$/)) {
-      // 어떤 유형의 에러인지 구분하여 작성 <- 사용자를 위함
-      // 맨 마지막에는 일반적인 에러 메시지로 작성
+    if (!repetitionString)
+      throw new Error(
+        '[ERROR] 시도 횟수가 입력되지 않았습니다. 시도 횟수를 입력해주세요.',
+      );
+    if (!repetitionString.match(/^[1-9](\d+)*$/)) {
+      // UNKNOWN error
       throw new Error('[ERROR] 시도 횟수를 입력해주세요.');
     }
   },
