@@ -9,8 +9,8 @@ class App {
         InputValidator.validateCarNameList(carNameList);
 
         const inputTryCount = await this.getInputTryCount();
+        InputValidator.validateInputTryCount(inputTryCount);
         const tryCount = Number(inputTryCount);
-        InputValidator.validateTryCount(tryCount);
 
         const newRace = new Race(carNameList, tryCount);
         newRace.start();

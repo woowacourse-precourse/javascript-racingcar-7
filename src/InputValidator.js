@@ -21,7 +21,12 @@ class InputValidator {
         }
     }
 
-    static validateTryCount(tryCount) {
+    static validateInputTryCount(inputTryCount) {
+        if (!inputTryCount) {
+            InputValidator.#throwError(InputValidator.ERROR_MESSAGES.TRY_COUNT_EMPTY);
+        }
+
+        const tryCount = Number(inputTryCount);
         if (!Number.isInteger(tryCount) || tryCount < 1) {
             InputValidator.#throwError(InputValidator.ERROR_MESSAGES.INVALID_TRY_COUNT);
         }
