@@ -5,13 +5,11 @@ class App {
     try {
       const carNames = await this.getCarNames();
       const moveAttempts = await this.getMoveAttempts();
-      const results = this.race(carNames, moveAttempts);
+      Console.print("\n실행 결과");
 
-      results.forEach((result, index) => {
-        Console.print(`${carNames[index]} : ${result}`);
-      });
+      this.race(carNames, moveAttempts);
 
-      const winners = this.determineWinners(carNames, results);
+      const winners = this.determineWinners(carNames);
       Console.print(`최종 우승자 : ${winners.join(", ")}`);
     } catch (error) {
       Console.print(error.message);
@@ -82,12 +80,19 @@ class App {
           results[index] += "-";
         }
       });
+
+      results.forEach((result, index) => {
+        Console.print(`${carNames[index]} : ${result}`);
+      });
+      Console.print("");
     }
 
     return results;
   }
 
-  determineWinners(carNames, results) {
+  determineWinners(carNames) {
+    const results = carNames.map(() => "");
+
     const maxDistance = Math.max(...results.map((result) => result.length));
     return carNames.filter((_, index) => results[index].length === maxDistance);
   }
