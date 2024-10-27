@@ -1,8 +1,8 @@
 import { GIDE_MESSAGE } from "../../Constants/constant.js";
-import PrintGideMessage from "../Output/PrintGideMessage.js";
+import printGideMessage from "./module/printGideMessage.js";
 
 const inputTryNum = async () => {
-  const tryNum = PrintGideMessage(GIDE_MESSAGE.tryNum);
+  const tryNum = printGideMessage(GIDE_MESSAGE.tryNum);
   return tryNum;
 };
 export default inputTryNum;

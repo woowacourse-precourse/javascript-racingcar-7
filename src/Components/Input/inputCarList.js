@@ -1,9 +1,9 @@
 import { GIDE_MESSAGE } from "../../Constants/constant.js";
 import parserCarList from "../../Utils/parserCarList.js";
-import PrintGideMessage from "../Output/PrintGideMessage.js";
+import printGideMessage from "./module/printGideMessage.js";
 
 const inputCarList = async () => {
-  const carList = await PrintGideMessage(GIDE_MESSAGE.carList);
+  const carList = await printGideMessage(GIDE_MESSAGE.carList);
   const carListArr = parserCarList(carList);
   return carListArr;
 };
