@@ -15,7 +15,6 @@ class App {
     this.initScore(SCORE, CARS_COUNT);
 
     await this.playGame(ATTEMPTS, SCORE, CARS_COUNT);
-
   }
 
   async getCarsInput() {
@@ -26,8 +25,29 @@ class App {
     return CARS_INPUT;
   }
 
+
+
+  // , 기준 분리
+  splitCars(CARS_INPUT) {
+    const CARS_SPLIT = CARS_INPUT.split(',');
+
+    const CARS = [];
+    this.validateCarName(CARS_SPLIT, CARS);
+
+    return CARS;
+  }
+
+  // 각 이름이 valid한지 검사
+  validateCarName(CARS_SPLIT, CARS) {
+    CARS_SPLIT.forEach((car) => {
+      if (this.isValidCarName(car, CARS)) {
+        CARS.push(car);
+      }
+    });
+  }
+
   // 차 이름 검사하기
-  validateCarName(NAME, CARS) {
+  isValidCarName(NAME, CARS) {
     // 영어 문자만 가능
     const CAR_NAME_PATTERN = /^[a-zA-Z]+$/;
     if (!CAR_NAME_PATTERN.test(NAME)) {
@@ -47,22 +67,7 @@ class App {
     return true;
   }
 
-  // , 기준 분리
-  splitCars(CARS_INPUT) {
-    const CARS_SPLIT = CARS_INPUT.split(',');
 
-    const CARS = [];
-
-    // 각 이름이 valid한지 검사
-    CARS_SPLIT.forEach((car) => {
-      if (this.validateCarName(car, CARS)) {
-        CARS.push(car);
-      }
-    });
-
-    return CARS;
-  }
-  
 
   // 시도 횟수 입력
   async getAttempts() {
@@ -103,7 +108,7 @@ class App {
       // 전진
       if (RANDOM_NUMBER >= 4) {
         CAN_GO.push(true);
-      // 정지
+        // 정지
       } else {
         CAN_GO.push(false);
       }
