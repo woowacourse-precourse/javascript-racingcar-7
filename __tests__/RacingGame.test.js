@@ -31,12 +31,12 @@ describe('RacingGame 클래스 테스트', () => {
     });
   });
 
-  test('printResultByStep 메서드: 각 차의 이름과 전진한 횟수를 Console에 출력', () => {
+  test('printStatusByStep 메서드: 각 차의 이름과 전진한 횟수를 Console에 출력', () => {
     cars[0].forward();
     cars[1].forward();
     cars[1].forward();
 
-    racingGame.printResultByStep(cars);
+    racingGame.printStatusByStep(cars);
 
     expect(Console.print).toHaveBeenCalledWith('car1 : -');
     expect(Console.print).toHaveBeenCalledWith('car2 : --');
