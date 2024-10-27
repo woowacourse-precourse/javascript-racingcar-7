@@ -1,7 +1,7 @@
 import { Console } from "@woowacourse/mission-utils";
-import inputParser from "./inputParser.js";
+import inputParser from "./utils/inputParser.js";
 import RacingGame from "./RacingGame.js";
-import { nameValidation, tryValidation } from "./validators.js";
+import { nameValidation, tryValidation } from "./utils/validators.js";
 
 class App {
   async run() {
