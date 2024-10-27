@@ -26,7 +26,7 @@ class CarGame {
 
         this.#cars.forEach((car, _) => {
             car.tryToMove();
-            oneTurnLogs.push(`${car.getName()} : ${"-".repeat(car.getPosition())}`);
+            oneTurnLogs.push(car.getCurrentLog());
         });
 
         return oneTurnLogs;

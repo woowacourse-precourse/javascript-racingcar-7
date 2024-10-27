@@ -16,6 +16,10 @@ class Car {
         }
     }
 
+    getCurrentLog() {
+        return `${this.#name} : ${"-".repeat(this.#position)}`;
+    }
+
     getName() {
         return this.#name;
     }
