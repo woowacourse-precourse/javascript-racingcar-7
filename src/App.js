@@ -1,6 +1,14 @@
 import { Console, Random } from '@woowacourse/mission-utils';
 
-// TODO: 상수 처리
+const INPUT_PLAYER_NAMES =
+  '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분\n)';
+const INPUT_MOVE_COUNT = '시도할 횟수는 몇 회인가요?';
+const WINNER_MESSAGE = '최종 우승자 : ';
+const ERROR_MESSAGE = '[ERROR]';
+const MIN_SUCCESS_SCORE = 4;
+const MIN_PLAYER_NAME_LENGTH = 1;
+const MAX_PLAYER_NAME_LENGTH = 5;
+const SCORE_SYMBOL = '-';
 
 class App {
   async run() {
@@ -12,18 +20,16 @@ export default App;
 
 async function main() {
   try {
-    const userInput = await Console.readLineAsync(
-      '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분\n)'
-    );
+    const userInput = await Console.readLineAsync(INPUT_PLAYER_NAMES);
 
     const playerNames = parsePlayerNames(userInput);
     validatePlayerNames(playerNames);
 
     const playerScores = createScoreBoard(playerNames);
-    const moveCount = await Console.readLineAsync('시도할 횟수는 몇 회인가요?');
+    const moveCount = await Console.readLineAsync(INPUT_MOVE_COUNT);
     playRounds(playerScores, moveCount);
 
-    Console.print(`최종 우승자 : ${findWinners(playerScores)}`);
+    Console.print(`${WINNER_MESSAGE}${findWinners(playerScores)}`);
   } catch (error) {
     Console.print(error.message);
     throw error;
@@ -37,9 +43,11 @@ function parsePlayerNames(userInput) {
 function validatePlayerNames(playerNames) {
   // [ERROR] 5자를 초과
   // TODO: 특수문자
-  const regex = /^[a-zA-Z0-9ㄱ-ㅣ가-힣]{1,5}$/;
+  const regex = new RegExp(
+    `^[a-zA-Z0-9ㄱ-ㅣ가-힣]{${MIN_PLAYER_NAME_LENGTH},${MAX_PLAYER_NAME_LENGTH}}$`
+  );
   if (playerNames.some((player) => !player.match(regex)))
-    throw new Error('[ERROR]');
+    throw new Error(ERROR_MESSAGE);
 }
 
 function createScoreBoard(playerNames) {
@@ -54,11 +62,11 @@ function playRounds(scoreBoard, moveCount) {
 }
 
 function playGame(player) {
-  if (Random.pickNumberInRange(0, 9) >= 4) {
+  if (Random.pickNumberInRange(0, 9) >= MIN_SUCCESS_SCORE) {
     player.score += 1;
   }
-  // TODO: 문자열 상수화
-  Console.print(`${player.name} : ${'-'.repeat(player.score)}`);
+
+  Console.print(`${player.name} : ${SCORE_SYMBOL.repeat(player.score)}`);
 }
 
 function findWinners(playerScores) {
