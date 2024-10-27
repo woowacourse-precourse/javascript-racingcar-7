@@ -12,9 +12,8 @@ describe('Game 클래스', () => {
   let raceModel;
   let game;
 
-  let readCarNameSpy;
+  let readUserInputSpy;
   let outputViewSpy;
-  let readAttemptSpy;
   let determineWinnersSpy;
   let raceSpy;
   let announceWinnerSpy;
@@ -28,9 +27,8 @@ describe('Game 클래스', () => {
     raceModel = new Race();
     game = new Game(user, outputView, raceModel);
 
-    readCarNameSpy = jest.spyOn(user, 'readCarNameInput');
+    readUserInputSpy = jest.spyOn(user, 'readUserInput');
     outputViewSpy = jest.spyOn(Console, 'print');
-    readAttemptSpy = jest.spyOn(user, 'readAttemptsInput');
     determineWinnersSpy = jest.spyOn(raceModel, 'determineWinners');
     validateCarNameSpy = jest.spyOn(validateCarNameModule, 'validateCarName');
     validateAttemptsSpy = jest.spyOn(
@@ -51,15 +49,15 @@ describe('Game 클래스', () => {
     const attempts = 4;
     const winners = [{ name: 'car1' }];
 
-    readCarNameSpy.mockResolvedValue(carNames);
-    readAttemptSpy.mockResolvedValue(attempts);
+    readUserInputSpy
+      .mockResolvedValueOnce(carNames)
+      .mockResolvedValueOnce(attempts);
     determineWinnersSpy.mockReturnValue(winners);
 
     await game.process();
 
-    expect(readCarNameSpy).toHaveBeenCalledTimes(1);
+    expect(readUserInputSpy).toHaveBeenCalledTimes(2);
     expect(validateCarNameSpy).toHaveBeenCalledWith(carNames);
-    expect(readAttemptSpy).toHaveBeenCalledTimes(1);
     expect(validateAttemptsSpy).toHaveBeenCalledWith(attempts);
     expect(printMessageSpy).toHaveBeenCalledWith(`\n${GAME_MESSAGE.RESULT}`);
     expect(raceSpy).toHaveBeenCalledTimes(1);
@@ -69,22 +67,22 @@ describe('Game 클래스', () => {
 
   test('자동차 이름 유효성 검사에서 예외가 발생하면 중단한다', async () => {
     const carNames = 'car1,car 2';
-    readCarNameSpy.mockResolvedValue(carNames);
+    readUserInputSpy.mockResolvedValue(carNames);
     validateCarNameSpy.mockImplementation(() => {
       throw new Error(ERROR_PREFIX);
     });
 
     await expect(game.process()).rejects.toThrow(ERROR_PREFIX);
-    expect(readAttemptSpy).not.toHaveBeenCalled(); //자동차 이름 유효성 검사 이후 메서드는 실행 x
+    expect(readUserInputSpy).not.toHaveBeenCalledTimes(2); //자동차 이름 유효성 검사 이후 메서드는 실행 x
   });
 
   test('시도 횟수 입력에서 예외가 발생하면 중단한다', async () => {
     const carNames = 'car1,car2,car 3';
-    readCarNameSpy.mockResolvedValue(carNames);
+    readUserInputSpy.mockResolvedValue(carNames);
     validateCarNameSpy.mockImplementation(() => {});
 
     const attempts = 'a';
-    readAttemptSpy.mockResolvedValue(attempts);
+    readUserInputSpy.mockResolvedValue(attempts);
     validateAttemptsSpy.mockImplementation(() => {
       throw new Error(ERROR_PREFIX);
     });

@@ -25,7 +25,7 @@ describe('User', () => {
       const expectedInput = 'pobi,woni,jun';
       readLineAsyncSpy.mockResolvedValue(expectedInput);
 
-      const result = await user.readCarNameInput(message);
+      const result = await user.readUserInput(message);
 
       expect(readLineAsyncSpy).toHaveBeenCalledWith(message);
       expect(result).toBe(expectedInput);
@@ -40,7 +40,7 @@ describe('User', () => {
 
       for (const input of inputs) {
         readLineAsyncSpy.mockResolvedValue(input);
-        const result = await user.readCarNameInput(GAME_MESSAGE.START);
+        const result = await user.readUserInput(GAME_MESSAGE.START);
         expect(result).toBe(input);
       }
     });
@@ -52,7 +52,7 @@ describe('User', () => {
       const expectedInput = '5';
       readLineAsyncSpy.mockResolvedValue(expectedInput);
 
-      const result = await user.readAttemptsInput(message);
+      const result = await user.readUserInput(message);
 
       expect(readLineAsyncSpy).toHaveBeenCalledWith(message);
       expect(result).toBe(expectedInput);

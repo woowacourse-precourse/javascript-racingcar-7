@@ -11,11 +11,11 @@ class Game {
   }
 
   async process() {
-    const carNameInput = await this.user.readCarNameInput();
+    const carNameInput = await this.user.readUserInput(GAME_MESSAGE.START);
     validateCarName(carNameInput);
     this.raceModel.initializeCars(carNameInput.split(','));
 
-    const attempts = await this.user.readAttemptsInput();
+    const attempts = await this.user.readUserInput(GAME_MESSAGE.ATTEMPTS);
     validateAttempts(attempts - 0);
 
     outputView.printMessage(`\n${GAME_MESSAGE.RESULT}`);

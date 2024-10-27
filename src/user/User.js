@@ -1,18 +1,14 @@
 //@ts-check
 
 import { Console } from '@woowacourse/mission-utils';
-import { GAME_MESSAGE } from '../constants/messages.js';
 
 class User {
   /**
+   * @param {string} message
    * @returns {Promise<string>}
    */
-  async readCarNameInput() {
-    return Console.readLineAsync(GAME_MESSAGE.START);
-  }
-
-  async readAttemptsInput() {
-    return Console.readLineAsync(GAME_MESSAGE.ATTEMPTS);
+  async readUserInput(message) {
+    return Console.readLineAsync(message);
   }
 }
 
