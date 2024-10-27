@@ -27,16 +27,14 @@ export default class RaceExcutor {
         if (num >= this.#MIN_NUMBER_FOR_MOVE_CAR) {
             car.moveForward();
         }
-
-        return num;
     }
 
     #execute(cars) {
         let result = '';
 
         cars.forEach(car => {
-            const num = this.#moveForwardCarOverRandomNumber(car);
-            result = result.concat(this.#getPrintMessage(car.name, num));
+            this.#moveForwardCarOverRandomNumber(car);
+            result = result.concat(this.#getPrintMessage(car.name, car.moveForwardCount));
         });
 
         return result;
