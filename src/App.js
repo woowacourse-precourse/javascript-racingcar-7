@@ -5,6 +5,7 @@ class App {
     '[ERROR] 경주할 자동차를 입력해주세요',
     '[ERROR] 1 이상의 숫자부터 입력 가능합니다.',
     '[ERROR] 경주할 자동차의 이름은 문자로 입력해주세요',
+    '[ERROR] 중복된 자동차 이름이 존재합니다.',
   ];
 
   throwError(messageIndex) {
@@ -30,13 +31,19 @@ class App {
       this.throwError(1);
     }
 
-    const participant_dict = participant_input
+    const participant_names = participant_input
       .split(',')
-      .map((name) => name.trim())
-      .reduce((acc, name) => {
-        acc[name] = 0;
-        return acc;
-      }, {});
+      .map((name) => name.trim());
+
+    const unique_participants = new Set(participant_names);
+    if (unique_participants.size !== participant_names.length) {
+      this.throwError(3);
+    }
+
+    const participant_dict = participant_names.reduce((acc, name) => {
+      acc[name] = 0;
+      return acc;
+    }, {});
 
     Console.print('\n실행 결과');
     let count = 0;
