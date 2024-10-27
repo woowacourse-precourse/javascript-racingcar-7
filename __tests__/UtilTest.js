@@ -40,6 +40,25 @@ describe("View Tests", () => {
     const result3 = car.moveForward();
     expect(result3).toBe(2);
   });
+
+  test("View Result Test", () => {
+    const view = new View();
+    const car1 = new Car("pobi");
+    const car2 = new Car("rupi");
+
+    const mockRandom = jest.spyOn(MissionUtils.Random, "pickNumberInRange");
+    mockRandom.mockReturnValue(5);
+
+    car1.moveForward();
+    car1.moveForward();
+    car2.moveForward();
+
+    view.outputResult([car1, car2]);
+
+    expect(consoleSpy).toHaveBeenNthCalledWith(1, "실행 결과");
+    expect(consoleSpy).toHaveBeenNthCalledWith(2, "pobi : --");
+    expect(consoleSpy).toHaveBeenNthCalledWith(3, "rupi : -");
+  });
 });
 
 test("ParseUtils Test - parseDistanceToDash", () => {
