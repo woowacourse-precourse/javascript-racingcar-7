@@ -5,6 +5,7 @@ import {
   createCarObject,
   shouldMoveForward,
   getCarPositionsRepresentation,
+  findWinners,
 } from '../src/models/Model.js';
 import App from '../src/App.js';
 
@@ -125,5 +126,9 @@ describe('Custom Test', () => {
     expect(logSpy).toHaveBeenCalledWith('car2 : ---');
     // 빈 줄 출력 검증
     expect(logSpy).toHaveBeenCalledWith('');
+  });
+
+  test('우승자 찾기', () => {
+    expect(findWinners(CAR_MOVES)).toEqual(['happy']);
   });
 });
