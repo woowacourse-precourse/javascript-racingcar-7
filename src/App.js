@@ -15,6 +15,7 @@ class App {
       if (Number.isNaN(movingNumber)) {
         throw new Error('[ERROR]');  
       }
+
       const giveDash = () => {
         const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
         if (randomNumber >= 4) {
@@ -22,12 +23,27 @@ class App {
         }
         return '';
       };
+      let dashArray = namesArray.slice();
       const oneCycle = () => {
-        namesArray.forEach((element, index) => {
-          namesArray[index] = `${namesArray[index]} : ` + giveDash();
-          MissionUtils.Console.print(namesArray[index]);
-        });
+        dashArray = dashArray.map((element) => element + giveDash());
+        let onlyDash = [];
+        onlyDash = dashArray.map((element) => element.match(/-/g) || '');
+        for (let i = 0; i < dashArray.length; i++) {
+          MissionUtils.Console.print(`${namesArray[i]} : ${onlyDash[i]}`);
+        }
+
+        MissionUtils.Console.print('');
       };
+
+      const winner = [];
+      for (let i = 0; i < dashArray.length; i++) {
+        if (dashArray[i].length - namesArray[i].length === movingNumber) {
+          winner.push(namesArray[i]);
+          } else if (winner.length === 0) {
+          oneCycle();
+          i = -1;
+        }
+      }
     } catch {
       MissionUtils.Console.print('[ERROR]');
       throw new Error('[ERROR]');
