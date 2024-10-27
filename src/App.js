@@ -31,8 +31,15 @@ class App {
       });
 
       // 시도 횟수 받기
-      const tryCount =
+      let tryCount =
         await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+
+      tryCount = Number(tryCount);
+
+      // 시도 횟수에 대한 예외 케이스
+      if (isNaN(tryCount)) throw new Error('[ERROR] 숫자만 입력해주세요.');
+
+      if (tryCount < 0) throw new Error('[ERROR] 0보다 큰 수를 입력해주세요.');
 
       // 줄 구분용 빈칸
       Console.print('');
