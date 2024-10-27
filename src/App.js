@@ -14,7 +14,7 @@ const determineCarName = (input) => {
 };
 
 const goAhead = (names, raceNum) => {
-  Console.print('실행 결과');
+  Console.print('\n실행 결과');
 
   const namesArray = names.split(',');
   const raceRecord = namesArray.map((name) => ({ name, aheadNum: 0 }));
