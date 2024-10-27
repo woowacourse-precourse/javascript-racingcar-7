@@ -91,4 +91,28 @@ describe('유저 입력값 예외 처리를 검사하는 테스트', () => {
       }
     },
   );
+
+  test.each([
+    [4, true, '1 이상 정수'],
+    [1, true, '1'],
+    [0, false, '1 미만 정수'],
+    [0.5, false, '1 미만 정수가 아닌 실수'],
+    [1.4, false, '1 이상 정수가 아닌 실수'],
+  ])(
+    '이동 시도 횟수(총 라운드)의 데이터 타입에 관한 예외 처리 테스트 (%s)',
+    (totalRounds, expected) => {
+      const ERROR_PREFIX = '[ERROR]';
+      const parsedTotalRounds = RacingManager.parseTotalRounds(totalRounds);
+
+      if (expected) {
+        expect(() =>
+          Validation.isValidTotalRounds(parsedTotalRounds),
+        ).not.toThrow();
+      } else {
+        expect(() => Validation.isValidTotalRounds(parsedTotalRounds)).toThrow(
+          ERROR_PREFIX,
+        );
+      }
+    },
+  );
 });
