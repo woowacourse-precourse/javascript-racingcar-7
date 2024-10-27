@@ -54,7 +54,26 @@ describe('Race 클래스', () => {
     }
   });
 
-  test.todo('determineWinners가 최고 위치의 자동차들을 반환한다.');
+  test('모든 자도차가 같은 위치에 있을 때 모두를 우승자로 반환한다', () => {
+    race.cars = [
+      { name: 'car1', position: 3 },
+      { name: 'car2', position: 3 },
+      { name: 'car3', position: 3 },
+    ];
+    const winners = race.determineWinners();
+    expect(winners.length).toBe(3);
+    expect(winners.map((car) => car.name)).toEqual(['car1', 'car2', 'car3']);
+  });
 
-  test.todo('우승자를 올바르게 결정한다.');
+  test('한대의 자동차만 가장 앞에 있을 때 해당 자동차를 우승자로 반환한다', () => {
+    race.cars = [
+      { name: 'car1', position: 5 },
+      { name: 'car2', position: 3 },
+      { name: 'car3', position: 3 },
+    ];
+
+    const winners = race.determineWinners();
+    expect(winners.length).toBe(1);
+    expect(winners.map((car) => car.name)).toEqual(['car1']);
+  });
 });
