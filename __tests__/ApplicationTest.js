@@ -59,6 +59,42 @@ describe('자동차 경주', () => {
         // then
         await expect(app.run()).rejects.toThrow('[ERROR]');
       });
+
+      test('자동차 이름이 1글자 미만으로 입력되었을 때 에러를 발생시킨다.', async () => {
+        // given
+        const inputs = [',benz'];
+        mockQuestions(inputs);
+
+        // when
+        const app = new App();
+
+        // then
+        await expect(app.run()).rejects.toThrow('[ERROR]');
+      });
+
+      test('빈 문자열이 자동차 이름으로 입력되었을 때 에러를 발생시킨다.', async () => {
+        // given
+        const inputs = [''];
+        mockQuestions(inputs);
+
+        // when
+        const app = new App();
+
+        // then
+        await expect(app.run()).rejects.toThrow('[ERROR]');
+      });
+
+      test('자동차가 2대 이상 입력되지 않았을 때 에러를 발생시킨다.', async () => {
+        // given
+        const inputs = ['benz'];
+        mockQuestions(inputs);
+
+        // when
+        const app = new App();
+
+        // then
+        await expect(app.run()).rejects.toThrow('[ERROR]');
+      });
     });
   });
 });

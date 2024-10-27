@@ -10,14 +10,20 @@ class App {
         '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
       );
 
+      if (userInput == '')
+        throw new Error('[ERROR] 자동차 이름이 입력되지 않았습니다.');
+
       // 자동차 이름 분리
       const carNameArr = userInput.split(',');
 
+      if (carNameArr.length < 2)
+        throw new Error('[ERROR] 경주를 위해 2대 이상의 자동차가 필요합니다.');
+
       // 자동차 인스턴스 생성
       const carInstanceArr = carNameArr.map((name) => {
-        if (name.length > 5) {
+        if (name.length > 5 || name.length == 0) {
           throw new Error(
-            '[ERROR] 자동차의 이름은 5글자 이내로 작성되어야 합니다.',
+            '[ERROR] 자동차의 이름은 1~5글자로 작성되어야 합니다.',
           );
         } else {
           return new RacingCar(name);
