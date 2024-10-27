@@ -18,15 +18,32 @@ class App {
     const input = await Console.readLineAsync(
       "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
     );
-    this.carNames = this.validateCarNames(input.split(",")); // 자동차 이름 검증
+
+    // 입력값을 문자열로 변환하여 validateCarNames에 전달
+    this.carNames = this.validateCarNames(String(input)); // 자동차 이름 검증
   }
 
-  validateCarNames(names) {
+  validateCarNames(input) {
+    // 쉼표로 구분된 자동차 이름 배열 생성
+    const names = input.split(",").map((name) => name.trim());
+
+    // 자동차 이름에 쉼표(,) 외의 다른 문자가 포함되어 있는지 확인
+    const invalidSeparator = names.some((name) =>
+      /[^a-zA-Z0-9가-힣,]/.test(name)
+    );
+    if (invalidSeparator) {
+      throw new Error(
+        `[ERROR] 각 자동차를 구분하는 구분자는 쉼표(,)만 가능합니다.`
+      );
+    }
+
+    // 각 자동차 이름의 길이를 검사
     names.forEach((name) => {
       if (name.length > 5) {
         throw new Error(`[ERROR] 자동차 이름은 5자 이하만 가능합니다.`);
       }
     });
+
     return names; // 유효한 자동차 이름 반환
   }
 
