@@ -6,6 +6,7 @@ class App {
     try {
       const carList = await inputCarList();
       const tryNumber = await inputTryNum();
+      console.log(carList, tryNumber);
     } catch (error) {
       throw new Error(error.message);
     }
