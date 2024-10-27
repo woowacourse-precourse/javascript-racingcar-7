@@ -35,8 +35,14 @@ export default {
         '[ERROR] 시도 횟수가 입력되지 않았습니다. 시도 횟수를 입력해주세요.',
       );
     if (!repetitionString.match(/^[1-9](\d+)*$/)) {
+      this.NotNumber(repetitionString);
       // UNKNOWN error
       throw new Error('[ERROR] 시도 횟수를 입력해주세요.');
+    }
+  },
+  NotNumber(repetitionString) {
+    if (repetitionString.match(/[^0-9]+/)) {
+      throw new Error('[ERROR] 시도 횟수는 숫자만 입력해주세요.');
     }
   },
 };
