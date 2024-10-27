@@ -54,6 +54,14 @@ class App {
     );
 
     const carNames = this.splitInput(input);
+
+    if (this.isNumber(numInput)) {
+      if (parseInt(numInput) < 0) {
+        throw new Error("[ERROR]");
+      }
+    } else {
+      throw new Error("[ERROR]");
+    }
   }
 }
 
