@@ -86,17 +86,20 @@
 ```
   printRaceResult(){
     Object.keys(this.carNameObj).forEach(key => {
-      Console.print(key + " : ");
+      let carDistance = "";
       for(let i = 0; i < this.carNameObj[key]; i++){
-        Console.print("-");
+        carDistance += "-";
       }
-      Console.print("\n");
+      Console.print(key + " : " + carDistance);
     });
+
+    Console.print(" ");
   }
 ```
 
 - `forEach()`를 사용하여 `this.carNameObj`의 key 값을 순회하며 실행 결과를 출력
-- key값(자동차 이름)과 value값(이동 거리) 만큼 "-"를 출력한다.
+- `carDistance` 문자열에 value 값만큼 "-"를 더한다.
+- key 값(자동차 이름)과 value 값(이동 거리) 만큼 "-"를 출력한다.
 
 ### 최종 우승자 출력
 
