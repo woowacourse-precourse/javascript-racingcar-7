@@ -1,4 +1,7 @@
 export function validatePlayerNames(names) {
+  if (names.length === 0 || names.every((name) => name.trim() === "")) {
+    throw new Error("[ERROR] 값을 입력해주세요.");
+  }
   if (names.some((name) => name.length > 5)) {
     throw new Error("[ERROR] 자동차 이름은 5자 이하로 입력해주세요.");
   }
