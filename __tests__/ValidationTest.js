@@ -27,4 +27,22 @@ describe('유저 입력값 예외 처리를 검사하는 테스트', () => {
       ).toThrow(ERROR_PREFIX);
     }
   });
+
+  test.each([
+    ['woowa,woowa', false, '중복'],
+    [' woowa ,woowa', false, '중복'],
+    [' woowa , woowa', false, '앞 뒤 공백 포함 중복'],
+    ['중복 이다, 중복 이다', false, '공백 포함 중복'],
+    ['소나타,소 나타', true, '중복 아님으로 인정'],
+    ['벤츠,BMW', true, '중복 아님'],
+  ])('자동차 이름의 중복 예외 처리 테스트 (%s)', (name, expected) => {
+    const ERROR_PREFIX = '[ERROR]';
+    const parsedName = RacingManager.parseCarNames(name);
+
+    if (expected) {
+      expect(() => Validation.isNoDuplicated(parsedName)).not.toThrow();
+    } else {
+      expect(() => Validation.isNoDuplicated(parsedName)).toThrow(ERROR_PREFIX);
+    }
+  });
 });
