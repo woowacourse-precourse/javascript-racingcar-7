@@ -1,8 +1,9 @@
-import { Random, Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 import RaceView from '../view/RaceView.js';
 import CarModel from '../model/CarModel.js';
 import RaceModel from '../model/RaceModel.js';
 import InputValidator from './InputValidator.js';
+import { FORWARD_THRESHOLD } from '../constants/constraints.js';
 
 class RaceController {
   constructor() {
@@ -42,7 +43,7 @@ class RaceController {
   }
 
   canAdvance(randomValue) {
-    return randomValue >= 4;
+    return randomValue >= FORWARD_THRESHOLD;
   }
 
   showWinners() {
