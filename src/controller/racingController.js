@@ -20,7 +20,7 @@ class RacingController {
       RacingView.printWinners(racingModel.getWinners());
     } catch (error) {
       RacingView.printError(error.message);
-      throw error;
+      throw new Error('[ERROR]');
     }
   }
 
