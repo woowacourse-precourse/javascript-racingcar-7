@@ -24,7 +24,7 @@ export class RacingGame {
             throw new Error("[ERROR] 자연수만 입력 가능합니다.");
         }
     }
-    
+
     async getInput() {
         const namesInput = await MissionUtils.Console.readLineAsync(
             "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
@@ -39,6 +39,13 @@ export class RacingGame {
         this.validateTryCount(this.tryCount);
         
         names.forEach(name => this.cars[name] = ""); 
+    }
+
+    printRoundResult() {
+        for (const car in this.cars) {
+            MissionUtils.Console.print(`${car} : ${this.cars[car]}\n`);
+        }
+        MissionUtils.Console.print("\n");
     }
 }
 
