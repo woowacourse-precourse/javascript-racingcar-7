@@ -6,7 +6,7 @@ import printResultMessage from "../Output/printResultMessage.js";
 const moveRaceCar = (car) => {
   const randomNum = randomGenerator();
   if (randomNum >= 4) {
-    //Todo - move forward
+    car.position += 1;
   }
 };
 
