@@ -1,4 +1,4 @@
-import CarManagementService from './CarManagementService';
+import CarManagementService from '../../src/Service/CarManagementService';
 
 describe('CarManagementService', () => {
   test('새로운 자동차를 추가한다', () => {

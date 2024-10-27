@@ -1,6 +1,6 @@
 import Car from '../../src/Model/Car';
 import CarMovementService from '../../src/Service/CarMovementService';
-import { mockRandoms } from './ApplicationTest';
+import { mockRandoms } from '../ApplicationTest';
 
 describe('carMovementService', () => {
   test('0에서 9사이의 무작위 값을 생성한다', () => {
@@ -27,7 +27,8 @@ describe('carMovementService', () => {
   });
 
   test('무작위 값이 4 이상일 때 전진한다', async () => {
-    const cars = [new Car('pobi')];
+    const carName = 'pobi';
+    const cars = [new Car(carName)];
     const mockValues = [8];
 
     mockRandoms(mockValues);
@@ -39,7 +40,8 @@ describe('carMovementService', () => {
   });
 
   test('무작위 값이 3 이하일 때 전진하지 않는다', async () => {
-    const cars = [new Car('pobi')];
+    const carName = 'pobi';
+    const cars = [new Car(carName)];
     const mockValues = [2];
 
     mockRandoms(mockValues);

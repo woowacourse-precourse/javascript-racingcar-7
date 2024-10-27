@@ -1,4 +1,4 @@
-import Car from './Car';
+import Car from '../../src/Model/Car';
 
 describe('Car', () => {
   test('이름과 초기 값을 설정한다', () => {
