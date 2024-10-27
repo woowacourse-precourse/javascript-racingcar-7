@@ -1,7 +1,7 @@
-import App from '../src/App.js';
 import { MissionUtils } from '@woowacourse/mission-utils';
+import App from '../src/App.js';
 
-const mockQuestions = inputs => {
+const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
 
   MissionUtils.Console.readLineAsync.mockImplementation(() => {
@@ -10,12 +10,13 @@ const mockQuestions = inputs => {
   });
 };
 
-const mockRandoms = numbers => {
+const mockRandoms = (numbers) => {
   MissionUtils.Random.pickNumberInRange = jest.fn();
 
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, MissionUtils.Random.pickNumberInRange);
+  numbers.reduce(
+    (acc, number) => acc.mockReturnValueOnce(number),
+    MissionUtils.Random.pickNumberInRange,
+  );
 };
 
 const getLogSpy = () => {
@@ -41,7 +42,7 @@ describe('자동차 경주', () => {
     await app.run();
 
     // then
-    logs.forEach(log => {
+    logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
