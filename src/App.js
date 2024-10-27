@@ -3,6 +3,7 @@ import checkWinner from './utils/checkWinner.js';
 import runCarRacing from './utils/runCarRacing.js';
 import { parseCarNameInput, parseTurnInput } from './utils/parseInput.js';
 import { InputComment, OutputComment } from './constants/displayConstant.js';
+import { printWinner } from './utils/printComment.js';
 
 class App {
   async run() {
@@ -16,7 +17,7 @@ class App {
 
     const winner = checkWinner(carList);
 
-    Console.print(`${OutputComment.WINNER_TITLE} : ${winner}`);
+    printWinner(winner);
   }
 }
 

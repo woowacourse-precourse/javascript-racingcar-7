@@ -14,3 +14,7 @@ export const printStatusTitle = () => {
 export const printTurnSeperator = () => {
   Console.print(OutputComment.TURN_SEPERATOR);
 };
+
+export const printWinner = (winner) => {
+  Console.print(`${OutputComment.WINNER_TITLE} : ${winner}`);
+};
