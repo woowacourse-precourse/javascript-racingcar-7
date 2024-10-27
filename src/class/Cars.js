@@ -1,5 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
-import { Car, MyUtils } from './index.js';
+import { Car, Interface } from './index.js';
+import { SCRIPT } from '../constants/interfaceScript.js';
 
 class Cars {
   constructor(names) {
@@ -19,10 +20,10 @@ class Cars {
   }
 
   race(counts) {
-    Console.print('\n실행 결과');
+    Console.print(SCRIPT.EXECUTION_RESULT);
     for (let i = 0; i < counts; i += 1) {
       this.attemptMoveAllCars();
-      MyUtils.printNewline();
+      Interface.printNewline();
     }
   }
 }
