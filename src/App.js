@@ -22,13 +22,12 @@ class App {
       throw Error('[ERROR] 시도할 횟수는 숫자만 입력할 수 있습니다.');
     }
 
-    const range = (number) => {
-      return Array(number).fill('');
-    }
+    const range = (number) => Array(number).fill('');
 
     const getRacingRoundResult = (array, count) => {
-      range(count).forEach((_, index) => {
-        array.forEach((round) => {
+      const rounds = [...array];
+      range(count).forEach(() => {
+        rounds.forEach((round) => {
           const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
           if (randomNumber >= 4) {
             round.record.push(true);
@@ -36,11 +35,12 @@ class App {
             round.record.push(false);
           }
         });
-        return array;
       });
+      return rounds;
     }
 
-    getRacingRoundResult(racingRecords, tryNumber);
+    const racingRoundResult = getRacingRoundResult(racingRecords, tryNumber);
+    console.log(racingRoundResult);
   }
 }
 
