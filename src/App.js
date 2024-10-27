@@ -62,6 +62,11 @@ class App {
     return winners;
   }
 
+  printWinner(input) {
+    const winnersString = input.join(',');
+    Console.print(`최종 우승자 : ${winnersString}`);
+  }
+
   async run() {
     const carNames = await this.getCarNames(
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
@@ -77,7 +82,9 @@ class App {
       this.printResult(scoreBoard);
       Console.print('');
     }
-    const winner = this.findWinnder(scoreBoard);
+
+    const winners = this.findWinnder(scoreBoard);
+    this.printWinner(winners);
   }
 }
 
