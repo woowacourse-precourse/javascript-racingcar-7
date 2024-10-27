@@ -1,7 +1,8 @@
-import { Message, ROUND_VALIDATION } from './constants.js';
+import { Message, ROUND_VALIDATION, INPUT_VALIDATION_REGEX } from './constants.js';
 
 const isNum = (userInput) => {
-  const setNum = ROUND_VALIDATION.REGEX_NUMERIC;
+  const setNum = INPUT_VALIDATION_REGEX.NUMERIC;
+
   if (setNum.test(userInput) === true) {
     return true;
   }
