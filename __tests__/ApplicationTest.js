@@ -43,7 +43,7 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트: 유효하지 않은 자동차 이름", () => {
+  test("5자를 초과하는 이름이나 잘못된 입력에 대해 함수에서 오류가 발생한다.", () => {
     const app = new App();
     expect(() => app.validateCarNames(["pobi,javaji"])).toThrow("[ERROR] 자동차 이름은 최대 5자 이하이어야 합니다.");
   });
@@ -54,7 +54,7 @@ describe("자동차 경주", () => {
   });
 
 
-  test("예외 테스트: 유효하지 않은 시도 횟수", () => {
+  test("음수 또는 정수가 아닌 입력값은 함수에서 오류가 발생한다.", () => {
     const app = new App();
     expect(() => app.validateMoveCount("0")).toThrow("[ERROR] 시도 횟수는 1 이상의 정수여야 합니다.");
   });
@@ -62,5 +62,12 @@ describe("자동차 경주", () => {
   test("유효한 시도 횟수", () => {
     const app = new App();
     expect(() => app.validateMoveCount("3")).not.toThrow();
+  });
+
+
+  test("이름과 위치가 0으로 설정된 자동차를 초기화하는지 확인한다.", () => {
+    const app = new App();
+    const cars = app.initializeCars(["pobi", "woni"]);
+    expect(cars).toEqual([{ name: "pobi", position: 0 }, { name: "woni", position: 0 }]);
   });
 });
