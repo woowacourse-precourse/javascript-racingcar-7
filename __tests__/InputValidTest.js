@@ -1,4 +1,4 @@
-import { InputValid } from "../src/valid/inputValid";
+import { InputValid } from "../src/valid/InputValid.js"
 
 describe('InputValid/isEmptyInput 함수 테스트',()=>{
     beforeEach(()=>{

@@ -3,7 +3,7 @@ import { sepateInput } from "../utils/parser.js";
 import OutputView from "../views/OutputView.js";
 import { decisionFinalWinner } from "../models/decisionFinalWinner.js";
 import InputView from "../views/InputView.js";
-import { InputValid } from "../valid/inputValid.js";
+import { InputValid } from "../valid/InputValid.js";
 
 export class MainController{
     async run(){
