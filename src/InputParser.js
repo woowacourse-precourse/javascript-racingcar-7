@@ -34,9 +34,15 @@ const InputParser = {
             const inputNumberOfRounds = await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
             const NumberOfRounds = Number(inputNumberOfRounds);
 
-            if (Number.isNaN(NumberOfRounds) || NumberOfRounds <= 0 || !Number.isInteger(numberOfRounds))
-        } catch {
+            //숫자가 아니거나, 자연수가 아닌 경우
+            if (Number.isNaN(NumberOfRounds) || NumberOfRounds <= 0 || !Number.isInteger(numberOfRounds)) {
+                throw new Error('[ERROR] 유효하지 않은 입력값입니다. 자연수를 입력해 주세요.');
+            }
 
+            return NumberOfRounds;
+        } catch {
+            MissionUtils.Console.print(error.message);
+            throw error;
         }
     }
 }
