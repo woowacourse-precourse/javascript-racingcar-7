@@ -11,7 +11,7 @@ export class RacingView {
    *
    * @returns {Promise<string>}
    */
-  static async getCarNames() {
+  async getCarNames() {
     const result = await input(RacingView.QUERY.GET_CAR_NAMES);
 
     return result;
@@ -21,7 +21,7 @@ export class RacingView {
    *
    * @returns {Promise<string>}
    */
-  static async getTrialNumber() {
+  async getTrialNumber() {
     const result = await input(RacingView.QUERY.GET_TRIAL_NUMBER);
 
     return result;
