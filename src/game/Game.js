@@ -1,11 +1,11 @@
 import { print } from '../handler/ioHandler.js';
 import { moveCarEvent, getWinner } from './carAction.js';
 import { makeOutput, formatWinners } from './outputCar.js';
-import { initRandomName } from './makeRandomName.js';
+// import { initRandomName } from './makeRandomName.js';
 
 export const initGame = ({ car, count }) => {
-  const carNamesWithRandom = initRandomName(...car);
-  let carAndLocationList = carNamesWithRandom.map((carName) => ({
+  // const carNamesWithRandom = initRandomName(...car);
+  let carAndLocationList = car.map((carName) => ({
     name: carName,
     location: 0,
   }));
