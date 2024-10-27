@@ -1,3 +1,5 @@
+import { Console } from "@woowacourse/mission-utils";
+[];
 import { getCarNames } from "./input/getCarNames.js";
 import { getMoveCount } from "./input/getMoveCount.js";
 import { calculateMovement } from "./utils/calculateMovement.js";
@@ -12,6 +14,7 @@ class App {
       const racingCarsMovement = new Array(racingCars.length).fill(0);
       const moveCount = await getMoveCount();
 
+      Console.print("\n실행 결과\n");
       for (let i = 0; i < moveCount; i++) {
         racingCars.map((car, index) => {
           const randomMovement = calculateMovement();
