@@ -1,7 +1,7 @@
 import {Console, MissionUtils} from "@woowacourse/mission-utils";
 import {OUTPUT_MESSAGE, PROMPT_MESSAGE} from "./constants/message.js";
 import {Car} from "./Car.js";
-import {firstErrorCondition, secondErrorCondition} from "./utils/condition.js";
+import {getFirstPromptError, getSecondPromptError} from "./utils/errorMessageHandler.js";
 
 class RacingGame {
     promptSequence = 1
@@ -16,7 +16,6 @@ class RacingGame {
         }
         if (this.promptSequence === 2) {
             const tryNum = Number(prompt)
-            this.getOutput()
             this.playRace(tryNum)
             this.promptSequence++
         }
@@ -65,16 +64,21 @@ class RacingGame {
             return Console.print("\n")
         }
         if (this.promptSequence === 3) {
-            return Console.print(OUTPUT_MESSAGE.ERROR.DEFAULT+data)
+            return Console.print(OUTPUT_MESSAGE.WINNER + data)
         }
+        this.handleError()
+    }
+
+    handleError() {
+        throw new Error(OUTPUT_MESSAGE.ERROR.UNKNOWN)
     }
 
     handleValid(string) {
-        if (this.promptSequence === 1 && firstErrorCondition(string)) {
-            throw new Error(OUTPUT_MESSAGE.ERROR.DEFAULT)
+        if (this.promptSequence === 1) {
+            getFirstPromptError(string)
         }
-        if (this.promptSequence === 2 && secondErrorCondition(string)) {
-            throw new Error(OUTPUT_MESSAGE.ERROR.DEFAULT)
+        if (this.promptSequence === 2) {
+            getSecondPromptError(string)
         }
     }
 }
