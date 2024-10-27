@@ -22,13 +22,17 @@ class App {
     const distances = Array(carNames.length).fill(0);
 
     MissionUtils.Console.print(`\n실행 결과`);
+    this.executeRounds(carNames, distances, attempts);
+
+    const winners = this.determineWinners(carNames, distances);
+    MissionUtils.Console.print(`최종 우승자 : ${winners.join(', ')}`);
+  }
+
+  executeRounds(carNames, distances, attempts) {
     for (let i = 0; i < attempts; i++) {
       this.moveCars(carNames, distances);
       this.printRoundResult(carNames, distances);
     }
-
-    const winners = this.determineWinners(carNames, distances);
-    MissionUtils.Console.print(`최종 우승자 : ${winners.join(', ')}`);
   }
 
   moveCars(carNames, distances) {
