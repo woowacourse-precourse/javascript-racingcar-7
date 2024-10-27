@@ -15,13 +15,17 @@ class App {
   }
 
   #validateCarNames(input) {
+    if (!input) {
+      return false;
+    }
+
     const isCommaSeparated = /^(\w+)(,\w+)*$/.test(input);
 
     const carNames = input.split(',');
 
     const validateCarNamesLength = carNames.every((carName) => carName.length <= this.#MAX_CAR_NAME_LENGTH);
 
-    return input && isCommaSeparated && validateCarNamesLength;
+    return isCommaSeparated && validateCarNamesLength;
   }
 
   async #getAttemptCount() {
