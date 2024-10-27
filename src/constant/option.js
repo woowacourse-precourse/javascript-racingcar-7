@@ -1,0 +1,10 @@
+export const CONSOLE_OPTIONS = {
+  CAR_NAME_DELIMITER: ',',
+  CAR_MOVE_INDICATOR: '-',
+  CAR_NAME_MAX_LENGTH: 5,
+};
+
+export const RANDOM_OPTIONS = {
+  MINIMUM_VALUE: 0,
+  MAXIMUM_VALUE: 9,
+};
