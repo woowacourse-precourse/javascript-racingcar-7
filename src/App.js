@@ -4,7 +4,7 @@ class App {
   async run() {
     const racingCarGame = new RacingCarGame();
 
-    racingCarGame.start();
+    return racingCarGame.start();
   }
 }
 
