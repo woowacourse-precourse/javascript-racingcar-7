@@ -5,7 +5,8 @@ class CarRacingGameController {
     this.InputView = new InputView();
   }
   async setModelData() {
-    const value = await this.InputView.getCarNames();
+    const carNames = await this.InputView.getCarNames();
+    const tryCount = await this.InputView.getTryCount();
   }
 }
 
