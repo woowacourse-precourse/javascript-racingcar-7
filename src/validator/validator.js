@@ -11,7 +11,7 @@ import {
   NUMBER_REGEX,
 } from '../constants/regex.js';
 
-const checkOnlyAlphabetAndComma = function checkOnlyAlphabetAndCommaFunc(
+const checkOnlyAlphabetCommaAndNumber = function checkOnlyAlphabetCommaAndNum(
   inputForRacingCars,
 ) {
   if (
@@ -77,7 +77,7 @@ const checkCarCountLimit = function checkCarCountLimitFunc(carNamesArray) {
 };
 
 export {
-  checkOnlyAlphabetAndComma,
+  checkOnlyAlphabetCommaAndNumber,
   checkValidNameLength,
   checkDuplicateNames,
   checkOnlyNumber,

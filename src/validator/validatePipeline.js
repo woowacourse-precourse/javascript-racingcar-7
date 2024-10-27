@@ -1,7 +1,7 @@
 import {
   checkDuplicateNames,
   checkIsNull,
-  checkOnlyAlphabetAndComma,
+  checkOnlyAlphabetCommaAndNumber,
   checkOnlyNumber,
   checkValidNameLength,
   checkValidRange,
@@ -13,7 +13,7 @@ const pipeline = function pipelineFunc(functions, input) {
 };
 
 const validateRacingCarInput = function validateRacingCarInputFunc(input) {
-  return pipeline([checkIsNull, checkOnlyAlphabetAndComma], input);
+  return pipeline([checkIsNull, checkOnlyAlphabetCommaAndNumber], input);
 };
 
 const validateCarNames = function validateCarNamesFunc(input) {
