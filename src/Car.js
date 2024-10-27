@@ -38,10 +38,11 @@ export default class Car {
 
   static whoIsWinner(carList) {
     const maxMovement = Math.max(...carList.map(player => player.movement));
-    const winnerList = carList
+    const winnerName = carList
       .filter(player => player.movement === maxMovement)
-      .map(player => player.name);
+      .map(player => player.name)
+      .join(', ');
 
-    MissionUtils.Console.print(`최종 우승자 : ${winnerList.join(', ')}`);
+    MissionUtils.Console.print(`최종 우승자 : ${winnerName}`);
   }
 }
