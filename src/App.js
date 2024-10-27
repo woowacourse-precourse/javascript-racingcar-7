@@ -45,6 +45,23 @@ class App {
     });
   }
 
+  findWinnder(input) {
+    const inputKeys = Object.keys(input);
+    const inputValues = Object.values(input);
+
+    const highScore = Math.max.apply(null, inputValues);
+
+    const winners = [];
+
+    inputKeys.forEach((item) => {
+      if (input[item] === highScore) {
+        winners.push(item);
+      }
+    });
+
+    return winners;
+  }
+
   async run() {
     const carNames = await this.getCarNames(
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
@@ -60,6 +77,7 @@ class App {
       this.printResult(scoreBoard);
       Console.print('');
     }
+    const winner = this.findWinnder(scoreBoard);
   }
 }
 
