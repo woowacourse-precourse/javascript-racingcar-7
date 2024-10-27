@@ -1,9 +1,14 @@
-import { Console } from "@woowacourse/mission-utils";
-import Race from './Racing.js';
-
+import RacingGame from './RacingGame.js';
 class App {
+  async run() {}
+  
+  constructor() {
+    this.racingGame = new RacingGame();
+  }
+
   async run() {
-    new Race();
+    await this.racingGame.newRacingGame();
+    
   }
 }
 

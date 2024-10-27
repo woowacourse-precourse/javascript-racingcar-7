@@ -2,7 +2,6 @@ import { Console } from '@woowacourse/mission-utils';
 import * as cs from './constants.js';
 class UserInput {
     constructor(){
-        this.initialize();
     }
     async initialize(){
         this.carNames = await this.setCarNames();
@@ -28,11 +27,11 @@ class UserInput {
             separatedString.push(carName.trim());
         }
         
-        return separatedString;
+        return await separatedString;
     }
     async checkCarNames(carNameCandidates){
         for(let candidate of carNameCandidates){
-            this.checkNamingRules(candidate);
+            await this.checkNamingRules(candidate);
         }
     }
     async checkNamingRules(inputName){
