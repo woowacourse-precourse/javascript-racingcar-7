@@ -14,9 +14,10 @@ const mockQuestions = (inputs) => {
 const mockRandoms = (numbers) => {
   MissionUtils.Random.pickNumberInRange = jest.fn();
 
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, MissionUtils.Random.pickNumberInRange);
+  numbers.reduce(
+    (acc, number) => acc.mockReturnValueOnce(number),
+    MissionUtils.Random.pickNumberInRange,
+  );
 };
 
 const getLogSpy = () => {
@@ -27,7 +28,6 @@ const getLogSpy = () => {
 
 describe('자동차 경주', () => {
   test('레이싱 경기 후 진행 과정과 결과가 출력되는지 검증한다', async () => {
-    // given
     const MOVING_FORWARD = 4;
     const STOP = 3;
     const inputs = ['pobi,woni', '3'];
@@ -46,103 +46,48 @@ describe('자동차 경주', () => {
       MOVING_FORWARD, STOP,
     ]);
 
-    // when
     const app = new App();
     await app.run();
 
-    // then
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
 
-  test('공백으로 입력된 자동차 이름이 있으면 에러를 던진다', async () => {
-    // given
-    const inputs = [''];
+  test.each([
+    { 
+      description: '공백으로 입력된 자동차 이름이 있으면 에러를 던진다',
+      inputs: [''],
+      expectedError: ERROR_DETAILS.CARNAME_EMPTY,
+    },
+    { 
+      description: '중복된 레이서 이름이 있으면 에러를 던진다',
+      inputs: ['pobi,pobi'],
+      expectedError: ERROR_DETAILS.CARNAMES_DUPLICATE,
+    },
+    {
+      description: '이동 횟수가 NaN인 경우 에러를 던진다',
+      inputs: ['pobi', 'a'],
+      expectedError: ERROR_DETAILS.SECONDS_NAN,
+    },
+    {
+      description: '이동 횟수가 음수인 경우 에러를 던진다',
+      inputs: ['pobi', '-1'],
+      expectedError: ERROR_DETAILS.SECONDS_NOT_POSITIVE,
+    },
+    {
+      description: '이동 횟수가 실수인 경우 에러를 던진다',
+      inputs: ['pobi', '1.1'],
+      expectedError: ERROR_DETAILS.SECONDS_NOT_SAFE_INTEGER,
+    },
+    {
+      description: '레이서 이름이 6자 이상인 경우 에러를 던진다',
+      inputs: ['123456,12345'],
+      expectedError: ERROR_DETAILS.CARNAME_LENGTH,
+    }
+  ])('$description', async ({ inputs, expectedError }) => {
     mockQuestions(inputs);
-
-    // when
     const app = new App();
-
-    // then
-    app.run()
-      .catch(
-        (error) => expect(error.message).toMatch(ERROR_DETAILS.CARNAME_EMPTY),
-      );
-  });
-
-  test('중복된 레이서 이름이 있으면 에러를 던진다', async () => {
-    // given
-    const inputs = ['pobi,pobi'];
-    mockQuestions(inputs);
-
-    // when
-    const app = new App();
-
-    // then
-    app.run()
-      .catch(
-        (error) => expect(error.message).toMatch(ERROR_DETAILS.CARNAMES_DUPLICATE),
-      );
-  });
-
-  test('이동 횟수가 NaN인 경우 에러를 던진다', async () => {
-    // given
-    const inputs = ['pobi', 'a'];
-    mockQuestions(inputs);
-
-    // when
-    const app = new App();
-
-    // then
-    app.run()
-      .catch(
-        (error) => expect(error.message).toMatch(ERROR_DETAILS.SECONDS_NAN),
-      );
-  });
-
-  test('이동 횟수가 음수인 경우 에러를 던진다', async () => {
-    // given
-    const inputs = ['pobi', '-1'];
-    mockQuestions(inputs);
-
-    // when
-    const app = new App();
-
-    // then
-    app.run()
-      .catch(
-        (error) => expect(error.message).toMatch(ERROR_DETAILS.SECONDS_NOT_POSITIVE),
-      );
-  });
-
-  test('이동 횟수가 실수인 경우 에러를 던진다', async () => {
-    // given
-    const inputs = ['pobi', '1.1'];
-    mockQuestions(inputs);
-
-    // when
-    const app = new App();
-
-    // then
-    app.run()
-      .catch(
-        (error) => expect(error.message).toMatch(ERROR_DETAILS.SECONDS_NOT_SAFE_INTEGER),
-      );
-  });
-
-  test('레이서 이름이 6자 이상인 경우 에러를 던진다', async () => {
-    // given
-    const inputs = ['123456,12345'];
-    mockQuestions(inputs);
-
-    // when
-    const app = new App();
-
-    // then
-    app.run()
-      .catch(
-        (error) => expect(error.message).toMatch(ERROR_DETAILS.CARNAME_LENGTH),
-      );
+    await expect(app.run()).rejects.toThrow(expectedError);
   });
 });
