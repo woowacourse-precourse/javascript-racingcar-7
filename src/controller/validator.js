@@ -49,6 +49,16 @@ class Validator {
       throw new Error(ERROR_MESSAGE.CAR_LIST_TOO_SMALL);
     }
   }
+
+  static checkMoveAttempts(attempts) {
+    Validator.#checkEmptyInput(attempts);
+  }
+
+  static #checkEmptyInput(attempts) {
+    if (attempts.length < 1) {
+      throw new Error(ERROR_MESSAGE.EMPTY_INPUT_NOT_ALLOWED);
+    }
+  }
 }
 
 export default Validator;

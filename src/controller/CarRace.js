@@ -28,6 +28,10 @@ class CarRace {
     carList.map((carName) => Validator.checkName(carName));
   }
 
+  validateMoveAttempts(attempts) {
+    Validator.checkMoveAttempts(attempts);
+  }
+
   async registerRacingCars(racingCars) {
     const carList = await this.getCarNamesFromUserInput();
     carList.forEach((carName) => racingCars.registerCar(carName));
