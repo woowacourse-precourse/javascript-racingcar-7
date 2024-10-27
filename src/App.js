@@ -14,8 +14,7 @@ class App {
 
   async run() {
     await this.#gameSetting();
-    printProgressResult();
-    this.#racingcarGoAndStop();
+    this.#carRacing();
     printFirstPlayer(this.#racingcar.rank());
   }
 
@@ -24,9 +23,10 @@ class App {
     const inputArr = inputs.split(MAGICNUMBER.SEPARATOR);
     this.#tryNum = Number(await inputTryNum());
     this.#racingcar = new Racingcar(inputArr, this.#tryNum);
+    printProgressResult();
   }
 
-  #racingcarGoAndStop() {
+  #carRacing() {
     let board;
     for (let idx = 0; idx < this.#tryNum; idx += 1) {
       board = this.#racingcar.play();
