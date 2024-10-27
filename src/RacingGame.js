@@ -1,66 +1,47 @@
 import {Console, MissionUtils} from "@woowacourse/mission-utils";
 import {PROMPT_MESSAGE} from "./constants/message.js";
+import {setWinnerCnt, sliceString} from "./preprocessingInputData.js";
+import {Car} from "./Car.js";
 
+//입력 -> 전처리 -> 레이싱 -> 우승자 산정 -> 출력
 class RacingGame {
+    tryNum = 0
+
     async start() {
-        const processObj = {cars:[],tryNum:0}
-        for (const message of PROMPT_MESSAGE) {
-            const input = await this.input(message.input)
-            if (message.key === 0) {
-                processObj.cars = this.setCars(input)
-            }
-            if (message.key === 1) {
-                processObj.tryNum = Number(input)
-            }
-            console.log(processObj)
-        }
-        this.racing(processObj)
+        const car = new Car()
+        const fistPrompt = await this.input(PROMPT_MESSAGE.FIRST)
+        const carArr = car.setCar(fistPrompt)
+        const secondPrompt = await this.input(PROMPT_MESSAGE.SECOND)
+        this.tryNum = Number(secondPrompt)
+        this.racing(carArr)
     }
 
-    racing(processObj) {
-        const {cars, tryNum} = processObj
+    racing(carArr) {
         Console.print("실행결과")
-        for (let i = 0; i < tryNum; i++) {
-            for (const car of cars) {
+        for (let i = 0; i < this.tryNum; i++) {
+            for (const car of carArr) {
                 const randomNum = this.setRandomNum()
                 if (randomNum >= 4) {
-                    car.cnt++
+                    car.winCnt++
                 }
             }
-            cars.map((car) => Console.print(`${car.carName} : ${"-".repeat(car.cnt)}`))
+            carArr.map((car) => Console.print(`${car.carName} : ${"-".repeat(car.winCnt)}`))
             Console.print("\n")
         }
-
-        this.setWinner(cars)
+        this.setWinner(carArr)
     }
 
-    setWinner(cars){
+    setWinner(cars) {
         const winnerArr = cars
-            .sort((a,b)=> b.cnt-a.cnt)
-            .filter((elem)=>elem.cnt === cars[0].cnt)
-            .map((elem)=>elem.carName)
+            .sort((a, b) => b.winCnt - a.winCnt)
+            .filter((elem) => elem.winCnt === cars[0].winCnt)
+            .map((elem) => elem.carName)
         const winner = winnerArr.join(", ")
         Console.print(`최종 우승자 : ${winner}`)
     }
 
     setRandomNum() {
         return MissionUtils.Random.pickNumberInRange(0, 9);
-    }
-
-    setCars(arr) {
-        const carArr = this.sliceString(arr)
-        return this.setWinnerCnt(arr, carArr)
-    }
-
-    sliceString(param) {
-        return param.split(",")
-    }
-
-    setWinnerCnt(arr, carArr) {
-        return carArr.map((elem) => {
-                return {cnt: 0, carName: elem}
-            }
-        )
     }
 
     async input(message) {
