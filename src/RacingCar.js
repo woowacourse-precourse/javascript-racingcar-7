@@ -68,9 +68,7 @@ class RacingCar {
 		const maxLength = Math.max(
 			...this.carNamesAndNumberMap.map((car) => car.carNumbers.length)
 		);
-
-		printOutput("\n실행 결과");
-
+		printOutput("");
 		for (let i = 0; i < maxLength; i++) {
 			this.carNamesAndNumberMap.forEach((car) => {
 				const dashes = car.carNumbers
