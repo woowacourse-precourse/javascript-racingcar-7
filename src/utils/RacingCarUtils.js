@@ -5,7 +5,7 @@ import ErrorCode from "../datas/ErrorCode.js";
 
 class RacingCarUtils {
     static findWinners(carList) {
-        if (carList.length <= 0) return "";
+        if (carList.length <= 0) throw new Error(ErrorCode.CAR_NOT_ENOUGH)
 
         carList.sort((a, b) => b.getDistance() - a.getDistance())
 
