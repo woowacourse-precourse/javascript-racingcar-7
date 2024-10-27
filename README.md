@@ -157,4 +157,35 @@
 - maxKeys에 저장된 값들을 `join(', )` 메서드를 사용해 배열의 값들을 `,`로 묶어 출력한다.
 - maxKeys 배열이 비어있으면 최종 우승자가 없다는 메세지와 함께 에러를 발생시킨다.
 
-## 실행 결과
+## ⭐️ 결과 ⭐️
+
+### 우승자가 1명인 경우
+
+<img width="493" alt="스크린샷 2024-10-28 오전 1 17 29" src="https://github.com/user-attachments/assets/69c28e47-1791-446f-9a2a-7563525bb8b4">
+
+### 우승자가 2명 이상인 경우
+
+<img width="517" alt="스크린샷 2024-10-28 오전 1 27 14" src="https://github.com/user-attachments/assets/fd7296a2-60ea-4338-ad00-6c4796af7ddb">
+
+### 잘못된 입력 시
+
+- 이름이 5자 초과
+  <img width="626" alt="스크린샷 2024-10-28 오전 1 28 28" src="https://github.com/user-attachments/assets/11c3867a-4327-4dd0-b0ee-b7bb5f93d875">
+
+- 횟수가 양수가 아님
+  <img width="615" alt="스크린샷 2024-10-28 오전 1 29 22" src="https://github.com/user-attachments/assets/6fb40c64-5a1e-4741-ae2d-2097ee87ec99">
+
+## 🤔 test
+
+직접 테스트 코드를 만들어 다음과 같이 3개의 메서드를 테스트하며 구현해 보았습니다.
+
+- `updateCarProgressRandomly`: 랜덤하게 지정되는 숫자를 직접 지정하여 그 수가 4 이상이면 `this.carNameObj`의 value 값이 옳게 증가하는지 확인.
+- `printRaceResult`: `this.carNameObj`에 직접 값을 넣고 해당 값에 맞게 실행 결과가 출력되는지 확인.
+- `printWinner`: 다음과 같은 세 상황에서 최종 우승자가 옳게 출력되는지 확인
+  - 우승자가 한 명인 경우
+  - 우승자가 여러 명인 경우: `, `로 차 이름들을 연결해 출력
+  - 우승자가 없는 경우(어떤 차도 전진하지 않은 경우): '우승자가 없습니다.' 메시지와 함께 오류 처리
+
+### test 결과
+
+<img width="714" alt="스크린샷 2024-10-28 오전 1 37 38" src="https://github.com/user-attachments/assets/35469bc4-567b-43b3-b23f-a2b8cea8f654">
