@@ -47,17 +47,16 @@ class App {
     return this.findWinner(cars);
   }
 
-
   movingForward(cars) {
     for (let i = 0; i < cars.length; i++) {
       let randomNumber = Random.pickNumberInRange(0, 9);
-      this.getDistance(randomNumber,cars,i)
+      this.getDistance(randomNumber, cars, i);
     }
     this.printProgress(cars);
     Console.print("");
   }
 
-  getDistance(randomNumber, cars,i){
+  getDistance(randomNumber, cars, i) {
     if (randomNumber >= 4) {
       cars[i].distance += "-";
     }
@@ -74,28 +73,28 @@ class App {
     let winners = [];
     cars.forEach((car) => {
       let distanceLength = car.distance.length;
-      if (distanceLength > maxDistanceLength) {
-        maxDistanceLength = distanceLength;
-        winners = [car.name]; 
-      } 
-      else if (distanceLength === maxDistanceLength) {
-        winners.push(car.name); 
-      }
+      this.updateWinners(distanceLength, maxDistanceLength, winners, car);
+      maxDistanceLength = Math.max(maxDistanceLength, distanceLength);
     });
-    
     return this.printWinner(winners);
   }
 
-  printWinner(winners){
-    if (winners.length <= 1){
-      Console.print(`최종 우승자 : ${winners[0]}`)
-    }
-    else{
-      Console.print(`최종 우승자 : ${winners.join(', ')}`)     
+  updateWinners(distanceLength, maxDistanceLength, winners, car) {
+    if (distanceLength > maxDistanceLength) {
+      winners.length = 0;
+      winners.push(car.name);
+    } else if (distanceLength === maxDistanceLength) {
+      winners.push(car.name);
     }
   }
 
-
+  printWinner(winners) {
+    if (winners.length <= 1) {
+      Console.print(`최종 우승자 : ${winners[0]}`);
+    } else {
+      Console.print(`최종 우승자 : ${winners.join(", ")}`);
+    }
+  }
 }
 
 export default App;
