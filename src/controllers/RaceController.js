@@ -1,5 +1,6 @@
 import { Racing } from "../models/Racing";
 import { Input } from "../views/Input";
+import { Output } from "../views/Output";
 
 export class RaceController {
 	run() {
@@ -11,7 +12,7 @@ export class RaceController {
 
 			for (let i = 0; i < rounds; i++) {
 				race.playRound();
-				// 라운드마다 자동차 위치 출력하는 부분 추가해야 함
+				Output.printRoundOutput(race.cars);
 			}
 
 			const winners = race.getWinners();
