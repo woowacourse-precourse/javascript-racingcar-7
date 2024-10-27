@@ -23,6 +23,10 @@ class App {
     if (nameList.length === 1) {
       throw new Error("자동차 이름은 쉼표로 구분하여 2개 이상 입력해 주세요.");
     }
+    const emptyName = nameList.find((name) => name === "");
+    if (emptyName !== undefined) {
+      throw new Error("자동차 이름 사이에 공백이 포함되어 있습니다.");
+    }
   }
 }
 
