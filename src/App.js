@@ -20,19 +20,19 @@ class App {
     );
 
     if (!participant_input) {
-      this.throwError(0)
+      this.throwError(0);
     }
     if (participant_input[0] === ',') {
-      this.throwError(2)
+      this.throwError(2);
     }
 
     if (isNaN(try_input) || try_input <= 0) {
-      this.throwError(1)
+      this.throwError(1);
     }
 
     const participant_dict = participant_input
       .split(',')
-      .map(name => name.trim())
+      .map((name) => name.trim())
       .reduce((acc, name) => {
         acc[name] = 0;
         return acc;
