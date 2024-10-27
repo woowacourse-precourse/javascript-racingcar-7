@@ -1,5 +1,7 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 
+import { WINNER_PROMPT } from '../constants.js';
+
 export function generateProgressBar(position) {
   return '-'.repeat(position);
 }
@@ -13,5 +15,5 @@ export function printCarPosition(name, position) {
 }
 
 export function printWinnerCar(winnerNames) {
-  MissionUtils.Console.print(`최종 우승자 : ${formatWinnerNames(winnerNames)}`);
+  MissionUtils.Console.print(`${WINNER_PROMPT}${formatWinnerNames(winnerNames)}`);
 }

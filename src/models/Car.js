@@ -1,6 +1,9 @@
+const INITIAL_POSITION = 0;
+const MOVE_DISTANCE = 1;
+
 class Car {
   constructor(name) {
-    this.position = 0;
+    this.position = INITIAL_POSITION;
     this.name = name;
   }
 
@@ -13,7 +16,7 @@ class Car {
   }
 
   move() {
-    this.position += 1;
+    this.position += MOVE_DISTANCE;
   }
 }
 

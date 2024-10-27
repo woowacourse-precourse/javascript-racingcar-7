@@ -1,10 +1,15 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 
+import { CAR_NAME_PROMPT, ATTEMPT_COUNT_PROMPT, ERROR_MESSAGE } from '../constants.js';
+
+const MAX_CAR_NAME_LENGTH = 5;
+const MIN_ATTEMPT_COUNT = 1;
+
 export async function getCarName() {
   try {
-    return await MissionUtils.Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
+    return await MissionUtils.Console.readLineAsync(CAR_NAME_PROMPT);
   } catch (error) {
-    throw new Error('[ERROR]');
+    throw new Error(ERROR_MESSAGE);
   }
 }
 
@@ -14,23 +19,23 @@ export function splitCarName(names) {
 
 export async function getAttemptCount() {
   try {
-    return await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+    return await MissionUtils.Console.readLineAsync(ATTEMPT_COUNT_PROMPT);
   } catch (error) {
-    throw new Error('[ERROR]');
+    throw new Error(ERROR_MESSAGE);
   }
 }
 
 export function validateCarNameLength(names) {
   names.forEach((name) => {
-    if (name.length > 5) {
-      throw new Error('[ERROR]');
+    if (name.length > MAX_CAR_NAME_LENGTH) {
+      throw new Error(ERROR_MESSAGE);
     }
   });
 }
 
 export function validateCarsLength(names) {
   if (names.length === 0) {
-    throw new Error('[ERROR]');
+    throw new Error(ERROR_MESSAGE);
   }
 }
 
@@ -40,7 +45,7 @@ export function validateCarNames(names) {
 }
 
 export function validateAttemptCount(attemptCount) {
-  if (attemptCount < 1) {
-    throw new Error('[ERROR]');
+  if (attemptCount < MIN_ATTEMPT_COUNT) {
+    throw new Error(ERROR_MESSAGE);
   }
 }

@@ -4,6 +4,12 @@ import Car from '../models/Car.js';
 
 import { printCarPosition } from '../utils/OutputUtils.js';
 
+import { GREETING_RESULT_PROMPT } from '../constants.js';
+
+const MIN_RANDOM_NUMBER = 1;
+const MAX_RANDOM_NUMBER = 10;
+const THRESHOLD_RANDOM_NUMBER = 4;
+
 export function makeCars(names) {
   return names.map((name) => new Car(name));
 }
@@ -19,8 +25,8 @@ export function findCarWithMaxPosition(carList, maxPosition) {
 }
 
 export function isHighEnough() {
-  const randomValue = MissionUtils.Random.pickNumberInRange(1, 10);
-  return randomValue >= 4;
+  const randomValue = MissionUtils.Random.pickNumberInRange(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER);
+  return randomValue >= THRESHOLD_RANDOM_NUMBER;
 }
 
 export function moveCarForward(car) {
@@ -30,7 +36,7 @@ export function moveCarForward(car) {
 }
 
 export function repeat(carList, number) {
-  MissionUtils.Console.print('실행 결과');
+  MissionUtils.Console.print(GREETING_RESULT_PROMPT);
   for (let i = 0; i < number; i++) {
     carList.forEach((car) => {
       moveCarForward(car);
