@@ -1,5 +1,5 @@
-import { Console } from '@woowacourse/mission-utils';
 import { INPUT } from '../constants/message.js';
+import { Console } from '@woowacourse/mission-utils';
 
 export default class ViewIn {
   static async getCars() {
