@@ -23,6 +23,17 @@ class App {
       }
       uniqueCarNames.push(carName);
     });
+
+    const inputNum = await Console.readLineAsync(
+      "시도할 횟수는 몇 회인가요?\n"
+    );
+
+    if (isNaN(inputNum)) {
+      throw new Error("[ERROR]: 숫자만 입력가능합니다.");
+    }
+    if (inputNum == 0) {
+      throw new Error("[ERROR]: 0은 입력할 수 없습니다.");
+    }
   }
 }
 
