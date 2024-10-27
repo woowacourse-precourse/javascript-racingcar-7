@@ -11,7 +11,14 @@ class Car {
       name,
       progress: 0,
     };
-    Car.#instances.push(this);
+  }
+
+  static addCarInstances(carNames) {
+    this.#instances = [...this.#instances, ...carNames.map((carName) => new Car(carName))];
+  }
+
+  static clearInstances() {
+    Car.#instances = [];
   }
 
   static getWinner() {
@@ -21,11 +28,6 @@ class Car {
     return winners;
   }
 
-  #move() {
-    const value = Random.pickNumberInRange(VALUES.minRandom, VALUES.maxRandom);
-    if (value >= VALUES.moveIfOrMore) this.#state.progress += 1;
-  }
-
   static executeAllCars() {
     return Car.#instances.map((car) => {
       car.#move();
@@ -33,12 +35,13 @@ class Car {
     });
   }
 
-  #getState() {
-    return this.#state;
+  #move() {
+    const value = Random.pickNumberInRange(VALUES.minRandom, VALUES.maxRandom);
+    if (value >= VALUES.moveIfOrMore) this.#state.progress += 1;
   }
 
-  static clearInstances() {
-    Car.#instances = [];
+  #getState() {
+    return this.#state;
   }
 }
 

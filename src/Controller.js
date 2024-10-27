@@ -14,7 +14,7 @@ class Controller {
     const carNameAnswer = await view.readCars();
     const carNames = carNameAnswer.split(STRINGS.inputNameDelimiter);
     validator.validateCarNames(carNames);
-    carNames.forEach((carName) => new Car(carName));
+    Car.addCarInstances(carNames);
   }
 
   async readTrialCount() {
