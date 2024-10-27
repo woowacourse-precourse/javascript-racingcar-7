@@ -18,6 +18,10 @@ export default class Car {
     Console.print(`${this.carName} : ${moveProgressBar}`);
   }
 
+  getCarName() {
+    return this.carName;
+  }
+
   getMoveCount() {
     return this.moveCount;
   }
