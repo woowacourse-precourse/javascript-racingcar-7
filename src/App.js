@@ -22,6 +22,19 @@ class App {
     }
   }
 
+  async getGameRound() {
+    try {
+      const input = await Console.readLineAsync(
+        '시도할 횟수는 몇 회인가요?\n'
+      );
+
+      const gameRound = this.isValidGameRound(input);
+      Console.print(gameRound);
+    } catch (error) {
+      throw error;
+    }
+  }
+
   isValidCarName(carName) {
     if (!carName || carName.trim() === '') {
       throw new Error('자동차 이름은 비어 있을 수 없습니다.');
@@ -32,13 +45,15 @@ class App {
     return carName.trim();
   }
 
-  async getGameRound() {
-    const input = await Console.readLineAsync(
-      '시도할 횟수는 몇 회인가요?\n'
-    );
-
-    const gameRound = parseInt(input);
-    Console.print(gameRound);
+  isValidGameRound(input) {
+    const gameRound = Number(input);
+    if (gameRound <= 0) {
+      throw new Error('게임 시행 횟수는 양의 정수로 입력해야 합니다.');
+    }
+    if (isNaN(gameRound)) {
+      throw new Error('게임 시행 횟수는 올바른 숫자로 입력해야 합니다.');
+    }
+    return gameRound;
   }
 }
 
