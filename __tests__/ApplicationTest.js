@@ -46,6 +46,33 @@ describe("자동차 경주", () => {
     });
   });
 
+  test("우승자 선정 기능 테스트", () => {
+    const app = new App();
+    const carNames = ["pobi", "woni", "java"];
+    const distances = [3, 5, 5];
+    const winners = app.determineWinners(carNames, distances);
+    expect(winners).toEqual(["woni", "java"]);
+  });
+
+  test("자동차 전진 기능 테스트", () => {
+    const app = new App();
+    const carNames = ["pobi", "woni"];
+    const attempts = 3;
+    const distances = app.moveCars(carNames, attempts);
+    expect(distances.length).toBe(carNames.length);
+  });
+
+  test("자동차 이름 부여 기능 테스트", () => {
+    const app = new App();
+    const carNames = ["pobi", "woni", "java"];
+    const isValid = app.validateCarNames(carNames);
+    expect(isValid).toBe(true);
+
+    const invalidCarNames = ["pobi", "woni", "javacode"];
+    const isInvalid = app.validateCarNames(invalidCarNames);
+    expect(isInvalid).toBe(false);
+  });
+
   test("예외 테스트", async () => {
     // given
     const inputs = ["pobi,javaji"];
