@@ -22,8 +22,9 @@ class App {
   }
 
   runRaces(carController, tryNumber) {
-    const raceCountArray = Array.from({ length: tryNumber }, () => 0);
-    raceCountArray.forEach((count) => this.excuteRace(carController));
+    for (let i = 0; i < tryNumber; i++) {
+      this.excuteRace(carController);
+    }
   }
 
   excuteRace(carController) {
