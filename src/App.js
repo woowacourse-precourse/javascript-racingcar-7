@@ -21,7 +21,7 @@ class App {
 
     const racingCarsPos = {};
     racingCars.forEach((car) => {
-      racingCarsPos[car] = 0;
+      racingCarsPos[car] = "";
     });
 
     for (let i = 0; i < gameCount; i++) {
@@ -34,11 +34,12 @@ class App {
       if (this.getRandomNumber() >= 4) {
         this.moveCar(racingCarsPos, car);
       }
+      Console.print(`${car} : ${racingCarsPos[car]}`);
     });
   }
 
   moveCar(racingCarsPos, car) {
-    racingCarsPos[car] += 1;
+    racingCarsPos[car] += "-";
   }
 
   getRandomNumber() {
