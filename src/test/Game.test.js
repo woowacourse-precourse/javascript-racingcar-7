@@ -35,11 +35,24 @@ test.each([
     ['pobi', 'woni', 'jun'],
   ],
   [[STOP, STOP, STOP], []],
-])('getMovedCars 테스트', (mockData, result) => {
+])('getMovedCars 함수 테스트', (mockData, result) => {
   const record = new Record('pobi,woni,jun');
   const game = new Game(record, 5);
   mockRandoms(mockData);
 
   const getMovedCars = game.getMovedCars();
   expect(getMovedCars).toEqual(result);
+});
+
+test.each([
+  [[MOVING_FORWARD, STOP, STOP], { pobi: 1, woni: 0, jun: 0 }],
+  [[STOP, MOVING_FORWARD, STOP], { pobi: 0, woni: 1, jun: 0 }],
+  [[STOP, STOP, MOVING_FORWARD], { pobi: 0, woni: 0, jun: 1 }],
+])('simulateGame 함수 테스트', (mockData, result) => {
+  const record = new Record('pobi,woni,jun');
+  const game = new Game(record, 5);
+  mockRandoms(mockData);
+
+  game.simulateRound();
+  expect(record.table).toEqual(result);
 });
