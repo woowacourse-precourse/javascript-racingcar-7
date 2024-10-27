@@ -91,6 +91,13 @@ class App {
 
     }
 
+    const winnerPrint = (winnerList) => {
+      if (winnerList.length == 1) {
+        Console.print("최종 우승자 : " + winnerList[0]);
+      } else {
+        Console.print("최종 우승자 :" + winnerList.join(", "));
+      }
+    }
 
 
     try {
@@ -103,6 +110,7 @@ class App {
 
       const winner = winnerList(carList);
 
+      winnerPrint(winner);
     }
     catch {
       Console.print("[ERROR] 프로그램이 종료됩니다.");
