@@ -22,9 +22,9 @@ class Validator {
         }
     }
 
-    static validateCarCountGraterThanTwo(carNames) {
-        if (carNames.length < 2) {
-            const errorMessage = "[ERROR] 자동차는 2대 이상이어야 합니다.";
+    static validateCarCount(carNames, carCount) {
+        if (carNames.length < carCount) {
+            const errorMessage = `[ERROR] 자동차는 ${carCount} 이상이어야 합니다.`;
             throw new Error(errorMessage);
         }
     }
@@ -110,8 +110,9 @@ class CarRace {
         );
         const carNames = carNamesString.split(",");
         const round = await MissionUtils.Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+        const CAR_COUNT = 2;
 
-        Validator.validateCarCountGraterThanTwo(carNames);
+        Validator.validateCarCount(carNames, CAR_COUNT);
         Validator.validateUniqueCarNames(carNames);
         Validator.validateRoundCount(round);
 
