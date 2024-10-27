@@ -68,4 +68,27 @@ describe('유저 입력값 예외 처리를 검사하는 테스트', () => {
       }
     },
   );
+
+  test.each([
+    ['4', true, '파싱했을때 유효한 데이터 타입'],
+    ['3번', false, '파싱해도 유효하지 않은 문자열'],
+    [1, true, '유효한 데이터 타입'],
+    [2, true, '유효한 데이터 타입'],
+    [null, false, 'null'],
+    [undefined, false, 'undefined'],
+  ])(
+    '이동 시도 횟수(총 라운드)의 데이터 타입에 관한 예외 처리 테스트 (%s)',
+    (totalRounds, expected) => {
+      const ERROR_PREFIX = '[ERROR]';
+      const parsedTotalRounds = RacingManager.parseTotalRounds(totalRounds);
+
+      if (expected) {
+        expect(() => Validation.isNumber(parsedTotalRounds)).not.toThrow();
+      } else {
+        expect(() => Validation.isNumber(parsedTotalRounds)).toThrow(
+          ERROR_PREFIX,
+        );
+      }
+    },
+  );
 });
