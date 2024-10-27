@@ -12,6 +12,7 @@ class App {
 
     const racing = new Racing(validTotalRounds, cars);
     racing.play();
+    racing.showResult();
     racing.announceWinners();
   }
 
