@@ -9,7 +9,7 @@ const InputView = {
         try {
           const carNames = input
             .split(',')
-            .map((name) => this.validateCarName(name.trim()));
+            .map((name) => this.validateCarName(name.trim())); // 이름 공백 제거 후 유효성 검증
           resolve(carNames);
         } catch (error) {
           reject(error);
@@ -22,8 +22,8 @@ const InputView = {
     return new Promise((resolve, reject) => {
       Console.readLineAsync('시도할 회수는 몇 회인가요?: ').then((input) => {
         try {
-          const rounds = parseInt(input, 10);
-          this.validateRounds(rounds);
+          const rounds = parseInt(input, 10); // 입력된 문자열을 정수로 변환
+          this.validateRounds(rounds); // 유효한 회수인지 검증
           resolve(rounds);
         } catch (error) {
           reject(error);
