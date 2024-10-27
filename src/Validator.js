@@ -36,6 +36,7 @@ export default {
       );
     if (!repetitionString.match(/^[1-9](\d+)*$/)) {
       this.NotNumber(repetitionString);
+      this.ZeroNumber(repetitionString);
       // UNKNOWN error
       throw new Error('[ERROR] 시도 횟수를 입력해주세요.');
     }
@@ -43,6 +44,11 @@ export default {
   NotNumber(repetitionString) {
     if (repetitionString.match(/[^0-9]+/)) {
       throw new Error('[ERROR] 시도 횟수는 숫자만 입력해주세요.');
+    }
+  },
+  ZeroNumber(repetitionString) {
+    if (repetitionString.match(/^[0]$/)) {
+      throw new Error('[ERROR] 시도 횟수는 1 이상의 정수로 입력해주세요.');
     }
   },
 };
