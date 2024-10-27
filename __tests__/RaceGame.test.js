@@ -37,6 +37,24 @@ const successCase = [
     inputs: ['pobi,woni', '1'],
     logs: ['최종 우승자 : pobi'],
   },
+  {
+    name: '자동차의 이름이 이모티콘일 경우 최종 우승',
+    MOVING: [4, 3, 3],
+    inputs: ['🩷,❤️,🧡', '1'],
+    logs: ['최종 우승자 : 🩷'],
+  },
+  {
+    name: '자동차의 이름이 숫자일 경우 최종 우승',
+    MOVING: [4, 3, 3],
+    inputs: ['1,2,3', '1'],
+    logs: ['최종 우승자 : 1'],
+  },
+  {
+    name: '자동차의 이름이 5자리 이하일 경우 최종 우승',
+    MOVING: [4, 3, 3],
+    inputs: ['12345,하나둘셋넷,ABCDE', '1'],
+    logs: ['최종 우승자 : 12345'],
+  },
 ];
 
 const failCase = [
