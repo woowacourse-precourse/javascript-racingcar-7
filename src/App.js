@@ -15,6 +15,7 @@ class App {
       this.initializeRace(cars, attempts);
     } catch (error) {
       Console.print(error.message);
+      return Promise.reject(error); // Promise.reject로 예외 처리
     }
   }
 
@@ -43,7 +44,8 @@ class App {
   }
 
   runRaceRound(carPositions) {
-    Console.print('\n실행 결과');
+    Console.print(''); // 공백 줄을 추가하여 테스트에서 원하는 출력 형식 맞추기
+    Console.print('실행 결과');
     Object.keys(carPositions).forEach((car) => {
       if (Random.pickNumberInRange(0, 9) >= 4) {
         carPositions[car] += 1;
@@ -58,7 +60,6 @@ class App {
       (car) => carPositions[car] === maxDistance
     );
     Console.print(`\n최종 우승자 : ${winners.join(', ')}`);
-    Console.close();
   }
 }
 
