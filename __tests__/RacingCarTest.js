@@ -1,14 +1,5 @@
-import { MissionUtils } from '@woowacourse/mission-utils';
+import { mockRandoms } from './utils/TestUtil.js';
 import RacingCars from '../src/models/RacingCars.js';
-
-const mockRandoms = numbers => {
-  MissionUtils.Random.pickNumberInRange = jest.fn();
-
-  numbers.reduce(
-    (acc, number) => acc.mockReturnValueOnce(number),
-    MissionUtils.Random.pickNumberInRange,
-  );
-};
 
 describe('RacingCars 클래스 테스트', () => {
   test('(검증받은)자동차 이름 배열을 이용하여 RacingCars 객체를 생성합니다.', () => {

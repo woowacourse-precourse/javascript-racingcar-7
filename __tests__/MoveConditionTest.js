@@ -1,14 +1,5 @@
-import { MissionUtils } from '@woowacourse/mission-utils';
+import { mockRandoms } from './utils/TestUtil.js';
 import getMoveForward from '../src/utils/MoveCondition.js';
-
-const mockRandoms = numbers => {
-  MissionUtils.Random.pickNumberInRange = jest.fn();
-
-  numbers.reduce(
-    (acc, number) => acc.mockReturnValueOnce(number),
-    MissionUtils.Random.pickNumberInRange,
-  );
-};
 
 describe('4 이상이면 자동차를 전진하게 해주는 MoveCondition 테스트', () => {
   describe('랜덤 값이 4 이상일 경우', () => {
