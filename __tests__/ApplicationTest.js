@@ -46,6 +46,26 @@ describe("자동차 경주", () => {
     });
   });
 
+  test("공동 우승자", async () => {
+    // given
+    const MOVING_FORWARD = 4; // 자동차가 앞으로 나아갈 때의 랜덤 값
+    const inputs = ["pobi,woni", "1"]; // 자동차 이름과 시도 횟수
+    const logs = ["pobi : -", "woni : -", "최종 우승자 : pobi, woni"];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([MOVING_FORWARD, MOVING_FORWARD]); // 각 라운드의 랜덤 값 설정
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
   test("잘못된 자동차 이름 - 5자 이상 입력", async () => {
     mockQuestions(["fiveupper, four"]);
     const app = new App();
