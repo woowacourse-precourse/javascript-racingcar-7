@@ -2,6 +2,7 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 
 function saveRandom(carCount, randomArray){
   let array = randomArray;
+
   for(let i = 0; i < carCount; i++){
     let randomValue = MissionUtils.Random.pickNumberInRange(0, 9);
     if(randomValue >= 4) randomValue = 1;
@@ -10,6 +11,24 @@ function saveRandom(carCount, randomArray){
   }
   return array;
 };
+
+function printProgress(carnames, number){
+  const carCount = carnames.length;
+  var randomArray = Array.from({length: carCount}, () => 0);
+  let carProgress;
+  const progress = '-';
+
+  MissionUtils.Console.print('\n실행 결과');
+
+  for(let i = 0; i < number; i++){
+    carProgress = saveRandom(carCount, randomArray);
+    for(let j = 0; j < carCount; j++){
+      MissionUtils.Console.print(carnames[j] + ' : ' + progress.repeat(carProgress[j]));
+    }
+    MissionUtils.Console.print('\n');
+  }
+  return carProgress;
+}
 
 async function getNumber() {
   const input = await MissionUtils.Console.readLineAsync("시도할 횟수는 몇 회인가요? \n");
@@ -29,9 +48,7 @@ class App {
   async run() {
     const carnames = await getCarname();
     const number = await getNumber();
-    const carCount = carnames.length;
-    var randomArray = Array.from({length: carCount}, () => 0);
-    saveRandom(carCount, randomArray);
+    const carProgress = printProgress(carnames, number);
   }
 }
 
