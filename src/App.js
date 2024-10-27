@@ -7,12 +7,8 @@ import RacingCarUtils from "./utils/RacingCarUtils.js";
 
 class App {
     async run() {
-        const players = await IOHandler.getInput(datas.INSTRUCTION_CARS, (str) => str.split(','))
-
-        let carList = []
-        players.forEach((player) => {
-            carList.push(new RacingCar(player))
-        })
+        const playerList = await IOHandler.getInput(datas.INSTRUCTION_CARS, (str) => str.split(','))
+        const carList = RacingCarUtils.createCarListByPlayerList(playerList);
 
         let tryNumber = await IOHandler.getInput(datas.INSTRUCTION_TRY_NUMBER)
 

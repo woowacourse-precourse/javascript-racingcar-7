@@ -1,4 +1,5 @@
 import {Console} from '@woowacourse/mission-utils';
+import RacingCar from "../RacingCar.js";
 
 class RacingCarUtils {
     static findWinners(carList) {
@@ -9,6 +10,13 @@ class RacingCarUtils {
         const maxDist = carList[0].getDistance();
         return carList.filter(car => car.getDistance() === maxDist)
             .map(car => car.name);
+    }
+
+    static createCarListByPlayerList(players) {
+        return players.reduce((cars, player) => {
+            cars.push(new RacingCar(player));
+            return cars;
+        }, []);
     }
 }
 
