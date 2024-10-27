@@ -4,6 +4,8 @@ export default {
     if (!names.match(/^[^,]{1,5}(,[^,]{1,5})+$/)) {
       this.OneName(names);
       this.LongName(names);
+      this.CommaEnding(names);
+
       throw new Error('[ERROR] 이름 입력을 다시 확인해주세요.');
     }
   },
@@ -15,6 +17,11 @@ export default {
   LongName(names) {
     if (names.match(/^[^,]+(,[^,]+)*$/)) {
       throw new Error('[ERROR] 이름의 길이는 5를 초과할 수 없습니다.');
+    }
+  },
+  CommaEnding(names) {
+    if (names.endsWith(',')) {
+      throw new Error('[ERROR] 이름 입력 마지막에는 쉼표가 올 수 없습니다.');
     }
   },
 
