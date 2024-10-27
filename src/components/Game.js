@@ -1,5 +1,7 @@
 import { Console, Random } from '@woowacourse/mission-utils';
 import Car from './Car.js';
+import { OutputView } from '../resources/Constants.js';
+import Rules from '../resources/Rules.js';
 
 class Game {
   #CARS_LIST = [];
@@ -12,7 +14,7 @@ class Game {
   }
 
   static parseNames(names) {
-    return names.split(',');
+    return names.split(Rules.DELIMITER);
   }
 
   static allocateCars(nameList) {
@@ -20,7 +22,7 @@ class Game {
   }
 
   play() {
-    Console.print('\n실행 결과');
+    Console.print(OutputView.RESULT_PRINT_BEGINNING);
     while (this.currentRepeat !== this.repetitionNumber) {
       this.startRound();
       this.printRoundResults();
@@ -40,7 +42,9 @@ class Game {
 
   printRoundResults() {
     this.#CARS_LIST.forEach((car) => {
-      const distanceString = '-'.repeat(car.currentDistance);
+      const distanceString = OutputView.DISTANCE_DRAWING.repeat(
+        car.currentDistance,
+      );
       Console.print(`${car.name} : ${distanceString}`);
     });
 
@@ -48,7 +52,11 @@ class Game {
   }
 
   static canMoveForward() {
-    if (Random.pickNumberInRange(0, 9) >= 4) return true;
+    if (
+      Random.pickNumberInRange(Rules.MIN_NUMBER, Rules.MAX_NUMBER) >=
+      Rules.THRESHOLD_NUMBER
+    )
+      return true;
     return false;
   }
 

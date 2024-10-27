@@ -1,11 +1,13 @@
+import Rules from '../resources/Rules.js';
+
 class Car {
   constructor(name) {
     this.name = name;
-    this.currentDistance = 0;
+    this.currentDistance = Rules.INITIAL_DISTANCE;
   }
 
   moveForward() {
-    this.currentDistance += 1;
+    this.currentDistance += Rules.MOVE_LENGTH;
   }
 }
 export default Car;
