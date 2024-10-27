@@ -79,9 +79,9 @@ describe('구현할 기능 목록 테스트 코드 작성', () => {
     const app = new App();
     mockRandoms([MOVING_FORWARD_ONE, STOP, MOVING_FORWARD_TWO]);
 
-    const result = app.executionResult(input);
+    app.executionResult(input);
 
-    expect(result).toEqual(expectedResult);
+    expect(input).toEqual(expectedResult);
   });
 
   test('1경기 실행 결과 츨력', () => {
@@ -93,6 +93,26 @@ describe('구현할 기능 목록 테스트 코드 작성', () => {
     const app = new App();
 
     app.printResult(input);
+
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
+  test('시도횟수만큼 반복', async () => {
+    // given
+
+    const MOVING_FORWARD = 4;
+    const STOP = 3;
+    const inputs = ['pobi,woni', '2'];
+    const logs = ['pobi : ', 'woni : --'];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([STOP, MOVING_FORWARD, STOP, MOVING_FORWARD]);
+
+    const app = new App();
+    await app.run();
 
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
