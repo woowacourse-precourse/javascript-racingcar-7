@@ -13,14 +13,14 @@ class RacingGame {
     let currentStep = 1;
     Console.print('\n실행 결과');
     while (currentStep <= this.attemptCount) {
-      this.attemptRacingStep();
+      this.attemptForwardByStep();
       this.printStatusByStep();
       currentStep++;
     }
     this.printWinners();
   }
 
-  attemptRacingStep() {
+  attemptForwardByStep() {
     this.cars.forEach((car) => {
       this.tryMoveForward(car);
     });
