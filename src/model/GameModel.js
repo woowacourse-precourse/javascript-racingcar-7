@@ -2,7 +2,9 @@ import CarModel from './CarModel';
 
 class GameModel {
 	#cars;
-	constructor(cars) {
+	#rounds;
+	constructor(cars, rounds) {
 		this.#cars = cars;
+		this.#rounds = rounds;
 	}
 }
