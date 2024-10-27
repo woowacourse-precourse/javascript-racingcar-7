@@ -1,7 +1,6 @@
 import { GIDE_MESSAGE } from "../../Constants/constant.js";
+import Output from "../../Output/Output.js";
 import randomGenerator from "../../Utils/randomGenerator.js";
-import printCurrRaceState from "../Output/printCurrRaceState.js";
-import printResultMessage from "../Output/printResultMessage.js";
 
 /**
  * @param {{ name: string, position: number }} car
@@ -29,10 +28,10 @@ const raceCar = (carList, tryNumber) => {
     };
   });
 
-  printResultMessage(GIDE_MESSAGE.result);
+  Output.resultMessage(GIDE_MESSAGE.result);
   for (let i = 0; i < tryNumber; i++) {
     raceCarList.forEach(moveRaceCar);
-    printCurrRaceState(raceCarList);
+    Output.currRaceState(raceCarList);
   }
 
   const maxnumber = Math.max(...raceCarList.map((car) => car.position));
