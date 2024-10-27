@@ -1,36 +1,44 @@
 import App from "../src/App.js";
-import { MissionUtils } from "@woowacourse/mission-utils";
+import MissionUtils from "@woowacourse/mission-utils";
+
+// MissionUtils 모듈을 Jest 모의(Mock) 처리
+jest.mock("@woowacourse/mission-utils", () => ({
+  Console: {
+    readLine: jest.fn(),
+    print: jest.fn(),
+    close: jest.fn(),
+  },
+  Random: {
+    pickNumberInRange: jest.fn(),
+  },
+}));
 
 const mockQuestions = (inputs) => {
-  MissionUtils.Console.readLineAsync = jest.fn();
-
-  MissionUtils.Console.readLineAsync.mockImplementation(() => {
+  MissionUtils.Console.readLine.mockImplementation((question, callback) => {
     const input = inputs.shift();
-    return Promise.resolve(input);
+    callback(input); // 입력을 콜백에 전달
   });
 };
 
 const mockRandoms = (numbers) => {
-  MissionUtils.Random.pickNumberInRange = jest.fn();
-
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, MissionUtils.Random.pickNumberInRange);
+  MissionUtils.Random.pickNumberInRange.mockImplementation(() => {
+    return numbers.shift();
+  });
 };
 
 const getLogSpy = () => {
-  const logSpy = jest.spyOn(MissionUtils.Console, "print");
+  const logSpy = MissionUtils.Console.print;
   logSpy.mockClear();
   return logSpy;
 };
 
 describe("자동차 경주", () => {
-  test("기능 테스트", async () => {
+  test("기능 테스트", () => {
     // given
     const MOVING_FORWARD = 4;
     const STOP = 3;
     const inputs = ["pobi,woni", "1"];
-    const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
+    const logs = ["1 차시:", "pobi : -", "woni : ", "최종 우승자 : pobi"];
     const logSpy = getLogSpy();
 
     mockQuestions(inputs);
@@ -38,7 +46,7 @@ describe("자동차 경주", () => {
 
     // when
     const app = new App();
-    await app.run();
+    app.run();
 
     // then
     logs.forEach((log) => {
@@ -46,7 +54,7 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트", async () => {
+  test("예외 테스트", () => {
     // given
     const inputs = ["pobi,javaji"];
     mockQuestions(inputs);
@@ -55,6 +63,6 @@ describe("자동차 경주", () => {
     const app = new App();
 
     // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
+    expect(() => app.run()).toThrow("[ERROR] 입력값에 문제가 있습니다");
   });
 });

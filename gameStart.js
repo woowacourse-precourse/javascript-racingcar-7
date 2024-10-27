@@ -7,17 +7,8 @@ const rl = readline.createInterface({
 });
 
 function gameStart(input, count) {
+  CarNameException(input);
   let carName = input.split(",");
-  let newSet = new Set(carName);
-  for (let i = 0; i < carName.length; i++) {
-    if (
-      carName.includes("") ||
-      newSet.size !== carName.length ||
-      !carName[i].isInteger()
-    ) {
-      throw new Error("입력값에 문제가 있습니다");
-    }
-  }
   let resultObj = {};
   carName.forEach((v) => {
     resultObj[v] = 0;
@@ -68,8 +59,6 @@ function Ranking(resultObj) {
   return rankingArray;
 }
 
-//
-
 function ChangeNumber(object) {
   for (let key in object) {
     object[key] = "-".repeat(object[key]);
@@ -78,8 +67,17 @@ function ChangeNumber(object) {
 }
 
 function CarNameException(input) {
-  if (input.length > 5) {
-    throw new Error("자동차 이름은 최대 5글자입니다");
+  let carName = input.split(",");
+  let newSet = new Set(carName);
+
+  if (carName.length > 5 || newSet.size !== carName.length) {
+    throw new Error("입력값에 문제가 있습니다");
+  }
+
+  for (let i = 0; i < carName.length; i++) {
+    if (carName[i] === "" || !Number.isInteger(Number(carName[i]))) {
+      throw new Error("입력값에 문제가 있습니다");
+    }
   }
 
   return true;

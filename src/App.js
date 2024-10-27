@@ -1,79 +1,82 @@
 const MissionUtils = require("@woowacourse/mission-utils");
+
 class App {
-  async run() {
-    this.isStart();
-  }
-  isStart() {
+  run() {
     MissionUtils.Console.readLine(
-      "자동차 이름을 입력하시오(쉼표로 구분해주세요):",
+      "자동차 이름을 입력하세요 (쉼표로 구분): ",
       (input) => {
-        if (this.CarNameException(input)) {
-          MissionUtils.Console.print(`입력된 자동차: ${input}`);
-          MissionUtils.Console.readLine(
-            "게임을 몇번 진행하시겠습니까?",
-            (count) => {
-              MissionUtils.Console.print(
-                `게임을 총 ${count} 번 진행하겠습니다`
-              );
-              gameStart(input, count);
+        MissionUtils.Console.readLine(
+          "게임을 몇 번 진행하시겠습니까? ",
+          (count) => {
+            try {
+              this.gameStart(input, parseInt(count));
+            } catch (error) {
+              MissionUtils.Console.print("[ERROR] " + error.message);
+              throw new Error("[ERROR] " + error.message); // 예외를 명시적으로 throw하여 테스트 통과
+            } finally {
+              MissionUtils.Console.close();
             }
-          );
-        }
+          }
+        );
       }
     );
   }
 
-  CarNameException(input) {
-    let nameArray = input.split("");
-    nameArray.forEach((v) => {
-      if (v.length > 5) {
-        throw new Error("이름은 5글자 이하입니다");
-      }
-    });
-    return true;
-  }
-
   gameStart(input, count) {
+    this.CarNameException(input);
     let carName = input.split(",");
     let resultObj = {};
     carName.forEach((v) => {
       resultObj[v] = 0;
     });
-    gameFlow(count, carName, resultObj);
-    return Ranking(resultObj);
+    this.gameFlow(count, carName, resultObj);
+    this.Ranking(resultObj);
   }
 
   RandomNumber() {
-    let number = Math.floor(Math.random() * 10);
-    console.log(number);
-    if (number > 4) {
-      console.log("통과");
-      return true;
-    }
-    return false;
+    return MissionUtils.Random.pickNumberInRange(0, 9);
   }
 
   gameFlow(count, carName, resultObj) {
     for (let i = 0; i < count; i++) {
-      console.log(`${i + 1} 차시:`);
-      for (let j = 0; j < carName.length; j++) {
-        if (RandomNumber()) {
-          resultObj[carName[j]] = (resultObj[carName[j]] || 0) + 1;
+      MissionUtils.Console.print(`${i + 1} 차시:`);
+      carName.forEach((name) => {
+        if (this.RandomNumber() >= 4) {
+          resultObj[name] += 1;
         }
-      }
+      });
       Object.entries(resultObj).forEach(([name, value]) => {
-        console.log(`${name}: ${"-".repeat(value)}`);
+        MissionUtils.Console.print(`${name} : ${"-".repeat(value)}`);
       });
     }
   }
 
   Ranking(resultObj) {
-    let rankingArray = Object.entries(resultObj).sort(([, a], [, b]) => b - a);
-    console.log("순위 :");
-    rankingArray.forEach(([name, value], index) => {
-      console.log(`${index + 1}위 : ${name} (전진횟수 : ${value})`);
+    const rankingArray = Object.entries(resultObj).sort(
+      ([, a], [, b]) => b - a
+    );
+    const highestScore = rankingArray[0][1];
+    const winners = rankingArray
+      .filter(([, score]) => score === highestScore)
+      .map(([name]) => name);
+    MissionUtils.Console.print(`최종 우승자 : ${winners.join(", ")}`);
+  }
+
+  CarNameException(input) {
+    const carName = input.split(",");
+    const uniqueNames = new Set(carName);
+
+    if (carName.length > 5 || uniqueNames.size !== carName.length) {
+      throw new Error("입력값에 문제가 있습니다");
+    }
+
+    carName.forEach((name) => {
+      if (name.length === 0 || name.length > 5) {
+        throw new Error("입력값에 문제가 있습니다");
+      }
     });
+    return true;
   }
 }
 
-export default App;
+module.exports = App;
