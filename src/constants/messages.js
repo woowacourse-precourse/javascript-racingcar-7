@@ -9,7 +9,7 @@ const ERROR_MESSAGE = {
   SPECIAL_CHARACTERS_NOT_ALLOWED:
     "[ERROR] 자동차 이름에는 특수문자가 포함될 수 없습니다.",
   ONLY_ENGLISH_AND_KOREAN_ALLOWED:
-    "[ERROR] 자동차 이름은 한글이나 영어만 가능합니다.",
+    "[ERROR] 자동차 이름의 언어는 한글이나 영어만 사용 가능합니다.",
   DUPLICATE_NAME_NOT_ALLOWED: "[ERROR] 자동차 이름은 중복이 불가능합니다.",
   CAR_LIST_TOO_SMALL: "[ERROR] 자동차 개수는 2대 이상이어야 합니다.",
 };
