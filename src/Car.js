@@ -1,4 +1,5 @@
 import { Random } from "@woowacourse/mission-utils";
+import { MOVE_SETTING, POSITION_MARKER, RANDOM_SETTING } from "./constants/Setting";
 
 class Car {
     #name;
@@ -6,18 +7,21 @@ class Car {
 
     constructor(name) {
         this.#name = name;
-        this.#position = 0;
+        this.#position = MOVE_SETTING.DEFAULT_POSITION;
     }
 
     tryToMove() {
-        const randomNumber = Random.pickNumberInRange(0, 9);
-        if (randomNumber >= 4) {
-            this.#position += 1;
+        const randomNumber = Random.pickNumberInRange(
+            RANDOM_SETTING.MIN_NUMBER,
+            RANDOM_SETTING.MAX_NUMBER
+        );
+        if (randomNumber >= MOVE_SETTING.MOVE_POSSIBLE_NUMBER) {
+            this.#position += MOVE_SETTING.UNIT_PER_RACE;
         }
     }
 
     getCurrentLog() {
-        return `${this.#name} : ${"-".repeat(this.#position)}`;
+        return `${this.#name} : ${POSITION_MARKER.repeat(this.#position)}`;
     }
 
     getName() {

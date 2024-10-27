@@ -1,16 +1,17 @@
 import { Console } from "@woowacourse/mission-utils";
+import { PRINT_MESSAGE } from "./constants/Message";
 
 class Printer {
     printResultText() {
-        Console.print("\n실행 결과");
+        Console.print(PRINT_MESSAGE.RESULT_TEXT);
     }
 
     printLogs(logs) {
-        Console.print(logs.join("\n"));
+        Console.print(PRINT_MESSAGE.TOTAL_LOGS(logs));
     }
 
     printWinner(winner) {
-        Console.print(`최종 우승자 : ${winner.join(", ")}`);
+        Console.print(PRINT_MESSAGE.FINAL_WINNER(winner));
     }
 }
 
