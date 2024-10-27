@@ -17,7 +17,13 @@ class Race {
     return this.#cars;
   }
 
-  static printWinner(winners) {
+  get winners() {
+    return this.#winners;
+  }
+
+  printWinner() {
+    this.selectWinner();
+    const winners = this.#winners;
     let winnerStr = '최종 우승자 : ';
     for (let i = 0; i < winners.length; i += 1) {
       winnerStr += `${winners[i].name}`;
@@ -67,7 +73,6 @@ class Race {
         this.#winners.push(cars[i]);
       }
     }
-    return this.#winners;
   }
 }
 

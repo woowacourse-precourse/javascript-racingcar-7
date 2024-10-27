@@ -60,10 +60,10 @@ describe('경주 클래스', () => {
     race.moveCars();
 
     //when
-    const winners = race.selectWinner();
+    race.selectWinner();
 
     //then
-    expect(winners).toEqual([car1, car3]);
+    expect(race.winners).toEqual([car1, car3]);
   });
 
   test.each([
@@ -72,11 +72,12 @@ describe('경주 클래스', () => {
   ])('결과 출력 메서드', (inputs, expected) => {
     //given
     const winners = inputs;
+    const race = new Race(winners);
     const logSpy = jest.spyOn(MissionUtils.Console, 'print');
     logSpy.mockClear();
 
     //when
-    Race.printWinner(winners);
+    race.printWinner();
 
     //then
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(expected));

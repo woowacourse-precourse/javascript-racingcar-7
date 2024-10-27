@@ -26,8 +26,7 @@ class App {
     for (let i = 0; i < moveInput; i += 1) {
       race.moveCars();
     }
-    const winners = race.selectWinner();
-    Race.printWinner(winners);
+    race.printWinner();
   }
 }
 
