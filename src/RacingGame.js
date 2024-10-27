@@ -47,6 +47,16 @@ export class RacingGame {
         }
         MissionUtils.Console.print("\n");
     }
+
+    playRound() {
+        for (const car in this.cars) {
+            const randomValue = MissionUtils.Random.pickNumberInRange(0, 9);
+            if (randomValue >= 4) {
+                this.cars[car] += '-';
+            }
+        }
+        this.printRoundResult();
+    }
 }
 
 export default RacingGame;
