@@ -9,6 +9,15 @@ export default function startGame(carNames, raceRap) {
 
 const makeCarClassArr = (names) => names.map((carName) => new Car(carName));
 
+const getWinner = (resultArr) => {
+  const [{ carMoveLength: longestRange }] = resultArr.sort(
+    (a, b) => b.carMoveLength.length - a.carMoveLength.length
+  );
+  return resultArr
+    .filter((raceResult) => raceResult.carMoveLength === longestRange)
+    .map((winnerObj) => winnerObj.carName);
+};
+
 const startRaceGame = (carArray, rap) => {
   for (let i = 0; i < rap; i++) {
     carArray.forEach((carObj) => {
@@ -16,5 +25,7 @@ const startRaceGame = (carArray, rap) => {
       PrintFunc.printParams(`${carObj.carName} : ${carObj.carMoveLength}`);
     });
     PrintFunc.printParams("");
-  };
-}
+  }
+  const winners = getWinner(carArray);
+  PrintFunc.printResult(winners.join(", "));
+};
