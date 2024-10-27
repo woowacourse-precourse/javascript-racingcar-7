@@ -88,6 +88,21 @@ class App {
       this.startGame(cars);
       Console.print("");
     }
+
+    const longestRaceCar = cars.reduce((maxCar, currentCar) => {
+      return currentCar.race.length > maxCar.race.length ? currentCar : maxCar;
+    });
+
+    // 가장 긴 race 배열 길이 찾기
+    const maxRaceLength = Math.max(...cars.map((car) => car.race.length));
+
+    // 가장 긴 길이를 가진 Car 객체들 필터링
+    const longestRaceCars = cars.filter(
+      (car) => car.race.length === maxRaceLength
+    );
+
+    // 결과 출력
+    longestRaceCars.forEach((car) => Console.print(car.name));
   }
 }
 
