@@ -1,4 +1,5 @@
 import InputHandler from "../src/InputHandler.js";
+import Car from "../src/Car.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 const mockQuestions = (inputs) => {
@@ -7,6 +8,11 @@ const mockQuestions = (inputs) => {
     const input = inputs.shift();
     return Promise.resolve(input);
   });
+};
+
+const mockRandoms = (numbers) => {
+  MissionUtils.Random.pickNumberInRange = jest.fn();
+  numbers.reduce((acc, number) => acc.mockReturnValueOnce(number), MissionUtils.Random.pickNumberInRange);
 };
 
 describe("자동차 이름 입력 기능 테스트", () => {
@@ -59,5 +65,29 @@ describe("시도 횟수 입력 기능 테스트", () => {
     const inputHandler = new InputHandler();
 
     await expect(inputHandler.readCarsName()).rejects.toThrow("[ERROR]");
+  });
+});
+
+describe("자동차 전진 결정 기능 테스트", () => {
+  test("랜덤 값이 4 이상일 때 전진한다", () => {
+    const car = new Car("pobi");
+    mockRandoms([4, 5, 6]); 
+
+    [car.generateRandomValue(), car.generateRandomValue(), car.generateRandomValue()].forEach((randomValue) => {
+      car.tryToMove(randomValue);
+    });
+
+    expect(car.moveCount).toBe(3);
+  });
+
+  test("랜덤 값이 3 이하일 때 멈춘다", () => {
+    const car = new Car("pobi");
+    mockRandoms([2, 3, 1]);
+
+    [car.generateRandomValue(), car.generateRandomValue(), car.generateRandomValue()].forEach((randomValue) => {
+      car.tryToMove(randomValue);
+    });
+
+    expect(car.moveCount).toBe(0);
   });
 });
