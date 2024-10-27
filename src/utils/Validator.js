@@ -1,6 +1,16 @@
 class Validator {
   static validateCarNames(names) {
     this.validateDuplicateCarName(names);
+    names.forEach(this.validateCarName);
+  }
+
+  static validateCarName(name) {
+    if (name.length > 5) {
+      throw new Error("[ERROR] 자동차 이름은 5자를 초과할 수 없습니다.");
+    }
+    if (!name || name.trim().length === 0) {
+      throw new Error("[ERROR] 자동차 이름은 공백일 수 없습니다.");
+    }
   }
 
   static validateDuplicateCarName(names) {

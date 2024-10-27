@@ -1,6 +1,7 @@
 import App from "../src/App.js";
 import Car from "../src/models/Car.js";
 import RacingGame from "../src/models/RacingGame.js";
+import Validator from "../src/utils/Validator.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 const mockQuestions = (inputs) => {
@@ -61,22 +62,34 @@ describe("자동차 경주", () => {
   });
 });
 
+describe("Validator 클래스 테스트", () => {
+  test("이름이 5자를 초과하면 에러 발생", () => {
+    expect(() => Validator.validateCarName("javajigi")).toThrow("[ERROR]");
+  });
+
+  test("이름이 공백이면 에러 발생", () => {
+    expect(() => Validator.validateCarName("")).toThrow("[ERROR]");
+  });
+
+  test("이름이 공백 문자로만 이루어진 경우 에러 발생", () => {
+    expect(() => Validator.validateCarName("  ")).toThrow("[ERROR]");
+  });
+
+  test("중복된 이름이 있으면 에러 발생", () => {
+    expect(() => Validator.validateDuplicateCarName(["pobi", "pobi"])).toThrow(
+      "[ERROR]"
+    );
+  });
+
+  test("유효한 시도 횟수 입력", () => {
+    expect(Validator.validateTryCount("5")).toBe(5);
+  });
+});
+
 describe("Car 클래스 테스트", () => {
   test("유효한 이름으로 자동차 생성", () => {
     const car = new Car("pobi");
     expect(car.name).toBe("pobi");
-  });
-
-  test("이름이 5자를 초과하면 에러 발생", () => {
-    expect(() => new Car("javajigi")).toThrow("[ERROR]");
-  });
-
-  test("이름이 공백이면 에러 발생", () => {
-    expect(() => new Car("")).toThrow("[ERROR]");
-  });
-
-  test("이름이 공백 문자로만 이루어진 경우 에러 발생", () => {
-    expect(() => new Car("  ")).toThrow("[ERROR]");
   });
 
   test("4 이상의 숫자에서 자동차 전진", () => {
