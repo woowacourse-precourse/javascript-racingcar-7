@@ -1,5 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
-import { MESSAGE } from "../constants/message";
+import { MESSAGE } from "../constants/message.js";
 
 class UserView {
   async printProgress(carName, distance) {
