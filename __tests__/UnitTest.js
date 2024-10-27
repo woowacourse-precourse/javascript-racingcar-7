@@ -1,8 +1,15 @@
 import App from '../src/App.js';
+import { Console } from '@woowacourse/mission-utils';
 import {
   validateCarNamesInput,
   validateAttemptCount,
 } from '../src/validator.js';
+
+const getLogSpy = () => {
+  const logSpy = jest.spyOn(Console, 'print');
+  logSpy.mockClear();
+  return logSpy;
+};
 
 describe('validator 테스트', () => {
   test('자동차 이름 예외 테스트', () => {
@@ -97,6 +104,21 @@ describe('App 메서드 테스트', () => {
     carsData.forEach((data, index) => {
       const result = app.getWinners(data);
       expect(result).toEqual(expects[index]);
+    });
+  });
+
+  test('우승자 출력 테스트', () => {
+    const inputs = [['pobi'], ['pobi', 'woni']];
+    const expects = ['최종 우승자 : pobi', '최종 우승자 : pobi, woni'];
+
+    inputs.forEach((input, index) => {
+      const logSpy = getLogSpy();
+
+      app.printWinners(input);
+
+      expect(logSpy).toHaveBeenCalledWith(
+        expect.stringContaining(expects[index]),
+      );
     });
   });
 });
