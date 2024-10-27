@@ -43,15 +43,38 @@ class App {
     return validSplitCarName.map(name => new Car(name));
   }
 
+  validateRoundNumber(roundNumber) {
+    if(roundNumber === ''){
+      throw new Error('[ERROR] 공백을 입력할 수 없습니다!')
+    }
+    if(isNaN(roundNumber)){
+      throw new Error('[ERROR] 숫자를 입력해야 합니다!')
+    }
+    if(roundNumber <= 0){
+      throw new Error('[ERROR] 0보다 적은 값은 입력할 수 없습니다.')
+    }
+    if(!Number.isInteger(roundNumber)){
+      throw new Error('[ERROR] 소수는 입력할 수 없습니다.');
+    }
+
+    return roundNumber;
+  }
+
   async run() {
-    const CAR_NAMES = await MissionUtils.Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
-    const VALID_CAR_NAMES = this.validateCarNames(CAR_NAMES);
-    const SPLIT_CAR_NAMES = this.splitName(VALID_CAR_NAMES);
-    const VALID_SPLIT_CAR_NAMES = this.validateSplitCarNames(SPLIT_CAR_NAMES);
-    const CARS = this.createCars(VALID_SPLIT_CAR_NAMES);
-    const ROUND = MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+    try {
+      const CAR_NAMES = await MissionUtils.Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
+      const VALID_CAR_NAMES = this.validateCarNames(CAR_NAMES);
+      const SPLIT_CAR_NAMES = this.splitName(VALID_CAR_NAMES);
+      const VALID_SPLIT_CAR_NAMES = this.validateSplitCarNames(SPLIT_CAR_NAMES);
+      const CARS = this.createCars(VALID_SPLIT_CAR_NAMES);
+      const ROUND = MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+      const VALID_ROUND_NUMBER = this.validateRoundNumber(ROUND);
 
+      
 
+    } catch (error) {
+      throw error;
+    }
   }
 }
 
