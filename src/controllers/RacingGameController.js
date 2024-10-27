@@ -27,6 +27,8 @@ class RacingGameController {
       });
       RacingGameView.printRoundEnd();
     }
+
+    const winners = game.getWinner();
   }
 }
 

@@ -16,6 +16,16 @@ class RacingGameModel {
     });
     return this.movingForward;
   }
+
+  getWinner() {
+    const maxDistance = Math.max(
+      ...this.movingForward.map((moves) => moves.length)
+    );
+
+    return this.cars.filter(
+      (_, index) => this.movingForward[index].length === maxDistance
+    );
+  }
 }
 
 export default RacingGameModel;
