@@ -32,7 +32,7 @@ class InputHandler {
       throw new Error("[ERROR] 이름을 2개 이상 입력해주세요.");
     }
   }
-  
+
   validateNamesLength(carNames) {
     carNames.forEach(name => {
       if (name.length > 5) {
