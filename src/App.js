@@ -18,7 +18,7 @@ class App {
     validateAttemptCount(attemptCount);
 
     const race = new Race(carNameList, attemptCount);
-    race.run();
+    race.play();
   }
 }
 

@@ -1,9 +1,9 @@
-import { Console, Random } from '@woowacourse/mission-utils';
+import { Console } from '@woowacourse/mission-utils';
 import Car from './car.js';
 
 const OUTPUT_MESSAGE = Object.freeze({
-  EXECUTION_RESULT_OUTPUT: '\n실행 결과',
-  WINNER_OUTPUT: '최종 우승자 :',
+  GAME_START: '\n실행 결과',
+  WINNER: '최종 우승자 :',
 });
 
 class Race {
@@ -13,38 +13,37 @@ class Race {
   }
 
   printStartMessage() {
-    Console.print(OUTPUT_MESSAGE.EXECUTION_RESULT_OUTPUT);
+    Console.print(OUTPUT_MESSAGE.GAME_START);
+  }
+
+  executeTurn() {
+    this.carList.forEach((car) => {
+      car.move();
+      car.printProgress();
+    });
+  }
+
+  startRace() {
+    for (let count = 1; count <= this.attemptCount; count += 1) {
+      this.executeTurn();
+      Console.print('\n');
+    }
+  }
+
+  getWinners() {
+    const maxProgress = Math.max(...this.carList.map((car) => car.progress));
+    return this.carList.filter((car) => car.progress === maxProgress).map((winner) => winner.name);
   }
 
   printWinners(winners) {
-    Console.print(`${OUTPUT_MESSAGE.WINNER_OUTPUT} ${winners.join(', ')}`);
+    Console.print(`${OUTPUT_MESSAGE.WINNER} ${winners.join(', ')}`);
   }
 
-  run() {
+  play() {
     this.printStartMessage();
-
-    for (let count = 1; count <= this.attemptCount; count += 1) {
-      this.carList = this.carList.map((car) => {
-        const randomNumber = Random.pickNumberInRange(0, 9);
-        car.move(randomNumber);
-        car.printProgress();
-        return car;
-      });
-      Console.print('\n');
-    }
-
-    // const moves = Object.values(record);
-    // const winnerMove = Math.max(...moves);
-
-    // const winner = [];
-
-    // for (let car = 0; car < moves.length; car += 1) {
-    //   if (moves[car] === winnerMove) {
-    //     winner.push(this.carList[car]);
-    //   }
-    // }
-
-    // this.printWinners(winner);
+    this.startRace();
+    const winners = this.getWinners();
+    this.printWinners(winners);
   }
 }
 
