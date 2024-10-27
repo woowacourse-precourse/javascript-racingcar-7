@@ -16,6 +16,7 @@ const MAX_PLAYER_NAME_LENGTH = 5;
 const PLAYER_NAME_REGEX = new RegExp(
   `^[a-zA-Z0-9ㄱ-ㅣ가-힣\\s-_!:]{${MIN_PLAYER_NAME_LENGTH},${MAX_PLAYER_NAME_LENGTH}}$`
 );
+const POSITIVE_INTEGER_REGEX = /^\d+$/;
 const MIN_SUCCESS_SCORE = 4;
 const SCORE_SYMBOL = '-';
 const NEW_LINE = '\n';
@@ -32,10 +33,14 @@ export default App;
 
 async function initializeGame() {
   try {
-    const playerNames = await getVaildatedPlayerNames();
+    const playerNames = await getPlayerNames();
+    getVaildatedPlayerNames(playerNames);
+
+    const moveCountInput = await Console.readLineAsync(INPUT_MOVE_COUNT);
+    validateMoveCount(moveCountInput);
+    const moveCount = Number(moveCountInput);
+
     const playerScores = createScoreBoard(playerNames);
-    // TODO: 이동 횟수가 유효한 정수인지 확인
-    const moveCount = await Console.readLineAsync(INPUT_MOVE_COUNT);
     return { playerScores, moveCount };
   } catch (error) {
     Console.print(error.message);
@@ -43,11 +48,20 @@ async function initializeGame() {
   }
 }
 
-async function getVaildatedPlayerNames() {
+async function getPlayerNames() {
   const userInput = await Console.readLineAsync(INPUT_PLAYER_NAMES);
-  const playerNames = parsePlayerNames(userInput);
+  return parsePlayerNames(userInput);
+}
+
+function getVaildatedPlayerNames(playerNames) {
   validatePlayerNames(playerNames);
   return playerNames;
+}
+
+function validateMoveCount(moveCount) {
+  if (!POSITIVE_INTEGER_REGEX.test(moveCount)) {
+    throw new Error(ERROR_MESSAGE);
+  }
 }
 
 function parsePlayerNames(userInput) {
