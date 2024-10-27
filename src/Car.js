@@ -3,14 +3,19 @@ import { Console, Random } from "@woowacourse/mission-utils";
 class Car {
   constructor(name) {
     this.name = name;
-    this.moved = 2;
+    this.movedDistance = 0;
   }
 
-  run() {}
+  moveRandomDistance() {
+    const Randomkey = Random.pickNumberInRange(0, 9);
+    if (Randomkey >= 4) {
+      this.movedDistance++;
+    }
+  }
 
   getStatus() {
     let movedDraw = "";
-    for (let i = 0; i < this.moved; i++) {
+    for (let i = 0; i < this.movedDistance; i++) {
       movedDraw += "-";
     }
     Console.print(`${this.name} : ${movedDraw}`);
