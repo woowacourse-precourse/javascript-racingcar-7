@@ -113,6 +113,35 @@ describe("RacingGame", () => {
     });
   });
 
+  describe("determineWinners", () => {
+    test("위치가 가장 먼 자동차가 우승자로 결정된다", () => {
+      racingGame.cars[0].position = "--";
+      racingGame.cars[1].position = "----";
+      racingGame.cars[2].position = "---";
+
+      const winners = racingGame.determineWinners();
+      expect(winners).toEqual(["woni"]);
+    });
+
+    test("위치가 가장 먼 자동차가 여러개일 때 모두 우승자로 결정된다", () => {
+      racingGame.cars[0].position = "----";
+      racingGame.cars[1].position = "---";
+      racingGame.cars[2].position = "----";
+
+      const winners = racingGame.determineWinners();
+      expect(winners).toEqual(["pobi", "jun"]);
+    });
+
+    test("모든 자동차의 위치가 동일할 때 모든 자동차가 우승자가 된다", () => {
+      racingGame.cars[0].position = "----";
+      racingGame.cars[1].position = "----";
+      racingGame.cars[2].position = "----";
+
+      const winners = racingGame.determineWinners();
+      expect(winners).toEqual(["pobi", "woni", "jun"]);
+    });
+  });
+
   afterEach(() => {
     jest.restoreAllMocks();
   });

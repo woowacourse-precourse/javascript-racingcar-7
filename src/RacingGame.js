@@ -31,6 +31,17 @@ class RacingGame {
     MissionUtils.Console.print(currentPositions);
     MissionUtils.Console.print("");
   }
+
+  determineWinners() {
+    const positionLengths = this.cars.map((car) => car.position.length);
+    const maxPosition = Math.max(...positionLengths);
+
+    const winners = this.cars
+      .filter((car) => car.position.length === maxPosition)
+      .map((car) => car.name);
+
+    return winners;
+  }
 }
 
 export default RacingGame;
