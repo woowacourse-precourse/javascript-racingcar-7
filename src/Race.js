@@ -23,11 +23,14 @@ class Race {
     play(prevState) {
         for (let i = 0; i < this.#carNames.length; i++) {
             const randomNumber = Random.pickNumberInRange(0, 9);
+            console.log(prevState, randomNumber);
 
             if (randomNumber >= 4) {
                 prevState[this.#carNames[i]] =
                     1 + (prevState[this.#carNames[i]] ?? 0);
+                continue;
             }
+            prevState[this.#carNames[i]] = prevState[this.#carNames[i]] ?? 0;
         }
         return prevState;
     }
