@@ -11,6 +11,4 @@ describe('parser/separateInput 함수테스트',()=>{
     //console.log(names);
     expect(names).toEqual(["jin", "ji8", "k", "8", "*"]); // .toBe 대신 .toEqual로 수정
     });
-
-
 })

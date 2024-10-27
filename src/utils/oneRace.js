@@ -1,5 +1,5 @@
 
-import { Console } from "@woowacourse/mission-utils"
+import { Console } from "@woowacourse/mission-utils" 
 import makeRandomNumber from "./MakeRamdom.js"
 
 //각 횟수마다의 위너를 기록한다.
