@@ -1,7 +1,7 @@
 import { Console } from "@woowacourse/mission-utils";
-import { getCars, getRound } from "./InputHandler.js";
-import { runGame } from "./GameHandler.js";
-import { findWinners } from "./WinnerHandler.js";
+import { getCars, getRound } from "./utils/InputHandler.js";
+import { runGame } from "./utils/GameHandler.js";
+import { findWinners } from "./utils/WinnerHandler.js";
 
 class App {
   async run() {
