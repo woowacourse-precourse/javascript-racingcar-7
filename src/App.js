@@ -14,6 +14,9 @@ class App {
   async getTryNumber(query) {
     try {
       const input = await Console.readLineAsync(query);
+      if (Number.isNaN(Number(input))) {
+        throw new Error(`[ERROR]`);
+      }
       return input;
     } catch (error) {
       throw new Error(`[ERROR] ${error}`);
