@@ -1,4 +1,4 @@
-import { userInput } from "./utils/MissionUtils.js";
+import { getRandomInRangeNumber, userInput } from "./utils/MissionUtils.js";
 import {
 	validateDuplicateName,
 	validateMinCar,
@@ -10,9 +10,17 @@ import {
 } from "./utils/validate.js";
 
 class RacingCar {
+	constructor() {
+		this.carNames = [];
+		this.tryCount = 0;
+		this.carNamesAndNumberMap = [];
+	}
+
 	async runRacingCar() {
 		try {
 			const { carNameValue, tryCountValue } = await this.getUserInput();
+			this.carNames = carNameValue.split(",");
+			this.tryCount = parseInt(tryCountValue, 10);
 
 			await validateNameLength(carNameValue);
 			await validateMaxCar(carNameValue);
@@ -22,6 +30,8 @@ class RacingCar {
 			await validateMaxCount(tryCountValue);
 			await validateString(tryCountValue);
 			await validateMinCount(tryCountValue);
+
+			this.carNamesAndNumberMap = await this.setCarNumberMap();
 		} catch (error) {
 			throw new Error(`${error.message}`);
 		}
@@ -33,6 +43,17 @@ class RacingCar {
 		);
 		const tryCountValue = await userInput("시도할 횟수는 몇 회인가요?\n");
 		return { carNameValue, tryCountValue };
+	}
+
+	async setCarNumberMap() {
+		const carNamesAndNumberMap = this.carNames.map((carName) => ({
+			carName,
+			carNumbers: Array.from({ length: this.tryCount }, () =>
+				getRandomInRangeNumber(0, 9)
+			),
+		}));
+
+		return carNamesAndNumberMap;
 	}
 }
 

@@ -10,3 +10,7 @@ export async function userInput(string) {
 	}
 	return returnValue;
 }
+
+export function getRandomInRangeNumber(min, max) {
+	return MissionUtils.Random.pickNumberInRange(min, max);
+}
