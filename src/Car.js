@@ -9,7 +9,7 @@ class Car {
     const randomNumber = Random.pickNumberInRange(0, 9);
     return randomNumber;
   }
-  move() {
+  move(randomNumber) {
     const randomNumber = this.getRandomNumber();
     if (randomNumber >= 4) { this.position += "-"; }
   }
