@@ -110,6 +110,17 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 
+  test("예외 테스트 - 시도할 횟수에 0을 입력한 경우", async () => {
+    const inputs = ["pobi,javai"];
+    mockQuestions(inputs);
+    const numbers = [0];
+    mockRandoms(numbers);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
   test("예외 테스트 - 시도할 횟수에 실수를 입력한 경우", async () => {
     const inputs = ["pobi,javai"];
     mockQuestions(inputs);
