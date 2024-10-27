@@ -1,4 +1,4 @@
-import InputView from "../view/inputView.js";
+import InputView from "../view/InputView.js";
 import Race from "../model/Race.js";
 import Winner from "../model/Winner.js";
 import OutputView from "../view/OutputView.js";
