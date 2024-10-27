@@ -16,7 +16,7 @@ const MIN_RANDOM_NUM = 0;
 
 const MAX_RANDOM_NUM = 9;
 
-const MAX_CAR_COUNT = 1000;
+const MAX_CAR_COUNT = 100;
 
 export {
   INIT_NUM,
