@@ -9,7 +9,7 @@ class CarModel {
 
   addCar(carName) {
     this.carList.push(carName);
-    this.distance.set(carName, 0); // 자동차의 초기 거리를 0으로 설정
+    this.distance.set(carName, 0);
   }
 
   setCount(count) {
@@ -26,7 +26,6 @@ class CarModel {
     });
   }
   getWinner() {
-    // 해시맵에서 우승자를 추출 구현
     const winner = [];
     const allRecords = [];
     let maxRecord = 0;
@@ -35,7 +34,7 @@ class CarModel {
     }
     maxRecord = Math.max(...allRecords);
     for (let [carName, record] of this.distance){
-      if(record === maxRecord){ // 문자열 비교 분석 필요
+      if(record === maxRecord){
         winner.push(carName);
       }
     }
