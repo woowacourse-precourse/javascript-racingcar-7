@@ -1,7 +1,7 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import Validator from './utils/Validator.js';
 import converStringToNumber from './utils/convertStringToNumber.js';
-import splitStringByComma from './utils/splitIStringByComma.js';
+import splitStringByComma from './utils/splitStringByComma.js';
 
 class InputManager {
   static async getCarNames() {
