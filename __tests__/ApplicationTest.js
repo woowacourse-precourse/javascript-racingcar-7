@@ -32,6 +32,24 @@ describe("Car 클래스", () => {
     expect(car.name).toBe("dawon");
     expect(car.position).toBe(0);
   });
+
+  test("자동차 전진", () => {
+    const car = new Car("dawon");
+    mockRandoms([4]);
+
+    car.moveOrStop();
+
+    expect(car.position).toBe(1);
+  });
+
+  test("자동차 정지", () => {
+    const car = new Car("dawon");
+    mockRandoms([3]);
+
+    car.moveOrStop();
+    
+    expect(car.position).toBe(0);
+  });
 });
 
 describe("자동차 이름 문자열 입력", () => {
