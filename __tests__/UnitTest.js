@@ -123,4 +123,22 @@ describe('App 메서드 테스트', () => {
       });
     });
   });
+
+  test('라운드 결과 출력 테스트', () => {
+    const inputs = [
+      { name: 'pobi', position: 2 },
+      { name: 'woni', position: 1 },
+    ];
+    const expects = ['pobi : --', 'woni : -'];
+
+    const logSpy = getLogSpy();
+
+    inputs.forEach((input, index) => {
+      app.printRoundResult(input);
+
+      expect(logSpy).toHaveBeenCalledWith(
+        expect.stringContaining(expects[index]),
+      );
+    });
+  });
 });
