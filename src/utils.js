@@ -14,10 +14,13 @@ const throwError = (message) => {
 
 const printMessage = (message) => Console.print(message);
 
+const splitByDelimiter = (input) => input.split(',').map(name => name.trim()); 
+
 export { 
   getCarName,
   getAttempt,
   throwError,
   getRandomNumber,
   printMessage,
+  splitByDelimiter,
 };
