@@ -1,8 +1,8 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 
 class App {
     async getCarNameList() {
-        const carName = await Console.readLineAsync("경주할 자동차 이름을 쉼표로 구분하여 입력하세요 : ");
+        const carName = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
         const carNameList = carName.split(",");
 
         if (carNameList.some(name => name.length > 5)) {
@@ -12,7 +12,7 @@ class App {
     }
 
     async getTryCount() {
-        const tryCount = await Console.readLineAsync("시도할 횟수를 입력해주세요 : ");
+        const tryCount = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
 
         if (isNaN(+tryCount) || tryCount < 1) {
             throw new Error("[ERROR] 시도 횟수는 1 이상의 숫자여야 합니다.");
@@ -21,23 +21,29 @@ class App {
     }
 
     async playRaceGame(cars, tryCount) {
+        Console.print("실행결과\n");
         for (let i = 0; i < tryCount; i++) {
             cars.forEach(car => {
-                if (Math.floor(Math.random() * 10) >= 4) {
+                if (Random.pickNumberInRange(0, 9) >= 4) {
                     car.position += 1;
                 }
             });
+            this.printEachRoundResult(cars);
+            Console.print("\n");
         }
+    }
+
+    async printEachRoundResult(cars) {
+        cars.forEach(car => {
+            Console.print(`${car.name} : ${"-".repeat(car.position)}`);
+        });
     }
 
     async run() {
         const cars = await this.getCarNameList();
         const tryCount = await this.getTryCount();
-        Console.print(cars);
-        Console.print(tryCount);
 
-        const game = await this.playRaceGame();
-        Console.print("state", game);
+        this.playRaceGame(cars, tryCount);
     }
 }
 
