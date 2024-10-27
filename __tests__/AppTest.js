@@ -67,5 +67,14 @@ describe('자동차 경주', () => {
 
       await expect(app.run()).rejects.toThrow('[ERROR]');
     });
+
+    test('시도할 횟수가 0이면 에러가 발생한다', async () => {
+      const inputs = ['pobi,woni', '0'];
+      mockQuestions(inputs);
+
+      const app = new App();
+
+      await expect(app.run()).rejects.toThrow('[ERROR]');
+    });
   });
 });
