@@ -6,7 +6,7 @@ class App {
   }
 
   async run() {
-    this.game.process();
+    await this.game.process();
   }
 }
 
