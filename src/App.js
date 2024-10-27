@@ -39,7 +39,7 @@ class App {
     return input;
   }
 
-  printReuslt(input) {
+  printResult(input) {
     const inputKeys = Object.keys(input);
     inputKeys.forEach((item) => {
       Console.print(`${item} : ${'-'.repeat(input[item])}`);
@@ -54,7 +54,7 @@ class App {
 
     const scoreBoard = this.setGame(carNames);
     const firstRound = this.executionResult(scoreBoard);
-    this.printReuslt(firstRound);
+    this.printResult(firstRound);
   }
 }
 

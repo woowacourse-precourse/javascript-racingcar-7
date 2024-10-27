@@ -84,11 +84,11 @@ describe('구현할 기능 목록 테스트 코드 작성', () => {
     expect(result).toEqual(expectedResult);
   });
 
-  test('1경기 실행 결과 츨략', () => {
+  test('1경기 실행 결과 츨력', () => {
     // given
 
     const input = { pobi: 3, woni: 0, jun: 2 };
-    const logs = ['pobi : -', 'woni : ', 'jun : --'];
+    const logs = ['pobi : ---', 'woni : ', 'jun : --'];
     const logSpy = getLogSpy();
     const app = new App();
 
