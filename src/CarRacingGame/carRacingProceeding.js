@@ -9,9 +9,7 @@ export async function carRacingProceed() {
 
   await creatCarList(carList);
   await runCarRacing(carList);
-
-  const maxMoveNum = Math.max(...carList.map((car) => car.number));
-  printWinner(carList, maxMoveNum);
+  announcementWinner(carList);
 }
 
 async function creatCarList(carList) {
@@ -34,4 +32,9 @@ async function runCarRacing(carList) {
     carList.forEach((car) => car.move());
     printExecutionResult(carList);
   }
+}
+
+function announcementWinner(carList) {
+  const maxMoveNum = Math.max(...carList.map((car) => car.number));
+  printWinner(carList, maxMoveNum);
 }
