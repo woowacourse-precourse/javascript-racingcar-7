@@ -9,6 +9,7 @@ class App {
     for(let i=0; i<move; i++){
       this.play(names, currentMove);
     }
+    this.checkWinner(names, currentMove);
   }
 
   async getNames() {
@@ -64,6 +65,22 @@ class App {
       }
     })
     this.printCurrent(names, currentMove);
+  }
+
+  checkWinner(names, currentMove){
+    const max = [...currentMove].sort().at(-1).length;
+    let winner = [];
+    names.forEach((name, i) => {
+      if(currentMove[i].length === max){
+        winner.push(name);
+      }
+    })
+
+    if(winner.length === 1){
+      MissionUtils.Console.print(`최종 우승자 : ${winner[0]}`);
+    } else {
+      MissionUtils.Console.print(`공동 우승자 : ${winner.join(', ')}`);
+    }
   }
 }
 
