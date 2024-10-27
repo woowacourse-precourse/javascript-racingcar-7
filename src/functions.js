@@ -22,3 +22,10 @@ function isExistGap(carName){
         throw new Error("[ERROR] 차 이름에 공백이 있습니다.")
     }
 }
+
+export function isSameCar(carList){
+    let carSet = new Set(carList);
+    if(carList.length !== carSet.length){
+        throw new Error("[ERROR] 동일한 차 이름이 있습니다.")
+    }
+}
