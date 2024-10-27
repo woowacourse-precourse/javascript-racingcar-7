@@ -14,12 +14,7 @@ class RacingGameController {
   }
 
   async init() {
-    while (true) {
-      const isValidInput = await this.getUserInput();
-      if (isValidInput) {
-        break;
-      }
-    }
+    await this.getUserInput();
   }
 
   async getUserInput() {
@@ -30,17 +25,14 @@ class RacingGameController {
       const userInputCounts = await this.view.inputAttemptCounts();
       countValidate(userInputCounts);
       this.counts = userInputCounts;
-      return true;
     } catch (error) {
       this.handleInitError(error);
-      return false;
+      throw error;
     }
   }
 
   handleInitError(error) {
     Console.print(error.message);
-    this.cars = [];
-    resetCarSet();
   }
 
   checkCarName(names) {
@@ -62,12 +54,16 @@ class RacingGameController {
   }
 
   async startGame() {
-    await this.init();
-    this.view.printExecutionResult();
-    for (let i = 0; i < this.counts; i++) {
-      this.getScores();
+    try {
+      await this.init();
+      this.view.printExecutionResult();
+      for (let i = 0; i < this.counts; i++) {
+        this.getScores();
+      }
+      this.printWinner();
+    } catch (error) {
+      throw error;
     }
-    this.printWinner();
   }
 
   printWinner() {

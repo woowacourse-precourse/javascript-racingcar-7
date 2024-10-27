@@ -29,7 +29,7 @@ class RacingGameView {
   }
 
   printWinners(winners) {
-    Console.print(`최종 우승자: ${winners}`);
+    Console.print(`최종 우승자 : ${winners}`);
   }
 }
 
