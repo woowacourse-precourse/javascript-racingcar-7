@@ -1,4 +1,4 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 import {
   checkDuplicateCarName,
   validateCarName,
@@ -13,6 +13,24 @@ const determineCarName = (input) => {
   names.forEach((name) => validateCarName(name));
 };
 
+const goAhead = (names, raceNum) => {
+  Console.print('실행 결과');
+
+  const namesArray = names.split(',');
+  const raceRecord = namesArray.map((name) => ({ name, aheadNum: 0 }));
+  for (let i = 0; i < raceNum; i++) {
+    raceRecord.forEach((record) => {
+      if (Random.pickNumberInRange(0, 9) >= 4) {
+        record.aheadNum += 1;
+      }
+    });
+    raceRecord.forEach((record) =>
+      Console.print(`${record.name} : ${'-'.repeat(record.aheadNum)}`)
+    );
+    Console.print('');
+  }
+};
+
 class App {
   async run() {
     const input = await Console.readLineAsync(
@@ -22,6 +40,7 @@ class App {
     const raceNumber =
       await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
     validateRaceNumber(raceNumber);
+    goAhead(input, raceNumber);
   }
 }
 
