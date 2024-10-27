@@ -10,7 +10,7 @@ class App {
     // 자동차 이름, 횟수 입력받기
     await this.getCarNameCount();
 
-    Console.print("실행 결과\n");
+    Console.print("\n실행 결과");
     for(let i = 0; i < this.count; i++){
       this.updateCarProgressRandomly();
       this.printRaceResult();
