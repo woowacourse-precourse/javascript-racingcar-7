@@ -2,6 +2,7 @@ import { Console } from "@woowacourse/mission-utils";
 class App {
   async run() {
     await this.getCarNames();
+    await this.getGameRound();
   }
 
   async getCarNames() {
@@ -12,6 +13,15 @@ class App {
     let carList = [];
     carList = input.split(',');
     Console.print(carList);
+  }
+
+  async getGameRound() {
+    const input = await Console.readLineAsync(
+      '시도할 횟수는 몇 회인가요?\n'
+    );
+
+    const gameRound = parseInt(input);
+    Console.print(gameRound);
   }
 }
 
