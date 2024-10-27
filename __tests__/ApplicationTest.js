@@ -52,7 +52,19 @@ describe('Car 클래스', () => {
   });
 
   test('함수를 이용한 자동차 객체 생성', () => {
+    const input = ['kia','hyun','gene'];
+    const app = new App();
 
+    const cars = app.createCars(input);
+    
+    // 객체의 갯수가 input과 같은지 확인
+    expect(cars.length).toBe(input.length);
+
+    cars.forEach((car, index) => {
+      expect(car.name).toBe(input[index]);
+      expect(car.position).toBe(0);
+      expect(car).toBeInstanceOf(Car);
+    });
   });
 });
 
