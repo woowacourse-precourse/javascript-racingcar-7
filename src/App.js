@@ -40,6 +40,7 @@ class App {
       }
     });
   }
+
   async readAttempts() {
     const input = await MissionUtils.Console.readLineAsync(
       "시도할 횟수는 몇 회인가요?\n"
@@ -50,11 +51,13 @@ class App {
     }
     return attempts;
   }
+
   validateAttempts(attempts) {
     if (attempts <= 0) {
       throw new Error("[ERROR] 시도 횟수는 1 이상이어야 합니다.");
     }
   }
+
   playGame(carNames, attempts) {
     const cars = carNames.map((name) => new Car(name));
     MissionUtils.Console.print("\n실행 결과");
@@ -64,13 +67,25 @@ class App {
       });
       this.printStatus(cars);
     }
+    const winners = this.getWinners(cars);
+    this.printWinners(winners);
   }
+
   printStatus(cars) {
     cars.forEach((car) => {
       const progress = "-".repeat(car.position);
       MissionUtils.Console.print(`${car.name} : ${progress}`);
     });
     MissionUtils.Console.print("");
+  }
+  getWinners(cars) {
+    const maxPosition = Math.max(...cars.map((car) => car.position));
+    return cars
+      .filter((car) => car.position === maxPosition)
+      .map((car) => car.name);
+  }
+  printWinners(winners) {
+    MissionUtils.Console.print(`최종 우승자 : ${winners.join(", ")}`);
   }
 }
 
