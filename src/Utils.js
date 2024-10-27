@@ -1,5 +1,5 @@
 const Utils = {
-    transformStringCarNamesToArray(stringCarNames) {
+    transformCarNamesStringToArray(stringCarNames) {
         return stringCarNames.split(",");
     },
 };

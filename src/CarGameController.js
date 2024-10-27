@@ -18,7 +18,7 @@ class CarGameController {
 
     async play() {
         const inputCarNames = await this.inputHandler.enterCarNames();
-        const splittedCarNames = Utils.transformStringCarNamesToArray(inputCarNames);
+        const splittedCarNames = Utils.transformCarNamesStringToArray(inputCarNames);
         this.validator.isValidCarName(splittedCarNames);
 
         const inputTryCnt = await this.inputHandler.enterTryCount();
