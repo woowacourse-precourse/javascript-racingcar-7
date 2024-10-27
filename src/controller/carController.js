@@ -1,6 +1,6 @@
 import { Console } from "@woowacourse/mission-utils";
 import Validate from "../utils/validate.js";
-import UserView from "../View/UserView.js";
+import UserView from "../View/userView.js";
 import { MESSAGE } from "../constants/message.js";
 import CarModel from "../model/carModel.js";
 

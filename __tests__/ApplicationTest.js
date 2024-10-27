@@ -16,9 +16,6 @@ const mockRandoms = (numbers) => {
   numbers.reduce((acc, number) => {
     return acc.mockReturnValueOnce(number);
   }, MissionUtils.Random.pickNumberInRange);
-  // numbers.forEach(number => {
-  //   return MissionUtils.Random.pickNumberInRange.mockReturnValueOnce(number);
-  // });
 };
 
 const getLogSpy = () => {
