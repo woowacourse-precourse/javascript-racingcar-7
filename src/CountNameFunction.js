@@ -6,5 +6,8 @@ export function CountName(inputName) {
       throw new Error("[ERROR]");
     }
   });
-  return names;
+  return {
+    names: names,
+    count: names.length,
+  };
 }

@@ -1,6 +1,8 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import { CountName } from "./CountNameFunction.js";
 import { CountNumber } from "./CountNumberFunction.js";
+import { RandomNumbers } from "./Random.js";
+import { DrawRound } from "./DrawRound.js";
 
 class App {
   async run() {
@@ -12,8 +14,9 @@ class App {
     );
 
     try {
-      const result = CountName(inputName);
+      const { names, count } = CountName(inputName);
       const number = CountNumber(inputCount);
+      const result = DrawRound(names, number);
     } catch (error) {
       throw error;
     }
