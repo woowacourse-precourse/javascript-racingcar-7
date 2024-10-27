@@ -90,6 +90,23 @@ describe("자동차 경주", () => {
     );
   });
 
+  test("자동차 이름에 빈 이름이 포함된 경우", async () => {
+    const cases = [
+      ["pobi,"], // 마지막에 빈 이름
+      ["pobi,,"], // 중간에 빈 이름
+      [",pobi"], // 처음에 빈 이름
+      ["pobi,,woni"], // 중간에 빈 이름
+    ];
+
+    for (const input of cases) {
+      mockQuestions(input); // 각 케이스에 대한 입력 설정
+      const app = new App();
+      await expect(app.run()).rejects.toThrow(
+        "[ERROR] 자동차 이름은 빈 문자열이 포함될 수 없습니다."
+      );
+    }
+  });
+
   test("잘못된 구분자 입력 - 쉼표 외의 다른 구분자", async () => {
     const invalidSeparators = [
       ";",
