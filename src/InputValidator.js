@@ -7,7 +7,8 @@ class InputValidator {
         INVALID_TRY_COUNT: "시도 횟수는 1 이상의 정수여야 합니다.",
     });
 
-    static validateCarNameList(carNameList) {
+    static validateInputCarNames(inputCarNames) {
+        const carNameList = inputCarNames.split(",");
         const regex = /^[a-zA-Z가-힣0-9]{1,5}$/;
 
         if (carNameList.length === 0 || (carNameList.length === 1 && carNameList[0] === "")) {

@@ -5,8 +5,8 @@ import Race from "./Race.js";
 class App {
     async run() {
         const inputCarNames = await this.getInputCarNames();
+        InputValidator.validateInputCarNames(inputCarNames);
         const carNameList = inputCarNames.split(",");
-        InputValidator.validateCarNameList(carNameList);
 
         const inputTryCount = await this.getInputTryCount();
         InputValidator.validateInputTryCount(inputTryCount);
