@@ -1,4 +1,4 @@
-import { getCarName, getRound } from "./handleInput";
+import { getCarName, getRound } from "./handleInput.js";
 
 class App {
   async run() {
