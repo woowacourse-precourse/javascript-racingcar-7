@@ -1,11 +1,12 @@
 import Race from '../../src/Race.js';
-import { getRandomNumber } from '../../src/utils.js';
+import { getRandomNumber, printMessage } from '../../src/utils.js';
 import { GAME_RULES } from '../../src/constants.js';
 
 jest.mock('../../src/utils.js', () => ({
   getCarName: jest.fn().mockResolvedValue("Audi,BMW,Ford"),
   getAttempt: jest.fn().mockResolvedValue("5"),
   getRandomNumber: jest.fn(),
+  printMessage: jest.fn(), 
 }));
 
 describe("Race 클래스 테스트", () => {
@@ -13,6 +14,7 @@ describe("Race 클래스 테스트", () => {
 
   beforeEach(() => {
     race = new Race();
+    jest.clearAllMocks(); 
   });
 
   describe("setCarName() 테스트", () => {
@@ -51,15 +53,13 @@ describe("Race 클래스 테스트", () => {
 
       await race.setCarName();
       race.generateRandomDistances();
-      console.log = jest.fn(); 
-
-      race.printRaceStatus();
 
       const symbol = GAME_RULES.DISTANCE_SYMBOL;
 
-      expect(console.log).toHaveBeenCalledWith(`Audi : ${symbol}`);
-      expect(console.log).toHaveBeenCalledWith("BMW : ");
-      expect(console.log).toHaveBeenCalledWith(`Ford : ${symbol}`);
+      race.printRaceStatus();
+      expect(printMessage).toHaveBeenCalledWith(`Audi : ${symbol}`);
+      expect(printMessage).toHaveBeenCalledWith("BMW : ");
+      expect(printMessage).toHaveBeenCalledWith(`Ford : ${symbol}`);
     });
 
     test("시도 횟수만큼 자동차 이동 상태가 출력되어야 한다", async () => {
@@ -69,38 +69,36 @@ describe("Race 클래스 테스트", () => {
 
       expect(printRaceStatusSpy).toHaveBeenCalledTimes(5); 
     });
+  });
 
-    describe("getWinners() 테스트", () => {
+  describe("getWinners() 테스트", () => {
 
-      test("최종 우승자를 올바르게 결정해야 한다", async () => {
-        await race.setCarName();
+    test("최종 우승자를 올바르게 결정해야 한다", async () => {
+      await race.setCarName();
 
-        race.cars[0].move(6); 
-        race.cars[1].move(4); 
-        race.cars[2].move(2); 
+      race.cars[0].move(6); 
+      race.cars[1].move(4); 
+      race.cars[2].move(2); 
 
-        const winners = race.getWinners();
-        expect(winners).toEqual(["Audi"]);
+      const winners = race.getWinners();
+      expect(winners).toEqual(["Audi"]);
 
-        console.log = jest.fn();
-        race.printWinners();
-        expect(console.log).toHaveBeenCalledWith("최종 우승자 : Audi");
-      });
+      race.printWinners();
+      expect(printMessage).toHaveBeenCalledWith("최종 우승자 : Audi");
+    });
 
-      test("최종 우승자가 여러 명일 때도 올바르게 결정해야 한다", async () => {
-        await race.setCarName();
+    test("최종 우승자가 여러 명일 때도 올바르게 결정해야 한다", async () => {
+      await race.setCarName();
 
-        race.cars[0].move(5); 
-        race.cars[1].move(5); 
-        race.cars[2].move(3); 
-  
-        const winners = race.getWinners();
-        expect(winners).toEqual(["Audi", "BMW"]);
+      race.cars[0].move(5); 
+      race.cars[1].move(5); 
+      race.cars[2].move(3); 
 
-        console.log = jest.fn(); 
-        race.printWinners();
-        expect(console.log).toHaveBeenCalledWith("최종 우승자 : Audi, BMW");
-      });
+      const winners = race.getWinners();
+      expect(winners).toEqual(["Audi", "BMW"]);
+
+      race.printWinners();
+      expect(printMessage).toHaveBeenCalledWith("최종 우승자 : Audi, BMW");
     });
   });
 });
