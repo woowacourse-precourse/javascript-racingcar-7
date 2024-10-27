@@ -8,8 +8,7 @@ class App {
       const cars = await getCars();
       const round = await getRound();
       const result = await runGame(cars, round);
-
-    } catch(error) {
+    } catch (error) {
       throw error;
     }
   }
