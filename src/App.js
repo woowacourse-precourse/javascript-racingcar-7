@@ -42,6 +42,19 @@ class App {
       // 줄 구분용 빈칸
       Console.print('');
     }
+
+    // 우승자 계산
+    let winner = [carInstanceArr[0]];
+    for (let carIndex = 1; carIndex < carInstanceArr.length; carIndex += 1) {
+      const curCarInstance = carInstanceArr[carIndex];
+      if (curCarInstance.movedDistance > winner[0].movedDistance) {
+        winner = [curCarInstance];
+      } else if (curCarInstance.movedDistance == winner[0].movedDistance) {
+        winner.push(curCarInstance);
+      } else {
+        continue;
+      }
+    }
   }
 }
 
