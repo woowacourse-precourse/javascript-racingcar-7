@@ -58,3 +58,42 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 });
+
+describe("자동차 경주 예외 테스트", () => {
+
+    test("자동차 이름에 중복된 이름이 있는 경우 에러 발생", async () => {
+    // given
+    const inputs = ["pobi,pobi"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR] 이름이 중복되었습니다.");
+  });
+
+  test("입력된 시도 횟수가 숫자가 아닌 경우 에러 발생", async () => {
+    // given
+    const inputs = ["pobi,woni", "three"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]횟수는 양의 정수이어야 합니다.");
+  });
+
+  test("입력된 시도 횟수가 음수인 경우 에러 발생", async () => {
+    // given
+    const inputs = ["pobi,woni", "-3"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]횟수는 양의 정수이어야 합니다.");
+  });
+});
