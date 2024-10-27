@@ -40,20 +40,13 @@ class App {
   StartPlayCarRacing(cars, times) {
     Console.print("");
     Console.print("실행 결과");
-    // while (times > 0) {
-    //   this.movingForward(cars);
-    //   times--;
-    // }
-    this.playCarRacing(times,cars)
-    return this.findWinner(cars);
-  }
-
-  playCarRacing(times,cars){
     while (times > 0) {
       this.movingForward(cars);
       times--;
     }
+    return this.findWinner(cars);
   }
+
 
   movingForward(cars) {
     for (let i = 0; i < cars.length; i++) {
