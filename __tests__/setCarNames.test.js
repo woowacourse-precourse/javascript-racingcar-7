@@ -1,6 +1,6 @@
-import { setCarNames } from "../src/features/setCarNames";
-import { MESSAGES } from "../src/config/config";
-import { Car } from "../src/models/Car";
+import { setCarNames } from "../src/features/setCarNames.js";
+import { MESSAGES } from "../src/config/config.js";
+import { Car } from "../src/models/Car.js";
 
 describe("setCarNames 테스트", () => {
   test("정상적으로 값을 할당하고, Car 리스트를 반환하는 지 확인", () => {
