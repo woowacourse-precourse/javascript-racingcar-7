@@ -13,7 +13,7 @@ class App {
     Console.print("실행 결과\n");
     for(let i = 0; i < this.count; i++){
       this.updateCarProgressRandomly();
-
+      this.printRaceResult();
     }
   }
 
@@ -53,6 +53,16 @@ class App {
       if(random >= 4){
         this.carNameObj[key]++;
       }
+    });
+  }
+
+  printRaceResult(){
+    Object.keys(this.carNameObj).forEach(key => {
+      Console.print(key + " : ");
+      for(let i = 0; i < this.carNameObj[key]; i++){
+        Console.print("-");
+      }
+      Console.print("\n");
     });
   }
 }
