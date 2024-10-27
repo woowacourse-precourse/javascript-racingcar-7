@@ -12,7 +12,8 @@ class App {
 
       racingGame.setRacingCars(carNames);
       racingGame.setCount(count);
-      MissionUtils.Console.print(`carList : ${racingGame.carList}, count: ${racingGame.count}`);
+      MissionUtils.Console.print('\n실행 결과');
+      racingGame.startRacing();
     } catch (error) {
       throw new Error(`[ERROR] ${error.message}`);
     }
