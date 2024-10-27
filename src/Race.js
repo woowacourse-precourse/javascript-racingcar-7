@@ -1,6 +1,6 @@
-import { getRandomNumber, printMessage } from './utils.js';
-import { GAME_RULES } from './constants.js';
+import { getRandomNumber } from './utils.js';
 import Car from './Car.js';
+import { GAME_RULES } from './constants.js';
 
 class Race {
   constructor() {
@@ -11,27 +11,16 @@ class Race {
   async startRace() {
     for (let i = 0; i < this.attemptCount; i++) {
       this.generateRandomDistances();
-      this.printRaceStatus();
     }
-
-    this.printWinners();
   }
 
   generateRandomDistances() {
     this.cars.forEach(car => {
-      const randomDistance = getRandomNumber(0, 9);  
-      if (randomDistance >= GAME_RULES.MOVE_THRESHOLD) { 
-        car.move(1);             
-      }                    
+      const randomDistance = getRandomNumber(0, 9);
+      if (randomDistance >= GAME_RULES.MOVE_THRESHOLD) {
+        car.move(1);
+      }
     });
-  }
-
-  printRaceStatus() {
-    this.cars.forEach(car => {
-      const distanceSymbol = GAME_RULES.DISTANCE_SYMBOL.repeat(car.getDistance()); 
-      printMessage(`${car.getName()} : ${distanceSymbol}`);
-    });
-    printMessage(''); 
   }
 
   getWinners() {
@@ -39,11 +28,6 @@ class Race {
     return this.cars
       .filter(car => car.getDistance() === maxDistance)
       .map(car => car.getName());
-  }
-
-  printWinners() {
-    const winners = this.getWinners();
-    printMessage(`최종 우승자 : ${winners.join(', ')}`);
   }
 }
 

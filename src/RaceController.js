@@ -1,10 +1,10 @@
 import Car from './Car.js';
 import Race from './Race.js';
-import { getCarName, getAttempt, splitByDelimiter } from './utils.js';
+import { getCarName, getAttempt, splitByDelimiter, printMessage } from './utils.js';
 import { validateCarName, validateAttemptCount } from './validators.js';
+import { GAME_RULES } from './constants.js';
 
 class RaceController {
-
   constructor() {
     this.race = new Race();
   }
@@ -12,7 +12,13 @@ class RaceController {
   async startRace() {
     await this.setCarName();
     await this.setAttemptCount();
-    await this.race.startRace();
+
+    for (let i = 0; i < this.race.attemptCount; i++) {
+      this.race.generateRandomDistances();
+      this.printRaceStatus();
+    }
+
+    this.printWinners();
   }
 
   async setCarName() {
@@ -27,6 +33,18 @@ class RaceController {
     this.race.attemptCount = Number(attemptCount);
   }
 
+  printRaceStatus() {
+    this.race.cars.forEach(car => {
+      const distanceSymbol = GAME_RULES.DISTANCE_SYMBOL.repeat(car.getDistance());
+      printMessage(`${car.getName()} : ${distanceSymbol}`);
+    });
+    printMessage('');
+  }
+
+  printWinners() {
+    const winners = this.race.getWinners();
+    printMessage(`최종 우승자 : ${winners.join(', ')}`);
+  }
 }
 
 export default RaceController;
