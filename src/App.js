@@ -17,6 +17,8 @@ class App {
       );
       inputValidator.validateMoveCount(moveCountInput);
       const moveCount = Number(moveCountInput);
+
+      const racingGame = new RacingGame(carNames);
     } catch (error) {
       MissionUtils.Console.print(error.message);
       throw error;

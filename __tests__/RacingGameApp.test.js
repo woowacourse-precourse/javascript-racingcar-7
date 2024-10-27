@@ -1,4 +1,6 @@
+import { MissionUtils } from "@woowacourse/mission-utils";
 import InputValidator from "../src/InputValidator";
+import RacingGame from "../src/RacingGame";
 
 describe("InputValidator", () => {
   let inputValidator;
@@ -45,5 +47,45 @@ describe("InputValidator", () => {
         "[ERROR] 이동 횟수는 1 이상의 숫자여야 합니다."
       );
     });
+  });
+});
+
+describe("RacingGame", () => {
+  let racingGame;
+
+  beforeEach(() => {
+    const carNames = ["pobi", "woni", "jun"];
+    racingGame = new RacingGame(carNames);
+  });
+
+  describe("moveCar", () => {
+    test("randomNumber가 4 이상일 때 자동차가 전진한다", () => {
+      jest.spyOn(MissionUtils.Random, "pickNumberInRange").mockReturnValue(4);
+
+      racingGame.moveCar(racingGame.cars[0]);
+      expect(racingGame.cars[0].position).toBe("-");
+    });
+
+    test("randomNumber가 3 이하일 때 자동차가 전진하지 않는다", () => {
+      jest.spyOn(MissionUtils.Random, "pickNumberInRange").mockReturnValue(3);
+
+      racingGame.moveCar(racingGame.cars[0]);
+      expect(racingGame.cars[0].position).toBe("");
+    });
+  });
+
+  describe("moveAllCars", () => {
+    test("모든 자동차가 전진 조건에 따라 움직인다", () => {
+      jest.spyOn(MissionUtils.Random, "pickNumberInRange").mockReturnValue(5);
+
+      racingGame.moveAllCars();
+      racingGame.cars.forEach((car) => {
+        expect(car.position).toBe("-");
+      });
+    });
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
   });
 });
