@@ -1,7 +1,7 @@
 import { ERROR_MESSAGE } from "../Constants/constant.js";
 import errorHandler from "../Error/errorHandler.js";
 
-const isInvaildWordLength = (car) => {
+const isInvalidWordLength = (car) => {
   console.log(car.length);
   if (car.length > 6) {
     return true;
@@ -24,10 +24,10 @@ const isSameNames = (namesList) => {
   return false;
 };
 
-const isVaildNamesList = (carListArr) => {
+const isValidNamesList = (carListArr) => {
   carListArr.forEach((car) => {
-    if (isInvaildWordLength(car)) {
-      errorHandler(ERROR_MESSAGE.invaildWordLength);
+    if (isInvalidWordLength(car)) {
+      errorHandler(ERROR_MESSAGE.invalidWordLength);
     } else if (isEmptyName(car)) {
       errorHandler(ERROR_MESSAGE.emptyName);
     }
@@ -36,4 +36,4 @@ const isVaildNamesList = (carListArr) => {
 
   return true;
 };
-export default isVaildNamesList;
+export default isValidNamesList;

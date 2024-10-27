@@ -13,7 +13,7 @@ export const ERROR_MESSAGE = {
   emptyInput: "빈 값은 입력할 수 없습니다. 다시 입력해주세요.",
   whitesapceInput:
     "공백은 입력할 수 없습니다. 공백을 제거하고 다시 입력해주세요.",
-  invaildWordLength: "이름은 5자 이하로 입력해주세요.",
+  invalidWordLength: "이름은 5자 이하로 입력해주세요.",
   duplicateName: "중복된 이름은 입력할 수 없습니다. 이름을 다시 확인해주세요.",
   emptyName: ",로 구분된 이름 중 빈 값이 있습니다. 이름을 다시 확인해주세요.",
 };

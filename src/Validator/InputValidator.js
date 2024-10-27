@@ -1,15 +1,18 @@
 import isEmptyInput from "./isEmptyInput.js";
-import isVaildNamesList from "./isValidNamesList.js";
+import isValidNamesList from "./isValidNamesList.js";
 import isWhitespacePresent from "./isWhitespacePresent.js";
 
-class InputVaildator {
-  static vaildateInputCarList(carList) {
+class InputValidator {
+  static validateInputCarList(carList) {
     isEmptyInput(carList);
     isWhitespacePresent(carList);
   }
-  static vaildateCarArray(carListArr) {
-    isVaildNamesList(carListArr);
+  static validateCarArray(carListArr) {
+    isValidNamesList(carListArr);
+  }
+  static validateTryNumber(tryNumber) {
+    isEmptyInput(tryNumber);
   }
 }
 
-export default InputVaildator;
+export default InputValidator;
