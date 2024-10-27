@@ -17,6 +17,11 @@ export function carNameValidator(carNames) {
     throwError(ERROR.CAR_NAME_LENGTH);
   }
 
+  const uniqueCarNames = new Set(carNames);
+  if (uniqueCarNames.size !== carNames.length) {
+    throwError(ERROR.CAR_NAME_DUPLICATE);
+  }
+
   return carNames;
 }
 
