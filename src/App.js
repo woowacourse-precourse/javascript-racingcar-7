@@ -10,8 +10,8 @@ class App {
     const cars = removedWhitespace.split(",");
 
     cars.forEach((car) => {
-      if(car.length > 5) {
-        throw new Error("[ERROR] 이름은 5자 이하만 가능해요.")
+      if (car.length > 5) {
+        throw new Error("[ERROR] 이름은 5자 이하만 가능해요.");
       }
     });
 
@@ -36,10 +36,10 @@ class App {
     const carObjs = cars.map((name) => new Car(name));
 
     function printResult() {
-      for (let i = 0; i < carObjs.length; i++) {
-        carObjs[i].go();
-        MissionUtils.Console.print(`${carObjs[i].name} : ${carObjs[i].result}`);
-      }
+      carObjs.forEach((car) => {
+        car.go();
+        MissionUtils.Console.print(`${car.name} : ${car.result}`);
+      });
     }
 
     for (let i = 0; i < Number(tryCount); i++) {
@@ -61,11 +61,11 @@ class App {
       (car) => car.name !== finalWinner.name
     );
 
-    for (let i = 0; i < exceptionFinalWinner.length; i++) {
-      if (exceptionFinalWinner[i].result.length === finalWinner.result.length) {
-        finalWinners.push(exceptionFinalWinner[i].name);
+    exceptionFinalWinner.forEach((car) => {
+      if (car.result.length === finalWinner.result.length) {
+        finalWinners.push(car.name);
       }
-    }
+    });
 
     if (carObjs[0] === finalWinner) {
       finalWinners.unshift(carObjs[0].name);
