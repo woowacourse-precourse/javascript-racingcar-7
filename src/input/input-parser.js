@@ -1,6 +1,6 @@
 class InputParser {
   static parseCarNameInput(input) {
-    return input.split(',');
+    return input.split(',').map((name) => name.trim());
   }
 
   static parseAttemptCountInput(input) {
