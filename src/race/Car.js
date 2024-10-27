@@ -1,10 +1,10 @@
 export default class Car {
     constructor(name) {
         this.name = name;
-        this.moveCount = 0;
+        this.moveForwardCount = 0;
     }
 
     moveForward() {
-        this.moveCount += 1;
+        this.moveForwardCount += 1;
     }
 }

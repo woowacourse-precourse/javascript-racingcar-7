@@ -2,10 +2,10 @@ export function getWinners(cars) {
     let maxMoveCount = 0;
     let winnerNames = [];
     cars.forEach((car) => {
-        if (car.moveCount > maxMoveCount) {
-            maxMoveCount = car.moveCount;
+        if (car.moveForwardCount > maxMoveCount) {
+            maxMoveCount = car.moveForwardCount;
             winnerNames = [car.name];
-        } else if (car.moveCount === maxMoveCount) {
+        } else if (car.moveForwardCount === maxMoveCount) {
             winnerNames.push(car.name);
         }
     });
