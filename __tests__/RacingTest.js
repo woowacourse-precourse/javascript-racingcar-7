@@ -86,7 +86,6 @@ describe('Racing 메서드 테스트', () => {
 
     const car = new Car(CAR_NAME);
     const racing = new Racing(TOTAL_ROUNDS, [car]);
-
     racing.play();
     racing.showResult();
 
