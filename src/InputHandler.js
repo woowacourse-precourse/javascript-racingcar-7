@@ -12,9 +12,18 @@ class InputHandler {
     return input;
   }
 
+  async readAttemptCount() {
+    const input = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+    this.validateEmpty(input);
+    this.validateIsNumber(input);
+    this.validatePositiveNumber(input);
+    this.validateIsInteger(input);
+    return Number(input);
+  }
+
   validateEmpty(input) {
     if (!input.trim()) {
-      throw new Error("[ERROR] 이름이 입력 되지 않았습니다.");
+      throw new Error("[ERROR] 공백이 입력 되었습니다.");
     }
   }
 
@@ -38,6 +47,25 @@ class InputHandler {
         throw new Error("[ERROR] 이름에 공백은 허용되지 않습니다.");
       }
     });
+  }
+
+  validateIsNumber(input) {
+    const numberInput = Number(input);
+    if (Number.isNaN(numberInput)) {
+      throw new Error("[ERROR] 숫자를 입력해주세요.");
+    }
+  }
+
+  validatePositiveNumber(input) {
+    if (Number(input) < 1) {
+      throw new Error("[ERROR] 1 이상의 숫자를 입력해주세요.");
+    }
+  }
+
+  validateIsInteger(input) {
+    if (!Number.isInteger(Number(input))) {
+      throw new Error("[ERROR] 정수를 입력해주세요.");
+    }
   }
 }
 
