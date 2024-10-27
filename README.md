@@ -40,6 +40,44 @@
 9. PR리뷰를 통해 얻은 피드백 중 하나인 에러 종류에 대한 메세지를 세분화한다.<br/>
 10. Airbnb의 자바스크립트 스타일 가이드인 작음따옴표를 사용한다.<br/><br/>
 
+## 📁 폴더구조
+<br/>
+
+```
+📦src
+ ┣ 📂constants
+ ┃ ┣ 📜errorConstants.js
+ ┃ ┣ 📜inputConstants.js
+ ┃ ┗ 📜outputConstants.js
+ ┣ 📂controller
+ ┃ ┣ 📜Race.js
+ ┃ ┗ 📜RaceController.js
+ ┣ 📂model
+ ┃ ┗ 📜Car.js
+ ┣ 📂utils
+ ┃ ┣ 📜determineWinners.js
+ ┃ ┣ 📜displayRoundResult.js
+ ┃ ┣ 📜moveForwardEachCar.js
+ ┃ ┗ 📜moveRandomValueBiggerThanFour.js
+ ┣ 📂validations
+ ┃ ┣ 📂utils
+ ┃ ┃ ┣ 📜eraseWhiteSpace.js
+ ┃ ┃ ┣ 📜extractCarName.js
+ ┃ ┃ ┣ 📜hasDuplicateName.js
+ ┃ ┃ ┣ 📜isInputEmpty.js
+ ┃ ┃ ┗ 📜isNameLongerThanFive.js
+ ┃ ┣ 📜.DS_Store
+ ┃ ┣ 📜isValidCarName.js
+ ┃ ┗ 📜isValidRound.js
+ ┣ 📂view
+ ┃ ┣ 📜InputView.js
+ ┃ ┗ 📜OutputView.js
+ ┣ 📜.DS_Store
+ ┣ 📜App.js
+ ┗ 📜index.js
+```
+<br/><br/>
+
 ## **📥  실행 방법**
 
 1. 레포지토리 클론
