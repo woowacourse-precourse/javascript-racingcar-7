@@ -34,7 +34,7 @@
 
 - 우승자가 여러 명일 경우 쉼표(,)를 이용하여 출력합니다.
 
-### 파일 경로
+## 파일 경로
 
 ```
 - src
@@ -56,6 +56,8 @@
   - - 📜 racingCarModel.js
   - 📂 views
   - - 📜 racingView.js
+  - 📂 controllers
+  - - 📜 RacingController.test.js
   - App.js
   - index.js
 ```
