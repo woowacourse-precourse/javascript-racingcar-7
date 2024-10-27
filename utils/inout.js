@@ -1,5 +1,7 @@
 import { Console } from '@woowacourse/mission-utils';
 
+const GRAPH = "-";
+
 export async function getCarsInfo() {
     const input = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
 
@@ -32,4 +34,15 @@ export async function getCountInfo() {
     }
 
     return count;
+}
+
+export function printStage(carMap) {
+    for (const car of carMap.keys()) {
+        Console.print(`${car} : ${GRAPH.repeat(carMap.get(car))}`);
+    }
+    Console.print("");
+}
+
+export function printWinners(winnerArray) {
+    Console.print("최종 우승자 : " + winnerArray.join(', '));
 }
