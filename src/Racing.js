@@ -1,4 +1,5 @@
 import { Console, Random } from '@woowacourse/mission-utils';
+import { MIN_RANDOM_SCORE } from './constants/index.js';
 
 class Racing {
   #totalRound = 0;
@@ -20,7 +21,7 @@ class Racing {
 
   #moveForward() {
     this.#racers.forEach((racer) => {
-      if (Random.pickNumberInRange(0, 9) >= 4) {
+      if (Random.pickNumberInRange(0, 9) >= MIN_RANDOM_SCORE) {
         racer.addScore();
       }
     });
