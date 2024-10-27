@@ -20,8 +20,7 @@ const checkIsNumber = (input) => {
 
 /**@param {number} input */
 const checkAttemptsRange = (input) => {
-  if (Number(input) <= 0 || Number(input) > 9)
-    throwError(ATTEMPT_ERROR_MESSAGE.OUT_OF_RANGE);
+  if (Number(input) <= 0) throwError(ATTEMPT_ERROR_MESSAGE.OUT_OF_RANGE);
 
   return input;
 };
