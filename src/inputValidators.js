@@ -1,4 +1,4 @@
-import ERROR_MESSAGE from './Constants.js';
+import ERROR_MESSAGE from './constants.js';
 
 const CAR_NAME_VALIDATOR = input => {
   if (input === '') {

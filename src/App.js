@@ -1,7 +1,10 @@
 import { Console } from '@woowacourse/mission-utils';
-import { CAR_NAME_VALIDATOR, ATTEMPT_TIMES_VALIDATOR } from './Validators.js';
+import {
+  CAR_NAME_VALIDATOR,
+  ATTEMPT_TIMES_VALIDATOR,
+} from './inputValidators.js';
 import runRace from './runRace.js';
-import getWinners from './winner.js';
+import getWinners from './getWinners.js';
 
 class App {
   async run() {
