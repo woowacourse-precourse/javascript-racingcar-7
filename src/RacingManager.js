@@ -45,6 +45,16 @@ class RacingManager {
     const MOVEMENT_THRESHOLD = 4;
     return movementValue >= MOVEMENT_THRESHOLD;
   }
+
+  get #winnerList() {
+    const carDistanceList = this.carList.map((car) => car.distance);
+    const maxDistance = Math.max(...carDistanceList);
+    const winnerList = this.carList
+      .filter((car) => car.distance === maxDistance)
+      .map((car) => car.name);
+
+    return winnerList;
+  }
 }
 
 export default RacingManager;
