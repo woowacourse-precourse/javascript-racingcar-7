@@ -34,6 +34,7 @@ async function initializeGame() {
   try {
     const playerNames = await getVaildatedPlayerNames();
     const playerScores = createScoreBoard(playerNames);
+    // TODO: 이동 횟수가 유효한 정수인지 확인
     const moveCount = await Console.readLineAsync(INPUT_MOVE_COUNT);
     return { playerScores, moveCount };
   } catch (error) {
