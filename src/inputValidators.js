@@ -6,8 +6,12 @@ const CAR_NAME_VALIDATOR = input => {
   }
 
   input.map(name => {
-    if (name.length > 5) {
+    if (name === '') {
       throw new Error(ERROR_MESSAGE.CAR_NAME_VALIDATION);
+    }
+
+    if (name.length > 5) {
+      throw new Error(ERROR_MESSAGE.CAR_NAME_LENGTH_VALIDATION);
     }
   });
 
