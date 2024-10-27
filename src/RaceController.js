@@ -1,4 +1,3 @@
-import Car from './Car.js';
 import Race from './Race.js';
 import { getCarName, getAttempt, splitByDelimiter, printMessage } from './utils.js';
 import { validateCarName, validateAttemptCount } from './validators.js';
