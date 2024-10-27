@@ -22,14 +22,21 @@
 + 필요 기능
     + 레이싱 시작(CarRacing)
         + 시작(run)
-        + 사용자 입력
         + car 생성(createCar)
         + 우승자 출력(checkWinner)
+        + 실제 동작 메서드(startRacing)
     + 자동차 생성(car)
-        + 입력받은 이름만큼 car 인스턴스 생성
-        + 무작위 수 반환
-        + 전진 or 멈춤 처리
+        + 무작위 수 반환(getRandom)
+        + 전진 or 멈춤 처리(move)
         + 진행 상황 출력(printProcess)
-    + 에러 출력
-        + 차량 이름이 5글자를 넘을 경우
-        + 횟수를 음수, 소수를 입력한 경우
+    + 입출력 관리(HandleIo)
+        + 입력(getInput)
+    + 에러 확인(ErrorChecker)
+        + tryCount값 체크(checkTryCount)
+            + 횟수를 음수, 소수를 입력한 경우(checkDecimal,checkNegative)
+            + 숫자가 아닌 값을 입력한 경우(checkTryCountNotNumber)
+            + 100을 초과해서 입력할 경우(checkOverHundred)
+            + 입력값이 공백인 경우(checkTryVoid)
+        + nameInput값 체크(checkNameInput)
+            + 이름이 5글자를 초과한 경우(checkNameLength)
+            + 이름이 공백일경우(checkVoid)
