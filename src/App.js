@@ -3,7 +3,7 @@ import {
 } from './services/RacingGameService.js';
 
 import {
-  getCarName, splitCarName, getAttemptCount, validateCarNames,
+  getCarName, splitCarName, getAttemptCount, validateCarNames, validateAttemptCount,
 } from './utils/InputUtils.js';
 
 import { printWinnerCar } from './utils/OutputUtils.js';
@@ -19,6 +19,7 @@ class App {
     validateCarNames(splittedCarName);
 
     const attemptCount = await getAttemptCount();
+    validateAttemptCount(attemptCount);
 
     this.carList = makeCars(splittedCarName);
     repeat(this.carList, attemptCount);
