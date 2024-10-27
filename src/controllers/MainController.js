@@ -17,7 +17,6 @@ export class MainController{
             InputValid.isEmptyInput(rawNames,raceCount)
             InputValid.isRaceCountPositive(raceCount)
             
-    
             const names = sepateInput(rawNames)
             InputValid.validPlayerName(names)
             OutputView.printRace();
