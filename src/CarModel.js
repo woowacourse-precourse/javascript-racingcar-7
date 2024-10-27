@@ -40,7 +40,7 @@ class CarModel {
       }
     });
 
-    return winners.join(',');
+    return winners.join(', ');
   }
 }
 
