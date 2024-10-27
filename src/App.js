@@ -20,11 +20,15 @@ class App {
         return tryCount;
     }
 
-    // async playRaceGame(cars, tryCount) {
-    //     for (let i = 0; i < tryCount; i++) {
-    //         Console.print(tryCount);
-    //     }
-    // }
+    async playRaceGame(cars, tryCount) {
+        for (let i = 0; i < tryCount; i++) {
+            cars.forEach(car => {
+                if (Math.floor(Math.random() * 10) >= 4) {
+                    car.position += 1;
+                }
+            });
+        }
+    }
 
     async run() {
         const cars = await this.getCarNameList();
@@ -32,8 +36,8 @@ class App {
         Console.print(cars);
         Console.print(tryCount);
 
-        // const race = await this.playRaceGame();
-        // Console.print("ddd", race);
+        const game = await this.playRaceGame();
+        Console.print("state", game);
     }
 }
 
