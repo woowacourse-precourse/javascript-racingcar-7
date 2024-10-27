@@ -12,7 +12,9 @@ class App {
       const inputCarNames = await Console.readLineAsync(INPUT_PROMPT.CAR_NAMES);
       validator.nameValidate(inputCarNames);
 
-      const cars = inputCarNames.split(',').map(carName => new Car(carName));
+      const cars = inputCarNames
+        .split(',')
+        .map(carName => new Car(carName.trim()));
 
       const inputMoveAttempts = await Console.readLineAsync(
         INPUT_PROMPT.MOVE_ATTEMPTS,
