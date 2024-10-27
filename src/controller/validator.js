@@ -52,11 +52,18 @@ class Validator {
 
   static checkMoveAttempts(attempts) {
     Validator.#checkEmptyInput(attempts);
+    Validator.#checkPositiveNumber(attempts);
   }
 
   static #checkEmptyInput(attempts) {
     if (attempts.length < 1) {
       throw new Error(ERROR_MESSAGE.EMPTY_INPUT_NOT_ALLOWED);
+    }
+  }
+
+  static #checkPositiveNumber(attempts) {
+    if (!/^\d+$/.test(attempts)) {
+      throw new Error(ERROR_MESSAGE.ONLY_POSITIVE_NUMBER_ALLOWED);
     }
   }
 }
