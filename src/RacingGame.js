@@ -64,9 +64,13 @@ class RacingGame {
     }
 
     isError(string){
-        const firstErrorCondition = string.includes(" ") || string.length
-        if(this.promptSequence === 1){
-
+        const firstErrorCondition = string.includes(" ") || string.length > 5
+        const secondErrorCondition = string.includes(" ") || isNaN(string)
+        if(this.promptSequence === 1 && firstErrorCondition){
+            throw new Error("[ERROR]: 잘못된 값을 입력 하셨습니다.")
+        }
+        if(this.promptSequence === 2 && secondErrorCondition){
+            throw new Error("[ERROR]: 잘못된 값을 입력 하셨습니다.")
         }
     }
 }
