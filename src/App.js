@@ -33,7 +33,7 @@ class App {
       throw new Error(ERROR_MESSAGES.not_number)
     }
 
-    if (count < 0) { // 횟수가 음수일 때
+    if (count <= 0) { // 횟수가 0 이하일 때
       throw new Error(ERROR_MESSAGES.not_positive_number)
     }
 
