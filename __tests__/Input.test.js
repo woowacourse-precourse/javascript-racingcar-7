@@ -4,7 +4,7 @@ import RandomNumber from '../src/game/utils/RandomNumber.js';
 import { MissionUtils } from '@woowacourse/mission-utils';
 
 const mockCarNamesQuestion = (input) => {
-  Console.getCarsName = jest.fn(() => Promise.resolve(input));
+  Console.getCarNames = jest.fn(() => Promise.resolve(input));
 };
 
 const mockTotalRoundsQuestion = (input) => {

@@ -5,13 +5,12 @@ import Parser from './utils/Parser.js';
 import RandomNumber from './utils/RandomNumber.js';
 import Validator from './utils/Validator.js';
 
-export default class Game {
+export default class RacingGame {
   #cars = [];
   #totalRounds = 0;
-  #RESULT_MESSAGE = '\n실행 결과';
 
   async start() {
-    const carNamesInput = await Console.getCarsName();
+    const carNamesInput = await Console.getCarNames();
     const carNames = Parser.splitByComma(carNamesInput);
     Validator.validateCarNames(carNames);
     this.#initializeCars(carNames);
@@ -21,7 +20,9 @@ export default class Game {
 
     this.#runRace();
 
-    const winners = Comparator.determineWinners(this.#cars);
+    const winners = Parser.joinWithComma(
+      Comparator.determineWinners(this.#cars)
+    );
     Console.printWinners(winners);
   }
 
@@ -30,11 +31,12 @@ export default class Game {
   }
 
   #runRace() {
-    Console.print(this.#RESULT_MESSAGE);
+    Console.printLineBreak();
+    Console.printExecutionResultMessage();
 
     for (let round = 0; round < this.#totalRounds; round++) {
       this.#processRound();
-      Console.print('');
+      Console.printLineBreak();
     }
   }
 

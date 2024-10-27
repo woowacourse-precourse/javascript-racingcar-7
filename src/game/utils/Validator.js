@@ -7,25 +7,23 @@ export default class Validator {
     '[ERROR] 시도 횟수는 1 이상의 정수를 입력해야 합니다.';
 
   static validateCarNames(carNames) {
-    this.validateCarNameWhitespace(carNames);
-    this.validateCarNameLength(carNames);
+    carNames.forEach((carName) => {
+      this.validateCarNameWhitespace(carName);
+      this.validateCarNameLength(carName);
+    });
     this.validateDuplicateCarName(carNames);
   }
 
-  static validateCarNameWhitespace(carNames) {
-    carNames.forEach((carName) => {
-      if (carName == '') {
-        throw new Error(this.#ERROR_EMPTY_CAR_NAME);
-      }
-    });
+  static validateCarNameWhitespace(carName) {
+    if (carName == '') {
+      throw new Error(this.#ERROR_EMPTY_CAR_NAME);
+    }
   }
 
-  static validateCarNameLength(carNames) {
-    carNames.forEach((carName) => {
-      if (carName.length > 5) {
-        throw new Error(this.#ERROR_CAR_NAME_TOO_LONG);
-      }
-    });
+  static validateCarNameLength(carName) {
+    if (carName.length > 5) {
+      throw new Error(this.#ERROR_CAR_NAME_TOO_LONG);
+    }
   }
 
   static validateDuplicateCarName(carNames) {
