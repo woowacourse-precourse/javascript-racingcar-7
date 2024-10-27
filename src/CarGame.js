@@ -13,7 +13,7 @@ class CarGame {
         const resultLogs = [];
 
         for (let turn = 0; turn < this.#tryCount; turn++) {
-            const currentTurnLogs = this.raceOneTurn();
+            const currentTurnLogs = this.#raceOneTurn();
             resultLogs.push(...currentTurnLogs);
             resultLogs.push("");
         }
@@ -21,14 +21,13 @@ class CarGame {
         return resultLogs;
     }
 
-    raceOneTurn() {
+    #raceOneTurn() {
         const oneTurnLogs = [];
 
-        for (let carIdx = 0; carIdx < this.#cars.length; carIdx++) {
-            const car = this.#cars[carIdx];
+        this.#cars.forEach((car, _) => {
             car.tryToMove();
             oneTurnLogs.push(`${car.getName()} : ${"-".repeat(car.getPosition())}`);
-        }
+        });
 
         return oneTurnLogs;
     }
