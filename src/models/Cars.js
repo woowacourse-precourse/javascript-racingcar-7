@@ -37,8 +37,9 @@ class Cars {
 
     // 자동차 이름에 공백이 포함된 경우
     validateNameContainsWhitespace() {
-        const HAS_WHITE_SPACE_FLAG = this.#cars.some(name => /\s/.test(name))
-        if(HAS_WHITE_SPACE_FLAG) {
+        const HAS_WHITE_SPACE_FLAG = this.#cars.some(name => /\s/.test(name));
+        const HAS_NAME_WHITE_SPACE_FLAG = this.#cars.some(name => name === '');
+        if(HAS_WHITE_SPACE_FLAG || HAS_NAME_WHITE_SPACE_FLAG) {
             throw new RacingCarError(ERROR_MESSAGE.input_name_contains_whitespace);
         }
     }
