@@ -1,20 +1,5 @@
 import App from '../src/App.js';
-import { MissionUtils } from '@woowacourse/mission-utils';
-
-const mockQuestions = (inputs) => {
-  MissionUtils.Console.readLineAsync = jest.fn();
-
-  MissionUtils.Console.readLineAsync.mockImplementation(() => {
-    const input = inputs.shift();
-    return Promise.resolve(input);
-  });
-};
-
-const getLogSpy = () => {
-  const logSpy = jest.spyOn(MissionUtils.Console, 'print');
-  logSpy.mockClear();
-  return logSpy;
-};
+import { mockQuestions, getLogSpy } from '../__mocks__/mockUtils.js';
 
 describe('자동차 경주: 입력 검증 테스트', () => {
   test('자동차 이름이 유효하면 에러를 발생하지 않는다.', async () => {
