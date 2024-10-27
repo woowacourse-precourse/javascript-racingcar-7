@@ -36,9 +36,10 @@ class Race {
   }
 
   moveCars() {
+    const cars = this.#cars;
     let movedFlag = false;
-    for (let i = 0; i < this.#cars.length; i += 1) {
-      if (this.#cars[i].tryMoveForward()) {
+    for (let i = 0; i < cars.length; i += 1) {
+      if (cars[i].tryMoveForward()) {
         movedFlag = true;
       }
     }
@@ -56,8 +57,9 @@ class Race {
       for (let j = 0; j < moved; j += 1) {
         carMovedStr += '-';
       }
-      MissionUtils.Console.print(carMovedStr);
+      MissionUtils.Console.print(`${carMovedStr}`);
     }
+    MissionUtils.Console.print('');
   }
 
   selectWinner() {

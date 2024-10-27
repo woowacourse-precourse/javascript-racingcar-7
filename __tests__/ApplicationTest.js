@@ -29,7 +29,7 @@ const getLogSpy = () => {
 describe(
   '자동차 경주',
   () => {
-    test.skip('기능 테스트', async () => {
+    test('기능 테스트', async () => {
       // given
       const MOVING_FORWARD = 4;
       const STOP = 3;
@@ -50,7 +50,7 @@ describe(
       });
     });
 
-    test.skip('예외 테스트', async () => {
+    test('예외 테스트', async () => {
       // given
       const inputs = ['pobi,javaji'];
       mockQuestions(inputs);
