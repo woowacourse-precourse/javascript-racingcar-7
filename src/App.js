@@ -60,6 +60,9 @@ class App {
     if (attempts === '') {
       throw new Error('[ERROR] 입력된 값이 없습니다.');
     }
+    if (attempts.includes(' ')) {
+      throw new Error('[ERROR] 공백은 입력할 수 없습니다.');
+    }
     if (isNaN(attempts)) {
       throw new Error('[ERROR] 숫자가 아닌 값은 입력할 수 없습니다.');
     }
