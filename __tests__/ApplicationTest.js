@@ -34,4 +34,18 @@ describe("자동차 경주", () => {
 		// then
 		await expect(app.run()).rejects.toThrow("[ERROR]");
 	});
+
+	test.each([[["pobi,javaji"]], [["ayden,testName"]]])(
+		"예외 테스트",
+		async (inputs) => {
+			// given
+			mockQuestions(inputs);
+
+			// when
+			const app = new App();
+
+			// then
+			await expect(app.run()).rejects.toThrow("[ERROR]");
+		}
+	);
 });
