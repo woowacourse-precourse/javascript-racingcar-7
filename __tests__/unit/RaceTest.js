@@ -3,11 +3,13 @@ import { getRandomNumber, printMessage } from '../../src/utils.js';
 import { GAME_RULES } from '../../src/constants.js';
 
 jest.mock('../../src/utils.js', () => ({
-  getCarName: jest.fn().mockResolvedValue("Audi,BMW,Ford"),
+  ...jest.requireActual('../../src/utils.js'), 
+  getCarName: jest.fn().mockResolvedValue("Audi,BMW,Ford"), 
   getAttempt: jest.fn().mockResolvedValue("5"),
   getRandomNumber: jest.fn(),
-  printMessage: jest.fn(), 
+  printMessage: jest.fn(),
 }));
+
 
 describe("Race 클래스 테스트", () => {
   let race;
