@@ -22,4 +22,24 @@ describe("결과 출력", () => {
 			expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
 		});
 	});
+
+	test("다수 우승자 출력", async () => {
+		// given
+		const inputs = ["ayden,test", "1"];
+		const MOVING_FORWARD = 4;
+		const logs = ["ayden : -", "test : -", "최종 우승자 : ayden, test"];
+
+		mockQuestions(inputs);
+		mockRandoms([MOVING_FORWARD, MOVING_FORWARD]);
+		const logSpy = getLogSpy();
+
+		// when
+		const racingCar = new RacingCar();
+		await racingCar.runRacingCar();
+
+		// then
+		logs.forEach((log) => {
+			expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+		});
+	});
 });
