@@ -14,7 +14,9 @@ class Validator {
   static validateTotalRound(userInput) {
     this.validateEmptyUserInput(userInput);
 
-    if (!Number(userInput)) {
+    const totalRound = Number(userInput);
+
+    if (!totalRound || totalRound < 0 || !Number.isInteger(totalRound)) {
       throw new CustomError(ERROR_MESSAGES.INVALIDATE_TOTAL_ROUND);
     }
   }

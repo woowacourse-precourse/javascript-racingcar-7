@@ -7,7 +7,7 @@ const ERROR_MESSAGES = {
   INVALIDATE_SEPARATOR:
     '이름은 쉼표(,) 기준으로만 구분돼요. 쉼표를 사용해주세요. ex) pobi,woni,jun',
   INVALIDATE_TOTAL_ROUND:
-    '시도할 횟수는 숫자만 입력 가능해요. 숫자를 입력해주세요.',
+    '시도 횟수는 양의 정수만 입력가능해요. 올바른 값을 입력해 주세요. ex) 5',
 };
 
 export default ERROR_MESSAGES;
