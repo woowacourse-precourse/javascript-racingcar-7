@@ -2,6 +2,8 @@ import { getCarNames } from "./input/getCarNames.js";
 import { getMoveCount } from "./input/getMoveCount.js";
 import { calculateMovement } from "./utils/calculateMovement.js";
 import { printResult } from "./output/printResult.js";
+import { findWinnerIndex } from "./utils/findWinnerIndex.js";
+import { printWinner } from "./output/printWinner.js";
 
 class App {
   async run() {
@@ -18,6 +20,9 @@ class App {
         });
         printResult(racingCars, racingCarsMovement);
       }
+
+      const winnerIndex = findWinnerIndex(racingCarsMovement);
+      printWinner(racingCars, winnerIndex);
     } catch (error) {
       throw error;
     }
