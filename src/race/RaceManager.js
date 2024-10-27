@@ -1,6 +1,6 @@
 import IOHandler from "../utils/IOHandler.js";
 import * as Validator from "./Validator.js";
-import RaceExcutor from "./RaceExecutor.js";
+import RaceExecutor from "./RaceExecutor.js";
 import { getWinners } from "./WinnerSelector.js";
 import CarManager from "./CarManager.js";
 
@@ -40,8 +40,8 @@ class RaceManager {
     async racing() {
         const racingInfo = await this.#getRacingInfo();
 
-        const raceExcutor = new RaceExcutor();
-        raceExcutor.executeForMoveTryCount(racingInfo.cars, racingInfo.moveTryCount);
+        const raceExecutor = new RaceExecutor();
+        raceExecutor.executeForMoveTryCount(racingInfo.cars, racingInfo.moveTryCount);
 
         const winnerNames = getWinners(racingInfo.cars);
         this.#printWinners(winnerNames);

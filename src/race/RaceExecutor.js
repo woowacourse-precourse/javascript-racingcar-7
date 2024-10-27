@@ -1,7 +1,7 @@
 import { Random } from "@woowacourse/mission-utils";
 import IOHandler from "../utils/IOHandler.js";
 
-export default class RaceExcutor {
+export default class RaceExecutor {
     #COUNT_SIGN = Object.freeze('-');
 
     #MIN_NUMBER_FOR_MOVE_CAR = Object.freeze(4);
