@@ -39,8 +39,10 @@ class App {
 
     for (let i = 0; i < inputNum; i++) {
       this.race(raceCars);
-      this.printRaceResult(raceCars);
+      this.printRoundResult(raceCars);
     }
+
+    this.printFinalResult(raceCars);
   }
 
   race(raceCars) {
@@ -51,11 +53,25 @@ class App {
     });
   }
 
-  printRaceResult(raceCars) {
+  printRoundResult(raceCars) {
     raceCars.forEach((raceCar) => {
       Console.print(raceCar.name + " : " + raceCar.location);
     });
     Console.print("");
+  }
+
+  printFinalResult(raceCars) {
+    const maxLength = Math.max(
+      ...raceCars.map((raceCar) => raceCar.location.length)
+    );
+
+    const longestRaceCars = raceCars.filter(
+      (raceCar) => raceCar.location.length === maxLength
+    );
+
+    const winners = longestRaceCars.map((raceCar) => raceCar.name).join(", ");
+
+    Console.print("최종 우승자 : " + winners);
   }
 }
 
