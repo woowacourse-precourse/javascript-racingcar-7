@@ -1,5 +1,6 @@
 import inputCarList from "./Components/Input/inputCarList.js";
 import inputTryNum from "./Components/Input/inputTryNum.js";
+import printWinner from "./Components/Output/printWinner.js";
 import raceCar from "./Components/RaceCar/raceCar.js";
 
 class App {
@@ -7,7 +8,8 @@ class App {
     try {
       const carList = await inputCarList();
       const tryNumber = await inputTryNum();
-      const result = raceCar(carList, tryNumber);
+      const winnerCars = raceCar(carList, tryNumber);
+      printWinner(winnerCars);
     } catch (error) {
       throw new Error(error.message);
     }
