@@ -7,3 +7,4 @@ export const MESSAGES = {
 };
 
 export const DELIMITER = ",";
+export const PROGRESS = "-";
