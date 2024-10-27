@@ -8,5 +8,9 @@ export const InputView = {
     
     async getRacingCarNamesInput() {
         return await Console.readLineAsync(RACING_CAR_MESSAGES.input_racingCar_names);
+    },
+
+    async getAttemptCountInput() {
+        return await Console.readLineAsync(RACING_CAR_MESSAGES.input_attempt_counter);
     }
 }
