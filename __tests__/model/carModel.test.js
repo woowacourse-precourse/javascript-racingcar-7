@@ -7,7 +7,7 @@ jest.mock('@woowacourse/mission-utils', () => ({
   },
 }));
 
-describe('carModel 테스트', () => {
+describe('carModel', () => {
   let carModel;
   beforeEach(() => {
     carModel = new CarModel('wook');
