@@ -10,7 +10,7 @@ class RacingGame {
     this.#attempt = roundAttempt;
   }
 
-  Racing() {
+  startRace() {
     RaceStatusDisplay.printRaceStartMessage();
 
     for (let i = 0; i < this.#attempt; i++) {
@@ -20,12 +20,14 @@ class RacingGame {
   }
 
   getWinners() {
-    const maxPosition = Math.max(
-      ...this.#racingCars.getCars().map(car => car.getPosition()),
-    );
+    const currentCars = this.#racingCars.getCars();
+    const maxPosition = Math.max(...currentCars.map(car => car.getPosition()));
 
-    return this.#racingCars
-      .getCars()
+    if (maxPosition === 0) {
+      return currentCars.map(car => car.getName());
+    }
+
+    return currentCars
       .filter(car => car.getPosition() === maxPosition)
       .map(car => car.getName());
   }

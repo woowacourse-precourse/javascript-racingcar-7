@@ -20,7 +20,7 @@ class App {
     AttemptValidator.validate(roundAttempt);
 
     const racingGame = new RacingGame(carNameList, roundAttempt);
-    racingGame.Racing();
+    racingGame.startRace();
 
     const winners = racingGame.getWinners();
     RaceStatusDisplay.printWinners(winners);
