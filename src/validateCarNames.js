@@ -1,4 +1,7 @@
 function validateCarNames(carNames) {
+  if (carNames == '') {
+    throw new Error('[ERROR] 경주할 자동차는 2대 이상 입력해야 합니다.');
+  }
   carNames.forEach((name) => {
     if (name.length > 5) {
       throw new Error('[ERROR] 자동차 이름은 5자 이하만 입력 가능합니다.');
