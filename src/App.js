@@ -1,42 +1,20 @@
 import { Random, Console } from '@woowacourse/mission-utils';
+import validateCarNames from './validateCarNames.js';
+import validateRounds from './validateRounds.js';
+import getWinner from './getWinner.js';
 
 class App {
   async run() {
     const inputCarNames = await Console.readLineAsync(
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n'
     );
-
     const carNames = inputCarNames.split(',');
-    const validateCarNames = carNames.forEach((name) => {
-      if (name.length > 5) {
-        throw new Error('[ERROR] 자동차 이름은 5자 이하만 입력 가능합니다.');
-      }
-      if (name.length == 0) {
-        throw new Error(
-          '[ERROR] 쉼표로 시작 또는 끝나거나 연속 두 번 이상 사용할 수 없습니다.'
-        );
-      }
-    });
-
-    if (!carNames[1]) {
-      throw new Error('[ERROR] 경주할 자동차는 2대 이상 입력해야 합니다.');
-    }
-
-    if (carNames.length !== new Set(carNames).size) {
-      throw new Error('[ERROR] 자동차 이름은 중복하여 입력할 수 없습니다.');
-    }
+    validateCarNames(carNames);
 
     const inputRounds = await Console.readLineAsync(
       '시도할 횟수는 몇 회인가요?\n'
     );
-
-    if (!inputRounds) {
-      throw new Error('[ERROR] 시도 횟수를 입력해야 합니다.');
-    }
-
-    if (isNaN(inputRounds)) {
-      throw new Error('[ERROR] 시도 횟수는 숫자만 입력 가능합니다.');
-    }
+    validateRounds(inputRounds);
 
     const printRaceCount = (count) => {
       let string = '';
@@ -58,18 +36,7 @@ class App {
       Console.print('');
     }
 
-    const getWinner = (raceCount) => {
-      let winnerNames = [];
-      const winnerRaceCount = Math.max.apply(null, raceCount);
-      for (let i = 0; i < raceCount.length; i++) {
-        if (winnerRaceCount == raceCount[i]) {
-          winnerNames.push(carNames[i]);
-        }
-      }
-      Console.print(`최종 우승자 : ${winnerNames.join(', ')}`);
-    };
-
-    getWinner(raceCount);
+    Console.print(`최종 우승자 : ${getWinner(raceCount, carNames).join(', ')}`);
   }
 }
 
