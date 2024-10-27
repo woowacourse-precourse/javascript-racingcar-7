@@ -28,10 +28,29 @@ const duplicate = input => {
   });
 };
 
+// 이름에 공백이 들어갈 경우
+const containsWhitespace = input => {
+  input.forEach(car => {
+    if (car.name.includes(' ')) {
+      throw new Error(ERROR_MESSAGES.CONTAINS_WHITESPACE);
+    }
+  });
+};
+// 이름이 공백일 경우
+const isEmptyName = input => {
+  input.forEach(car => {
+    if (car.name.trim() === '') {
+      throw new Error(ERROR_MESSAGES.EMPTY_NAME);
+    }
+  });
+};
+
 const carInputValidator = input => {
   lengthOver(input);
   nullInput(input);
   duplicate(input);
+  containsWhitespace(input);
+  isEmptyName(input);
 };
 
 export default carInputValidator;

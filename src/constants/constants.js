@@ -5,6 +5,8 @@ const ERROR_MESSAGES = {
   INVALID_NUMBER: '[ERROR] 게임 횟수를 양의 정수로 입력해주세요.',
   NULL_INPUT: '[ERROR] 자동차를 2대 이상 입력해주세요.',
   NO_INPUT: '[ERROR] 입력값이 없습니다. 값을 입력해주세요.',
+  CONTAINS_WHITESPACE: '[ERROR] 자동차 이름에 공백이 들어갈 수 없습니다.',
+  EMPTY_NAME: '[ERROR] 자동차 이름을 입력해주세요.',
 };
 
 export default ERROR_MESSAGES;
