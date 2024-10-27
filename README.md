@@ -82,7 +82,7 @@ const findMaxMoveCars = (cars) => {
 export default findMaxMoveCars;
 ```
 
-## 느낀 점
+## 🍀 느낀 점
 
 - 기능 요구사항과 흐름도를 꼼꼼히 작성하니 중간에 수정이 불필요해서 코드 작성이 수월했다.
 - 클래스를 사용해보니 구조화하기 더 편리했다.
