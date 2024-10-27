@@ -1,4 +1,4 @@
-import Car from "../src/Car";
+import Car from "../src/Car.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 const mockQuestions = (inputs) => {
