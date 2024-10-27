@@ -12,9 +12,9 @@ class RaceController {
 
   async startRace() {
     const carNames = await this.view.getCarNames();
-    Console.print(`carNames: ${carNames}`);
     InputValidator.validateCarName(carNames);
     const attemptCount = await this.view.getAttemptCount();
+    InputValidator.validateAttemptCount(attemptCount);
 
     const cars = carNames.map((name) => new CarModel(name));
     this.race = new RaceModel(cars);
