@@ -12,6 +12,14 @@ class RacingCar {
     return name;
   }
 
+  getDistance() {
+    return this.#dist;
+  }
+
+  getName() {
+    return this.#name;
+  }
+
   move() {
     if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) this.#dist++;
   }

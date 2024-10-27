@@ -20,6 +20,13 @@ class App {
       }
       MissionUtils.Console.print('');
     }
+
+    const maxDist = Math.max(...cars.map(car => car.getDistance()));
+    const maxDistCars = cars
+      .filter(car => car.getDistance() === maxDist)
+      .map(car => car.getName())
+      .join(`, `);
+    MissionUtils.Console.print("최종 우승자 : " + maxDistCars);
   }
 }
 
