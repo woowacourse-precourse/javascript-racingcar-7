@@ -13,7 +13,7 @@ class CarRace {
     return input.split(",");
   }
 
-  validateCarNames(carList) {
+  validateCarList(carList) {
     Validator.checkCarList(carList);
     carList.map((carName) => Validator.checkName(carName));
   }
