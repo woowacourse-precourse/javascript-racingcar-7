@@ -42,7 +42,11 @@ export default [
         // { blankLine: 'always', prev: 'function', next: '*' },
         { blankLine: 'always', prev: 'multiline-block-like', next: '*' },
         { blankLine: 'always', prev: '*', next: 'multiline-block-like' },
-      ]
+      ],
+
+      // Updated keyword spacing rule with before and after
+      'keyword-spacing': ['error', { 'before': true, 'after': true }]
+
     }
   }
 ];
