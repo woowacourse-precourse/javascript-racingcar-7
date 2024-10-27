@@ -1,4 +1,5 @@
 import ERROR_MESSAGES from "../constants/errorMessages.js";
+import throwError from "../utils/throwError.js";
 import emptyInput from "./inputValidator.js";
 
 const validateIsNumber = (value) => {

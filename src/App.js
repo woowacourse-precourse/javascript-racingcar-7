@@ -1,5 +1,5 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
-import Car from "./Car.js";
+import Car from "./models/Car.js";
 import { inputCarNames, inputCount } from "./input.js";
 import parseCarNames from "./utils/parseCarNames.js";
 import validateCarName from "./validator/carValidator.js";
