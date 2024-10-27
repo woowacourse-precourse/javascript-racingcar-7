@@ -28,4 +28,11 @@ export default class RaceManager {
   getAttempts() {
     return this.#attempts;
   }
+
+  findWinners() {
+    const maxPosition = Math.max(...this.#cars.map((car) => car.getPosition()));
+    return this.#cars
+      .filter((car) => car.getPosition() === maxPosition)
+      .map((car) => car.getName());
+  }
 }
