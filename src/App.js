@@ -1,6 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import InputParser from './InputParser';
-import CarManager from './CarManager';
+import CarRacer from './CarRacer';
 import ResultPrinter from './ResultPrinter';
 
 class App {
@@ -11,8 +11,8 @@ class App {
     const inputParser = new InputParser(carNamesStr, attemptCntStr);
     const { carNamesArr, attemptCnt } = inputParser.parse();
 
-    const carManager = new CarManager(carNamesArr, attemptCnt);
-    const moveCntPerCar = carManager.race();
+    const carRacer = new CarRacer(carNamesArr, attemptCnt);
+    const moveCntPerCar = carRacer.race();
 
     const resultPrinter = new ResultPrinter(moveCntPerCar);
     resultPrinter.print();

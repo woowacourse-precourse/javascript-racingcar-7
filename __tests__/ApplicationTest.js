@@ -1,8 +1,8 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import App from '../src/App.js';
-import CarManager from '../src/CarManager.js';
-import InputParser from '../src/InputParser.js';
-import ResultPrinter from '../src/ResultPrinter.js';
+import CarRacer from '../src/CarRacer';
+import InputParser from '../src/InputParser';
+import ResultPrinter from '../src/ResultPrinter';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -73,13 +73,13 @@ describe('자동차 경주', () => {
   });
 
   test('무작위 값이 4 이상일 경우 전진한다.', () => {
-    const carManager = new CarManager(['pobi', 'woni'], 1);
+    const carRacer = new CarRacer(['pobi', 'woni'], 1);
 
-    expect(carManager.isCarMove(4)).toBe(true);
-    expect(carManager.isCarMove(5)).toBe(true);
-    expect(carManager.isCarMove(9)).toBe(true);
-    expect(carManager.isCarMove(3)).toBe(false);
-    expect(carManager.isCarMove(0)).toBe(false);
+    expect(carRacer.isCarMove(4)).toBe(true);
+    expect(carRacer.isCarMove(5)).toBe(true);
+    expect(carRacer.isCarMove(9)).toBe(true);
+    expect(carRacer.isCarMove(3)).toBe(false);
+    expect(carRacer.isCarMove(0)).toBe(false);
   });
 
   test('매 시도에서 실행 결과를 출력한다.', () => {

@@ -1,6 +1,6 @@
 import { Random } from '@woowacourse/mission-utils';
 
-class CarManager {
+class CarRacer {
   constructor(carNamesArr, attemptCnt) {
     this.carNamesArr = carNamesArr;
     this.attemptCnt = attemptCnt;
@@ -48,4 +48,4 @@ class CarManager {
   }
 }
 
-export default CarManager;
+export default CarRacer;
