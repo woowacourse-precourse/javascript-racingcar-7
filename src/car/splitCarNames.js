@@ -6,5 +6,8 @@ export const splitCarNames = (cars) => {
     return car;
   });
 
+  if (cars.length <= 1)
+    throw new Error('[ERROR] 경주를 위해 자동차는 두대 이상 입력해주세요.');
+
   return carArray;
 };
