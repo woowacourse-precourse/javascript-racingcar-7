@@ -1,5 +1,6 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
+import Car from "../src/domains/car.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -56,5 +57,16 @@ describe("자동차 경주", () => {
 
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+});
+
+describe("자동차 기능 테스트", () => {
+  test("자동차는 전진할 수 있다.", () => {
+    const car = new Car("Hellol77");
+
+    car.move();
+    car.move();
+
+    expect(car.position).toEqual(2);
   });
 });
