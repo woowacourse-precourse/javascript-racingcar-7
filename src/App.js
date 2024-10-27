@@ -4,6 +4,7 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 const NUMBER_REGEX = /^[0-9]*$/;
 const ENGLISH_REGEX = /^[a-zA-Z]*$/;
 const SPACE_REGEX = /\s/g;
+const NAME_LENGTH_LIMIT = 5;
 const ATTEMPTS_LIMIT = 50;
 const MOVE_MINIMUM = 4;
 
@@ -44,7 +45,7 @@ class App {
 
     if (carNames.some((name) => name.length === 0)) {
       errorType = 'carNameBlank';
-    } else if (carNames.some((name) => name.length > 5)) {
+    } else if (carNames.some((name) => name.length > NAME_LENGTH_LIMIT)) {
       errorType = 'carNameLength';
     } else if (carNames.some((name) => SPACE_REGEX.test(name))) {
       errorType = 'carNameSpace';
