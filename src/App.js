@@ -17,6 +17,12 @@ class App {
     // 시도 횟수 받기
     const tryCount =
       await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+
+    // 줄 구분용 빈칸
+    Console.print('');
+
+    // 실행 결과 출력
+    Console.print('실행 결과');
   }
 }
 
