@@ -1,13 +1,20 @@
 import {Console} from '@woowacourse/mission-utils'
 
 class App {
+    constructor() {
+        this.carArray = [];
+    }
     async run() {
+        this.carArray = await this.carNameInput();
+        await this.countInput();
+        this.printResult();
+
 
     }
 
     async carNameInput() {
         const inputArray = await Console.readLineAsync("경주할 자동차 이름을 입력하세요(이름은 쉼표(,) 기준으로 구분)");
-        const carArray = Array.split(inputArray, ',');
+        const carArray = inputArray.split(',');
 
         carArray.forEach(carName => {
             if (carName.length > 5) {
@@ -23,6 +30,11 @@ class App {
             throw new Error("[ERROR] 시도 횟수는 1 이상이어야 합니다.");
         }
         return count;
+    }
+    printResult() {
+        this.carArray.forEach(car => {
+            Console.print(car + " : ");
+    })
     }
 }
 
