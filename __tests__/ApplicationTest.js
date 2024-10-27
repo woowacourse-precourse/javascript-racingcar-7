@@ -1,4 +1,5 @@
 import App from "../src/App.js";
+import Car from "../src/Car.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 const mockQuestions = (inputs) => {
@@ -23,6 +24,14 @@ const getLogSpy = () => {
   logSpy.mockClear();
   return logSpy;
 };
+
+describe("Car 클래스", () => {
+  test("Car 객체 생성 이름과 위치 초기화", () => {
+    const car = new Car("dawon");
+    expect(car.name).toBe("dawon");
+    expect(car.position).toBe(0);
+  });
+});
 
 describe("자동차 경주", () => {
   test("기능 테스트", async () => {
