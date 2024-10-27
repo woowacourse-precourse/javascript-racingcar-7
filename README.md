@@ -23,10 +23,18 @@
 ┃ ┗ 📜Game.js // 게임 상태와 로직 모델
 ┣ 📂controllers    // 애플리케이션 흐름을 제어하는 컨트롤러
 ┃ ┗ 📜GameController.js // 게임 진행을 제어하는 컨트롤러
-┣ 📂utils          // 공통 유틸리티 기능 모음
-┃ ┗ 📜validators.js// 입력값 검증 유틸리티
 ┣ 📜App.js         // 애플리케이션의 초기화 담당
 ┗ 📜index.js       // 애플리케이션 진입점
+┃
+📂 utils          // 공통 유틸리티 기능 모음
+┃ ┗ 📜 testUtils.js // 테스트코드에 필요한 유틸리티
+┃ ┗ 📜 validators.js// 입력값 검증 유틸리티
+┃
+📂 _test_
+┗ 📜 ApplicationTest.js  // 기본 테스트코드
+┗ 📜 ExceptionTest.js  // 예외 케이스 테스트코드
+┗ 📜 SuccessTest.js  // 성공 케이스 테스트코드
+
 ```
 
 ---
