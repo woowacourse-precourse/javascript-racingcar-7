@@ -26,28 +26,27 @@ class App {
     Console.print(`${OUTPUT_PREFIX} ${winners}`);
   }
 
-  async #setTotalRound() {
-    const secondUserInput = await Console.readLineAsync(
-      SECOND_USER_INPUT_PLACEHOLDER,
-    );
-
-    Validator.validateEmptyUserInput(secondUserInput);
-    this.#totalRound = secondUserInput;
-  }
-
   async #setRacers() {
     const firstUserInput = await Console.readLineAsync(
       FIRST_USER_INPUT_PLACEHOLDER,
     );
 
-    Validator.validateSeparator(firstUserInput);
-    Validator.validateEmptyUserInput(firstUserInput);
+    Validator.validateRacers(firstUserInput);
     const racers = firstUserInput.split(NAME_SEPARATOR).map((racer) => {
       Validator.validateMaxRacerName(racer);
       return new Racer(racer);
     });
 
     this.#racers = racers;
+  }
+
+  async #setTotalRound() {
+    const secondUserInput = await Console.readLineAsync(
+      SECOND_USER_INPUT_PLACEHOLDER,
+    );
+
+    Validator.validateTotalRound(secondUserInput);
+    this.#totalRound = secondUserInput;
   }
 
   #startRacing() {

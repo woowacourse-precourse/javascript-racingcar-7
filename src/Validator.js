@@ -3,9 +3,19 @@ import ERROR_MESSAGES from './constants/error.js';
 import { MAX_NAME_LENGTH, NAME_SEPARATOR } from './constants/index.js';
 
 class Validator {
-  static validateEmptyUserInput(userInput) {
-    if (userInput.trim() === '') {
-      throw new CustomError(ERROR_MESSAGES.EMPTY_INPUT);
+  static validateRacers(userInput) {
+    this.validateEmptyUserInput(userInput);
+
+    if (userInput.split(NAME_SEPARATOR).length < 2) {
+      throw new CustomError(ERROR_MESSAGES.INVALIDATE_SEPARATOR);
+    }
+  }
+
+  static validateTotalRound(userInput) {
+    this.validateEmptyUserInput(userInput);
+
+    if (!Number(userInput)) {
+      throw new CustomError(ERROR_MESSAGES.INVALIDATE_TOTAL_ROUND);
     }
   }
 
@@ -15,9 +25,9 @@ class Validator {
     }
   }
 
-  static validateSeparator(userInput) {
-    if (userInput.split(NAME_SEPARATOR).length < 2) {
-      throw new CustomError(ERROR_MESSAGES.INVALIDATE_SEPARATOR);
+  static validateEmptyUserInput(userInput) {
+    if (userInput.trim() === '') {
+      throw new CustomError(ERROR_MESSAGES.EMPTY_INPUT);
     }
   }
 }
