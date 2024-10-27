@@ -1,3 +1,5 @@
+import { MissionUtils } from "@woowacourse/mission-utils";
+
 export class Car {
   constructor(carName) {
     this.carName = carName;
@@ -9,7 +11,7 @@ export class Car {
   }
 
   move() {
-    if (Math.floor(Math.random() * 10) >= 4) {
+    if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) {
       this.position += 1;
     }
   }
