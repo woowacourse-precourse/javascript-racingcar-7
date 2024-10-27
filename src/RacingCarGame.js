@@ -29,12 +29,11 @@ class RacingCarGame {
       `경주할 자동차 이름을 입력하세요.(이름은 쉼표(${RacingCarGame.CAR_NAME_SEPARATOR}) 기준으로 구분)\n`
     );
     const carNameList = carNames.split(RacingCarGame.CAR_NAME_SEPARATOR);
+    const isValidCarNameList = carNameList.every(this.validateCarName);
 
-    carNameList.forEach((carName) => {
-      if (!this.validateCarName(carName)) {
-        throw new Error("[ERROR] 유효하지 않은 자동차 이름이 입력되었습니다.");
-      }
-    });
+    if (!isValidCarNameList) {
+      throw new Error("[ERROR] 유효하지 않은 자동차 이름이 입력되었습니다.");
+    }
 
     const roundCount = await Console.readLineAsync(
       `시도할 횟수는 몇 회인가요?\n`
