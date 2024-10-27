@@ -112,11 +112,9 @@ class App {
 
       winnerPrint(winner);
     }
-    catch {
-      Console.print("[ERROR] 프로그램이 종료됩니다.");
+    catch (error) {
       throw error;
     }
-
 
   }
 
