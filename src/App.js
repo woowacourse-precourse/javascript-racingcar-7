@@ -11,8 +11,7 @@ class App {
     const splitNames = NAMES.split(',').map(name => name.trim());
 
     const cars = [];
-    for (carName of splitNames) cars.push(new RacingCar(carName));
-
+    for (const carName of splitNames) cars.push(new RacingCar(carName));
   }
 }
 
