@@ -6,7 +6,7 @@ class App {
     const CAR_NAME = await Console.readLineAsync(
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
     );
-    const ATTEMP_TIMES =
+    const ATTEMPT_TIMES =
       await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
 
     const CAR_NAME_ARRAY = CAR_NAME.trim()
@@ -14,7 +14,7 @@ class App {
       .map(name => name.trim());
 
     CAR_NAME_VALIDATOR(CAR_NAME_ARRAY);
-    ATTEMPT_TIMES_VALIDATOR(ATTEMP_TIMES);
+    ATTEMPT_TIMES_VALIDATOR(ATTEMPT_TIMES);
   }
 }
 
