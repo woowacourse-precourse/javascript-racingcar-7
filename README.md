@@ -76,3 +76,27 @@ pobi : ----- woni : ---- jun : -----
 
 최종 우승자 : pobi, jun
 ```
+
+## 📁 패키지 구조 및 파일명
+```
+- 📂 _test_
+  - 📜 ApplicationTest.js
+  - 📜 ErrorTest.js
+- 📂 src
+  - 📜 App.js
+  - 📜 CarMovement.js
+  - 📜 DistanceResult.js
+  - 📜 ErrorMessages.js
+  - 📜 FindWinner.js
+  - 📜 index.js
+  - 📜 RandomMove.js
+```
+
+## 💬 커밋 메세지 컨벤션
+```
+- ✨ feat (feature)
+- 🐛 fix (bug fix)
+- 📝 docs (documentation)
+- ♻️  refactor
+- ✅ test (when adding missing tests)
+```
