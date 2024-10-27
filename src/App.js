@@ -10,6 +10,13 @@ const determineCarName = (input) => {
   checkDuplicateCarName(names);
 };
 
+const validateRaceNumber = (raceNum) => {
+  const numValue = Number(raceNum);
+  if (Number.isNaN(numValue)) {
+    throw new Error('[ERROR] 숫자를 입력해주세요.');
+  }
+};
+
 class App {
   async run() {
     const input = await Console.readLineAsync(
@@ -18,6 +25,7 @@ class App {
     determineCarName(input);
     const raceNumber =
       await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+    validateRaceNumber(raceNumber);
   }
 }
 
