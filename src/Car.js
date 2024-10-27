@@ -1,3 +1,5 @@
+import { Console, Random } from '@woowacourse/mission-utils';
+
 class Car {
   constructor(name) {
     this.name = name;
@@ -12,10 +14,13 @@ class Car {
     return this.moveHistory;
   }
 
-  move(record) {
+  move() {
+    const record = Random.pickNumberInRange(0, 9);
     if (record >= 4) {
       this.moveHistory += '-';
     }
+
+    Console.print(`${this.name} : ${this.moveHistory}`);
   }
 }
 

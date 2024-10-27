@@ -1,4 +1,4 @@
-import { Console, Random } from '@woowacourse/mission-utils';
+import { Console } from '@woowacourse/mission-utils';
 import { USER } from './Constants/Message.js';
 import { nameValidation, tryCountValidation } from './Validation/Validation.js';
 import Car from './Car.js';
@@ -35,9 +35,7 @@ class RaceGame {
 
   carRacing() {
     this.carList.forEach((car) => {
-      const record = Random.pickNumberInRange(0, 9);
-      car.move(record);
-      Console.print(`${car.getName} : ${car.getMoveHistory}`);
+      car.move();
     });
 
     Console.print('');
