@@ -1,5 +1,9 @@
+import { startRace } from "./Race.js";
+
 class App {
-  async run() {}
+  async run() {
+    await startRace();
+  }
 }
 
 export default App;
