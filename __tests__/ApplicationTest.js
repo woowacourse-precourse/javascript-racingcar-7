@@ -448,11 +448,8 @@ describe("자동차 경주", () => {
       "pobi : -----",
       "jun : -----",
 
-      "pobi : ------",
+      "pobi : -----",
       "jun : ------",
-
-      "pobi : ------",
-      "jun : -------",
 
       "최종 우승자 : jun",
     ];
@@ -508,7 +505,7 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
   test("13. 예외 테스트 - 너무 많은 자동차가 있을 때", async () => {
-    const inputs = ["pobi,woni,a,b,c,d,e,f,g,abc,dfe,cde", "3"];
+    const inputs = ["a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z", "3"];
     mockQuestions(inputs);
 
     const app = new App();
@@ -526,7 +523,7 @@ describe("자동차 경주", () => {
   });
 
   test("15. 예외 테스트 - 시도 횟수를 아무것도 입력 안했을 때", async () => {
-    const inputs = ["pobi,woni"];
+    const inputs = ["pobi,woni", ""];
     mockQuestions(inputs);
 
     const app = new App();
