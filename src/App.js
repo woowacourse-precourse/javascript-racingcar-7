@@ -8,7 +8,6 @@ import { gameStartComment } from './Output/outPut.js';
 class App {
   async run() {
     await this.inputValidate();
-    // MissionUtils.Console.print('\n');
     await this.startRace();
   }
   async inputValidate() {
@@ -21,7 +20,6 @@ class App {
   }
   async startRace() {
     gameStartComment();
-
     const race = new Race(this.inputCarNames, this.inputGameCount);
     await race.startRace();
   }

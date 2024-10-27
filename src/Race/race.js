@@ -28,7 +28,6 @@ class Race {
     this.car.forEach((car) => MissionUtils.Console.print(car.viewPosition()));
   }
 
-  //   gameWinner() {}
   gameWinner() {
     const maxPosition = Math.max(...this.car.map((car) => car.position));
     const winners = this.car

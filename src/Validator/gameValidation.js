@@ -14,3 +14,4 @@ export const GAME_VALIDATION = (inputGameCount) => {
     throw new Error('[ERROR] 50번 이하의 게임 횟수를 입력해주세요.');
   }
 };
+//소수점이면 안됨
