@@ -9,49 +9,51 @@ import { THRESHOLD } from './constants/threshold.js';
 import { Random } from '@woowacourse/mission-utils';
 
 export default class Race {
-  #cars;
-  #count;
-  #winner;
+	#cars;
+	#count;
+	#winner;
 
-  async init() {
-    const cars = await ViewIn.getCars();
-    const count = await ViewIn.getCount();
+	async init() {
+		const cars = await ViewIn.getCars();
+		const count = await ViewIn.getCount();
 
-    const carsArray = parseCars(cars);
+		const carsArray = parseCars(cars);
 
-    validateCars(carsArray);
-    validateCount(count);
+		validateCars(carsArray);
+		validateCount(count);
 
-    this.#cars = carsArray.map(name => new Car(name));
-    this.#count = count;
-  }
+		this.#cars = carsArray.map((name) => new Car(name));
+		this.#count = count;
+	}
 
-  start() {
-    ViewOut.empty();
-    ViewOut.resultMessage();
-    this.#round();
-    this.#selectWinner();
-    ViewOut.raceWinner(this.#winner);
-  }
+	start() {
+		ViewOut.empty();
+		ViewOut.resultMessage();
+		this.#round();
+		this.#selectWinner();
+		ViewOut.raceWinner(this.#winner);
+	}
 
-  #round() {
-    for (let i = 0; i < this.#count; i++) {
-      this.#race();
-      ViewOut.raceStatus(this.#cars);
-    }
-  }
+	#round() {
+		for (let i = 0; i < this.#count; i++) {
+			this.#race();
+			ViewOut.raceStatus(this.#cars);
+		}
+	}
 
-  #race() {
-    this.#cars.forEach(car => {
-      const randomNumber = Random.pickNumberInRange(THRESHOLD.MIN_RANDOM_NUMBER,
-        THRESHOLD.MAX_RANDOM_NUMBER);
-      car.move(randomNumber);
-    });
-  }
+	#race() {
+		this.#cars.forEach((car) => {
+			const randomNumber = Random.pickNumberInRange(
+				THRESHOLD.MIN_RANDOM_NUMBER,
+				THRESHOLD.MAX_RANDOM_NUMBER,
+			);
+			car.move(randomNumber);
+		});
+	}
 
-  #selectWinner() {
-    this.#cars = sortScore(this.#cars);
-    const highScore = this.#cars[0].getPoints();
-    this.#winner = this.#cars.filter((car) => car.getPoints() === highScore);
-  }
+	#selectWinner() {
+		this.#cars = sortScore(this.#cars);
+		const highScore = this.#cars[0].getPoints();
+		this.#winner = this.#cars.filter((car) => car.getPoints() === highScore);
+	}
 }

@@ -1,3 +1,3 @@
 export const parseCars = (cars) => {
-  return cars.split(',').map((car) => car.trim());
+	return cars.split(',').map((car) => car.trim());
 };
