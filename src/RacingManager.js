@@ -16,6 +16,8 @@ class RacingManager {
     InputValidation.validateAttemptLimit(attemptLimit);
 
     this.#playRounds(attemptLimit);
+
+    this.#announceWinners();
   }
 
   #setCarList(carNameList) {
@@ -54,6 +56,10 @@ class RacingManager {
       .map((car) => car.name);
 
     return winnerList;
+  }
+
+  #announceWinners() {
+    OutputView.printWinnerList(this.#winnerList);
   }
 }
 
