@@ -11,7 +11,7 @@ class RacingController {
 
       const racingModel = new RacingModel(carNames, count);
 
-      Console.print('실행 결과');
+      Console.print('\n실행 결과');
       for (let i = 0; i < racingModel.count; i++) {
         racingModel.race();
         RacingView.printRaceStatus(racingModel.getCars());
