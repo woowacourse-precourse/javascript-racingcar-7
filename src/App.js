@@ -36,6 +36,14 @@ class App {
         throw new Error('[ERROR] 자동차 이름은 5자 이하이어야 합니다.');
       }
     });
+
+    let tryCountInput =
+      await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+
+    tryCountInput = Number(tryCountInput);
+
+    if (!Number.isInteger(tryCountInput) || !tryCountInput)
+      throw new Error('[ERROR] 시도할 횟수는 자연수만 입력해야 합니다.');
   }
 }
 
