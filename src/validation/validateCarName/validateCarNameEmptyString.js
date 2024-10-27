@@ -1,4 +1,4 @@
-import { ERROR_MESSAGES } from "../../constants/constants";
+import { ERROR_MESSAGES } from "../../constants/constants.js";
 
 export function validateCarNameEmptyString(inputCarNameArray) {
   if (inputCarNameArray[inputCarNameArray.length - 1] === "")
