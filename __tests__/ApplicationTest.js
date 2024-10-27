@@ -119,4 +119,22 @@ describe("자동차 경주", () => {
     expect(logSpy).toHaveBeenCalledWith("pobi : -");
     expect(logSpy).toHaveBeenCalledWith("woni : ");
   });
+
+
+  // 8. 우승자 발표
+  test("우승자가 있을 때 올바른 우승자가 발표되는지 확인한다.", () => {
+    const app = new App();
+    const cars = [{ name: "pobi", position: 2 }, { name: "woni", position: 1 }];
+    const logSpy = jest.spyOn(MissionUtils.Console, "print");
+    app.getWinners(cars);
+    expect(logSpy).toHaveBeenCalledWith("최종 우승자 : pobi");
+  });
+
+  test("동점일 경우 여러 명의 당첨자를 발표되는지 확인한다.", () => {
+    const app = new App();
+    const cars = [{ name: "pobi", position: 2 }, { name: "woni", position: 2 }];
+    const logSpy = jest.spyOn(MissionUtils.Console, "print");
+    app.getWinners(cars);
+    expect(logSpy).toHaveBeenCalledWith("최종 우승자 : pobi, woni");
+  });
 });
