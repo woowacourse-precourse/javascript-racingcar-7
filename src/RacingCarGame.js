@@ -61,6 +61,21 @@ class RacingCarGame {
 
       Console.print("\n");
     }
+
+    const winnerCarNameList = [];
+    let maxPoint = 0;
+
+    for (const point of pointsMap.values()) {
+      maxPoint = Math.max(maxPoint, point);
+    }
+
+    for (const [carName, point] of pointsMap) {
+      if (maxPoint === point) {
+        winnerCarNameList.push(carName);
+      }
+    }
+
+    Console.print(`최종 우승자 : ${winnerCarNameList.join(", ")}`);
   }
 }
 
