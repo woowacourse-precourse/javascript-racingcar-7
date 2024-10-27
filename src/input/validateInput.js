@@ -1,6 +1,10 @@
 import ErrorMessage from '../constant/errorMessage.js';
 
 export function checkCarName(carNameList) {
+  const carNameSet = new Set(carNameList);
+  if (carNameSet.size !== carNameList.length) {
+    throw new Error(ErrorMessage.CAR_NAME_DUPLICATE);
+  }
   carNameList.forEach(carName => {
     if (carName.length <= 0) {
       throw new Error(ErrorMessage.CAR_NAME_TOO_SHORT);
