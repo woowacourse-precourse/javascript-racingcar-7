@@ -19,4 +19,9 @@ export default class ViewOut {
 
     this.empty();
   };
+
+  static raceWinner = (winner) => {
+    const winnerMessage = winner.map(car => car.getName()).join(', ');
+    Console.print(`${OUTPUT.WINNER} : ${winnerMessage}`);
+  };
 }
