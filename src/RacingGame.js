@@ -41,6 +41,8 @@ class RacingGame {
 
   showWinners() {
     const winners = this.WinnerNames();
+    const winnerNames = winners.map((car) => car.name).join(", ");
+    Console.print(`최종 우승자 : ${winnerNames}`);
   }
 }
 export default RacingGame;
