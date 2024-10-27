@@ -43,6 +43,7 @@ function getVaildatedPlayerNames(playerNames) {
   return playerNames;
 }
 
+// TODO: ERROR_MESSAGE 구체화
 function validatePlayerNames(playerNames) {
   if (playerNames.some((name) => !REGEX.PLAYER_NAME_REGEX.test(name)))
     throw new Error(MESSAGES.ERROR_MESSAGE);
