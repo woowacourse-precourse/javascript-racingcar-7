@@ -1,4 +1,5 @@
 import ERROR_MESSAGES from './constants/errorMessages.js';
+import handleError from './utils/handleError.js';
 
 class CountValidator {
   constructor(inputCount) {
@@ -7,13 +8,13 @@ class CountValidator {
 
   #isNumber() {
     if (!Number.isInteger(this.count)) {
-      throw new Error(ERROR_MESSAGES.NOT_A_NUMBER);
+      handleError(ERROR_MESSAGES.NOT_A_NUMBER);
     }
   }
 
   #isLessThanOne() {
     if (this.count < 1) {
-      throw new Error(ERROR_MESSAGES.LESS_THAN_ONE);
+      handleError(ERROR_MESSAGES.LESS_THAN_ONE);
     }
   }
 
