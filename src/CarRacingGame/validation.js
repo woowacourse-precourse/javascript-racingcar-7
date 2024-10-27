@@ -13,6 +13,10 @@ export function validateCarName(carNameList) {
     if (carName.length === 0) {
       throw new Error('[ERROR] 이름은 1자 이상으로 작성해 주세요.');
     }
+
+    if (carName.trim() === '') {
+      throw new Error('[ERROR] 공백이 입력되었습니다.');
+    }
   }
 }
 
