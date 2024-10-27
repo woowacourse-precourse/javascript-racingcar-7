@@ -15,13 +15,12 @@ class App {
   async run() {
     const userInput = await this.userInput.getUserInputCars();
     const userInputArray = userInput.split(",");
-
-    this.validator.validateNameLength(userInputArray);
+    const userInputCount = await this.userInput.getUserInputCount();
 
     let positions = this.raceController.createPlayersPositions(userInputArray.length);
 
-    const userInputCount = await this.userInput.getUserInputCount();
-
+    // Validate user input
+    this.validator.validateNameLength(userInputArray);
     this.validator.validateRound(userInputCount);
 
 
