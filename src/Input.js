@@ -47,6 +47,11 @@ class UserInput {
         }
         return hyphens;
     }
+    async viewRacingResult(cars){
+        let printString = '최종 우승자 : ';
+        printString += cars.join(', ');
+        Console.print(printString);
+    }
 }
 
 export default UserInput;

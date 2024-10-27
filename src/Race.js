@@ -19,27 +19,21 @@ class Car{
         if(rand >= 4){
             this.distance++;
         }
-        Console.print(this.distance);
     }
 }
 
 class Race{
     constructor(input){
         this.input = input;
-        this.doRace();
+        this.run();
     }
 
-    async doRace(){
-        await this.setRace();
-        for(let nowAttempt = 0; nowAttempt < this.input.attemptNum; nowAttempt++){
-            await this.startRaceAttempt();
-        }
-    }
-    async setRace() {
+    async run(){
         this.cars = await this.setCars();
-        
+        await this.startRace();
+        await this.judgeWinnerCar();
+        await this.racingResult();
     }
-
     async setCars() {
         let carObjects = [];
         for(let carName of this.input.carsNameList){
@@ -47,14 +41,32 @@ class Race{
         }
         return carObjects;
     }
-
-    async startRaceAttempt() {
-        for(let carIndex in this.cars){
-            await this.cars[carIndex].goOrStop();
-            await this.input.viewAttemptResult(this.cars);
+    async startRace(){
+        Console.print('\n실행 결과\n');
+        for(let nowAttempt = 0; nowAttempt < this.input.attemptNum; nowAttempt++){
+            await this.raceAttempt();
         }
     }
-
+    async raceAttempt() {
+        for(let carIndex in this.cars){
+            await this.cars[carIndex].goOrStop();
+        }
+        await this.input.viewAttemptResult(this.cars);
+    }
+    async racingResult(){
+        this.input.viewRacingResult(await this.judgeWinnerCar());
+    }
+    async judgeWinnerCar(){
+        const maxDistance = Math.max(...this.cars.map(car => car.distance)); // 최대 distance 값 찾기
+        return await this.carsToStringList(this.cars.filter(car => car.distance === maxDistance)); // 최대 값과 같은 객체만 필터링하여 새 리스트 반환
+    }
+    async carsToStringList(winnerCar){
+        let stringCar = [];
+        for(let car of winnerCar){
+            stringCar.push(car.name);
+        }
+        return stringCar;
+    }
     
 }
 
