@@ -1,5 +1,5 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
-import Car from "../src/Car";
+import Car from "../src/model/Car.js";
 
 const createCar = (name) => new Car(name);
 

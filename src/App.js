@@ -1,5 +1,5 @@
-import Input from "./Input.js";
-import RacingGame from "./RacingGame.js";
+import Input from "./view/Input.js";
+import RacingGame from "./model/RacingGame.js";
 
 class App {
   input;

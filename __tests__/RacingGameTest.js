@@ -1,5 +1,5 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
-import RacingGame from "../src/RacingGame";
+import RacingGame from "../src/model/RacingGame.js";
 
 const mockGame = (repeatCount, cars) => {
   const game = new RacingGame(repeatCount, cars);

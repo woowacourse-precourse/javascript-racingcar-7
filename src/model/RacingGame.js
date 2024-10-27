@@ -1,5 +1,5 @@
 import Car from "./Car.js";
-import Output from "./Output.js";
+import Output from "../view/Output.js";
 
 export default class RacingGame {
   repeatCount;
