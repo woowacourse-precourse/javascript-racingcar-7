@@ -1,7 +1,7 @@
 import InputHandler from "./utils/InputHandler.js";
 import OutputHandler from "./utils/OutputHandler.js";
 import InputValidator from "./utils/InputValidator.js";
-import PlayingGame from "./racingcar/PlayingGame.js";
+import RacingGame from "./racingcar/RacingGame.js";
 
 class App {
   constructor() {
@@ -20,7 +20,7 @@ class App {
       const attemptsInput = await this.inputHandler.getInput("시도할 횟수는 몇 회인가요?");
       const attempts = InputValidator.validateAttempts(attemptsInput);
 
-      const racingGame = new PlayingGame(carNames);
+      const racingGame = new RacingGame(carNames);
       racingGame.start(attempts);
 
     } catch (error) {

@@ -7,6 +7,7 @@ class InputValidator {
         }
 
         const uniqueNames = new Set(carNames);
+
         if (uniqueNames.size !== carNames.length) {
             throw new Error(ERROR_MESSAGES.DUPLICATE_NAME);
         }
