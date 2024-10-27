@@ -3,7 +3,7 @@ import ERRORS from "../constants/Errors.js";
 import { Console } from "@woowacourse/mission-utils";
 
 class InputViews {
-  staticCarNameInput() {
+  static carNameInput() {
     try {
       return Console.readLineAsync(MESSAGES.CAR_INPUT);
     } catch (error) {
@@ -11,7 +11,7 @@ class InputViews {
     }
   }
 
-  static TryCountInput() {
+  static tryCountInput() {
     try {
       return Console.readLineAsync(MESSAGES.TRY_COUNT);
     } catch (error) {
