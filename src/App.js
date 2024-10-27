@@ -35,10 +35,12 @@ class App {
       throw new Error("[ERROR]: 0은 입력할 수 없습니다.");
     }
 
+    Console.print("\n실행 결과");
+
     for (let i = 0; i < inputNum; i++) {
       this.race(raceCars);
+      this.printRaceResult(raceCars);
     }
-    console.log(raceCars);
   }
 
   race(raceCars) {
@@ -47,6 +49,13 @@ class App {
         raceCar.location += "-";
       }
     });
+  }
+
+  printRaceResult(raceCars) {
+    raceCars.forEach((raceCar) => {
+      Console.print(raceCar.name + " : " + raceCar.location);
+    });
+    Console.print("");
   }
 }
 
