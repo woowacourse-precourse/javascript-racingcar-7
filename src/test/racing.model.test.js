@@ -39,5 +39,21 @@ describe('RacingModel', () => {
         RacingModel.ERROR_MESSAGE.INPUT_CAN_NOT_BE_EMPTY,
       );
     });
+
+    it('주어진 시도 횟수가 음수인 경우 에러를 발생시켜야만 한다', () => {
+      const trialNumber = '-123';
+
+      expect(() => racingModel.setTrialNumber(trialNumber)).toThrow(
+        RacingModel.ERROR_MESSAGE.TRIAL_NUMBER_IS_POSITIVE_INTEGER,
+      );
+    });
+
+    it('주어진 시도 횟수가 정수가 아닌 경우 에러를 발생시켜야만 한다', () => {
+      const trialNumber = '0.123';
+
+      expect(() => racingModel.setTrialNumber(trialNumber)).toThrow(
+        RacingModel.ERROR_MESSAGE.TRIAL_NUMBER_IS_POSITIVE_INTEGER,
+      );
+    });
   });
 });

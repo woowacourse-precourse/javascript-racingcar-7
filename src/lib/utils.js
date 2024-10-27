@@ -16,3 +16,30 @@ export function isNotEmptyString(value) {
 export function isLengthLessThan(value, length) {
   return value.length <= length;
 }
+
+/**
+ *
+ * @param {string} value
+ * @returns {boolean}
+ */
+export function isNumericString(value) {
+  return !Number.isNaN(Number(value));
+}
+
+/**
+ *
+ * @param {string} value
+ * @returns {boolean}
+ */
+export function isPositiveNumericString(value) {
+  return Number(value) > 0;
+}
+
+/**
+ *
+ * @param {string} value
+ * @returns {boolean}
+ */
+export function isIntegerNumericString(value) {
+  return Number(value) === Math.trunc(Number(value));
+}

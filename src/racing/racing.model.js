@@ -1,5 +1,11 @@
 // @ts-check
-import { isLengthLessThan, isNotEmptyString } from '../lib/utils.js';
+import {
+  isIntegerNumericString,
+  isLengthLessThan,
+  isNotEmptyString,
+  isNumericString,
+  isPositiveNumericString,
+} from '../lib/utils.js';
 import Validator from '../lib/Validator.js';
 
 import { CarModel } from '../car/car.model.js';
@@ -14,6 +20,7 @@ export class RacingModel {
   static ERROR_MESSAGE = Object.freeze({
     INPUT_CAN_NOT_BE_EMPTY: '[ERROR] 빈 값은 입력할 수 없어요',
     CAR_NAME_LENGTH_IS_LESS_THAN_FIVE: '[ERROR] 자동차 이름은 5자 이하만 가능해요',
+    TRIAL_NUMBER_IS_POSITIVE_INTEGER: '[ERROR] 시도할 횟수는 양의 정수만 입력할 수 있어요',
   });
 
   /**
@@ -109,11 +116,38 @@ export class RacingModel {
 
   /**
    *
-   * @param {string} number
+   * @param {string} trialNumber
+   * @returns {boolean}
    */
-  setTrialNumber(number) {
-    this.#validateInput(number);
+  #isPositiveInteger(trialNumber) {
+    return (
+      isNumericString(trialNumber) &&
+      isIntegerNumericString(trialNumber) &&
+      isPositiveNumericString(trialNumber)
+    );
+  }
 
-    this.#trialNumber = Number(number);
+  /**
+   *
+   * @param {string} trialNumber
+   * @throws {Error}
+   */
+  #validateTrialNumber(trialNumber) {
+    new Validator()
+      .validate(trialNumber)
+      .with(this.#isNotEmpty, { message: RacingModel.ERROR_MESSAGE.INPUT_CAN_NOT_BE_EMPTY })
+      .with(this.#isPositiveInteger, {
+        message: RacingModel.ERROR_MESSAGE.TRIAL_NUMBER_IS_POSITIVE_INTEGER,
+      });
+  }
+
+  /**
+   *
+   * @param {string} trialNumber
+   */
+  setTrialNumber(trialNumber) {
+    this.#validateTrialNumber(trialNumber);
+
+    this.#trialNumber = Number(trialNumber);
   }
 }
