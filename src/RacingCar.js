@@ -38,7 +38,9 @@ class RacingCar {
 
 			this.carNamesAndNumberMap = await this.setCarNumberMap();
 			this.carNamesAndDashMap = await this.changeNumbersToDash();
+
 			this.printRunResults();
+			const winners = await this.calculateWinners();
 		} catch (error) {
 			throw new Error(`${error.message}`);
 		}
@@ -88,6 +90,24 @@ class RacingCar {
 			printOutput(result);
 			printOutput("");
 		});
+	}
+
+	async calculateWinners() {
+		const dashCounts = [];
+		let maxDashCount = 0;
+
+		this.carNamesAndDashMap.forEach(({ carName, carDashes }) => {
+			const dashCount = carDashes.reduce(
+				(count, dash) => count + (dash === "-" ? 1 : 0),
+				0
+			);
+			dashCounts.push({ carName, dashCount });
+			maxDashCount = Math.max(maxDashCount, dashCount);
+		});
+
+		return dashCounts
+			.filter(({ dashCount }) => dashCount === maxDashCount)
+			.map(({ carName }) => carName);
 	}
 }
 
