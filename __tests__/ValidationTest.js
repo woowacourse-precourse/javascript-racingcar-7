@@ -45,4 +45,27 @@ describe('유저 입력값 예외 처리를 검사하는 테스트', () => {
       expect(() => Validation.isNoDuplicated(parsedName)).toThrow(ERROR_PREFIX);
     }
   });
+
+  test.each([
+    ['woowa', false, '1개'],
+    ['woowa,tech', true, '2개'],
+    ['woowa,tech,코스', true, '3개'],
+    ['woo/wa', false, '1개'],
+  ])(
+    '자동차 이름이 2개 미만인 경우 예외 처리 테스트 (%s)',
+    (name, expected) => {
+      const ERROR_PREFIX = '[ERROR]';
+      const parsedName = RacingManager.parseCarNames(name);
+
+      if (expected) {
+        expect(() =>
+          Validation.hasMeetMinimalCompetition(parsedName),
+        ).not.toThrow();
+      } else {
+        expect(() => Validation.hasMeetMinimalCompetition(parsedName)).toThrow(
+          ERROR_PREFIX,
+        );
+      }
+    },
+  );
 });
