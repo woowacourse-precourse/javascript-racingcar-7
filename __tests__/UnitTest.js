@@ -107,18 +107,20 @@ describe('App 메서드 테스트', () => {
     });
   });
 
-  test('우승자 출력 테스트', () => {
-    const inputs = [['pobi'], ['pobi', 'woni']];
-    const expects = ['최종 우승자 : pobi', '최종 우승자 : pobi, woni'];
+  describe('print 메서드 테스트', () => {
+    test('우승자 출력 테스트', () => {
+      const inputs = [['pobi'], ['pobi', 'woni']];
+      const expects = ['최종 우승자 : pobi', '최종 우승자 : pobi, woni'];
 
-    inputs.forEach((input, index) => {
-      const logSpy = getLogSpy();
+      inputs.forEach((input, index) => {
+        const logSpy = getLogSpy();
 
-      app.printWinners(input);
+        app.printWinners(input);
 
-      expect(logSpy).toHaveBeenCalledWith(
-        expect.stringContaining(expects[index]),
-      );
+        expect(logSpy).toHaveBeenCalledWith(
+          expect.stringContaining(expects[index]),
+        );
+      });
     });
   });
 });
