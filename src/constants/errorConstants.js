@@ -8,5 +8,5 @@ export const ERROR_MESSAGES = {
   EMPTY_INPUT_ROUND:
     "[ERROR] 숫자를 입력해 주세요. 빈 입력은 유효하지 않습니다.",
   INVALID_ROUND_NUMBER:
-    "[ERROR] 유효하지 않은 시도 횟수입니다. 숫자만 입력해 주세요.",
+    "[ERROR] 유효하지 않은 시도 횟수입니다. 양의 정수만 입력해 주세요.",
 };

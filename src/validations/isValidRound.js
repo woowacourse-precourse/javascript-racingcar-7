@@ -4,7 +4,9 @@ export function isValidRound(round) {
   if (round === "") {
     throw new Error(ERROR_MESSAGES.EMPTY_INPUT_ROUND);
   }
-  if (!(Number(round, 10) > 0)) {
+  const checkRound = Number(round);
+  
+  if (isNaN(checkRound) || checkRound <= 0 || !Number.isInteger(checkRound)) {
     throw new Error(ERROR_MESSAGES.INVALID_ROUND_NUMBER);
   }
 }

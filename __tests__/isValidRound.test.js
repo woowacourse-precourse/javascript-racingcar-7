@@ -11,15 +11,22 @@ describe("isValidRound 함수 테스트 : ", () => {
     },
     {
       description:
-        "숫자를 입력하지 않은 경우 INVALID_ROUND_NUMBER 에러를 발생시킨다.",
+        "양의 정수를 입력하지 않은 경우 INVALID_ROUND_NUMBER 에러를 발생시킨다.",
       input: "p",
       expectedError:
         "[ERROR] 유효하지 않은 시도 횟수입니다. 숫자만 입력해 주세요.",
     },
     {
       description:
-        "숫자를 입력하지 않은 경우 INVALID_ROUND_NUMBER 에러를 발생시킨다.",
+        "양의 정수를 입력하지 않은 경우 INVALID_ROUND_NUMBER 에러를 발생시킨다.",
       input: "1-",
+      expectedError:
+        "[ERROR] 유효하지 않은 시도 횟수입니다. 숫자만 입력해 주세요.",
+    },
+    {
+      description:
+        "양의 정수를 입력하지 않은 경우 INVALID_ROUND_NUMBER 에러를 발생시킨다.",
+      input: "1.4",
       expectedError:
         "[ERROR] 유효하지 않은 시도 횟수입니다. 숫자만 입력해 주세요.",
     },
