@@ -15,6 +15,10 @@ class CarRace {
     return this.parseCarNames(input);
   }
 
+  async getMoveAttemptsFromUserInput() {
+    return await InputView.readMoveAttempts();
+  }
+
   parseCarNames(input) {
     return input.split(",");
   }
