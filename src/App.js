@@ -95,7 +95,7 @@ class App {
       if (winnerList.length == 1) {
         Console.print("최종 우승자 : " + winnerList[0]);
       } else {
-        Console.print("최종 우승자 :" + winnerList.join(", "));
+        Console.print("최종 우승자 : " + winnerList.join(", "));
       }
     }
 
