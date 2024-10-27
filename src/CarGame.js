@@ -1,41 +1,27 @@
-import { Random } from "@woowacourse/mission-utils";
+import Car from "./Car";
 
 class CarGame {
-    carNames;
-    tryCount;
-    runCountInfo;
+    #cars;
+    #tryCount;
 
     constructor(carNames, tryCount) {
-        this.carNames = carNames;
-        this.tryCount = tryCount;
-        this.runCountInfo = Array.from({ length: carNames.length }, () => Array(tryCount).fill(0));
-        this.carCount = this.carNames.length;
+        this.#cars = carNames.map((name) => new Car(name));
+        this.#tryCount = tryCount;
     }
 
     startRace() {
         const resultLogs = [];
-        let tryCnt = 0;
-        while (tryCnt < this.tryCount) {
-            for (let i = 0; i < this.carCount; i++) {
-                const randomNumber = Random.pickNumberInRange(0, 9);
-                if (randomNumber >= 4) {
-                    this.runCountInfo[i][tryCnt] = 1;
-                }
+
+        for (let turn = 0; turn < this.#tryCount; turn++) {
+            for (let carIdx = 0; carIdx < this.#cars.length; carIdx++) {
+                this.#cars[carIdx].tryToMove();
+
+                const carName = this.#cars[carIdx].getName();
+                const carPosition = this.#cars[carIdx].getPosition();
+
+                resultLogs.push(`${carName} : ${"-".repeat(carPosition)}`);
             }
 
-            tryCnt++;
-        }
-
-        for (let i = 0; i < this.carCount; i++) {
-            for (let j = 1; j < this.tryCount; j++) {
-                this.runCountInfo[i][j] += this.runCountInfo[i][j - 1];
-            }
-        }
-
-        for (let i = 0; i < this.tryCount; i++) {
-            for (let j = 0; j < this.carCount; j++) {
-                resultLogs.push(`${this.carNames[j]} : ${"-".repeat(this.runCountInfo[j][i])}`);
-            }
             resultLogs.push("");
         }
 
@@ -43,18 +29,10 @@ class CarGame {
     }
 
     pickWinner() {
-        let winner = [];
-        let maxCnt = -1;
-        for (let i = 0; i < this.carCount; i++) {
-            const finalCnt = this.runCountInfo[i][this.tryCount - 1];
-            if (maxCnt < finalCnt) {
-                maxCnt = finalCnt;
-                winner = [this.carNames[i]];
-            } else if (maxCnt === finalCnt) {
-                winner.push(this.carNames[i]);
-            }
-        }
-
+        const maxPosition = Math.max(...this.#cars.map((car) => car.getPosition()));
+        const winner = this.#cars
+            .filter((car) => car.getPosition() === maxPosition)
+            .map((car) => car.getName());
         return winner;
     }
 }
