@@ -49,6 +49,13 @@ class App {
     return MissionUtils.Random.pickNumberInRange(0, 9);
   }
 
+  printCurrent(names, currentMove){
+    names.map((_, i) => {
+      MissionUtils.Console.print(`${names[i]} : ${currentMove[i]}`);
+    })
+    MissionUtils.Console.print('\n');
+  }
+
   play(names, currentMove){
     names.forEach((_, index) => {
       let randomNumber = this.getRandomNumber();
@@ -56,6 +63,7 @@ class App {
         currentMove[index] += '-';
       }
     })
+    this.printCurrent(names, currentMove);
   }
 }
 
