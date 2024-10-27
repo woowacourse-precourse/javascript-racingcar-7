@@ -16,4 +16,8 @@ export const ERROR_MESSAGE = {
   invalidWordLength: "이름은 5자 이하로 입력해주세요.",
   duplicateName: "중복된 이름은 입력할 수 없습니다. 이름을 다시 확인해주세요.",
   emptyName: ",로 구분된 이름 중 빈 값이 있습니다. 이름을 다시 확인해주세요.",
+  notANumber: "입력값이 숫자가 아닙니다. 양의 정수만 입력해주세요.",
+  notAnInteger: "입력값이 정수가 아닙니다. 양의 정수만 입력해주세요.",
+  negativeNumber: "음수는 입력할 수 없습니다. 양의 정수만 입력해주세요.",
+  zeroNotAllowed: "0은 입력할 수 없습니다. 1 이상의 정수만 입력해주세요.",
 };

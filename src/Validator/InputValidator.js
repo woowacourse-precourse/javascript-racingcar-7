@@ -1,5 +1,6 @@
 import isEmptyInput from "./isEmptyInput.js";
 import isValidNamesList from "./isValidNamesList.js";
+import isValidNumber from "./isValidNumber.js";
 import isWhitespacePresent from "./isWhitespacePresent.js";
 
 class InputValidator {
@@ -12,6 +13,7 @@ class InputValidator {
   }
   static validateTryNumber(tryNumber) {
     isEmptyInput(tryNumber);
+    isValidNumber(tryNumber);
   }
 }
 

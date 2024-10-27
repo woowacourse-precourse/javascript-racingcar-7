@@ -2,7 +2,6 @@ import { ERROR_MESSAGE } from "../Constants/constant.js";
 import errorHandler from "../Error/errorHandler.js";
 
 const isInvalidWordLength = (car) => {
-  console.log(car.length);
   if (car.length > 6) {
     return true;
   }
