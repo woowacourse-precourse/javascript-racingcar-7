@@ -97,7 +97,8 @@ const Main = async () => {
       );
 
       // 우승자 이름 배열을 생성하고 출력
-      const isWinnerName = isWinnerCar.map((car) => car.name);
+      const isWinnerName = isWinnerCar.map((car) => car.name).join(", ");
+      Console.print(`최종 우승자 : ${isWinnerName}`);
     };
 
     getWinner();
