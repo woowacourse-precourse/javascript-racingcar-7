@@ -30,14 +30,14 @@ class App {
 
   validateCarNames(names) {
     names.forEach((name) => {
-      if (name.length > 5) throw new Error("[ERROR] 자동차 이름은 최대 5자 이하이어야 합니다.");
+      if (name.length > 5) throw new Error("[ERROR]");
     });
   }
 
   validateMoveCount(count) {
     const parsedCount = parseInt(count);
     if (!Number.isInteger(parsedCount) || parsedCount <= 0) {
-      throw new Error("[ERROR] 시도 횟수는 1 이상의 정수여야 합니다.");
+      throw new Error("[ERROR]");
     }
   }
 
