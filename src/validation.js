@@ -31,7 +31,7 @@ class InputValidation {
       return;
     }
 
-    throw new Error("[Error]: 시도할 횟수는 0 이상의 정수를 입력해주세요.");
+    throw new Error("[ERROR]: 시도할 횟수는 0 이상의 정수를 입력해주세요.");
   }
 }
 

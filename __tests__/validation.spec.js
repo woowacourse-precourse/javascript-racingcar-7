@@ -18,4 +18,45 @@ describe("validation 클래스 테스트", () => {
       ).toThrow("[ERROR]");
     });
   });
+  describe("입력받은 라운드 테스트", () => {
+    it("입력받은 라운드가 숫자가 아니라면 에러를 반환한다.", () => {
+      const mockAttemptLimitList = [".", "숫자가아닌문자"].map(Number);
+
+      mockAttemptLimitList.forEach((mockAttemptLimit) => {
+        expect(() =>
+          InputValidation.validateAttemptLimit(mockAttemptLimit)
+        ).toThrow("[ERROR]");
+      });
+    });
+
+    it("입력받은 라운드가 정수가 아니라면 에러를 반환한다.", () => {
+      const mockAttemptLimitList = [1.1, 0.2];
+
+      mockAttemptLimitList.forEach((mockAttemptLimit) => {
+        expect(() =>
+          InputValidation.validateAttemptLimit(mockAttemptLimit)
+        ).toThrow("[ERROR]");
+      });
+    });
+
+    it("입력받은 라운드가 0 미만이라면 에러를 반환한다.", () => {
+      const mockAttemptLimitList = [-1];
+
+      mockAttemptLimitList.forEach((mockAttemptLimit) => {
+        expect(() =>
+          InputValidation.validateAttemptLimit(mockAttemptLimit)
+        ).toThrow("[ERROR]");
+      });
+    });
+
+    it("입력받은 라운드가 infinity나 nan이면 에러를 반환한다.", () => {
+      const mockAttemptLimitList = [NaN, Infinity];
+
+      mockAttemptLimitList.forEach((mockAttemptLimit) => {
+        expect(() =>
+          InputValidation.validateAttemptLimit(mockAttemptLimit)
+        ).toThrow("[ERROR]");
+      });
+    });
+  });
 });
