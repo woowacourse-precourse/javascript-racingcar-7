@@ -1,7 +1,7 @@
-import {Console} from "@woowacourse/mission-utils";
-import {CarsInput} from "./CarsInput.js";
-import {NumberInput} from "./NumberInput.js";
-
+import { Console } from "@woowacourse/mission-utils";
+import { CarsInput } from "./CarsInput.js";
+import { NumberInput } from "./NumberInput.js";
+import { Racing } from "./Racing.js";
 
 class App {
   async run() {
@@ -12,6 +12,10 @@ class App {
     const numberInput = new NumberInput();
     const n = await numberInput.getInput();
     Console.print(n);
+
+    const racing = new Racing(cars);
+
+    racing.race(n);
   }
 }
 
