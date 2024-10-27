@@ -1,7 +1,6 @@
 import { Console, Random } from "@woowacourse/mission-utils";
 
 
-// input 을 받는 클래스 정의
 class InputHandler {
   async getInput(message) {
     return await Console.readLineAsync(message);
@@ -12,13 +11,36 @@ class InputHandler {
   }
 }
 
-// 각 자동차의 랜덤 넘버
 class RandomNumberGenerator {
   static pickNumberInRange(min = 0, max = 9) {
     return Random.pickNumberInRange(min, max);
   }
 }
 
+class PlayingCar {
+  constructor(name) {
+    if (!name || name.trim() === "") {
+      throw new Error("[ERROR] 자동차 이름은 빈 문자열일 수 없습니다.");
+    }
+    this.name = name;
+    this.position = 0;
+  }
+
+  move() {
+    const randomNumber = RandomNumberGenerator.pickNumberInRange();
+    if (randomNumber >= 4) {
+      this.position += 1;
+    }
+  }
+
+  getPosition() {
+    return this.position;
+  }
+
+  getName() {
+    return this.name;
+  }
+}
 
 class App {
   constructor() {
@@ -34,10 +56,13 @@ class App {
       const carNames = input.split(",").map((name) => name.trim());
 
       this.validateCarNames(carNames); // 자동차 이름 검증
+      this.createCars(carNames);
 
       const attemptsInput = await this.inputHandler.getInput("시도할 횟수는 몇 회인가요?");
       const attempts = this.parseAttempts(attemptsInput); // 시도 횟수 검증
+      this.raceCars(attempts);
 
+      this.printWinners();
     } catch (error) {
       Console.print(error.message);
       throw error; // 예외를 다시 던져 테스트에서 감지 가능하게 함
@@ -62,6 +87,33 @@ class App {
     return attempts;
   }
 
+  createCars(carNames) {
+    this.cars = carNames.map((name) => new PlayingCar(name));
+  }
+
+  raceCars(attempts) {
+    for (let i = 0; i < attempts; i++) {
+      this.cars.forEach((car) => car.move());
+      this.printRaceStatus();
+    }
+  }
+
+  printRaceStatus() {
+    this.cars.forEach((car) => {
+      const position = "-".repeat(car.getPosition());
+      this.inputHandler.printMessage(`${car.getName()} : ${position}`);
+    });
+    this.inputHandler.printMessage(""); // 줄바꿈
+  }
+
+  printWinners() {
+    const maxPosition = Math.max(...this.cars.map((car) => car.getPosition()));
+    const winners = this.cars
+        .filter((car) => car.getPosition() === maxPosition)
+        .map((car) => car.getName());
+
+    this.inputHandler.printMessage(`최종 우승자 : ${winners.join(", ")}`);
+  }
 }
 
 export default App;
