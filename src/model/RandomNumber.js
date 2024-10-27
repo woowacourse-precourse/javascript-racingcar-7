@@ -3,7 +3,8 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 
 class RandomNumber{
   async RNumber(){
-    const randomnumber=MissionUtils.Random.pickNumberInRange(0,9);
+    const randomnumber=MissionUtils.Random.pickNumberInRange(0, 9);
+
     if(randomnumber >= 4){
       return 1;
     }
