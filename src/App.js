@@ -10,6 +10,11 @@ class App {
           throw new Error('[ERROR]');
         }
       });
+      const inputNumber = await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?');
+      const movingNumber = Number(inputNumber);
+      if (Number.isNaN(movingNumber)) {
+        throw new Error('[ERROR]');  
+      }
     } catch {
       MissionUtils.Console.print('[ERROR]');
       throw new Error('[ERROR]');
