@@ -10,7 +10,7 @@ class Validate{
   nameLength(input){
     const cars = input.split(',');
     for (let car of cars){
-      if(car.length>=6 || car.length < 1){
+      if(car.length>5){
         throw new Error(ERROR.INPUT_STRING_SIZE_ERROR);
       }
     }
