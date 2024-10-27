@@ -1,4 +1,5 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
+import { ErrorMessages, RandomConstant, NAME_MAX_LENGTH, NAME_MIN_LENGTH, HYPHEN } from './Constant.js';
 
 class RacingCar {
   #name;
@@ -8,7 +9,7 @@ class RacingCar {
   }
 
   #validateName(name) {
-    if (name.length === 0 || name.length > 5) throw new Error("[Error] 유효한 자동차 이름이 아닙니다.");
+    if (name.length < NAME_MIN_LENGTH || name.length > NAME_MAX_LENGTH) throw new Error(ErrorMessages.INVALID_CAR_NAMES_ERROR);
     return name;
   }
 
@@ -21,11 +22,11 @@ class RacingCar {
   }
 
   move() {
-    if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) this.#dist++;
+    if (MissionUtils.Random.pickNumberInRange(RandomConstant.MIN, RandomConstant.MAX) >= RandomConstant.THRESHOLD) this.#dist++;
   }
 
   result() {
-    return `${this.#name} : ${'-'.repeat(this.#dist)}`;
+    return `${this.#name} : ${HYPHEN.repeat(this.#dist)}`;
   }
 
 }
