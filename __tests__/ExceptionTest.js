@@ -12,7 +12,7 @@ const mockQuestions = (inputs) => {
 
 describe("자동차 경주 예외 처리 테스트", () => {
     test("자동차 이름이 5자를 초과하는 경우", async () => {
-        const inputs = ["pobi,javaji"];
+        const inputs = ["pobi,javaji", "2"];
         mockQuestions(inputs);
 
         const app = new App();
@@ -20,7 +20,7 @@ describe("자동차 경주 예외 처리 테스트", () => {
     });
 
     test("자동차 이름이 빈 문자열인 경우", async () => {
-        const inputs = ["pobi,,woni"];
+        const inputs = ["pobi,,woni", "3"];
         mockQuestions(inputs);
 
         const app = new App();
