@@ -53,7 +53,7 @@ class AttemptCounter {
 
     // 이동 횟수가 소수점일 경우
     validateIsDecimalNumber() {
-        if(!Number.isInteger(this.#attemptCount)) {
+        if(!Number.isInteger(Number(this.#attemptCount))) {
             throw new AttemptCounterError(ERROR_MESSAGE.input_attempt_count_decimal_number);
         }
     }
