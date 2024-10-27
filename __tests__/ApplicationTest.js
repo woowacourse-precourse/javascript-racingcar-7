@@ -77,6 +77,55 @@ describe('printRaceResult', () => {
   });
 })
 
+describe('printWinner', () => {
+  let app;
+  let printSpy;
+
+  beforeEach(() => {
+    app = new App();
+    printSpy = jest.spyOn(Console, 'print').mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    printSpy.mockRestore();
+  });
+
+  test('최종 우승자가 하나일 때', () => {
+    app.carNameObj = {
+      pobi: 3,
+      woni: 2,
+      jun: 1,
+    };
+
+    app.printWinner();
+
+    expect(printSpy).toHaveBeenCalledWith("최종 우승자 : pobi");
+  });
+
+  test('최종 우승자가 여러 명일 때', () => {
+    app.carNameObj = {
+      pobi: 3,
+      woni: 3,
+      jun: 1,
+    };
+
+    app.printWinner();
+
+    expect(printSpy).toHaveBeenCalledWith("최종 우승자 : pobi, woni");
+  });
+
+  test('우승자가 없을 때', () => {
+    app.carNameObj = {
+      pobi: 0,
+      woni: 0,
+      jun: 0,
+    };
+
+    expect(() => app.printWinner()).toThrow("[ERROR]");
+    expect(printSpy).toHaveBeenCalledWith("우승자가 없습니다.");
+  });
+});
+
 // describe("자동차 경주", () => {
 //   test("기능 테스트", async () => {
 //     // given
