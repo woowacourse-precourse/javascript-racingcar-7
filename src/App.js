@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 
 class App {
   carObject = {};
@@ -45,7 +45,7 @@ class App {
     for (let i = 0; i < numberInput; i++) {
       Object.keys(this.carObject).forEach((carName) => {
         this.carObject[carName] += this.moveOrStop(
-          Math.floor(Math.random() * 10) // 0~9까지의 랜덤값
+          Random.pickNumberInRange(0, 9) // 0~9까지의 랜덤값
         );
       });
       this.printRaceRound(this.carObject);
