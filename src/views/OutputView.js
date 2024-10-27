@@ -5,6 +5,10 @@ class OutputView {
     Console.print('');
   }
 
+  static printInput(input) {
+    Console.print(input);
+  }
+
   static printRun() {
     Console.print('실행 결과');
   }
