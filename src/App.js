@@ -59,6 +59,10 @@ class App {
       }
     }
 
+    if (carObjs[0] === finalWinner) {
+      finalWinners.unshift(carObjs[0].name);
+    }
+
     MissionUtils.Console.print(`최종 우승자 : ${finalWinners.join(", ")}`);
   }
 }
