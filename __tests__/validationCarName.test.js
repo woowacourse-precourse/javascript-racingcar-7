@@ -27,3 +27,10 @@ test('마지막이 쉼표로 입력되었을 때 에러 테스트', () => {
     validateCarName(carNameList);
   }).toThrow('[ERROR]');
 });
+
+test('공백이 입력되었을 때 에러 테스트', () => {
+  expect(() => {
+    const carNameList = [' ', '  ', '   ', ' ', ''];
+    validateCarName(carNameList);
+  }).toThrow('[ERROR]');
+});
