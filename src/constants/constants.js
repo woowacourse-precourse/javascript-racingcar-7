@@ -21,6 +21,7 @@ export const CAR_RACE = {
 export const ERROR_MESSAGES = {
   DUPLICATE_CAR_NAMES: "[ERROR] 자동차 이름은 중복될 수 없습니다.",
   CAR_NAME_TOO_LONG: "[ERROR] 경주할 자동차 이름은 5자 이하여야 합니다.",
+  EMPTY_STRING: "[ERROR] 자동차 이름 목록에 빈 문자열이 포함되어 있습니다.",
   ATTEMPTS_MUST_BE_NUMERIC: "[ERROR] 시도 횟수는 숫자로 작성해야합니다.",
   INVALID_NAME_SEPARATOR: "[ERROR] 자동차 이름은 쉼표(,)를 기준으로 구분해야합니다.",
   MINIMUM_TWO_CARS_REQUIRED: "[ERROR] 경주할 자동차는 2개 이상이여야 진행할 수 있습니다.",

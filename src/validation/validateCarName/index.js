@@ -3,6 +3,7 @@ import { validateCarNameLength } from "./validateCarNameLength.js";
 import { validateCarNameSeparator } from "./validateCarNameSeparator.js";
 import { validateDuplicateCarNames } from "./validateDuplicateCarNames.js";
 import { validateCarNameOnlyLetters } from "./validateCarNameOnlyLetters.js";
+import { validateCarNameEmptyString } from "./validateCarNameEmptyString.js";
 
 export function validateCarName(inputCarName) {
   const inputCarNameArray = inputCarName.split(",");
@@ -11,4 +12,5 @@ export function validateCarName(inputCarName) {
   validateCarNameOnlyLetters(inputCarNameArray);
   validateCarNameCount(inputCarNameArray);
   validateDuplicateCarNames(inputCarNameArray);
+  validateCarNameEmptyString(inputCarNameArray);
 }
