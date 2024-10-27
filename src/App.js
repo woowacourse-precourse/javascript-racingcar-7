@@ -3,11 +3,13 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 class App {
   async run() {
     try {
-      // 자동차 이름을 입력받기
+      // 자동차 이름과 시도 횟수를 입력받기
       const carNames = await this.getCarNames();
+      const attemptCount = await this.getAttemptCount();
 
-      // 입력된 자동차 이름 확인
+      // 입력된 값 확인
       MissionUtils.Console.print(`자동차 이름: ${carNames.join(", ")}`);
+      MissionUtils.Console.print(`시도 횟수: ${attemptCount}`);
     } catch (error) {
       // 오류 발생 시 에러 메시지 출력
       MissionUtils.Console.print(error.message);
@@ -31,6 +33,21 @@ class App {
     });
 
     return carNames;
+  }
+
+  // 시도 횟수 입력
+  async getAttemptCount() {
+    const input = await MissionUtils.Console.readLineAsync(
+      "시도할 횟수는 몇 회인가요?\n"
+    );
+    const attemptCount = Number(input);
+
+    // 시도 횟수는 0보다 큰 숫자여야 함
+    if (isNaN(attemptCount) || attemptCount <= 0) {
+      throw new Error("[ERROR] 시도 횟수는 0보다 큰 숫자여야 합니다.");
+    }
+
+    return attemptCount;
   }
 }
 
