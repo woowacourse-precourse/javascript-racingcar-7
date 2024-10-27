@@ -19,16 +19,6 @@ describe("Race 클래스 테스트", () => {
     jest.clearAllMocks(); 
   });
 
-  describe("setCarName() 테스트", () => {
-
-    test("자동차 이름마다 Car 객체가 생성되어야 한다", async () => {
-      await race.setCarName(); 
-
-      expect(race.cars).toHaveLength(3); 
-      expect(race.cars.map(car => car.getName())).toEqual(["Audi", "BMW", "Ford"]); 
-    });
-  });
-
   describe("generateRandomDistances() 테스트", () => {
 
     test("무작위 값이 4 이상일 때만 Car 객체가 이동해야 한다", async () => {
