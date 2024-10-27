@@ -57,10 +57,8 @@ class App {
     Console.print(`${PRINT_MESSAGE.WINNERS}${winners.join(', ')}`);
   }
 
-  moveCar(car, canMoveForward) {
-    if (canMoveForward) {
-      car.position += 1;
-    }
+  moveCar(car) {
+    car.position += 1;
   }
 
   getRaceResult(carNames, moveAttemptCount) {
@@ -78,7 +76,9 @@ class App {
     carsData.forEach((car) => {
       const canMove = this.getMoveSignal();
 
-      this.moveCar(car, canMove);
+      if (canMove) {
+        this.moveCar(car);
+      }
     });
   }
 
