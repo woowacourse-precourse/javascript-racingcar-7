@@ -1,9 +1,11 @@
-import { Random, Console } from "@woowacourse/mission-utils";
+import { Random } from "@woowacourse/mission-utils";
+import OutputView from "./view/OutputView";
 
 class RacingCalc {
   constructor(carName) {
     this.carArr = carName;
     this.moveCntArr = new Array(this.carArr.length).fill(0);
+    this.output = new OutputView();
   }
 
   moveRacing(attemptCnt) {
@@ -12,11 +14,9 @@ class RacingCalc {
         let random = Random.pickNumberInRange(0, 9);
         if (random >= 4) this.moveCntArr[carIdx]++;
 
-        Console.print(
-          `${this.carArr[carIdx]} : ${"-".repeat(this.moveCntArr[carIdx])}`
-        );
+        this.output.printCurRacing(this.carArr, carIdx, this.moveCntArr);
       }
-      Console.print("");
+      this.output.printGap();
     }
     this.printWinner();
   }
@@ -30,7 +30,8 @@ class RacingCalc {
       winner.push(this.carArr[winnerIdx]);
       winnerIdx = this.moveCntArr.indexOf(maxScore, winnerIdx + 1);
     }
-    Console.print(`최종 우승자 : ${winner.join(", ")}`);
+
+    this.output.printWinner(winner);
   }
 }
 
