@@ -56,7 +56,7 @@ describe('Car 클래스', () => {
     const app = new App();
 
     const cars = app.createCars(input);
-    
+
     // 객체의 갯수가 input과 같은지 확인
     expect(cars.length).toBe(input.length);
 
@@ -113,6 +113,48 @@ describe('자동차 이름 문자열 분리', () => {
     const app = new App();
 
     expect(() => app.validateSplitCarNames(input).toThrow('[ERROR] 이름은 5글자를 넘을 수 없습니다!'));
+  });
+});
+
+describe('회차 입력', () => {
+  test('공백입력', () => {
+    const input = '';
+
+    const app = new App();
+
+    expect(() => app.validateRoundNumber(input).toThrow('[ERROR] 공백을 입력할 수 없습니다!'));
+  });
+
+  test('숫자가 아닌 값 입력', () => {
+    const input = 'a';
+
+    const app = new App();
+
+    expect(() => app.validateRoundNumber(input).toThrow('[ERROR] 숫자를 입력해야 합니다!'));
+  });
+  
+  test('소수점 입력', () => {
+    const input = 0.1;
+
+    const app = new App();
+
+    expect(() => app.validateRoundNumber(input).toThrow('[ERROR] 소수는 입력할 수 없습니다.'));
+  });
+  
+  test('음수 입력', () => {
+    const input = -1;
+
+    const app = new App();
+
+    expect(() => app.validateRoundNumber(input).toThrow('[ERROR] 음수는 입력할 수 없습니다.'));
+  });
+
+  test('0 입력', () => {
+    const input = 0;
+
+    const app = new App();
+
+    expect(() => app.validateRoundNumber(input).toThrow('[ERROR] 최소 1번의 ROUND는 실행해야합니다.'));
   });
 });
 
