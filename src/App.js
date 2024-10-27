@@ -12,16 +12,16 @@ class App {
 
     const carNames = inputCarNames.split(",");
 
-    const uniqueCarNames = [];
+    const RaceCar = [];
 
     carNames.forEach((carName) => {
-      if (uniqueCarNames.includes(carName)) {
+      if (RaceCar.some((car) => car.Name === carName)) {
         throw new Error("[ERROR]: 같은 이름은 불가능합니다.");
       }
       if (carName.length > 5) {
         throw new Error("[ERROR]: 이름은 5자 이하만 가능합니다.");
       }
-      uniqueCarNames.push(carName);
+      RaceCar.push({ name: carName, location: "" });
     });
 
     const inputNum = await Console.readLineAsync(
