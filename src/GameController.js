@@ -54,8 +54,11 @@ class GameController {
   }
 
   validateNumber(attempts) {
-    const number = Number(attempts);
+    if (!attempts) {
+      throw new Error('[ERROR] 시도 횟수를 입력하세요.');
+    }
 
+    const number = Number(attempts);
     if (Number.isNaN(number) || !Number.isInteger(number) || number < 1) {
       throw new Error('[ERROR] 횟수는 1 이상의 정수로 입력해야 합니다.');
     }
