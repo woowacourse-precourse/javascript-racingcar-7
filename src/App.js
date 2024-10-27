@@ -50,13 +50,13 @@ class App {
   movingForward(cars) {
     for (let i = 0; i < cars.length; i++) {
       let randomNumber = Random.pickNumberInRange(0, 9);
-      this.forwardCondition(randomNumber,cars,i)
+      this.getDistance(randomNumber,cars,i)
     }
     this.printProgress(cars);
     Console.print("");
   }
 
-  forwardCondition(randomNumber, cars,i){
+  getDistance(randomNumber, cars,i){
     if (randomNumber >= 4) {
       cars[i].distance += "-";
     }
@@ -71,7 +71,6 @@ class App {
   findWinner(cars) {
     let maxDistanceLength = 0;
     let winners = [];
-
     cars.forEach((car) => {
       let distanceLength = car.distance.length;
       if (distanceLength > maxDistanceLength) {
