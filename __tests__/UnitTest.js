@@ -62,11 +62,11 @@ describe("조건에 따라 에러 메세지와 함께 예외 처리를 발생시
   const errorMessage = "[ERROR] 에러 메세지입니다.";
 
   test("조건이 true이므로 에러 메세지와 함께 예외 처리를 합니다.", () => {
-    expect(() => assertCondition(true, errorMessage)).toThrow(errorMessage);
+    expect(() => assertCondition([{ condition: true, message: errorMessage }])).toThrow(errorMessage);
   });
 
   test("조건이 false이므로 예외 처리가 발생하지 않습니다.", () => {
-    expect(() => assertCondition(false, errorMessage)).not.toThrow();
+    expect(() => assertCondition([{ condition: false, message: errorMessage }])).not.toThrow();
   });
 });
 
