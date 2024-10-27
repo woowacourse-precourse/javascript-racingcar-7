@@ -41,6 +41,12 @@ class RacingGame {
         });
     }
 
+    getRacingWinners() {
+        const maxValue = Math.max(...Object.values(this.#racingStatus));
+        const winners = Object.entries(this.#racingStatus).filter(([key, value]) => value === maxValue).map(([key]) => key);
+        return winners;
+    }
+
 }
 
 export default RacingGame;

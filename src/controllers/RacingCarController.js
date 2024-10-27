@@ -14,11 +14,14 @@ class RacingCarController {
 
     #racingStatus;
 
+    #winners;
+
     async racingCarProcess() {
         await this.getInputCarNames();
         await this.getInputAttemptCount();
         this.getExecutionResult();
         this.printExecutionResult();
+        this.printRacingCarWinners();
     }
 
     async getInputCarNames() {
@@ -34,6 +37,7 @@ class RacingCarController {
     getExecutionResult() {
         this.#racingGame = new RacingGame(this.#cars, this.#attemptCount);
         this.#racingStatus = this.#racingGame.getExecutionResults();
+        this.#winners = this.#racingGame.getRacingWinners();
     }
 
     printExecutionResult() {
@@ -48,6 +52,10 @@ class RacingCarController {
             OutputView.outputExecutionRoundResult(car, status)
         );
         OutputView.outputPrintLine();
+    }
+
+    printRacingCarWinners() {
+        OutputView.outputRacingCarWinners(this.#winners);
     }
 }
 

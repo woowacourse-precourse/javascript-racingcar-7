@@ -6,13 +6,17 @@ import { RACING_CAR_MESSAGES } from "../constants/racingCarMessages.js";
  */
 
 export const OutputView = {
-    
+
     outputExecutionResults() {
         Console.print(RACING_CAR_MESSAGES.output_execution_results);
     },
 
     outputExecutionRoundResult(car, status) {
         Console.print(RACING_CAR_MESSAGES.output_execution_round_results(car, status));
+    },
+
+    outputRacingCarWinners(winners) {
+        Console.print(RACING_CAR_MESSAGES.output_racing_car_winner(winners));
     },
 
     outputPrintLine() {

@@ -7,4 +7,5 @@ export const RACING_CAR_MESSAGES = {
     output_execution_results: '실행 결과',
     output_final_winner: '최종 우승자',
     output_execution_round_results: (car, status) => `${car} : ${'-'.repeat(status || 0)}`,
+    output_racing_car_winner: (winners) => `최종 우승자 : ${winners.join(', ')}`,
 }
