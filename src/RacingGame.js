@@ -5,39 +5,48 @@ import {Car} from "./Car.js";
 
 //입력 -> 전처리 -> 레이싱 -> 우승자 산정 -> 출력
 class RacingGame {
-    tryNum = 0
-
-    async start() {
-        const car = new Car()
-        const fistPrompt = await this.input(PROMPT_MESSAGE.FIRST)
-        const carArr = car.setCar(fistPrompt)
-        const secondPrompt = await this.input(PROMPT_MESSAGE.SECOND)
-        this.tryNum = Number(secondPrompt)
-        this.racing(carArr)
-    }
-
-    racing(carArr) {
-        Console.print("실행결과")
-        for (let i = 0; i < this.tryNum; i++) {
-            for (const car of carArr) {
-                const randomNum = this.setRandomNum()
-                if (randomNum >= 4) {
-                    car.winCnt++
-                }
-            }
-            carArr.map((car) => Console.print(`${car.carName} : ${"-".repeat(car.winCnt)}`))
-            Console.print("\n")
+    promptSequence = 1
+    carArr = []
+    async start(promptMessage) {
+        const prompt = await this.input(promptMessage)
+        if(this.promptSequence === 1){
+            this.carArr = new Car().setCar(prompt)
+            this.promptSequence++
+            return this.start(PROMPT_MESSAGE.SECOND)
         }
-        this.setWinner(carArr)
+        if(this.promptSequence === 2){
+            const tryNum = Number(prompt)
+            this.totalRace(tryNum)
+            this.promptSequence++
+        }
     }
 
-    setWinner(cars) {
-        const winnerArr = cars
+    totalRace(tryNum) {
+       // this.output("실행결과")
+        for (let i = 0; i < tryNum; i++) {
+            this.individualRace(this.carArr)
+            this.carArr.map((car) => this.output(`${car.carName} : ${"-".repeat(car.winCnt)}`))
+            this.output("\n")
+        }
+        this.setWinner(this.carArr)
+    }
+
+    individualRace(carArr) {
+        for (const car of carArr) {
+            const randomNum = this.setRandomNum()
+            if (randomNum >= 4) {
+                car.winCnt++
+            }
+        }
+    }
+
+    setWinner(carArr) {
+        const winner = carArr
             .sort((a, b) => b.winCnt - a.winCnt)
-            .filter((elem) => elem.winCnt === cars[0].winCnt)
+            .filter((elem) => elem.winCnt === carArr[0].winCnt)
             .map((elem) => elem.carName)
-        const winner = winnerArr.join(", ")
-        Console.print(`최종 우승자 : ${winner}`)
+            .join(", ")
+        this.output(`최종 우승자 : ${winner}`)
     }
 
     setRandomNum() {
@@ -45,7 +54,20 @@ class RacingGame {
     }
 
     async input(message) {
-        return await Console.readLineAsync(message)
+        const input = await Console.readLineAsync(message)
+        this.isError(input)
+        return input
+    }
+
+    output(message) {
+        return Console.print(message)
+    }
+
+    isError(string){
+        const firstErrorCondition = string.includes(" ") || string.length
+        if(this.promptSequence === 1){
+
+        }
     }
 }
 
