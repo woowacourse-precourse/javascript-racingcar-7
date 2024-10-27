@@ -4,4 +4,6 @@ export const RULES = Object.freeze({
   RANDOM_MAX_NUMBER: 9,
   MIN_PROGRESS_STEPS: 4,
   SPLIT_DELIMITER: ',',
+  CAR_PROGRESS_LENGTH: 1,
+  CAR_START_POSITION: 0,
 });
