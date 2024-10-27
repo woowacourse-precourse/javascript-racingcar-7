@@ -1,5 +1,5 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
-import RacingCar from './RacingCar';
+import RacingCar from './RacingCar.js';
 
 class App {
   async run() {
