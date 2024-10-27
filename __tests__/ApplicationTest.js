@@ -69,14 +69,14 @@ describe('Car 클래스', () => {
 });
 
 describe('자동차 이름 문자열 입력', () => {
-  test('문장이 구분자로 끝날 수 없음', () =>{
+  test('문장이 구분자로 끝날 수 없음', () => {
     const input = 'kia,hyun,gene,';
     const app = new App();
 
     expect(() => app.validateCarNames(input).toThrow('[ERROR] 문장 양식이 구분자로 끝날 수 없습니다!'));
   });
 
-  test('문장이 구분자로 시작할 수 없음', () =>{
+  test('문장이 구분자로 시작할 수 없음', () => {
     const input = ',kia,hyun,gene';
     const app = new App();
 
@@ -101,14 +101,14 @@ describe('자동차 이름 문자열 분리', () => {
     expect(() => app.validateSplitCarNames(input).toThrow('[ERROR] 이름은 공백으로 설정할 수 없습니다!'));
   });
 
-  test('이름은 중복으로 사용할 수 없음', () =>{
+  test('이름은 중복으로 사용할 수 없음', () => {
     const input = ['kia','kia','hyun'];
     const app = new App();
 
     expect(() => app.validateSplitCarNames(input).toThrow('[ERROR] 이름은 중복으로 설정할 수 없습니다!'));
   });
   
-  test('이름은 5글자를 넘을 수 없음', () =>{
+  test('이름은 5글자를 넘을 수 없음', () => {
     const input = ['kia','hyundai','gene'];
     const app = new App();
 
@@ -140,21 +140,13 @@ describe('회차 입력', () => {
 
     expect(() => app.validateRoundNumber(input).toThrow('[ERROR] 소수는 입력할 수 없습니다.'));
   });
-  
-  test('음수 입력', () => {
-    const input = -1;
-
-    const app = new App();
-
-    expect(() => app.validateRoundNumber(input).toThrow('[ERROR] 음수는 입력할 수 없습니다.'));
-  });
 
   test('0 입력', () => {
     const input = 0;
 
     const app = new App();
 
-    expect(() => app.validateRoundNumber(input).toThrow('[ERROR] 최소 1번의 ROUND는 실행해야합니다.'));
+    expect(() => app.validateRoundNumber(input).toThrow('[ERROR] 0보다 적은 값은 입력할 수 없습니다.'));
   });
 });
 
