@@ -52,4 +52,15 @@ describe("자동차 경주", () => {
     const app = new App();
     expect(() => app.validateCarNames(["pobi", "woni"])).not.toThrow();
   });
+
+
+  test("예외 테스트: 유효하지 않은 시도 횟수", () => {
+    const app = new App();
+    expect(() => app.validateMoveCount("0")).toThrow("[ERROR] 시도 횟수는 1 이상의 정수여야 합니다.");
+  });
+
+  test("유효한 시도 횟수", () => {
+    const app = new App();
+    expect(() => app.validateMoveCount("3")).not.toThrow();
+  });
 });
