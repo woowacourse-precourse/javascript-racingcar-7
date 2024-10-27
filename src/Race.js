@@ -25,6 +25,13 @@ class Race {
     });
   }
 
+  getRaceStatus() {
+    return this.cars.map(car => ({
+      name: car.getName(),
+      distance: car.getDistance(),
+    }));
+  }
+
   getWinners() {
     const maxDistance = Math.max(...this.cars.map(car => car.getDistance()));
     return this.cars

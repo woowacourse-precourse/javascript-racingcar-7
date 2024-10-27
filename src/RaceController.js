@@ -16,13 +16,6 @@ class RaceController {
     this.printWinners();
   }
 
-  runRaceRounds() {  
-    for (let i = 0; i < this.race.attemptCount; i++) {
-      this.race.generateRandomDistances();
-      this.printRaceStatus();
-    }
-  }
-
   async setCarName() {
     const carNameInput = await getCarName();
     validateCarName(carNameInput);
@@ -36,10 +29,18 @@ class RaceController {
     this.race.setAttemptCount(Number(attemptCount));
   }
 
+  runRaceRounds() {
+    for (let i = 0; i < this.race.attemptCount; i++) {
+      this.race.generateRandomDistances(); 
+      this.printRaceStatus();
+    }
+  }
+
   printRaceStatus() {
-    this.race.cars.forEach(car => {
-      const distanceSymbol = GAME_RULES.DISTANCE_SYMBOL.repeat(car.getDistance());
-      printMessage(`${car.getName()} : ${distanceSymbol}`);
+    const status = this.race.getRaceStatus();
+    status.forEach(({ name, distance }) => {
+      const distanceSymbol = GAME_RULES.DISTANCE_SYMBOL.repeat(distance);
+      printMessage(`${name} : ${distanceSymbol}`);
     });
     printMessage('');
   }
