@@ -12,6 +12,7 @@ class App {
 
     const nameList = this.splitNameInput(nameInput);
     const carNames = this.validateNameList(nameList);
+    const number = this.validateNumber(numberInput);
   }
   catch(error) {
     throw new Error(`[ERROR] ${error.message}`);
@@ -37,6 +38,20 @@ class App {
     if (longName !== undefined) {
       throw new error(`"${longName}"은(는) 5자를 초과합니다.`);
     }
+  }
+
+  validateNumber(numberInput) {
+    if (!numberInput.trim() || isNaN(Number(numberInput))) {
+      throw new Error("숫자를 입력해 주세요.");
+    }
+
+    const number = Number(numberInput);
+
+    if (number <= 0) {
+      throw new Error("시도할 횟수는 1 이상의 양수여야 합니다.");
+    }
+
+    return number;
   }
 }
 
