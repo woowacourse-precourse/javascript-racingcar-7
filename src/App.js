@@ -26,7 +26,7 @@ class App{
 
     // 5. 예외 처리 1 : 모든 자동차 이름 검사 함수
     function car_name_length(cars){
-      for (const car in cars){
+      for (const car of cars){
         check_car_name_length(car);
       }
     }
