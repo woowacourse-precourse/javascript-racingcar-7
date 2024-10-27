@@ -22,6 +22,11 @@ function raceTurn(carNames) {
   });
 }
 
+function printWinner(carNames) {
+  const maxDistance = Math.max(...carNames.map((carName) => MOVEMENT[carName].length));
+  const winners = carNames.filter((carName) => MOVEMENT[carName].length === maxDistance);
+  Console.print(`최종 우승자 : ${winners.join(', ')}`);
+}
 
 export default class Racing {
   constructor(carNames, tryCount) {
@@ -33,5 +38,9 @@ export default class Racing {
   start() {
     Console.print('실행 결과\n');
     startRace(this.carNames, this.tryCount);
+  }
+
+  printWinner() {
+    printWinner(this.carNames);
   }
 }

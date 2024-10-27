@@ -12,6 +12,7 @@ class App {
 
     const racing = new Racing(carNames, tryCount);
     racing.start();
+    racing.printWinner();
   }
 }
 
