@@ -24,8 +24,14 @@ export class Racing {
 
   printTryRacing() {
     this.cars.forEach(car => {
-      Console.print(`${car}: ${this.racing[car]}`);
+      Console.print(`${car} : ${this.racing[car]}`);
     });
     Console.print("");
+  }
+
+  RacingResult() {
+    const maxDistance = Math.max(...this.cars.map(car => this.racing[car].length));
+
+    return this.cars.filter(car => this.racing[car].length === maxDistance);
   }
 }

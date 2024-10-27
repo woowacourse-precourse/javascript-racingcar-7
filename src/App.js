@@ -7,15 +7,16 @@ class App {
   async run() {
     const carsInput = new CarsInput();
     const cars = await carsInput.getInput();
-    Console.print(cars);
 
     const numberInput = new NumberInput();
     const n = await numberInput.getInput();
-    Console.print(n);
 
     const racing = new Racing(cars);
 
     racing.race(n);
+
+    const winners = racing.RacingResult();
+    Console.print(`최종 우승자 : ${winners}`);
   }
 }
 
