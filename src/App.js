@@ -1,4 +1,6 @@
 import { carNameInput, turnCountInput } from './input.js';
+import RacingCar from './racingCar.js';
+import Car from './car.js';
 
 class App {
   async run() {
@@ -6,6 +8,11 @@ class App {
     if (!this.checkCarNames(carNames)) throw new Error('[ERROR] 잘못된 입력입니다.');
     const turnCount = await turnCountInput();
     if (!this.checkTurnCount(turnCount)) throw new Error('[ERROR] 잘못된 입력입니다.');
+
+    const racingCar = new RacingCar(turnCount);
+    carNames.forEach((name) => new Car(name));
+
+    racingCar.start();
   }
 
   checkCarNames(arr) {
