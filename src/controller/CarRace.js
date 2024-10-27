@@ -16,25 +16,22 @@ class CarRace {
   }
 
   async getMoveAttemptsFromUserInput() {
-    return await InputView.readMoveAttempts();
+    const attempts = await InputView.readMoveAttempts();
+    Validator.checkMoveAttempts(attempts);
+    return attempts;
   }
 
   parseCarNames(input) {
     return input.split(",");
   }
 
-  validateCarList(carList) {
-    Validator.checkCarList(carList);
-    carList.map((carName) => Validator.checkName(carName));
-  }
-
-  validateMoveAttempts(attempts) {
-    Validator.checkMoveAttempts(attempts);
-  }
-
   async registerRacingCars(racingCars) {
     const carList = await this.getCarNamesFromUserInput();
-    carList.forEach((carName) => racingCars.registerCar(carName));
+    Validator.checkCarList(carList);
+    carList.forEach((carName) => {
+      Validator.checkName(carName);
+      racingCars.registerCar(carName);
+    });
   }
 }
 
