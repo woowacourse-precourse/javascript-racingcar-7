@@ -8,3 +8,9 @@ export const GIDE_MESSAGE = {
 export const PATTERN = {
   COMMA: ",",
 };
+
+export const ERROR_MESSAGE = {
+  emptyInput: "빈 값은 입력할 수 없습니다. 다시 입력해주세요.",
+  whitesapceInput:
+    "공백은 입력할 수 없습니다. 공백을 제거하고 다시 입력해주세요.",
+};

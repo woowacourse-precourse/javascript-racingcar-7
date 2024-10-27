@@ -1,5 +1,7 @@
+import { GIDE_MESSAGE } from "../../Constants/constant.js";
 import randomGenerator from "../../Utils/randomGenerator.js";
 import printCurrRaceState from "../Output/printCurrRaceState.js";
+import printResultMessage from "../Output/printResultMessage.js";
 
 /**
  * @param {{ name: string, position: number }} car
