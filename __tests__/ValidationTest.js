@@ -13,11 +13,16 @@ describe('유저 입력값 예외 처리를 검사하는 테스트', () => {
     ['5자 이하', true, '공백 포함 5자'],
   ])('자동차 이름의 길이 예외 처리 테스트 (%s)', (name, expected) => {
     const ERROR_PREFIX = '[ERROR]';
+    const MAXIMUM_LENGTH = 5;
 
     if (expected) {
-      expect(() => Validation.isValidLength(name)).not.toThrow();
+      expect(() =>
+        Validation.isValidLength(name, MAXIMUM_LENGTH),
+      ).not.toThrow();
     } else {
-      expect(() => Validation.isValidLength(name)).toThrow(ERROR_PREFIX);
+      expect(() => Validation.isValidLength(name, MAXIMUM_LENGTH)).toThrow(
+        ERROR_PREFIX,
+      );
     }
   });
 });
