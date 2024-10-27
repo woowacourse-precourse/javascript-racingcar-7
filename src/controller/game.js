@@ -1,25 +1,29 @@
 import { Console, Random } from '@woowacourse/mission-utils';
 import InputView from '../view/input-view.js';
-import OutputView from '../view/output-view.js';
 import GAME_MESSAGE from '../constant/message.js';
 import validateCarName from '../validation/validate-carname.js';
 import validateAttemptCount from '../validation/validate-attempt-count.js';
+import Race from '../model/race.js';
+import OutputView from '../view/output-view.js';
 
 class Game {
   constructor() {
     this.inputView = new InputView();
     this.outputView = new OutputView();
+    this.race = new Race();
   }
 
   async process() {
     const carNamesInput = await this.inputView.getCarNames(GAME_MESSAGE.CAR_NAMES_INPUT);
-    validateCarName(carNamesInput);
+    const carNameList = carNamesInput.split(',');
+
+    validateCarName(carNameList);
 
     const attemptCountInput = await this.inputView.getAttemptCount(GAME_MESSAGE.ATTEMPT_COUNT_INPUT);
-    validateAttemptCount(attemptCountInput);
-
-    const carNameList = carNamesInput.split(',');
     const attemptCount = parseInt(attemptCountInput, 10);
+
+    console.log(attemptCount);
+    validateAttemptCount(attemptCount);
 
     // 여기서부터 race 시작
     this.outputView.printStartRaceMessage();

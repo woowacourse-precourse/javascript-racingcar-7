@@ -6,9 +6,9 @@ export const ERROR_MESSAGES = {
   NAME_LENGTH_EXCEEDED: '자동차 이름은 5자를 넘을 수 없습니다.',
 };
 
-const checkForEmptyInput = (input) => {
-  if (!input) throwError(ERROR_MESSAGES.EMPTY_INPUT);
-  return input;
+const checkForEmptyInput = (carNameList) => {
+  if (!carNameList) throwError(ERROR_MESSAGES.EMPTY_INPUT);
+  return carNameList;
 };
 
 const checkNameLengthLimit = (carNameList) => {
@@ -20,10 +20,8 @@ const checkNameLengthLimit = (carNameList) => {
   return carNameList;
 };
 
-const validateCarName = (input) => {
-  checkForEmptyInput(input);
-  const carNameList = input.split(',');
-  runValidators([checkNameLengthLimit], carNameList);
+const validateCarName = (carNameList) => {
+  runValidators([checkForEmptyInput, checkNameLengthLimit], carNameList);
 };
 
 export default validateCarName;
