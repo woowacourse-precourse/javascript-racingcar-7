@@ -17,6 +17,21 @@ class App{
     // 1. 자동차 입력 : 입력받은 데이터를 쉼표(,)로 구분하여 리스트 요소로 저장
     if(car_input.includes(",")){
       car_names=car_input.split(",");
+    // 5. 1-예외 : 자동차 이름 글자수 예외 처리 함수 실행
+      car_name_length(car_names);
+    }
+
+    // 5. 예외 처리 1 : 모든 자동차 이름 검사 함수
+    function car_name_length(cars){
+      for (const car in cars){
+        check_car_name_length(car);
+      }
+    }
+    // 5. 예외 처리 1 : 이름 글자수 검사 함수(5자 이하만 가능)
+    function check_car_name_length(name){
+      if(name.length>5){
+        throw new Error("[ERROR]");
+      }
     }
 
     // 3. 게임에서 사용할 랜덤한 정수 함수 선언
