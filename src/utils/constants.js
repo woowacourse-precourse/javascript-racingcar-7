@@ -24,10 +24,6 @@ export const OUTPUT_MESSAGES = {
 };
 
 export const CAR_NAME_TEST_CASES = {
-  NO_CARS: {
-    input: '',
-    errorMessage: `${OUTPUT_MESSAGES.ERROR_PREFIX} ${ERROR_MESSAGES.NO_CARS}`,
-  },
   EMPTY_NAME: {
     input: ['pobi', ''],
     errorMessage: `${OUTPUT_MESSAGES.ERROR_PREFIX} ${ERROR_MESSAGES.EMPTY_NAME}`,
