@@ -1,4 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
+import RandomUtil from './utils/Random.js';
 import RacingCar from './Models/RacingCar.js';
 
 class App {
@@ -23,6 +24,17 @@ class App {
 
     // 실행 결과 출력
     Console.print('실행 결과');
+
+    for (let curCount = 0; curCount < tryCount; curCount++) {
+      carInstanceArr.forEach((car) => {
+        // 각 자동차 이동
+        const randomNumber = RandomUtil.getRandomNumber();
+
+        if (randomNumber >= 4) {
+          car.move();
+        }
+      });
+    }
   }
 }
 
