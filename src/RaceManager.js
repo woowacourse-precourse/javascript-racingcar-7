@@ -13,6 +13,12 @@ class RaceManager {
   canMoveForward(randomNumber) {
     return randomNumber >= 4;
   }
+
+  move(randomNumber) {
+    if (this.canMoveForward(randomNumber)) {
+      this.position++;
+    }
+  }
 }
 
 export default RaceManager;
