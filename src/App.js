@@ -18,6 +18,14 @@ class App {
     for (let i = 0; i < userNames.length; i++) {
       checkValue.checkLength(userNames[i]);
     }
+
+    // 시도할 횟수를 입력
+    Console.print("시도할 횟수는 몇 회인가요?");
+    let maxCount = await Console.readLineAsync("");
+    if (isNaN(maxCount)) {
+      throw new Error("[ERROR] 숫자가 잘못된 형식입니다.");
+    }
+    maxCount = parseInt(maxCount, 10);
   }
 }
 
