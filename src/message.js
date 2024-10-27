@@ -9,5 +9,6 @@ export const ERROR_MESSAGE = {
   NAME_LENGTH_EXCEED: '[ERROR] 이름은 5자 이하만 가능합니다.',
   NOT_NUMBER: '[ERROR] 숫자 이외의 입력은 사용할 수 없습니다.',
   NOT_INTEGER: '[ERROR] 정수 이외의 입력은 사용할 수 없습니다.',
+  NUM_IS_ZERO : '[ERROR] 0은 입력할 수 없습니다.',
   NEGATIVE_NUMBER: '[ERROR] 음수는 입력할 수 없습니다.'
 }
