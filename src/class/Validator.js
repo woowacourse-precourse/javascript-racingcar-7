@@ -19,7 +19,7 @@ class Validator {
     if (this.rules.isShorterThanTwo(names)) throw new Error(ERROR_MESSAGES.name.MIN_NAMES);
     if (this.rules.hasDuplication(names)) throw new Error(ERROR_MESSAGES.name.DUPLICATEED);
 
-    names.some((name) => {
+    names.forEach((name) => {
       if (this.rules.isEmpty(name)) throw new Error(ERROR_MESSAGES.name.EMPTY);
       if (this.rules.hasSpacing(name)) throw new Error(ERROR_MESSAGES.name.HAS_SPACING);
       if (this.rules.isLongerThanFive(name)) throw new Error(ERROR_MESSAGES.name.MAX_LENGTH);
