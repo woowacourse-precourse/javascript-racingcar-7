@@ -15,6 +15,22 @@ class RacingGame {
   moveAllCars() {
     this.cars.forEach((car) => this.moveCar(car));
   }
+
+  startRace(moveCount) {
+    MissionUtils.Console.print("\n실행결과");
+    for (let i = 0; i < moveCount; i++) {
+      this.moveAllCars();
+      this.printCurrentPositions();
+    }
+  }
+
+  printCurrentPositions() {
+    const currentPositions = this.cars
+      .map((car) => `${car.name} : ${car.position}`)
+      .join("\n");
+    MissionUtils.Console.print(currentPositions);
+    MissionUtils.Console.print("");
+  }
 }
 
 export default RacingGame;

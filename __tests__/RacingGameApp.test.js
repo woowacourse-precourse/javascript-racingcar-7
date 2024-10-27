@@ -56,6 +56,7 @@ describe("RacingGame", () => {
   beforeEach(() => {
     const carNames = ["pobi", "woni", "jun"];
     racingGame = new RacingGame(carNames);
+    jest.spyOn(MissionUtils.Console, "print").mockImplementation(() => {});
   });
 
   describe("moveCar", () => {
@@ -82,6 +83,33 @@ describe("RacingGame", () => {
       racingGame.cars.forEach((car) => {
         expect(car.position).toBe("-");
       });
+    });
+  });
+
+  describe("startRace", () => {
+    test("입력된 이동 횟수만큼 경주를 진행한다", () => {
+      const moveCount = 3;
+      jest.spyOn(racingGame, "moveAllCars");
+
+      racingGame.startRace(moveCount);
+
+      expect(racingGame.moveAllCars).toHaveBeenCalledTimes(moveCount);
+      expect(MissionUtils.Console.print).toHaveBeenCalledWith("\n실행결과");
+    });
+  });
+
+  describe("printCurrentPositions", () => {
+    test("자동차의 현재 위치를 출력한다", () => {
+      racingGame.cars[0].position = "-";
+      racingGame.cars[1].position = "--";
+      racingGame.cars[2].position = "---";
+
+      racingGame.printCurrentPositions();
+
+      expect(MissionUtils.Console.print).toHaveBeenCalledWith(
+        "pobi : -\nwoni : --\njun : ---"
+      );
+      expect(MissionUtils.Console.print).toHaveBeenCalledWith("");
     });
   });
 

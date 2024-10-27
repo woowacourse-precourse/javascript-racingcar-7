@@ -1,5 +1,6 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import InputValidator from "./InputValidator.js";
+import RacingGame from "./RacingGame.js";
 
 class App {
   async run() {
@@ -19,6 +20,7 @@ class App {
       const moveCount = Number(moveCountInput);
 
       const racingGame = new RacingGame(carNames);
+      racingGame.startRace(moveCount);
     } catch (error) {
       MissionUtils.Console.print(error.message);
       throw error;
