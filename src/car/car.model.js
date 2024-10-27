@@ -19,4 +19,12 @@ export class CarModel {
   moveForward() {
     this.#travelDistance += 1;
   }
+
+  /**
+   *
+   * @returns {{ name: string; travelDistance: number }}
+   */
+  getDetail() {
+    return { name: this.#name, travelDistance: this.#travelDistance };
+  }
 }

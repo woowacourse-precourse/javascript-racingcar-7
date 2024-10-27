@@ -1,5 +1,4 @@
 // @ts-check
-
 import Validator from '../lib/Validator.js';
 
 import { CarModel } from '../car/car.model.js';
@@ -15,8 +14,12 @@ export class RacingModel {
   /** @type {RuleModel} */
   #rule;
 
+  /** @type {number} */
+  #round;
+
   constructor() {
     this.#rule = new RuleModel(new Validator());
+    this.#round = 0;
   }
 
   /**
@@ -50,6 +53,14 @@ export class RacingModel {
 
   /**
    *
+   * @returns {Array<{ name: string; travelDistance: number }>}
+   */
+  getCarDetails() {
+    return this.#cars.map((car) => car.getDetail());
+  }
+
+  /**
+   *
    * @param {CarModel} car
    */
   #moveForward(car) {
@@ -58,7 +69,20 @@ export class RacingModel {
     }
   }
 
+  #increaseRound() {
+    this.#round += 1;
+  }
+
   race() {
     this.#cars.forEach((car) => this.#moveForward(car));
+    this.#increaseRound();
+  }
+
+  /**
+   *
+   * @returns {boolean}
+   */
+  isRacing() {
+    return this.#round !== this.#trialNumber;
   }
 }

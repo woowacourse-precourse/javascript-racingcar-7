@@ -1,5 +1,4 @@
 // @ts-check
-
 import { RacingModel } from './racing.model.js';
 import { RacingView } from './racing.view.js';
 
@@ -21,11 +20,39 @@ export class RacingController {
     this.#racingModel = racingModel;
     this.#racingView = racingView;
 
-    this.#input();
+    this.#init();
   }
 
   async #input() {
     this.#racingModel.setCars(await this.#racingView.getCarNames());
     this.#racingModel.setTrialNumber(await this.#racingView.getTrialNumber());
+  }
+
+  #raceStart() {
+    this.#racingView.printGameStart();
+  }
+
+  #raceSingleRound() {
+    this.#racingModel.race();
+
+    this.#racingView.printRacing(this.#racingModel.getCarDetails());
+    this.#racingView.printLineBreak();
+  }
+
+  #raceAllRound() {
+    while (this.#racingModel.isRacing()) {
+      this.#raceSingleRound();
+    }
+  }
+
+  #race() {
+    this.#raceStart();
+    this.#raceAllRound();
+  }
+
+  async #init() {
+    await this.#input();
+
+    this.#race();
   }
 }

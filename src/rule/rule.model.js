@@ -117,6 +117,10 @@ export class RuleModel {
       });
   }
 
+  /**
+   *
+   * @returns {number}
+   */
   #generateRandomNumber() {
     return Random.pickNumberInRange(
       RuleModel.GAME_RULE.MOVE_FORWARD_CONDITION.RANGE_START,
@@ -124,6 +128,10 @@ export class RuleModel {
     );
   }
 
+  /**
+   *
+   * @returns {boolean}
+   */
   canMoveForward() {
     return (
       this.#generateRandomNumber() >= RuleModel.GAME_RULE.MOVE_FORWARD_CONDITION.CAN_MOVE_FORWARD
