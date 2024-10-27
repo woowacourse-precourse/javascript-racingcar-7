@@ -1,6 +1,10 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
-import App from "../src/App.js";
 import { ERROR_MESSAGE } from "../src/utils/ErrorMessage.js";
+import { getWinners } from "../src/race/WinnerSelector.js";
+import App from "../src/App.js";
+import Car from "../src/race/Car.js";
+import CarManager from "../src/race/CarManager.js";
+import RaceExecutor from "../src/race/RaceExecutor.js";
 
 const mockQuestions = (inputs) => {
     MissionUtils.Console.readLineAsync = jest.fn();
@@ -12,13 +16,96 @@ const mockQuestions = (inputs) => {
     });
 };
 
-let app;
+const mockRandoms = (numbers) => {
+    MissionUtils.Random.pickNumberInRange = jest.fn();
 
-beforeAll(() => {
-    app = new App();
+    numbers.reduce((acc, number) => acc.mockReturnValueOnce(number), MissionUtils.Random.pickNumberInRange);
+};
+
+const getLogSpy = () => {
+    const logSpy = jest.spyOn(MissionUtils.Console, "print");
+    logSpy.mockClear();
+    return logSpy;
+};
+
+describe('경주 기능 테스트', () => {
+    const getTestCars = () => [
+        new Car('pobi'),
+        new Car('woni')
+    ];
+
+    test("입력받은 자동차명을 쉼표(,)를 기준으로 구분하여 자동차 객체 리스트로 변환할 수 있다.", async () => {
+        // given
+        const inputs = ['pobi,woni,hwa'];
+        const expectCars = inputs[0].split(',').map((name) => new Car(name));
+        mockQuestions(inputs);
+
+        // when
+        const carManager = new CarManager();
+        const receiveCars = carManager.getCars();
+
+        // then
+        await expect(receiveCars).resolves.toEqual(expectCars);
+    });
+
+    test("이동 시도 횟수만큼 시도하여 경주 실행 결과를 출력할 수 있다.", () => {
+        // given
+        const raceExecutor = new RaceExecutor();
+        const MOVING_FORWARD = 4;
+        const STOP = 3;
+        const cars = getTestCars();
+        const moveTryCount = 2;
+        const logs = ["실행 결과", "pobi : -", "woni : -", "pobi : --", "woni : -"];
+        const logSpy = getLogSpy();
+
+        mockRandoms([MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, STOP]);
+
+        // when
+        raceExecutor.executeForMoveTryCount(cars, moveTryCount);
+
+        // then
+        logs.forEach((log) => {
+            expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+        });
+    });
+
+    test("경주 결과를 포함한 자동차 목록을 확인하여 한명의 우승자를 출력할 수 있다.", () => {
+        // given
+        const cars = getTestCars();
+        cars[0].moveForward();
+
+        const expectWinnerNames = ['pobi'];
+
+        // when
+        const winnerNames = getWinners(cars);
+
+        // then
+        expect(winnerNames).toEqual(expectWinnerNames);
+    });
+
+    test("경주 결과를 포함한 자동차 목록을 확인하여 여러명의 우승자를 출력할 수 있다.", () => {
+        // given
+        const cars = getTestCars();
+        cars[0].moveForward();
+        cars[1].moveForward();
+
+        const expectWinnerNames = ['pobi', 'woni'];
+
+        // when
+        const winnerNames = getWinners(cars);
+
+        // then
+        expect(winnerNames).toEqual(expectWinnerNames);
+    });
+
 });
 
 describe('예외 테스트', () => {
+    let app;
+    beforeAll(() => {
+        app = new App();
+    });
+
     describe('자동차명 유효성 검사', () => {
         const NAME_NAX_LENGTH = 5;
 
