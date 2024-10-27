@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, MissionUtils } from "@woowacourse/mission-utils";
 
 class App {
   async run() {
@@ -12,16 +12,16 @@ class App {
 
     const carNames = inputCarNames.split(",");
 
-    const RaceCar = [];
+    const raceCars = [];
 
     carNames.forEach((carName) => {
-      if (RaceCar.some((car) => car.Name === carName)) {
+      if (raceCars.some((car) => car.Name === carName)) {
         throw new Error("[ERROR]: 같은 이름은 불가능합니다.");
       }
       if (carName.length > 5) {
         throw new Error("[ERROR]: 이름은 5자 이하만 가능합니다.");
       }
-      RaceCar.push({ name: carName, location: "" });
+      raceCars.push({ name: carName, location: "" });
     });
 
     const inputNum = await Console.readLineAsync(
@@ -34,6 +34,19 @@ class App {
     if (inputNum == 0) {
       throw new Error("[ERROR]: 0은 입력할 수 없습니다.");
     }
+
+    for (let i = 0; i < inputNum; i++) {
+      this.race(raceCars);
+    }
+    console.log(raceCars);
+  }
+
+  race(raceCars) {
+    raceCars.forEach((raceCar) => {
+      if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) {
+        raceCar.location += "-";
+      }
+    });
   }
 }
 
