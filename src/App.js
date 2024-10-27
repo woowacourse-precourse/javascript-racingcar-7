@@ -1,4 +1,4 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 import Car from './car.js';
 
 class App {
@@ -40,9 +40,14 @@ class App {
     Console.print('\n실행결과');
 
     for (let count = 1; count <= this.tryCount; count++) {
-      this.cars.forEach(car => car.move());
+      this.cars.forEach(car => this.attemptMove(car));
       this.printRaceResult();
     }
+  }
+
+  attemptMove(car) {
+    const randomNumber = Random.pickNumberInRange(0, 9);
+    if (randomNumber >= 4) car.move();
   }
 
   printRaceResult() {
