@@ -60,12 +60,14 @@ class App {
 
   printRaceResult(){
     Object.keys(this.carNameObj).forEach(key => {
-      Console.print(key + " : ");
+      let carDistance = "";
       for(let i = 0; i < this.carNameObj[key]; i++){
-        Console.print("-");
+        carDistance += "-";
       }
-      Console.print("\n");
+      Console.print(key + " : " + carDistance + "\n");
     });
+
+    Console.print("\n");
   }
 
   printWinner(){
