@@ -14,9 +14,11 @@ import {
 
 class Input {
   static #CAR_NAME_REGEXP = /^\w{1,5}$/;
+
   static #SEPARATOR = ',';
 
   #rawCars;
+
   #rawTryCount;
 
   constructor() {
@@ -35,7 +37,7 @@ class Input {
 
   parseCars() {
     const carArray = splitIntoArray(this.#rawCars, Input.#SEPARATOR);
-    this.#validateCarArray(carArray);
+    Input.#validateCarArray(carArray);
     return carArray;
   }
 
@@ -45,7 +47,7 @@ class Input {
     return tryCount;
   }
 
-  #validateCarArray(carArray) {
+  static #validateCarArray(carArray) {
     const isAllCarValid = carArray.every(car =>
       Input.#CAR_NAME_REGEXP.test(car),
     );

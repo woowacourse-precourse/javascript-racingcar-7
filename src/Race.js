@@ -9,13 +9,19 @@ import {
 
 class Race {
   static #MIN_RANDOM = 0;
+
   static #MAX_RANDOM = 9;
+
   static #MOVE_FORWARD_THRESHOLD = 4;
+
   static #TRACE_CHARACTER = '-';
+
   static #FORWARD_STEP = 1;
 
   #carArray;
+
   #tryCount;
+
   #carTraceMap;
 
   constructor(carArray, tryCount) {
@@ -26,32 +32,32 @@ class Race {
   }
 
   run() {
-    for (let round = 0; round < this.#tryCount; round++) {
+    for (let round = 0; round < this.#tryCount; round += 1) {
       this.#runOneRound();
     }
     return this.#winnerCarArray;
   }
 
   #runOneRound() {
-    for (const car of this.#carArray) {
-      const newPosition = this.#moveCarForward(this.#carTraceMap.get(car));
+    this.#carArray.forEach(car => {
+      const newPosition = Race.#moveCarForward(this.#carTraceMap.get(car));
       this.#carTraceMap.set(car, newPosition);
-      this.#printCarPosition(car, newPosition);
-    }
+      Race.#printCarPosition(car, newPosition);
+    });
   }
 
-  #moveCarForward(currentPosition) {
+  static #moveCarForward(currentPosition) {
     const randomNum = pickNumberInRange(Race.#MIN_RANDOM, Race.#MAX_RANDOM);
-    const isMoveForward = this.#getIsMoveForward(randomNum);
+    const isMoveForward = Race.#getIsMoveForward(randomNum);
     if (isMoveForward) return currentPosition + Race.#FORWARD_STEP;
     return currentPosition;
   }
 
-  #getIsMoveForward(num) {
+  static #getIsMoveForward(num) {
     return num >= Race.#MOVE_FORWARD_THRESHOLD;
   }
 
-  #printCarPosition(car, position) {
+  static #printCarPosition(car, position) {
     const repeatedTraceChracter = getRepeatedString(
       Race.#TRACE_CHARACTER,
       position,

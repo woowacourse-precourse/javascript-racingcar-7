@@ -5,12 +5,12 @@ import { print } from './lib/utils.js';
 
 class App {
   async run() {
-    const [carArray, tryCount] = await this.#getInput();
-    const winnerCarArray = this.#runRace(carArray, tryCount);
-    this.#printOutput(winnerCarArray);
+    const [carArray, tryCount] = await App.#getInput();
+    const winnerCarArray = App.#runRace(carArray, tryCount);
+    App.#printOutput(winnerCarArray);
   }
 
-  async #getInput() {
+  static async #getInput() {
     const input = new Input();
     await input.getUserInput();
     const carArray = input.parseCars();
@@ -19,13 +19,13 @@ class App {
     return [carArray, tryCount];
   }
 
-  #runRace(carArray, tryCount) {
+  static #runRace(carArray, tryCount) {
     const race = new Race(carArray, tryCount);
     const winnerCarArray = race.run();
     return winnerCarArray;
   }
 
-  #printOutput(winnerCarArray) {
+  static #printOutput(winnerCarArray) {
     print(`${OUTPUT_MESSAGE_WINNER}${winnerCarArray.join(', ')}`);
   }
 }
