@@ -16,8 +16,9 @@ class App {
       throw new Error("[ERROR] : 입력 에러가 발생했습니다.");
     }
     const names = inputNames.split(",");
+
     this.cars = names.map((name) => new Car(name));
-    Console.print(this.cars);
+    this.cars.forEach((car) => car.getStatus());
 
     for (let i = 0; i < count; i++) {}
   }
