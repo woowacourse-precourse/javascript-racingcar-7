@@ -44,13 +44,18 @@ class App {
     if (isNaN(numberInput)) this.throwError(App.ERROR_MESSAGES.INVALID_NUMBER);
     Console.print(`\n실행 결과`);
     for (let i = 0; i < numberInput; i++) {
-      Object.keys(this.carObject).forEach((carName) => {
-        this.carObject[carName] += this.moveOrStop(
-          Random.pickNumberInRange(0, 9) // 0~9까지의 랜덤값
-        );
-      });
+      this.simulateRaceRound();
       this.printRaceRound(this.carObject);
     }
+  }
+
+  // 라운드별 진행상황 처리 함수
+  simulateRaceRound() {
+    Object.keys(this.carObject).forEach((carName) => {
+      this.carObject[carName] += this.moveOrStop(
+        Random.pickNumberInRange(0, 9) // 0~9까지의 랜덤값
+      );
+    });
   }
 
   //전진 or 멈춤 판단 함수
