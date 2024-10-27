@@ -5,7 +5,7 @@ class App {
     this.controller = new CarRacingGameController();
   }
   async run() {
-    await this.controller.setModelData();
+    await this.controller.setCarMovement();
   }
 }
 

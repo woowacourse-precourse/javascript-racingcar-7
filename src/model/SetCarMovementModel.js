@@ -9,12 +9,13 @@ class SetCarMovementModel {
     }
     return randomNumArray;
   }
-  setCarMovementValues(carName, tryCount) {
-    const arrayLength = carName.length;
+  setCarMovementValues(carNames, tryCount) {
+    const arrayLength = carNames.length;
     const carMovement = [];
     for (let count = 0; count < tryCount; count++) {
       carMovement.push(this.setRandomNumArray(arrayLength));
     }
+    return carMovement;
   }
 }
 
