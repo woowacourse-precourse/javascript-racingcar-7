@@ -7,8 +7,7 @@ class Car {
   }
 
   /**@todo 추가요구사항 만약에 2칸씩 움직여주세요 라고 한다면? */
-  move() {
-    const randomNumber = random.generateNumber();
+  move(randomNumber) {
     if (randomNumber >= 4 && randomNumber <= 9) {
       this.position++;
     }

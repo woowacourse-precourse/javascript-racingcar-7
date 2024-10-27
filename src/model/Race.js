@@ -1,5 +1,6 @@
 //@ts-check
 
+import random from '../util/random.js';
 import outputView from '../view/outputView.js';
 import Car from './Car.js';
 
@@ -23,7 +24,7 @@ class Race {
   }
 
   moveForward() {
-    this.cars.forEach((car) => car.move());
+    this.cars.forEach((car) => car.move(random.generateNumber()));
   }
 
   determineWinners() {
