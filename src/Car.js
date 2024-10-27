@@ -15,7 +15,7 @@ class Car {
     return this.moveForwardCnt;
   }
 
-  getName() {
+  getCarName() {
     return this.name;
   }
 }

@@ -12,7 +12,7 @@ class RacingGame {
       this.cars.forEach(car => {
         car.moveForward();
         Console.print(
-          `${car.getName()} : ${'-'.repeat(car.getMoveForwardCnt())}`,
+          `${car.getCarName()} : ${'-'.repeat(car.getMoveForwardCnt())}`,
         );
       });
       Console.print('\n');
@@ -28,7 +28,7 @@ class RacingGame {
     Console.print(
       `최종 우승자 : ${this.cars
         .filter(car => car.getMoveForwardCnt() === maxMoveForward)
-        .map(car => car.getName())
+        .map(car => car.getCarName())
         .join(',')}`,
     );
   }
