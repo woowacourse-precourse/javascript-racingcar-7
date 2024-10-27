@@ -8,4 +8,11 @@ export class raceController {
     this.attemps = inputAttemps;
     this.location = 0;
   }
+
+  moveLocation() {
+    const randomNumber = getRandomNumber(0, 9);
+    if (randomNumber >= 4) {
+      this.location++;
+    }
+  }
 }
