@@ -21,6 +21,9 @@ class App {
     const TRY_COUNT = await this.initializeTryCount();
 
     const WINNERS = this.startRace(CAR_NAMES, TRY_COUNT);
+    this.displayWinners(WINNERS, CAR_NAMES);
+  }
+
   async initializeCarNames() {
     const PARSED_CAR_NAMES = await getCarNames();
     this.validateCarNames(PARSED_CAR_NAMES);
@@ -59,6 +62,14 @@ class App {
     return MOVE_FORWARD_COUNT_ARRAY;
   }
 
+  displayWinners(moveForwardCountArray, carNames) {
+    try {
+      const WINNERS = getWinners(carNames, moveForwardCountArray);
+      Console.print(`최종 우승자 : ${WINNERS.join(', ')}`);
+    } catch (error) {
+      Console.print(error);
+    }
+  }
 }
 
 export default App;
