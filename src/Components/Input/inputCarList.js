@@ -1,6 +1,6 @@
 import { GIDE_MESSAGE } from "../../Constants/constant.js";
 import parserCarList from "../../Utils/parserCarList.js";
-import InputVaildator from "./module/inputValidator.js";
+import InputVaildator from "../../Validator/InputValidator.js";
 import printGideMessage from "./module/printGideMessage.js";
 
 /**
@@ -12,6 +12,8 @@ const inputCarList = async () => {
   InputVaildator.vaildateInputCarList(carList);
 
   const carListArr = parserCarList(carList);
+  console.log(carListArr);
+  InputVaildator.vaildateCarArray(carListArr);
   return carListArr;
 };
 export default inputCarList;
