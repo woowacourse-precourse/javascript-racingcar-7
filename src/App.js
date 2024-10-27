@@ -7,10 +7,10 @@ import printString from './output/printString.js';
 
 class App {
   async run() {
-    const carNameList = parseCarNameInput(await getInput('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)'));
+    const carNameList = parseCarNameInput(await getInput('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n'));
     checkCarName(carNameList);
 
-    const moveCount = Number(await getInput('시도할 횟수는 몇 회인가요?'));
+    const moveCount = Number(await getInput('시도할 횟수는 몇 회인가요?\n'));
     checkMoveCount(moveCount);
 
     const winnerList = executeRace(carNameList, moveCount);

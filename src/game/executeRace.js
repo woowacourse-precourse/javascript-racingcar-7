@@ -5,7 +5,7 @@ import printString from '../output/printString.js';
 
 export default function executeRace(carNameList, moveCount){
   const cars = createCarsFromNames(carNameList);
-  printString('실행 결과');
+  printString('\n실행 결과');
 
   for(let count = 0; count < moveCount; count++){
     moveCars(cars);
