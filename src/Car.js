@@ -1,3 +1,5 @@
+import { MissionUtils } from "@woowacourse/mission-utils";
+
 class Car {
     constructor(name) {
       this.name = name;
@@ -6,6 +8,10 @@ class Car {
   
     moveOrStop() {
       const number = MissionUtils.Random.pickNumberInRange(0, 9);
+
+      if (number >= 4) {
+        this.position = this.position + 1;
+      }
     }
   }
 
