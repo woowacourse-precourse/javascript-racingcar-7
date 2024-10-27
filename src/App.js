@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 
 class App {
   async run() {
@@ -18,6 +18,15 @@ class App {
     if (racingCars.some((car) => car.length > 5)) {
       throw new Error("[ERROR] 자동차의 이름이 5자보다 깁니다.");
     }
+
+    racingCars.forEach((car) => {
+      this.getRandomNumber();
+    });
+  }
+
+  getRandomNumber() {
+    const randomNumber = Random.pickNumberInRange(0, 9);
+    return randomNumber;
   }
 }
 
