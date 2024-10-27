@@ -13,6 +13,10 @@ const getNumberOfRaces = async () => {
       throw new Error('[ERROR] 숫자로 입력해주세요');
    }
 
+   if (numberOfRaces < 0) {
+      throw new Error('[ERROR] 횟수는 양수로 작성해주세요');
+   }
+
    return numberOfRaces;
 };
 export default getNumberOfRaces;
