@@ -37,9 +37,9 @@
   1. 라운드 수
   2. 참가 자동차 이름
 
-- [ ] views 폴더
+- [x] views 폴더
 
-  - [ ] InputViews.js
+  - [x] InputViews.js
 
   1. 자동차 이름 입력
   2. 시도 횟수 입력
