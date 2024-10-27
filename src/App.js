@@ -1,9 +1,11 @@
 import { Console } from "@woowacourse/mission-utils";
 import InputHandler from "./InputHandler.js";
+import Car from "./Car.js";
 
 class App {
   constructor() {
     this.inputHandler = new InputHandler();
+    this.cars = [];
   }
 
   async run() {
@@ -18,12 +20,15 @@ class App {
     const parsedCarNames = this.inputHandler.parseCarNames(carNames);
     const parsedAttempts = this.inputHandler.parseAttempts(attempts);
 
-    Console.print(
-      `parsedCarNames: ${parsedCarNames}, ${typeof parsedCarNames}`
-    );
-    Console.print(
-      `parsedAttempts: ${parsedAttempts}, ${typeof parsedAttempts}`
-    );
+    this.cars = parsedCarNames.map((name) => new Car(name));
+
+    // 제대로 작동하는지 확인
+    this.cars.forEach((car) => {
+      car.move();
+      car.getPosition();
+      car.getName();
+    });
+    Console.print(this.cars);
   }
 }
 

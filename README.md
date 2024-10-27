@@ -113,9 +113,9 @@
 2. Car 클래스 구현
 
 - 자동차 객체를 만들고 전진 여부에 따라 위치를 업데이트하는 기능을 구현
-- [] move()
+- [O] move()
   - Console.print()로 무작위 값과 이동 여부 확인
-- [] getPosition(), getName()
+- [O] getPosition(), getName()
   - Console.print()로 위치와 이름 확인
 
 3. Race 클래스 구현 - 자동차 생성
