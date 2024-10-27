@@ -1,4 +1,4 @@
-import { MyUtils, UserInterface } from './index.js';
+import { GameUtils, UserInterface } from './index.js';
 
 class Car {
   constructor(name) {
@@ -7,7 +7,7 @@ class Car {
   }
 
   attemptMove() {
-    const randomNumber = MyUtils.getRandomSingleDigit();
+    const randomNumber = GameUtils.getRandomSingleDigit();
     if (this.canMoveForward(randomNumber)) {
       this.moveForward();
     }

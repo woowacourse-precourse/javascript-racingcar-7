@@ -4,4 +4,4 @@ export { default as Car } from './Car.js';
 
 export { default as UserInterface } from './Interface.js';
 export { default as Validator } from './Validator.js';
-export { default as MyUtils } from './MyUtils.js';
+export { default as GameUtils } from './MyUtils.js';
