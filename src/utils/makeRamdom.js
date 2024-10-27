@@ -1,7 +1,8 @@
-import { Random } from '@woowacourse/mission-utils'
+//import { Random } from '@woowacourse/mission-utils'
+import { MissionUtils } from "@woowacourse/mission-utils";
 
 function makeRandomNumber(){
-    const go = Random.pickNumberInRange(0,9)
+    const go = MissionUtils.Random.pickNumberInRange(0, 9);
     const ref = "-".repeat(go); 
     return {go, ref} 
 }
