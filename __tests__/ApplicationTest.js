@@ -67,7 +67,7 @@ describe("자동차 경주", () => {
         const app = new App();
 
         // then
-        await expect(app.run()).rejects.toThrow("[ERROR");
+        await expect(app.run()).rejects.toThrow("[ERROR]");
     });
 
     test("자동차 이름 검증 예외 테스트, 자동차 이름이 1자 미만일 때", async () => {
