@@ -1,4 +1,4 @@
-import {MissionUtils} from "@woowacourse/mission-utils/src";
+import {MissionUtils} from "@woowacourse/mission-utils";
 
 class Car {
   constructor(name) {
@@ -79,11 +79,23 @@ class InputValidator {
 
 class App {
   async run() {
+    try {
+      const carNames = await MissionUtils.Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)');
+      const attempts = await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?');
 
+      const validatedNames = InputValidator.validateCarNames(carNames.split(','));
+      const validatedAttempts = InputValidator.validateAttempts(attempts);
 
+      const cars = validatedNames.map(name => new Car(name));
+      const game = new RacingCar(cars, validatedAttempts);
+
+      MissionUtils.Console.print('\n실행 결과');
+      game.play();
+      MissionUtils.Console.print(game.getWinners());
+    } catch (error) {
+      MissionUtils.Console.print(error.message);
+    }
   }
-
-
 }
 
 export default App;
