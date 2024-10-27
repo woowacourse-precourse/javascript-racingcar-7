@@ -56,28 +56,26 @@ class Validator {
 }
 
 class CarRace {
-    constructor() {
-        this.cars = [];
-        this.round = 0;
-    }
+    #cars = [];
+    #round = 0;
 
     addCar(carNames) {
-        this.cars = carNames.map((car) => new Car(car));
+        this.#cars = carNames.map((car) => new Car(car));
     }
 
     setRound(round) {
-        this.round = round;
+        this.#round = round;
     }
 
     startRound() {
-        this.cars.forEach((car) => car.move());
-        this.cars.forEach((car) => this.printResultByRound(car));
+        this.#cars.forEach((car) => car.move());
+        this.#cars.forEach((car) => this.printResultByRound(car));
     }
 
     startRace() {
         MissionUtils.Console.print("\n실행 결과");
 
-        Array.from({ length: this.round }).forEach(() => {
+        Array.from({ length: this.#round }).forEach(() => {
             this.startRound();
             MissionUtils.Console.print("");
         });
@@ -89,8 +87,8 @@ class CarRace {
     }
 
     getWinner() {
-        const maxPosition = Math.max(...this.cars.map((car) => car.getPosition().length));
-        const winningCars = this.cars.filter((car) => car.getPosition().length === maxPosition);
+        const maxPosition = Math.max(...this.#cars.map((car) => car.getPosition().length));
+        const winningCars = this.#cars.filter((car) => car.getPosition().length === maxPosition);
 
         return winningCars;
     }
@@ -127,26 +125,29 @@ class CarRace {
 }
 
 class Car {
+    #name;
+    #position;
+
     constructor(name) {
         Validator.validateCarNameLength(name);
-        this.name = name;
-        this.position = "";
+        this.#name = name;
+        this.#position = "";
     }
 
     move() {
         const shouldMove = MissionUtils.Random.pickNumberInRange(0, 9) >= 4;
 
         if (shouldMove) {
-            this.position += "-";
+            this.#position += "-";
         }
     }
 
     getName() {
-        return this.name;
+        return this.#name;
     }
 
     getPosition() {
-        return this.position;
+        return this.#position;
     }
 }
 
