@@ -7,4 +7,8 @@ export class Output {
 			Console.print(`${car.carName} : ${car.getPosition()}`);
 		});
 	}
+
+	static printFinalWinners(winners) {
+		Console.print(`\n최종 우승자 : ${winners}`);
+	}
 }

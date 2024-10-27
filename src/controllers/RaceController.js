@@ -16,7 +16,7 @@ export class RaceController {
 			}
 
 			const winners = race.getWinners();
-			// 최종 우승자 출력하는 부분 추가해야 함
+			Output.printFinalWinners(winners);
 		} catch (error) {
 			throw new Error("[ERROR] 자동차 경주 실행에 오류가 발생했습니다.");
 		}
