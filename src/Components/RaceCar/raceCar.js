@@ -1,6 +1,7 @@
 import { Console } from "@woowacourse/mission-utils";
 import { GIDE_MESSAGE } from "../../Constants/constant.js";
 import randomGenerator from "../../Utils/randomGenerator.js";
+import printResultMessage from "../Output/printResultMessage.js";
 
 const raceCar = (carList, tryNumber) => {
   const raceCarList = carList.map((car) => {
@@ -10,7 +11,7 @@ const raceCar = (carList, tryNumber) => {
     };
   });
 
-  Console.print(GIDE_MESSAGE.result);
+  printResultMessage(GIDE_MESSAGE.result);
 
   for (let i = 0; i < tryNumber; i++) {
     raceCarList.forEach(() => {
