@@ -7,12 +7,22 @@ export const startRace = (tryNumber, carNameObject) => {
 
   for (let i = 0; i < tryNumber; i++) {
     checkArrayElementIsAdvance(carNameObject, carNameArray);
+
+    displayRaceProgress(carNameObject, carNameArray);
   }
 };
 
+const displayRaceProgress = (carNameObject, carNameArray) => {
+  carNameArray.forEach((carName) => {
+    const advanceNumber = "-".repeat(carNameObject[carName]);
+    Console.print(`${carName} : ${advanceNumber}`);
+  });
+  Console.print("");
+};
+
 const checkArrayElementIsAdvance = (carNameObject, carNameArray) => {
-  for (let idx = 0; idx < carNameArray.length; idx++) {
-    checkIsAdvance(carNameObject, carNameArray, idx);
+  for (let j = 0; j < carNameArray.length; j++) {
+    checkIsAdvance(carNameObject, carNameArray, j);
   }
 };
 
