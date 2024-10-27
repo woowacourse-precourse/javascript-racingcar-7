@@ -27,6 +27,20 @@ class App {
     for (let i = 0; i < gameCount; i++) {
       this.playTurn(racingCars, racingCarsPos);
     }
+
+    Console.print(`최종 우승자 : ${this.pickWinner(racingCarsPos)}`);
+  }
+
+  pickWinner(racingCarsPos) {
+    const posArray = Object.values(racingCarsPos).map((pos) => pos.length);
+
+    const maxPos = Math.max(...posArray);
+
+    const winner = Object.entries(racingCarsPos).find(
+      ([name, item]) => item.length === maxPos
+    )[0];
+
+    return winner;
   }
 
   playTurn(racingCars, racingCarsPos) {
