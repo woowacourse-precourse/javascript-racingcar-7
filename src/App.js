@@ -12,6 +12,9 @@ class App {
       if (cars[i].length > 5) {
         throw new Error(`[ERROR] 이름은 5글자 이하로 입력해주세요.`);
       }
+      else if(cars[i].length === 0){
+        throw new Error(`[ERROR] 이름이 입력되지 않았습니다.`)
+      }
     }
 
     let numberOfMatches = await Console.readLineAsync(
@@ -21,6 +24,10 @@ class App {
     if(Number.isNaN(Number(numberOfMatches))){
       throw new Error(`[ERROR] ${numberOfMatches}는 숫자가 아닙니다.`)
     }
+    else if(Number(numberOfMatches) === 0 || Number(numberOfMatches) ===" "){
+      throw new Error(`[ERROR] 1 이상의 횟수를 입력해주세요.`);
+    }
+
 
     Console.print("\n실행 결과");
 
