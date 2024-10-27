@@ -23,8 +23,8 @@ class App {
         "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
       )
         .then((input) => {
-          const names = input.split(",").map((name) => name.trim());
           try {
+            const names = this.parseCarNames(input);
             this.validateCarNames(names);
             resolve(names);
           } catch (error) {
@@ -33,6 +33,10 @@ class App {
         })
         .catch((error) => reject(error));
     });
+  }
+
+  parseCarNames(input) {
+    return input.split(",").map((name) => name.trim());
   }
 
   validateCarNames(names) {
@@ -57,17 +61,23 @@ class App {
     return new Promise((resolve, reject) => {
       Console.readLineAsync("시도할 횟수는 몇 회인가요?\n")
         .then((input) => {
-          const attempts = parseInt(input, 10);
-          if (isNaN(attempts) || attempts <= 0) {
-            reject(
-              new Error("[ERROR] 시도 횟수는 1 이상의 양의 정수여야 합니다.")
-            );
-          } else {
+          try {
+            const attempts = this.parseMoveAttempts(input);
             resolve(attempts);
+          } catch (error) {
+            reject(error);
           }
         })
         .catch((error) => reject(error));
     });
+  }
+
+  parseMoveAttempts(input) {
+    const attempts = parseInt(input, 10);
+    if (isNaN(attempts) || attempts <= 0) {
+      throw new Error("[ERROR] 시도 횟수는 1 이상의 양의 정수여야 합니다.");
+    }
+    return attempts;
   }
 
   race(carNames, moveAttempts) {
