@@ -57,4 +57,18 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
+  test("경주할 자동차에 쉼표가 포함되지 않는 경우", async () => {
+    // given
+    const inputs = ["pobi; javaji"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
 });
+
