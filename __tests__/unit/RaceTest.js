@@ -36,33 +36,6 @@ describe("Race 클래스 테스트", () => {
     });
   });
 
-  describe("printRaceStatus() 테스트", () => {
-
-    test("자동차 이동 상태가 올바르게 출력되어야 한다", async () => {
-      getRandomNumber.mockReturnValueOnce(4) 
-                     .mockReturnValueOnce(3) 
-                     .mockReturnValueOnce(4); 
-
-      await race.setCarName();
-      race.generateRandomDistances();
-
-      const symbol = GAME_RULES.DISTANCE_SYMBOL;
-
-      race.printRaceStatus();
-      expect(printMessage).toHaveBeenCalledWith(`Audi : ${symbol}`);
-      expect(printMessage).toHaveBeenCalledWith("BMW : ");
-      expect(printMessage).toHaveBeenCalledWith(`Ford : ${symbol}`);
-    });
-
-    test("시도 횟수만큼 자동차 이동 상태가 출력되어야 한다", async () => {
-      const printRaceStatusSpy = jest.spyOn(race, 'printRaceStatus');
-
-      await race.startRace();
-
-      expect(printRaceStatusSpy).toHaveBeenCalledTimes(5); 
-    });
-  });
-
   describe("getWinners() 테스트", () => {
 
     test("최종 우승자를 올바르게 결정해야 한다", async () => {

@@ -1,11 +1,12 @@
 import RaceController from '../../src/RaceController.js';
 import Car from '../../src/Car.js';
-import { getCarName, printMessage } from '../../src/utils.js';
+import { getCarName, getAttempt, printMessage } from '../../src/utils.js';
 import { GAME_RULES } from '../../src/constants.js';
 
 jest.mock('../../src/utils.js', () => ({
   ...jest.requireActual('../../src/utils.js'),
   getCarName: jest.fn().mockResolvedValue("Audi,BMW,Ford"),
+  getAttempt: jest.fn().mockResolvedValue("5"), 
   printMessage: jest.fn(),
 }));
 
@@ -36,7 +37,7 @@ describe("RaceController 클래스 테스트", () => {
       raceController.race.cars[1].move(0);
       raceController.race.cars[2].move(1);
 
-      raceController.race.printRaceStatus();
+      raceController.printRaceStatus();
 
       const symbol = GAME_RULES.DISTANCE_SYMBOL;
       expect(printMessage).toHaveBeenCalledWith(`Audi : ${symbol}`);
@@ -48,10 +49,10 @@ describe("RaceController 클래스 테스트", () => {
       await raceController.setCarName();
       await raceController.setAttemptCount();
 
-      const printRaceStatusSpy = jest.spyOn(raceController.race, 'printRaceStatus');
-      await raceController.race.startRace();
+      const printRaceStatusSpy = jest.spyOn(raceController, 'printRaceStatus');
+      await raceController.startRace();
 
-      expect(printRaceStatusSpy).toHaveBeenCalledTimes(5); 
+      expect(printRaceStatusSpy).toHaveBeenCalledTimes(5); // 시도 횟수가 5이므로 5번 호출 예상
     });
   });
 
@@ -62,7 +63,7 @@ describe("RaceController 클래스 테스트", () => {
       raceController.race.cars[1].move(4);
       raceController.race.cars[2].move(6);
 
-      raceController.race.printWinners();
+      raceController.printWinners();
       expect(printMessage).toHaveBeenCalledWith("최종 우승자 : Audi, Ford");
     });
   });
