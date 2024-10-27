@@ -20,7 +20,6 @@ class App {
     Console.print("\n실행 결과");
 
     let positions = cars.map((car) => ({ name: car, position: "" }));
-
     for (let i = 0; i < numberOfMatches; i += 1) {
       positions.forEach((car) => {
         let randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
@@ -32,7 +31,13 @@ class App {
       });
       Console.print("");
     }
+
+    let maxPosition = Math.max(...positions.map(car => car.position.length));
+    let winners = positions.filter(car => car.position.length === maxPosition);
+
+    Console.print("최종 우승자 : " + winners.map(car => car.name).join(', '));
   }
 }
 
 export default App;
+ 
