@@ -3,41 +3,41 @@ import {PROMPT_MESSAGE} from "./constants/message.js";
 
 class RacingGame {
     async start() {
-        const arr = []
+        const processObj = {cars:[],tryNum:0}
         for (const message of PROMPT_MESSAGE) {
             const input = await this.input(message.input)
             if (message.key === 0) {
-                const carArray = this.setCars(input)
-                arr.push(carArray)
+                processObj.cars = this.setCars(input)
             }
             if (message.key === 1) {
-                arr.push(Number(input))
+                processObj.tryNum = Number(input)
             }
+            console.log(processObj)
         }
-        this.racing(arr)
+        this.racing(processObj)
     }
 
-    racing(arr) {
-        const [carArr, tryCnt] = arr
+    racing(processObj) {
+        const {cars, tryNum} = processObj
         Console.print("실행결과")
-        for (let i = 0; i < tryCnt; i++) {
-            for (const car of carArr) {
+        for (let i = 0; i < tryNum; i++) {
+            for (const car of cars) {
                 const randomNum = this.setRandomNum()
                 if (randomNum >= 4) {
                     car.cnt++
                 }
             }
-            carArr.map((elem) => Console.print(`${elem.carName} : ${"-".repeat(elem.cnt)}`))
+            cars.map((car) => Console.print(`${car.carName} : ${"-".repeat(car.cnt)}`))
             Console.print("\n")
         }
 
-        this.setWinner(carArr)
+        this.setWinner(cars)
     }
 
-    setWinner(arr){
-        const winnerArr = arr
+    setWinner(cars){
+        const winnerArr = cars
             .sort((a,b)=> b.cnt-a.cnt)
-            .filter((elem)=>elem.cnt === arr[0].cnt)
+            .filter((elem)=>elem.cnt === cars[0].cnt)
             .map((elem)=>elem.carName)
         const winner = winnerArr.join(", ")
         Console.print(`최종 우승자 : ${winner}`)
@@ -49,14 +49,14 @@ class RacingGame {
 
     setCars(arr) {
         const carArr = this.sliceString(arr)
-        return this.setWinCnt(arr, carArr)
+        return this.setWinnerCnt(arr, carArr)
     }
 
     sliceString(param) {
         return param.split(",")
     }
 
-    setWinCnt(arr, carArr) {
+    setWinnerCnt(arr, carArr) {
         return carArr.map((elem) => {
                 return {cnt: 0, carName: elem}
             }
@@ -66,7 +66,6 @@ class RacingGame {
     async input(message) {
         return await Console.readLineAsync(message)
     }
-
 }
 
 export default RacingGame
