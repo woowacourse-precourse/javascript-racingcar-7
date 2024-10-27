@@ -1,3 +1,4 @@
+import ErrorMessages from "../src/constant/ErrorMessage";
 import InputHandler from "../src/handler/InputHandler";
 
 jest.mock("@woowacourse/mission-utils", () => ({
@@ -19,13 +20,13 @@ describe("InputHandler", () => {
         ["@"],
     ])("입력한 실행 횟수가 숫자가 아닌 경우", (input) => {
         const inputHandler = new InputHandler();
-        expect(() => inputHandler.processCountNumInput(input)).toThrow("[ERROR] 실행 횟수는 1 이상의 양수여야 합니다.");
+        expect(() => inputHandler.processCountNumInput(input)).toThrow(ErrorMessages.COUNT_NUM_POSITIVE);
     });
 
     test("입력한 실행 횟수가 공백인 경우", () => {
         const inputHandler = new InputHandler();
         const input = "";
-        expect(() => inputHandler.processCountNumInput(input)).toThrow("[ERROR] 실행 횟수는 1 이상의 양수여야 합니다.");
+        expect(() => inputHandler.processCountNumInput(input)).toThrow(ErrorMessages.COUNT_NUM_POSITIVE);
     });
 
     test.each([
@@ -33,6 +34,6 @@ describe("InputHandler", () => {
         [0]
     ])("입력한 실행 횟수가 0 이하인 경우", (input) => {
         const inputHandler = new InputHandler();
-        expect(() => inputHandler.processCountNumInput(input)).toThrow("[ERROR] 실행 횟수는 1 이상의 양수여야 합니다.");
+        expect(() => inputHandler.processCountNumInput(input)).toThrow(ErrorMessages.COUNT_NUM_POSITIVE);
     });
 });

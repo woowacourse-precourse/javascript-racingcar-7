@@ -1,4 +1,3 @@
-import { Console } from '@woowacourse/mission-utils';
 import InputHandler from './handler/InputHandler.js';
 import OutputHandler from './handler/OutputHandler.js';
 import MovingCar from "./car/MovingCar.js";
@@ -25,6 +24,7 @@ class App {
 
     } catch (error) {
       this.outputHandler.printError(error);
+      throw error;
     }
   }
 }
