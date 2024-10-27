@@ -120,4 +120,85 @@ describe('자동차 경주', () => {
       await expect(app.run()).rejects.toThrow(errorMessage);
     });
   });
+
+  describe('시도 횟수 검증', () => {
+    test('시도 횟수가 빈 값이나 공백이 입력된 경우 에러 발생', async () => {
+      // given
+      const { input: carNames } = CAR_NAME_TEST_CASES.VALID_NAMES;
+      const { input, errorMessage } =
+        GAME_ROUNDS_TEST_CASES.EMPTY_ROUNDS_WITH_SPACE;
+      mockQuestions([carNames.join(','), input]);
+
+      // when
+      const app = new App();
+
+      // then
+      await expect(app.run()).rejects.toThrow(errorMessage);
+    });
+
+    test('시도 횟수가 숫자가 아닌 값이 입력된 경우 에러 발생', async () => {
+      // given
+      const { input: carNames } = CAR_NAME_TEST_CASES.VALID_NAMES;
+      const { input, errorMessage } = GAME_ROUNDS_TEST_CASES.NOT_A_NUMBER;
+      mockQuestions([carNames.join(','), input]);
+
+      // when
+      const app = new App();
+
+      // then
+      await expect(app.run()).rejects.toThrow(errorMessage);
+    });
+
+    test('시도 횟수가 음수가 입력된 경우 에러 발생', async () => {
+      // given
+      const { input: carNames } = CAR_NAME_TEST_CASES.VALID_NAMES;
+      const { input, errorMessage } = GAME_ROUNDS_TEST_CASES.NEGATIVE_NUMBER;
+      mockQuestions([carNames.join(','), input]);
+
+      // when
+      const app = new App();
+
+      // then
+      await expect(app.run()).rejects.toThrow(errorMessage);
+    });
+
+    test('시도 횟수가 0이 입력된 경우 에러 발생', async () => {
+      // given
+      const { input: carNames } = CAR_NAME_TEST_CASES.VALID_NAMES;
+      const { input, errorMessage } = GAME_ROUNDS_TEST_CASES.ZERO_ROUNDS;
+      mockQuestions([carNames.join(','), input]);
+
+      // when
+      const app = new App();
+
+      // then
+      await expect(app.run()).rejects.toThrow(errorMessage);
+    });
+
+    test('시도 횟수가 소수가 입력된 경우 에러 발생', async () => {
+      // given
+      const { input: carNames } = CAR_NAME_TEST_CASES.VALID_NAMES;
+      const { input, errorMessage } = GAME_ROUNDS_TEST_CASES.NOT_INTEGER;
+      mockQuestions([carNames.join(','), input]);
+
+      // when
+      const app = new App();
+
+      // then
+      await expect(app.run()).rejects.toThrow(errorMessage);
+    });
+
+    test('시도 횟수가 오버플로우를 발생시키는 값이 입력된 경우 에러 발생', async () => {
+      // given
+      const { input: carNames } = CAR_NAME_TEST_CASES.VALID_NAMES;
+      const { input, errorMessage } = GAME_ROUNDS_TEST_CASES.OVERFLOW;
+      mockQuestions([carNames.join(','), input]);
+
+      // when
+      const app = new App();
+
+      // then
+      await expect(app.run()).rejects.toThrow(errorMessage);
+    });
+  });
 });
