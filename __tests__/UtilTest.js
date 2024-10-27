@@ -2,6 +2,8 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 import View from "../src/View/View.js";
 import { Car } from "../src/Model/Car.js";
 import { ParseUtils } from "../src/Util/ParseUtils.js";
+import { Validator } from "../src/Validator/Validator.js";
+import { ERROR_MSG } from "../src/Constant/Constants.js";
 
 describe("View Tests", () => {
   let consoleSpy;
@@ -65,4 +67,33 @@ test("ParseUtils Test - parseDistanceToDash", () => {
   const result = ParseUtils.parseDistanceToDash(3);
 
   expect(result).toBe("---");
+});
+
+test("Validator Test", () => {
+  const { validateInputCarNameFormat, validateInputNumOfAttempts } =
+    Validator();
+
+  const errorCaseWithNumOfCar = validateInputCarNameFormat("하하");
+  const errorCaseWithCarNameLength1 =
+    validateInputCarNameFormat("하하하하하,후후후후후후");
+  const errorCaseWithCarNameLength2 =
+    validateInputCarNameFormat("하하하하하, 후후후후후");
+  const errorCaseWithCarNameWithComma1 =
+    validateInputCarNameFormat(",하하하하,히히히히히");
+  const errorCaseWithCarNameWithComma2 =
+    validateInputCarNameFormat("하하하하하,,히히히");
+  const errorCaseWithAttemptsNaN1 = validateInputNumOfAttempts("하하");
+  const errorCaseWithAttemptsNaN2 = validateInputNumOfAttempts("2");
+
+  expect(errorCaseWithNumOfCar).toBe(ERROR_MSG.ERROR_INPUT_NUM_CAR);
+  expect(errorCaseWithCarNameLength1).toBe(
+    ERROR_MSG.ERROR_INPUT_CAR_NAME_LENGTH
+  );
+  expect(errorCaseWithCarNameLength2).toBe(
+    ERROR_MSG.ERROR_INPUT_CAR_NAME_LENGTH
+  );
+  expect(errorCaseWithCarNameWithComma1).toBe(ERROR_MSG.ERROR_INPUT_CAR_COMMA);
+  expect(errorCaseWithCarNameWithComma2).toBe(ERROR_MSG.ERROR_INPUT_CAR_COMMA);
+  expect(errorCaseWithAttemptsNaN1).toBe(ERROR_MSG.ERROR_INPUT_WITH_ATTEMPTS);
+  expect(errorCaseWithAttemptsNaN2).toBe(undefined);
 });
