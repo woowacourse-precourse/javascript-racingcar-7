@@ -10,22 +10,10 @@ class App {
     const moveAttemptCountInput = await this.getMoveAttemptCount();
     validateAttemptCount(moveAttemptCountInput);
 
-    const carsData = this.changeCarNamesInputToCarsData(carNamesInput);
-
     this.printStartMessage();
 
-    for (let i = 0; i < Number(moveAttemptCountInput); i++) {
-      carsData.forEach((car) => {
-        const canMove = this.getMoveSignal();
-
-        this.moveCar(car, canMove);
-        this.printRoundResult(car);
-      });
-
-      Console.print('');
-    }
-
-    const winners = this.getWinners(carsData);
+    const raceResult = this.getRaceResult(carNamesInput, moveAttemptCountInput);
+    const winners = this.getWinners(raceResult);
     this.printWinners(winners);
   }
 
@@ -69,6 +57,25 @@ class App {
     if (canMoveForward) {
       car.position += 1;
     }
+  }
+
+  getRaceResult(carNames, moveAttemptCount) {
+    const carsData = this.changeCarNamesInputToCarsData(carNames);
+
+    for (let i = 0; i < Number(moveAttemptCount); i++) {
+      this.playRound(carsData);
+      this.printRoundResult(carsData);
+    }
+
+    return carsData;
+  }
+
+  playRound(carsData) {
+    carsData.forEach((car) => {
+      const canMove = this.getMoveSignal();
+
+      this.moveCar(car, canMove);
+    });
   }
 
   getWinners(carsData) {
