@@ -1,13 +1,15 @@
 import {
   checkArrayLength,
   checkIsEmptyOrNull,
+  checkIsInteger,
+  checkIsRoundOutOfRange,
   checkStringLength,
   handleError,
-  isRoundOutOfRange
+  hasDuplicates
 } from './utils/index.js';
 
 class Validator {
-  static isEmpty(value) {
+  static isEmptyOrNull(value) {
     if (checkIsEmptyOrNull(value)) {
       handleError('[ERROR] : 자동차 이름 입력된 값은 비어 있거나 공백을 포함할 수 없어요.');
     }
@@ -25,16 +27,34 @@ class Validator {
     }
   }
 
-  static rounds(value) {
-    if (isRoundOutOfRange(value)) {
+  static duplicates(value) {
+    if (hasDuplicates(value)) {
+      handleError('[ERROR] : 자동차 이름은 중복으로 사용할 수 없어요.');
+    }
+  }
+
+  static isRoundOutOfRange(value) {
+    if (checkIsRoundOutOfRange(value)) {
       handleError('[ERROR] : 경주를 진행할 횟수를 1회 이상 입력해주세요.');
     }
   }
 
+  static isInteger(value) {
+    if (checkIsInteger(value)) {
+      handleError('[ERROR] : 경주를 진행할 횟수에 소수나 문자열을 입력할 수 없어요. 정수의 값을 입력해주세요.');
+    }
+  }
+
+  static rounds(value) {
+    this.isRoundOutOfRange(value);
+    this.isInteger(value);
+  }
+
   static carName(carNames) {
-    this.isEmpty(carNames);
-    this.arraySize(carNames);
+    this.isEmptyOrNull(carNames);
     this.length(carNames);
+    this.arraySize(carNames);
+    this.duplicates(carNames);
   }
 }
 
