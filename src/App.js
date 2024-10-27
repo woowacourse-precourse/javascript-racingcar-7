@@ -1,5 +1,5 @@
 import { Console, Random } from '@woowacourse/mission-utils';
-import { ERROR_MESSAGE, FORWARD_DASH, SYSTEM_MESSAGE } from './constants.js';
+import { EMPTY_STRING, ERROR_MESSAGE, FORWARD_DASH, SYSTEM_MESSAGE } from './constants.js';
 import {
   invalidCharacter,
   invalidDuplicate,
@@ -11,45 +11,57 @@ import {
 
 class App {
   async run() {
-    await this.enterInput();
+    await this.enterCarNames();
+    this.validateCarName(this.namesArray);
+    this.createMoveForwardObject();
+
+    await this.enterCount();
+    this.validateCount(this.count);
 
     Console.print(SYSTEM_MESSAGE.RESULT);
     this.carsMoveForward();
+    this.calculateWinner();
     this.printWinner();
   }
 
-  async enterInput() {
+  async enterCarNames() {
     const namesString = await Console.readLineAsync(SYSTEM_MESSAGE.ENTER_NAME);
     this.namesArray = namesString.split(',');
-    this.validateCarName(this.namesArray);
+  }
 
-    this.carsForward = this.namesArray.reduce((acc, item) => {
-      acc[item] = 0;
+  createMoveForwardObject() {
+    this.carsForward = this.namesArray.reduce((acc, car) => {
+      acc[car] = 0;
       return acc;
     }, {});
+  }
 
+  async enterCount() {
     this.count = await Console.readLineAsync(SYSTEM_MESSAGE.ENTER_COUNT);
-    this.validateCount(this.count);
   }
 
   carsMoveForward() {
     for (let i = 0; i < this.count; i++) {
-      this.namesArray.forEach(element => {
-        if (Random.pickNumberInRange(0, 9) >= 4) this.carsForward[element] += 1;
+      Object.keys(this.carsForward).forEach(car => {
+        if (Random.pickNumberInRange(0, 9) >= 4) this.carsForward[car] += 1;
 
-        Console.print(`${element} : ${FORWARD_DASH.repeat(this.carsForward[element])}`);
+        Console.print(`${car} : ${FORWARD_DASH.repeat(this.carsForward[car])}`);
       });
 
-      Console.print('');
+      Console.print(EMPTY_STRING);
     }
   }
 
-  printWinner() {
-    const winners = Object.keys(this.carsForward).filter(
-      key => this.carsForward[key] === Math.max(...Object.values(this.carsForward)),
-    );
+  calculateWinner() {
+    const maxForward = Math.max(...Object.values(this.carsForward));
 
-    Console.print(`${SYSTEM_MESSAGE.WINNER}${winners.join(', ')}`);
+    this.winners = Object.keys(this.carsForward).filter(
+      car => this.carsForward[car] === maxForward,
+    );
+  }
+
+  printWinner() {
+    Console.print(`${SYSTEM_MESSAGE.WINNER} ${this.winners.join(', ')}`);
   }
 
   validateCarName(namesArray) {

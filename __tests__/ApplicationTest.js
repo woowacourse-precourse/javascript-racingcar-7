@@ -68,6 +68,38 @@ describe('자동차 경주', () => {
     });
   });
 
+  test('기능 테스트', async () => {
+    // given
+    const MOVING_FORWARD = 4;
+    const STOP = 3;
+    const inputs = ['pobi,woni', '5'];
+    const logs = ['pobi : ----', 'woni : -----', '최종 우승자 : woni'];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([
+      MOVING_FORWARD,
+      MOVING_FORWARD,
+      STOP,
+      MOVING_FORWARD,
+      MOVING_FORWARD,
+      MOVING_FORWARD,
+      MOVING_FORWARD,
+      MOVING_FORWARD,
+      MOVING_FORWARD,
+      MOVING_FORWARD,
+    ]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    logs.forEach(log => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
   test('예외 테스트', async () => {
     // given
     const inputs = ['pobi,jason', '0'];
