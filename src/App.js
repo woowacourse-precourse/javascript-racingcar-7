@@ -1,11 +1,11 @@
-import InputView from "./view/InputView.js";
+import CarRacingGameController from "./controller/CarRacingGameController.js";
 
 class App {
   constructor() {
-    this.InputView = new InputView();
+    this.controller = new CarRacingGameController();
   }
   async run() {
-    const value = await this.InputView.getCarNames();
+    await this.controller.setModelData();
   }
 }
 
