@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, MissionUtils } from "@woowacourse/mission-utils";
 
 class Car {
   constructor(name) {
@@ -10,7 +10,7 @@ class Car {
 class App {
   startGame(cars) {
     for (const car of cars) {
-      let rand = Math.floor(Math.random() * 10);
+      let rand = MissionUtils.Random.pickNumberInRange(0, 9);
       if (rand >= 4) {
         car.race.push("-");
       }
