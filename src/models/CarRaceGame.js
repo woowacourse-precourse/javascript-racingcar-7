@@ -27,12 +27,10 @@ class CarRaceGame {
   }
 
   startRace() {
-    MissionUtils.Console.print("");
-    MissionUtils.Console.print("실행 결과");
+    this.printRaceStart();
 
-    while (this.tryCount) {
+    for (let i = this.tryCount; i > 0; i -= 1) {
       this.runRaceRound();
-      this.tryCount -= 1;
     }
   }
 
@@ -41,6 +39,10 @@ class CarRaceGame {
     const winnersList = this.#getWinnersList(maxPosition);
 
     MissionUtils.Console.print(`최종 우승자 : ${winnersList.join(DELIMITER)}`);
+  }
+
+  printRaceStart() {
+    MissionUtils.Console.print("\n실행 결과");
   }
 
   runRaceRound() {
