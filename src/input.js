@@ -1,11 +1,11 @@
 import { Console } from '@woowacourse/mission-utils';
 
 export async function carNameInput() {
-  const userInput = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)');
+  const userInput = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
   return userInput;
 }
 
 export async function turnCountInput() {
-  const userInput = await Console.readLineAsync('시도할 횟수는 몇 회인가요?');
+  const userInput = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
   return +userInput;
 }
