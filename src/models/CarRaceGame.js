@@ -1,6 +1,7 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 const DELIMITER = ",";
+const MOVING_FORWARD_POINT = 4;
 
 class CarRaceGame {
   constructor(carProgressRecords, tryCount) {
@@ -8,34 +9,21 @@ class CarRaceGame {
     this.tryCount = tryCount;
   }
 
-  #shouldMoveForward() {
+  #isMovable() {
     const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
-    return randomNumber >= 4;
+    return randomNumber >= MOVING_FORWARD_POINT;
   }
 
-  determineEachCarMovement() {
-    this.carProgressRecords.forEach((car) => {
-      if (this.#shouldMoveForward()) {
-        car.position += 1;
-      }
-    });
+  #calculateMaxCarPosition() {
+    return this.carProgressRecords.reduce((maxPosition, car) => {
+      return car.position > maxPosition ? car.position : maxPosition;
+    }, 0);
   }
 
-  printCarProgress() {
-    let order = 1;
-    this.carProgressRecords.forEach((car) => {
-      MissionUtils.Console.print(
-        `${order}: ${car.name} : ${"-".repeat(car.position)}`
-      );
-      order += 1;
-    });
-
-    MissionUtils.Console.print("");
-  }
-
-  runRaceRound() {
-    this.determineEachCarMovement();
-    this.printCarProgress();
+  #getWinnersList(maxPosition) {
+    return this.carProgressRecords
+      .filter((car) => car.position === maxPosition)
+      .map((car) => car.name);
   }
 
   startRace() {
@@ -48,26 +36,33 @@ class CarRaceGame {
     }
   }
 
-  #getMaxPosition() {
-    return this.carProgressRecords.reduce((max, car) => {
-      if (car.position > max) {
-        return car.position;
-      }
-      return max;
-    }, 0);
-  }
-
-  getWinnersList(maxPosition) {
-    return this.carProgressRecords
-      .filter((car) => car.position === maxPosition)
-      .map((car) => car.name);
-  }
-
   printRaceResults() {
-    const maxPosition = this.#getMaxPosition();
-    const winnersList = this.getWinnersList(maxPosition);
-    
+    const maxPosition = this.#calculateMaxCarPosition();
+    const winnersList = this.#getWinnersList(maxPosition);
+
     MissionUtils.Console.print(`최종 우승자 : ${winnersList.join(DELIMITER)}`);
+  }
+
+  runRaceRound() {
+    this.updateCarPositions();
+    this.printCarPositions();
+  }
+
+  updateCarPositions() {
+    this.carProgressRecords.forEach((car) => {
+      if (this.#isMovable()) {
+        car.position += 1;
+      }
+    });
+  }
+
+  printCarPositions() {
+    this.carProgressRecords.forEach((car, index) => {
+      MissionUtils.Console.print(
+        `${index + 1}: ${car.name} : ${"-".repeat(car.position)}`
+      );
+    });
+    MissionUtils.Console.print("");
   }
 }
 
