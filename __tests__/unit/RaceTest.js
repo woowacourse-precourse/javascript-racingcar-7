@@ -2,8 +2,8 @@ import Race from '../../src/Race.js';
 import Car from '../../src/Car.js';
 import { getRandomNumber, printMessage } from '../../src/common/utils.js';
 
-jest.mock('../../src/utils.js', () => ({
-  ...jest.requireActual('../../src/utils.js'),
+jest.mock('../../src/common/utils.js', () => ({
+  ...jest.requireActual('../../src/common/utils.js'),
   getRandomNumber: jest.fn(),
   printMessage: jest.fn(),
 }));

@@ -3,8 +3,8 @@ import Car from '../../src/Car.js';
 import { getCarName, getAttempt, printMessage } from '../../src/common/utils.js';
 import { GAME_RULES } from '../../src/common/constants.js';
 
-jest.mock('../../src/utils.js', () => ({
-  ...jest.requireActual('../../src/utils.js'),
+jest.mock('../../src/common/utils.js', () => ({
+  ...jest.requireActual('../../src/common/utils.js'),
   getCarName: jest.fn().mockResolvedValue("Audi,BMW,Ford"),
   getAttempt: jest.fn().mockResolvedValue("5"), 
   printMessage: jest.fn(),
