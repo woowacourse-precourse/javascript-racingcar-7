@@ -14,7 +14,8 @@ class Car {
   }
   // 현재 상태 반환 메서드
   getCurrentPosition() {
-    return(`${this.name} : ${'-'.repeat(this.position)}`);
+    // 위치가 0이더라도 최소 한 개의 '-' 는 표시되도록 !
+    return(`${this.name} : ${'-'.repeat(Math.max(1,this.position))}`);
   }
 }
 
@@ -31,7 +32,9 @@ class RacingCar {
         car.move(randomNumber);
       });
 
-      MissionUtils.Console.print(this.cars.map(car => car.getCurrentPosition()));
+      // 각 자동차의 상태를 출력 형식에 맞게 !
+      const status = this.cars.map(car => car.getCurrentPosition()).join('\n');
+      MissionUtils.Console.print(status);
       MissionUtils.Console.print('');
     }
   }
@@ -79,7 +82,6 @@ class InputValidator {
 
 class App {
   async run() {
-    try {
       const carNames = await MissionUtils.Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)');
       const attempts = await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?');
 
@@ -92,9 +94,6 @@ class App {
       MissionUtils.Console.print('\n실행 결과');
       game.play();
       MissionUtils.Console.print(game.getWinners());
-    } catch (error) {
-      MissionUtils.Console.print(error.message);
-    }
   }
 }
 
