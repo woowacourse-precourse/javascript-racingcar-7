@@ -21,7 +21,7 @@ class App {
     this.initializeCars(carInput);
 
     this.validateNumberInput(numberInput);
-    this.RacingRound(numberInput);
+    this.racingRound(numberInput);
     this.selectWinner();
   }
 
@@ -35,7 +35,7 @@ class App {
   }
 
   //numberInput 바탕으로 레이싱을 시작하는 함수
-  RacingRound(numberInput) {
+  racingRound(numberInput) {
     Console.print(`\n실행 결과`);
     for (let i = 0; i < numberInput; i++) {
       this.simulateRaceRound();
