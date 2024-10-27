@@ -101,7 +101,6 @@ describe('구현할 기능 목록 테스트 코드 작성', () => {
 
   test('시도횟수만큼 반복', async () => {
     // given
-
     const MOVING_FORWARD = 4;
     const STOP = 3;
     const inputs = ['pobi,woni', '2'];
@@ -117,6 +116,16 @@ describe('구현할 기능 목록 테스트 코드 작성', () => {
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
+  });
+
+  test('우승자 판별', () => {
+    const input = { pobi: 3, woni: 0, jun: 3 };
+    const expectedResult = ['pobi', 'jun'];
+
+    const app = new App();
+    const winners = app.findWinnder(input);
+
+    expect(winners).toEqual(expectedResult);
   });
 });
 
