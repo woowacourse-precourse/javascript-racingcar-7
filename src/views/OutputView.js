@@ -13,7 +13,8 @@ class OutputView {
   }
 
   printWinners(winners) {
-    Console.print(`${MESSAGES.OUTPUT.WINNERS}${winners}`);
+    const winnerString = winners.map((car) => car.getName()).join(', ');
+    Console.print(`${MESSAGES.OUTPUT.WINNERS}${winnerString}`);
   }
 }
 
