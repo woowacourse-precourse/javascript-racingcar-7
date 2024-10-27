@@ -14,6 +14,7 @@ class CarMovementService {
       if (this.decideMoveForward()) {
         car.moveForward();
       }
+      car.saveForwardStatus();
     });
   }
 }

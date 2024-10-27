@@ -11,6 +11,9 @@ class Car {
 
   moveForward() {
     this.#forwardCount += 1;
+  }
+
+  saveForwardStatus() {
     this.#records.push(this.#forwardCount);
   }
 
