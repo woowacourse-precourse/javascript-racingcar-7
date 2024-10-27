@@ -1,7 +1,6 @@
 import { Random } from '@woowacourse/mission-utils';
 import CarModel from '../../src/model/carModel.js';
 
-// Random 모듈을 테스트에서 제어하기 위해 mock 처리
 jest.mock('@woowacourse/mission-utils', () => ({
   Random: {
     pickNumberInRange: jest.fn(),
@@ -15,7 +14,6 @@ describe('carModel 테스트', () => {
   });
 
   test('초기화 시 이름과 위치를 유지한다.', () => {
-    // 이름 일치 테스트
     expect(carModel.getName()).toBe('wook');
     expect(carModel.getPosition()).toBe(0);
   });
