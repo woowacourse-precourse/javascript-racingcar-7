@@ -14,6 +14,10 @@ class App {
       throw new Error("[ERROR] 시도할 횟수가 정수가 아닙니다");
 
     const racingCars = inputString.split(",");
+
+    if (racingCars.some((car) => car.length > 5)) {
+      throw new Error("[ERROR] 자동차의 이름이 5자보다 깁니다.");
+    }
   }
 }
 
