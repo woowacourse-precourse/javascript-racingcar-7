@@ -5,14 +5,12 @@ import View from "./View.js";
 
 class App {
   async run() {
-    const carNames = await View.readLineCarNames();
+    const {carNames, tryCount} = await this.readLineGameInputs();
 
     const game = new RacingGame();
 
     game.getInitialBoard(carNames);
     const scoreBoard = game.getScoreBoard();
-
-    const tryCount = await View.readLineTryCount();
 
     const getRacingRoundResult = (array, count) => {
       const rounds = [...array];
@@ -62,6 +60,11 @@ class App {
 
     const finalWinner = getWinner(racingRoundResult);
     MissionUtils.Console.print(`최종 우승자 : ${finalWinner}`)
+  }
+  async readLineGameInputs() {
+    const carNames = await View.readLineCarNames();
+    const tryCount = await View.readLineTryCount();
+    return {carNames, tryCount}
   }
 }
 
