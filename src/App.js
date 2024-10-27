@@ -17,7 +17,7 @@ class App {
     );
 
     this.initializeCars(carInput);
-    this.simulateRaceRounds(numberInput);
+    this.RacingRound(numberInput);
     this.selectWinner();
   }
 
@@ -33,16 +33,14 @@ class App {
     });
   }
 
-  //numberInput 바탕으로 각 라운드를 시뮬레이션하여 랜덤값 부여 함수
-  simulateRaceRounds(numberInput) {
-    if (
-      numberInput === null ||
-      numberInput === undefined ||
-      !numberInput.trim()
-    )
+  //numberInput 바탕으로 레이싱을 시작하는 함수
+  RacingRound(numberInput) {
+    if (!numberInput || !numberInput.trim())
       this.throwError(App.ERROR_MESSAGES.EMPTY_STRING);
     if (isNaN(numberInput)) this.throwError(App.ERROR_MESSAGES.INVALID_NUMBER);
+
     Console.print(`\n실행 결과`);
+
     for (let i = 0; i < numberInput; i++) {
       this.simulateRaceRound();
       this.printRaceRound();
