@@ -10,7 +10,7 @@ class OutputView {
   }
 
   printExecutionResults() {
-    this.printOutput('실행 결과');
+    this.printOutput('\n실행 결과');
   }
 
   printCarProgress(carName, forwardCount) {
@@ -26,6 +26,7 @@ class OutputView {
   printAllCarProgress(attemptCount, carNames, forwardCounts) {
     for (let i = 0; i < attemptCount; i++) {
       this.printRoundProgress(carNames, forwardCounts[i]);
+      this.printOutput('');
     }
   }
 
