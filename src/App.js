@@ -16,21 +16,21 @@ async function main() {
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분\n)'
     );
 
-    const playerNames = convertToPlayerNames(userInput);
+    const playerNames = parsePlayerNames(userInput);
     validatePlayerNames(playerNames);
 
-    const scoreBoard = createScoreBoard(playerNames);
+    const playerScores = createScoreBoard(playerNames);
     const moveCount = await Console.readLineAsync('시도할 횟수는 몇 회인가요?');
-    playGamesByCount(scoreBoard, moveCount);
+    playRounds(playerScores, moveCount);
 
-    Console.print(`최종 우승자 : ${findGameWinners(scoreBoard)}`);
+    Console.print(`최종 우승자 : ${findWinners(playerScores)}`);
   } catch (error) {
     Console.print(error.message);
     throw error;
   }
 }
 
-function convertToPlayerNames(userInput) {
+function parsePlayerNames(userInput) {
   return userInput.split(',').map((e) => e.trim());
 }
 
@@ -46,7 +46,7 @@ function createScoreBoard(playerNames) {
   return playerNames.map((name) => ({ name, score: 0 }));
 }
 
-function playGamesByCount(scoreBoard, moveCount) {
+function playRounds(scoreBoard, moveCount) {
   for (let i = 0; i < moveCount; i++) {
     scoreBoard.forEach(playGame);
     Console.print('\n');
@@ -61,16 +61,16 @@ function playGame(player) {
   Console.print(`${player.name} : ${'-'.repeat(player.score)}`);
 }
 
-function findGameWinners(playerScore) {
-  const { score: topScore } = playerScore.reduce(findTopScoredPlayer);
+function findWinners(playerScores) {
+  const { score: maxScore } = playerScores.reduce(findMaxScorePlayer);
 
-  return playerScore
-    .filter((player) => player.score === topScore)
+  return playerScores
+    .filter((player) => player.score === maxScore)
     .map((player) => player.name)
     .join(', ');
 }
 
-function findTopScoredPlayer(prev, current) {
+function findMaxScorePlayer(prev, current) {
   if (prev.score > current.score) {
     return prev;
   } else {
