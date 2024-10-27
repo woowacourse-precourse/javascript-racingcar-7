@@ -18,9 +18,15 @@ class App {
     const names = inputNames.split(",");
 
     this.cars = names.map((name) => new Car(name));
-    this.cars.forEach((car) => car.getStatus());
 
-    for (let i = 0; i < count; i++) {}
+    Console.print("\n실행결과");
+    for (let i = 0; i < count; i++) {
+      this.cars.forEach((car) => {
+        car.moveRandomDistance();
+        car.getStatus();
+      });
+      Console.print("\n");
+    }
   }
 }
 
