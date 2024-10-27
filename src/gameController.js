@@ -1,5 +1,6 @@
 import { Console, Random } from "@woowacourse/mission-utils";
 import { printRacing } from "./printRacing.js";
+import { printWinner } from "./printWinner.js";
 
 function canForward(randomNum, carDistances, i) {
   if (randomNum >= 4) {
@@ -23,5 +24,6 @@ export function startRacing(roundCount, carDistances, carCount, carNames) {
 
     printRacing(carCount, carNames, carDistances);
   }
+  printWinner(carDistances, carNames);
   return carDistances;
 }
