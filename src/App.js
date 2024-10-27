@@ -1,4 +1,5 @@
 import { Console, Random } from '@woowacourse/mission-utils';
+
 class App {
   async getCarNames(query) {
     try {
@@ -31,12 +32,18 @@ class App {
     const inputKeys = Object.keys(input);
     inputKeys.forEach((item) => {
       const isFowrad = Random.pickNumberInRange(0, 9);
-      console.log(isFowrad);
       if (isFowrad >= 4) {
         input[item] += 1;
       }
     });
     return input;
+  }
+
+  printReuslt(input) {
+    const inputKeys = Object.keys(input);
+    inputKeys.forEach((item) => {
+      Console.print(`${item} : ${'-'.repeat(input[item])}`);
+    });
   }
 
   async run() {
@@ -47,6 +54,7 @@ class App {
 
     const scoreBoard = this.setGame(carNames);
     const firstRound = this.executionResult(scoreBoard);
+    this.printReuslt(firstRound);
   }
 }
 
