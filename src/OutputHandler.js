@@ -16,6 +16,10 @@ class OutputHandler {
     })
     Console.print('');
   }
+
+  printFinalWinners(winners) {
+    Console.print(`최종 우승자 : ${winners.join(', ')}`);
+  }
 }
 
 export default OutputHandler;

@@ -21,6 +21,7 @@ class CarRacingManager {
       }
 
       const winners = this.carRacingGame.getWinners();
+      this.outputHandler.printFinalWinners(winners);
 
     } catch (error) {
       this.outputHandler.printErrorMessage(error.message);
