@@ -26,61 +26,70 @@ const getLogSpy = () => {
   return logSpy;
 };
 
-describe(
-  '자동차 경주',
-  () => {
-    test('기능 테스트', async () => {
-      // given
-      const MOVING_FORWARD = 4;
-      const STOP = 3;
-      const inputs = ['pobi,woni', '1'];
-      const logs = ['pobi : -', 'woni : ', '최종 우승자 : pobi'];
-      const logSpy = getLogSpy();
+describe('자동차 경주', () => {
+  test('기능 테스트', async () => {
+    // given
+    const MOVING_FORWARD = 4;
+    const STOP = 3;
+    const inputs = ['pobi,woni', '1'];
+    const logs = ['pobi : -', 'woni : ', '최종 우승자 : pobi'];
+    const logSpy = getLogSpy();
 
-      mockQuestions(inputs);
-      mockRandoms([MOVING_FORWARD, STOP]);
+    mockQuestions(inputs);
+    mockRandoms([MOVING_FORWARD, STOP]);
 
-      // when
-      const app = new App();
-      await app.run();
+    // when
+    const app = new App();
+    await app.run();
 
-      // then
-      logs.forEach((log) => {
-        expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-      });
+    // then
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
+  });
 
-    test('예외 테스트', async () => {
-      // given
-      const inputs = ['pobi,javaji'];
-      mockQuestions(inputs);
+  test('예외 테스트', async () => {
+    // given
+    const inputs = ['pobi,javaji'];
+    mockQuestions(inputs);
 
-      // when
-      const app = new App();
+    // when
+    const app = new App();
 
-      // then
-      await expect(app.run()).rejects.toThrow('[ERROR]');
-    });
-  },
+    // then
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
 
-  describe('입력모듈 테스트', () => {
-    test.each([
-      ['pobi,woni,jun', ['pobi', 'woni', 'jun']],
-      ['pobi, woni ,jun', ['pobi', ' woni ', 'jun']],
-      ['', new Error('[ERROR]')],
-      ['pobi,,woni', new Error('[ERROR]')],
-    ])('parseCarString(%s)', (inputs, expected) => {
-      //given
-      const inputString = inputs;
+  test('시도횟수 예외입력 테스트', async () => {
+    // given
+    const MOVE_CNT = -1;
+    MissionUtils.Console.readLineAsync = jest.fn().mockReturnValue(MOVE_CNT);
 
-      //when
-      if (expected instanceof Error) {
-        //then
-        expect(() => parseCarString(inputString)).toThrow(expected.message);
-      } else {
-        //then
-        expect(parseCarString(inputString)).toEqual(expected);
-      }
-    });
-  }),
-);
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+});
+
+describe('입력모듈 테스트', () => {
+  test.each([
+    ['pobi,woni,jun', ['pobi', 'woni', 'jun']],
+    ['pobi, woni ,jun', ['pobi', ' woni ', 'jun']],
+    ['', new Error('[ERROR]')],
+    ['pobi,,woni', new Error('[ERROR]')],
+  ])('parseCarString(%s)', async (inputs, expected) => {
+    //given
+    const inputString = inputs;
+
+    //when
+    if (expected instanceof Error) {
+      //then
+      expect(() => parseCarString(inputString)).toThrow(expected.message);
+    } else {
+      //then
+      expect(parseCarString(inputString)).toEqual(expected);
+    }
+  });
+});

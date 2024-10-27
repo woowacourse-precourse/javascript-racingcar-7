@@ -37,16 +37,9 @@ class Race {
 
   moveCars() {
     const cars = this.#cars;
-    let movedFlag = false;
     for (let i = 0; i < cars.length; i += 1) {
-      if (cars[i].tryMoveForward()) {
-        movedFlag = true;
-      }
+      cars[i].tryMoveForward();
     }
-    if (movedFlag) {
-      this.#maxMoves += 1;
-    }
-    this.#time -= 1;
   }
 
   printRaceLog() {
@@ -62,7 +55,18 @@ class Race {
     MissionUtils.Console.print('');
   }
 
+  findMaxMoveCnt() {
+    const cars = this.#cars;
+    for (let i = 0; i < cars.length; i += 1) {
+      const cnt = cars[i].moveCnt;
+      if (cnt > this.#maxMoves) {
+        this.#maxMoves = cnt;
+      }
+    }
+  }
+
   selectWinner() {
+    this.findMaxMoveCnt();
     const cars = this.#cars;
     for (let i = 0; i < cars.length; i += 1) {
       if (cars[i].moveCnt === this.#maxMoves) {

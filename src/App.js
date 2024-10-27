@@ -11,10 +11,14 @@ class App {
     const moveInput =
       await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
 
+    if (moveInput <= 0) {
+      throw new Error('[ERROR] 1 보다 큰 수를 입력해주세요');
+    }
     const parsedCars = parseCarString(carInput);
     const raceCars = [];
     for (let i = 0; i < parsedCars.length; i += 1) {
-      raceCars.push(new Car(parsedCars[i]));
+      const car = new Car(parsedCars[i]);
+      raceCars.push(car);
     }
     const race = new Race(raceCars, moveInput);
 
