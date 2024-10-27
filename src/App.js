@@ -53,6 +53,15 @@ class App {
       });
       MissionUtils.Console.print('');
     });
+
+    const getWinner = (array) => {
+      const carRecordValue = array.map((round) => {
+        const countTruthy = round.records.filter(Boolean);
+        return countTruthy.length;
+      });
+
+      const winnerScore = Math.max(...carRecordValue);
+    }
   }
 }
 
