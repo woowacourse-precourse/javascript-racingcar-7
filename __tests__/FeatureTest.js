@@ -1,8 +1,4 @@
-import {
-  setRoundData,
-  playRoundGame,
-  getWinner,
-} from "../src/racingGame/features/features.js";
+import {  setRoundData, playRoundGame, getWinner } from "../src/racingGame/features/features.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 describe("setRoundData", () => {

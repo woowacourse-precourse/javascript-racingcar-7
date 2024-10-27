@@ -1,9 +1,5 @@
 import { playRoundGame, setRoundData, getWinner } from "./features/features.js";
-import {
-  printTitle,
-  printRound,
-  printWinner,
-} from "./features/handleOutput.js";
+import {  printTitle, printRound, printWinner } from "./features/handleOutput.js";
 
 export const playRacingGame = (userList, roundNum) => {
   // 1. Set round data
