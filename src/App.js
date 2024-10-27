@@ -60,9 +60,15 @@ class App {
       if (!carNameLengthLimit)
         throw new Error("자동차 이름은 5자 이하만 가능합니다.");
 
-      const movesNumber = await getInput("시도할 횟수는 몇 회인가요?\n");
+      if (carsName.trim().length === 0)
+        throw new Error("자동차 이름을 한 대 이상 입력해주세요.");
 
       const carState = createCarState(carsName);
+
+      const movesNumber = await getInput("시도할 횟수는 몇 회인가요?\n");
+
+      if (movesNumber.trim().length === 0)
+        throw new Error("시도할 횟수를 입력해주세요.");
 
       Console.print("\n실행 결과");
 
