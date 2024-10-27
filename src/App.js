@@ -1,4 +1,6 @@
 import { Console } from "@woowacourse/mission-utils";
+import { MissionUtils } from "@woowacourse/mission-utils";
+
 class App {
   async run() {
     const carNames = await this.getCarNames();
@@ -6,11 +8,9 @@ class App {
     Console.print(carNames);
 
     const attemptCount = await this.getAttemptCount();
+    this.initializeCars(carNames);
+    await this.startRace(attemptCount);
   }
-
-  // - [O] 자동차 이름 받기(쉼표로 구분)
-  // - [O] 이름이 5자 이하인지 검증
-  // - [O] 시도할 횟수 입력 받기
 
   async getCarNames() {
     Console.print(
@@ -40,8 +40,31 @@ class App {
 
   async getAttemptCount() {
     Console.print("시도할 횟수는 몇 회인가요?");
-    const inputCnt = await Console.readLineAsync("");
-    return parseInt(inputCnt);
+    const inputraceDistance = await Console.readLineAsync("");
+    return parseInt(inputraceDistance);
+  }
+
+  constructor() {
+    this.cars = [];
+  }
+
+  initializeCars(carNames) {
+    this.cars = carNames.map((name) => ({ name, raceDistance: 0 }));
+  }
+
+  async startRace(attemptCount) {
+    for (let i = 0; i < attemptCount; i++) {
+      this.moveCars();
+    }
+  }
+
+  moveCars() {
+    this.cars.forEach((car) => {
+      const randomValue = MissionUtils.Random.pickNumberInRange(0, 9);
+      if (randomValue >= 4) {
+        car.raceDistance += 1;
+      }
+    });
   }
 }
 
