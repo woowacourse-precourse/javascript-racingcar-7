@@ -5,14 +5,13 @@ export function randomMoveHandler(count, nameArray, moveArray) {
     for (let i = 0; i < count; i++) {
       nameArray.map((value, index) => {
         var randNum = Random.pickNumberInRange(0, 9);
-        if (randNum >= 4)
-          moveArray[index] += '-';
+        if (randNum >= 4) moveArray[index] += "-";
         Console.print(`${value} : ${moveArray[index]}`);
-      })
-      Console.print('');
+      });
+      Console.print("");
     }
     return moveArray;
   } catch (error) {
-    throw new Error('[ERROR]');
+    throw new Error("[ERROR]");
   }
 }

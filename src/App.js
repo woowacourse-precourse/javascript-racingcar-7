@@ -11,16 +11,15 @@ class App {
       let nameArray = await getNames();
       let count = await getCount();
 
-      let moveArray = Array.from({length: nameArray.length}, () => '');
+      let moveArray = Array.from({ length: nameArray.length }, () => "");
       let winnerArray = [];
 
       // 전진 중...
-      Console.print('\n실행 결과');
-      
+      Console.print("\n실행 결과");
+
       randomMoveHandler(count, nameArray, moveArray);
       decideWinner(nameArray, moveArray, winnerArray);
       showResult(winnerArray);
-
     } catch (error) {
       throw error;
     }
