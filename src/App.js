@@ -73,6 +73,19 @@ class App {
       }
       Console.print('');
     }
+    let maxCount = 0;
+    for (let participant of participantListMap) {
+      if (participant[1].length > maxCount) maxCount = participant[1].length;
+    }
+
+    let winner = [];
+    for (let participant of participantListMap) {
+      if (participant[1].length === maxCount) {
+        winner.push(participant[0]);
+      }
+    }
+
+    Console.print(`\n최종 우승자 : ${winner.join(', ')}`);
   }
 }
 
