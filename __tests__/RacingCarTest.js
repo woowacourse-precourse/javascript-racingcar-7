@@ -53,22 +53,13 @@ describe('예외 테스트', () => {
             await expect(app.run()).rejects.toThrow(ERROR_MESSAGE.NAME_LENGTH_EXCEEDED(NAME_NAX_LENGTH, errorName));
         });
 
-        test("자동차명은 숫자로 입력될 수 없습니다.", async () => {
-            // given
-            const errorName = '123';
-            const input = [`pobi,${errorName}`];
-            mockQuestions(input);
-
-            await expect(app.run()).rejects.toThrow(ERROR_MESSAGE.ONLY_USED_ENGLISH(errorName));
-        });
-
         test("자동차명에 특수문자는 포함될 수 없습니다.", async () => {
             // given
             const errorName = 'woni@';
             const input = [`pobi,${errorName}`];
             mockQuestions(input);
 
-            await expect(app.run()).rejects.toThrow(ERROR_MESSAGE.ONLY_USED_ENGLISH(errorName));
+            await expect(app.run()).rejects.toThrow(ERROR_MESSAGE.ONLY_USED_ENGLISH_AND_NUMBER(errorName));
         });
 
         test("자동차명은 한글로 입력될 수 없습니다.", async () => {
@@ -77,7 +68,7 @@ describe('예외 테스트', () => {
             const input = [`pobi,${errorName}`];
             mockQuestions(input);
 
-            await expect(app.run()).rejects.toThrow(ERROR_MESSAGE.ONLY_USED_ENGLISH(errorName));
+            await expect(app.run()).rejects.toThrow(ERROR_MESSAGE.ONLY_USED_ENGLISH_AND_NUMBER(errorName));
         });
     });
 

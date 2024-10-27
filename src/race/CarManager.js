@@ -15,7 +15,7 @@ class CarManager {
 
     #validateCarName(name) {
         Validator.checkNotBlank(name);
-        Validator.checkOnlyEnglishCharacters(name);
+        Validator.checkOnlyEnglishAndNumberCharacters(name);
         Validator.checkValidNameLength(name, this.#MAX_NAME_LENGTH);
     }
 

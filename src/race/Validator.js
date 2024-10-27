@@ -12,9 +12,9 @@ export function checkNotBlank(str) {
     }
 }
 
-export function checkOnlyEnglishCharacters(str) {
-    if (!/^[a-zA-Z]+$/.test(str)) {
-        throw new Error(ERROR_MESSAGE.ONLY_USED_ENGLISH(str));
+export function checkOnlyEnglishAndNumberCharacters(str) {
+    if (!/^[a-zA-Z0-9]+$/.test(str)) {
+        throw new Error(ERROR_MESSAGE.ONLY_USED_ENGLISH_AND_NUMBER(str));
     }
 }
 
