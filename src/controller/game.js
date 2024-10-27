@@ -8,7 +8,7 @@ import validateAttemptCount from '../validation/validate-attempt-count.js';
 class Game {
   constructor() {
     this.inputView = new InputView();
-    // this.outputView = new OutputView();
+    this.outputView = new OutputView();
   }
 
   async process() {
@@ -22,7 +22,7 @@ class Game {
     const attemptCount = parseInt(attemptCountInput, 10);
 
     // 여기서부터 race 시작
-    Console.print(GAME_MESSAGE.EXECUTION_RESULT_OUTPUT);
+    this.outputView.printExecutionResultMessage();
 
     const record = {};
 
@@ -37,7 +37,7 @@ class Game {
           record[carNameList[order]] += 1;
         }
 
-        Console.print(`${carNameList[order]} : ${'-'.repeat(record[carNameList[order]])}`);
+        this.outputView.printCarProgress(carNameList[order], record[carNameList[order]]);
       }
       Console.print('\n');
     }
@@ -53,7 +53,7 @@ class Game {
       }
     }
 
-    Console.print(`${GAME_MESSAGE.WINNER_OUTPUT} ${winner.join(', ')}`);
+    this.outputView.printWinners(winner);
   }
 }
 
