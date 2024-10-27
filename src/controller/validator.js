@@ -7,6 +7,14 @@ class Validator {
     Validator.#checkSpecialCharacters(carName);
   }
 
+  static checkDuplicateName(carList) {
+    const lowerCaseCarNames = carList.map((name) => name.toLowerCase());
+    const carSet = new Set(lowerCaseCarNames);
+    if (lowerCaseCarNames.length !== carSet.size) {
+      throw new Error(ERROR_MESSAGE.DUPLICATE_NAME_NOT_ALLOWED);
+    }
+  }
+
   static #checkNameLength(carName) {
     if (carName.length < 1) {
       throw new Error(ERROR_MESSAGE.NAME_TOO_SHORT);
@@ -30,8 +38,6 @@ class Validator {
       throw new Error(ERROR_MESSAGE.ONLY_ENGLISH_AND_KOREAN_ALLOWED);
     }
   }
-
-  static #checkName;
 }
 
 export default Validator;
