@@ -11,7 +11,7 @@ class Car {
   }
 
   tryToMove(randomValue) {
-    if(this.canMove(randomValue)) {
+    if (this.canMove(randomValue)) {
       this.moveForward();
     }
   }
