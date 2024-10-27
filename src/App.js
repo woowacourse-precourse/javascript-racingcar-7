@@ -1,7 +1,15 @@
 import { Console } from '@woowacourse/mission-utils'
 
+const validateCarName = (input) => {
+
+  if (input.length > 5){
+    throw new Error("[ERROR] 자동차 이름은 5자 이하로 입력해주세요.");
+  }
+
+}
 const determineCarName = (input) => {
   const names = input.split(',');
+  names.forEach((name)=>validateCarName(name));
 }
 
 class App {
