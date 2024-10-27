@@ -7,7 +7,7 @@ class App{
     Console.print(car_input)
     // 1. 변수 할당 : 각 자동차의 게임 진행 상황 반영 리스트
     let car_names=[]
-    let game_result=[]
+    let game_results=[]
 
     // 2. 게임을 몇 번 할건지 입력 받기(이후 라운드라고 표현)
     const number_input=await Console.readLineAsync('시도할 횟수는 몇 회인가요?');
@@ -59,7 +59,7 @@ class App{
 			    game_results[index]=0;
 		    }
 		    if(number>=4){
-			    game_result[index]+=1;
+			    game_results[index]+=1;
 		    }
 	    });
     }
@@ -74,5 +74,19 @@ class App{
 		    Console.print(`${name} : ${round_result}`)
 	    })
     }
+
+    // 7. 게임 함수 실행 및 게임 최종 결과 출력
+    Console.print("실행 결과");
+    game(Number(number_input));
+    const max_score=Math.max(...game_results);
+    const winners=[];
+    game_results.forEach((score,index)=>{
+      if(score===max_score){
+        winners.push(car_names[index]);
+      }
+    });
+    Console.print(`최종 우승자 : ${winners.join(",")}`);
   }
 }
+
+export default App;
