@@ -28,7 +28,7 @@ export class Track {
    * @param {Promise<{{carNames : string, numOfAttempts : number}}>} userInputs
    */
   async #createCar(userInputs) {
-    const carNames = userInputs.carNames.split(",").map((name) => name.trim());
+    const carNames = userInputs.carNames.split(",");
 
     this.#numOfAttempts = Number(userInputs.numOfAttempts);
     this.#cars = carNames.map((name) => new Car(name));
@@ -57,6 +57,7 @@ export class Track {
   async run() {
     const userInputs = await this.#view.inputInitialValue();
     await this.#createCar(userInputs);
+    this.#view.outputResultTitle();
     for (let i = 0; i < this.#numOfAttempts; i++) {
       this.#proceedOneStepWithOutput();
     }

@@ -57,9 +57,8 @@ describe("View Tests", () => {
 
     view.outputResult([car1, car2]);
 
-    expect(consoleSpy).toHaveBeenNthCalledWith(1, "실행 결과");
-    expect(consoleSpy).toHaveBeenNthCalledWith(2, "pobi : --");
-    expect(consoleSpy).toHaveBeenNthCalledWith(3, "rupi : -");
+    expect(consoleSpy).toHaveBeenNthCalledWith(1, "pobi : --");
+    expect(consoleSpy).toHaveBeenNthCalledWith(2, "rupi : -");
   });
 });
 

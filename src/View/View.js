@@ -35,12 +35,15 @@ class View {
     return { carNames, numOfAttempts };
   }
 
+  outputResultTitle() {
+    ViewUtils.output(VIEW_MSG.OUTPUT_RESULT);
+  }
+
   /**
    * 자동차 객체로 이루어진 배열을 입력으로 받아 결과를 출력
    * @param {Car[]} cars - 자동차 객체 배열
    */
   outputResult(cars) {
-    ViewUtils.output(VIEW_MSG.OUTPUT_RESULT);
     cars.map((car) =>
       ViewUtils.output(
         `${car.getName()} : ${ParseUtils.parseDistanceToDash(
