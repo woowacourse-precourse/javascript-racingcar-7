@@ -3,15 +3,15 @@ class Race {
   #racingCars;
 
   constructor(round = 0, racingCars = []) {
-    round;
-    racingCars;
+    this.#round = round;
+    this.#racingCars = racingCars;
   }
 
   getRacingCars() {
     return this.#racingCars;
   }
 
-  getRound() {
+  getTotalRound() {
     return this.#round;
   }
 

@@ -44,7 +44,7 @@
   1. 자동차 이름 입력
   2. 시도 횟수 입력
 
-  - [ ] OutputViews.js
+  - [x] OutputViews.js
 
   1. 실행결과 출력
   2. 최종 우승자 출력

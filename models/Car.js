@@ -3,8 +3,8 @@ class Car {
   #numberOfAdvance;
 
   constructor(name = "", numberOfAdvance = 0) {
-    name;
-    numberOfAdvance;
+    this.#name = name;
+    this.#numberOfAdvance = numberOfAdvance;
   }
 
   getName() {
@@ -15,7 +15,7 @@ class Car {
     return this.#numberOfAdvance;
   }
 
-  advance(canAdvance) {
+  Advance(canAdvance) {
     if (canAdvance) {
       this.#numberOfAdvance += 1;
     }

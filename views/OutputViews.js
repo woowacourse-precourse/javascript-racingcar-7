@@ -4,11 +4,11 @@ import { Console } from "@woowacourse/mission-utils";
 class OutputViews {
   // 실행결과 글자 출력
   static printExecutionResult() {
-    Console.print(MESSAGES.EXECUTION_RESULT);
+    Console.print(`\n${MESSAGES.EXECUTION_RESULT}`);
   }
 
   // 라운드별 실행결과
-  static printEachRoundResult(racingCar) {
+  static printEachRoundResult(racingCars) {
     racingCars.forEach((racingCar) => {
       Console.print(
         `${racingCar.getName()} : ${MESSAGES.ADVANCE.repeat(
