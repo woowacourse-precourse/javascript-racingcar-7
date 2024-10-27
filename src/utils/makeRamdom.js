@@ -1,9 +1,8 @@
 import { Random } from "@woowacourse/mission-utils"
 
-function makeRandomNumber(racer){
+function makeRandomNumber(){
     const go = Random.pickNumberInRange(0,9)
     const ref = "-".repeat(go); 
     return {go, ref} 
 }
 export default makeRandomNumber
-//const randomInstance=new MakeRandom()
