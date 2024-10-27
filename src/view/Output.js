@@ -16,6 +16,6 @@ export default class Output {
   }
 
   static printNewLine() {
-    MissionUtils.Console.print("\n");
+    MissionUtils.Console.print("");
   }
 }

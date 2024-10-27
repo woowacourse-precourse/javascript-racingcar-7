@@ -83,7 +83,7 @@ describe("출력", () => {
       game.setGame(CARS, REPEAT_COUNT);
       mockRandoms([1, 4, 1, 4]);
 
-      const logs = ["\n", "\n"];
+      const logs = ["", ""];
       const logSpy = getLogSpy();
 
       // when
