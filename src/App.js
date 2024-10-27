@@ -12,36 +12,33 @@ class App {
     Console.print("시도할 횟수는 몇 회인가요?");
     let playTimes = await Console.readLineAsync("");
     playTimesValidation(playTimes);
-    
+
     Console.print("\n실행 결과");
     let cars = arrCarName.map((name) => new Car(name));
     for (let count = 0; count < playTimes; count++) {
       roundResultPrint(cars);
     }
-    
+
     getWinner(cars);
   }
 }
 
 function carNameValidation(arrCarName) {
-  let carNameResult = arrCarName.every(car => car.length <= 5);
-  if(carNameResult == false) {
+  let carNameResult = arrCarName.every((car) => car.length <= 5);
+  if (carNameResult == false) {
     throw new Error("[Error] 자동차 이름은 5자 이하만 가능합니다.");
   }
 }
 
 function playTimesValidation(playTimes) {
-  if(playTimes == 0) {
+  if (playTimes == 0) {
     return 0;
-  }
-  else if(playTimes % 1 == 0 && playTimes > 0) {
+  } else if (playTimes % 1 == 0 && playTimes > 0) {
     return 0;
-  }
-  else if (playTimes < 0){
-    throw new Error("[Error] 음수를 입력할 수 없습니다.");
-  }
-  else {
-    throw new Error("[Error] 이동 횟수는 자연수만 가능합니다.");
+  } else if (playTimes < 0) {
+    throw new Error("[ERROR] 음수를 입력할 수 없습니다.");
+  } else {
+    throw new Error("[ERROR] 이동 횟수는 자연수만 가능합니다.");
   }
 }
 class Car {
