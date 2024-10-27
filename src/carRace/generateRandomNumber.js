@@ -9,5 +9,6 @@ export function generateRandomNumber() {
     MIN_RANDOM_NUMBER,
     MAX_RANDOM_NUMBER
   );
+
   return randomNumber;
 }

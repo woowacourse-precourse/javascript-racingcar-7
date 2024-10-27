@@ -10,5 +10,6 @@ export function validateCarNameSeparator(inputCarNameArray) {
     !LETTER_ONLY_REGEX.test(inputCarNameArray)
   )
     throw new Error(ERROR_MESSAGES.INVALID_NAME_SEPARATOR);
+
   return;
 }
