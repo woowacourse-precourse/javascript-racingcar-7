@@ -47,14 +47,21 @@ export function goRacing(carClassList){
         let number = MissionUtils.Random.pickNumberInRange(0,9);
         if(number >= 4){
             carClass.setValue(carClass.getValue() + 1);
+            changeMaxValue(carClass);
         }
     })
     printResult(carClassList);
 }
 
 function printResult(carClassList){
-    Console.print("\n실행 결과\n")
+    Console.print("\n실행 결과")
     carClassList.forEach((carClass)=>{
-        Console.print(carClass.getName() + " : " + "-".repeat(carClass.getValue()) + "\n");
+        Console.print(carClass.getName() + " : " + "-".repeat(carClass.getValue()));
     })
+}
+
+function changeMaxValue(carClass){
+    if(Car.getMax() < carClass.getValue()){
+        Car.setMax(carClass.getValue());
+    }
 }

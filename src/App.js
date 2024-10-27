@@ -1,5 +1,6 @@
 import { Console } from "@woowacourse/mission-utils";
 import { splitComma, isSameCar, makeCarClassList, goRacing } from "./functions.js";
+import Car from "./Car.js";
 
 class App {
   async run() {
