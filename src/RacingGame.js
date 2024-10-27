@@ -1,7 +1,10 @@
 import { inputHandler, outputHandler } from './views/index.js';
 import { GAME_MESSAGES, RULES } from './constants/index.js';
-import { carNameParser, randomNumber } from './utils/index.js';
-import { validateCarNames } from './validation/validateCarName.js';
+import {
+  carNameParser,
+  randomNumber,
+  validateCarNames,
+} from './utils/index.js';
 import { Car } from './models/index.js';
 
 class RacingGame {
