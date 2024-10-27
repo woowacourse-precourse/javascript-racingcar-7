@@ -1,4 +1,4 @@
-import { finalRace } from "../src/utils/finalRace";
+import finalRace from "../src/utils/finalRace";
 
 describe('finalRace',()=>{
     beforeEach(()=>{

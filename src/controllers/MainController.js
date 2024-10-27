@@ -1,4 +1,4 @@
-import { finalRace } from "../utils/finalRace.js";
+import finalRace from "../utils/finalRace.js";
 import { sepateInput } from "../utils/parser.js";
 import OutputView from "../views/OutputView.js";
 import { decisionFinalWinner } from "../models/decisionFinalWinner.js";

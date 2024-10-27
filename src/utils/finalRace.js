@@ -3,7 +3,8 @@
 //딕셔너리를 순회하면서 가장 value가 큰 값을 리턴한다
 //동일한 value가 있을 시 포함하여 리턴한다
 
-export const finalRace = (totalWinner)=>{
+const finalRace = (totalWinner)=>{
     const maxWins = Math.max(...Object.values(totalWinner))
     return Object.keys(totalWinner).filter(name=>totalWinner[name] === maxWins)
 }
+export default finalRace
