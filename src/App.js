@@ -10,7 +10,7 @@ class App {
       const validator = new Validator();
 
       const inputCarNames = await Console.readLineAsync(INPUT_PROMPT.CAR_NAMES);
-      validator.nameValidate(inputCarNames);
+      validator.validateName(inputCarNames);
 
       const cars = inputCarNames
         .split(',')
@@ -19,7 +19,7 @@ class App {
       const inputMoveAttempts = await Console.readLineAsync(
         INPUT_PROMPT.MOVE_ATTEMPTS,
       );
-      validator.moveAttemptsValidate(inputMoveAttempts);
+      validator.validateMoveAttempts(inputMoveAttempts);
 
       const moveAttempts = Number(inputMoveAttempts);
 
