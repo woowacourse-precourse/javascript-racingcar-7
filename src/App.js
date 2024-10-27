@@ -2,6 +2,8 @@ import IOHandler from "./utils/IOHandler.js";
 import datas from "./datas/datas.js";
 import RacingCar from "./RacingCar.js";
 import {Random, Console} from '@woowacourse/mission-utils';
+import RacingCarUtils from "./utils/RacingCarUtils.js";
+
 
 class App {
     async run() {
@@ -23,7 +25,7 @@ class App {
             Console.print('') //개행
         }
 
-        carList.sort((a, b) => b.getDistance() - a.getDistance())
+        Console.print("최종 우승자 : " + RacingCarUtils.findWinners(carList).join(', '))
     }
 }
 
