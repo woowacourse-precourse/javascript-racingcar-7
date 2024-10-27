@@ -14,6 +14,9 @@ const validateCarName = (input) => {
 const determineCarName = (input) => {
   const names = input.split(',');
   names.forEach((name)=>validateCarName(name));
+  if(new Set(names).size!==names.length){
+    throw new Error("[ERROR] 자동차 이름은 중복되지 않게 입력해주세요.")
+  }
 }
 
 class App {
