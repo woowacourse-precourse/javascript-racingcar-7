@@ -10,3 +10,8 @@ export const enterCarNames = async () => {
   carValidation(carNames);
   return carNames;
 };
+
+export const enterRoundCount = async () => {
+  const roundCount = await Console.readLineAsync(INPUT_MESSAGE.roundCounts);
+  return roundCount;
+};
