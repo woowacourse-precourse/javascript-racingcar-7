@@ -40,8 +40,8 @@ class App {
     }
 
     const racingRoundResult = getRacingRoundResult(racingRecords, tryNumber);
-    console.log(racingRoundResult);
 
+    MissionUtils.Console.print('');
     MissionUtils.Console.print(`실행 결과`);
 
     range(tryNumber).forEach((_, index) => {
@@ -49,7 +49,9 @@ class App {
         const recordsRound = count.records.slice(0, index + 1).filter(Boolean).length;
 
         const scoreChangeToDash = range(recordsRound).map(() => '-').join('');
+        MissionUtils.Console.print(`${count.name} : ${scoreChangeToDash}`);
       });
+      MissionUtils.Console.print('');
     });
   }
 }
