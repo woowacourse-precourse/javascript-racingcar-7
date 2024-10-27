@@ -31,7 +31,10 @@ class GameController {
       throw new Error('[ERROR] 자동차 이름을 입력하세요.');
     }
 
-    const carNames = names.split(',');
+    const carNames = names.split(',').map(name => name.trim());
+    if (JSON.stringify([...new Set(carNames)]) !== JSON.stringify(carNames)) {
+      throw new Error('[ERROR] 자동차 이름은 중복될 수 없습니다.');
+    }
     carNames.forEach(name => {
       if (name.length > 5) {
         throw new Error('[ERROR] 자동차 이름은 5글자 이하여야 합니다.');
