@@ -1,7 +1,5 @@
 import { Console, MissionUtils } from "@woowacourse/mission-utils";
 class App {
-  // 현재 자동차 이동 유무 함수까지 (rolling_num 포함) commit 했음 + 아래 가이드용 주석까지
-  // 이후 이동횟수만큼 - 출력하는 함수 완성(아마도 완성되었음..?) 해서 커밋하고 아래 for문 loop 완성해서 출력하기
   async run() {
     const rolling_number = () => {
       return MissionUtils.Random.pickNumberInRange(0, 9);
@@ -32,6 +30,9 @@ class App {
     let car_names = name_input.split(",");
     car_names = car_names.map((name) => name.trim());
     let cars_score = new Array(car_names.length).fill(0);
+
+    let result = [];
+
     // 에러 조건 1 : 입력된 이름이 5자를 넘어가는가?
     for (let name of car_names) {
       if (name.length > 5) {
@@ -41,13 +42,21 @@ class App {
     Console.print("시도할 횟수는 몇 회인가요?");
     const loop = await Console.readLineAsync("");
 
-    // 자동차 이동
+    // 자동차 이동 출력
     for (let i = 0; i < loop; i++) {
       plus_point(car_names);
       print_points(car_names, cars_score);
       Console.print("");
-      // print point 호출 (전진한 거리만큼 - 호출하는 함수)
     }
+
+    // 최종적으로 우승한 자동차의 이름 출력
+    const max_score = Math.max(...cars_score);
+    for (let i = 0; i < cars_score.length; i++) {
+      if (cars_score[i] == max_score) {
+        result.push(car_names[i]);
+      }
+    }
+    Console.print(`최종 우승자 : ${result.join(", ")}`);
   }
 }
 
