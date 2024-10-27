@@ -46,15 +46,39 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트", async () => {
-    // given
-    const inputs = ["pobi,javaji"];
-    mockQuestions(inputs);
+  describe("예외 테스트", () => {
+    const errorCases = [
+      {
+        name: "자동차 이름 허용 길이 초과",
+        inputs: ["pobi,javajava"],
+        expectedError: "[ERROR]",
+      },
+      {
+        name: "자동차 이름이 중복된 경우",
+        inputs: ["pobi,woni,woni"],
+        expectedError: "[ERROR]",
+      },
+      {
+        name: "숫자가 아닌 시도 횟수",
+        inputs: ["pobi,woni", "a"],
+        expectedError: "[ERROR]",
+      },
+      {
+        name: "자동차 이름 입력 안 함",
+        inputs: [""],
+        expectedError: "[ERROR]",
+      },
+    ];
 
-    // when
-    const app = new App();
+    test.each(errorCases)("$name", async ({ inputs, expectedError }) => {
+      // given
+      mockQuestions(inputs);
 
-    // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
+      // when
+      const app = new App();
+
+      // then
+      await expect(app.run()).rejects.toThrow(expectedError);
+    });
   });
 });
