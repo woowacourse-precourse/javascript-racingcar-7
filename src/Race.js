@@ -17,12 +17,14 @@ class Race {
   }
 
   generateRandomDistances() {
-    this.cars.forEach(car => {
-      const randomDistance = getRandomNumber(0, 9);
-      if (randomDistance >= GAME_RULES.MOVE_THRESHOLD) {
-        car.move(1);
-      }
-    });
+    this.cars.forEach(car => this.tryMoveCar(car));
+  }
+
+  tryMoveCar(car) {
+    const randomDistance = getRandomNumber(0, 9);
+    if (randomDistance >= GAME_RULES.MOVE_THRESHOLD) {
+      car.move(1);
+    }
   }
 
   getRaceStatus() {
