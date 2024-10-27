@@ -5,9 +5,9 @@ class RacingGame {
     this.cars = new Cars(names);
   }
 
-  getHighestScore() {
-    const scores = this.cars.getScores();
-    return scores.reduce((acc, cur) => Math.max(acc, cur), 0);
+  play(counts) {
+    this.cars.race(counts);
+    return this.getWinner();
   }
 
   getWinner() {
@@ -18,9 +18,9 @@ class RacingGame {
     return winnerNameString;
   }
 
-  play(counts) {
-    this.cars.race(counts);
-    return this.getWinner();
+  getHighestScore() {
+    const scores = this.cars.getScores();
+    return scores.reduce((acc, cur) => Math.max(acc, cur), 0);
   }
 }
 

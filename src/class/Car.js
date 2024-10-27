@@ -6,6 +6,15 @@ class Car {
     this.score = 0;
   }
 
+  attemptMove() {
+    const randomNumber = MyUtils.getRandomSingleDigit();
+    if (this.canMoveForward(randomNumber)) {
+      this.moveForward();
+    }
+
+    this.printScore();
+  }
+
   canMoveForward(number) {
     return number >= 4;
   }
@@ -16,15 +25,6 @@ class Car {
 
   printScore() {
     UserInterface.print(`${this.name} : ${'-'.repeat(this.score)}`);
-  }
-
-  attemptMove() {
-    const randomNumber = MyUtils.getRandomSingleDigit();
-    if (this.canMoveForward(randomNumber)) {
-      this.moveForward();
-    }
-
-    this.printScore();
   }
 }
 
