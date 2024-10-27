@@ -13,6 +13,7 @@ class App {
       const attempts = await Console.readLineAsync(
         '시도할 횟수는 몇 회인가요?\n'
       );
+      this.validateAttempts(attempts);
 
       const cars = carNames.map((name) => ({ name, position: 0 }));
       this.runRace(cars, attempts);
@@ -53,6 +54,18 @@ class App {
         throw new Error('[ERROR] 쉼표 다음에 반드시 이름을 입력해야 합니다.');
       }
     });
+  }
+
+  validateAttempts(attempts) {
+    if (attempts === '') {
+      throw new Error('[ERROR] 입력된 값이 없습니다.');
+    }
+    if (isNaN(attempts)) {
+      throw new Error('[ERROR] 숫자가 아닌 값은 입력할 수 없습니다.');
+    }
+    if (attempts <= 0) {
+      throw new Error('[ERROR] 양수만 입력할 수 있습니다.');
+    }
   }
 
   runRace(cars, attempts) {
