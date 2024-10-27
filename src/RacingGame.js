@@ -11,6 +11,7 @@ class RacingGame {
 
   play() {
     let currentStep = 1;
+    Console.print('\n실행 결과');
     while (currentStep <= this.attemptCount) {
       this.attemptRacingStep();
       this.printStatusByStep();
