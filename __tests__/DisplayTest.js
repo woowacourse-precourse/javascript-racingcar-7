@@ -27,11 +27,11 @@ describe('Display 메서드 테스트', () => {
 
   test('라운드 결과를 형식에 맞게 출력하는지 테스트', () => {
     const roundResult = { name: 'woowa', distance: 3 };
-    const expected = 'woowa : ---';
+    const EXPECTED_LOG = 'woowa : ---';
     const roundResultSpy = getLogSpy();
 
     Display.showDistanceGraph(roundResult);
 
-    expect(roundResultSpy).toHaveBeenCalledWith(expected);
+    expect(roundResultSpy).toHaveBeenCalledWith(EXPECTED_LOG);
   });
 });
