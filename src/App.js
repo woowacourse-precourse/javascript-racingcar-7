@@ -5,6 +5,11 @@ class App {
     const userCars = await this.getCarName();
     const tryRaceNum = await this.getTryRaceNum();
     const userCarObj = this.creatCarObject(userCars.split(","));
+    MissionUtils.Console.print("\n실행 결과");
+    for (let i = 0; i < tryRaceNum; i++) {
+      this.carMove(userCarObj);
+      this.showRace(userCarObj);
+    }
   }
 
   async getCarName() {
@@ -30,6 +35,22 @@ class App {
       return { carname: name, movecar: 0, randomnum: 0 };
     });
     return carInfo;
+  }
+
+  carMove(car) {
+    car.forEach((car) => {
+      car.randomnum = MissionUtils.Random.pickNumberInRange(0, 9);
+      if (car.randomnum >= 4) {
+        car.movecar = car.movecar + 1;
+      }
+    });
+  }
+
+  showRace(car) {
+    car.forEach((car) => {
+      MissionUtils.Console.print(`${car.carname} : ${"-".repeat(car.movecar)}`);
+    });
+    MissionUtils.Console.print("\n");
   }
 }
 
