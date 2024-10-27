@@ -13,6 +13,8 @@ export const ERROR_MSG = Object.freeze({
     '[ERROR] ","로 시작하는 자동차 이름은 사용할 수 없습니다!',
   ERROR_INPUT_CAR_NAME_LENGTH:
     "[ERROR] 자동차 이름의 길이는 5를 넘을 수 없습니다. 다시 입력해주세요!",
-  ERROR_INPUT_WITH_ATTEMPTS:
+  ERROR_INPUT_WITH_ATTEMPTS_NUMBER:
     "[ERROR] 시도활 횟수는 숫자만 입력 가능합니다. 다시 확인해주세요!",
+  ERROR_INPUT_WITH_ATTEMPTS_PLUS:
+    "[ERROR] 시도할 횟수는 1이상의 숫자만 입력할 수 있습니다. 다시 확인해주세요!",
 });

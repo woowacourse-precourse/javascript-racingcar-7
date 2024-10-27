@@ -30,17 +30,31 @@ export const Validator = () => {
 
   const validateInputCarNameFormat = (userInputs) => {
     if (!inputCarNameFormat.test(userInputs)) {
-      return (
+      const errorMessage =
         validateCarNameWithNumError(userInputs) ||
         validateCarNameWithLength(userInputs) ||
-        validateCarNameWithComma(userInputs)
-      );
+        validateCarNameWithComma(userInputs);
+      throw new Error(errorMessage);
     }
   };
 
-  const validateInputNumOfAttempts = (userInputs) => {
-    if (isNaN(userInputs)) {
-      return ERROR_MSG.ERROR_INPUT_WITH_ATTEMPTS;
+  const validateInputIsNumber = (attempts) => {
+    if (isNaN(attempts)) {
+      return ERROR_MSG.ERROR_INPUT_WITH_ATTEMPTS_NUMBER;
+    }
+  };
+
+  const validateInputIsPlus = (attempts) => {
+    if (Number(attempts) < 1) {
+      return ERROR_MSG.ERROR_INPUT_WITH_ATTEMPTS_PLUS;
+    }
+  };
+
+  const validateInputNumOfAttempts = (attempts) => {
+    const errorMessage =
+      validateInputIsNumber(attempts) || validateInputIsPlus(attempts);
+    if (errorMessage) {
+      throw new Error(errorMessage);
     }
   };
 

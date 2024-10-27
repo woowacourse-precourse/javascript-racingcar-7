@@ -1,17 +1,28 @@
-import { VIEW_MSG } from "../Constants/Constants.js";
+import { VIEW_MSG } from "../Constant/Constants.js";
 import { Car } from "../Model/Car.js";
 import { ParseUtils } from "../Util/ParseUtils.js";
 import { ViewUtils } from "../Util/ViewUtils.js";
+import { Validator } from "../Validator/Validator.js";
 
 //@ts-check
 
 class View {
+  #validator;
+
+  constructor() {
+    this.#validator = Validator();
+  }
+
   async #inputCarName() {
-    return await ViewUtils.input(VIEW_MSG.INPUT_CAR_NAME);
+    const carNames = await ViewUtils.input(VIEW_MSG.INPUT_CAR_NAME);
+    this.#validator.validateInputCarNameFormat(carNames);
+    return carNames;
   }
 
   async #inputNumOfAttempts() {
-    return await ViewUtils.input(VIEW_MSG.INPUT_NUM_OF_ATTEMPTS);
+    const attempts = await ViewUtils.input(VIEW_MSG.INPUT_NUM_OF_ATTEMPTS);
+    this.#validator.validateInputNumOfAttempts(attempts);
+    return attempts;
   }
 
   /**
@@ -37,6 +48,7 @@ class View {
         )}`
       )
     );
+    ViewUtils.output("");
   }
 
   outputWinner(winnerNames) {

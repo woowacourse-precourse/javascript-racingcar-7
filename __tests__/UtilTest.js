@@ -69,31 +69,51 @@ test("ParseUtils Test - parseDistanceToDash", () => {
   expect(result).toBe("---");
 });
 
-test("Validator Test", () => {
-  const { validateInputCarNameFormat, validateInputNumOfAttempts } =
-    Validator();
+describe("Validator Test", () => {
+  let validator;
 
-  const errorCaseWithNumOfCar = validateInputCarNameFormat("하하");
-  const errorCaseWithCarNameLength1 =
-    validateInputCarNameFormat("하하하하하,후후후후후후");
-  const errorCaseWithCarNameLength2 =
-    validateInputCarNameFormat("하하하하하, 후후후후후");
-  const errorCaseWithCarNameWithComma1 =
-    validateInputCarNameFormat(",하하하하,히히히히히");
-  const errorCaseWithCarNameWithComma2 =
-    validateInputCarNameFormat("하하하하하,,히히히");
-  const errorCaseWithAttemptsNaN1 = validateInputNumOfAttempts("하하");
-  const errorCaseWithAttemptsNaN2 = validateInputNumOfAttempts("2");
+  beforeEach(() => {
+    validator = Validator();
+  });
 
-  expect(errorCaseWithNumOfCar).toBe(ERROR_MSG.ERROR_INPUT_NUM_CAR);
-  expect(errorCaseWithCarNameLength1).toBe(
-    ERROR_MSG.ERROR_INPUT_CAR_NAME_LENGTH
-  );
-  expect(errorCaseWithCarNameLength2).toBe(
-    ERROR_MSG.ERROR_INPUT_CAR_NAME_LENGTH
-  );
-  expect(errorCaseWithCarNameWithComma1).toBe(ERROR_MSG.ERROR_INPUT_CAR_COMMA);
-  expect(errorCaseWithCarNameWithComma2).toBe(ERROR_MSG.ERROR_INPUT_CAR_COMMA);
-  expect(errorCaseWithAttemptsNaN1).toBe(ERROR_MSG.ERROR_INPUT_WITH_ATTEMPTS);
-  expect(errorCaseWithAttemptsNaN2).toBe(undefined);
+  test("자동차 이름이 최소 2개 이상 입력해야 합니다.", () => {
+    expect(() => {
+      validator.validateInputCarNameFormat("하하");
+    }).toThrow(ERROR_MSG.ERROR_INPUT_NUM_CAR);
+  });
+
+  test("자동차 이름은 ,로 시작할 수 없어요. (1) - 첫번째 자동차 이름", () => {
+    expect(() => {
+      validator.validateInputCarNameFormat(",하하,후후후후후");
+    }).toThrow(ERROR_MSG.ERROR_INPUT_CAR_COMMA);
+  });
+
+  test("자동차 이름은 ,로 시작할 수 없어요. (2) - 첫번째 이후 자동차 이름", () => {
+    expect(() => {
+      validator.validateInputCarNameFormat("하하,,후후후후후");
+      validator.validateInputCarNameFormat("하하,,후후후후");
+    }).toThrow(ERROR_MSG.ERROR_INPUT_CAR_COMMA);
+  });
+
+  test("자동차 이름은 5글자 이하만 가능해요. (1) - 평범한 이름", () => {
+    expect(() => {
+      validator.validateInputCarNameFormat("하하하하하하,흐흐흐흐");
+    }).toThrow(ERROR_MSG.ERROR_INPUT_CAR_NAME_LENGTH);
+  });
+
+  test("자동차 이름은 5글자 이하만 가능해요. (2) - 특수한 이름", () => {
+    expect(validator.validateInputCarNameFormat("!@#!@,    ")).toBe(undefined);
+  });
+
+  test("시도 횟수는 숫자만 입력 가능해요.", () => {
+    expect(() => {
+      validator.validateInputNumOfAttempts("!");
+    }).toThrow(ERROR_MSG.ERROR_INPUT_WITH_ATTEMPTS_NUMBER);
+  });
+
+  test("시도 횟수는 1이상의 값만 가능해요.", () => {
+    expect(() => {
+      validator.validateInputNumOfAttempts("-1");
+    }).toThrow(ERROR_MSG.ERROR_INPUT_WITH_ATTEMPTS_PLUS);
+  });
 });

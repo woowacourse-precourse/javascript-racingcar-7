@@ -4,8 +4,13 @@ import View from "./View/View.js";
 
 class App {
   async run() {
-    const track = new Track(new View());
-    await track.run();
+    try {
+      const track = new Track(new View());
+      await track.run();
+    } catch (err) {
+      ViewUtils.output(err.message);
+      throw err;
+    }
   }
 }
 
