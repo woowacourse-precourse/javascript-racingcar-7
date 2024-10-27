@@ -13,10 +13,16 @@ class App {
   }
 
   async run() {
+    // Get user input
     const userInput = await this.userInput.getUserInputCars();
+
+    // Split user input by separator
     const userInputArray = userInput.split(",");
+
+    // Get user input count
     const userInputCount = await this.userInput.getUserInputCount();
 
+    // Create initial players positions
     let positions = this.raceController.createPlayersPositions(userInputArray.length);
 
     // Validate user input
