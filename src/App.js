@@ -61,7 +61,17 @@ class App {
       });
 
       const winnerScore = Math.max(...carRecordValue);
+
+      const winners = array.filter((round) => {
+        return round.records.filter(Boolean).length === winnerScore;
+      }).map((round) => round.name)
+        .join(', ')
+
+      return winners;
     }
+
+    const finalWinner = getWinner(racingRoundResult);
+    MissionUtils.Console.print(`최종 우승자 : ${finalWinner}`)
   }
 }
 
