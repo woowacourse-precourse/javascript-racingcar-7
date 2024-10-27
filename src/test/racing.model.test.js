@@ -1,4 +1,5 @@
 import { RacingModel } from '../racing/racing.model.js';
+import { RuleModel } from '../rule/rule.model.js';
 
 describe('RacingModel', () => {
   /** @type {RacingModel} */
@@ -18,7 +19,7 @@ describe('RacingModel', () => {
       const carNames = '';
 
       expect(() => racingModel.setCars(carNames)).toThrow(
-        RacingModel.ERROR_MESSAGE.INPUT_CAN_NOT_BE_EMPTY,
+        RuleModel.ERROR_MESSAGE.INPUT_CAN_NOT_BE_EMPTY,
       );
     });
 
@@ -26,7 +27,7 @@ describe('RacingModel', () => {
       const carNames = 'pobi, pobipobi, pobi';
 
       expect(() => racingModel.setCars(carNames)).toThrow(
-        RacingModel.ERROR_MESSAGE.CAR_NAME_LENGTH_IS_LESS_THAN_FIVE,
+        RuleModel.ERROR_MESSAGE.CAR_NAME_LENGTH_IS_LESS_THAN_FIVE,
       );
     });
   });
@@ -36,7 +37,7 @@ describe('RacingModel', () => {
       const trialNumber = '';
 
       expect(() => racingModel.setTrialNumber(trialNumber)).toThrow(
-        RacingModel.ERROR_MESSAGE.INPUT_CAN_NOT_BE_EMPTY,
+        RuleModel.ERROR_MESSAGE.INPUT_CAN_NOT_BE_EMPTY,
       );
     });
 
@@ -44,7 +45,7 @@ describe('RacingModel', () => {
       const trialNumber = '-123';
 
       expect(() => racingModel.setTrialNumber(trialNumber)).toThrow(
-        RacingModel.ERROR_MESSAGE.TRIAL_NUMBER_IS_POSITIVE_INTEGER,
+        RuleModel.ERROR_MESSAGE.TRIAL_NUMBER_IS_POSITIVE_INTEGER,
       );
     });
 
@@ -52,7 +53,7 @@ describe('RacingModel', () => {
       const trialNumber = '0.123';
 
       expect(() => racingModel.setTrialNumber(trialNumber)).toThrow(
-        RacingModel.ERROR_MESSAGE.TRIAL_NUMBER_IS_POSITIVE_INTEGER,
+        RuleModel.ERROR_MESSAGE.TRIAL_NUMBER_IS_POSITIVE_INTEGER,
       );
     });
   });
