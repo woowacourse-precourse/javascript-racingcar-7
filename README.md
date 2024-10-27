@@ -105,9 +105,9 @@
 1. InputHandler 클래스 구현
 
 - 자동차 이름과 시도 횟수를 입력받아 파싱하는 기능 구현
-- [] parseCarNames(input)
+- [O] parseCarNames(input)
   - Console.print()로 분리된 자동차 이름 배열 출력
-- [] parseAttempts(input)
+- [O] parseAttempts(input)
   - Console.print()로 변환된 시도 횟수 출력
 
 2. Car 클래스 구현
