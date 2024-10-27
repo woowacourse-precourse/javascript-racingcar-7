@@ -1,6 +1,7 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import App from '../src/App.js';
 import { validateCars, validateCount } from '../src/validate.js';
+import { moveCars, parseStringToObject } from '../src/racing.js';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -60,7 +61,7 @@ describe('자동차 경주', () => {
   });
 });
 
-describe('입력값 검증', () => {
+describe('입력값 검증 (validate.js)', () => {
   describe('자동차 이름 입력 검증', () => {
     test('정상적인 자동차 이름 입력', () => {
       expect(validateCars('pobi,woni')).toBe('pobi,woni');
@@ -91,5 +92,33 @@ describe('입력값 검증', () => {
     test('숫자가 아닌 값 입력시 에러 발생', () => {
       expect(() => validateCount('abc')).toThrow('[ERROR]');
     });
+  });
+});
+
+describe('자동차 이동 (racingCars.js)', () => {
+  test('문자열을 객체 배열로 변환', () => {
+    const result = parseStringToObject('pobi,woni');
+    expect(result).toEqual([
+      { name: 'pobi', distance: 0 },
+      { name: 'woni', distance: 0 },
+    ]);
+  });
+
+  test('자동차 이동 (4이상)', () => {
+    mockRandoms([4]);
+
+    const cars = [{ name: 'pobi', distance: 0 }];
+    const result = moveCars(cars);
+    expect(result[0].distance).toBe(1);
+    expect(cars[0].distance).toBe(0);
+  });
+
+  test('자동차 정지 (3이하)', () => {
+    mockRandoms([3]);
+
+    const cars = [{ name: 'pobi', distance: 0 }];
+    const result = moveCars(cars);
+    expect(result[0].distance).toBe(0);
+    expect(cars[0].distance).toBe(0);
   });
 });

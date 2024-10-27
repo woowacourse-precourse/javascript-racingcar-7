@@ -3,13 +3,13 @@ import { isMoveForward } from './random.js';
 import { input } from './input.js';
 import { printProgress, printResult } from './output.js';
 
-function parseStringToObject(validCars) {
+export function parseStringToObject(validCars) {
   const carsArray = validCars.split(',');
 
   return carsArray.map((car) => ({ name: car, distance: 0 }));
 }
 
-function moveCars(carsObject) {
+export function moveCars(carsObject) {
   return carsObject.map((car) => {
     if (isMoveForward()) {
       return { ...car, distance: car.distance + 1 };
