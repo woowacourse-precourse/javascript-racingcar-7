@@ -24,6 +24,12 @@ class App {
       racingCarsPos[car] = 0;
     });
 
+    for (let i = 0; i < gameCount; i++) {
+      this.playTurn(racingCars, racingCarsPos);
+    }
+  }
+
+  playTurn(racingCars, racingCarsPos) {
     racingCars.forEach((car) => {
       if (this.getRandomNumber() >= 4) {
         this.moveCar(racingCarsPos, car);
