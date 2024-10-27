@@ -28,7 +28,7 @@ class RaceService {
     const raceCars = this.raceCarManagementService.getRaceCars();
 
     for (let i = 0; i < attemptCount; i++) {
-      this.raceCarMovementService.moveRaceCars(raceCars);
+      this.raceCarMovementService.moveCars(raceCars);
     }
   }
 

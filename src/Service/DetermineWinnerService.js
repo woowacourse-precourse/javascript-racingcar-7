@@ -1,4 +1,6 @@
-class DetermineWinnerService {
+import IDetermineWinnerService from './Interfaces/IDetermineWinnerService.js';
+
+class DetermineWinnerService extends IDetermineWinnerService {
   determineWinners(raceCars) {
     const maxDistance = Math.max(
       ...raceCars.map(raceCar => raceCar.getForwardCount())

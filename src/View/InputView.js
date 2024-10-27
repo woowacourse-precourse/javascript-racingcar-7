@@ -1,6 +1,7 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
+import IInputView from './Interfaces/IInputView.js';
 
-class InputView {
+class InputView extends IInputView {
   async readInput(string) {
     let inputValue = '';
 

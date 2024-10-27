@@ -1,6 +1,7 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
+import IOutputView from './Interfaces/IOutputView.js';
 
-class OutputView {
+class OutputView extends IOutputView {
   async printOutput(string) {
     try {
       MissionUtils.Console.print(string);

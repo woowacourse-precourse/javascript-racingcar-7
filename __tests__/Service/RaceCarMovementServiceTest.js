@@ -34,7 +34,7 @@ describe('raceCarMovementService', () => {
     mockRandoms(mockValues);
 
     const raceCarMovementService = new RaceCarMovementService();
-    raceCarMovementService.moveRaceCars(raceCars);
+    raceCarMovementService.moveCars(raceCars);
 
     expect(raceCars[0].getForwardCount()).toBe(1);
   });
@@ -47,7 +47,7 @@ describe('raceCarMovementService', () => {
     mockRandoms(mockValues);
 
     const raceCarMovementService = new RaceCarMovementService();
-    raceCarMovementService.moveRaceCars(raceCars);
+    raceCarMovementService.moveCars(raceCars);
 
     expect(raceCars[0].getForwardCount()).toBe(0);
   });

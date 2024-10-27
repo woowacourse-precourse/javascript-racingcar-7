@@ -1,9 +1,11 @@
 import RaceCar from '../Model/RaceCar.js';
+import ICarManagementService from './Interfaces/ICarManagementService.js';
 
-class RaceCarManagementService {
+class RaceCarManagementService extends ICarManagementService {
   #raceCars;
 
   constructor() {
+    super();
     this.#raceCars = [];
   }
 
