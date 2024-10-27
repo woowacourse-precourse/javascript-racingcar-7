@@ -6,6 +6,7 @@ export const startRaceGame = (carNameArr, raceCount) => {
     oneRace(carNameArr, positions);
     Console.print("");
   }
+  printWinner(carNameArr, positions);
 };
 
 const isMoveForward = () => {
@@ -22,4 +23,10 @@ const oneRace = (carNameArr, positions) => {
     moveCarForward(carIndex, positions);
     Console.print(`${carName} : ${"-".repeat(positions[carIndex])}`);
   });
+};
+
+const printWinner = (carNameArr, positions) => {
+  const maxPosition = Math.max(...positions);
+  const winners = carNameArr.filter((_, idx) => positions[idx] === maxPosition);
+  Console.print(`최종 우승자 : ${winners.join(", ")}`);
 };
