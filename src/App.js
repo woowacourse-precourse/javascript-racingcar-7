@@ -4,7 +4,9 @@ class App {
   async run() {
     try {
       const carNames = await this.getCarNames();
+      const attempts = await this.getMoveAttempts();
       Console.print(`입력된 자동차들: ${carNames.join(", ")}`);
+      Console.print(`이동 횟수: ${attempts}`);
     } catch (error) {
       Console.print(error.message);
     }
@@ -44,6 +46,23 @@ class App {
     if (new Set(names).size !== names.length) {
       throw new Error("[ERROR] 자동차 이름은 중복될 수 없습니다.");
     }
+  }
+
+  async getMoveAttempts() {
+    return new Promise((resolve, reject) => {
+      Console.readLineAsync("시도할 횟수는 몇 회인가요?\n")
+        .then((input) => {
+          const attempts = parseInt(input, 10);
+          if (isNaN(attempts) || attempts <= 0) {
+            reject(
+              new Error("[ERROR] 시도 횟수는 1 이상의 양의 정수여야 합니다.")
+            );
+          } else {
+            resolve(attempts);
+          }
+        })
+        .catch((error) => reject(error));
+    });
   }
 }
 
