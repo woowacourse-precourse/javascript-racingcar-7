@@ -12,28 +12,39 @@ class App {
       this.announceWinner();
     }
     catch(error) {
-      Console.print(`[ERROR] ${error.message}`);
+      this.handleError(error);
+    }
+  }
+
+  handleError(error) {
+    Console.print(`[ERROR] ${error.message}`);
     if (process.env.NODE_ENV === 'test') {
       throw new Error(`[ERROR] ${error.message}`);
     }
-    return;
-  }
   }
   
   async carNames() {
     const input = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
-    if (!input) {
-      throw new Error("경주할 자동차 이름을 입력하세요.");
-    }
+    this.validateCarNames(input);
     const names = input.split(',');
     this.cars = names.map(name => new Car(name));
   }
 
+  validateCarNames(input) {
+    if (!input) {
+      throw new Error("경주할 자동차 이름을 입력하세요.");
+    }
+  }
+
   async attempts() {
     const input = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+    return this.validateAttempts(input);
+  }
+
+  validateAttempts(input) {
     const attempt = Number(input);
     if (isNaN(attempt) || attempt <= 0) {
-      throw new Error("유효하지 않은 시도 횟수입니다.")
+      throw new Error("유효하지 않은 시도 횟수입니다.");
     }
     return attempt;
   }
