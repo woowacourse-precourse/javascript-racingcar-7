@@ -1,4 +1,4 @@
-import { MissionUtils, Random } from '@woowacourse/mission-utils';
+import { MissionUtils } from '@woowacourse/mission-utils';
 import { playGame } from '../src/App.js';
 import { GAME_SETTINGS } from '../src/constants.js';
 

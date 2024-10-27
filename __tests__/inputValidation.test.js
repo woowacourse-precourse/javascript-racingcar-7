@@ -6,10 +6,10 @@ describe('자동차 경주: 입력 검증 테스트', () => {
     // given
     const inputs = ['minda,abc', '3'];
     mockQuestions(inputs);
+    const logSpy = getLogSpy();
 
     // when
     const app = new App();
-    const logSpy = getLogSpy();
     await app.run();
 
     // then
@@ -44,10 +44,10 @@ describe('자동차 경주: 입력 검증 테스트', () => {
     // given
     const inputs = ['minda,abe', '3'];
     mockQuestions(inputs);
+    const logSpy = getLogSpy();
 
     // when
     const app = new App();
-    const logSpy = getLogSpy();
     await app.run();
 
     // then

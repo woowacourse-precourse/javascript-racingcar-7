@@ -13,7 +13,7 @@ export default App;
 async function initializeGame() {
   try {
     const playerNames = await getPlayerNames();
-    getVaildatedPlayerNames(playerNames);
+    validatePlayerNames(playerNames);
 
     const moveCountInput = await Console.readLineAsync(
       MESSAGES.INPUT_MOVE_COUNT
@@ -38,14 +38,10 @@ function parsePlayerNames(userInput) {
   return userInput.split(GAME_SETTINGS.DELIMITER).map((e) => e.trim());
 }
 
-function getVaildatedPlayerNames(playerNames) {
-  validatePlayerNames(playerNames);
-  return playerNames;
-}
-
 function validatePlayerNames(playerNames) {
-  if (playerNames.some((name) => !REGEX.PLAYER_NAME_REGEX.test(name)))
+  if (playerNames.some((name) => !REGEX.PLAYER_NAME_REGEX.test(name))) {
     throw new Error(ERROR_MESSAGES.INVALID_PLAYER_NAME);
+  }
 }
 
 function validateMoveCount(moveCount) {
