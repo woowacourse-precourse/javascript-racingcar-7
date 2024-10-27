@@ -2,7 +2,8 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 import RacingGame from "../src/model/RacingGame.js";
 
 const mockGame = (repeatCount, cars) => {
-  const game = new RacingGame(repeatCount, cars);
+  const game = new RacingGame();
+  game.setGame(cars, repeatCount);
   game.play = jest.spyOn(game, "play");
   Object.keys(game.cars).forEach((name) => {
     jest.spyOn(game.cars[name], "move");

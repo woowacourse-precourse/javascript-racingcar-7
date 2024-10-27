@@ -1,19 +1,21 @@
-import Input from "./view/Input.js";
-import RacingGame from "./model/RacingGame.js";
+import InputValidation from "./validation/InputValidation.js";
 
 class App {
   input;
 
-  constructor() {
-    this.input = new Input();
+  game;
+
+  constructor(input, game) {
+    this.input = input;
+    this.game = game;
   }
 
   async run() {
-    const cars = await this.input.getCars();
-    const repeatCount = await this.input.getRepeatCount();
+    const carNames = await this.input.getCars(InputValidation.carString);
+    const repeatCount = await this.input.getRepeatCount(InputValidation.repeatCountString);
 
-    const game = new RacingGame(repeatCount, cars);
-    game.start();
+    this.game.setGame(carNames, repeatCount);
+    this.game.start();
   }
 }
 

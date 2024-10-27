@@ -1,5 +1,7 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import App from "../src/App.js";
+import Input from "../src/view/Input.js";
+import RacingGame from "../src/model/RacingGame.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -38,7 +40,7 @@ describe("자동차 경주", () => {
     mockRandoms([MOVING_FORWARD, STOP]);
 
     // when
-    const app = new App();
+    const app = new App(Input, new RacingGame());
     await app.run();
 
     // then
@@ -53,7 +55,7 @@ describe("자동차 경주", () => {
     mockQuestions(inputs);
 
     // when
-    const app = new App();
+    const app = new App(Input, new RacingGame());
 
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
