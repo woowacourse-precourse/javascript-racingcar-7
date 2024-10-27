@@ -80,9 +80,9 @@ class App {
     const carNames = await this.#getCarNames();
     const attemptCount = await this.#getAttemptCount();
     const scores = await this.#calculateScores(carNames, attemptCount);
-    const winnners = this.#getWinners(scores);
+    const winners = this.#getWinners(scores);
 
-    Console.print(`최종 우승자 : ${winnners.join(', ')}`);
+    Console.print(`최종 우승자 : ${winners.join(', ')}`);
   }
 }
 
