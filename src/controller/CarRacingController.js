@@ -1,16 +1,13 @@
-import Car from "../domain/Car.js";
 import InputValidator from "../utils/InputValidator.js";
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
-import RandomNumber from "../utils/RandomNumber.js";
-import { STATIC_NUMBER } from "../static/Static.js";
+import RaceManager from "../domain/RaceManager.js";
 
 export default class CarRacingController {
-  #cars;
-  #attempts;
+  #raceManager;
 
   constructor() {
-    this.#cars = [];
+    this.#raceManager = new RaceManager();
   }
 
   async play() {
@@ -24,35 +21,44 @@ export default class CarRacingController {
   }
 
   setCars(cars) {
-    this.#cars = cars;
+    this.#raceManager.setCars(cars);
   }
 
   async #initializeGame() {
+    await this.#initializeCars();
+    await this.#initializeAttempts();
+  }
+
+  async #initializeCars() {
     const carNamesInput = await InputView.readCarNames();
     const carNames = InputValidator.validateCarNames(carNamesInput);
-    this.#cars = carNames.map(name => new Car(name));
-    
+    this.#raceManager.createCars(carNames);
+  }
+
+  async #initializeAttempts() {
     const attemptsInput = await InputView.readAttempts();
-    this.#attempts = InputValidator.validateAttempts(attemptsInput);
+    const validatedAttempts = InputValidator.validateAttempts(attemptsInput);
+    this.#raceManager.setAttempts(validatedAttempts);
   }
 
   async #raceLoop() {
-    for (let i = 0; i < this.#attempts; i++) {
-      this.#moveAllCars();
-      OutputView.printRaceStatus(this.#cars);
+    const attempts = this.#raceManager.getAttempts();
+    for (let i = 0; i < attempts; i++) {
+      await this.#processRaceRound();
     }
   }
 
-  #moveAllCars() {
-    this.#cars.forEach(car => {
-      const randomNumber = RandomNumber.pickNumberInRange(STATIC_NUMBER.randomMinNumber, STATIC_NUMBER.randomMaxNumber);
-      car.move(randomNumber);
-    });
+  async #processRaceRound() {
+    this.#raceManager.moveAllCars();
+    this.#displayRaceStatus();
+  }
+
+  #displayRaceStatus() {
+    OutputView.printRaceStatus(this.#raceManager.getCars());
   }
 
   announceWinners() {
-    const maxPosition = Math.max(...this.#cars.map(car => car.getPosition()));
-    const winners = this.#cars.filter(car => car.getPosition() === maxPosition);
+    const winners = this.#raceManager.findWinners();
     OutputView.printWinners(winners);
   }
 }
