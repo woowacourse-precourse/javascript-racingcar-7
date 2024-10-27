@@ -1,7 +1,5 @@
 
 export class Car {
-    cars = []
-    tryNum = 0;
     setCar(input) {
         const carArr = this.sliceString(input)
         return this.setWinnerCnt(input, carArr)
