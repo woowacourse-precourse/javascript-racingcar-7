@@ -3,7 +3,7 @@ import OutputView from '../views/OutputView.js';
 
 function displayResult(race) {
   const winners = RaceResult.determineWinners(race.getCars());
-  OutputView.printResult(race.getCars(), winners);
+  OutputView.printWinners(winners);
 }
 
 export default displayResult;
