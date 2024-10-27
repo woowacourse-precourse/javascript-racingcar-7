@@ -32,7 +32,7 @@ describe('자동차 경주', () => {
     const inputs = ['test'];
     mockQuestions(inputs);
     await app.setCars();
-    expect(app.CARS[0].name).toEqual('test');
+    expect(app.cars[0].name).toEqual('test');
   });
 
   test('입력 테스트(시도 횟수)', async () => {
@@ -40,7 +40,7 @@ describe('자동차 경주', () => {
     const inputs = ['300'];
     mockQuestions(inputs);
     await app.setTryCount();
-    expect(app.TRY_COUNT).toEqual(300);
+    expect(app.tryCount).toEqual(300);
   })
 
   test('자동차 생성 테스트', async () => {
