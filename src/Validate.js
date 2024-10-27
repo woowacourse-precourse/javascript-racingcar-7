@@ -13,7 +13,18 @@ class Validate {
     return carName;
   }
 
-  validateAttempt() {
-
+  validateAttempts(attempts) {
+    // 시도횟수 정수로 변환
+    const parseNumber = parseInt(attempts, 10);
+    if (!attempts || attempts.trim() === '') {
+      // 시도횟수가 공백일 때 error
+      throw new Error('[Error]');
+    }
+    if (isNaN(parseNumber)) {
+      // 시도횟수를 숫자로 입력 하지 않았을 때 error
+      throw new Error('[Error]');
+    }
+    return attempts;
   }
 }
+export default Validate;
