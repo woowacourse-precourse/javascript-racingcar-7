@@ -1,5 +1,5 @@
 import { Console, Random } from '@woowacourse/mission-utils';
-import { MESSAGES, REGEX, GAME_SETTINGS } from './constants';
+import { MESSAGES, ERROR_MESSAGES, REGEX, GAME_SETTINGS } from './constants';
 
 class App {
   async run() {
@@ -43,15 +43,14 @@ function getVaildatedPlayerNames(playerNames) {
   return playerNames;
 }
 
-// TODO: ERROR_MESSAGE 구체화
 function validatePlayerNames(playerNames) {
   if (playerNames.some((name) => !REGEX.PLAYER_NAME_REGEX.test(name)))
-    throw new Error(MESSAGES.ERROR_MESSAGE);
+    throw new Error(ERROR_MESSAGES.INVALID_PLAYER_NAME);
 }
 
 function validateMoveCount(moveCount) {
   if (!REGEX.POSITIVE_INTEGER_REGEX.test(moveCount)) {
-    throw new Error(MESSAGES.ERROR_MESSAGE);
+    throw new Error(ERROR_MESSAGES.INVALID_MOVE_COUNT);
   }
 }
 
