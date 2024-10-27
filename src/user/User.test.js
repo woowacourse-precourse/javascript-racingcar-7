@@ -40,7 +40,7 @@ describe('User', () => {
 
       for (const input of inputs) {
         readLineAsyncSpy.mockResolvedValue(input);
-        const result = await user.readCarNameInput('Any message');
+        const result = await user.readCarNameInput(GAME_MESSAGE.START);
         expect(result).toBe(input);
       }
     });
