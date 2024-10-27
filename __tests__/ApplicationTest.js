@@ -2,6 +2,7 @@ import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 import Car from "../src/domains/car.js";
 import CarRace from "../src/domains/carRace.js";
+import CAR_RACE from "../src/constants/carRace.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -73,6 +74,14 @@ describe("자동차 기능 테스트", () => {
 });
 
 describe("자동차 경주 테스트", () => {
+  let singleCar;
+  let singleCarRace;
+
+  beforeEach(() => {
+    singleCar = new Car("a");
+    singleCarRace = new CarRace([singleCar]);
+  });
+
   test("우승자는 한 명 이상일 수 있다.", () => {
     const carNames = ["a", "b", "c"];
     const carInstance = carNames.map((carName) => new Car(carName));
@@ -82,5 +91,21 @@ describe("자동차 경주 테스트", () => {
     const winner = carRace.getWinner();
 
     expect(winner.length).toEqual(3);
+  });
+
+  test(`랜덤 값이  ${CAR_RACE.MOVE_THRESHOLD} 미만일 때는 전진하지 않는다.`, () => {
+    const randomNumber = CAR_RACE.MOVE_THRESHOLD - 1;
+
+    singleCarRace.moveCar("a", randomNumber);
+
+    expect(singleCar.position).toEqual(0);
+  });
+
+  test(`랜덤 값이 ${CAR_RACE.MOVE_THRESHOLD} 이상일 때 전진한다.`, () => {
+    const randomNumber = CAR_RACE.MOVE_THRESHOLD;
+
+    singleCarRace.moveCar("a", randomNumber);
+
+    expect(singleCar.position).toEqual(1);
   });
 });
