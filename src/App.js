@@ -6,10 +6,16 @@ class App {
     if (CARS_INPUT == '') throw new Error("[ERROR] 자동차 입력 에러");
     const TRY_INPUT = await MissionUtils.Console.readLineAsync("시도할 횟수\n");
     if (TRY_INPUT == '' || isNaN(TRY_INPUT) || TRY_INPUT == 0) throw new Error("[ERROR] 횟수 입력 에러");
+
     const carList = CARS_INPUT.split(',').reduce((acc, car) => {
       acc[car.trim()] = 0;
       return acc;
     }, {});
+
+    if (Object.keys(carList).length <= 1) throw new Error("[ERROR] 자동차 입력 에러(갯수, 구분자)");
+    for (const car in carList) {
+      if (car.length > 5) throw new Error("[ERROR] 자동차 입력 에러(이름 길이)");
+    }
 
     MissionUtils.Console.print('\n실행 결과\n');
 
