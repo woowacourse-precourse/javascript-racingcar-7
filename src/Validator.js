@@ -4,9 +4,10 @@ import Car from './Car.js';
 
 class Validator {
   static validCarInput(string) {
-    if (regex.invalidCarInputDelimiter.test(string)) {
+    const trimmedString = string.trim();
+    if (regex.invalidCarInputDelimiter.test(trimmedString)) {
       throw new Error(`${errorMessages.prefix} ${errorMessages.invalidDelimiter}`);
-    } else if (!regex.validInputName.test(string)) {
+    } else if (!regex.validInputName.test(trimmedString)) {
       throw new Error(`${errorMessages.prefix} ${errorMessages.invalidCarInputName}`);
     }
 
@@ -18,11 +19,12 @@ class Validator {
   }
 
   static validCountInput(count) {
-    if (regex.invalidCountInput.test(count) || !count) {
+    const trimmedCount = count.trim();
+    if (regex.invalidCountInput.test(trimmedCountt) || !trimmedCount) {
       throw new Error(`${errorMessages.prefix} ${errorMessages.invalidCount}`);
     }
 
-    const result = Number(count);
+    const result = Number(trimmedCount);
     return result;
   }
 }
