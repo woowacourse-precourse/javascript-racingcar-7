@@ -1,18 +1,18 @@
 import {Console} from '@woowacourse/mission-utils'
 import Car from "./Car.js";
+import { getValidatedCarNames, getValidatedIteration } from "./Input.js";
 
 
 class App {
   async run() {
-    let input = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
-    input = input.split(',');
+    let input = await getValidatedCarNames();
     let cars = [];
 
     for (let i = 0; i < input.length; i++) {
       cars.push(new Car(input[i]));
     }
-    let iteration = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
-    Console.print("\n");
+    let iteration = await getValidatedIteration();
+    Console.print(" ");
     Console.print("실행 결과");
 
     for (let i = 0; i < iteration; i++) {
@@ -42,8 +42,8 @@ class App {
       if(cars[i].getDistance() == maxDistance)
         winners.push(cars[i].getName())
     }
-
-    Console.print("최종 우승자: " + winners.join(', '));
+    
+    Console.print("최종 우승자 : " + winners.join(', '));
   }
 }
 
