@@ -25,9 +25,8 @@ class InputParser {
     static async getNumberOfRounds() {
         try {
             const inputNumberOfRounds = await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
-            const numberOfRounds = Number(inputNumberOfRounds);
 
-            if (isValidateRounds(numberOfRounds)) {
+            if (isValidateRounds(inputNumberOfRounds)) {
                 MissionUtils.Console.print('\n');
                 return numberOfRounds;
             }
