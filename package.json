@@ -8,8 +8,13 @@
     "test": "jest --detectOpenHandles"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@babel/core": "^7.26.0",
     "@babel/preset-env": "^7.26.0",
+=======
+    "@babel/core": "^7.25.8",
+    "@babel/preset-env": "^7.25.8",
+>>>>>>> upstream/main
     "babel-jest": "^29.6.0",
     "jest": "^29.6.0"
   },
