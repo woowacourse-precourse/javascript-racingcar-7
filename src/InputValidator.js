@@ -1,7 +1,7 @@
 class InputValidator {
   static checkPositive(number) {
     if (!Number.isInteger(number) || number < 1) {
-      throw new Error("이동횟수는 양의 정수로 입력해주세요.");
+      throw new Error("[ERROR]이동횟수는 양의 정수로 입력해주세요.");
     }
 
     return true;
