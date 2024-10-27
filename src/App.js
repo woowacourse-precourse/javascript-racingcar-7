@@ -18,6 +18,9 @@ class App {
   async getMove() {
     try{
       const input = Number(await MissionUtils.Console.readLineAsync("시도할 횟수는 몇 회인가요?\n"));
+      if(input < 0 || !Number.isInteger(input)){
+        throw new Error('시도 횟수는 1이상의 정수여야합니다.')
+      }
       return input;
     } catch(error) {
       throw new Error(`[ERROR]: ${error.message}`);
