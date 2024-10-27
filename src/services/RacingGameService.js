@@ -9,7 +9,7 @@ export function makeCars(names) {
 }
 
 export function getMaxPosition(carList) {
-  return Math.max(carList.map((car) => car.position));
+  return Math.max(...carList.map((car) => car.position));
 }
 
 export function findCarWithMaxPosition(carList, maxPosition) {
