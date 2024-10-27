@@ -47,67 +47,53 @@ describe("자동차 경주", () => {
   });
 
   test("예외 테스트", async () => {
-    // given
     const inputs = ["pobi,javaji"];
     mockQuestions(inputs);
 
-    // when
     const app = new App();
 
-    // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 
   test("경주할 자동차에 쉼표를 구분자로 사용하지 않은 경우", async () => {
-    // given
     const inputs = ["pobi; javaji"];
     mockQuestions(inputs);
 
-    // when
     const app = new App();
 
-    // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 
   test("시도할 횟수에 음수를 입력한 경우", async () => {
-    // given
     const inputs = ["pobi,javai"];
     mockQuestions(inputs);
     const numbers = [-3];
     mockRandoms(numbers);
 
-    // when
     const app = new App();
 
-    // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 
   test("시도할 횟수에 실수를 입력한 경우", async () => {
-    // given
     const inputs = ["pobi,javai"];
     mockQuestions(inputs);
     const numbers = [3.5];
     mockRandoms(numbers);
 
-    // when
     const app = new App();
 
-    // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
   test("시도할 횟수에 숫자가 아닌 것을 입력한 경우", async () => {
-    // given
     const inputs = ["pobi,javai"];
     mockQuestions(inputs);
     const numbers = ['one'];
     mockRandoms(numbers);
 
-    // when
     const app = new App();
 
-    // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 });
