@@ -18,6 +18,7 @@ class CarRacingGame {
     }
   }
 
+  // 매 라운드 마다 차들을 움직이거나 멈추게 하는 함수
   tryRound() {
     this.#cars.forEach((car) => {
       car.move();
