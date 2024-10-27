@@ -18,30 +18,49 @@ class App {
   #racers = [];
 
   async run() {
-    const firstUserInput = await Console.readLineAsync(
-      FIRST_USER_INPUT_PLACEHOLDER,
-    );
+    await this.#setRacers();
+    await this.#setTotalRound();
+
+    this.#startRacing();
+
+    const winners = this.#getWinners();
+
+    Console.print(`${OUTPUT_PREFIX} ${winners}`);
+  }
+
+  async #setTotalRound() {
     const secondUserInput = await Console.readLineAsync(
       SECOND_USER_INPUT_PLACEHOLDER,
     );
 
-    this.#racers = firstUserInput.split(NAME_SEPARATOR).map((racer) => {
+    this.#totalRound = secondUserInput;
+  }
+
+  async #setRacers() {
+    const firstUserInput = await Console.readLineAsync(
+      FIRST_USER_INPUT_PLACEHOLDER,
+    );
+
+    const racers = firstUserInput.split(NAME_SEPARATOR).map((racer) => {
       if (racer.length > MAX_NAME_LENGTH) {
         throw new CustomError(ERROR_MESSAGES.LESS_THAN_FIVE_LETTERS);
       }
       return new Racer(racer);
     });
-    this.#totalRound = Number(secondUserInput);
 
+    this.#racers = racers;
+  }
+
+  #startRacing() {
     this.racing = new Racing({
       totalRound: this.#totalRound,
       racers: this.#racers,
-    });
+    }).start();
+  }
 
-    this.racing.start();
+  #getWinners() {
     this.winners = new Winners(this.#racers);
-
-    Console.print(`${OUTPUT_PREFIX} ${this.winners.getWinners()}`);
+    return this.winners.getWinners();
   }
 }
 
