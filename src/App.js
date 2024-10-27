@@ -45,7 +45,7 @@ class App {
     Console.print(`\n실행 결과`);
     for (let i = 0; i < numberInput; i++) {
       this.simulateRaceRound();
-      this.printRaceRound(this.carObject);
+      this.printRaceRound();
     }
   }
 
@@ -65,9 +65,9 @@ class App {
   }
 
   // 라운드별 진행상황 출력 함수
-  printRaceRound(carObject) {
-    Object.keys(carObject).forEach((carName) => {
-      Console.print(`${carName} : ${"-".repeat(carObject[carName])}`);
+  printRaceRound() {
+    Object.entries(this.carObject).forEach(([carName, distance]) => {
+      Console.print(`${carName} : ${"-".repeat(distance)}`);
     });
     Console.print("\n");
   }
