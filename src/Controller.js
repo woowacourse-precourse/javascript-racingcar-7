@@ -10,6 +10,8 @@ export class raceController {
     this.cars.forEach((car) => {
       car.move();
       const displayLocation = '-'.repeat(car.getLocation());
+      Console.print(`${car.getName()} : ${displayLocation}`);
     });
+    Console.print('\n');
   }
 }
