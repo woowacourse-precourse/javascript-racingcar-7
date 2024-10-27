@@ -3,14 +3,11 @@ import { INPUT_MESSAGE } from "./constants/Message.js";
 
 class InputHandler {
     async enterCarNames() {
-        const inputCarNames = await Console.readLineAsync(INPUT_MESSAGE.CAR_NAMES_PROMPT);
-
-        return inputCarNames;
+        return await Console.readLineAsync(INPUT_MESSAGE.CAR_NAMES_PROMPT);
     }
 
     async enterTryCount() {
-        const inputTryCnt = await Console.readLineAsync(INPUT_MESSAGE.TRY_COUNT_PROMPT);
-        return inputTryCnt;
+        return await Console.readLineAsync(INPUT_MESSAGE.TRY_COUNT_PROMPT);
     }
 }
 
