@@ -6,7 +6,7 @@ import ResultPrinter from './ResultPrinter';
 class App {
   async run() {
     const carNamesStr = await this.readCarNames();
-    const tryCntStr = await this.readAttemptCnt();
+    const tryCntStr = await this.readTryCnt();
 
     const inputParser = new InputParser(carNamesStr, tryCntStr);
     const { carNamesArr, tryCnt } = inputParser.parse();
@@ -24,7 +24,7 @@ class App {
     );
   }
 
-  readAttemptCnt() {
+  readTryCnt() {
     return Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
   }
 }
