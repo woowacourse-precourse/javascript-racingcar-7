@@ -1,5 +1,6 @@
 import SetCarMovementModel from "../model/SetCarMovementModel.js";
 import SetForwardCountModel from "../model/SetForwardCountModel.js";
+import SetWinnerModel from "../model/SetWinnerModel.js";
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
 
@@ -9,6 +10,7 @@ class CarRacingGameController {
     this.InputView = new InputView();
     this.SetCarMovementModel = new SetCarMovementModel();
     this.SetForwardCountModel = new SetForwardCountModel();
+    this.SetWinnerModel = new SetWinnerModel();
     this.OutputView = new OutputView();
   }
   async setCarMovement() {
@@ -27,8 +29,10 @@ class CarRacingGameController {
       totalMovement = attemptMovement.map(
         (value, index) => value + totalMovement[index]
       );
-      this.OutputView.printOutput(carNames, totalMovement);
+      this.OutputView.printEachTemp(carNames, totalMovement);
     }
+    const winner = this.SetWinnerModel.setWinner(carNames, totalMovement);
+    this.OutputView.printWinner(winner);
   }
 }
 export default CarRacingGameController;
