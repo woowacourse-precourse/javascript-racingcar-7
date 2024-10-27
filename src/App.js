@@ -1,4 +1,3 @@
-// racing.js
 import { getCarsInfo, getCountInfo } from '../utils/inout.js';
 import { startRacing } from '../utils/racing.js';
 
