@@ -1,6 +1,6 @@
-import Game from './Game.js';
-import Input from './Input.js';
-import Output from './Output.js';
+import Game from './components/Game.js';
+import Input from './components/Input.js';
+import Output from './components/Output.js';
 import validateNames from './utils/validation/validateNames.js';
 import validateRepetitionString from './utils/validation/validateRepetitionString.js';
 
