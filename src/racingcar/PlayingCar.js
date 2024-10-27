@@ -1,6 +1,8 @@
 import RandomNumberGenerator from "../utils/RandonNumberGenerator.js";
 import { CAR_SETTINGS } from "../constants/Settings.js";
 
+// 레이싱 게임에 참여하는 각각의 자동차 정의 (이름과 위치)
+
 class PlayingCar {
     constructor(name) {
         this.name = name;
