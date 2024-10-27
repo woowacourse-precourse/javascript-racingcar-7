@@ -7,4 +7,10 @@ export class RacingGame {
       throw new Error("[ERROR] 이동 횟수는 양의 정수여야 합니다.");
     }
   }
+
+  play() {
+    for (let i = 0; i <= this.rounds; i++) {
+      this.cars.forEach((car) => car.move());
+    }
+  }
 }
