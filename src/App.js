@@ -16,6 +16,7 @@ class App {
     for (let i = 0; i < TIMES; i++) {
       for (const car of cars) {
         car.move();
+        MissionUtils.Console.print(car.result());
       }
       MissionUtils.Console.print('');
     }

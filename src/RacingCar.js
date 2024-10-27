@@ -16,6 +16,9 @@ class RacingCar {
     if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) this.#dist++;
   }
 
+  result() {
+    return `${this.#name} : ${'-'.repeat(this.#dist)}`;
+  }
 
 }
 
