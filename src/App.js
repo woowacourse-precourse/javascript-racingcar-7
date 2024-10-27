@@ -13,6 +13,8 @@ class App {
     const game = new CarRacing(cars.split(','), attemptCount);
     Console.print('\n실행 결과');
     game.startRace();
+
+    game.displayWinner();
   }
 }
 
