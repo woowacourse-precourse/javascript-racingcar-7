@@ -36,6 +36,10 @@ class Car {
   #getState() {
     return this.#state;
   }
+
+  static clearInstances() {
+    Car.#instances = [];
+  }
 }
 
 export default Car;

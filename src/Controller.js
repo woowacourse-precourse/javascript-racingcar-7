@@ -5,6 +5,7 @@ import Car from './Car.js';
 
 class Controller {
   async play() {
+    Car.clearInstances();
     await this.readCars();
     await this.readTrialCount();
   }
