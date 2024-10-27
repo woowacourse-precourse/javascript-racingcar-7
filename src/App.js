@@ -15,6 +15,8 @@ class App {
       this.updateCarProgressRandomly();
       this.printRaceResult();
     }
+
+    this.printWinner();
   }
 
   async getCarNameCount(){
@@ -64,6 +66,30 @@ class App {
       }
       Console.print("\n");
     });
+  }
+
+  printWinner(){
+    let maxValue = 0;
+    const maxKeys = [];
+
+    Object.keys(this.carNameObj).forEach(key => {
+      const value = this.carNameObj[key];
+
+      if(value > maxValue){
+        maxValue = value;
+        maxKeys.length = 0;
+        maxKeys.push(key);
+      } else if(value === maxValue && value > 0){
+        maxKeys.push(key);
+      }
+    });
+
+    if(maxKeys.length > 0){
+      Console.print(`최종 우승자 : ${maxKeys.join(', ')}`);
+    } else{
+      Console.print("우승자가 없습니다.");
+      throw new Error("[ERROR]");
+    }
   }
 }
 
