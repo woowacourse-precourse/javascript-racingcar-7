@@ -62,7 +62,6 @@ class Validator {
 class CarRace {
     #cars = [];
     #round = 0;
-    static CAR_COUNT = 2;
 
     addCar(carNames) {
         this.#cars = carNames.map((car) => new Car(car));
