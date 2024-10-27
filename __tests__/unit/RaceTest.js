@@ -36,22 +36,30 @@ describe("Race 클래스 테스트", () => {
   });
 
   describe("getWinners() 테스트", () => {
-    test("최종 우승자를 올바르게 결정해야 한다", () => {
-      race.cars[0].move(6); 
-      race.cars[1].move(4); 
-      race.cars[2].move(2); 
+    const testCases = [
+      {
+        description: "최종 우승자를 올바르게 결정해야 한다",
+        distances: [6, 4, 2],
+        expectedWinners: ["Audi"]
+      },
+      {
+        description: "최종 우승자가 여러 명일 때도 올바르게 결정해야 한다",
+        distances: [5, 5, 3],
+        expectedWinners: ["Audi", "BMW"]
+      }
+    ];
+  
+    testCases.forEach(({ description, distances, expectedWinners }) => {
+      test(description, () => {
 
-      const winners = race.getWinners();
-      expect(winners).toEqual(["Audi"]);
-    });
-
-    test("최종 우승자가 여러 명일 때도 올바르게 결정해야 한다", () => {
-      race.cars[0].move(5); 
-      race.cars[1].move(5); 
-      race.cars[2].move(3); 
-
-      const winners = race.getWinners();
-      expect(winners).toEqual(["Audi", "BMW"]);
+        race.cars[0].move(distances[0]);
+        race.cars[1].move(distances[1]);
+        race.cars[2].move(distances[2]);
+  
+        const winners = race.getWinners();
+  
+        expect(winners).toEqual(expectedWinners);
+      });
     });
   });
 });
