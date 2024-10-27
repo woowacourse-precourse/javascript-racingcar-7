@@ -9,6 +9,15 @@ class RacingGame {
   }
 
   async init() {
+    while (true) {
+      const isValidInput = await this.getUserInput();
+      if (isValidInput) {
+        break;
+      }
+    }
+  }
+
+  async getUserInput() {
     try {
       const userInputNames = await Console.readLineAsync(
         "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
@@ -20,12 +29,17 @@ class RacingGame {
       );
       countValidate(userInputCounts);
       this.counts = userInputCounts;
+      return true;
     } catch (error) {
-      Console.print(error.message);
-      this.cars = [];
-      resetCarSet();
-      await this.init();
+      this.handleInitError(error);
+      return false;
     }
+  }
+
+  handleInitError(error) {
+    Console.print(error.message);
+    this.cars = [];
+    resetCarSet();
   }
 
   checkCarName(names) {
