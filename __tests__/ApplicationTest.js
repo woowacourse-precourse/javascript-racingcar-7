@@ -28,8 +28,20 @@ const getLogSpy = () => {
 describe("Car 클래스", () => {
   test("Car 객체 생성 이름과 위치 초기화", () => {
     const car = new Car("dawon");
+
     expect(car.name).toBe("dawon");
     expect(car.position).toBe(0);
+  });
+});
+
+describe("문자열 분리", () => {
+  test("자동차 이름 반환", () => {
+    const CAR_NAMES = "hyun,kia,gene";
+
+    const app = new App();
+    const result = app.splitName(CAR_NAMES);
+
+    expect(result).toEqual(["hyun","kia","gene"]);
   });
 });
 
