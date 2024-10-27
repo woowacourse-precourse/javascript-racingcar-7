@@ -1,13 +1,14 @@
 import { Console, Random } from "@woowacourse/mission-utils";
+import { CONSTANTS, OUTPUT_MESSAGES } from "./constants.js";
 
 export function racingGame(playerNames, trials) {
   const players = playerNames.map((name) => ({ name, position: 0 }));
 
-  Console.print("\n실행 결과");
+  Console.print(OUTPUT_MESSAGES.RACE_RESULT);
   for (var i = 0; i < trials; i++) {
     players.forEach((player) => {
       movePlayer(player);
-      Console.print(`${player.name} : ${"-".repeat(player.position)}`);
+      Console.print(`${player.name} : ${CONSTANTS.POSITION_MARKER.repeat(player.position)}`);
     });
     Console.print("");
   }
@@ -16,7 +17,8 @@ export function racingGame(playerNames, trials) {
 }
 
 function movePlayer(player) {
-  if (Random.pickNumberInRange(0, 9) >= 4) {
+  const randomValue = Random.pickNumberInRange(CONSTANTS.RANDOM_MIN, CONSTANTS.RANDOM_MAX);
+  if (randomValue >= CONSTANTS.MOVE_THRESHOLD) {
     player.position += 1;
   }
 }
@@ -27,5 +29,5 @@ function getWinners(players) {
     .filter((player) => player.position === maxPosition)
     .map((player) => player.name);
 
-  Console.print(`최종 우승자 : ${winners.join(", ")}`);
+  Console.print(OUTPUT_MESSAGES.FINAL_WINNER(winners));
 }
