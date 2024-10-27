@@ -47,9 +47,14 @@ class App {
         finalWinners.push(finalWinner.name);
       }
     }
-    for (let i = 0; i < carObjs.length; i++) {
-      if (carObjs[i].result.length === finalWinner.result.length) {
-        finalWinners.push(carObjs[i].name);
+
+    const exceptionFinalWinner = carObjs.filter(
+      (car) => car.name !== finalWinner.name
+    );
+
+    for (let i = 0; i < exceptionFinalWinner.length; i++) {
+      if (exceptionFinalWinner[i].result.length === finalWinner.result.length) {
+        finalWinners.push(exceptionFinalWinner[i].name);
       }
     }
 
