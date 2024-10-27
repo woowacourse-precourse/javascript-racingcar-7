@@ -36,8 +36,8 @@ class App {
     );
 
     const checkCount = () => {
-      if (isNaN(inputCount) || inputCount === "") {
-        throw new Error("[ERROR] 숫자를 입력해주새요.");
+      if (isNaN(inputCount) || inputCount === "" || inputCount < 1) {
+        throw new Error("[ERROR] 1 이상의 숫자를 입력해주새요.");
       }
     };
 
