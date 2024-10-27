@@ -6,12 +6,12 @@ import ResultPrinter from './ResultPrinter';
 class App {
   async run() {
     const carNamesStr = await this.readCarNames();
-    const attemptCntStr = await this.readAttemptCnt();
+    const tryCntStr = await this.readAttemptCnt();
 
-    const inputParser = new InputParser(carNamesStr, attemptCntStr);
-    const { carNamesArr, attemptCnt } = inputParser.parse();
+    const inputParser = new InputParser(carNamesStr, tryCntStr);
+    const { carNamesArr, tryCnt } = inputParser.parse();
 
-    const carRacer = new CarRacer(carNamesArr, attemptCnt);
+    const carRacer = new CarRacer(carNamesArr, tryCnt);
     const moveCntPerCar = carRacer.race();
 
     const resultPrinter = new ResultPrinter(moveCntPerCar);

@@ -1,7 +1,7 @@
 class InputParser {
-  constructor(carNamesStr, attemptCntStr) {
+  constructor(carNamesStr, tryCntStr) {
     this.carNamesStr = carNamesStr;
-    this.attemptCnt = +attemptCntStr;
+    this.tryCnt = +tryCntStr;
     this.carNamesArr = this.parseCarNames();
   }
 
@@ -11,7 +11,7 @@ class InputParser {
 
     return {
       carNamesArr: this.carNamesArr,
-      attemptCnt: this.attemptCnt,
+      tryCnt: this.tryCnt,
     };
   }
 
@@ -20,7 +20,7 @@ class InputParser {
   }
 
   validateAttempCnt() {
-    if (this.attemptCnt === 0 || !Number.isInteger(this.attemptCnt)) {
+    if (this.tryCnt === 0 || !Number.isInteger(this.tryCnt)) {
       this.printError('시도 횟수는 1 이상의 정수만 가능합니다.');
     }
   }

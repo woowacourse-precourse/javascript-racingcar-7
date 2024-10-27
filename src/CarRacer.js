@@ -1,9 +1,9 @@
 import { Random } from '@woowacourse/mission-utils';
 
 class CarRacer {
-  constructor(carNamesArr, attemptCnt) {
+  constructor(carNamesArr, tryCnt) {
     this.carNamesArr = carNamesArr;
-    this.attemptCnt = attemptCnt;
+    this.tryCnt = tryCnt;
     this.moveCntPerCar = this.initMoveCntPerCar();
   }
 
@@ -18,7 +18,7 @@ class CarRacer {
   }
 
   race() {
-    for (let i = 0; i < this.attemptCnt; i += 1) {
+    for (let i = 0; i < this.tryCnt; i += 1) {
       this.moveCars();
     }
 

@@ -1,5 +1,5 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
-import App from '../src/App.js';
+import App from '../src/App';
 import CarRacer from '../src/CarRacer';
 import InputParser from '../src/InputParser';
 import ResultPrinter from '../src/ResultPrinter';
