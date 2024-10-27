@@ -2,8 +2,7 @@ import ERROR_MESSAGES from '../../constants/constants.js';
 
 const invalidNumber = input => {
   // 입력값이 공백이거나 숫자가 아닌지 확인
-  console.log(input);
-  if (input.trim() === '' || Number.isNaN(input) || !Number.isInteger(Number(input))) {
+  if (Number(input) === 0 || Number.isNaN(input) || !Number.isInteger(Number(input))) {
     throw new Error(ERROR_MESSAGES.INVALID_NUMBER);
   }
 };
@@ -14,8 +13,14 @@ const isNegative = input => {
   }
 };
 
+const noInput = input => {
+  if (input.trim() === '') {
+    throw new Error(ERROR_MESSAGES.NO_INPUT);
+  }
+};
+
 const gameInputValidator = input => {
-  console.log('실행');
+  noInput(input);
   invalidNumber(input);
   isNegative(input);
 };
