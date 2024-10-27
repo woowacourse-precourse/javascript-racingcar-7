@@ -5,11 +5,11 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 class Game {
   constructor(carNames) {
     this.cars = carNames.map((name) => new Car(name));
-    this.maxPosition = 0;
-    this.winners = [];
   }
 
   start(rounds) {
+    this.maxPosition = 0;
+    this.winners = [];
     for (let i = 0; i < rounds; i++) {
       this.cars.forEach((car) => {
         const randomValue = MissionUtils.Random.pickNumberInRange(0, 9);
