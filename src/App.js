@@ -3,7 +3,7 @@ import { Console, Random } from '@woowacourse/mission-utils';
 class App {
   static ERROR_MESSAGE = {
     CAR_NAME_LENGTH_ERROR:
-      '차량 이름이 너무 깁니다! 각 차량 이름은 5글자 이하로 입력해주세요!',
+      '차량 이름 길이가 잘못되었습니다! 각 차량 이름은 1글자 이상 5글자 이하로 입력해주세요!',
     ATTEMPT_COUNT_ERROR: '올바른 숫자를 입력해주세요!',
     ATTEMPT_COUNT_MINIMUM_ERROR: '1이상의 숫자를 입력해주세요!',
   };
@@ -59,11 +59,11 @@ class App {
   }
 
   separateCar(cars) {
-    return cars.split(',');
+    return cars.split(',').map(car => ({ name: car, move: 0 }));
   }
 
   isCarNameValid(cars) {
-    return cars.every(car => car.length <= 5);
+    return cars.every(car => car.name.length > 0 && car.name.length <= 5);
   }
 }
 
