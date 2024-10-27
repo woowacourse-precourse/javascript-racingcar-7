@@ -9,6 +9,7 @@ class App {
       this.printWinnners(raceResults);
     } catch (error) {
       Console.print(`[ERROR] ${error.message}`);
+      throw error;
     }
   }
 
@@ -22,14 +23,14 @@ class App {
 
   validateCarNames(carNames) {
     if (carNames.length === 0) {
-      throw new Error('자동차 이름을 하나 이상 입력해야 합니다.');
+      throw new Error('[ERROR] 자동차 이름을 하나 이상 입력해야 합니다.');
     }
     carNames.forEach(name => {
       if (name.length === 0) {
-        throw new Error('자동차 이름은 공백일 수 없습니다.');
+        throw new Error('[ERROR] 자동차 이름은 공백일 수 없습니다.');
       }
       if (name.length > 5) {
-        throw new Error('자동차 이름은 5자 이하만 가능합니다.');
+        throw new Error('[ERROR] 자동차 이름은 5자 이하만 가능합니다.');
       }
     });
   }
@@ -42,17 +43,17 @@ class App {
   }
 
   validateTrialCount(input) {
-    const trialCount = parseInt(input, 10);    
+    const trialCount = parseInt(input, 10);
     if (isNaN(trialCount) || trialCount.toString() !== input.trim()) {
-      throw new Error('시도할 횟수는 정수여야 하며, 숫자만 입력해야 합니다.');
+      throw new Error('[ERROR] 시도할 횟수는 정수여야 하며, 숫자만 입력해야 합니다.');
     }
     if (trialCount <= 0) {
-      throw new Error('시도할 횟수는 1이상의 숫자여야 합니다.');
+      throw new Error('[ERROR] 시도할 횟수는 1이상의 숫자여야 합니다.');
     }
   }
 
   runRace(carNames, trialCount) {
-    const raceResults = carNames.map(name => ({ name, position: 0}));
+    const raceResults = carNames.map(name => ({ name, position: 0 }));
     for (let i = 0; i < trialCount; i++) {
       Console.print(`\n[${i + 1}차 시도 결과]`);
       raceResults.forEach(car => {
