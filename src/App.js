@@ -1,12 +1,15 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 
 class App {
   async run() {
     try {
       const carNames = await this.getCarNames();
-      const attempts = await this.getMoveAttempts();
-      Console.print(`입력된 자동차들: ${carNames.join(", ")}`);
-      Console.print(`이동 횟수: ${attempts}`);
+      const moveAttempts = await this.getMoveAttempts();
+      const results = this.race(carNames, moveAttempts);
+
+      results.forEach((result, index) => {
+        Console.print(`${carNames[index]} : ${result}`);
+      });
     } catch (error) {
       Console.print(error.message);
     }
@@ -63,6 +66,21 @@ class App {
         })
         .catch((error) => reject(error));
     });
+  }
+
+  race(carNames, moveAttempts) {
+    const results = carNames.map(() => "");
+
+    for (let i = 0; i < moveAttempts; i++) {
+      carNames.forEach((_, index) => {
+        const randomValue = Random.pickNumberInRange(0, 9);
+        if (randomValue >= 4) {
+          results[index] += "-";
+        }
+      });
+    }
+
+    return results;
   }
 }
 
