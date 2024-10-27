@@ -3,13 +3,16 @@ import Car from "./Car.js";
 
 class Race {
     constructor(carNames, moveCount) {
-        this.cars = carNames.split(',').map(name => {
-            const isName = name.trim();
-            if (isName.length > 5) {
+        const names = carNames.split(',').map(name => name.trim());
+
+        // 이름이 5자 초과인 경우
+        this.cars = names.map(name => {
+            if (name.length > 5) {
                 throw new Error("[ERROR] 자동차 이름은 5자 이내여야 합니다.");
             }
-            return new Car(isName);
+            return new Car(name);
         });
+
         this.moveCount = moveCount;
     }
 
