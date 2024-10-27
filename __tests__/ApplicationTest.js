@@ -86,4 +86,18 @@ describe("자동차 경주", () => {
       "[ERROR] 시도 횟수를 입력해주세요."
     );
   });
+
+  test("잘못된 시도횟수 - 양의 정수 외에 다른 입력값", async () => {
+    const invalidRounds = ["abc", "-1", "0", "3.5", "five"];
+
+    const promises = invalidRounds.map(async (input) => {
+      mockQuestions(["pobi,woni", input]);
+      const app = new App();
+      await expect(app.run()).rejects.toThrow(
+        new Error("[ERROR] 양의 정수로 된 시도횟수를 입력하세요.")
+      );
+    });
+
+    await Promise.all(promises);
+  });
 });
