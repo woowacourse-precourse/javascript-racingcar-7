@@ -1,7 +1,11 @@
-import { Console } from '@woowacourse/mission-utils';
 import { OUTPUT } from '../constants/message.js';
+import { Console } from '@woowacourse/mission-utils';
 
 export default class ViewOut {
+  static emptyLine() {
+    Console.print('');
+  }
+
   static showResultMessage() {
     Console.print(`${OUTPUT.RESULT}`);
   }
