@@ -27,6 +27,18 @@ class App {
       });
       Console.print("\n");
     }
+
+    let winner = [this.cars[0]];
+    for (let i = 1; i < this.cars.length; i++) {
+      if (this.cars[i].movedDistance > winner[0].movedDistance) {
+        winner = [this.cars[i]];
+      } else if (this.cars[i].movedDistance === winner[0].movedDistance) {
+        winner.push(this.cars[i]);
+      }
+    }
+
+    const winnerName = winner.map((car) => car.name).join(", ");
+    Console.print(`최종 우승자 : ${winnerName}`);
   }
 }
 
