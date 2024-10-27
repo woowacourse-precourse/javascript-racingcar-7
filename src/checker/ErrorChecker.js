@@ -12,7 +12,7 @@ class ErrorChecker {
         tryChecker.checkOverHundred();
     };
 
-    static checkNameLength(carName) {
+    static checkName(carName) {
         const nameChecker = new CheckNameInput(carName);
         nameChecker.checkNameLength();
         nameChecker.checkNameVoid();

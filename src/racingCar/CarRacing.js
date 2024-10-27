@@ -31,7 +31,7 @@ class CarRacing {
     createCar(input) {
         const cars = input.split(',').map((name) => {
             name = name.trim();
-            ErrorChecker.checkNameLength(name);
+            ErrorChecker.checkName(name);
             return new Car(name);
         });
         return cars;
