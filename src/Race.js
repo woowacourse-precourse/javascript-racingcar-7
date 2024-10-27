@@ -31,6 +31,7 @@ export default class Race {
     ViewOut.resultMessage();
     this.#round();
     this.#selectWinner();
+    ViewOut.raceWinner(this.#winner);
   }
 
   #round() {
