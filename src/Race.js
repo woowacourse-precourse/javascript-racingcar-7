@@ -19,6 +19,15 @@ class Race {
         return winners.map(car => car.name).join(', ');
     }
     
+    // 최종 결과
+    showResult() {
+        for(let i = 0; i < this.moveCount; i++) {
+            this.cars.forEach(car => car.move());
+            this.displayRoundResult();
+        }
+        MissionUtils.Console.print(`최종 우승자 : ${this.getWinners()}`);
+    }
+
 }
 
 export default Race;
