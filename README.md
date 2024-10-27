@@ -143,3 +143,34 @@ MissionUtils.Random.pickNumberInRange(0, 9);
 - [ERROR] 메시지는 사용자에게 의미를 확실하게 전달하도록 한다.
 - 다른 JS파일을 만들어 메서드로 기능을 분리한다.
 - 에러는 다른 JS 파일에 따로 분리한다.
+
+## 실행 결과
+![image](https://github.com/user-attachments/assets/38aa98ed-3b93-4242-bd6a-b62fd3b6e5de)
+
+## 디렉터리 구조
+
+```bash
+┣ src
+┃ ┣ CarRacing
+┃ ┃ ┣ CarRacing.js
+┃ ┃ ┗ CarScore.js
+┃ ┣ Error
+┃ ┃ ┗ Error.js
+┃ ┣ InputControl
+┃ ┃ ┣ Check.js
+┃ ┃ ┗ Input.js
+┃ ┣ SearchWinner
+┃ ┃ ┗ SearchWinner.js
+┃ ┣ App.js
+┃ ┗ index.js
+┣ __tests__
+┃ ┣ ApplicationTest.js
+┃ ┣ CarRacingPrintTest.js
+┃ ┣ ExceptionTest.js
+┃ ┗ WinnerTest.js
+┣ .gitignore
+┣ .npmrc
+┣ package-lock.json
+┣ package.json
+┗ README.md
+```
