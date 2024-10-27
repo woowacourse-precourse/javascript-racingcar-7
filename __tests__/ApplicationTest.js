@@ -67,6 +67,23 @@ describe('구현할 기능 목록 테스트 코드 작성', () => {
     expect(result).toEqual(expectedResult);
   });
 
+  test('1경기 실행 결과', () => {
+    // given
+    const MOVING_FORWARD_ONE = 5;
+    const MOVING_FORWARD_TWO = 5;
+    const STOP = 3;
+
+    const input = { pobi: 0, woni: 0, jun: 0 };
+    const expectedResult = { pobi: 1, woni: 0, jun: 1 };
+
+    const app = new App();
+    mockRandoms([MOVING_FORWARD_ONE, STOP, MOVING_FORWARD_TWO]);
+
+    const result = app.executionResult(input);
+
+    expect(result).toEqual(expectedResult);
+  });
+
   test('1경기 실행 결과', async () => {
     // given
     const MOVING_FORWARD_ONE = 5;
