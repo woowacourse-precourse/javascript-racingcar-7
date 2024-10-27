@@ -72,7 +72,7 @@ class App {
       (car) => car.position.length === maxPosition
     );
     Console.print(
-      '최종우승자 : ' + winners.map((winner) => winner.name).join(', ')
+      '최종 우승자 : ' + winners.map((winner) => winner.name).join(', ')
     );
   }
 
