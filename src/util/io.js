@@ -1,11 +1,11 @@
 import { Console } from '@woowacourse/mission-utils';
 
-function input(message) {
+function readUserInput(message) {
   return Console.readLineAsync(message);
 }
 
-function output(message) {
+function printOutput(message) {
   Console.print(message);
 }
 
-export { input, output };
+export { readUserInput, printOutput };
