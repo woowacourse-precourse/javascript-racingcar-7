@@ -1,5 +1,12 @@
 import { Console } from "@woowacourse/mission-utils";
 
+class Car {
+  constructor(name) {
+    this.name = name;
+    this.race = []; // 전진 저장할 배열변수
+  }
+}
+
 class App {
   splitInput(input) {
     const carNames = [];
@@ -61,6 +68,11 @@ class App {
       }
     } else {
       throw new Error("[ERROR]");
+    }
+
+    const cars = carNames.map((name) => new Car(name));
+    for (let i = 0; i < cars.length; i++) {
+      Console.print(cars[i].name);
     }
   }
 }
