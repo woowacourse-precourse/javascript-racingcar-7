@@ -114,4 +114,17 @@ describe('자동차 경주', () => {
     // then
     await expect(app.run()).rejects.toThrow('[ERROR]');
   });
+
+  // 중복된 자동차 이름이 있는 경우 에러 반환
+  test('예외 테스트 - 중복된 자동차 이름', async () => {
+    // given
+    const inputs = ['pobi,pobi', '1'];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
 });
