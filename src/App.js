@@ -32,8 +32,10 @@ class App {
         return obj;
       },{});
 
-      const num = await Console.readLineAsync("\n시도할 횟수는 몇 회인가요?\n");
-      this.count = Number(num);
+      let inputCount = await Console.readLineAsync("\n시도할 횟수는 몇 회인가요?\n");
+      inputCount = Number(inputCount);
+      this.checkCount(inputCount);
+      this.count = inputCount;
     }catch(error){
       Console.print("ERROR: 입력 오류");
       throw new Error("[ERROR]");
@@ -47,6 +49,13 @@ class App {
         throw new Error("[ERROR]");
       }
     });
+  }
+
+  checkCount(inputCount){
+    if(isNaN(inputCount) || inputCount <= 0){
+      Console.print("ERROR: 횟수 입력 오류");
+      throw new Error("[ERROR]");
+    }
   }
 
   updateCarProgressRandomly(){
