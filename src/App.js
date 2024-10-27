@@ -1,5 +1,6 @@
 import { Console } from "@woowacourse/mission-utils";
 import inputParser from "./inputParser.js";
+import RacingGame from "./RacingGame.js";
 
 class App {
   async run() {
@@ -9,7 +10,10 @@ class App {
     const carNames = inputParser(carNamesInput);
     let tryCount = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
 
-    Console.print(`${carNames} ${tryCount}`);
+    const game = new RacingGame(carNames, Number(tryCount));
+    const result = game.raceCars();
+
+    return result;
   }
 }
 
