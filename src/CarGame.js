@@ -13,19 +13,24 @@ class CarGame {
         const resultLogs = [];
 
         for (let turn = 0; turn < this.#tryCount; turn++) {
-            for (let carIdx = 0; carIdx < this.#cars.length; carIdx++) {
-                this.#cars[carIdx].tryToMove();
-
-                const carName = this.#cars[carIdx].getName();
-                const carPosition = this.#cars[carIdx].getPosition();
-
-                resultLogs.push(`${carName} : ${"-".repeat(carPosition)}`);
-            }
-
+            const currentTurnLogs = this.raceOneTurn();
+            resultLogs.push(...currentTurnLogs);
             resultLogs.push("");
         }
 
         return resultLogs;
+    }
+
+    raceOneTurn() {
+        const oneTurnLogs = [];
+
+        for (let carIdx = 0; carIdx < this.#cars.length; carIdx++) {
+            const car = this.#cars[carIdx];
+            car.tryToMove();
+            oneTurnLogs.push(`${car.getName()} : ${"-".repeat(car.getPosition())}`);
+        }
+
+        return oneTurnLogs;
     }
 
     pickWinner() {
