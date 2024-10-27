@@ -175,9 +175,12 @@ MissionUtils.Random.pickNumberInRange(0, 9);
 
 - **getCarName(), getTryNum()** 경주에 참여하는 자동차 이름과 이동할 횟수는 `Console.readLineAsync()`로 입력 받는다.
 - **carCountLimitCheck()**을 사용해 자동차를 최대 5대만 받는다.
+- **carNameLimitCheck()**을 사용해 자동차 이름의 길이를 5자 이하로 받는다
 - **checkSpace()** 공백을 확인한다.
 - **duplicateCheck()** 중복 검사는 `includes()`으로 한다.
-- **checkTryNum()**`^[1-9]+$/.test()` 1~9인지 확인한다.
+- **checkTryNum()**`/^[1-9]+$/.test()` 1~9인지 확인한다.
+- **limitingNum()**로 시도 횟수가 1~10 사이의 숫자인지 확인한다.
+- **changeInt()**숫자로 변환한다.
 
 #### reacingCar
 
