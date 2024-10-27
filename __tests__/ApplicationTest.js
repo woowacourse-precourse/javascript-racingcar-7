@@ -24,94 +24,62 @@ const getLogSpy = () => {
   return logSpy;
 };
 
+const MOVING_FORWARD = 4;
+const STOP = 3;
+
+const runRaceTest = async (inputs, randomNumbers, expectedLogs) => {
+  // given
+  const logSpy = getLogSpy();
+  mockQuestions(inputs);
+  mockRandoms(randomNumbers);
+
+  // when
+  const app = new App();
+  await app.run();
+
+  // then
+  expectedLogs.forEach((log) => {
+    expect(logSpy).toHaveBeenCalledWith(log);
+  });
+}
+
 describe('자동차 경주', () => {
   test('기능 테스트: pobi 우승', async () => {
-    // given
-    const MOVING_FORWARD = 4;
-    const STOP = 3;
-    const inputs = ['pobi,woni', '1'];
-    const logs = ['pobi : -', 'woni : ', '최종 우승자 : pobi'];
-    const logSpy = getLogSpy();
-
-    mockQuestions(inputs);
-    mockRandoms([MOVING_FORWARD, STOP]);
-
-    // when
-    const app = new App();
-    await app.run();
-
-    // then
-    logs.forEach((log) => {
-      expect(logSpy).toHaveBeenCalledWith(log);
-    });
+    await runRaceTest(
+      ['pobi,woni', '1'],
+      [MOVING_FORWARD, STOP],
+      ['pobi : -', 'woni : ', '최종 우승자 : pobi'],
+    );
   });
 
   test('기능 테스트: 동점 승', async () => {
-    // given
-    const MOVING_FORWARD = 4;
-    const inputs = ['pobi,woni', '2'];
-    const logs = ['pobi : --', 'woni : --', '최종 우승자 : pobi, woni'];
-    const logSpy = getLogSpy();
-
-    mockQuestions(inputs);
-    mockRandoms([MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD]);
-
-    // when
-    const app = new App();
-    await app.run();
-
-    // then
-    logs.forEach((log) => {
-      expect(logSpy).toHaveBeenCalledWith(log);
-    });
+    await runRaceTest(
+      ['pobi,woni', '2'],
+      [MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD],
+      ['pobi : --', 'woni : --', '최종 우승자 : pobi, woni'],
+    );
   });
 
   test('기능 테스트: woni 우승', async () => {
-    // given
-    const MOVING_FORWARD = 4;
-    const STOP = 3;
-    const inputs = ['pobi,woni', '2'];
-    const logs = ['pobi : -', 'woni : --', '최종 우승자 : woni'];
-    const logSpy = getLogSpy();
-
-    mockQuestions(inputs);
-    mockRandoms([MOVING_FORWARD, MOVING_FORWARD, STOP, MOVING_FORWARD]);
-
-    // when
-    const app = new App();
-    await app.run();
-
-    // then
-    logs.forEach((log) => {
-      expect(logSpy).toHaveBeenCalledWith(log);
-    });
+    await runRaceTest(
+      ['pobi,woni', '2'],
+      [MOVING_FORWARD, MOVING_FORWARD, STOP, MOVING_FORWARD],
+      ['pobi : -', 'woni : --', '최종 우승자 : woni'],
+    );
   });
 
   test('기능 테스트: pobi, jun 우승 (과제 입출력 예제)', async () => {
-    // given
-    const MOVING_FORWARD = 4;
-    const STOP = 3;
-    const inputs = ['pobi,woni,jun', '5'];
-    const logs = ['pobi : -----', 'woni : ----', 'jun : -----', '최종 우승자 : pobi, jun'];
-    const logSpy = getLogSpy();
-
-    mockQuestions(inputs);
-    mockRandoms([
-      MOVING_FORWARD, STOP, MOVING_FORWARD,
-      MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD,
-      MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD,
-      MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD,
-      MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD
-    ]);
-
-    // when
-    const app = new App();
-    await app.run();
-
-    // then
-    logs.forEach((log) => {
-      expect(logSpy).toHaveBeenCalledWith(log);
-    });
+    await runRaceTest(
+      ['pobi,woni,jun', '5'],
+      [
+        MOVING_FORWARD, STOP, MOVING_FORWARD,
+        MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD,
+        MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD,
+        MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD,
+        MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD
+      ],
+      ['pobi : -----', 'woni : ----', 'jun : -----', '최종 우승자 : pobi, jun'],
+    );
   });
 
   test('예외 테스트', async () => {
