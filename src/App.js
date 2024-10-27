@@ -76,6 +76,7 @@ class CarRace {
 
     startRace() {
         MissionUtils.Console.print("\n실행 결과");
+
         Array.from({ length: this.round }).forEach(() => {
             this.startRound();
             MissionUtils.Console.print("");
