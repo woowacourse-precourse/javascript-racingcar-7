@@ -1,13 +1,21 @@
 import { Console, Random } from '@woowacourse/mission-utils';
 
+// 사용자 입력 메시지
 const INPUT_PLAYER_NAMES =
   '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분\n)';
 const INPUT_MOVE_COUNT = '시도할 횟수는 몇 회인가요?';
+
+// 게임 결과 메시지
 const WINNER_MESSAGE = '최종 우승자 : ';
 const ERROR_MESSAGE = '[ERROR]';
-const MIN_SUCCESS_SCORE = 4;
+
+// 게임 기능사항 상수
 const MIN_PLAYER_NAME_LENGTH = 1;
 const MAX_PLAYER_NAME_LENGTH = 5;
+const PLAYER_NAME_REGEX = new RegExp(
+  `^[a-zA-Z0-9ㄱ-ㅣ가-힣\\s-_!:]{${MIN_PLAYER_NAME_LENGTH},${MAX_PLAYER_NAME_LENGTH}}$`
+);
+const MIN_SUCCESS_SCORE = 4;
 const SCORE_SYMBOL = '-';
 
 class App {
@@ -41,12 +49,7 @@ function parsePlayerNames(userInput) {
 }
 
 function validatePlayerNames(playerNames) {
-  // [ERROR] 5자를 초과
-  // TODO: 특수문자
-  const regex = new RegExp(
-    `^[a-zA-Z0-9ㄱ-ㅣ가-힣]{${MIN_PLAYER_NAME_LENGTH},${MAX_PLAYER_NAME_LENGTH}}$`
-  );
-  if (playerNames.some((player) => !player.match(regex)))
+  if (playerNames.some((name) => !PLAYER_NAME_REGEX.test(name)))
     throw new Error(ERROR_MESSAGE);
 }
 
