@@ -3,6 +3,7 @@ import { parseCarNames, parseAttempt } from './utils/Parser.js';
 import CarNameValidator from './validators/CarNameValidator.js';
 import AttemptValidator from './validators/AttemptValidator.js';
 import RacingGame from './RacingGame.js';
+import RaceStatusDisplay from './RaceStatusDisplay.js';
 
 class App {
   async run() {
@@ -22,7 +23,7 @@ class App {
     racingGame.Racing();
 
     const winners = racingGame.getWinners();
-    RacingGame.printWinners(winners);
+    RaceStatusDisplay.printWinners(winners);
   }
 }
 

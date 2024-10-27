@@ -1,5 +1,5 @@
-import { printMessage } from './utils/Console.js';
 import RacingCars from './models/RacingCars.js';
+import RaceStatusDisplay from './RaceStatusDisplay.js';
 
 class RacingGame {
   #racingCars;
@@ -10,28 +10,12 @@ class RacingGame {
     this.#attempt = roundAttempt;
   }
 
-  static printRaceStartMessage() {
-    printMessage('\n실행 결과');
-  }
-
-  static printRoundStatus(cars) {
-    cars.forEach(car => {
-      printMessage(`${car.getName()} : ${'-'.repeat(car.getPosition())}`);
-    });
-    printMessage('');
-  }
-
-  static printWinners(winners) {
-    const finalWinners = `최종 우승자 : ${winners.join(', ')}`;
-    printMessage(finalWinners);
-  }
-
   Racing() {
-    RacingGame.printRaceStartMessage();
+    RaceStatusDisplay.printRaceStartMessage();
 
     for (let i = 0; i < this.#attempt; i++) {
       this.#racingCars.moveCarsInRound();
-      RacingGame.printRoundStatus(this.#racingCars.getCars());
+      RaceStatusDisplay.printRoundStatus(this.#racingCars.getCars());
     }
   }
 
