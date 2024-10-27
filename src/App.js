@@ -4,6 +4,7 @@ class App {
   async run() {
     const userCars = await this.getCarName();
     const tryRaceNum = await this.getTryRaceNum();
+    const userCarObj = this.creatCarObject(userCars.split(","));
   }
 
   async getCarName() {
@@ -22,6 +23,13 @@ class App {
       );
       return tryRaceNum;
     } catch (error) {}
+  }
+
+  creatCarObject(carAarray) {
+    const carInfo = carAarray.map((name) => {
+      return { carname: name, movecar: 0, randomnum: 0 };
+    });
+    return carInfo;
   }
 }
 
