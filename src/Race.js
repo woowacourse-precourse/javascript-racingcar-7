@@ -2,11 +2,11 @@ import Car from './Car.js';
 import ViewIn from './view/ViewIn.js';
 import ViewOut from './view/ViewOut.js';
 import { parseCars } from './utils/parser.js';
+import { sortScore } from './utils/sort.js';
 import { validateCars } from './utils/validator/car.js';
 import { validateCount } from './utils/validator/count.js';
-import { Random } from '@woowacourse/mission-utils';
 import { THRESHOLD } from './constants/threshold.js';
-import { sortScore } from './utils/sort.js';
+import { Random } from '@woowacourse/mission-utils';
 
 export default class Race {
   #cars;
@@ -27,16 +27,16 @@ export default class Race {
   }
 
   start() {
-    ViewOut.showResultMessage();
+    ViewOut.empty();
+    ViewOut.resultMessage();
     this.#round();
     this.#selectWinner();
-    console.log(this.#winner);
   }
 
   #round() {
     for (let i = 0; i < this.#count; i++) {
       this.#race();
-      ViewOut.showRaceStatus(this.#cars);
+      ViewOut.raceStatus(this.#cars);
     }
   }
 

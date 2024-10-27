@@ -2,21 +2,21 @@ import { OUTPUT } from '../constants/message.js';
 import { Console } from '@woowacourse/mission-utils';
 
 export default class ViewOut {
-  static emptyLine() {
+  static empty() {
     Console.print('');
   }
 
-  static showResultMessage() {
+  static resultMessage() {
     Console.print(`${OUTPUT.RESULT}`);
   }
 
-  static showRaceStatus = (cars) => {
+  static raceStatus = (cars) => {
     cars.forEach((car) => {
       const carName = car.getName();
       const carPoints = car.getPoints();
       Console.print(`${carName} : ${'-'.repeat(carPoints)}`);
     });
 
-    Console.print('');
+    this.empty();
   };
 }
