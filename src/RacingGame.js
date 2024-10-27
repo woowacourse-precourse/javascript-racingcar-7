@@ -15,14 +15,18 @@ class RacingGame {
             cars[i] = new Car(carNames[i]);
         }
 
+        MissionUtils.Console.print("\n"); //출력 포멧에 맞게 하기 위해 추가
+
         //라운드별 레이싱 진행
         for (let i = 0; i < inputNumberOfRounds; i++) {
+            //각 차량마다 레이싱 수행
             for (let j = 0; j < cars.length; j++) {
                 cars[j].move();
             }
             MissionUtils.Console.print("\n");
         }
 
+        //우승자 추려내어 출력
         let winner = this.determineWinner(cars);
         MissionUtils.Console.print(`최종 우승자 : ${winner}`);
     }
