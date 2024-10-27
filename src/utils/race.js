@@ -10,6 +10,8 @@ export const startRace = (tryNumber, carNameObject) => {
 
     displayRaceProgress(carNameObject, carNameArray);
   }
+
+  printFinalWinner(carNameObject);
 };
 
 const displayRaceProgress = (carNameObject, carNameArray) => {
@@ -30,4 +32,27 @@ const checkIsAdvance = (carNameObject, carNameArray, idx) => {
   if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) {
     carNameObject[carNameArray[idx]]++;
   }
+};
+
+const printFinalWinner = (carNameObject) => {
+  Console.print(`최종 우승자 : ${finalWinner(carNameObject).join(", ")}`);
+};
+
+const finalWinner = (carNameObject) => {
+  let maxValue = -Infinity;
+  const finalWinner = [];
+
+  for (let i in carNameObject) {
+    if (carNameObject[i] > maxValue) {
+      maxValue = carNameObject[i];
+    }
+  }
+
+  for (let i in carNameObject) {
+    if (carNameObject[i] === maxValue) {
+      finalWinner.push(i);
+    }
+  }
+
+  return finalWinner;
 };
