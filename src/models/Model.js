@@ -34,3 +34,12 @@ export function getCarPositionsRepresentation(carData) {
     return `${carName} : ${carPositionsRepresentation}`;
   });
 }
+
+// 우승자 출력
+export function findWinners(carData) {
+  const maxDistance = Math.max(...carData.positions);
+  const winnders = carData.names.filter(
+    (name, index) => carData.positions[index] === maxDistance,
+  );
+  return winnders;
+}
