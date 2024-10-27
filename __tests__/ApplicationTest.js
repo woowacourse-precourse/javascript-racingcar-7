@@ -1,36 +1,17 @@
-import App from "../src/App.js";
-import { MissionUtils } from "@woowacourse/mission-utils";
+import App from '../src/App.js';
+import {
+  mockQuestions,
+  mockRandoms,
+  getLogSpy,
+} from '../src/utils/testUtil.js';
 
-const mockQuestions = (inputs) => {
-  MissionUtils.Console.readLineAsync = jest.fn();
-
-  MissionUtils.Console.readLineAsync.mockImplementation(() => {
-    const input = inputs.shift();
-    return Promise.resolve(input);
-  });
-};
-
-const mockRandoms = (numbers) => {
-  MissionUtils.Random.pickNumberInRange = jest.fn();
-
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, MissionUtils.Random.pickNumberInRange);
-};
-
-const getLogSpy = () => {
-  const logSpy = jest.spyOn(MissionUtils.Console, "print");
-  logSpy.mockClear();
-  return logSpy;
-};
-
-describe("자동차 경주", () => {
-  test("기능 테스트", async () => {
+describe('자동차 경주', () => {
+  test('기능 테스트', async () => {
     // given
     const MOVING_FORWARD = 4;
     const STOP = 3;
-    const inputs = ["pobi,woni", "1"];
-    const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
+    const inputs = ['pobi,woni', '1'];
+    const logs = ['pobi : -', 'woni : ', '최종 우승자 : pobi'];
     const logSpy = getLogSpy();
 
     mockQuestions(inputs);
@@ -46,15 +27,32 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트", async () => {
+  test.each([[['pobi,javaji']], [[',javaji']]])(
+    '자동차 이름 입력 예외 테스트: %s',
+    async (inputs) => {
+      // given
+      mockQuestions(inputs);
+
+      // when
+      const app = new App();
+
+      // then
+      await expect(app.run()).rejects.toThrow('[ERROR]');
+    }
+  );
+
+  test.each([
+    [['pobi,haesa', '-1']],
+    [['pobi,haesa', '1.1']],
+    [['pobi,haesa', 'a']],
+  ])('시도 횟수 입력 예외 테스트: %s', async (inputs) => {
     // given
-    const inputs = ["pobi,javaji"];
     mockQuestions(inputs);
 
     // when
     const app = new App();
 
     // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
+    await expect(app.run()).rejects.toThrow('[ERROR]');
   });
 });
