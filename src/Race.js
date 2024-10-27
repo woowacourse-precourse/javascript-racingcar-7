@@ -2,6 +2,7 @@ import { printResult, readUserInput } from './util/missionUtil.js';
 import { RESULT_MESSAGE, START_MESSAGE } from './util/constant.js';
 import Car from './Car.js';
 import { validCarName, validTryNumber } from './util/validation.js';
+import { getWinner } from './util/handleWinner.js';
 
 class Race {
   #cars;
@@ -10,7 +11,8 @@ class Race {
   async play() {
     await this.processCars();
     await this.processTryNumber();
-    this.executeResult();
+    await this.executeResult();
+    await this.winnerResult();
   }
 
   async processCars() {
@@ -37,10 +39,17 @@ class Race {
   async executeResult() {
     await printResult(RESULT_MESSAGE.EXECUTE);
     while (this.#tryNumber > 0) {
-      this.#cars.forEach((car) => car.getMoveForwardResult());
+      await this.#cars.forEach((car) => car.getMoveForwardResult());
       await printResult('');
       this.#tryNumber -= 1;
     }
+  }
+
+  async winnerResult() {
+    const carDistanceArray = this.#cars.map((car) => car.getDistance().length);
+    const maxDistance = Math.max(...carDistanceArray);
+    const winner = await getWinner(this.#cars, maxDistance);
+    await printResult(`${RESULT_MESSAGE.WINNER} ${winner.join(', ')}`);
   }
 }
 

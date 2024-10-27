@@ -5,7 +5,7 @@ export const START_MESSAGE = Object.freeze({
 });
 export const RESULT_MESSAGE = Object.freeze({
   EXECUTE: '\n실행결과',
-  WINNER: '최종 우승자 :',
+  WINNER: '\n최종 우승자 :',
 });
 export const TRYNUMBER_ERROR = Object.freeze({
   NOT_NUMBER: '[ERROR] 입력하신 시도 횟수가 숫자가 아닙니다.',
