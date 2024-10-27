@@ -65,3 +65,8 @@ function changeMaxValue(carClass){
         Car.setMax(carClass.getValue());
     }
 }
+
+export function findLastWinner(carClassList){
+    return carClassList.filter((carClass)=> carClass.getValue() === Car.getMax());
+    
+}

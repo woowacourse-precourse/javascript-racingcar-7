@@ -1,5 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
-import { splitComma, isSameCar, makeCarClassList, goRacing } from "./functions.js";
+import { splitComma, isSameCar, makeCarClassList, goRacing, findLastWinner } from "./functions.js";
 import Car from "./Car.js";
 
 class App {
@@ -13,6 +13,10 @@ class App {
     for(let i=0; i<ATTEMPTS; i++){
       goRacing(carClassList);
     }
+
+    const lastWinners = findLastWinner(carClassList);
+
+    Console.print(lastWinners);
   }
 }
 
