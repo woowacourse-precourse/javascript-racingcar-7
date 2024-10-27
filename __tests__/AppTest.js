@@ -58,5 +58,14 @@ describe('자동차 경주', () => {
 
       await expect(app.run()).rejects.toThrow('[ERROR]');
     });
+
+    test('경주에 참여하는 자동차가 0대이면 에러가 발생한다.', async () => {
+      const inputs = [''];
+      mockQuestions(inputs);
+
+      const app = new App();
+
+      await expect(app.run()).rejects.toThrow('[ERROR]');
+    });
   });
 });
