@@ -17,3 +17,22 @@ export function carNameValidator(carNames) {
   }
 }
 
+export function tryCountValidator(tryCount) {
+  if (tryCount.length === 0) {
+    throwError(ERROR.TRY_COUNT);
+  }
+
+  if (isNaN(tryCount)) {
+    throwError(ERROR.TRY_COUNT_NUMBER);
+  }
+
+  tryCount = Number(tryCount);
+
+  if (!Number.isInteger(tryCount) || tryCount < 1) {
+    throwError(ERROR.TRY_COUNT_NUMBER);
+  }
+
+  if (tryCount > 100) {
+    throwError(ERROR.TRY_COUNT_MAX);
+  }
+}
