@@ -134,19 +134,25 @@ class App {
     }
   }
 
-
+  // 차수별 실행 결과 출력
   printScore(CARS, SCORE, CARS_COUNT){
     for (let i = 0; i < CARS_COUNT; i++) {
-      let MY_SCORE = '';
-      
-      for (let s = 0; s < SCORE[i]; s++) {
-        MY_SCORE += '-';
-      }
-
+      const MY_SCORE = this.getScore(SCORE[i]);
       Console.print(CARS[i] + ' : ' + MY_SCORE);
     }
 
     Console.print(' ');
+  }
+
+  // 각 차의 결과 구하기
+  getScore(RESULT){
+    let MY_SCORE = '';
+
+    for (let s = 0; s < RESULT; s++) {
+      MY_SCORE += '-';
+    }
+
+    return MY_SCORE;
   }
 }
 
