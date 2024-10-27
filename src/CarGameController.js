@@ -33,16 +33,16 @@ class CarGameController {
 
     async #inputCarNames() {
         const inputCarNames = await this.#inputHandler.enterCarNames();
-        const splittedCarNames = Utils.transformCarNamesStringToArray(inputCarNames);
-        this.#validator.checkCarName(splittedCarNames);
-
-        return splittedCarNames;
+        const convertedCarNames = Utils.convertCarNames(inputCarNames);
+        this.#validator.checkCarName(convertedCarNames);
+        return convertedCarNames;
     }
 
     async #inputTryCount() {
         const inputTryCnt = await this.#inputHandler.enterTryCount();
-        this.#validator.checkTryCount(inputTryCnt);
-        return inputTryCnt;
+        const convertedTryCount = Utils.convertTryCount(inputTryCnt);
+        this.#validator.checkTryCount(convertedTryCount);
+        return convertedTryCount;
     }
 
     #printResult(resultLogs, winner) {
