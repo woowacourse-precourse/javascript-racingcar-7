@@ -23,6 +23,18 @@ class App {
       car.distance += 1;
     }
 
+
+    // * 자동차 경주 한판 진행
+    const oneRaceStart = (carArray) => {
+      carArray.forEach((car) => {
+        const randomValue = getRandomValue(); 
+      
+        if (isValueMoreThanFour(randomValue)) {
+          increaseCarDistance(car);
+        }
+      })
+    }
+
     // * 자동차의 거리만큼 '-' 출력 //pobi : --
     const printCurrentCarDistanceResult = (car) => {
       Console.print(`${car.name} : ${"-".repeat(car.distance)}`); 
@@ -162,14 +174,9 @@ class App {
       // todo : depth 가 2가 되도록 리팩토링 해야한다.
       // * n번 경주한다.
       Console.print('\n실행 결과');
-      for (let i =0; i < degreeInput ; i++){
-        carArray.forEach((car) => {
-          const randomValue = getRandomValue(); 
-
-          if (isValueMoreThanFour(randomValue)) {
-            increaseCarDistance(car);
-          }
-        });
+      // * n번 경주를 반복한다.
+      for (let i = 0; i < degreeInput ; i++){
+        oneRaceStart(carArray);
 
         // * 경주가 끝나면 자동차를 순회하며 각 자동차 거리 출력    
         carArray.forEach((car) => {
