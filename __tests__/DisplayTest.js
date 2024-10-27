@@ -34,4 +34,15 @@ describe('Display 메서드 테스트', () => {
 
     expect(roundResultSpy).toHaveBeenCalledWith(EXPECTED_LOG);
   });
+
+  test.each([
+    [['woowa, tech'], '최종 우승자 : woowa, tech', '우승자가 2명 이상인 경우'],
+    [['woowa'], '최종 우승자 : woowa', '우승자가 1명인 경우'],
+  ])('우승자를 형식에 맞게 출력하는지 테스트', (winnerList, expected) => {
+    const winnerResultSpy = getLogSpy();
+
+    Display.showWinners(winnerList);
+
+    expect(winnerResultSpy).toHaveBeenCalledWith(expected);
+  });
 });
