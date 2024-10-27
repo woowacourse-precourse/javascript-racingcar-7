@@ -24,37 +24,74 @@ const getLogSpy = () => {
   return logSpy;
 };
 
-describe("자동차 경주", () => {
-  test("기능 테스트", async () => {
-    // given
-    const MOVING_FORWARD = 4;
-    const STOP = 3;
-    const inputs = ["pobi,woni", "1"];
-    const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
+describe("기능 테스트", () => {
+  test.each([
+    {
+      inputs: ["pobi,woni", "1"],
+      logs: ["pobi : -", "woni : ", "최종 우승자 : pobi"],
+      randoms: [4, 3],
+    },
+    {
+      inputs: ["pobi,woni,jun", "3"],
+      logs: [
+        "pobi : -",
+        "woni : -",
+        "jun : ",
+        "pobi : --",
+        "woni : -",
+        "jun : ",
+        "pobi : --",
+        "woni : -",
+        "jun : ",
+        '우승자가 가려지지 않았습니다.',
+        '가장 많이 이동한 자동차 : pobi'
+      ],
+      randoms: [4, 4, 3, 4, 3, 3, 3, 3, 3],
+    }
+  ])("우승자 여부에 따른 테스트", async ({ inputs, logs, randoms }) => {
     const logSpy = getLogSpy();
 
     mockQuestions(inputs);
-    mockRandoms([MOVING_FORWARD, STOP]);
+    mockRandoms(randoms);
 
-    // when
     const app = new App();
     await app.run();
 
-    // then
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
-
-  test("예외 테스트", async () => {
-    // given
-    const inputs = ["pobi,javaji"];
-    mockQuestions(inputs);
-
-    // when
-    const app = new App();
-
-    // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
-  });
 });
+
+describe("입력 예외 테스트", () => {
+  const testCases = [
+    {
+      inputs: ["pobi,javaji"],
+      expectedError: "[ERROR] 모든 자동차 이름은 다섯 글자 이하로 입력해야 합니다.",
+    },
+    {
+      inputs: [", pobi, "],
+      expectedError: "[ERROR] 모든 자동차 이름은 한 글자 이상 입력해야 합니다.",
+    },
+    {
+      inputs: ["pobi, pobi"],
+      expectedError: "[ERROR] 자동차 이름은 중복 입력할 수 없습니다.",
+    },
+    {
+      inputs: ["pobi, woni, jun", "k"],
+      expectedError: "[ERROR] 시행 횟수는 1 이상의 숫자로 입력해야 합니다.",
+    }
+  ];
+
+  test.each(testCases)(
+    "입력: $inputs 에 대한 예외 테스트",
+    async ({ inputs, expectedError }) => {
+      mockQuestions(inputs);
+
+      const app = new App();
+
+      await expect(app.run()).rejects.toThrow(expectedError);
+    }
+  )
+})
+
