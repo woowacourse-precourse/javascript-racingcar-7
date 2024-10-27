@@ -12,6 +12,10 @@ class RacingGameView {
   static printCarProgress(carName, progress) {
     Console.print(`${carName} : ${progress}`);
   }
+
+  static printRoundEnd() {
+    Console.print("");
+  }
 }
 
 export default RacingGameView;

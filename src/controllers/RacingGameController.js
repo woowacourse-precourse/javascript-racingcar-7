@@ -1,6 +1,7 @@
 import inputParser from "../utils/inputParser.js";
 import { nameValidation, tryValidation } from "../utils/validators.js";
 import RacingGameView from "../views/RacingGameView.js";
+import RacingGameModel from "../models/RacingGameModel.js";
 
 class RacingGameController {
   async run() {
