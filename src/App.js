@@ -1,26 +1,5 @@
 import { Console, Random } from '@woowacourse/mission-utils';
-
-// 사용자 입력 메시지
-const INPUT_PLAYER_NAMES =
-  '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분\n)';
-const INPUT_MOVE_COUNT = '시도할 횟수는 몇 회인가요?';
-
-// 게임 결과 메시지
-const WINNER_MESSAGE = '최종 우승자 : ';
-const ERROR_MESSAGE = '[ERROR]';
-
-// 게임 기능사항 상수
-const DELIMITER = ',';
-const MIN_PLAYER_NAME_LENGTH = 1;
-const MAX_PLAYER_NAME_LENGTH = 5;
-const PLAYER_NAME_REGEX = new RegExp(
-  `^[a-zA-Z0-9ㄱ-ㅣ가-힣\\s-_!:]{${MIN_PLAYER_NAME_LENGTH},${MAX_PLAYER_NAME_LENGTH}}$`
-);
-const POSITIVE_INTEGER_REGEX = /^\d+$/;
-const MIN_SUCCESS_SCORE = 4;
-const SCORE_SYMBOL = '-';
-const NEW_LINE = '\n';
-const PLAYER_NAME_DELIMITER = ', ';
+import { MESSAGES, REGEX, GAME_SETTINGS } from './constants';
 
 class App {
   async run() {
@@ -36,7 +15,9 @@ async function initializeGame() {
     const playerNames = await getPlayerNames();
     getVaildatedPlayerNames(playerNames);
 
-    const moveCountInput = await Console.readLineAsync(INPUT_MOVE_COUNT);
+    const moveCountInput = await Console.readLineAsync(
+      MESSAGES.INPUT_MOVE_COUNT
+    );
     validateMoveCount(moveCountInput);
     const moveCount = Number(moveCountInput);
 
@@ -49,8 +30,12 @@ async function initializeGame() {
 }
 
 async function getPlayerNames() {
-  const userInput = await Console.readLineAsync(INPUT_PLAYER_NAMES);
+  const userInput = await Console.readLineAsync(MESSAGES.INPUT_PLAYER_NAMES);
   return parsePlayerNames(userInput);
+}
+
+function parsePlayerNames(userInput) {
+  return userInput.split(GAME_SETTINGS.DELIMITER).map((e) => e.trim());
 }
 
 function getVaildatedPlayerNames(playerNames) {
@@ -58,19 +43,15 @@ function getVaildatedPlayerNames(playerNames) {
   return playerNames;
 }
 
-function validateMoveCount(moveCount) {
-  if (!POSITIVE_INTEGER_REGEX.test(moveCount)) {
-    throw new Error(ERROR_MESSAGE);
-  }
-}
-
-function parsePlayerNames(userInput) {
-  return userInput.split(DELIMITER).map((e) => e.trim());
-}
-
 function validatePlayerNames(playerNames) {
-  if (playerNames.some((name) => !PLAYER_NAME_REGEX.test(name)))
-    throw new Error(ERROR_MESSAGE);
+  if (playerNames.some((name) => !REGEX.PLAYER_NAME_REGEX.test(name)))
+    throw new Error(MESSAGES.ERROR_MESSAGE);
+}
+
+function validateMoveCount(moveCount) {
+  if (!REGEX.POSITIVE_INTEGER_REGEX.test(moveCount)) {
+    throw new Error(MESSAGES.ERROR_MESSAGE);
+  }
 }
 
 function createScoreBoard(playerNames) {
@@ -79,22 +60,24 @@ function createScoreBoard(playerNames) {
 
 function runGame(playerScores, moveCount) {
   playRounds(playerScores, moveCount);
-  Console.print(`${WINNER_MESSAGE}${findWinners(playerScores)}`);
+  Console.print(`${MESSAGES.WINNER_MESSAGE}${findWinners(playerScores)}`);
 }
 
 function playRounds(scoreBoard, moveCount) {
   for (let i = 0; i < moveCount; i++) {
     scoreBoard.forEach(playGame);
-    Console.print(NEW_LINE);
+    Console.print(GAME_SETTINGS.NEW_LINE);
   }
 }
 
 function playGame(player) {
-  if (Random.pickNumberInRange(0, 9) >= MIN_SUCCESS_SCORE) {
+  if (Random.pickNumberInRange(0, 9) >= GAME_SETTINGS.MIN_SUCCESS_SCORE) {
     player.score += 1;
   }
 
-  Console.print(`${player.name} : ${SCORE_SYMBOL.repeat(player.score)}`);
+  Console.print(
+    `${player.name} : ${GAME_SETTINGS.SCORE_SYMBOL.repeat(player.score)}`
+  );
 }
 
 function findWinners(playerScores) {
@@ -103,7 +86,7 @@ function findWinners(playerScores) {
   return playerScores
     .filter((player) => player.score === maxScore)
     .map((player) => player.name)
-    .join(PLAYER_NAME_DELIMITER);
+    .join(GAME_SETTINGS.PLAYER_NAME_DELIMITER);
 }
 
 function findMaxScorePlayer(prev, current) {
