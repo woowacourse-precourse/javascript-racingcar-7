@@ -13,9 +13,9 @@ class App {
     const { carNamesArr, tryCnt } = inputParser.parse();
 
     const carRacer = new CarRacer(carNamesArr, tryCnt);
-    const moveCntPerCar = carRacer.race();
+    const result = carRacer.race();
 
-    const resultPrinter = new ResultPrinter(moveCntPerCar);
+    const resultPrinter = new ResultPrinter(result);
     resultPrinter.print();
   }
 

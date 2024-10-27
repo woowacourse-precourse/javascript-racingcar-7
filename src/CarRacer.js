@@ -5,6 +5,7 @@ class CarRacer {
     this.carNamesArr = carNamesArr;
     this.tryCnt = tryCnt;
     this.moveCntPerCar = this.initMoveCntPerCar();
+    this.result = [];
   }
 
   initMoveCntPerCar() {
@@ -20,9 +21,10 @@ class CarRacer {
   race() {
     for (let i = 0; i < this.tryCnt; i += 1) {
       this.moveCars();
+      this.result.push({ ...this.moveCntPerCar });
     }
 
-    return this.moveCntPerCar;
+    return this.result;
   }
 
   moveCars() {

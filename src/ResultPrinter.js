@@ -2,20 +2,27 @@ import { Console } from '@woowacourse/mission-utils';
 import { IO_MESSAGES } from './constants.js';
 
 class ResultPrinter {
-  constructor(moveCntPerCar) {
-    this.moveCntPerCar = moveCntPerCar;
+  constructor(result) {
+    this.result = result;
   }
 
   print() {
     Console.print(IO_MESSAGES.OUTPUT_TRY_RESULT);
-    this.printAttemptResult();
+    this.printTryResult();
     this.printWinner();
   }
 
-  printAttemptResult() {
+  printTryResult() {
+    this.result.forEach((moveCntPerCar) => {
+      this.printMoveCntPerCar(moveCntPerCar);
+      Console.print('\n');
+    });
+  }
+
+  printMoveCntPerCar(moveCntPerCar) {
     const lines = [];
 
-    Object.entries(this.moveCntPerCar).forEach(([carName, moveCnt]) => {
+    Object.entries(moveCntPerCar).forEach(([carName, moveCnt]) => {
       lines.push(`${carName} : ${'-'.repeat(moveCnt)}`);
     });
 
@@ -23,8 +30,9 @@ class ResultPrinter {
   }
 
   printWinner() {
-    const maxMoveCnt = Math.max(...Object.values(this.moveCntPerCar));
-    const winners = Object.entries(this.moveCntPerCar)
+    const finalMoveCntPerCar = this.result.at(-1);
+    const maxMoveCnt = Math.max(...Object.values(finalMoveCntPerCar));
+    const winners = Object.entries(finalMoveCntPerCar)
       .filter(([_, moveCnt]) => moveCnt === maxMoveCnt)
       .map(([carName]) => carName);
 
