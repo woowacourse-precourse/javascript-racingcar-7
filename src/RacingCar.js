@@ -96,14 +96,22 @@ class RacingCar {
 			...dashCounts.map(({ dashCount }) => dashCount)
 		);
 
+		if (maxDashCount === 0) {
+			return [];
+		}
+
 		return dashCounts
 			.filter(({ dashCount }) => dashCount === maxDashCount)
 			.map(({ carName }) => carName);
 	}
 
 	printWinners(winners) {
-		const winnersString = winners.join(", ");
-		printOutput(`최종 우승자 : ${winnersString}`);
+		if (winners.length === 0) {
+			printOutput(`최종 우승자 : 우승자가 없습니다.`);
+		} else {
+			const winnersString = winners.join(", ");
+			printOutput(`최종 우승자 : ${winnersString}`);
+		}
 	}
 }
 
