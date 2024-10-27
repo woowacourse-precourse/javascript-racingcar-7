@@ -41,6 +41,7 @@ class RacingCar {
 
 			this.printRunResults();
 			const winners = await this.calculateWinners();
+			this.printWinners(winners);
 		} catch (error) {
 			throw new Error(`${error.message}`);
 		}
@@ -108,6 +109,11 @@ class RacingCar {
 		return dashCounts
 			.filter(({ dashCount }) => dashCount === maxDashCount)
 			.map(({ carName }) => carName);
+	}
+
+	printWinners(winners) {
+		const winnersString = winners.join(", ");
+		printOutput(`최종 우승자 : ${winnersString}`);
 	}
 }
 
