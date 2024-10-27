@@ -71,7 +71,7 @@ function playRounds(scoreBoard, moveCount) {
   }
 }
 
-function playGame(player) {
+export function playGame(player) {
   if (Random.pickNumberInRange(0, 9) >= GAME_SETTINGS.MIN_SUCCESS_SCORE) {
     player.score += 1;
   }
