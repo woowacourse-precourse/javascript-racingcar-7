@@ -12,8 +12,8 @@ describe('단위 테스트: RaceService 클래스', () => {
     test('한 번의 경주에 대하여 자동차 이름과 각 자동차 별 전진 횟수를 반환한다.', () => {
       // given
       const mockForwardCounts = [3, 4];
-      jest.spyOn(raceService.car, 'validateForward').mockImplementation((_, carIndex) => {
-        raceService.car.forwardCounts[carIndex] = mockForwardCounts[carIndex];
+      jest.spyOn(raceService.cars, 'validateForward').mockImplementation((_, carIndex) => {
+        raceService.cars.forwardCounts[carIndex] = mockForwardCounts[carIndex];
       });
 
       // when
@@ -30,7 +30,7 @@ describe('단위 테스트: RaceService 클래스', () => {
   describe('getRaceWinner', () => {
     test('경주의 최종 우승자 리스트를 반환한다.', () => {
       // given
-      jest.spyOn(raceService.car, 'getWinnerList').mockReturnValue(['car1']);
+      jest.spyOn(raceService.cars, 'getWinnerList').mockReturnValue(['car1']);
 
       // when
       const winner = raceService.getRaceWinner();

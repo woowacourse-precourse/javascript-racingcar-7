@@ -3,7 +3,7 @@ import getElementsWithMatchingValue from '../utils/getElementsWithMatchingValue.
 import getMaxValue from '../utils/getMaxValue.js';
 import initializeArray from '../utils/initializeArray.js';
 
-class Car {
+class Cars {
   carNames;
   forwardCounts;
 
@@ -25,4 +25,4 @@ class Car {
   }
 }
 
-export default Car;
+export default Cars;

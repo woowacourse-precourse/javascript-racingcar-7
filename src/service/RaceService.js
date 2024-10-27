@@ -1,18 +1,18 @@
-import Car from '../domain/Car.js';
+import Cars from '../domain/Cars.js';
 import parseArrayToString from '../utils/parseArrayToString.js';
 import getRandomNumber from '../utils/getRandomNumber.js';
 
 class RaceService {
   constructor(carNames) {
-    this.car = new Car(carNames);
+    this.cars = new Cars(carNames);
   }
 
   performRaceRound() {
-    const raceRoundResult = this.car.carNames.map((carName, carIndex) => {
+    const raceRoundResult = this.cars.carNames.map((carName, carIndex) => {
       const randomNumber = getRandomNumber();
-      this.car.validateForward(randomNumber, carIndex);
+      this.cars.validateForward(randomNumber, carIndex);
 
-      const forwardCount = this.car.forwardCounts[carIndex];
+      const forwardCount = this.cars.forwardCounts[carIndex];
       return { carName, forwardCount };
     });
 
@@ -20,7 +20,7 @@ class RaceService {
   }
 
   getRaceWinner() {
-    const winnerList = parseArrayToString(this.car.getWinnerList());
+    const winnerList = parseArrayToString(this.cars.getWinnerList());
     return winnerList;
   }
 }
