@@ -11,4 +11,9 @@ describe('자동차 이름 입력 받기', () => {
     const inputs = '';
     expect(() => validateNotEmpty(inputs)).toThrow('[ERROR]');
   });
+
+  test('쉼표(,) 뒤 띄어쓰기는 이름에 포함되지 않는다.', async () => {
+    const inputs = 'pobi , jinny';
+    expect(splitAndTrimCarName(inputs)).toEqual(['pobi', 'jinny']);
+  });
 });
