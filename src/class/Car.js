@@ -1,5 +1,7 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 
+const FORWARD_CRITERION = 4;
+
 class Car {
   constructor(name) {
     this.name = name;
@@ -11,7 +13,7 @@ class Car {
   }
 
   forward() {
-    if (this.generateRandom() >= 4) {
+    if (this.generateRandom() >= FORWARD_CRITERION) {
       this.position++;
     }
   }
