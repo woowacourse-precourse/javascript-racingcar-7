@@ -101,8 +101,9 @@ class App {
       (car) => car.race.length === maxRaceLength
     );
 
-    // 결과 출력
-    longestRaceCars.forEach((car) => Console.print(car.name));
+    // RESULT
+    const winners = longestRaceCars.map((car) => car.name).join(", ");
+    Console.print("최종 우승자 : " + winners);
   }
 }
 
