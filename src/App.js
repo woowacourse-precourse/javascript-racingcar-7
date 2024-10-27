@@ -5,10 +5,8 @@ import validateNames from './utils/validation/validateNames.js';
 import validateRepetitionString from './utils/validation/validateRepetitionString.js';
 
 class App {
-  inputHandler = new Input();
-
   async run() {
-    const { names, repetitionString } = await this.inputHandler.get();
+    const { names, repetitionString } = await Input.get();
     validateNames(names);
     validateRepetitionString(repetitionString);
 

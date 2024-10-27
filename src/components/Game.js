@@ -5,17 +5,17 @@ class Game {
   #CARS_LIST = [];
 
   constructor(names, repetitionNumber) {
-    this.nameList = this.parseNames(names);
-    this.#CARS_LIST = this.allocateCars(this.nameList);
+    this.nameList = Game.parseNames(names);
+    this.#CARS_LIST = Game.allocateCars(this.nameList);
     this.repetitionNumber = repetitionNumber;
     this.currentRepeat = 0;
   }
 
-  parseNames(names) {
+  static parseNames(names) {
     return names.split(',');
   }
 
-  allocateCars(nameList) {
+  static allocateCars(nameList) {
     return nameList.map((name) => new Car(name));
   }
 
@@ -33,7 +33,7 @@ class Game {
 
   startRound() {
     this.#CARS_LIST.forEach((car) => {
-      if (!this.canMoveForward()) return;
+      if (!Game.canMoveForward()) return;
       car.moveForward();
     });
   }
@@ -47,7 +47,7 @@ class Game {
     Console.print(''); // Round 별 구분을 위한 공백
   }
 
-  canMoveForward() {
+  static canMoveForward() {
     if (Random.pickNumberInRange(0, 9) >= 4) return true;
     return false;
   }
