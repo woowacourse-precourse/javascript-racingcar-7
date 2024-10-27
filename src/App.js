@@ -10,6 +10,7 @@ const WINNER_MESSAGE = '최종 우승자 : ';
 const ERROR_MESSAGE = '[ERROR]';
 
 // 게임 기능사항 상수
+const DELIMITER = ',';
 const MIN_PLAYER_NAME_LENGTH = 1;
 const MAX_PLAYER_NAME_LENGTH = 5;
 const PLAYER_NAME_REGEX = new RegExp(
@@ -20,32 +21,34 @@ const SCORE_SYMBOL = '-';
 
 class App {
   async run() {
-    await main();
+    const { playerScores, moveCount } = await initializeGame();
+    runGame(playerScores, moveCount);
   }
 }
 
 export default App;
 
-async function main() {
+async function initializeGame() {
   try {
-    const userInput = await Console.readLineAsync(INPUT_PLAYER_NAMES);
-
-    const playerNames = parsePlayerNames(userInput);
-    validatePlayerNames(playerNames);
-
+    const playerNames = await getVaildatedPlayerNames();
     const playerScores = createScoreBoard(playerNames);
     const moveCount = await Console.readLineAsync(INPUT_MOVE_COUNT);
-    playRounds(playerScores, moveCount);
-
-    Console.print(`${WINNER_MESSAGE}${findWinners(playerScores)}`);
+    return { playerScores, moveCount };
   } catch (error) {
     Console.print(error.message);
     throw error;
   }
 }
 
+async function getVaildatedPlayerNames() {
+  const userInput = await Console.readLineAsync(INPUT_PLAYER_NAMES);
+  const playerNames = parsePlayerNames(userInput);
+  validatePlayerNames(playerNames);
+  return playerNames;
+}
+
 function parsePlayerNames(userInput) {
-  return userInput.split(',').map((e) => e.trim());
+  return userInput.split(DELIMITER).map((e) => e.trim());
 }
 
 function validatePlayerNames(playerNames) {
@@ -55,6 +58,11 @@ function validatePlayerNames(playerNames) {
 
 function createScoreBoard(playerNames) {
   return playerNames.map((name) => ({ name, score: 0 }));
+}
+
+function runGame(playerScores, moveCount) {
+  playRounds(playerScores, moveCount);
+  Console.print(`${WINNER_MESSAGE}${findWinners(playerScores)}`);
 }
 
 function playRounds(scoreBoard, moveCount) {
