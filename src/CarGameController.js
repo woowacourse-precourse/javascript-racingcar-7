@@ -1,12 +1,16 @@
 import { Console, Random } from "@woowacourse/mission-utils";
+import InputHandler from "./InputHandler.js";
 
 // 자동차 경주 게임 진행 클래스
 class CarGameController {
-    async play() {
-        const inputCarNames = await Console.readLineAsync(
-            "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)"
-        );
+    inputHandler; // 입력 처리 객체
 
+    constructor() {
+        this.inputHandler = new InputHandler();
+    }
+
+    async play() {
+        const inputCarNames = await this.inputHandler.enterCarNames();
         const splittedCarNames = inputCarNames.split(",");
         const carCnt = splittedCarNames.length;
 
@@ -16,8 +20,7 @@ class CarGameController {
             }
         }
 
-        const inputTryCnt = await Console.readLineAsync("시도할 횟수는 몇 회인가요?");
-
+        const inputTryCnt = await this.inputHandler.enterTryCount();
         if (isNaN(inputTryCnt) || Number(inputTryCnt) <= 0) {
             throw new Error("[ERROR] 시도할 횟수는 숫자로 입력해야합니다.");
         }
