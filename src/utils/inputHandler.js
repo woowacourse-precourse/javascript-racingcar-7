@@ -2,14 +2,13 @@ import { Console } from "@woowacourse/mission-utils";
 import { MESSAGES } from "../constants.js";
 import { validateCarNames, parseMoveAttempts } from "./validator.js";
 
-export async function getCarNames() {
+async function getInput(promptMessage, validationFn) {
   return new Promise((resolve, reject) => {
-    Console.readLineAsync(MESSAGES.CAR_NAME_INPUT)
+    Console.readLineAsync(promptMessage)
       .then((input) => {
         try {
-          const names = input.split(",").map((name) => name.trim());
-          validateCarNames(names);
-          resolve(names);
+          const validatedInput = validationFn(input);
+          resolve(validatedInput);
         } catch (error) {
           reject(error);
         }
@@ -18,17 +17,14 @@ export async function getCarNames() {
   });
 }
 
-export async function getMoveAttempts() {
-  return new Promise((resolve, reject) => {
-    Console.readLineAsync(MESSAGES.ATTEMPTS_INPUT)
-      .then((input) => {
-        try {
-          const attempts = parseMoveAttempts(input);
-          resolve(attempts);
-        } catch (error) {
-          reject(error);
-        }
-      })
-      .catch((error) => reject(error));
+export async function getCarNames() {
+  return getInput(MESSAGES.CAR_NAME_INPUT, (input) => {
+    const names = input.split(",").map((name) => name.trim());
+    validateCarNames(names);
+    return names;
   });
+}
+
+export async function getMoveAttempts() {
+  return getInput(MESSAGES.ATTEMPTS_INPUT, parseMoveAttempts);
 }
