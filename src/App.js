@@ -35,7 +35,7 @@ class App {
     for(let i=0; i< games; i++){
       for(let car of cars){
         const randomNum = Random.pickNumberInRange(0, 9);
-        if (randomNum > 4) {
+        if (randomNum >= 4) {
           car.moving += 1;
         }
         Console.print(`${car.name} : `+'-'.repeat(car.moving));
@@ -56,7 +56,7 @@ class App {
         winner.push(car.name);
       }
     }
-    Console.print("최종 우승자 : "+[...winner]);
+    Console.print("최종 우승자 : "+winner.join(', '));
 
   }
 }
