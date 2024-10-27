@@ -1,6 +1,7 @@
 class RacingGame {
   constructor() {
     this.carList = [];
+    this.count = 0;
   }
 
   setRacingCars(carNames) {
@@ -10,6 +11,10 @@ class RacingGame {
       }
       return carName;
     });
+  }
+
+  setCount(count) {
+    this.count = count;
   }
 }
 
