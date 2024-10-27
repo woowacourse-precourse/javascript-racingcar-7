@@ -1,3 +1,5 @@
+import { Random } from '@woowacourse/mission-utils';
+
 import {
   isIntegerNumericString,
   isLengthLessThan,
@@ -16,6 +18,14 @@ export class RuleModel {
     INPUT_CAN_NOT_BE_EMPTY: '[ERROR] 빈 값은 입력할 수 없어요',
     CAR_NAME_LENGTH_IS_LESS_THAN_FIVE: '[ERROR] 자동차 이름은 5자 이하만 가능해요',
     TRIAL_NUMBER_IS_POSITIVE_INTEGER: '[ERROR] 시도할 횟수는 양의 정수만 입력할 수 있어요',
+  });
+
+  static GAME_RULE = Object.freeze({
+    MOVE_FORWARD_CONDITION: {
+      RANGE_START: 0,
+      RANGE_END: 9,
+      CAN_MOVE_FORWARD: 4,
+    },
   });
 
   /**
@@ -105,5 +115,18 @@ export class RuleModel {
       .with(this.#isPositiveInteger, {
         message: RuleModel.ERROR_MESSAGE.TRIAL_NUMBER_IS_POSITIVE_INTEGER,
       });
+  }
+
+  #generateRandomNumber() {
+    return Random.pickNumberInRange(
+      RuleModel.GAME_RULE.MOVE_FORWARD_CONDITION.RANGE_START,
+      RuleModel.GAME_RULE.MOVE_FORWARD_CONDITION.RANGE_END,
+    );
+  }
+
+  canMoveForward() {
+    return (
+      this.#generateRandomNumber() >= RuleModel.GAME_RULE.MOVE_FORWARD_CONDITION.CAN_MOVE_FORWARD
+    );
   }
 }

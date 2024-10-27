@@ -47,4 +47,18 @@ export class RacingModel {
 
     this.#trialNumber = Number(trialNumber);
   }
+
+  /**
+   *
+   * @param {CarModel} car
+   */
+  #moveForward(car) {
+    if (this.#rule.canMoveForward()) {
+      car.moveForward();
+    }
+  }
+
+  race() {
+    this.#cars.forEach((car) => this.#moveForward(car));
+  }
 }
