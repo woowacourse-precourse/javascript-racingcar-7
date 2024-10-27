@@ -8,8 +8,9 @@ class App {
     Console.print("\n실행 결과");
     for (let i = 0; i < cnt; i++) {
       this.moveCars(cars);
-      this.PositionsPrint(cars);
+      this.printPositions(cars);
     }
+    this.printWinners(cars);
   }
 
   // 입력 받기
@@ -35,11 +36,27 @@ class App {
   }
 
   // 경주 결과 출력
-  PositionsPrint(cars) {
+  printPositions(cars) {
     cars.forEach((car) => {
       Console.print(`${car.name} : ${"-".repeat(car.position)}`);
     });
     Console.print("");
+  }
+
+  // 우승자 출력
+  printWinners(cars) {
+    let maxPosition = 0;
+    let winners = [];
+
+    for (const car of cars) {
+      if (car.position > maxPosition) {
+        maxPosition = car.position;
+        winners = [car.name];
+      } else if (car.position === maxPosition) {
+        winners.push(car.name); // 공동 우승자 추가
+      }
+    }
+    Console.print(`최종 우승자 : ${winners.join(", ")}`);
   }
 }
 
