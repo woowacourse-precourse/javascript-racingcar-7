@@ -58,6 +58,7 @@ class App {
       game.play();
     } catch (error) {
       Console.print(error.message);
+      throw error;
     }
   }
 
