@@ -1,24 +1,22 @@
-import { Console } from '@woowacourse/mission-utils';
 import Car from './Car.js';
 import Validator from './Validator.js';
 import RacingGame from './RacingGame.js';
-import { INPUT_PROMPT } from './Constants.js';
+import InputHandler from './InputHandler.js';
 
 class App {
   async run() {
     try {
       const validator = new Validator();
+      const inputHandler = new InputHandler();
 
-      const inputCarNames = await Console.readLineAsync(INPUT_PROMPT.CAR_NAMES);
+      const inputCarNames = await inputHandler.readCarNames();
       validator.validateName(inputCarNames);
 
       const cars = inputCarNames
         .split(',')
         .map(carName => new Car(carName.trim()));
 
-      const inputMoveAttempts = await Console.readLineAsync(
-        INPUT_PROMPT.MOVE_ATTEMPTS,
-      );
+      const inputMoveAttempts = await inputHandler.readMoveAttpes();
       validator.validateMoveAttempts(inputMoveAttempts);
 
       const moveAttempts = Number(inputMoveAttempts);
