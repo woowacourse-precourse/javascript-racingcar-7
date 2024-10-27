@@ -10,19 +10,19 @@ const lengthOver = input => {
 };
 
 const nullInput = input => {
-  // input은 객체이기 때문에 input.name으로 객체의 이름을 가져와야함
-  if (input.name === null || input.name === undefined) {
+  if (input.length < 2) {
     throw new Error(ERROR_MESSAGES.NULL_INPUT);
   }
 };
 
 const duplicate = input => {
-  console.log('duplicate 실행');
-  // input은 객체이기 때문에 input.name으로 객체의 이름을 가져와야함
-  const set = new Set(input.name);
-  if (input.length !== set.size) {
-    throw new Error(ERROR_MESSAGES.DUPLICATE_CAR);
-  }
+  const set = new Set();
+  input.forEach(car => {
+    if (set.has(car.name)) {
+      throw new Error(ERROR_MESSAGES.DUPLICATE_CAR);
+    }
+    set.add(car.name);
+  });
 };
 
 const carInputValidator = input => {
