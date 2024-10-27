@@ -11,45 +11,52 @@ import {
 
 class App {
   async run() {
-    await this.enterCarNames();
-    this.validateCarName(this.namesArray);
-    this.createMoveForwardObject();
+    const namesArray = await this.enterCarNames();
+    this.validateCarName(namesArray);
+    this.createMoveForwardObject(namesArray);
 
-    await this.enterCount();
-    this.validateCount(this.count);
+    const count = await this.enterCount();
+    this.validateCount(count);
 
     Console.print(SYSTEM_MESSAGE.RESULT);
-    this.carsMoveForward();
+    for (let i = 0; i < count; i++) {
+      this.carsMoveForward();
+      this.printCurrentStatus();
+    }
+
     this.calculateWinner();
     this.printWinner();
   }
 
   async enterCarNames() {
     const namesString = await Console.readLineAsync(SYSTEM_MESSAGE.ENTER_NAME);
-    this.namesArray = namesString.split(',');
+    return namesString.split(',');
   }
 
-  createMoveForwardObject() {
-    this.carsForward = this.namesArray.reduce((acc, car) => {
+  createMoveForwardObject(namesArray) {
+    this.carsForward = namesArray.reduce((acc, car) => {
       acc[car] = 0;
       return acc;
     }, {});
   }
 
   async enterCount() {
-    this.count = await Console.readLineAsync(SYSTEM_MESSAGE.ENTER_COUNT);
+    const count = await Console.readLineAsync(SYSTEM_MESSAGE.ENTER_COUNT);
+    return count;
   }
 
   carsMoveForward() {
-    for (let i = 0; i < this.count; i++) {
-      Object.keys(this.carsForward).forEach(car => {
-        if (Random.pickNumberInRange(0, 9) >= 4) this.carsForward[car] += 1;
+    Object.keys(this.carsForward).forEach(car => {
+      if (Random.pickNumberInRange(0, 9) >= 4) this.carsForward[car] += 1;
+    });
+  }
 
-        Console.print(`${car} : ${FORWARD_DASH.repeat(this.carsForward[car])}`);
-      });
+  printCurrentStatus() {
+    Object.keys(this.carsForward).forEach(car => {
+      Console.print(`${car} : ${FORWARD_DASH.repeat(this.carsForward[car])}`);
+    });
 
-      Console.print(EMPTY_STRING);
-    }
+    Console.print(EMPTY_STRING);
   }
 
   calculateWinner() {
