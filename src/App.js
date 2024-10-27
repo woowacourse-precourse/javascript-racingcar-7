@@ -12,13 +12,13 @@ class App {
 
     const carsData = this.changeCarNamesInputToCarsData(carNamesInput);
 
-    this.printExecutionResultMessage();
+    this.printStartMessage();
 
     for (let i = 0; i < Number(moveAttemptCountInput); i++) {
       carsData.forEach((car) => {
-        const canMoveForward = this.canMoveForward();
+        const canMove = this.getMoveSignal();
 
-        this.moveOrStop(car, canMoveForward);
+        this.moveCar(car, canMove);
         this.printRoundResult(car);
       });
 
@@ -49,11 +49,11 @@ class App {
     return carNames.map((name) => ({ name, position: 0 }));
   }
 
-  canMoveForward() {
+  getMoveSignal() {
     return Random.pickNumberInRange(0, 9) >= 4;
   }
 
-  printExecutionResultMessage() {
+  printStartMessage() {
     Console.print(PRINT_MESSAGE.EXECUTION_RESULT);
   }
 
@@ -65,7 +65,7 @@ class App {
     Console.print(`${PRINT_MESSAGE.WINNERS}${winners.join(', ')}`);
   }
 
-  moveOrStop(car, canMoveForward) {
+  moveCar(car, canMoveForward) {
     if (canMoveForward) {
       car.position += 1;
     }

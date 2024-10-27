@@ -78,13 +78,13 @@ describe('App 메서드 테스트', () => {
     const MOVE = true;
     const STOP = false;
 
-    app.moveOrStop(car, STOP);
+    app.moveCar(car, STOP);
     expect(car.position).toBe(0);
 
-    app.moveOrStop(car, MOVE);
+    app.moveCar(car, MOVE);
     expect(car.position).toBe(1);
 
-    app.moveOrStop(car, MOVE);
+    app.moveCar(car, MOVE);
     expect(car.position).toBe(2);
   });
 
