@@ -53,10 +53,16 @@ class App {
   }
 
   validateRounds(input) {
+    // 입력이 비어있는 경우 처리
+    if (input.trim() === "") {
+      throw new Error("[ERROR] 시도 횟수를 입력해주세요.");
+    }
+
     const rounds = Number(input);
     if (isNaN(rounds) || rounds <= 0) {
-      throw new Error(`[ERROR] 유효한 시도 횟수를 입력하세요.`);
+      throw new Error("[ERROR] 유효한 시도 횟수를 입력하세요.");
     }
+
     return rounds; // 유효한 시도 횟수 반환
   }
 
