@@ -2,6 +2,7 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 import App from '../src/App.js';
 import { validateCars, validateCount } from '../src/validate.js';
 import { moveCars, parseStringToObject } from '../src/racing.js';
+import { getInputCars, getInputCount, input } from '../src/input.js';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -120,5 +121,34 @@ describe('자동차 이동 (racingCars.js)', () => {
     const result = moveCars(cars);
     expect(result[0].distance).toBe(0);
     expect(cars[0].distance).toBe(0);
+  });
+});
+
+describe('입력 처리 (input.js)', () => {
+  test('정상적인 입력 처리', async () => {
+    const inputs = ['pobi,woni', '3'];
+    mockQuestions(inputs);
+
+    const result = await input();
+    expect(result).toEqual({
+      cars: 'pobi,woni',
+      count: '3',
+    });
+  });
+
+  test('자동차 이름 입력 받기', async () => {
+    const inputs = ['pobi,woni'];
+    mockQuestions(inputs);
+
+    const cars = await getInputCars();
+    expect(cars).toBe('pobi,woni');
+  });
+
+  test('시도 횟수 입력 받기', async () => {
+    const inputs = ['3'];
+    mockQuestions(inputs);
+
+    const count = await getInputCount();
+    expect(count).toBe('3');
   });
 });
