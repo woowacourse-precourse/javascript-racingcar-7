@@ -12,4 +12,12 @@ export class Car {
       this.location++;
     }
   }
+
+  getLocation() {
+    return this.location;
+  }
+
+  getName() {
+    return this.name;
+  }
 }
