@@ -18,21 +18,21 @@ describe("InputValidator", () => {
     test("빈 문자열 또는 공백이 있는 자동차 이름이 포함된 경우 에러를 발생시킨다", () => {
       const carNames = ["pobi", " ", "jun"];
       expect(() => inputValidator.validateCarNames(carNames)).toThrow(
-        "[ERROR] 자동차 이름에 빈 값을 입력할 수 없습니다."
+        InputValidator.ERROR_EMPTY_NAME
       );
     });
 
     test("자동차 이름이 5자를 초과하는 경우 에러를 발생시킨다", () => {
       const carNames = ["pobi", "woniii", "jun"];
       expect(() => inputValidator.validateCarNames(carNames)).toThrow(
-        "[ERROR] 자동차 이름은 5자 이하만 가능합니다."
+        InputValidator.ERROR_LONG_NAME
       );
     });
 
     test("중복된 자동차 이름이 포함된 경우 에러를 발생시킨다", () => {
       const carNames = ["pobi", "pobi", "jun"];
       expect(() => inputValidator.validateCarNames(carNames)).toThrow(
-        "[ERROR] 자동차 이름에 중복된 값이 있습니다."
+        InputValidator.ERROR_DUPLICATE_NAME
       );
     });
   });
@@ -45,13 +45,13 @@ describe("InputValidator", () => {
 
     test("이동 횟수가 유효하지 않은 경우 에러를 발생시킨다", () => {
       expect(() => inputValidator.validateMoveCount("0")).toThrow(
-        "[ERROR] 이동 횟수는 1 이상의 숫자여야 합니다."
+        InputValidator.ERROR_INVALID_MOVE_COUNT
       );
       expect(() => inputValidator.validateMoveCount("-1")).toThrow(
-        "[ERROR] 이동 횟수는 1 이상의 숫자여야 합니다."
+        InputValidator.ERROR_INVALID_MOVE_COUNT
       );
       expect(() => inputValidator.validateMoveCount("a")).toThrow(
-        "[ERROR] 이동 횟수는 1 이상의 숫자여야 합니다."
+        InputValidator.ERROR_INVALID_MOVE_COUNT
       );
     });
   });
