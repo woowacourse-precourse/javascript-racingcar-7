@@ -12,7 +12,7 @@ class App {
     });
 
     const racingRecords = carArray.map((car) => {
-      return {name: car, record: []};
+      return {name: car, records: []};
     });
 
     const tryNumberString = await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
@@ -30,9 +30,9 @@ class App {
         rounds.forEach((round) => {
           const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
           if (randomNumber >= 4) {
-            round.record.push(true);
+            round.records.push(true);
           } else {
-            round.record.push(false);
+            round.records.push(false);
           }
         });
       });
@@ -41,6 +41,16 @@ class App {
 
     const racingRoundResult = getRacingRoundResult(racingRecords, tryNumber);
     console.log(racingRoundResult);
+
+    MissionUtils.Console.print(`실행 결과`);
+
+    range(tryNumber).forEach((_, index) => {
+      racingRoundResult.forEach((count) => {
+        const recordsRound = count.records.slice(0, index + 1).filter(Boolean).length;
+
+        const scoreChangeToDash = range(recordsRound).map(() => '-').join('');
+      });
+    });
   }
 }
 
