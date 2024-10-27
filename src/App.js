@@ -2,7 +2,7 @@ import { Console, MissionUtils } from "@woowacourse/mission-utils";
 
 class App {
   async run() {
-    this.getUserInput();
+    await this.getUserInput();
   }
 
   async getUserInput() {
@@ -10,20 +10,18 @@ class App {
       const inputName = await Console.readLineAsync(
         "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분) \n"
       );
-      const names = inputName.split(",").map((name)=>name.trim())
+      console.log("입력된 자동차 이름:", inputName);
+      const names = inputName.split(",").map((name) => name.trim());
       this.validateCarNames(names);
-      const inputCount = await Console.readLineAsync(
-        "시도할 횟수는 몇 회인가요? \n"
-      );
+
+      const inputCount = await Console.readLineAsync("시도할 횟수는 몇 회인가요? \n");
+      console.log("입력된 시도 횟수:", inputCount);
       this.validateMoveCount(inputCount);
 
       const cars = this.initializeCars(names);
-
       Console.print(`\n`);
       Console.print(`실행 결과`);
       this.startRace(cars, parseInt(inputCount));
-
-      // Console.print(`결과 : ${names}`);
     } catch (error) {
       Console.print(error.message);
       throw error;
@@ -32,13 +30,14 @@ class App {
 
   validateCarNames(names) {
     names.forEach((name) => {
-      if (name.length > 5) throw new Error("[ERROR]");
+      if (name.length > 5) throw new Error("[ERROR] 자동차 이름은 최대 5자 이하이어야 합니다.");
     });
   }
 
   validateMoveCount(count) {
-    if (!Number.isInteger(parseInt(count)) || parseInt(count) <= 0) {
-      throw new Error("[ERROR]");
+    const parsedCount = parseInt(count);
+    if (!Number.isInteger(parsedCount) || parsedCount <= 0) {
+      throw new Error("[ERROR] 시도 횟수는 1 이상의 정수여야 합니다.");
     }
   }
 
@@ -65,7 +64,7 @@ class App {
 
   printRoundResults(cars) {
     cars.forEach((car) => {
-      Console.print(`${car.name}: ${'-'.repeat(car.position)}`);
+      Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
     });
     Console.print(`\n`);
   }
