@@ -1,9 +1,7 @@
 import { Console, MissionUtils } from "@woowacourse/mission-utils";
-import { validateName } from "../validation.js";
 
 export class Car {
     constructor(name) {
-        validateName(name);
         this.name = name;
         this.moveScore = 0;
     }
