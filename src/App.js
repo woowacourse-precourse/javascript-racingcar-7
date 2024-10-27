@@ -11,9 +11,20 @@ class App {
         return carNameList;
     }
 
+    async getTryCount() {
+        const tryCount = await Console.readLineAsync("시도할 횟수를 입력해주세요 : ");
+
+        if (isNaN(+tryCount) || tryCount < 1) {
+            throw new Error("[ERROR] 시도 횟수는 1 이상의 숫자여야 합니다.");
+        }
+        return tryCount;
+    }
+
     async run() {
-        const result = await this.getCarNameList();
-        Console.print(result);
+        const cars = await this.getCarNameList();
+        const tryCount = await this.getTryCount();
+        Console.print(cars);
+        Console.print(tryCount);
     }
 }
 
