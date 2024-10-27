@@ -74,6 +74,14 @@ describe("자동차 경주", () => {
     );
   });
 
+  test("중복된 자동차 이름", async () => {
+    mockQuestions(["pobi, woni, woni"]);
+    const app = new App();
+    await expect(app.run()).rejects.toThrow(
+      "[ERROR] 서로 다른 이름으로 자동차의 이름들을 지정하세요."
+    );
+  });
+
   test("잘못된 구분자 입력 - 쉼표 외의 다른 구분자", async () => {
     const invalidSeparators = [
       ";",
