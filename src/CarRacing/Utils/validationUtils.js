@@ -1,14 +1,14 @@
 import { ERROR_MESSAGES } from '../constants/constants.js';
 
-function isInvalidNameLength(value) {
-  if (value.length > 5 || value.length < 1) {
-    return ERROR_MESSAGES['invalidLength'];
+function isAboveMaxLength(value) {
+  if (value.length > 5) {
+    return ERROR_MESSAGES['aboveMaxLength'];
   }
   return null;
 }
 
 function isNotString(value) {
-  if (/[^a-zA-Z]/.test(value)) {
+  if (/[^a-zA-Z가-힣]/.test(value)) {
     return ERROR_MESSAGES['notString'];
   }
   return null;
@@ -42,6 +42,13 @@ function hasMinimumValue(value) {
   return null;
 }
 
+function isEmptyValue(value) {
+  if (value === '') {
+    return ERROR_MESSAGES['emptyValue'];
+  }
+  return null;
+}
+
 export function throwError(validate) {
   if (validate) {
     throw new Error(`[ERROR] ${validate}`);
@@ -49,10 +56,11 @@ export function throwError(validate) {
 }
 
 export const ValidationUtils = {
-  isInvalidNameLength,
+  isAboveMaxLength,
   isNotString,
   hasDuplicateValues,
   hasMinimumLengthValues,
   isNotNumber,
   hasMinimumValue,
+  isEmptyValue,
 };

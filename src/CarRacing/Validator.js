@@ -3,7 +3,8 @@ import { ValidationUtils, throwError } from './Utils/validationUtils.js';
 
 class Validator {
   #validateCarName(carName) {
-    throwError(ValidationUtils.isInvalidNameLength(carName));
+    throwError(ValidationUtils.isEmptyValue(carName));
+    throwError(ValidationUtils.isAboveMaxLength(carName));
     throwError(ValidationUtils.isNotString(carName));
   }
 
@@ -12,13 +13,14 @@ class Validator {
     throwError(ValidationUtils.hasDuplicateValues(carNames));
   }
 
-  #validateCarNamesInput(cars) {
-    this.#validateCarNames(cars);
-    cars.forEach(carName => this.#validateCarName(carName));
+  #validateCarNamesInput(carNames) {
+    this.#validateCarNames(carNames);
+    carNames.forEach(carName => this.#validateCarName(carName));
   }
 
   #validateRaceCountInput(raceCountInput) {
     const raceCount = raceCountInput.trim();
+    throwError(ValidationUtils.isEmptyValue(raceCount));
     throwError(ValidationUtils.isNotNumber(raceCount));
     throwError(ValidationUtils.hasMinimumValue(raceCount));
   }
