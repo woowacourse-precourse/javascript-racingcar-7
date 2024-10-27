@@ -20,11 +20,6 @@ export default class CarRacingController {
     }
   }
 
-  setCars(cars) {
-    //테스트를 위한 메서드
-    this.#raceManager.setCars(cars);
-  }
-
   async #initializeGame() {
     await this.#initializeCars();
     await this.#initializeAttempts();
