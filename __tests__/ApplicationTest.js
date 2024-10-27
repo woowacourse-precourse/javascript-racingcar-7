@@ -25,7 +25,7 @@ const getLogSpy = () => {
 };
 
 describe('자동차 경주', () => {
-  test('기능 테스트', async () => {
+  test('기능 테스트: pobi 우승', async () => {
     // given
     const MOVING_FORWARD = 4;
     const STOP = 3;
@@ -42,7 +42,75 @@ describe('자동차 경주', () => {
 
     // then
     logs.forEach((log) => {
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+      expect(logSpy).toHaveBeenCalledWith(log);
+    });
+  });
+
+  test('기능 테스트: 동점 승', async () => {
+    // given
+    const MOVING_FORWARD = 4;
+    const inputs = ['pobi,woni', '2'];
+    const logs = ['pobi : --', 'woni : --', '최종 우승자 : pobi, woni'];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(log);
+    });
+  });
+
+  test('기능 테스트: woni 우승', async () => {
+    // given
+    const MOVING_FORWARD = 4;
+    const STOP = 3;
+    const inputs = ['pobi,woni', '2'];
+    const logs = ['pobi : -', 'woni : --', '최종 우승자 : woni'];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([MOVING_FORWARD, MOVING_FORWARD, STOP, MOVING_FORWARD]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(log);
+    });
+  });
+
+  test('기능 테스트: pobi, jun 우승 (과제 입출력 예제)', async () => {
+    // given
+    const MOVING_FORWARD = 4;
+    const STOP = 3;
+    const inputs = ['pobi,woni,jun', '5'];
+    const logs = ['pobi : -----', 'woni : ----', 'jun : -----', '최종 우승자 : pobi, jun'];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([
+      MOVING_FORWARD, STOP, MOVING_FORWARD,
+      MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD,
+      MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD,
+      MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD,
+      MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD
+    ]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(log);
     });
   });
 
