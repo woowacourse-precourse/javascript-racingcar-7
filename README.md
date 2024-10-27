@@ -114,6 +114,8 @@ members.map((member) => member).join(','); // pobi,jason
   - - 📜 AttemptCounter.js
   - - 📜 Cars.js
   - - 📜 RacingGame.js
+  - 📂 utils
+  - - 📜 generatorRandomPickNumber.js
   - 📂 views
   - - 📜 InputView.js
   - - 📜 OutputView.js
