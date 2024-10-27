@@ -27,6 +27,10 @@ class App {
     if (emptyName !== undefined) {
       throw new Error("자동차 이름 사이에 공백이 포함되어 있습니다.");
     }
+    const longName = nameList.find((name) => name.length > 5);
+    if (longName !== undefined) {
+      throw new error(`"${longName}"은(는) 5자를 초과합니다.`);
+    }
   }
 }
 
