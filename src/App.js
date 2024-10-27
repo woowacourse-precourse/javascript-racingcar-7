@@ -24,10 +24,12 @@ class App {
 
   isValidate(carArr) {
     carArr.forEach((car) => {
-      if (0 < car.length && car.length <= 5) {
-        return;
-      } else {
+      if (car.length < 1 || car.length > 5) {
         throw new Error('[ERROR] 이름은 1~5자이내로 입력해주세요');
+      } else if (carArr.filter((elem) => car == elem).length > 1) {
+        throw new Error('[ERROR] 중복된 이름을 제거해주세요');
+      } else {
+        return;
       }
     });
   }
