@@ -1,9 +1,11 @@
 import CarRacingController from "./controller/CarRacingController.js";
 
 class App {
+  #controller;
+
   async run() {
-    const controller = new CarRacingController();
-    await controller.play();
+    this.#controller = new CarRacingController();
+    await this.#controller.play();
   }
 }
 
