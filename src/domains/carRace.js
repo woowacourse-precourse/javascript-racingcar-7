@@ -1,3 +1,4 @@
+import { Random } from "@woowacourse/mission-utils";
 import CAR_RACE from "../constants/carRace";
 
 export default class CarRace {
@@ -26,5 +27,27 @@ export default class CarRace {
     if (randomNumber >= CAR_RACE.MOVE_THRESHOLD) {
       targetCar.move();
     }
+  }
+
+  totalUnitRound(tryCount) {
+    for (let i = 0; i < tryCount; i++) {
+      this.#gameRound();
+      this.#setCurrentRoundResult();
+    }
+  }
+
+  #gameRound() {
+    this.#cars.map((car) => {
+      const randomDigitFrom0to9 = Random.pickNumberInRange();
+      this.moveCar(car.name, randomDigitFrom0to9);
+    });
+  }
+
+  #setCurrentRoundResult() {
+    const currentRoundResult = this.#cars.map((car) => ({
+      name: car.name,
+      position: car.position,
+    }));
+    this.#result.push(currentRoundResult);
   }
 }

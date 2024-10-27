@@ -108,4 +108,12 @@ describe("자동차 경주 테스트", () => {
 
     expect(singleCar.position).toEqual(1);
   });
+
+  test("사용자가 입력한 시도 횟수만큼 라운드가 진행된다.", () => {
+    const inputTryCount = 8;
+
+    singleCarRace.totalUnitRound(8);
+
+    expect(singleCarRace.result.length).toEqual(inputTryCount);
+  });
 });
