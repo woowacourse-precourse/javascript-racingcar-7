@@ -1,5 +1,5 @@
 import { Random } from "@woowacourse/mission-utils";
-import OutputView from "./view/OutputView";
+import OutputView from "./view/OutputView.js";
 
 class RacingCalc {
   constructor(carName) {
