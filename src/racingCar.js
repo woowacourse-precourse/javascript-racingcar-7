@@ -10,6 +10,7 @@ class RacingCar {
     if (RacingCar.instance !== null) {
       return RacingCar.instance;
     }
+    RacingCar.instance = this;
     this.#turn = turn;
     this.#cars = [];
     this.board = {};
