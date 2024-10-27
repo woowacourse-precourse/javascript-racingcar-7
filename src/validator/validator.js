@@ -6,14 +6,17 @@ import {
   MAX_CAR_COUNT,
 } from '../constants/constants.js';
 import { ERROR_MESSAGE } from '../constants/messages.js';
-import { ALPHABET_AND_COMMA_REGEX, NUMBER_REGEX } from '../constants/regex.js';
+import {
+  ALPHABET_COMMA_AND_NUMBER_REGEX,
+  NUMBER_REGEX,
+} from '../constants/regex.js';
 
 const checkOnlyAlphabetAndComma = function checkOnlyAlphabetAndCommaFunc(
   inputForRacingCars,
 ) {
   if (
     ![...inputForRacingCars].every((char) =>
-      ALPHABET_AND_COMMA_REGEX.test(char),
+      ALPHABET_COMMA_AND_NUMBER_REGEX.test(char),
     )
   ) {
     throw new Error(ERROR_MESSAGE.INVALID_CAR_INPUT);

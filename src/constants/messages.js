@@ -19,7 +19,7 @@ const PRINT_MESSAGES = {
 
 const ERROR_MESSAGE = {
   INVALID_CAR_INPUT:
-    '[ERROR] 자동차 이름은 알파벳만 사용하고 이름들은 쉼표(,)로 구분되어야 합니다.',
+    '[ERROR] 자동차 이름은 알파벳과 숫자로만 구성되고 이름들은 쉼표(,)로 구분되어야 합니다.',
   INVALID_CAR_NAME_LENGTH: `[ERROR] 자동차의 이름은 ${MIN_CAR_NAME_LEN}자 이상 ${MAX_CAR_NAME_LEN}자 이하로 구성되어야 합니다.`,
   DUPLICATE_NAME: '[ERROR] 중복된 자동차 이름은 허용되지 않습니다.',
   INVALID_NUMBER_INPUT: '[ERROR] 시도 횟수는 숫자만 입력 가능합니다.',
