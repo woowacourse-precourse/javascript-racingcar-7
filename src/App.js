@@ -23,5 +23,38 @@ class App{
     function random_number(){
       return MissionUtils.Random.pickNumberInRange(0,9);
     }
+
+    // 4. 게임 함수 선언
+    function game(rounds){
+	    for (let i=0; i<rounds; i++){
+		    random_numbers=car_names.map(()=>random_number());
+		    update_round_result(random_numbers);
+		    print_round_result();
+		    Console.print("\n");
+	    }
+    }
+    
+    // 4. 각 라운드별 결과 업데이트 함수
+    function update_round_result(random_numbers){
+	    random_numbers.forEach((number,index)=>{
+		    if(game_results[index]===undefined){
+			    game_results[index]=0;
+		    }
+		    if(number>=4){
+			    game_result[index]+=1;
+		    }
+	    });
+    }
+    
+    // 4. 각 라운드 별 결과 프린트 함수
+    function print_round_result(){
+	    car_names.forEach((name,index)=>{
+		    let round_result=""
+		    if(game_results[index]!==undefined){
+			    round_result="-".repeat(game_results[index]);
+		    }
+		    Console.print(`${name} : ${round_result}`)
+	    })
+    }
   }
 }
