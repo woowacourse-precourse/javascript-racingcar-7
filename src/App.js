@@ -43,6 +43,20 @@ class App {
       Console.print(' ');
     }
 
+    //결과
+    //전진 횟수 최댓값
+    let movingResult = 0;
+    for(let car of cars){
+      movingResult = Math.max(car.moving, movingResult);
+    }
+    //우승자
+    let winner = [];
+    for(let car of cars){
+      if(car.moving === movingResult) {
+        winner.push(car.name);
+      }
+    }
+    Console.print("최종 우승자 : "+[...winner]);
 
   }
 }
