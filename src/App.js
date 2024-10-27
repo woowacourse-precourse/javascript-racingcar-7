@@ -12,7 +12,24 @@ class App {
     }
 
     let numberOfMatches = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+
+    Console.print('\n실행 결과')
+
+    let positions = cars.map(car => ({name: car, position: ''}));
+
+    for(let i = 0; i < numberOfMatches; i += 1){
+      positions.forEach(car => {
+        let randomNumber = MissionUtils.Random.pickNumberInRange(0,9);
+
+        if(randomNumber >= 4){
+          car.position += '-';
+        }
+        Console.print(car.name + ' : ' +car.position);
+      })
+     Console.print('');      
+    }
   }
 }
 
 export default App;
+
