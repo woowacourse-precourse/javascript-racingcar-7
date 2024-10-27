@@ -12,7 +12,7 @@ export const decisionFinalWinner=(raceCount,names)=>{
         winners = oneRace(names)
     }
     if(winners.length === 0){
-        throw new error("[ERROR] 우승자가 존재하지 않습니다.")
+        throw new Error("[ERROR] 우승자가 존재하지 않습니다.")
     }
     winners.forEach(name=>{
         totalWinner[name]+=1
