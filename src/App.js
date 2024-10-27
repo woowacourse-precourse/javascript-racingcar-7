@@ -15,6 +15,9 @@ const validateRaceNumber = (raceNum) => {
   if (Number.isNaN(numValue)) {
     throw new Error('[ERROR] 숫자를 입력해주세요.');
   }
+  if (numValue < 0) {
+    throw new Error('[ERROR] 시도할 횟수는 양수만 입력 가능해요.');
+  }
 };
 
 class App {
