@@ -49,14 +49,21 @@ class App {
 
       return carList
     }
- 
+
+    const printNowRacing = (carList) => {
+      for (let i = 0 ; i < carList.length; i++) {
+        Console.print(carList[i][0] + " : " + '-'.repeat(carList[i][1]));
+      }
+    }
+
 
     const racingGame = (carList, tryNumber) => {
-
       while (tryNumber > 0) {
         carList = advanceCheck(carList);
+        printNowRacing(carList);
         tryNumber--;
       }
+
 
     }
 
