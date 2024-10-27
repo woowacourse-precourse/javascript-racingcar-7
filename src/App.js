@@ -13,6 +13,7 @@ class App {
 
     const cars = carNames.map((name) => ({ name, position: 0 }));
     this.runRace(cars, attempts);
+    this.printWinners(cars);
   }
 
   splitCarNames(carNamesInput) {
@@ -40,6 +41,13 @@ class App {
       Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
     });
     Console.print('');
+  }
+
+  printWinners(cars) {
+    const maxPosition = Math.max(...cars.map((car) => car.position));
+    const winners = cars.filter((car) => car.position === maxPosition);
+    const winnerNames = winners.map((car) => car.name).join(', ');
+    Console.print(`최종 우승자 : ${winnerNames}`);
   }
 }
 
