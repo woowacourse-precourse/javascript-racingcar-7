@@ -3,6 +3,9 @@ import { Console, Random } from "@woowacourse/mission-utils";
 class App {
   carObject = {};
 
+  // 전진 or 멈춤 기준
+  static MOVE_OR_STOP_FLAG = 4;
+
   static ERROR_MESSAGES = {
     EMPTY_STRING: "빈 문자열은 입력할 수 없습니다.",
     DUPLICATE_STRING: "중복된 자동차 이름은 입력할 수 없습니다.",
@@ -52,7 +55,7 @@ class App {
   }
   //전진 or 멈춤 판단 함수
   moveOrStop() {
-    return Random.pickNumberInRange(0, 9) >= 4;
+    return Random.pickNumberInRange(0, 9) >= App.MOVE_OR_STOP_FLAG;
   }
 
   // 라운드별 진행상황 출력 함수
