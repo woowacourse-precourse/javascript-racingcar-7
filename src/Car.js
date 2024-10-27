@@ -1,5 +1,6 @@
 // Car.js
 import { Console } from "@woowacourse/mission-utils";
+import { shouldMoveForward } from "./Random";
 
 export class Car {
   constructor(name) {

@@ -1,12 +1,12 @@
 // App.js
 import { Console } from "@woowacourse/mission-utils";
-import { GameManager } from "./GameManager.js";
+import { GameManage } from "./GameManage.js";
 
 class App {
   async run() {
     try {
       const { carNames, attempts } = await this.getUserInput();
-      const game = new GameManager(carNames);
+      const game = new GameManage(carNames);
 
       Console.print("\n실행 결과");
       await this.playGame(game, attempts);
@@ -15,6 +15,7 @@ class App {
       Console.print(`\n최종 우승자 : ${winners}`);
     } catch (error) {
       Console.print(error.message);
+      throw error;
     }
   }
 
@@ -26,6 +27,8 @@ class App {
       await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
 
     this.validateAttempts(attempts);
+    this.validateCarNames(carNames);
+
     return { carNames, attempts: Number(attempts) };
   }
 
@@ -36,6 +39,16 @@ class App {
     }
   }
 
+  validateCarNames(carNames) {
+    if (!carNames || carNames.trim() === "") {
+      throw new Error("[ERROR] 자동차 이름은 필수 입력값입니다.");
+    }
+
+    const names = carNames.split(",").map((name) => name.trim());
+    if (names.some((name) => name === "")) {
+      throw new Error("[ERROR] 빈 이름이 포함될 수 없습니다.");
+    }
+  }
   async playGame(game, attempts) {
     for (let i = 0; i < attempts; i++) {
       game.race();
