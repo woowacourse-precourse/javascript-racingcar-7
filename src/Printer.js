@@ -1,5 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
-import { PRINT_MESSAGE } from "./constants/Message";
+import { PRINT_MESSAGE } from "./constants/Message.js";
 
 class Printer {
     printResultText() {

@@ -1,4 +1,4 @@
-import { CAR_NAME_DELEMETER } from "./constants/Setting";
+import { CAR_NAME_DELEMETER } from "./constants/Setting.js";
 
 const Utils = {
     transformCarNamesStringToArray(stringCarNames) {

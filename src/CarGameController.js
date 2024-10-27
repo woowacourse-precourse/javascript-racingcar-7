@@ -20,8 +20,8 @@ class CarGameController {
     }
 
     async play() {
-        const carNames = this.#inputCarNames();
-        const tryCount = this.#inputTryCount();
+        const carNames = await this.#inputCarNames();
+        const tryCount = await this.#inputTryCount();
 
         const carGame = new CarGame(carNames, tryCount);
 

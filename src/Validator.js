@@ -1,4 +1,4 @@
-import { CAR_NAME_ERROR, TRY_COUNT_ERROR } from "./constants/Message";
+import { CAR_NAME_ERROR, TRY_COUNT_ERROR } from "./constants/Message.js";
 
 class Validator {
     checkCarName(carNames) {

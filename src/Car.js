@@ -1,5 +1,5 @@
 import { Random } from "@woowacourse/mission-utils";
-import { MOVE_SETTING, POSITION_MARKER, RANDOM_SETTING } from "./constants/Setting";
+import { MOVE_SETTING, POSITION_MARKER, RANDOM_SETTING } from "./constants/Setting.js";
 
 class Car {
     #name;

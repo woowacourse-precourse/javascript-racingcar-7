@@ -1,4 +1,4 @@
-import { PRINT_SETTING } from "./Setting";
+import { PRINT_SETTING } from "./Setting.js";
 
 const ERROR_PREFIX = Object.freeze("[ERROR]");
 
