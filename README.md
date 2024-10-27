@@ -14,8 +14,8 @@
 ### 조건
 
 - [x] 자동차 이름은 쉼표(,)를 기준으로 구분한다.
-- [ ] 자동차는 0에서 9 사이에서 무작위 값을 구한다.
-- [ ] 무작위 값이 4 이상일 경우 전진할 수 있다.
+- [x] 자동차는 0에서 9 사이에서 무작위 값을 구한다.
+- [x] 무작위 값이 4 이상일 경우 전진할 수 있다.
 
 ### 출력
 
@@ -25,7 +25,7 @@
 
 ### 예외사항
 
-- [ ] inputNames의 이름 사이에 공백이 존재할 때 => 이름값에서 공백 제거
+- [x] inputNames의 이름 사이에 공백이 존재할 때 => 이름값에서 공백 제거
 - [ ] inputNames의 이름이 5자 초과일 때 => ('[ERROR] 이름은 5자 이하만 가능합니다.')
 - [ ] inputAttemps에 숫자가 아닌 값이 들어갔을 때 => ('[ERROR] 숫자만 입력할 수 있습니다.')
 - [ ] inputAttemps에 음수나 0이 들어갔을 때 => ('[ERROR] 양수만 입력할 수 있습니다.')
@@ -44,5 +44,5 @@
 ## 라이브러리 사용
 
 - @woowacourse/mission-utils에서 제공하는 Random 및 Console API를 사용하여 구현한다.
-  - [ ] Random값 추출은 Random.pickNumberInRange()를 활용한다.
+  - [x] Random값 추출은 Random.pickNumberInRange()를 활용한다.
   - [ ] 사용자 값 입력 및 출력은 Console.readLineAsync()와 Console.print()를 활용한다.
