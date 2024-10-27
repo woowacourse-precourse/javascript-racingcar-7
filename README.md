@@ -82,4 +82,12 @@ const findMaxMoveCars = (cars) => {
 export default findMaxMoveCars;
 ```
 
+## 느낀 점
+
+- 기능 요구사항과 흐름도를 꼼꼼히 작성하니 중간에 수정이 불필요해서 코드 작성이 수월했다.
+- 클래스를 사용해보니 구조화하기 더 편리했다.
+- 지난 번 코드 리뷰를 통해서, 함수에 default 키워드를 빠트리지 않고 적용했다.
+
 ## 📖 참고 사항
+
+- [reduce](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce)
