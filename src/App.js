@@ -1,10 +1,12 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 
 class App {
   async run() {
     try {
       const carNames = await this.getCarNames();
       const trialCount = await this.getTrialCount();
+      const raceResults = this.runRace(carNames, trialCount);
+      this.printWinnners(raceResults);
     } catch (error) {
       Console.print(`[ERROR] ${error.message}`);
     }
@@ -47,6 +49,30 @@ class App {
     if (trialCount <= 0) {
       throw new Error('시도할 횟수는 1이상의 숫자여야 합니다.');
     }
+  }
+
+  runRace(carNames, trialCount) {
+    const raceResults = carNames.map(name => ({ name, position: 0}));
+    for (let i = 0; i < trialCount; i++) {
+      Console.print(`\n[${i + 1}차 시도 결과]`);
+      raceResults.forEach(car => {
+        const move = this.isCarMoving();
+        if (move) car.position++;
+        Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
+      });
+    }
+    return raceResults;
+  }
+
+  isCarMoving() {
+    const randomValue = Random.pickNumberInRange(0, 9);
+    return randomValue >= 4;
+  }
+
+  printWinnners(raceResults) {
+    const maxPosition = Math.max(...raceResults.map(car => car.position));
+    const winners = raceResults.filter(car => car.position === maxPosition).map(car => car.name);
+    Console.print(`\n최종 우승자 : ${winners.join(', ')}`);
   }
 }
 
