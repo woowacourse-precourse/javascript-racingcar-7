@@ -48,4 +48,15 @@ describe('자동차 경주', () => {
       });
     });
   });
+
+  describe('예외 테스트', () => {
+    test('자동차의 이름은 5자를 초가하면 에러가 발생한다', async () => {
+      const inputs = ['pobi,javaji'];
+      mockQuestions(inputs);
+
+      const app = new App();
+
+      await expect(app.run()).rejects.toThrow('[ERROR]');
+    });
+  });
 });
