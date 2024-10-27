@@ -8,6 +8,7 @@ class CarRace {
   async init() {
     const racingCars = new RacingCars();
     await this.registerRacingCars(racingCars);
+    const moveAttempts = await this.setMoveAttempts();
   }
 
   async getCarNamesFromUserInput() {
@@ -32,6 +33,10 @@ class CarRace {
       Validator.checkName(carName);
       racingCars.registerCar(carName);
     });
+  }
+
+  async setMoveAttempts() {
+    return await this.getMoveAttemptsFromUserInput();
   }
 }
 
