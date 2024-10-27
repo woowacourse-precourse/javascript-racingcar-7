@@ -43,34 +43,26 @@ export class RacingModel {
 
   /**
    *
-   * @param {string} input
-   * @throws {Error}
-    }
-   */
-  #validateInput(input) {
-    new Validator()
-      .validate(input)
-      .with(this.#isNotEmpty, { message: RacingModel.ERROR_MESSAGE.INPUT_CAN_NOT_BE_EMPTY });
-  }
-
-  /**
-   *
-   * @param {string} carName
-   * @throws {Error}
-   */
-  #validateCarName(carName) {
-    new Validator().validate(carName).with(this.#isCarNameLengthLessThanFive, {
-      message: RacingModel.ERROR_MESSAGE.CAR_NAME_LENGTH_IS_LESS_THAN_FIVE,
-    });
-  }
-
-  /**
-   *
    * @param {Array<string>} carNames
+   * @returns {boolean}
+   */
+  #isCarNamesLengthLessThanFive(carNames) {
+    return carNames.every((carName) => this.#isCarNameLengthLessThanFive(carName));
+  }
+
+  /**
+   *
+   * @param {string} carNames
    * @throws {Error}
    */
   #validateCarNames(carNames) {
-    carNames.forEach((carName) => this.#validateCarName(carName));
+    new Validator()
+      .validate(carNames)
+      .with(this.#isNotEmpty, { message: RacingModel.ERROR_MESSAGE.INPUT_CAN_NOT_BE_EMPTY })
+      .validate(this.#parseCarNames(carNames))
+      .with(this.#isCarNamesLengthLessThanFive.bind(this), {
+        message: RacingModel.ERROR_MESSAGE.CAR_NAME_LENGTH_IS_LESS_THAN_FIVE,
+      });
   }
 
   /**
@@ -87,16 +79,6 @@ export class RacingModel {
 
   /**
    *
-   * @param {string} carNames
-   * @throws {Error}
-   */
-  #validateCars(carNames) {
-    this.#validateInput(carNames);
-    this.#validateCarNames(this.#parseCarNames(carNames));
-  }
-
-  /**
-   *
    * @param {Array<string>} cars
    * @returns {Array<CarModel>}
    */
@@ -109,7 +91,7 @@ export class RacingModel {
    * @param {string} carNames
    */
   setCars(carNames) {
-    this.#validateCars(carNames);
+    this.#validateCarNames(carNames);
 
     this.#cars = this.#createCars(this.#parseCarNames(carNames));
   }
