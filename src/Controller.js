@@ -20,4 +20,8 @@ export class raceController {
       this.raceResult();
     }
   }
+
+  raceWinner() {
+    const maxLocation = Math.max(...this.cars.map((car) => car.getLocation()));
+  }
 }
