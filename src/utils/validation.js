@@ -1,5 +1,3 @@
-import { MAGICNUMBER } from '../constants/index.js';
-
 const validation = {
   /**
    *
