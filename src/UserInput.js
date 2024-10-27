@@ -1,6 +1,7 @@
 import { Console } from "@woowacourse/mission-utils";
 import { INPUT_MESSAGES } from "./constants/gameMessage.js";
 import { carValidation } from "./validations/carValidation.js";
+import { roundCountValidation } from "./validations/roundCountValidation.js";
 
 export const enterCarNames = async () => {
   const carNames = (
@@ -17,5 +18,6 @@ export const enterRoundCount = async () => {
   const roundCount = await Console.readLineAsync(
     INPUT_MESSAGES.PROMPT_ROUND_COUNT
   );
+  roundCountValidation(roundCount);
   return roundCount;
 };
