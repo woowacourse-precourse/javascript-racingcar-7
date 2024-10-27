@@ -1,5 +1,5 @@
-import { mockQuestions } from "../src/utils/mock.js";
-import { userInput } from "../src/utils/MissionUtils.js";
+import { mockQuestions } from "../src/mock.js";
+import { userInput } from "../src/MissionUtils.js";
 
 describe("사용자 입력", () => {
 	test("자동차 이름 입력", async () => {

@@ -3,7 +3,7 @@ import {
 	validateMaxCar,
 	validateMinCar,
 	validateNameLength,
-} from "../src/utils/validate";
+} from "../src/validate.js";
 
 describe("자동차 이름", () => {
 	test("자동차 이름 5자 초과 입력", async () => {

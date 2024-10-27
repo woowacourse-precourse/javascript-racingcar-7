@@ -1,5 +1,5 @@
 import RacingCar from "../src/RacingCar";
-import { getLogSpy, mockQuestions, mockRandoms } from "../src/utils/mock.js";
+import { getLogSpy, mockQuestions, mockRandoms } from "../src/mock.js";
 
 describe("결과 출력", () => {
 	test("단일 게임 결과 출력", async () => {

@@ -1,9 +1,8 @@
-import RacingCar from "../src/RacingCar.js";
 import {
 	validateMaxCount,
 	validateMinCount,
 	validateString,
-} from "../src/utils/validate.js";
+} from "../src/validate.js";
 
 describe("시도 횟수 입력", () => {
 	test("시도 횟수 최소 입력", async () => {

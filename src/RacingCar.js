@@ -2,7 +2,7 @@ import {
 	getRandomInRangeNumber,
 	printOutput,
 	userInput,
-} from "./utils/MissionUtils.js";
+} from "./MissionUtils.js";
 import {
 	validateDuplicateName,
 	validateMinCar,
@@ -11,7 +11,7 @@ import {
 	validateMinCount,
 	validateMaxCount,
 	validateString,
-} from "./utils/validate.js";
+} from "./validate.js";
 
 class RacingCar {
 	constructor() {
