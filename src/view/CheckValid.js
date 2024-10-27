@@ -8,6 +8,12 @@ class CheckValid {
       }
     });
   }
+
+  moveCntCheckValid(moveCnt) {
+    if (isNaN(moveCnt)) {
+      throw new Error("[ERROR] 시도 횟수를 숫자로 입력해주세요.");
+    }
+  }
 }
 
 export default CheckValid;
