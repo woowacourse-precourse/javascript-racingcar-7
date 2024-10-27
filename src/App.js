@@ -1,11 +1,11 @@
-import { Console } from '@woowacourse/mission-utils'
+import { Console } from "@woowacourse/mission-utils";
 
-import Input from './Input.js'
-import Game from './Game.js'
-import Winner from './Winner.js'
+import Input from "./Input.js";
+import Game from "./Game.js";
+import Winner from "./Winner.js";
 
 class App {
-  constructor () {
+  constructor() {
     this.input = new Input();
     this.winner = new Winner();
   }
@@ -19,7 +19,7 @@ class App {
       const gameResult = game.start();
 
       this.winner.announce(gameResult);
-    } catch(e) {
+    } catch (e) {
       Console.print(e.message);
       throw e;
     }

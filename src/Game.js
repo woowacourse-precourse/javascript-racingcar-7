@@ -1,4 +1,4 @@
-import { Console, Random } from '@woowacourse/mission-utils'
+import { Console, Random } from "@woowacourse/mission-utils";
 
 class Game {
   constructor(cars, rounds) {
@@ -7,17 +7,17 @@ class Game {
   }
 
   start() {
-    Console.print('\n실행 결과');
+    Console.print("\n실행 결과");
 
     for (let i = 0; i < this.rounds; i++) {
-      this.moveCars();
-      Console.print('\n');
+      this.startRound();
+      Console.print("\n");
     }
 
     return this.cars;
   }
 
-  moveCars() {
+  startRound() {
     this.cars.forEach((move, name) => {
       const randomNumber = Random.pickNumberInRange(0, 9);
 
@@ -25,8 +25,8 @@ class Game {
         this.cars.set(name, move + 1);
       }
 
-      Console.print(`${name} : ${'-'.repeat(this.cars.get(name))}`);
-    })
+      Console.print(`${name} : ${"-".repeat(this.cars.get(name))}`);
+    });
   }
 }
 
