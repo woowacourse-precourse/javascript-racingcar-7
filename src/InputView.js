@@ -17,6 +17,7 @@ const InputView = {
       const input = await Console.readLineAsync('시도할 회수는 몇 회인가요?: ');
       const rounds = parseInt(input, 10); // 입력된 문자열을 정수로 변환
       this.validateRounds(rounds); // 유효한 회수인지 검증
+
       return rounds;
     } catch (error) {
       throw error;
