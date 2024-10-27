@@ -1,5 +1,5 @@
 import App from "../src/App.js";
-import { MissionUtils } from "@woowacourse/mission-utils";
+import { MissionUtils, Console } from "@woowacourse/mission-utils";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -46,6 +46,25 @@ describe("자동차 경주", () => {
     });
   });
 
+  test("기능 테스트 - 최종 우승자가 2명 이상인 경우", async () => {
+  // given
+  const MOVING_FORWARD = 4;
+  const inputs = ["pobi,jun", "1"];
+  const logs = ["pobi : -", "jun : -", "최종 우승자 : pobi, jun"];
+  const logSpy = getLogSpy();
+
+  mockQuestions(inputs);
+  mockRandoms([MOVING_FORWARD, MOVING_FORWARD]);
+
+  // when
+  const app = new App();
+  await app.run();
+
+  // then
+  logs.forEach((log) => {
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+  });
+  });
 
   test("예외 테스트 - 자동자의 이름이 5글자를 초과한 경우", async () => {
     const inputs = ["pobi,javaji"];
