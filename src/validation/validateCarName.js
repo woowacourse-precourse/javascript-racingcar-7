@@ -20,3 +20,10 @@ export const checkDuplicateCarName = (names) => {
     throw new Error('[ERROR] 자동차 이름은 중복되지 않게 입력해주세요.');
   }
 };
+export const checkValidateCarNumber = (names) => {
+  if (names.length < 2) {
+    throw new Error(
+      '[ERROR] 경주는 두 개 이상의 자동차 이름을 입력해야 가능해요.'
+    );
+  }
+};

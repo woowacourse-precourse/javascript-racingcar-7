@@ -2,6 +2,7 @@ import { Console } from '@woowacourse/mission-utils';
 import {
   checkDuplicateCarName,
   validateCarName,
+  checkValidateCarNumber,
 } from './validation/validateCarName.js';
 import { validateRaceNumber } from './validation/validateRaceNumber.js';
 
@@ -9,6 +10,7 @@ const determineCarName = (input) => {
   const names = input.split(',');
   names.forEach((name) => validateCarName(name));
   checkDuplicateCarName(names);
+  checkValidateCarNumber(names);
 };
 
 class App {
