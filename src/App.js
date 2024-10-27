@@ -1,4 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
+import { raceController } from './Controller.js';
 
 class App {
   async run() {
@@ -13,6 +14,7 @@ class App {
     ).trim();
 
     try {
+      const Racing = new raceController(inputNames, inputAttemps);
     } catch (error) {
       throw new Error('[ERROR]' + error.message);
     }
