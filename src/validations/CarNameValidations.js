@@ -1,13 +1,6 @@
 import { CAR_NAME_VALIDATION_ERROR } from '../constants/constants.js';
 import OutputView from '../view/OutputView.js';
 
-const validateIsString = (carNames) => {
-  const isString = (carName) => typeof carName === 'string';
-  if (!carNames.every(isString)) {
-    OutputView.printErrorMessage(CAR_NAME_VALIDATION_ERROR.IS_NOT_STRING);
-  }
-}
-
 const validateIsEmpty = (carNames) => {
   const isEmpty = (carName) => carName === '';
   if (carNames.some(isEmpty)) {
@@ -32,7 +25,6 @@ const validateDuplicate = (carNames) => {
 }
 
 const CarNameValidations = (carNames) => {
-  validateIsString(carNames);
   validateIsEmpty(carNames);
   validateIsTooLong(carNames);
   validateDuplicate(carNames);

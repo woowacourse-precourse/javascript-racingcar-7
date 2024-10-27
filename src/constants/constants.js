@@ -18,7 +18,6 @@ export const COMMON_ERROR_MESSAGES = Object.freeze({
 });
 
 export const CAR_NAME_VALIDATION_ERROR = Object.freeze({
-  IS_NOT_STRING: '입력 값이 문자열이 아닙니다. 문자열로 입력해주세요.',
   IS_EMPTY: '입력 값이 비어 있습니다. 값을 입력해주세요.',
   IS_TOO_LONG: '입력 값이 너무 깁니다. 5자 이하로 입력해주세요.',
   IS_DUPLICATE: '입력 값들 중 중복되는 값이 존재합니다. 다시 입력해주세요.',
