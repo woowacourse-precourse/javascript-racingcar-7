@@ -1,5 +1,42 @@
 import { Console, Random } from "@woowacourse/mission-utils";
 
+class Car {
+  constructor(name) {
+    this.name = name;
+    this.position = 0;
+  }
+
+  move() {
+    const randomNumber = Random.pickNumberInRange(0, 9);
+    if (randomNumber >= 4) {
+      this.position += 1;
+    }
+  }
+
+  getPositionDisplay() {
+    return `${this.name} : ${"-".repeat(this.position)}`;
+  }
+}
+
+class RacingGame {
+  constructor(carNames, attemptCount) {
+    this.cars = carNames.map((name) => new Car(name));
+    this.attemptCount = attemptCount;
+  }
+
+  play() {
+    for (let i = 0; i < this.attemptCount; i++) {
+      this.cars.forEach((car) => car.move());
+      this.displayCurrentStatus();
+    }
+  }
+
+  displayCurrentStatus() {
+    this.cars.forEach((car) => Console.print(car.getPositionDisplay()));
+    Console.print(""); // 줄바꿈
+  }
+}
+
 class App {
   async run() {
     try {
@@ -7,9 +44,9 @@ class App {
       const attemptCount = await this.getAttemptCount();
       Console.print(carNames);
       Console.print(attemptCount);
-      // const game = new RacingGame(carNames, attemptCount);
-      // Console.print("실행 결과");
-      // game.play();
+      const game = new RacingGame(carNames, attemptCount);
+      Console.print("실행 결과");
+      game.play();
     } catch (error) {
       Console.print(error.message);
     }

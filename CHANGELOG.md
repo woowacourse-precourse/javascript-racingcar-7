@@ -1,2 +1,3 @@
+- README.md 수정, 자동차  생성 및 예외처리
 - Modify README.md
 - feat: setup project
