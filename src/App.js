@@ -54,6 +54,28 @@ function startRacing(array, count) {
   return UPDATE_ARRAY;
 }
 
+function determineWinner(array) {
+  const DISTANCES = array.map((car) => ({
+    NAME: car.split(" :")[0],
+    DISTANCE: (car.match(/-/g) || []).length,
+  }));
+
+  const MAX_DISTANCE = Math.max(
+    ...DISTANCES.map((car) => car.DISTANCE)
+  );
+
+  const WINNERS = DISTANCES.filter(
+    (car) => car.DISTANCE === MAX_DISTANCE
+  ).map((car) => car.NAME);
+
+  if (WINNERS.length === 1) {
+    Console.print(`최종 우승자 : ${WINNERS[0]}`);
+  } else {
+    Console.print(
+      `최종 우승자 : ${WINNERS.join(", ")}`
+    );
+  }
+}
 class App {
   async run() {
     try {
@@ -71,7 +93,11 @@ class App {
 
       Console.print("\n실행 결과\n");
 
-      startRacing(CAR_ARRAY, RACING_COUNT);
+      const RESULT_ARRAY = startRacing(
+        CAR_ARRAY,
+        RACING_COUNT
+      );
+      determineWinner(RESULT_ARRAY);
     } catch (error) {
       Console.print(error.message);
     }
