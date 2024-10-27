@@ -15,6 +15,14 @@ class RacingGame {
             cars[i] = new Car(carNames[i]);
         }
 
+        //라운드별 레이싱 진행
+        for (let i = 0; i < inputNumberOfRounds; i++) {
+            for (let j = 0; j < cars.length; j++) {
+                cars[j].move()
+            }
+            MissionUtils.Console.print("\n")
+        }
+
     }
 }
 

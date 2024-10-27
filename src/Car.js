@@ -6,8 +6,14 @@ function Car(name) {
 
     this.move = function () {
         if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) {
-            position++;
+            this.position++;
         }
+        this.printPosition()
+    }
+
+    this.printPosition = function () {
+        let trace = '-'.repeat(this.position)
+        MissionUtils.Console.print(`${this.name} : ${trace}`)
     }
 }
 
