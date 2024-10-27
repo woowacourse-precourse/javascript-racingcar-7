@@ -16,19 +16,20 @@ class App {
       "시도할 횟수는 몇 회인가요?\n"
     );
 
-    this.handleCarInputString(carInput);
+    this.initializeCars(carInput);
     this.simulateRaceRounds(numberInput);
     this.selectWinner();
   }
 
-  // carInput을 받아서 carObject에 저장하는 함수
-  handleCarInputString(carInput) {
+  // carInput을 받아서 carObject에 value를 0 초기화하는 함수
+  initializeCars(carInput) {
     // 빈 값일 경우 에러 발생
     if (!carInput.trim()) this.throwError(App.ERROR_MESSAGES.EMPTY_STRING);
 
-    const carNames = carInput.split(",");
+    const carNames = carInput.split(",").map((name) => name.trim());
+
     carNames.forEach((carName) => {
-      this.carObject[carName] = 0; // 임시로 0 대입
+      this.carObject[carName] = 0;
     });
   }
 
