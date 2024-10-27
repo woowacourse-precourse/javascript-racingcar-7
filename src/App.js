@@ -8,9 +8,9 @@ import { validateRaceNumber } from './validation/validateRaceNumber.js';
 
 const determineCarName = (input) => {
   const names = input.split(',');
-  names.forEach((name) => validateCarName(name));
   checkDuplicateCarName(names);
   checkValidateCarNumber(names);
+  names.forEach((name) => validateCarName(name));
 };
 
 class App {
