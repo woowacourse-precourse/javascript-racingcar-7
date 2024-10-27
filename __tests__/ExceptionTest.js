@@ -1,7 +1,8 @@
 import {
   ERR_LENGTH,
-  ERR_ISDUP,
+  ERR_COR_NAME,
   ERR_POSITIVE,
+  ERR_ISDUP,
   ERR_ISINT,
 } from "../src/Component/Error.js";
 import App from "../src/App.js";
@@ -23,6 +24,17 @@ describe("예외 테스트", () => {
     [[",lee"], ERR_LENGTH()],
     [["choi1,kim1234"], ERR_LENGTH()],
     [["dong,"], ERR_LENGTH()],
+  ])("자동차 이름이 1~5자 사이가 아닌 경우", async (input, expectedError) => {
+    mockQuestions(input);
+    const app = new App();
+    await expect(app.run()).rejects.toThrow(expectedError);
+  });
+
+  test.each([
+    [["사람,haha?"], ERR_COR_NAME()],
+    [["두 산"], ERR_COR_NAME()],
+    [["+==,!!*"], ERR_COR_NAME()],
+    [["a1,a2,a4,a+10"], ERR_COR_NAME()],
   ])("자동차 이름이 1~5자 사이가 아닌 경우", async (input, expectedError) => {
     mockQuestions(input);
     const app = new App();
