@@ -135,12 +135,14 @@ MissionUtils.Random.pickNumberInRange(0, 9);
   - [x] 자동차 이름 중복 여부
   - [x] 각 자동차 이름 유효성
   - [x] 횟수 유효성
-- [ ] RagingGame 클래스 생성
-  - [ ] 싱글톤으로 구현
-  - [ ] 필드
-    - players, board
-  - [ ] 메소드
-    - join, start, finish
+- [x] RagingGame 클래스 생성
+  - [x] 싱글톤으로 구현
+  - [x] 필드
+    - private : turn, players, maxLength
+    - public : board
+  - [x] 메소드
+    - private : finish
+    - public : join, start
 - [ ] Player 클래스
   - [ ] 필드
     - name, game
