@@ -3,13 +3,18 @@ export default {
     if (!names) throw new Error('[ERROR] 이름을 입력해주세요.');
     if (!names.match(/^[^,]{1,5}(,[^,]{1,5})+$/)) {
       this.OneName(names);
-      // 맨 마지막에는 일반적인 에러 메시지로 작성
+      this.LongName(names);
       throw new Error('[ERROR] 이름 입력을 다시 확인해주세요.');
     }
   },
   OneName(names) {
     if (names.match(/^[^,]{1,5}$/)) {
       throw new Error('[ERROR] 하나 이상의 이름을 입력해주세요.');
+    }
+  },
+  LongName(names) {
+    if (names.match(/^[^,]+(,[^,]+)*$/)) {
+      throw new Error('[ERROR] 이름의 길이는 5를 초과할 수 없습니다.');
     }
   },
 
