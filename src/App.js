@@ -1,5 +1,12 @@
+import InputView from "./view/InputView.js";
+
 class App {
-  async run() {}
+  constructor() {
+    this.InputView = new InputView();
+  }
+  async run() {
+    await this.InputView.getCarNames();
+  }
 }
 
 export default App;
