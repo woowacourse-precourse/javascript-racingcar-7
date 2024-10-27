@@ -1,6 +1,6 @@
-import { Console } from "@woowacourse/mission-utils";
 import CarGame from "./CarGame.js";
 import InputHandler from "./InputHandler.js";
+import Printer from "./Printer.js";
 import Utils from "./Utils.js";
 import Validator from "./Validator.js";
 
@@ -8,10 +8,12 @@ import Validator from "./Validator.js";
 class CarGameController {
     inputHandler; // 입력 처리 객체
     validator; // 예외 처리 객체
+    printer; // 출력 처리 객체
 
     constructor() {
         this.inputHandler = new InputHandler();
         this.validator = new Validator();
+        this.printer = new Printer();
     }
 
     async play() {
@@ -26,9 +28,9 @@ class CarGameController {
         const resultLogs = carGame.startRace();
         const winner = carGame.pickWinner();
 
-        Console.print("\n실행 결과");
-        Console.print(resultLogs.join("\n"));
-        Console.print(`최종 우승자 : ${winner.join(", ")}`);
+        this.printer.printResultText();
+        this.printer.printLogs(resultLogs);
+        this.printer.printWinner(winner);
     }
 }
 
