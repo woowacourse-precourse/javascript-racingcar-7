@@ -45,7 +45,7 @@ class App {
 
       // 우승자 출력
       const winners = this.getWinners(cars);
-      MissionUtils.Console.print(`최종 우승자: ${winners.join(", ")}`);
+      MissionUtils.Console.print(`최종 우승자 : ${winners.join(", ")}`);
     } catch (error) {
       MissionUtils.Console.print(error.message); // 오류 발생 시 에러 메시지 출력
     }
