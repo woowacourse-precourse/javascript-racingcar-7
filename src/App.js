@@ -1,8 +1,8 @@
-import InputView from "./InputView.js";
-import OutputView from "./OutputView.js";
-import RacingGame from "./RacingGame.js";
-import GameInitializer from "./GameInitializer.js";
-import GameRunner from "./GameRunner.js";
+import InputView from "./views/InputView.js";
+import OutputView from "./views/OutputView.js";
+import RacingGame from "./models/RacingGame.js";
+import GameInitializer from "./controllers/GameInitializer.js";
+import GameRunner from "./controllers/GameRunner.js";
 
 class App {
   constructor(

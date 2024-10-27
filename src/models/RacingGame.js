@@ -1,7 +1,7 @@
 import { Random } from "@woowacourse/mission-utils";
 import Car from "./Car.js";
-import Validator from "./Validator.js";
-import Parser from "./Parser.js";
+import Validator from "../utils/Validator.js";
+import Parser from "../utils/Parser.js";
 
 class RacingGame {
   constructor() {
