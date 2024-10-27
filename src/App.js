@@ -32,7 +32,7 @@ class App {
         return obj;
       },{});
 
-      const num = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+      const num = await Console.readLineAsync("\n시도할 횟수는 몇 회인가요?\n");
       this.count = Number(num);
     }catch(error){
       Console.print("ERROR: 입력 오류");
@@ -64,10 +64,10 @@ class App {
       for(let i = 0; i < this.carNameObj[key]; i++){
         carDistance += "-";
       }
-      Console.print(key + " : " + carDistance + "\n");
+      Console.print(key + " : " + carDistance);
     });
 
-    Console.print("\n");
+    Console.print(" ");
   }
 
   printWinner(){
