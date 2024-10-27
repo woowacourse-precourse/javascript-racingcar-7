@@ -1,5 +1,5 @@
 import {
-  MAX_NAME_MESSAGE,
+  DUPLICATE_NAME_MESSAGE,
   MINUS_NUMBER_MESSAGE,
   NOT_NUMBER_MESSAGE,
   ONE_CAR_MESSAGE,
@@ -19,6 +19,10 @@ export const validateCarNameList = (carNameListProp) => {
 
   if (carNameList.length === 1) {
     throw new Error(ONE_CAR_MESSAGE);
+  }
+
+  if (carNameList.length !== new Set(carNameList).size) {
+    throw new Error(DUPLICATE_NAME_MESSAGE);
   }
   return true;
 };

@@ -1,4 +1,5 @@
 import {
+  DUPLICATE_NAME_MESSAGE,
   MINUS_NUMBER_MESSAGE,
   NOT_NUMBER_MESSAGE,
   ONE_CAR_MESSAGE,
@@ -19,6 +20,7 @@ describe("자동차 입력 테스트", () => {
   it.each([
     ["phobi; woni", WRONG_SEPARATOR_MESSAGE],
     ["phobi", ONE_CAR_MESSAGE],
+    ["phobi,phobi", DUPLICATE_NAME_MESSAGE],
   ])("자동차 이름 예외 테스트", (input, message) => {
     expect(() => validateCarNameList(input)).toThrow(message);
   });
