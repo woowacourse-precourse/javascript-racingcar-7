@@ -1,14 +1,14 @@
-import CarManagementService from './CarManagementService.js';
-import DetermineWinnerService from './DetermineWinnerService.js';
-import CarMovementService from './CarMovementService.js';
-
 class RaceService {
   #winners;
 
-  constructor() {
-    this.carService = new CarManagementService();
-    this.carMovementService = new CarMovementService();
-    this.determineWinnerService = new DetermineWinnerService();
+  constructor(
+    carManagementService,
+    carMovementService,
+    determineWinnerService
+  ) {
+    this.carManagementService = carManagementService;
+    this.carMovementService = carMovementService;
+    this.determineWinnerService = determineWinnerService;
     this.#winners = null;
   }
 
@@ -19,11 +19,11 @@ class RaceService {
   }
 
   setupCars(carNames) {
-    carNames.forEach(carName => this.carService.addCar(carName));
+    carNames.forEach(carName => this.carManagementService.addCar(carName));
   }
 
   runRace(attemptCount) {
-    const cars = this.carService.getCars();
+    const cars = this.carManagementService.getCars();
 
     for (let i = 0; i < attemptCount; i++) {
       this.carMovementService.moveCars(cars);
@@ -31,9 +31,28 @@ class RaceService {
   }
 
   determineWinner() {
-    const cars = this.carService.getCars();
+    const cars = this.carManagementService.getCars();
 
     this.#winners = this.determineWinnerService.determineWinners(cars);
+  }
+
+  getRaceRecords() {
+    const cars = this.carManagementService.getCars();
+    const carRecords = cars.map(car => car.getRecords());
+    const carNames = cars.map(car => car.getName());
+    const attemptCount = carRecords[0].length;
+
+    let raceRecords = [];
+
+    for (let i = 0; i < attemptCount; i++) {
+      let raceRecord = carRecords.map(record => record[i]);
+      raceRecords.push(raceRecord);
+    }
+
+    return {
+      raceCarNames: carNames,
+      raceRecords: raceRecords,
+    };
   }
 
   getWinners() {
