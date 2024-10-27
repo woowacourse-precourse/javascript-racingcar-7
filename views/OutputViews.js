@@ -1,5 +1,4 @@
 import MESSAGES from "../constants/Messages.js";
-import ERRORS from "../constants/Errors.js";
 import { Console } from "@woowacourse/mission-utils";
 
 class OutputViews {
