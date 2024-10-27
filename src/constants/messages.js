@@ -11,6 +11,7 @@ const ERROR_MESSAGE = {
   ONLY_ENGLISH_AND_KOREAN_ALLOWED:
     "[ERROR] 자동차 이름은 한글이나 영어만 가능합니다.",
   DUPLICATE_NAME_NOT_ALLOWED: "[ERROR] 자동차 이름은 중복이 불가능합니다.",
+  CAR_LIST_TOO_SMALL: "[ERROR] 자동차 개수는 2대 이상이어야 합니다.",
 };
 
 export { INPUT_MESSAGE, ERROR_MESSAGE };

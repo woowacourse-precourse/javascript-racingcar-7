@@ -3,16 +3,13 @@ import { ERROR_MESSAGE } from "../constants/messages.js";
 class Validator {
   static checkName(carName) {
     Validator.#checkNameLength(carName);
-    Validator.#checkNameLanguage(carName);
     Validator.#checkSpecialCharacters(carName);
+    Validator.#checkNameLanguage(carName);
   }
 
-  static checkDuplicateName(carList) {
-    const lowerCaseCarNames = carList.map((name) => name.toLowerCase());
-    const carSet = new Set(lowerCaseCarNames);
-    if (lowerCaseCarNames.length !== carSet.size) {
-      throw new Error(ERROR_MESSAGE.DUPLICATE_NAME_NOT_ALLOWED);
-    }
+  static checkCarList(carList) {
+    Validator.#checkDuplicateName(carList);
+    Validator.#checkCarListSize(carList);
   }
 
   static #checkNameLength(carName) {
@@ -36,6 +33,20 @@ class Validator {
     const regex = /^[a-zA-Z가-힣ㄱ-ㅎㅏ-ㅣ0-9\s]+$/;
     if (!regex.test(carName)) {
       throw new Error(ERROR_MESSAGE.ONLY_ENGLISH_AND_KOREAN_ALLOWED);
+    }
+  }
+
+  static #checkDuplicateName(carList) {
+    const lowerCaseCarNames = carList.map((name) => name.toLowerCase());
+    const carSet = new Set(lowerCaseCarNames);
+    if (lowerCaseCarNames.length !== carSet.size) {
+      throw new Error(ERROR_MESSAGE.DUPLICATE_NAME_NOT_ALLOWED);
+    }
+  }
+
+  static #checkCarListSize(carList) {
+    if (carList.length < 2) {
+      throw new Error(ERROR_MESSAGE.CAR_LIST_TOO_SMALL);
     }
   }
 }

@@ -14,7 +14,7 @@ class CarRace {
   }
 
   validateCarNames(carList) {
-    Validator.checkDuplicateName(carList);
+    Validator.checkCarList(carList);
     carList.map((carName) => Validator.checkName(carName));
   }
 }
