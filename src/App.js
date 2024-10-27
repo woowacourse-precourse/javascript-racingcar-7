@@ -1,25 +1,24 @@
 import { Console, Random } from '@woowacourse/mission-utils';
+import GAME_MESSAGE from './constant/message';
 
 class App {
   async run() {
-    const carNamesInput = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
+    const carNamesInput = await Console.readLineAsync(GAME_MESSAGE.CAR_NAMES_INPUT);
     const carNames = carNamesInput.split(',');
 
-    const attemptCountInput = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+    const attemptCountInput = await Console.readLineAsync(GAME_MESSAGE.ATTEMPT_COUNT_INPUT);
     const attemptCount = parseInt(attemptCountInput, 10);
-    if (carNamesInput === '' || attemptCount === '') {
-      throw new Error('[ERROR]');
+    if (carNamesInput === '' || attemptCountInput === '') {
+      throw new Error(GAME_MESSAGE.ERROR);
     }
 
     carNames.forEach((carName) => {
       if (carName.length >= 5) {
-        throw new Error('[ERROR]');
+        throw new Error(GAME_MESSAGE.ERROR);
       }
     });
 
-    Console.print('\n');
-    Console.print('실행 결과');
-    // 5자가 넘는 이름이 나올 경우 에러 , 같은 이름일 경우 에러?, 이름만 입력하고 끝내버리는 경우
+    Console.print(GAME_MESSAGE.EXECUTION_RESULT_OUTPUT);
 
     const record = {};
 
@@ -34,7 +33,7 @@ class App {
           record[carNames[order]] += 1;
         }
 
-        Console.print(`${[carNames[order]]} : ${'-'.repeat(record[carNames[order]])}`);
+        Console.print(`${carNames[order]} : ${'-'.repeat(record[carNames[order]])}`);
       }
       Console.print('\n');
     }
@@ -50,7 +49,7 @@ class App {
       }
     }
 
-    Console.print(`최종 우승자 : ${winner.join(', ')}`);
+    Console.print(`${GAME_MESSAGE.WINNER_OUTPUT} ${winner.join(', ')}`);
   }
 }
 
