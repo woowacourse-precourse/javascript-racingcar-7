@@ -46,15 +46,19 @@ describe('자동차 경주', () => {
     });
   });
 
-  test('예외 테스트', async () => {
-    // given
-    const inputs = ['pobi,javaji'];
-    mockQuestions(inputs);
+  describe('예외 테스트', () => {
+    describe('입력 예외 테스트', () => {
+      test('자동차 이름이 5글자 이상 되었을 때 에러를 발생시킨다.', async () => {
+        // given
+        const inputs = ['pobi,javaji'];
+        mockQuestions(inputs);
 
-    // when
-    const app = new App();
+        // when
+        const app = new App();
 
-    // then
-    await expect(app.run()).rejects.toThrow('[ERROR]');
+        // then
+        await expect(app.run()).rejects.toThrow('[ERROR]');
+      });
+    });
   });
 });
