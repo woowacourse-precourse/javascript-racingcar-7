@@ -4,6 +4,8 @@ export const MESSAGES = {
   INPUT_TRY_COUNT: "시도할 횟수는 몇 회인가요?",
   ERROR_INVALID_NUMBER: "[ERROR]: 잘못된 값입니다.",
   ERROR_INPUT_EMPTY: "[ERROR]: 입력값이 없습니다.",
+  MESSAGE_EXEC_RESULT: "\n실행 결과",
+  MESSAGE_FINAL_WINNER: "최종 우승자"
 };
 
 export const DELIMITER = ",";
