@@ -16,6 +16,9 @@ class App {
       // 자동차 이름 분리
       const carNameArr = userInput.split(',');
 
+      if (new Set(carNameArr).size != carNameArr.length)
+        throw new Error('[ERROR] 같은 이름을 가진 자동차가 존재합니다.');
+
       if (carNameArr.length < 2)
         throw new Error('[ERROR] 경주를 위해 2대 이상의 자동차가 필요합니다.');
 
