@@ -39,11 +39,20 @@ class App {
         });
     }
 
+    async printFinalWinner(cars) {
+        const maxPosition = Math.max(...cars.map(car => car.position));
+        const winner = cars.filter(car => car.position === maxPosition).map(car => car.name);
+
+        const winnerList = winner.join(", ");
+        Console.print("최종 우승자 : " + winnerList);
+    }
+
     async run() {
         const cars = await this.getCarNameList();
         const tryCount = await this.getTryCount();
 
         this.playRaceGame(cars, tryCount);
+        this.printFinalWinner(cars);
     }
 }
 
