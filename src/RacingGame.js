@@ -57,6 +57,12 @@ export class RacingGame {
         }
         this.printRoundResult();
     }
+
+    printWinners() {
+        const maxDistance = Math.max(...Object.values(this.cars).map(car => car.length));
+        const winners = Object.keys(this.cars).filter(car => this.cars[car].length === maxDistance);
+        MissionUtils.Console.print(`최종 우승자 : ${winners.join(', ')}`);
+    }
 }
 
 export default RacingGame;
