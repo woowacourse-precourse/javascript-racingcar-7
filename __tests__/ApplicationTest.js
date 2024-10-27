@@ -34,7 +34,23 @@ describe("Car 클래스", () => {
   });
 });
 
-describe("문자열 분리", () => {
+describe("자동차 이름 문자열 입력", () => {
+  test("문장이 구분자로 끝날 수 없음", () =>{
+    const INPUT = "kia,hyun,gene,";
+    const app = new App();
+
+    expect(() => app.validateCarNames(INPUT).toThrow("[ERROR] 문장 양식이 구분자로 끝날 수 없습니다!"));
+  });
+
+  test("문장이 구분자로 시작할 수 없음", () =>{
+    const INPUT = ",kia,hyun,gene";
+    const app = new App();
+
+    expect(() => app.validateCarNames(INPUT).toThrow("[ERROR] 문장 양식이 구분자로 시작할 수 없습니다!"));
+  });
+});
+
+describe("자동차 이름 문자열 분리", () => {
   test("자동차 이름 반환", () => {
     const CAR_NAMES = "hyun,kia,gene";
 
