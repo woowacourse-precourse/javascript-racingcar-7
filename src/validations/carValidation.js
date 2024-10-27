@@ -1,3 +1,6 @@
+import { CAR_ERROR_MESSAGES } from "../constants/errorMessage.js";
+import { CONDITIONS } from "../constants/conditon.js";
+
 export const carValidation = (carNames) => {
   checkEmptyCarNames(carNames);
   checkCarNameLength(carNames);
@@ -6,27 +9,29 @@ export const carValidation = (carNames) => {
 };
 
 const checkEmptyCarNames = (carNames) => {
-  if (carNames.some((name) => name === "")) {
-    throw new Error("[ERROR] 자동차 이름은 빈 문자열이 될 수 없습니다.");
+  if (carNames.some((name) => name === CONDITIONS.EMPTY_STRING)) {
+    throw new Error(CAR_ERROR_MESSAGES.EMPTY_NAME);
   }
 };
 
 const checkCarNameLength = (carNames) => {
-  const isInvalidLength = carNames.some((name) => name.length > 5);
+  const isInvalidLength = carNames.some(
+    (name) => name.length > CONDITIONS.MAX_CAR_NAME_LENGTH
+  );
   if (isInvalidLength) {
-    throw new Error("[ERROR] 자동차 이름은 5자 이하만 가능합니다.");
+    throw new Error(CAR_ERROR_MESSAGES.INVALID_LENGTH);
   }
 };
 
 const checkDuplicateCarNames = (carNames) => {
   const distinctNames = new Set(carNames);
   if (distinctNames.size !== carNames.length) {
-    throw new Error("[ERROR] 자동차 이름은 중복될 수 없습니다.");
+    throw new Error(CAR_ERROR_MESSAGES.DUPLICATE_NAME);
   }
 };
 
 const checkMinimumCarCount = (carNames) => {
-  if (carNames.length < 2) {
-    throw new Error("[ERROR] 자동차는 최소 2대 이상이어야 합니다.");
+  if (carNames.length < CONDITIONS.MIN_CAR_COUNT) {
+    throw new Error(CAR_ERROR_MESSAGES.MINIMUM_COUNT);
   }
 };
