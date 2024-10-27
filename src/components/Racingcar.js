@@ -1,4 +1,4 @@
-import { validation, pickRandomNumber, sortArr } from '../utils/index.js';
+import { validation, pickRandomNumber } from '../utils/index.js';
 import { ERRORMESAGE, MAGICNUMBER } from '../constants/index.js';
 
 export default class Racingcar {
