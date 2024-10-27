@@ -14,7 +14,7 @@ class RaceController{
     let arr=new Array(car.length).fill(0);
 
     for(let i=0;i<tryNumber;i++){
-      await raceinstance.advance(car,arr);
+      await raceinstance.race(car,arr);
       outputView.degreeOutput(car,arr);
     }
     
