@@ -1,5 +1,4 @@
-import { Console } from '@woowacourse/mission-utils';
-import { Car, Interface } from './index.js';
+import { Car, UserInterface } from './index.js';
 import { SCRIPT } from '../constants/interfaceScript.js';
 
 class Cars {
@@ -20,10 +19,10 @@ class Cars {
   }
 
   race(counts) {
-    Console.print(SCRIPT.EXECUTION_RESULT);
+    UserInterface.print(SCRIPT.EXECUTION_RESULT);
     for (let i = 0; i < counts; i += 1) {
       this.attemptMoveAllCars();
-      Interface.printNewline();
+      UserInterface.printNewline();
     }
   }
 }

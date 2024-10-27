@@ -1,5 +1,4 @@
-import { Console } from '@woowacourse/mission-utils';
-import { MyUtils } from './index.js';
+import { MyUtils, UserInterface } from './index.js';
 
 class Car {
   constructor(name) {
@@ -16,7 +15,7 @@ class Car {
   }
 
   printScore() {
-    Console.print(`${this.name} : ${'-'.repeat(this.score)}`);
+    UserInterface.print(`${this.name} : ${'-'.repeat(this.score)}`);
   }
 
   attemptMove() {

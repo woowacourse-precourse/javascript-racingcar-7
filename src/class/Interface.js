@@ -1,17 +1,21 @@
 import { Console } from '@woowacourse/mission-utils';
 import { Validator } from './index.js';
 
-class Interface {
+class UserInterface {
   static async processStringInput(query) {
     const inputString = await Console.readLineAsync(query);
-    const validatedNames = Validator.validateName(inputString);
-    return validatedNames;
+    const trimmedInput = inputString.trim();
+    return Validator.validateName(trimmedInput);
   }
 
   static async processNumberInput(query) {
     const inputString = await Console.readLineAsync(query);
-    const validatedCounts = Validator.validateAttempt(Number(inputString));
-    return validatedCounts;
+    const inputNumber = Number(inputString);
+    return Validator.validateAttempt(inputNumber);
+  }
+
+  static print(query) {
+    Console.print(query);
   }
 
   static printNewline() {
@@ -19,4 +23,4 @@ class Interface {
   }
 }
 
-export default Interface;
+export default UserInterface;
