@@ -2,7 +2,7 @@ import Car from '../src/domain/Car.js';
 import { FORWARD_NUM } from '../src/constants/constants.js';
 
 describe('단위 테스트: Car 클래스', () => {
-  test('차량 이름 및 전진 횟수 배열 초기화', () => {
+  test('차량 이름 및 전진 횟수 배열 초기화한다.', () => {
     // given
     const carNames = ['pobi', 'woni', 'jun'];
 
@@ -14,7 +14,7 @@ describe('단위 테스트: Car 클래스', () => {
     expect(car.forwardCounts).toEqual([0, 0, 0]);
   });
 
-  test('랜덤 숫자가 FORWARD_NUM 이상일 때 전진 횟수 증가', () => {
+  test('랜덤 숫자가 FORWARD_NUM 이상일 때 전진 횟수 증가한다.', () => {
     // given
     const car = new Car(['pobi']);
     const randomNumber = FORWARD_NUM;
@@ -27,7 +27,7 @@ describe('단위 테스트: Car 클래스', () => {
     expect(car.forwardCounts[carIndex]).toBe(1);
   });
 
-  test('랜덤 숫자가 FORWARD_NUM 미만일 때 전진 횟수 유지', () => {
+  test('랜덤 숫자가 FORWARD_NUM 미만일 때 전진 횟수 유지한다.', () => {
     // given
     const car = new Car(['pobi']);
     const randomNumber = FORWARD_NUM - 1;
@@ -40,7 +40,7 @@ describe('단위 테스트: Car 클래스', () => {
     expect(car.forwardCounts[carIndex]).toBe(0);
   });
 
-  test('최대 전진 횟수를 가진 동점 우승자 배열 반환', () => {
+  test('최대 전진 횟수를 가진 동점 우승자 배열 반환한다.', () => {
     // given
     const car = new Car(['pobi', 'woni']);
     car.forwardCounts = [3, 3];
