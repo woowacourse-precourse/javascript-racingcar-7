@@ -9,3 +9,9 @@ export const nameLimit5 = (name) => {
     throw new Error('[ERROR] 이름은 5자 이하만 가능합니다.');
   }
 };
+
+export const attempsError = (attepms) => {
+  if (parseInt(attepms) <= 0) {
+    throw new Error('[ERROR] 양수만 입력할 수 있습니다.');
+  }
+};
