@@ -31,6 +31,10 @@ class App {
 
     const participantList = participantInput.split(',');
 
+    if (participantList.length !== new Set(participantList).size) {
+      throw new Error('[ERROR] 자동차 이름은 중복될 수 없습니다.');
+    }
+
     participantList.forEach((participant) => {
       if (participant.length > 5) {
         throw new Error('[ERROR] 자동차 이름은 5자 이하이어야 합니다.');
