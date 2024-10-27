@@ -1,6 +1,6 @@
-import { getRandomNumber } from './utils.js';
+import { getRandomNumber } from './common/utils.js';
 import Car from './Car.js';
-import { GAME_RULES } from './constants.js';
+import { GAME_RULES } from './common/constants.js';
 
 class Race {
   constructor() {

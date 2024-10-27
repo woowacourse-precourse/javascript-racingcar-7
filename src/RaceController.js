@@ -1,7 +1,7 @@
 import Race from './Race.js';
-import { getCarName, getAttempt, splitByDelimiter, printMessage } from './utils.js';
-import { validateCarName, validateAttemptCount } from './validators.js';
-import { GAME_RULES } from './constants.js';
+import { getCarName, getAttempt, splitByDelimiter, printMessage } from './common/utils.js';
+import { validateCarName, validateAttemptCount } from './common/validators.js';
+import { GAME_RULES } from './common/constants.js';
 
 class RaceController {
   constructor() {

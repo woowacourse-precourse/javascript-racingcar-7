@@ -1,7 +1,7 @@
 import RaceController from '../../src/RaceController.js';
 import Car from '../../src/Car.js';
-import { getCarName, getAttempt, printMessage } from '../../src/utils.js';
-import { GAME_RULES } from '../../src/constants.js';
+import { getCarName, getAttempt, printMessage } from '../../src/common/utils.js';
+import { GAME_RULES } from '../../src/common/constants.js';
 
 jest.mock('../../src/utils.js', () => ({
   ...jest.requireActual('../../src/utils.js'),

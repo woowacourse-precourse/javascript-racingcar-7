@@ -1,4 +1,4 @@
-import { validateCarName, validateAttemptCount } from '../../src/validators.js';
+import { validateCarName, validateAttemptCount } from '../../src/common/validators.js';
 
 describe("validators 테스트", () => {
 
