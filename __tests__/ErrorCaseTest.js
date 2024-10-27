@@ -33,6 +33,11 @@ describe("에러 발생 케이스", () => {
             error: InputValidator.ERROR_MESSAGES.INVALID_NAME,
         },
         {
+            description: "중복된 자동차 이름이 존재하는 경우",
+            inputs: ["pobi,pobi", "1"],
+            error: InputValidator.ERROR_MESSAGES.DUPLICATED_NAME,
+        },
+        {
             description: "쉼표로 시작하는 경우",
             inputs: [",pobi,woni", "1"],
             error: InputValidator.ERROR_MESSAGES.INVALID_NAME,
