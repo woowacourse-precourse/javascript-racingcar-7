@@ -46,6 +46,18 @@ describe('자동차 경주', () => {
     });
   });
 
+  test('자동차 이름 예외 테스트(빈 문자열)', async () => {
+    // given
+    const inputs = [',alex,noah'];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
   test('자동차 이름 예외 테스트(길이)', async () => {
     // given
     const inputs = ['pobi,javaji'];
@@ -60,7 +72,7 @@ describe('자동차 경주', () => {
 
   test('자동차 이름 예외 테스트(영어)', async () => {
     // given
-    const inputs = ['a,홍길동,ab342'];
+    const inputs = ['liam,홍길동,noah2'];
     mockQuestions(inputs);
 
     // when
@@ -72,7 +84,7 @@ describe('자동차 경주', () => {
 
   test('자동차 이름 예외 테스트(공백)', async () => {
     // given
-    const inputs = ['a  b,c,d'];
+    const inputs = ['l  nm,alex,noaha'];
     mockQuestions(inputs);
 
     // when
