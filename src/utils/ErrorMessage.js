@@ -5,5 +5,6 @@ export const ERROR_MESSAGE = {
     EMPTY_INPUT_NOT_ALLOW: `${PREFIX_ERROR_MESSAGE} 빈 값은 입력할 수 없습니다.`,
     ONLY_USED_ENGLISH_AND_NUMBER: (input) => `알파벳과 숫자만 입력 가능합니다. (입력값: ${input})`,
     ONLY_USED_NUMBER: (input) => `숫자만 입력할 수 있습니다. (입력값: ${input})`,
+    EXIST_DUPLICATE_NAME: (input) => `중복된 이름은 사용할 수 없습니다. ${input}`,
     RACING_COUNT_EXCEEDED: (maxCount, count) => `경기는 최대 ${maxCount}회 시도할 수 있습니다. (입력값: ${count})`,
 }

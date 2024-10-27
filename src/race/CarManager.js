@@ -26,6 +26,7 @@ class CarManager {
             this.#validateCarName(name);
         });
 
+        Validator.checkExistDuplicateName(carNames);
         return this.#getCarsFromCarNames(carNames);
     }
 }

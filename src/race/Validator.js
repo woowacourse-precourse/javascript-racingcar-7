@@ -29,3 +29,11 @@ export function checkLessThanOrEqualMaxCount(count, maxCount) {
         throw new Error(ERROR_MESSAGE.RACING_COUNT_EXCEEDED(maxCount, count));
     }
 }
+
+export function checkExistDuplicateName(names) {
+    names.forEach((name, index) => {
+        if (names.indexOf(name, index + 1) !== -1) {
+            throw new Error(ERROR_MESSAGE.EXIST_DUPLICATE_NAME(name));
+        }
+    });
+}
