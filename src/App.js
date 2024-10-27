@@ -1,4 +1,5 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
+import Car from './Car';
 
 class App {
   splitName(carNames) {
@@ -38,12 +39,16 @@ class App {
     return uniqueNames;
   }
 
+  createCars(validSplitCarName) {
+    return validSplitCarName.map(name => new Car(name));
+  }
+
   async run() {
     const CAR_NAMES = await MissionUtils.Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
     const VALID_CAR_NAMES = this.validateCarNames(CAR_NAMES);
     const SPLIT_CAR_NAMES = this.splitName(VALID_CAR_NAMES);
     const VALID_SPLIT_CAR_NAMES = this.validateSplitCarNames(SPLIT_CAR_NAMES)
-    
+
   }
 }
 
