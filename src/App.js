@@ -7,7 +7,7 @@ class App {
   };
 
   async run() {
-    const cars = this.inputCars();
+    const cars = await this.inputCars();
   }
 
   async input(msg) {
