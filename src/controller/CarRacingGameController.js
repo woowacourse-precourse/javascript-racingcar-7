@@ -21,11 +21,13 @@ class CarRacingGameController {
       carNames,
       tryCount
     );
-    let totalMovement = [0, 0, 0];
+    let totalMovement = Array(carNames.length).fill(0);
     for (let attempts of carMovement) {
       //한 try별 움직인 거리
-      const attemptMovement =
-        this.SetForwardCountModel.getForwardCount(attempts);
+      const attemptMovement = this.SetForwardCountModel.getForwardCount(
+        attempts,
+        carNames.length
+      );
       totalMovement = attemptMovement.map(
         (value, index) => value + totalMovement[index]
       );

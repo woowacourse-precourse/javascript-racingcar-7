@@ -1,7 +1,7 @@
 class SetForwardCountModel {
   constructor() {}
-  getForwardCount(attempts) {
-    let forwardCount = [0, 0, 0];
+  getForwardCount(attempts, arrayLength) {
+    let forwardCount = Array(arrayLength).fill(0);
     for (let index = 0; index < attempts.length; index++) {
       const criteriaNum = attempts[index];
       this.checkCarMoveForward(criteriaNum, forwardCount, index);
