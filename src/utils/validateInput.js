@@ -14,10 +14,13 @@ const validateInput = {
     hasNameLongerThanFive: (nameList) => {
         return nameList.some((name) => name.length > 5);
     },
+    hasDuplicatedName: (nameList) => {
+        return nameList.length !== new Set(nameList).size;
+    },
     isValidAttemptCount: (input) => {
         const number = Number(input);
         return Number.isInteger(number) && number > 0;
     }
 }
 
-export const { isEmpty, startsWithComma, endsWithComma, isDuplicatedComma, hasNameLongerThanFive, isValidAttemptCount } = validateInput;
+export const { isEmpty, startsWithComma, endsWithComma, isDuplicatedComma, hasNameLongerThanFive, isValidAttemptCount, hasDuplicatedName } = validateInput;

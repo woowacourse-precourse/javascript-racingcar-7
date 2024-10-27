@@ -1,28 +1,31 @@
-import { isEmpty, startsWithComma, endsWithComma, isDuplicatedComma, hasNameLongerThanFive, isValidAttemptCount } from './utils/validateInput.js';
+import { isEmpty, startsWithComma, endsWithComma, isDuplicatedComma, hasNameLongerThanFive, isValidAttemptCount, hasDuplicatedName } from './utils/validateInput.js';
+import { ERROR } from './utils/constants.js';
 
 const userInputValidator = (input) => {
     if (isEmpty(input)) {
-        throwError('입력값은 비어있을 수 없습니다.');
+        throwError(ERROR.ERROR_EMPTY_INPUT);
     } else if (startsWithComma(input)) {
-        throwError('입력값은 ,로 시작할 수 없습니다.');
+        throwError(ERROR.ERROR_STARTS_WITH_COMMA);
     } else if (endsWithComma(input)) {
-        throwError('입력값은 ,로 끝날 수 없습니다.');
+        throwError(ERROR.ERROR_ENDS_WITH_COMMA);
     } else if (isDuplicatedComma(input)) {
-        throwError('입력값에 중복된 ,가 있습니다.');
+        throwError(ERROR.ERROR_DUPLICATED_COMMA);
     }
-}
+};
 
 const eachNameLengthValidator = (nameList) => {
     if (hasNameLongerThanFive(nameList)) {
-        throwError('이름의 길이는 5글자 이내로 입력해주세요.');
+        throwError(ERROR.ERROR_NAME_TOO_LONG);
+    } else if (hasDuplicatedName(nameList)) {
+        throwError(ERROR.ERROR_DUPLICATED_NAME);
     }
-}
+};
 
 const attemptCountValidator = (input) => {
     if (!isValidAttemptCount(input)) {
-        throwError('입력은 양의 정수만 가능합니다.')
+        throwError(ERROR.ERROR_INVALID_ATTEMPT_COUNT);
     }
-}
+};
 
 function throwError(message) {
     throw new Error(`[ERROR]: ${message}`);
