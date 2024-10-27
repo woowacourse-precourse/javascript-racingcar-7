@@ -9,14 +9,14 @@ const validateIsString = (carNames) => {
 }
 
 const validateIsEmpty = (carNames) => {
-  const isEmpty = (carName) => carName.trim() === '';
+  const isEmpty = (carName) => carName === '';
   if (carNames.some(isEmpty)) {
     OutputView.printErrorMessage(CAR_NAME_VALIDATION_ERROR.IS_EMPTY);
   }
 }
 
 const validateIsTooLong = (carNames) => {
-  const isTooLong = (carName) => carName.trim().length > 5;
+  const isTooLong = (carName) => carName.length > 5;
   if (carNames.some(isTooLong)) {
     OutputView.printErrorMessage(CAR_NAME_VALIDATION_ERROR.IS_TOO_LONG);
   }
