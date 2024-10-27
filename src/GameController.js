@@ -27,11 +27,13 @@ class GameController {
   }
 
   validateCarName(names) {
-    if (names === '') {
-      throw new Error('[ERROR] 자동차 이름을 입력하세요.');
-    }
+    if (!names) throw new Error('[ERROR] 자동차 이름을 입력하세요.');
 
     const carNames = names.split(',').map(name => name.trim());
+    this.checkCarNameConstraints(carNames);
+  }
+
+  checkCarNameConstraints(carNames) {
     if (carNames.length === 1) {
       throw new Error(
         '[ERROR] 경주를 위해서는 최소 2대 이상의 자동차가 필요합니다.',
@@ -54,9 +56,7 @@ class GameController {
   }
 
   validateNumber(attempts) {
-    if (!attempts) {
-      throw new Error('[ERROR] 시도 횟수를 입력하세요.');
-    }
+    if (!attempts) throw new Error('[ERROR] 시도 횟수를 입력하세요.');
 
     const number = Number(attempts);
     if (Number.isNaN(number) || !Number.isInteger(number) || number < 1) {
