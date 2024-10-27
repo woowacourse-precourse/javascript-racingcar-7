@@ -3,7 +3,7 @@ import { Console } from '@woowacourse/mission-utils';
 class RacingCar {
   static instance = null;
   #turn;
-  #players;
+  #cars;
   #maxLength;
 
   constructor(turn = null) {
@@ -11,23 +11,23 @@ class RacingCar {
       return RacingCar.instance;
     }
     this.#turn = turn;
-    this.#players = [];
+    this.#cars = [];
     this.board = {};
     this.#maxLength = 0;
   }
 
-  join(player) {
-    this.#players.push(player);
-    this.board[player.name] = '';
+  join(car) {
+    this.#cars.push(car);
+    this.board[car.name] = '';
   }
 
   start() {
     Console.print('실행결과');
     for (let t = 0; t < this.#turn; t++) {
-      this.#players.forEach((player) => {
-        player.roll();
-        Console.print(`${player.name} : ${this.board[player.name]}`);
-        this.#maxLength = Math.max(this.#maxLength, this.board[player.name].length);
+      this.#cars.forEach((car) => {
+        car.roll();
+        Console.print(`${car.name} : ${this.board[car.name]}`);
+        this.#maxLength = Math.max(this.#maxLength, this.board[car.name].length);
       });
       Console.print('');
     }
@@ -35,8 +35,8 @@ class RacingCar {
   }
 
   #finish() {
-    const playerNames = Object.keys(this.board);
-    const winner = playerNames.filter((player) => this.board[player].length === this.#maxLength);
+    const carNames = Object.keys(this.board);
+    const winner = carNames.filter((car) => this.board[car].length === this.#maxLength);
     Console.print(`최종 우승자 : ${winner.join(', ')}`);
   }
 }
