@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, MissionUtils } from "@woowacourse/mission-utils";
 
 class App {
   async run() {
@@ -18,6 +18,11 @@ class App {
 
     // 4. 시도할 횟수 유효성 검증
     this.validateTryNumber(tryNumberInput);
+
+    // 5. 본 게임
+    Console.print("\n실행 결과");
+    const carList = this.runRace(carNameArray, tryNumberInput);
+    Console.print(carList);
   }
 
   validateCarName(carNameArray) {
@@ -66,6 +71,27 @@ class App {
 
     Console.print("시도할 횟수가 유효합니다.");
   }
+
+  runRace(carNames, tryNumber) {
+    // 자동차 이름 배열을 객체 배열로 초기화
+    const carList = carNames.map(name => ({ name, distance: 0 }));
+  
+    // 지정된 횟수만큼 반복
+    for (let i = 0; i < tryNumber; i++) {
+      carList.forEach(car => {
+        // 랜덤 값에 따라 distance 증가
+        const randomValue = MissionUtils.Random.pickNumberInRange(0, 9);
+        if (randomValue >= 4) {
+          car.distance += 1; // 랜덤 값이 4 이상일 때 +1
+        }
+        Console.print(`${car.name} : ${"-".repeat(car.distance)}`);
+      });
+      Console.print("\n");
+    }
+  
+    return carList;
+  }
+
 }
 
 export default App;
