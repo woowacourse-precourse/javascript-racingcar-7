@@ -22,3 +22,15 @@ export const moveForward = (car) => {
 export const getCurrentPosition = (car) => {
   return `${car.name} : ${"-".repeat(car.position)}`;
 };
+
+// 최종 우승자 찾기
+export const findWinners = (cars) => {
+  const maxPosition = Math.max(...cars.map(car => car.position));
+  return cars.filter(car => car.position === maxPosition)
+    .map(car => car.name)
+}
+
+// 최종 우승자 출력
+export const formatWinners = (winners) => {
+  return `최종 우승자 : ${winners.join(', ')}`;
+}

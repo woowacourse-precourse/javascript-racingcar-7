@@ -7,7 +7,13 @@ import {
   validateNumberRound,
   validatePositiveRound,
 } from "./utils/validator.js";
-import { createCar, moveForward, getCurrentPosition } from "./racingGame.js";
+import {
+  createCar,
+  moveForward,
+  getCurrentPosition,
+  findWinners,
+  formatWinners,
+} from "./racingGame.js";
 
 class App {
   async run() {
@@ -43,6 +49,10 @@ class App {
       Console.print(cars.map((car) => getCurrentPosition(car)).join("\n"));
       Console.print("");
     }
+
+    // 최종 우승자 출력
+    const winners = findWinners(cars);
+    Console.print(formatWinners(winners));
   }
 }
 
