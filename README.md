@@ -34,6 +34,32 @@
 
 - 우승자가 여러 명일 경우 쉼표(,)를 이용하여 출력합니다.
 
+### 파일 경로
+
+```
+- src
+  - 📂 test
+  - - 📂 controllers
+  - - - 📜 RacingController.test.js
+  - - 📂 models
+  - - - 📜 carModel.test.js
+  - - - 📜 racingCarModel.test.js
+  - - 📂 views
+  - - - 📜 racingView.test.js
+  - - 📂 controllers
+  - - - 📜 RacingController.test.js
+  - 📂 constant
+  - - 📜 error.js
+  - - 📜 regexPattern.js
+  - 📂 models
+  - - 📜 carModel.js
+  - - 📜 racingCarModel.js
+  - 📂 views
+  - - 📜 racingView.js
+  - App.js
+  - index.js
+```
+
 ## 🔍기능 요구사항
 
 - [x] Node.js 20.17.0 버전에서 실행 가능해야 한다.
