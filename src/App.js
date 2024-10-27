@@ -1,95 +1,18 @@
-import { Console, Random } from '@woowacourse/mission-utils';
+import GameController from './GameController.js';
+import CarModel from './CarModel.js';
+import View from './View.js';
 
 class App {
-  constructor() {
-    this.names = '';
-    this.number = null;
-    this.nameMap = new Map();
-  }
-
-  async getCarNames() {
-    this.names = await Console.readLineAsync(
-      '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
-    );
-  }
-
-  validateCarNames() {
-    if (this.names === '') {
-      throw new Error('[ERROR] 자동차 이름을 입력하세요.');
-    }
-
-    const splitedNames = this.names.split(',');
-    splitedNames.forEach(carName => {
-      if (carName.length > 5) {
-        throw new Error('[ERROR] 자동차 이름은 5글자 이하여야 합니다.');
-      }
-      this.nameMap.set(carName, '');
-    });
-    this.nameArray = [...splitedNames];
-  }
-
-  async getNumber() {
-    const tempNumber = await Console.readLineAsync(
-      '시도할 횟수는 몇 회인가요?\n',
-    );
-    this.validateNumber(tempNumber);
-  }
-
-  validateNumber(tempNumber) {
-    if (!Number.isNaN(tempNumber)) {
-      if (!Number.isInteger(Number(tempNumber))) {
-        throw new Error('[ERROR] 횟수는 정수로 입력해야 합니다.');
-      }
-      if (tempNumber < 1) {
-        throw new Error('[ERROR] 횟수는 1번 이상이어야 합니다.');
-      }
-      this.number = tempNumber;
-    }
-  }
-
-  moveCars() {
-    for (let i = 0; i < this.nameArray.length; i += 1) {
-      const randomNumber = Random.pickNumberInRange(0, 9);
-
-      if (randomNumber >= 4) {
-        const beforeValue = this.nameMap.get(this.nameArray[i]);
-        this.nameMap.set(this.nameArray[i], `${beforeValue}-`);
-      }
-      Console.print(
-        `${this.nameArray[i]} : ${this.nameMap.get(this.nameArray[i])}`,
-      );
-    }
-    Console.print('\n');
-  }
-
-  findWinner() {
-    const winner = [''];
-    let max = 0;
-    for (let [key, value] of this.nameMap) {
-      if (value.length === max) {
-        winner.push(key);
-        max = value.length;
-      }
-      if (value.length > max) {
-        winner.pop();
-        winner.push(key);
-        max = value.length;
-      }
-    }
-    return winner.join(',');
-  }
-
   async run() {
-    await this.getCarNames();
-    this.validateCarNames();
-    await this.getNumber();
-    Console.print('실행 결과');
-    while (this.number) {
-      this.moveCars();
-      this.number -= 1;
+    const carModel = new CarModel();
+    const view = new View();
+    const gameController = new GameController(carModel, view);
+
+    try {
+      await gameController.startRace();
+    } catch (error) {
+      throw error;
     }
-    const winner = this.findWinner();
-    Console.print(`최종 우승자 : ${winner}`);
   }
 }
 
