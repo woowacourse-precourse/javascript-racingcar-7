@@ -18,10 +18,10 @@ class RacingCalc {
       }
       this.output.printGap();
     }
-    this.printWinner();
+    this.calcMaxScoreWinner();
   }
 
-  printWinner() {
+  calcMaxScoreWinner() {
     let maxScore = Math.max(...this.moveCntArr);
     let winnerIdx = this.moveCntArr.indexOf(maxScore);
     const winner = [];
