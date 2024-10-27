@@ -13,7 +13,7 @@ class Car {
     }
 
     printDistance() {
-        let result = this.name + ': ' + this.currDistance;
+        let result = `${this.name} : ${this.currDistance}`;
         Console.print(result);
     }
 
