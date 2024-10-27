@@ -127,6 +127,18 @@ describe('구현할 기능 목록 테스트 코드 작성', () => {
 
     expect(winners).toEqual(expectedResult);
   });
+
+  test('최종 우승자의 이름을 출력', () => {
+    const input = ['woni', 'jun'];
+    const expectedResult = '최종 우승자 : woni, jun';
+    const logSpy = getLogSpy();
+
+    const app = new App();
+
+    app.printWinner(input);
+
+    expect(logSpy).toMatch(expectedResult);
+  });
 });
 
 describe('자동차 경주', () => {
