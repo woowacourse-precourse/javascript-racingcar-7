@@ -6,7 +6,6 @@ import Game from './Game.js';
 import * as validateCarNameModule from '../Validator/validateCarName.js';
 import * as validateAttemptsModule from '../Validator/validateAttempts.js';
 import { ERROR_PREFIX, GAME_MESSAGE } from '../constants/messages';
-import throwError from '../util/errorThrower';
 
 describe('Game 클래스', () => {
   let user;

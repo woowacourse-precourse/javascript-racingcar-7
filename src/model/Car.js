@@ -1,5 +1,3 @@
-import random from '../util/random.js';
-
 class Car {
   constructor(name) {
     this.name = name;
