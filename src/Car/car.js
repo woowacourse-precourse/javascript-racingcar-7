@@ -14,7 +14,7 @@ class Car {
 
   // 현재 위치 출력
   viewPosition() {
-    return `${this.name}: ${'-'.repeat(this.position)}`;
+    return `${this.name} : ${'-'.repeat(this.position)}`;
   }
 }
 
