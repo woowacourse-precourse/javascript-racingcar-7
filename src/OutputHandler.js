@@ -11,8 +11,8 @@ class OutputHandler {
 
   printOneRoundResult(roundResult) {
     roundResult.forEach(car => {
-      const dashCounts = '-'.repeat(car.moveCount);
-      Console.print(`${car.name} : ${dashCounts}`);
+      const dashes = '-'.repeat(car.moveCount);
+      Console.print(`${car.name} : ${dashes}`);
     })
     Console.print('');
   }
