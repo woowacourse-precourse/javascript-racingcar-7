@@ -118,3 +118,4 @@ MVC 패턴을 통한 기능 구현을 목표했습니다.
 - validator.js에서 기존에 하드코딩되었던 에러 메시지들을 constants.js의 ERROR_MESSAGES로 대체
 - inputView.js에서 기존에 하드코딩되었던 입력 메시지들을 constants.js의 INPUT_MESSAGES로 대체
 - outputView.js에서 기존에 하드코딩되었던 입력 메시지들을 constants.js의 OUTPUT_MESSAGES로 대체
+- 테스트 케이스 상수 CAR_NAME_TEST_CASES, GAME_ROUNDS_TEXT_CASES의 이름들을 ERROR_MESSAGES 값들과 일치 시켜서 혼란을 방지
