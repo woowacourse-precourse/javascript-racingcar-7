@@ -6,7 +6,7 @@
   - [x] 이름 `,`로 구분하기
   - [x] 이름 5자 이하로만 가능하게 하기
 - [x] 시도할 횟수 입력받기
-  - [ ] 횟수 양수인지 확인
+  - [x] 횟수 양수인지 확인
 - [x] 자동차마다 0에서 9 사이의 무작위 값 받기
 - [x] 4 이상이면 전진시키기
 - [x] 실행 결과 출력
@@ -26,16 +26,19 @@
     try{
       let input = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
       input = input.split(',').map(car => car.trim());
-
+      // 이름 길이 확인
       this.checkNameLength(input);
 
+      // 배열을 객체로 변환해 저장
       this.carNameObj = input.reduce((obj, key) => {
         obj[key] = 0;
         return obj;
       },{});
 
-      const num = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
-      this.count = Number(num);
+      let inputCount = await Console.readLineAsync("\n시도할 횟수는 몇 회인가요?\n");
+      inputCount = Number(inputCount);
+      this.checkCount(inputCount);
+      this.count = inputCount;
     }catch(error){
       Console.print("ERROR: 입력 오류");
       throw new Error("[ERROR]");
@@ -48,7 +51,7 @@
 - 분리한 이름 문자열을 `map()`을 사용해 돌면서 `trim()`으로 이름 앞뒤 공백을 제거하여 다시 `input`에 저장하였다.
 - input값은 `checkNameLength(input)` 메서드를 사용해 자동차 이름이 5자 이하인지 확인하였다.
 - 확인 후 `reduce` 메서드를 사용해 배열을 순회하며 자동차 이름을 key로, 전진 횟수를 value로 하는 obj를 만들어 `this.carNameObj`에 저장하였다.
-- 입력받은 횟수는 `Number()`를 사용해 숫자로 변환한 후 `this.count`에 저장하였다.
+- 입력받은 횟수는 `Number()`를 사용해 숫자로 변환한 후 `inputCount`에 재저장한 후 `checkCount()` 메서드를 사용해 양수인지 확인 한 후 `this.count`에 저장하였다.
 
 ### 이름 5자 이하만 가능하게 하기
 
@@ -64,6 +67,20 @@
 ```
 
 - `forEach()`를 사용하여 `input` 배열을 순회하며 자동차의 이름이 5자 초과이면 ERROR를 발생시키고 프로그램을 종료하였다.
+
+### 입력한 시도 횟수가 양수인지 확인
+
+```
+  checkCount(inputCount){
+    if(isNaN(inputCount) || inputCount <= 0){
+      Console.print("ERROR: 횟수 입력 오류");
+      throw new Error("[ERROR]");
+    }
+  }
+```
+
+- `inputCount`를 매개변수로 입력받아 양수인지 확인하는 메서드이다.
+- `isNaN()`을 사용하여 숫자인지 확인하고 0보다 작으면 에러를 발생시키고 프로그램을 종료하였다.
 
 ### 자동차마다 0에서 9 사이의 무작위 값 받기 & 4 이상이면 전진
 
@@ -139,3 +156,5 @@
   - maxKeys 배열에 추가한다.
 - maxKeys에 저장된 값들을 `join(', )` 메서드를 사용해 배열의 값들을 `,`로 묶어 출력한다.
 - maxKeys 배열이 비어있으면 최종 우승자가 없다는 메세지와 함께 에러를 발생시킨다.
+
+## 실행 결과
