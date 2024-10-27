@@ -3,13 +3,16 @@ import Validator from "./Validator.js";
 import RacingCars from "../model/RacingCars.js";
 
 class CarRace {
-  constructor() {
-    this.racingCars = new RacingCars();
+  constructor() {}
+
+  async init() {
+    const racingCars = new RacingCars();
+    await this.registerRacingCars(racingCars);
   }
 
   async getCarNamesFromUserInput() {
     const input = await InputView.readCarNames();
-    const carList = this.parseCarNames(input);
+    return this.parseCarNames(input);
   }
 
   parseCarNames(input) {
@@ -21,8 +24,9 @@ class CarRace {
     carList.map((carName) => Validator.checkName(carName));
   }
 
-  registerRacingCars(carList) {
-    carList.forEach((carName) => this.racingCars.registerCar(carName));
+  async registerRacingCars(racingCars) {
+    const carList = await this.getCarNamesFromUserInput();
+    carList.forEach((carName) => racingCars.registerCar(carName));
   }
 }
 
