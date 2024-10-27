@@ -1,4 +1,4 @@
-import { Console } from '@woowacourse/mission-utils';
+import { MissionUtils, Console } from '@woowacourse/mission-utils';
 import RacingCars from './RacingCar.js';
 
 class App {
@@ -25,9 +25,20 @@ class App {
     });
   }
 
+  getRandomNumber() {
+    return MissionUtils.Random.pickNumberInRange(0, 9);
+  }
+
+  raceSingleRound() {
+    this.carsAndPositions.forEach((_, index) => {
+      const randomNumber = this.getRandomNumber();
+    });
+  }
+
   startRacing(userCarInput, tryCount) {
     const cars = userCarInput.split(',');
     this.createCarsList(cars);
+    this.raceSingleRound();
   }
 
   async run() {
