@@ -33,7 +33,14 @@ class App {
         if (randomNumber >= 4) {
           car.move();
         }
+
+        // 각 자동차 위치 출력
+        const distanceString = new Array(car.movedDistance).fill('-').join('');
+        Console.print(`${car.name} : ${distanceString}`);
       });
+
+      // 줄 구분용 빈칸
+      Console.print('');
     }
   }
 }
