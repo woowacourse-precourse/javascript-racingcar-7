@@ -10,6 +10,18 @@ class View {
     Validation.validateCarNames(carNames);
     return carNames;
   }
+
+  static async readRepeatTime() {
+    const repeatTime = await Console.readLineAsync(
+      "시도할 횟수는 몇 회인가요?\n"
+    );
+    Validation.validateRepeatTime(repeatTime);
+    return parseInt(repeatTime, 10);
+  }
+
+  static print(message) {
+    Console.print(message);
+  }
 }
 
 export default View;

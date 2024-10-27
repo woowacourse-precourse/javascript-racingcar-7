@@ -45,6 +45,16 @@ class Validation {
   static isDuplicate(names) {
     return new Set(names).size !== names.length;
   }
+
+  static validateRepeatTime(repeatTime) {
+    if (this.isNotNumeric(repeatTime) || repeatTime <= 0) {
+      this.throwError(ERROR.tryCount);
+    }
+  }
+
+  static isNotNumeric(value) {
+    return isNaN(value);
+  }
 }
 
 export default Validation;
