@@ -24,10 +24,6 @@ class Car {
     const currentDistance = this.#distance;
     return { name, distance: currentDistance };
   }
-
-  static findFarthest(distanceA, distanceB) {
-    return distanceB - distanceA;
-  }
 }
 
 export default Car;
