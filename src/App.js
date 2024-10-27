@@ -6,12 +6,12 @@ import validateCarName from "./validator/carValidator.js";
 import validateCount from "./validator/countValidator.js";
 import findMaxMoveCars from "./utils/findMaxMoveCars.js";
 import printWinner from "./utils/printWinner.js";
-import emptyInput from "./validator/inputValidator.js";
+import validateEmptyInput from "./validator/inputValidator.js";
 
 class App {
   async run() {
     const carNamesInput = await inputCarNames();
-    emptyInput(carNamesInput);
+    validateEmptyInput(carNamesInput);
     const carNames = parseCarNames(carNamesInput);
     const cars = carNames.map((name) => {
       validateCarName(name);
