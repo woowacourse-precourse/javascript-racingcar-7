@@ -80,20 +80,26 @@ describe('자동차 경주', () => {
   });
 
   test('매 시도에서 실행 결과를 출력한다.', () => {
-    const moveCntPerCar = { pobi: 1, woni: 2 };
+    const result = [
+      { pobi: 1, woni: 2 },
+      { pobi: 2, woni: 3 },
+    ];
 
-    const resultPrinter = new ResultPrinter(moveCntPerCar);
+    const resultPrinter = new ResultPrinter(result);
     const logSpy = getLogSpy();
-    resultPrinter.printAttemptResult();
+    resultPrinter.printTryResult();
 
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining('pobi : -'));
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining('woni : --'));
+
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining('pobi : --'));
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining('woni : ---'));
   });
 
   test('최종 우승자를 출력한다.', () => {
-    const moveCntPerCar = { pobi: 1, woni: 2 };
+    const result = [{ pobi: 1, woni: 2 }];
 
-    const resultPrinter = new ResultPrinter(moveCntPerCar);
+    const resultPrinter = new ResultPrinter(result);
     const logSpy = getLogSpy();
     resultPrinter.printWinner();
 
@@ -101,9 +107,9 @@ describe('자동차 경주', () => {
   });
 
   test('우승자가 여러 명일 경우 쉼표(,)를 이용하여 구분한다.', () => {
-    const moveCntPerCar = { pobi: 2, woni: 2 };
+    const result = [{ pobi: 2, woni: 2 }];
 
-    const resultPrinter = new ResultPrinter(moveCntPerCar);
+    const resultPrinter = new ResultPrinter(result);
     const logSpy = getLogSpy();
     resultPrinter.printWinner();
 
