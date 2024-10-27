@@ -1,12 +1,11 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 
 class App {
   async run() {
     const playerNames = await this.getPlayerNames();
     const trials = await this.getTrials();
 
-    console.log(playerNames);
-    console.log(trials);
+    this.racingGame(playerNames, trials);
   }
 
   async getPlayerNames() {
@@ -22,6 +21,21 @@ class App {
     const input = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
 
     return input;
+  }
+
+  racingGame(playerNames, trials) {
+    const players = playerNames.map((name) => ({ name, position: 0 }));
+
+    Console.print("\n실행 결과");
+    for (var i = 0; i < trials; i++) {
+      players.forEach((player) => {
+        if (Random.pickNumberInRange(0, 9) >= 4) {
+          player.position += 1;
+        }
+        Console.print(`${player.name} : ${"-".repeat(player.position)}`);
+      });
+      Console.print("");
+    }
   }
 }
 
