@@ -22,7 +22,7 @@ export function validateDuplicateCarName(carsInput) {
 }
 
 export function validateTryCountType(tryCount) {
-  if (typeof tryCount === isNaN) {
+  if (isNaN(tryCount)) {
     throw new Error('[ERROR] 경주 시도 횟수를 숫자로 입력해주세요.');
   }
 }
