@@ -31,7 +31,7 @@ class RacingGame {
     }
 
     determineWinner(cars) {
-        let winner = [];
+        let winners = [];
         let maxPosition = 0;
 
         for (let i = 0; i < cars.length; i++) {
@@ -40,15 +40,15 @@ class RacingGame {
                 //가장 멀리 간 곳의 위치 갱신
                 maxPosition = cars[i].position;
                 //승리자 배열 초기화
-                winner.splice(0);
+                winners.splice(0);
                 //승리자 배열에 가장 멀리 간 차의 이름 추가
-                winner.push(cars[i].name);
+                winners.push(cars[i].name);
             } else if (cars[i].position === maxPosition) {
                 //공동 우승자의 경우 차의 이름 추가
-                winner.push(cars[i].name);
+                winners.push(cars[i].name);
             }
         }
-        return winner;
+        return winners;
     }
 
     printWinner(cars) {

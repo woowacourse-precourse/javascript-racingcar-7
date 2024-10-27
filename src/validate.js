@@ -5,7 +5,7 @@ export function isValidateCarNames(carNames) {
 
     try {
         for (let i = 0; i < carNames.length; i++) {
-            if (carNames[i].length == 0 || carNames[i].length > MAX_NAME_LENGTH) {
+            if (carNames[i].length === 0 || carNames[i].length > MAX_NAME_LENGTH) {
                 throw new Error('[ERROR] 자동차 이름은 5자 이하만 가능합니다.');
             }
         }
@@ -15,7 +15,7 @@ export function isValidateCarNames(carNames) {
             throw new Error('[ERROR] 중복된 이름이 있습니다.');
         }
 
-        return carNames;
+        return true;
 
     } catch (error) {
         throw error;

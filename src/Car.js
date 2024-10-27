@@ -8,13 +8,13 @@ class Car {
 
     move() {
         if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) {
-            this.position++;
+            this.position += 1;
         }
         this.printPosition();
     }
 
     printPosition() {
-        let trace = '-'.repeat(this.position);
+        const trace = '-'.repeat(this.position);
         MissionUtils.Console.print(`${this.name} : ${trace}`);
     }
 }
