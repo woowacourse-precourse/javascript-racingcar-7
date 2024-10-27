@@ -5,11 +5,10 @@ class App {
   async run() {
     const carNames = await this.getCarNames();
     this.checkCarNameLength(carNames);
-    Console.print(carNames);
-
     const attemptCount = await this.getAttemptCount();
     this.initializeCars(carNames);
     await this.startRace(attemptCount);
+    this.declareWinners();
   }
 
   async getCarNames() {
@@ -53,8 +52,10 @@ class App {
   }
 
   async startRace(attemptCount) {
+    Console.print("\n실행결과");
     for (let i = 0; i < attemptCount; i++) {
       this.moveCars();
+      this.printCurrentRoundResults();
     }
   }
 
@@ -65,6 +66,31 @@ class App {
         car.raceDistance += 1;
       }
     });
+  }
+
+  printCurrentRoundResults() {
+    this.cars.forEach((car) => {
+      const progress = "-".repeat(car.raceDistance);
+      Console.print(`${car.name} : ${progress}`);
+    });
+    Console.print("");
+  }
+
+  declareWinners() {
+    const winners = [];
+    let maxDistance = -1;
+
+    this.cars.forEach((car) => {
+      if (car.raceDistance > maxDistance) {
+        maxDistance = car.raceDistance;
+        winners.length = 0;
+        winners.push(car.name);
+      } else if (car.raceDistance === maxDistance) {
+        winners.push(car.name);
+      }
+    });
+
+    Console.print(`최종 우승자 : ${winners.join(", ")}`);
   }
 }
 
