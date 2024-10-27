@@ -1,4 +1,4 @@
-import RacingGame from './game/Game.js';
+import RacingGame from './game/RacingGame.js';
 
 class App {
   async run() {
