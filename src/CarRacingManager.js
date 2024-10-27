@@ -10,19 +10,17 @@ class CarRacingManager {
   async startGame() {
     try {
       const carNames = await this.inputHandler.readCarsName();
-      const attemptCounts = await this.inputHandler.readAttemptCount();
-
+      const attemptCount = await this.inputHandler.readAttemptCount();
       this.carRacingGame = new CarRacingGame(carNames);
       this.outputHandler.printResultMessage();
 
-      for(let i = 0; i < attemptCounts; i++) {
+      for (let i = 0; i < attemptCount; i++) {
         const roundResult = this.carRacingGame.playOneRound();
         this.outputHandler.printOneRoundResult(roundResult);
       }
 
       const winners = this.carRacingGame.getWinners();
       this.outputHandler.printFinalWinners(winners);
-
     } catch (error) {
       this.outputHandler.printErrorMessage(error.message);
       throw error;
