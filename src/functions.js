@@ -54,10 +54,10 @@ export function goRacing(carClassList){
 }
 
 function printResult(carClassList){
-    Console.print("\n실행 결과")
     carClassList.forEach((carClass)=>{
         Console.print(carClass.getName() + " : " + "-".repeat(carClass.getValue()));
     })
+    Console.print("");
 }
 
 function changeMaxValue(carClass){
@@ -68,5 +68,15 @@ function changeMaxValue(carClass){
 
 export function findLastWinner(carClassList){
     return carClassList.filter((carClass)=> carClass.getValue() === Car.getMax());
-    
+}
+
+export function printLastWinner(winnerList){
+    let result = "최종 우승자 : ";
+    winnerList.forEach((winner, index)=>{
+        result += winner.getName();
+        if(index !== winnerList.length-1){
+            result += ", ";
+        }
+    })
+    Console.print(result);
 }

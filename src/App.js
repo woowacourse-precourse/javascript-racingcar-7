@@ -1,5 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
-import { splitComma, isSameCar, makeCarClassList, goRacing, findLastWinner } from "./functions.js";
+import { splitComma, isSameCar, makeCarClassList, goRacing, findLastWinner, printLastWinner } from "./functions.js";
 import Car from "./Car.js";
 
 class App {
@@ -10,13 +10,13 @@ class App {
     const carClassList = makeCarClassList(carList);
     const ATTEMPTS = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
 
+    Console.print("\n실행 결과")
     for(let i=0; i<ATTEMPTS; i++){
       goRacing(carClassList);
     }
 
     const lastWinners = findLastWinner(carClassList);
-
-    Console.print(lastWinners);
+    printLastWinner(lastWinners);
   }
 }
 
