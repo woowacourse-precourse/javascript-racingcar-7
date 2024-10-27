@@ -1,10 +1,12 @@
 import { Console, Random } from "@woowacourse/mission-utils";
+import { carNameHandleError, moveNumberHandleError } from "./handleError.js";
+import { ADVANCE_THRESHOLD, ERROR_MESSAGES } from "./constants.js";
 
 const getInput = async (inputMessage) => {
   try {
     return await Console.readLineAsync(inputMessage);
   } catch (error) {
-    throw new Error("입력에 에러가 발생했습니다.");
+    throw new Error(ERROR_MESSAGES.INPUT_ERROR);
   }
 };
 
@@ -15,9 +17,6 @@ const createCarState = (carsName) => {
     .filter((carName) => carName.length !== 0)
     .map((carName) => ({ carName, distance: "" }));
 
-  if (countRacers(carState) > 25)
-    throw new Error("자동차가 너무 많습니다. 25대까지 참여 가능합니다.");
-
   return carState;
 };
 
@@ -25,7 +24,7 @@ const updateCarState = (carState, noWhitespaceNumber) => {
   for (let i = 0; i < noWhitespaceNumber; i++) {
     carState.forEach((car) => {
       const advanceCondition = Random.pickNumberInRange(0, 9);
-      if (advanceCondition >= 4) {
+      if (advanceCondition >= ADVANCE_THRESHOLD) {
         car.distance += "-";
       }
     });
@@ -87,40 +86,15 @@ class App {
       const carsName = await getInput(
         "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
       );
-      const carNameLengthLimit = carsName
-        .split(",")
-        .every((carName) => carName.trim().length <= 5);
-
-      if (!carNameLengthLimit)
-        throw new Error("자동차 이름은 5자 이하만 가능합니다.");
-
-      if (carsName.trim().length === 0)
-        throw new Error("자동차 이름을 한 대 이상 입력해주세요.");
-
       const carState = createCarState(carsName);
+      carNameHandleError(carsName, countRacers(carState));
 
       const movesNumber = await getInput("시도할 횟수는 몇 회인가요?\n");
       const noWhitespaceNumber = removeWhitespace(movesNumber);
-
-      if (isNaN(noWhitespaceNumber))
-        throw new Error("시도할 횟수는 숫자만 입력이 가능합니다.");
-
-      if (
-        !Number.isInteger(Number(noWhitespaceNumber)) ||
-        noWhitespaceNumber < 0
-      )
-        throw new Error("시도할 횟수는 양의 정수만 입력이 가능합니다.");
-
-      if (noWhitespaceNumber > Number.MAX_SAFE_INTEGER)
-        throw new Error("시도할 횟수가 너무 큽니다.");
-
-      if (noWhitespaceNumber.trim().length === 0)
-        throw new Error("시도할 횟수를 입력해주세요.");
+      moveNumberHandleError(noWhitespaceNumber);
 
       Console.print("\n실행 결과");
-
       updateCarState(carState, noWhitespaceNumber);
-
       printWinners(carState);
     } catch (error) {
       throw new Error(`[ERROR] ${error.message}`);
