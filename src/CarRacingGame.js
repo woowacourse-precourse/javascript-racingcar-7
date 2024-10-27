@@ -13,6 +13,13 @@ class CarRacingGame {
 
     return this.cars.map(car => ({name: car.name, moveCount: car.moveCount}));
   }
+
+  getWinners() {
+    const maxMoveCount = Math.max(...this.cars.map(car => car.moveCount));
+    return this.cars
+    .filter(car => car.moveCount === maxMoveCount)
+    .map(car => car.name);
+  }
 }
 
 export default CarRacingGame;

@@ -20,6 +20,7 @@ class CarRacingManager {
         this.outputHandler.printOneRoundResult(roundResult);
       }
 
+      const winners = this.carRacingGame.getWinners();
 
     } catch (error) {
       this.outputHandler.printErrorMessage(error.message);
