@@ -1,18 +1,19 @@
 import RaceManager from "./RaceManager.js";
 import { Console } from "@woowacourse/mission-utils";
-
+import { OUTPUT_MESSAGES } from "./constants/gameMessage.js";
+import { CONDITIONS } from "./constants/conditon.js";
 class RacingGame {
   constructor(carNames) {
     this.carName = carNames.map((carName) => new RaceManager(carName));
   }
 
   play(roundCount) {
-    Console.print("\n실행결과");
+    Console.print(OUTPUT_MESSAGES.RESULT_MESSAGE);
 
-    for (let round = 0; round < roundCount; round++) {
+    for (let round = CONDITIONS.INITIAL_ROUND; round < roundCount; round++) {
       this.playOneRound();
       this.printRoundResult();
-      Console.print("\n");
+      Console.print(CONDITIONS.NEW_LINE);
     }
     this.showWinners();
   }
@@ -42,7 +43,7 @@ class RacingGame {
   showWinners() {
     const winners = this.WinnerNames();
     const winnerNames = winners.map((car) => car.name).join(", ");
-    Console.print(`최종 우승자 : ${winnerNames}`);
+    Console.print(`${OUTPUT_MESSAGES.WINNER_MESSAGE}${winnerNames}`);
   }
 }
 export default RacingGame;
