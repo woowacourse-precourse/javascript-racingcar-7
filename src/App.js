@@ -81,13 +81,16 @@ class CarRace {
         this.printResultByRound();
     }
 
-    startRace() {
-        MissionUtils.Console.print("\n실행 결과");
-
+    startRounds() {
         Array.from({ length: this.#round }).forEach(() => {
             this.startRound();
             MissionUtils.Console.print("");
         });
+    }
+
+    startRace() {
+        MissionUtils.Console.print("\n실행 결과");
+        this.startRounds();
     }
 
     printResultByRound() {
