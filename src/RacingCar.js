@@ -18,7 +18,6 @@ class RacingCar {
 		this.carNames = [];
 		this.tryCount = 0;
 		this.carNamesAndNumberMap = [];
-		this.carNamesAndDashMap = [];
 	}
 
 	async runRacingCar() {
@@ -37,7 +36,6 @@ class RacingCar {
 			await validateMinCount(tryCountValue);
 
 			this.carNamesAndNumberMap = await this.setCarNumberMap();
-			this.carNamesAndDashMap = await this.changeNumbersToDash();
 
 			this.printRunResults();
 			const winners = await this.calculateWinners();
@@ -66,45 +64,37 @@ class RacingCar {
 		return carNamesAndNumberMap;
 	}
 
-	async changeNumbersToDash() {
-		const carNamesAndDashMap = this.carNamesAndNumberMap.map(
-			({ carName, carNumbers }) => {
-				const carDashes = carNumbers.map((number) => (number >= 4 ? "-" : ""));
-				return { carName, carDashes };
-			}
+	printRunResults() {
+		const maxLength = Math.max(
+			...this.carNamesAndNumberMap.map((car) => car.carNumbers.length)
 		);
 
-		return carNamesAndDashMap;
-	}
-
-	printRunResults() {
-		const totalResults = Array.from({ length: this.tryCount }, (_, i) => {
-			return this.carNamesAndDashMap
-				.map(({ carName, carDashes }) => {
-					const dashes = carDashes.slice(0, i + 1).join("");
-					return `${carName} : ${dashes}`;
-				})
-				.join("\n");
-		});
 		printOutput("\n실행 결과");
-		totalResults.forEach((result) => {
-			printOutput(result);
+
+		for (let i = 0; i < maxLength; i++) {
+			this.carNamesAndNumberMap.forEach((car) => {
+				const dashes = car.carNumbers
+					.slice(0, i + 1)
+					.filter((num) => num >= 4)
+					.map(() => "-")
+					.join("");
+				printOutput(`${car.carName} : ${dashes}`);
+			});
 			printOutput("");
-		});
+		}
 	}
 
 	async calculateWinners() {
-		const dashCounts = [];
-		let maxDashCount = 0;
+		const dashCounts = this.carNamesAndNumberMap.map(
+			({ carName, carNumbers }) => {
+				const dashCount = carNumbers.filter((dash) => dash >= 4).length;
+				return { carName, dashCount };
+			}
+		);
 
-		this.carNamesAndDashMap.forEach(({ carName, carDashes }) => {
-			const dashCount = carDashes.reduce(
-				(count, dash) => count + (dash === "-" ? 1 : 0),
-				0
-			);
-			dashCounts.push({ carName, dashCount });
-			maxDashCount = Math.max(maxDashCount, dashCount);
-		});
+		const maxDashCount = Math.max(
+			...dashCounts.map(({ dashCount }) => dashCount)
+		);
 
 		return dashCounts
 			.filter(({ dashCount }) => dashCount === maxDashCount)
