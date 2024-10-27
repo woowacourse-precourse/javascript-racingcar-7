@@ -58,7 +58,7 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 
-  test("경주할 자동차에 쉼표가 포함되지 않는 경우", async () => {
+  test("경주할 자동차에 쉼표를 구분자로 사용하지 않은 경우", async () => {
     // given
     const inputs = ["pobi; javaji"];
     mockQuestions(inputs);
