@@ -44,6 +44,8 @@ class App {
           i = -1;
         }
       }
+
+      MissionUtils.Console.print(`최종 우승자 : ${winner.join(', ')}`);
     } catch {
       MissionUtils.Console.print('[ERROR]');
       throw new Error('[ERROR]');
