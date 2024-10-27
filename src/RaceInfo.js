@@ -12,7 +12,13 @@ class RaceInfo {
         if (carNameList.length < 1) throw new Error(INPUT_ERROR);
 
         const trimedCarNames = carNameList.map((carName) => carName.trim());
-        this.#carNames = trimedCarNames;
+
+        const uniqueCarNames = new Set(trimedCarNames);
+        const uniqueCarNamesList = [...uniqueCarNames];
+        if (trimedCarNames.length !== uniqueCarNamesList.length)
+            throw new Error(INPUT_ERROR);
+
+        this.#carNames = uniqueCarNamesList;
     }
     get carNames() {
         return this.#carNames;
