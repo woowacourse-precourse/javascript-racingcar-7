@@ -6,9 +6,9 @@
   - [x] 이름 `,`로 구분하기
   - [x] 이름 5자 이하로만 가능하게 하기
 - [x] 시도할 횟수 입력받기
-- [ ] 자동차마다 0에서 9 사이의 무작위 값 받기
-- [ ] 4 이상이면 전진시키기
-- [ ] 실행 결과 출력
+- [x] 자동차마다 0에서 9 사이의 무작위 값 받기
+- [x] 4 이상이면 전진시키기
+- [x] 실행 결과 출력
 - [ ] 최종 우승자 출력
   - [ ] 2명 이상이면 `,`로 구분
 
@@ -79,3 +79,20 @@
 
 - `forEach()`를 사용하여 `this.carNameObj`의 key 값을 순회하며 각 key마다 `MissionUtils.Random.pickNumberInRange(0,9)`로 0에서 9 사이의 값을 무작위로 받게 하였다.
 - 랜덤값이 4 이상이면 해당 key의 value값을 1 증가시켰다.
+
+### 경주 게임 실행 결과 출력
+
+```
+  printRaceResult(){
+    Object.keys(this.carNameObj).forEach(key => {
+      Console.print(key + " : ");
+      for(let i = 0; i < this.carNameObj[key]; i++){
+        Console.print("-");
+      }
+      Console.print("\n");
+    });
+  }
+```
+
+- `forEach()`를 사용하여 `this.carNameObj`의 key 값을 순회하며 실행 결과를 출력
+- key값(자동차 이름)과 value값(이동 거리) 만큼 "-"를 출력한다.
