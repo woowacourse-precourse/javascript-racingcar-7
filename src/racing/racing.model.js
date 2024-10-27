@@ -69,11 +69,23 @@ export class RacingModel {
   /**
    *
    * @param {string} carNames
+   * @returns {Array<string>}
+   */
+  #parseCarNames(carNames) {
+    return carNames
+      .split(',')
+      .filter((carName) => carName !== '')
+      .map((carName) => carName.trim());
+  }
+
+  /**
+   *
+   * @param {string} carNames
    * @throws {Error}
    */
   #validateCars(carNames) {
     this.#validateInput(carNames);
-    this.#validateCarNames(carNames.split(','));
+    this.#validateCarNames(this.#parseCarNames(carNames));
   }
 
   /**
@@ -92,7 +104,7 @@ export class RacingModel {
   setCars(carNames) {
     this.#validateCars(carNames);
 
-    this.#cars = this.#createCars(carNames.split(','));
+    this.#cars = this.#createCars(this.#parseCarNames(carNames));
   }
 
   /**
