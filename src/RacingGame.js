@@ -1,3 +1,6 @@
+import { Console } from "@woowacourse/mission-utils";
+import { Car } from "./Car";
+
 export class RacingGame {
   constructor(CARNAMES, ROUNDS) {
     this.cars = CARNAMES.map((carName) => new Car(carName));
@@ -20,9 +23,9 @@ export class RacingGame {
   // 각 자동차의 위치 출력
   printCarPosition() {
     this.cars.forEach((car) => {
-      console.print(`${car.name} : ${"-".repeat(car.position)}`);
+      Console.print(`${car.name} : ${"-".repeat(car.position)}`);
     });
-    console.print("\n");
+    Console.print("\n");
   }
 
   // 우승자를 출력하는 로직
@@ -32,6 +35,6 @@ export class RacingGame {
       .filter((car) => car.position === MAXPOSITION)
       .map((car) => car.name);
 
-    console.print(`우승자: ${WINNERS.join(", ")}`);
+    Console.print(`우승자: ${WINNERS.join(", ")}`);
   }
 }
