@@ -93,3 +93,26 @@ describe("App 추가 테스트", () => {
     await expect(app.run()).rejects.toThrow("[ERROR]");});
 });
 
+describe("error 추가 테스트", () => {
+  test("각 이름의 길이가 5자를 초과 시 에러 발생", () => {
+    const carNames = ["ahhyun"];
+    expect(() => validateCarNames(carNames)).toThrow(ERROR_MESSAGE.NAME_LENGTH_EXCEED);
+  });
+
+  test("카운트가 숫자가 아닐 경우 에러 발생", () => {
+    expect(() => validateCount("abc")).toThrow(ERROR_MESSAGE.NOT_NUMBER);
+  });
+
+  test("카운트가 정수가 아닌 경우 에러 발생", () => {
+    expect(() => validateCount("3.5")).toThrow(ERROR_MESSAGE.NOT_INTEGER);
+  });
+
+  test("카운트가 0인 경우 에러 발생", () => {
+    expect(() => validateCount(0)).toThrow(ERROR_MESSAGE.NUM_IS_ZERO);
+  });
+
+  test("카운트가 음수인 경우 에러 발생", () => {
+    expect(() => validateCount(-1)).toThrow(ERROR_MESSAGE.NEGATIVE_NUMBER);
+  });
+  
+});
