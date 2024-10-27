@@ -19,6 +19,10 @@ class RaceManager {
       this.position++;
     }
   }
+
+  printRacingState() {
+    return "-".repeat(this.position);
+  }
 }
 
 export default RaceManager;
