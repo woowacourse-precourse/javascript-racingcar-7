@@ -8,7 +8,10 @@ const validateCarName = (input) => {
   }
 
   if (!regex.test(input)) {
-    throw new Error('[ERROR] 자동차 이름에는 영어, 숫자만 사용할 수 있어요.');
+    throw new Error(
+      '[ERROR] 자동차 이름에는 공백을 제외한 영어, 숫자만 사용할 수 있어요.'
+    );
+  }
 
   if (numberName === 0) {
     throw new Error('[ERROR] 자동차 이름에는 공백을 입력할 수 없어요.');
