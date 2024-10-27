@@ -84,5 +84,18 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 
+  test("시도할 횟수에 실수를 입력한 경우", async () => {
+    // given
+    const inputs = ["pobi,javai"];
+    mockQuestions(inputs);
+    const numbers = [3.5];
+    mockRandoms(numbers);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
 });
 
