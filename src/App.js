@@ -1,5 +1,11 @@
 import { MissionUtils, Console } from '@woowacourse/mission-utils';
 import RacingCars from './RacingCar.js';
+import {
+  validateEmptyInput,
+  validateCarNameLength,
+  validateDuplicateCarName,
+  validateTryCountType,
+} from './validation.js';
 
 class App {
   carsAndPositions = [];
@@ -70,9 +76,18 @@ class App {
     );
   }
 
+  validateUserInput(userCarInput, tryCount) {
+    const cars = userCarInput.split(',');
+    validateCarNameLength(cars);
+    validateEmptyInput(cars);
+    validateDuplicateCarName(cars);
+    validateTryCountType(tryCount);
+  }
+
   async run() {
     const userCarInput = await this.getCarNames();
     const tryCount = await this.getTryCount();
+    this.validateUserInput(userCarInput, tryCount);
     Console.print('\n실행결과');
     this.startRacing(userCarInput, tryCount);
     this.showRacingResult();
