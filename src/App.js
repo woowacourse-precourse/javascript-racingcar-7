@@ -21,7 +21,16 @@ class App {
     }
     return names;
   }
+  async getAttempts() {
+    const input = await MissionUtils.Console.readLineAsync("시도할 횟수는 몇회인가요?");
+    const attempts = Number(input);
+    if (isNaN(attempts) || attempts < 1) {
+      throw new Error("[ERROR] 시도 횟수는 1 이상의 숫자여야 합니다.");
+    }
+    return attempts;
+  }
 
+  
   
 }
 
