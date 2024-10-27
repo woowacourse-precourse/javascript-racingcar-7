@@ -2,9 +2,9 @@ import ErrorCode from "./datas/ErrorCode.js";
 
 class RacingCar {
 
-    constructor(name) {
+    constructor(name, distState = "") {
         this.setName(name);
-        this.distState = "";
+        this.distState = distState;
     }
 
     setName(name) {

@@ -14,7 +14,7 @@ class App {
         let tryNumber = await IOHandler.getInput(datas.INSTRUCTION_TRY_NUMBER)
 
         Console.print("\n실행결과")
-        carList = RacingCarUtils.race(carList, tryNumber);
+        carList = RacingCarUtils.race(RACingCarUtils.deepCopy(carList), tryNumber);
         const winners = RacingCarUtils.findWinners(carList).join(', ')
         Console.print("최종 우승자 : " + winners)
     }

@@ -31,6 +31,20 @@ class RacingCarUtils {
         return carList;
     }
 
+    static deepCopy(obj) {
+        if (obj === null || typeof obj !== "object") {
+            return obj;
+        }
+
+        if (Array.isArray(obj)) {
+            return obj.map(this.deepCopy);
+        }
+
+        const copy = new RacingCar(obj.name, obj.distState);
+
+        return copy
+    }
+
 }
 
 export default RacingCarUtils;
