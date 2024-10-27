@@ -17,4 +17,19 @@ class GameModel {
 		});
 		this.#currentRound++;
 	}
+
+	getMaxPosition() {
+		const positions = this.#cars.map((car) => car.getCurrentPosition());
+		return Math.max(...positions);
+	}
+
+	getCarsAtPosition(position) {
+		return this.#cars.filter((car) => car.getCurrentPosition() === position);
+	}
+
+	getWinnersName() {
+		const maxPosition = this.getMaxPosition();
+		const winnerCars = this.getCarsAtPosition(maxPosition);
+		return winnerCars.map((car) => car.getName());
+	}
 }
