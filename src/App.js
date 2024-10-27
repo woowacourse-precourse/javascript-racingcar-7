@@ -17,8 +17,8 @@ class App {
       const inputTryCnt =
         await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
       const tryCnt = Number(inputTryCnt);
-      if (tryCnt < 0)
-        throw new Error('이동을 시도할 횟수는 0보다 큰 값이어야 합니다.');
+
+      validator.tryCntValidate(tryCnt);
 
       Console.print('\n실행 결과');
       for (let i = 0; i < tryCnt; i++) {
