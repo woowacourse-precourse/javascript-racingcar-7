@@ -1,5 +1,9 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import App from '../src/App.js';
+import {
+  CAR_NAME_TEST_CASES,
+  GAME_ROUNDS_TEST_CASES,
+} from '../src/utils/constants.js';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -57,5 +61,63 @@ describe('자동차 경주', () => {
 
     // then
     await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  describe('자동차 이름 검증', () => {
+    test('자동차 이름이 빈 문자열인 경우 에러 발생', async () => {
+      // given
+      const { input, errorMessage } = CAR_NAME_TEST_CASES.EMPTY_NAME;
+      const carNames = input.join(',');
+      const rounds = GAME_ROUNDS_TEST_CASES.VALID_NUMBER.input;
+      mockQuestions([carNames, rounds]);
+
+      // when
+      const app = new App();
+
+      // then
+      await expect(app.run()).rejects.toThrow(errorMessage);
+    });
+
+    test('자동차 이름이 공백인 경우 에러 발생', async () => {
+      // given
+      const { input, errorMessage } = CAR_NAME_TEST_CASES.EMPTY_NAME_WITH_SPACE;
+      const carNames = input.join(',');
+      const rounds = GAME_ROUNDS_TEST_CASES.VALID_NUMBER.input;
+      mockQuestions([carNames, rounds]);
+
+      // when
+      const app = new App();
+
+      // then
+      await expect(app.run()).rejects.toThrow(errorMessage);
+    });
+
+    test('자동차 이름이 5자를 초과하는 경우 에러 발생', async () => {
+      // given
+      const { input, errorMessage } = CAR_NAME_TEST_CASES.NAME_TOO_LONG;
+      const carNames = input.join(',');
+      const rounds = GAME_ROUNDS_TEST_CASES.VALID_NUMBER.input;
+      mockQuestions([carNames, rounds]);
+
+      // when
+      const app = new App();
+
+      // then
+      await expect(app.run()).rejects.toThrow(errorMessage);
+    });
+
+    test('중복된 자동차 이름이 있는 경우 에러 발생', async () => {
+      // given
+      const { input, errorMessage } = CAR_NAME_TEST_CASES.DUPLICATE_NAME;
+      const carNames = input.join(',');
+      const rounds = GAME_ROUNDS_TEST_CASES.VALID_NUMBER.input;
+      mockQuestions([carNames, rounds]);
+
+      // when
+      const app = new App();
+
+      // then
+      await expect(app.run()).rejects.toThrow(errorMessage);
+    });
   });
 });
