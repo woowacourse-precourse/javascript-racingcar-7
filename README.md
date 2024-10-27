@@ -112,7 +112,7 @@ members.map((member) => member).join(','); // pobi,jason
   - - 📜 RacingCarError.js
   - 📂 models
   - - 📜 AttemptCounter.js
-  - - 📜 Car.js
+  - - 📜 Cars.js
   - - 📜 RacingGame.js
   - 📂 views
   - - 📜 InputView.js
