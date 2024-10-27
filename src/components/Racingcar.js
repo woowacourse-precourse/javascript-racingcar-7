@@ -44,11 +44,6 @@ export default class Racingcar {
   }
 
   rank() {
-    const firstPlayer = this.#calculateFirstPlayer();
-    return sortArr(firstPlayer);
-  }
-
-  #calculateFirstPlayer() {
     let firstPlayer = [];
     let max = 0;
     for (const [key, value] of Object.entries(this.#board)) {
@@ -56,12 +51,12 @@ export default class Racingcar {
         firstPlayer.splice(0);
         firstPlayer.push(key);
         max = value.length;
+        continue;
       }
       if (max === value.length) {
         firstPlayer.push(key);
       }
     }
-    const firstPlayerSet = new Set(firstPlayer);
-    return [...firstPlayerSet];
+    return firstPlayer;
   }
 }
