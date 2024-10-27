@@ -1,4 +1,7 @@
-import { Console } from "@woowacourse/mission-utils";
+import {
+  Console,
+  MissionUtils,
+} from "@woowacourse/mission-utils";
 
 function getCarArray(str) {
   return str.split(",").map((car) => car.trim());
@@ -22,7 +25,15 @@ function validateRacingCount(count) {
   }
 }
 
-function randomRacing() {}
+function randomRacing(car) {
+  const RANDOM_NUM =
+    MissionUtils.Random.pickNumberInRange(0, 9);
+
+  if (RANDOM_NUM >= 4) {
+    return car + "-";
+  }
+  return car + "";
+}
 
 function startRacing(array, count) {
   const UPDATE_ARRAY = array.map(
@@ -33,6 +44,7 @@ function startRacing(array, count) {
   UPDATE_ARRAY.forEach((element) => {
     if (currentCount >= count) return;
     randomRacing(element);
+    Console.print(element);
     currentCount++;
   });
 
@@ -51,7 +63,11 @@ class App {
         await Console.readLineAsync(
           "시도할 횟수는 몇 회인가요?\n"
         );
+
       validateRacingCount(RACING_COUNT);
+
+      Console.print("\n실행 결과\n");
+
       startRacing(CAR_ARRAY, RACING_COUNT);
     } catch (error) {
       Console.print(error.message);
