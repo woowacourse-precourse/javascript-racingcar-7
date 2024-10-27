@@ -1,11 +1,11 @@
 import InputManager from './InputManager.js';
-import playGame from './playGame.js';
+import Game from './Game.js';
 
 class App {
   async run() {
     const carNames = await this.getCarNames();
     const attempts = await this.getAttempts();
-    playGame(carNames, attempts);
+    this.playGame(carNames, attempts);
   }
 
   async getCarNames() {
@@ -14,6 +14,11 @@ class App {
 
   async getAttempts() {
     return InputManager.getAttempts();
+  }
+
+  playGame(carNames, attempts) {
+    const game = new Game(carNames, attempts);
+    game.play();
   }
 }
 
