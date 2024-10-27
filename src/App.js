@@ -4,16 +4,13 @@ import { Console, Random } from "@woowacourse/mission-utils";
 class App {
   async run() {
 
-    // 올바른 입력을 확인하기 위한 함수
-
+    // 자동차 이름의 입력이 올바른지 확인한다.
     const carsInputCheck = (cars,) => {
 
-      // 자동차의 이름이 공란으로 들어왔을 때 에러 발생 시키기
       if (cars == "") {
         throw new Error("[ERROR] 올바른 자동차 이름을 입력해주세요.");
       }
 
-      // 자동차의 이름을 ,를 기준으로 분리한 뒤, 자동차 이름의 길이가 길 시 에러 발생.
       const carList = cars.split(',');
 
       for (let i = 0; i < carList.length; i++) {
@@ -28,8 +25,8 @@ class App {
       return carList
     }
 
+    // 실행 횟수의 입력이 올바른지 확인한다.
     const tryNumberCheck = (tryNumber) => {
-      // 시도 횟수가 올바르지 않을 시 에러 발생
       tryNumber = Number(tryNumber);
 
       if (isNaN(tryNumber) || tryNumber < 0) {
@@ -50,33 +47,66 @@ class App {
       return carList
     }
 
+
+    // 현재 레이싱 상황을 출력한다.
     const printNowRacing = (carList) => {
       for (let i = 0 ; i < carList.length; i++) {
         Console.print(carList[i][0] + " : " + '-'.repeat(carList[i][1]));
       }
+      Console.print('\n');
     }
 
 
+    // 우승자 목록을 찾는 함수
+    const winnerList = (carList) => {
+      let max = 0;
+
+      // 우승자를 찾기 위해 최대 전진 횟수를 찾는다.
+      for (let car of carList) {
+        if (car[1] > max){
+          max = car[1];
+        }
+      }
+
+      const winner = [];
+
+      for (const car of carList) {
+        if (car[1] == max) {
+          winner.push(car[0])
+        }
+      }
+      
+      return winner
+    }
+
+
+    // 레이싱 게임을 실행시키는 함수
     const racingGame = (carList, tryNumber) => {
+      Console.print('\n실행 결과');
       while (tryNumber > 0) {
         carList = advanceCheck(carList);
         printNowRacing(carList);
         tryNumber--;
       }
 
-
     }
+
 
 
     try {
       const cars = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
       const tryNumber = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
 
-      const winner = racingGame(carsInputCheck(cars), tryNumberCheck(tryNumber));
+      const carList = carsInputCheck(cars);
+
+      racingGame(carList, tryNumberCheck(tryNumber));
+
+      const winner = winnerList(carList);
 
     }
     catch {
-
+      Console.print("[ERROR] 프로그램이 종료됩니다.");
+      throw error;
     }
 
 
