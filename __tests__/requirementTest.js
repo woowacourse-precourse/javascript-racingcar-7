@@ -20,20 +20,21 @@ describe('자동차 이름 입력 받기', () => {
     expect(splitAndTrimCarName(inputs)).toEqual(['pobi', 'jinny']);
   });
 
-  // TO-DO: refactor, - [style]
   test('빈 입력값은 에러를 던진다.', () => {
     const inputs = '';
-    expect(() => validateNotEmpty(inputs)).toThrow('[ERROR]');
+    expect(() => validateNotEmpty(inputs)).toThrow('[ERROR] 아무것도 입력하지 않으셨습니다.');
   });
 
   test('자동차 이름에 숫자가 포함되면 에러를 던진다.', () => {
     const inputs = 'pobi, 123jinny';
-    expect(() => validateStringInput(inputs)).toThrow('[ERROR]');
+    expect(() => validateStringInput(inputs)).toThrow('[ERROR] 문자가 아닙니다. ');
   });
 
   test('자동차 이름이 중복되면 에러를 던진다.', () => {
     const inputs = 'pobi, jinny, jinny';
-    expect(() => validateArrNotDuplication(inputs)).toThrow('[ERROR]');
+    expect(() => validateArrNotDuplication(inputs)).toThrow(
+      '[ERROR] 자동차 이름이 중복되었습니다. ',
+    );
   });
 });
 
