@@ -1,5 +1,5 @@
-import { readUserInput } from './util/missionUtil.js';
-import { START_MESSAGE } from './util/constant.js';
+import { printResult, readUserInput } from './util/missionUtil.js';
+import { RESULT_MESSAGE, START_MESSAGE } from './util/constant.js';
 import Car from './Car.js';
 import { validCarName, validTryNumber } from './util/validation.js';
 
@@ -10,6 +10,7 @@ class Race {
   async play() {
     await this.processCars();
     await this.processTryNumber();
+    this.executeResult();
   }
 
   async processCars() {
@@ -26,11 +27,20 @@ class Race {
   }
 
   setTryNumber(number) {
-    this.tryNumber = number;
+    this.#tryNumber = number;
   }
 
   setCar(cars) {
     this.#cars = cars.map((carName) => new Car(carName));
+  }
+
+  async executeResult() {
+    await printResult(RESULT_MESSAGE.EXECUTE);
+    while (this.#tryNumber > 0) {
+      this.#cars.forEach((car) => car.getMoveForwardResult());
+      await printResult('');
+      this.#tryNumber -= 1;
+    }
   }
 }
 
