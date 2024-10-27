@@ -1,4 +1,4 @@
-import { isEmpty, startsWithComma, endsWithComma, isDuplicatedComma, hasNameLongerThanFive, isValidAttemptCount } from './utils/validateInput.js';
+import { isEmpty, startsWithComma, endsWithComma, isDuplicatedComma, hasNameLongerThanFive, isValidAttemptCount, hasDuplicatedName } from './utils/validateInput.js';
 
 const userInputValidator = (input) => {
     if (isEmpty(input)) {
@@ -15,6 +15,8 @@ const userInputValidator = (input) => {
 const eachNameLengthValidator = (nameList) => {
     if (hasNameLongerThanFive(nameList)) {
         throwError('이름의 길이는 5글자 이내로 입력해주세요.');
+    } else if (hasDuplicatedName(nameList)) {
+        throwError('중복된 이름입력이 존재합니다.');
     }
 }
 
