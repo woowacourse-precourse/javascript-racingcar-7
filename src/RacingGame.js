@@ -1,8 +1,8 @@
 import {Console, MissionUtils} from "@woowacourse/mission-utils";
-import {PROMPT_MESSAGE} from "./constants/message.js";
+import {OUTPUT_MESSAGE, PROMPT_MESSAGE} from "./constants/message.js";
 import {Car} from "./Car.js";
+import {firstErrorCondition, secondErrorCondition} from "./utils/condition.js";
 
-//입력 -> 전처리 -> 레이싱 -> 우승자 산정 -> 출력
 class RacingGame {
     promptSequence = 1
     carArr = []
@@ -61,23 +61,20 @@ class RacingGame {
 
     getOutput(data) {
         if (this.promptSequence === 2) {
-            Console.print("")
             this.carArr.map((car) => Console.print(`${car.carName} : ${"-".repeat(car.winCnt)}`))
             Console.print("\n")
         }
         if (this.promptSequence === 3) {
-            Console.print(`최종 우승자 : ${data}`)
+            Console.print(OUTPUT_MESSAGE.ERROR+data)
         }
     }
 
     errorhandler(string) {
-        const firstErrorCondition = string.includes(" ") || string.length > 5
-        const secondErrorCondition = string.includes(" ") || isNaN(string)
-        if (this.promptSequence === 1 && firstErrorCondition) {
-            throw new Error("[ERROR]: 잘못된 값을 입력 하셨습니다.")
+        if (this.promptSequence === 1 && firstErrorCondition(string)) {
+            throw new Error(OUTPUT_MESSAGE.ERROR)
         }
-        if (this.promptSequence === 2 && secondErrorCondition) {
-            throw new Error("[ERROR]: 잘못된 값을 입력 하셨습니다.")
+        if (this.promptSequence === 2 && secondErrorCondition(string)) {
+            throw new Error(OUTPUT_MESSAGE.ERROR)
         }
     }
 }
