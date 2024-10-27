@@ -14,6 +14,7 @@ class RacingGame {
       this.printRoundResult();
       Console.print("\n");
     }
+    this.showWinners();
   }
 
   playOneRound() {
@@ -27,6 +28,19 @@ class RacingGame {
     this.carName.forEach((car) => {
       Console.print(`${car.name} : ${car.printRacingState()}`);
     });
+  }
+
+  MaxPosition() {
+    return Math.max(...this.carName.map((car) => car.position));
+  }
+
+  WinnerNames() {
+    const maxPosition = this.MaxPosition();
+    return this.carName.filter((car) => car.position === maxPosition);
+  }
+
+  showWinners() {
+    const winners = this.WinnerNames();
   }
 }
 export default RacingGame;
