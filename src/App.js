@@ -8,7 +8,10 @@ class App {
   async run() {
     // 사용자에게 자동차 이름을 입력받고 쉼표(,) 기준으로 배열로 분리
     const car_names = await new Input().getCarNames();
-    const car_names_arr = car_names.split(",");
+    const car_names_split = car_names.split(",");
+
+    // 사용자가 입력받은 자동차 이름의 앞뒤 공백을 없앰
+    const car_names_arr = car_names_split.map((str) => str.trim());
 
     // 사용자가 올바르게 자동차 이름을 입력했는지 검사
     checkCarNames(car_names_arr);
