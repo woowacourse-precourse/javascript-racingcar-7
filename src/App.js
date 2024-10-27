@@ -1,4 +1,5 @@
 import { Random, Console } from '@woowacourse/mission-utils';
+import trimInput from './trimInput.js';
 import validateCarNames from './validateCarNames.js';
 import validateRounds from './validateRounds.js';
 import getWinner from './getWinner.js';
@@ -8,7 +9,8 @@ class App {
     const inputCarNames = await Console.readLineAsync(
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n'
     );
-    const carNames = inputCarNames.split(',');
+    const splittedNames = inputCarNames.split(',');
+    const carNames = trimInput(splittedNames);
     validateCarNames(carNames);
 
     const inputRounds = await Console.readLineAsync(
