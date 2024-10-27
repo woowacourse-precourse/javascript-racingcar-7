@@ -29,6 +29,40 @@ async function getCount() {
   }
 }
 
+function randomMoveHandler(count, nameArray, moveArray) {
+  for (let i = 0; i < count; i++) {
+    nameArray.map((value, index) => {
+      var randNum = Random.pickNumberInRange(0, 9);
+      if (randNum >= 4)
+        moveArray[index] += '-';
+      Console.print(`${value} : ${moveArray[index]}`);
+    })
+    Console.print('');
+  }
+  return moveArray;
+}
+
+function decideWinner(nameArray, moveArray, winnerArray) {
+  let maxLength = 0;
+
+  for (let i = 0; i < moveArray.length; i++) {
+    if (moveArray[i].length >= maxLength)
+      maxLength = moveArray[i].length;
+  }
+
+  for (let i = 0; i < moveArray.length; i++) {
+    if (moveArray[i].length == maxLength) 
+      winnerArray.push(nameArray[i]);
+  }
+  
+  return winnerArray;
+}
+
+function showResult(winnerArray) {
+  let answer = `최종 우승자 : ${winnerArray.join(',')}`;
+  Console.print(answer);
+}
+
 class App {
   async run() {
     try {
@@ -40,31 +74,11 @@ class App {
 
       // 전진 중...
       Console.print('\n실행 결과');
-      for (let i = 0; i < count; i++) {
-        nameArray.map((value, index) => {
-          var randNum = Random.pickNumberInRange(0, 9);
-          if (randNum >= 4)
-            moveArray[index] += '-';
-          Console.print(`${value} : ${moveArray[index]}`);
-        })
-        Console.print('');
-      }
-
-      // 최종 우승자 확인
-      let maxLength = 0;
-      for (let i = 0; i < moveArray.length; i++) {
-        if (moveArray[i].length >= maxLength)
-          maxLength = moveArray[i].length;
-      }
-      for (let i = 0; i < moveArray.length; i++) {
-        if (moveArray[i].length == maxLength) 
-          winnerArray.push(nameArray[i]);
-      }
-
-      let answer = `최종 우승자 : ${winnerArray.join(',')}`;
       
-      Console.print(answer);
-      
+      randomMoveHandler(count, nameArray, moveArray);
+      decideWinner(nameArray, moveArray, winnerArray);
+      showResult(winnerArray);
+
     } catch (error) {
       throw new Error('[ERROR]');
     }
