@@ -1,3 +1,4 @@
+import { Console } from "@woowacourse/mission-utils";
 import { ERROR_MESSAGES } from "./constant.js";
 
 export const inputCarsException = (cars) => {
@@ -11,6 +12,9 @@ export const inputCarsException = (cars) => {
 };
 
 export const inputCountException = (count) => {
+  if (isNaN(count)) {
+    throw new Error(ERROR_MESSAGES.INVALID_COUNT_INPUT);
+  }
   if (count == null || count <= 0) {
     throw new Error(ERROR_MESSAGES.NO_COUNT);
   }
