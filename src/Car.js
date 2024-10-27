@@ -2,7 +2,7 @@ import {
 	getRandomInRangeNumber,
 	printOutput,
 	userInput,
-} from "./MissionUtils.js";
+} from "./missionUtils.js";
 import {
 	validateDuplicateName,
 	validateMinCar,
@@ -41,6 +41,7 @@ class Car {
 			const winners = await this.calculateWinners();
 			this.printWinners(winners);
 		} catch (error) {
+			console.error(error);
 			throw new Error(`${error.message}`);
 		}
 	}
