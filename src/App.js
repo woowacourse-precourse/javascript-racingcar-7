@@ -9,12 +9,7 @@ class App {
       return {name: car, records: []};
     });
 
-    const tryNumberString = await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
-    const tryNumber = parseInt(tryNumberString, 10);
-
-    if (isNaN(tryNumber)) {
-      throw Error('[ERROR] 시도할 횟수는 숫자만 입력할 수 있습니다.');
-    }
+    const tryNumber = await View.readLineTryCount();
 
     const range = (number) => Array(number).fill('');
 

@@ -13,6 +13,17 @@ class View {
 
     return carNames;
   }
+
+  static async readLineTryCount() {
+    const input = await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+    const tryCount = parseInt(input, 10);
+
+    if (isNaN(tryCount)) {
+      throw Error('[ERROR] 시도할 횟수는 숫자만 입력할 수 있습니다.');
+    }
+
+    return tryCount;
+  }
 }
 
 export default View;
