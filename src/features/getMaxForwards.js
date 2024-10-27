@@ -1,4 +1,4 @@
-import { MESSAGES } from "../config/config";
+import { MESSAGES } from "../config/config.js";
 
 export const getMaxForwards = (carList) => {
   let result = [];
