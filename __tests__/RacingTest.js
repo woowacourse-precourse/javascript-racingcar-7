@@ -111,26 +111,46 @@ describe('Racing 메서드 테스트', () => {
     });
   });
 
-  test('announceWinner 메서드에서 우승자가 정상적으로 선정되는지 테스트', () => {
-    const MOVING_FORWARD = 6;
-    const STOP = 1;
-    const TOTAL_ROUNDS = 3;
-    const CAR_NAMES = ['woowa', 'tech', '코스'];
-    const carsMoving = [
-      [MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD],
-      [MOVING_FORWARD, MOVING_FORWARD, STOP],
-      [MOVING_FORWARD, STOP, STOP],
-    ];
-    const WINNER = 'woowa';
-    const logSpy = getLogSpy();
+  test.each([
+    [
+      [
+        [5, 5, 3],
+        [5, 5, 5],
+        [5, 3, 3],
+      ],
+      'tech',
+      '단독 우승',
+    ],
+    [
+      [
+        [5, 5, 3],
+        [5, 5, 3],
+        [5, 3, 3],
+      ],
+      'woowa, tech',
+      '공동 우승',
+    ],
+  ])(
+    'announceWinner 메서드에서 우승자가 정상적으로 선정되는지 테스트',
+    (carsMoving, winner) => {
+      const TOTAL_ROUNDS = 3;
+      const CAR_NAMES = ['woowa', 'tech', '코스'];
+      const logSpy = getLogSpy();
 
-    carsMoving.forEach((moving) => mockRandoms(moving));
+      const cars = CAR_NAMES.map((name) => new Car(name));
+      const racing = new Racing(TOTAL_ROUNDS, cars);
 
-    const cars = CAR_NAMES.map((name) => new Car(name));
-    const racing = new Racing(TOTAL_ROUNDS, cars);
-    racing.play();
-    racing.announceWinners();
+      const rounds = Array.from({ length: TOTAL_ROUNDS }, () => 0);
+      rounds.forEach((round) => {
+        const roundMoves = carsMoving.map((moves) => moves[round]);
+        mockRandoms(roundMoves);
 
-    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(WINNER));
-  });
+        racing.play();
+      });
+
+      racing.announceWinners();
+
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(winner));
+    },
+  );
 });
