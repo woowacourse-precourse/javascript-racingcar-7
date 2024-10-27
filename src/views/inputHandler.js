@@ -1,5 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import { GAME_MESSAGES, ERROR_MESSAGES } from '../constants/index.js';
+import { validateTryCount } from '../utils/index.js';
 
 export const inputHandler = {
   carNameInput: async () => {
@@ -18,12 +19,8 @@ export const inputHandler = {
     if (racingTryCount.trim() === '') {
       throw new Error(ERROR_MESSAGES.CAR_ERROR_MESSAGES.BLANK);
     }
-    if (isNaN(racingTryCount)) {
-      throw new Error(ERROR_MESSAGES.COUNT_ERROR_MESSAGES.ONLY_NUMBER);
-    }
-    if (racingTryCount < 1) {
-      throw new Error(ERROR_MESSAGES.COUNT_ERROR_MESSAGES.NOT_NEGATIVE);
-    }
+    validateTryCount(racingTryCount);
+
     return racingTryCount;
   },
 };
