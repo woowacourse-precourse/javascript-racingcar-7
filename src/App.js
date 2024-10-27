@@ -17,32 +17,26 @@ class App {
       "시도할 횟수는 몇 회인가요?\n"
     );
 
+    this.validateCarInput(carInput);
     this.initializeCars(carInput);
+
+    this.validateNumberInput(numberInput);
     this.RacingRound(numberInput);
     this.selectWinner();
   }
 
   // carInput을 받아서 carObject에 value를 0 초기화하는 함수
   initializeCars(carInput) {
-    // 빈 값일 경우 에러 발생
-    if (!carInput.trim()) this.throwError(App.ERROR_MESSAGES.EMPTY_STRING);
-
     const carNames = carInput.split(",").map((name) => name.trim());
 
     carNames.forEach((carName) => {
-      carName.length > 5 && this.throwError(App.ERROR_MESSAGES.MAX_STRING);
       this.carObject[carName] = 0;
     });
   }
 
   //numberInput 바탕으로 레이싱을 시작하는 함수
   RacingRound(numberInput) {
-    if (!numberInput || !numberInput.trim())
-      this.throwError(App.ERROR_MESSAGES.EMPTY_STRING);
-    if (isNaN(numberInput)) this.throwError(App.ERROR_MESSAGES.INVALID_NUMBER);
-
     Console.print(`\n실행 결과`);
-
     for (let i = 0; i < numberInput; i++) {
       this.simulateRaceRound();
       this.printRaceRound();
@@ -75,6 +69,20 @@ class App {
       (carName) => this.carObject[carName] === maxDistance
     );
     Console.print(`최종 우승자 : ${winners.join(", ")}`);
+  }
+
+  // 자동차 이름 입력 검증 함수
+  validateCarInput(carInput) {
+    if (!carInput.trim()) this.throwError(App.ERROR_MESSAGES.EMPTY_STRING);
+    if (carInput.split(",").some((carName) => carName.trim().length > 5))
+      this.throwError(App.ERROR_MESSAGES.MAX_STRING);
+  }
+
+  // 횟수 입력 검증 함수
+  validateNumberInput(numberInput) {
+    if (!numberInput || !numberInput.trim())
+      this.throwError(App.ERROR_MESSAGES.EMPTY_STRING);
+    if (isNaN(numberInput)) this.throwError(App.ERROR_MESSAGES.INVALID_NUMBER);
   }
 
   // 공통 에러 처리 함수
