@@ -1,8 +1,8 @@
 import { Console } from "@woowacourse/mission-utils";
 import { MESSAGES } from "./constants.js";
-import { getCarNames, getMoveAttempts } from "./utils/inputHandler.js";
-import { race } from "./utils/raceHandler.js";
-import { determineWinners } from "./utils/winnerCalculator.js";
+import { getCarNames, getMoveAttempts } from "./utils/inputProcessor.js";
+import { race } from "./utils/raceProcessor.js";
+import { determineWinners } from "./utils/winnerDeterminer.js";
 
 class App {
   async run() {

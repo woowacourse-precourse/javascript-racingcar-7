@@ -1,4 +1,4 @@
-import { getMoveAttempts } from "../src/utils/inputHandler";
+import { getMoveAttempts } from "../src/utils/inputProcessor";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 const mockConsoleInput = (input) => {

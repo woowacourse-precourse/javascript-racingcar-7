@@ -1,4 +1,4 @@
-import { getCarNames } from "../src/utils/inputHandler";
+import { getCarNames } from "../src/utils/inputProcessor";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 const mockConsoleInput = (input) => {

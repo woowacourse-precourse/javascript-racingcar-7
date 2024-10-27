@@ -1,4 +1,4 @@
-import { race } from "../src/utils/raceHandler";
+import { race } from "../src/utils/raceProcessor";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 const mockRandomNumbers = (numbers) => {
