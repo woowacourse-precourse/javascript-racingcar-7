@@ -1,4 +1,4 @@
-import { print } from '../handler/IoHandler.js';
+import { print } from '../handler/ioHandler.js';
 import { moveCarEvent, getWinner } from './carAction.js';
 import { makeOutput, formatWinners } from './outputCar.js';
 import { initRandomName } from './makeRandomName.js';

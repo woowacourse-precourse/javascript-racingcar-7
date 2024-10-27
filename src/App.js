@@ -1,7 +1,7 @@
-import { input, print } from './handler/IoHandler.js';
+import { input, print } from './handler/ioHandler.js';
 import { initGame } from './game/game.js';
-import { parseInputs } from './parsers/Parsing.js';
-import { validateInput } from './parsers/Validate.js';
+import { parseInputs } from './parsers/parsing.js';
+import { validateInput } from './parsers/validate.js';
 
 class App {
   async run() {
