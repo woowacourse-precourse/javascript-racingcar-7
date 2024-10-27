@@ -42,10 +42,7 @@ class App {
   }
 
   isCarMove(randomNumber) {
-    if (randomNumber >= 4) {
-      return true;
-    }
-    return false;
+    return randomNumber >= 4;
   }
 
   printAttemptResult(moveCntPerCar) {
