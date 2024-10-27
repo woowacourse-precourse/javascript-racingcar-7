@@ -2,6 +2,7 @@ import { Random, Console } from '@woowacourse/mission-utils';
 import RaceView from '../view/RaceView.js';
 import CarModel from '../model/CarModel.js';
 import RaceModel from '../model/RaceModel.js';
+import InputValidator from './InputValidator.js';
 
 class RaceController {
   constructor() {
@@ -11,6 +12,8 @@ class RaceController {
 
   async startRace() {
     const carNames = await this.view.getCarNames();
+    Console.print(`carNames: ${carNames}`);
+    InputValidator.validateCarName(carNames);
     const attemptCount = await this.view.getAttemptCount();
 
     const cars = carNames.map((name) => new CarModel(name));
