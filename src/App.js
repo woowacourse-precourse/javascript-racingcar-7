@@ -23,6 +23,7 @@ class App {
     }
   }
 
+  // 입력받은 경주용 자동차 이름을 {이름: 점수}의 점수판 객체로 만들기
   setGame(input) {
     const scoreBoard = {};
     input.forEach((name) => {
@@ -31,6 +32,7 @@ class App {
     return scoreBoard;
   }
 
+  // 1회차 실행결과 계산하기
   executionResult(input) {
     const updatedInput = { ...input };
 
