@@ -20,11 +20,13 @@ class App {
   async run() {
     try {
       const carNames = await getCarNames();
-      assertCondition(hasDuplicate(carNames), MESSAGES.DUPLICATE_CAR_NAME);
-      assertCondition(hasInvalidCarNameLength(carNames), MESSAGES.INVALID_CAR_NAME_LENGTH);
+      assertCondition([
+        { condition: hasDuplicate(carNames), message: MESSAGES.DUPLICATE_CAR_NAME },
+        { condition: hasInvalidCarNameLength(carNames), message: MESSAGES.INVALID_CAR_NAME_LENGTH },
+      ]);
 
       const tryCount = await getTryCount();
-      assertCondition(isNotPositiveInteger(tryCount), MESSAGES.INVALID_TRY_COUNT);
+      assertCondition([{ condition: isNotPositiveInteger(tryCount), message: MESSAGES.INVALID_TRY_COUNT }]);
 
       const { getCarsInfoEntries, getAdvanceCounts, incrementAdvanceCount } = carsInfoController(carNames);
 

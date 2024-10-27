@@ -27,9 +27,13 @@ export const createErrorMessage = (message) => {
   return MESSAGES.ERROR + message;
 };
 
-// 조건이 true인 경우 예외 처리
-export const assertCondition = (condition, message) => {
-  if (condition) {
-    throw new Error(createErrorMessage(message));
+/**
+ * 조건 리스트를 검사하여 첫 번째로 true인 조건의 에러를 throw합니다.
+ * @param {Array<{ condition: boolean, message: string }>} conditionList - 검사할 조건과 에러 메세지 배열
+ */
+export const assertCondition = (conditionList) => {
+  const error = conditionList.find(({ condition }) => condition === true);
+  if (error) {
+    throw new Error(createErrorMessage(error.message));
   }
 };
