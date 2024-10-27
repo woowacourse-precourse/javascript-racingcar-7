@@ -30,12 +30,16 @@ const goAhead = (names, raceNum) => {
     Console.print('');
   }
 
+  const winner = findWinner(raceRecord);
+  Console.print(`최종 우승자 : ${winner.join(',')}`);
+};
+
+const findWinner = (raceRecord) => {
   const maxAhead = Math.max(...raceRecord.map((record) => record.aheadNum));
-  const topRecords = raceRecord.filter(
-    (record) => record.aheadNum === maxAhead
-  );
-  const top = topRecords.map((record) => record.name);
-  Console.print(`최종 우승자 : ${top.join(',')}`);
+  const winners = raceRecord
+    .filter((record) => record.aheadNum === maxAhead)
+    .map((record) => record.name);
+  return winners;
 };
 
 class App {
