@@ -4,10 +4,9 @@ class App{
   async run(){
     // 1. 자동차 입력 : 자동차 입력 받기
     const car_input=await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
-    Console.print(car_input)
     // 1. 변수 할당 : 각 자동차의 게임 진행 상황 반영 리스트
-    let car_names=[]
-    let game_results=[]
+    let car_names=[];
+    let game_results=[];
 
     // 2. 게임을 몇 번 할건지 입력 받기(이후 라운드라고 표현)
     const number_input=await Console.readLineAsync('시도할 횟수는 몇 회인가요?');
@@ -75,6 +74,8 @@ class App{
 	    })
     }
 
+    Console.print("\n");
+
     // 7. 게임 함수 실행 및 게임 최종 결과 출력
     Console.print("실행 결과");
     game(Number(number_input));
@@ -85,7 +86,7 @@ class App{
         winners.push(car_names[index]);
       }
     });
-    Console.print(`최종 우승자 : ${winners.join(",")}`);
+    Console.print(`최종 우승자 : ${winners.join(", ")}`);
   }
 }
 
