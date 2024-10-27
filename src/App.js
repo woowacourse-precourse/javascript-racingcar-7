@@ -80,7 +80,7 @@ export function playGame(player) {
   );
 }
 
-function findWinners(playerScores) {
+export function findWinners(playerScores) {
   const { score: maxScore } = playerScores.reduce(findMaxScorePlayer);
 
   return playerScores

@@ -4,6 +4,7 @@ export const MESSAGES = {
   INPUT_MOVE_COUNT: '시도할 횟수는 몇 회인가요?',
   WINNER_MESSAGE: '최종 우승자 : ',
 };
+
 export const ERROR_MESSAGES = {
   INVALID_PLAYER_NAME:
     '[ERROR] 이름은 1자에서 5자 이하여야 하며 영문,숫자,한글,특수문자 -_!: 만 사용할 수 있습니다.',
