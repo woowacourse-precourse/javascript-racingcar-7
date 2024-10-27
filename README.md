@@ -138,16 +138,18 @@ MissionUtils.Random.pickNumberInRange(0, 9);
 - [x] RagingGame 클래스 생성
   - [x] 싱글톤으로 구현
   - [x] 필드
-    - private : turn, players, maxLength
+    - private : turn, cars, maxLength
     - public : board
   - [x] 메소드
     - private : finish
     - public : join, start
-- [ ] Player 클래스
-  - [ ] 필드
-    - name, game
-  - [ ] 메소드
-    - roll, move
+- [x] Car 클래스
+  - [x] 필드
+    - private : game
+    - public : name
+  - [x] 메소드
+    - private : move
+    - public : roll
 - [ ] 테스트케이스
 
 ### 과제 구현 후
