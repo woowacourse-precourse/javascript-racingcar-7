@@ -4,6 +4,7 @@ import {
   checkNameLength,
   checkRaceCount,
 } from "./errors/carsErrors.js";
+import { startRaceGame } from "./services/carRace.js";
 
 class App {
   async run() {
@@ -16,6 +17,8 @@ class App {
 
     let raceCount = await Console.readLineAsync("시도할 횟수는 몇 회인가요?");
     checkRaceCount(raceCount);
+
+    startRaceGame(carNameArr, raceCount);
   }
 }
 
