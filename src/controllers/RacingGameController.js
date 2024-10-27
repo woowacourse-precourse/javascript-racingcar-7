@@ -29,6 +29,7 @@ class RacingGameController {
     }
 
     const winners = game.getWinner();
+    RacingGameView.printWinner(winners);
   }
 }
 
