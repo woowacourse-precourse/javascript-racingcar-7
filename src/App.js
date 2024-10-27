@@ -76,16 +76,10 @@ class App {
     racing();
 
     const checkMaxLength = () => {
-      const checkMax = (max, result) => {
-        let maxScore = Math.max(max, result.length);
-        return maxScore;
-      };
-
       const maxLength = userRacingResult.reduce(
-        checkMax,
+        (max, result) => Math.max(max, result.length),
         Number.MIN_SAFE_INTEGER
       );
-
       return maxLength;
     };
 
