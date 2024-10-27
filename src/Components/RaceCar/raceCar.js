@@ -3,6 +3,13 @@ import { GIDE_MESSAGE } from "../../Constants/constant.js";
 import randomGenerator from "../../Utils/randomGenerator.js";
 import printResultMessage from "../Output/printResultMessage.js";
 
+const moveRaceCar = (car) => {
+  const randomNum = randomGenerator();
+  if (randomNum >= 4) {
+    //Todo - move forward
+  }
+};
+
 const raceCar = (carList, tryNumber) => {
   const raceCarList = carList.map((car) => {
     return {
@@ -14,11 +21,7 @@ const raceCar = (carList, tryNumber) => {
   printResultMessage(GIDE_MESSAGE.result);
 
   for (let i = 0; i < tryNumber; i++) {
-    raceCarList.forEach(() => {
-      const randomNum = randomGenerator();
-      console.log(randomNum);
-    });
-    Console.print("\n");
+    raceCarList.forEach(moveRaceCar);
   }
 };
 export default raceCar;
