@@ -89,10 +89,11 @@ class App {
 
   // 횟수 입력 검증 함수
   validateNumberInput(numberInput) {
+    // 빈값 입력 검증
     if (!numberInput || !numberInput.trim())
       this.throwError(App.ERROR_MESSAGES.EMPTY_STRING);
 
-    // 정규식을 사용해 양의 정수만 허용
+    // 양의 정수 검증
     if (!/^[1-9]\d*$/.test(numberInput))
       this.throwError(App.ERROR_MESSAGES.INVALID_NUMBER);
   }
