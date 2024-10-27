@@ -6,24 +6,24 @@ import Car from './Car.js';
 class Controller {
   async play() {
     Car.clearInstances();
-    await this.readCars();
-    await this.readTrialCount();
+    await this.#readCars();
+    await this.#readTrialCount();
   }
 
-  async readCars() {
+  async #readCars() {
     const carNameAnswer = await view.readCars();
     const carNames = carNameAnswer.split(STRINGS.inputNameDelimiter);
     validator.validateCarNames(carNames);
     Car.addCarInstances(carNames);
   }
 
-  async readTrialCount() {
+  async #readTrialCount() {
     const trialCount = Number(await view.readTrialCount());
     validator.validateTrialCount(trialCount);
-    this.execute(trialCount);
+    this.#execute(trialCount);
   }
 
-  executeOnce() {
+  #executeOnce() {
     const totalCarProgress = Car.executeAllCars();
     totalCarProgress.forEach(({ name, progress }) => {
       view.printProgress(name, progress);
@@ -31,15 +31,15 @@ class Controller {
     view.printLineBreak();
   }
 
-  execute(trialCount) {
+  #execute(trialCount) {
     view.printExecutionResultMessage();
     for (let i = 0; i < trialCount; i += 1) {
-      this.executeOnce();
+      this.#executeOnce();
     }
-    this.printWinner();
+    this.#printWinner();
   }
 
-  printWinner() {
+  #printWinner() {
     const winners = Car.getWinner();
     view.printWinner(winners);
   }
