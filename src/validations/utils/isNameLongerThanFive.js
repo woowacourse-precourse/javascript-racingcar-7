@@ -1,4 +1,4 @@
-import { ERROR_MESSAGES } from "../../constants/errorConstants";
+import { ERROR_MESSAGES } from "../../constants/errorConstants.js";
 
 function checkLength(name) {
   if (name.length > 5) {

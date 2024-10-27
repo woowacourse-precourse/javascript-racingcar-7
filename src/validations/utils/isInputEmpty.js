@@ -1,4 +1,4 @@
-import { ERROR_MESSAGES } from "../../constants/errorConstants";
+import { ERROR_MESSAGES } from "../../constants/errorConstants.js";
 
 function checkEmpty(name) {
   if (name === "") {
