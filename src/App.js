@@ -1,11 +1,14 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 
-function saveRandom(carnames, number){
-  for(let i = 0; i < number; i++){
-    carnames.map((car) => {
-      const randomValue = MissionUtils.Random.pickNumberInRange(0, 9);
-    })
+function saveRandom(carCount, randomArray){
+  let array = randomArray;
+  for(let i = 0; i < carCount; i++){
+    let randomValue = MissionUtils.Random.pickNumberInRange(0, 9);
+    if(randomValue >= 4) randomValue = 1;
+    else randomValue = 0;
+    array[i] += randomValue;
   }
+  return array;
 };
 
 async function getNumber() {
@@ -26,7 +29,9 @@ class App {
   async run() {
     const carnames = await getCarname();
     const number = await getNumber();
-    saveRandom(carnames, number);
+    const carCount = carnames.length;
+    var randomArray = Array.from({length: carCount}, () => 0);
+    saveRandom(carCount, randomArray);
   }
 }
 
