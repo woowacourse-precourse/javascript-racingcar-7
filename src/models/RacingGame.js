@@ -1,16 +1,12 @@
 import { Random } from "@woowacourse/mission-utils";
 import Car from "./Car.js";
-import Validator from "../utils/Validator.js";
-import Parser from "../utils/Parser.js";
 
 class RacingGame {
   constructor() {
     this.cars = [];
   }
 
-  createCars(namesInput) {
-    const carNames = Parser.parseCarNames(namesInput);
-    Validator.validateCarNames(carNames);
+  createCars(carNames) {
     this.cars = carNames.map((name) => new Car(name));
   }
 
@@ -27,14 +23,11 @@ class RacingGame {
     return this.cars.map((car) => car.getCurrentStatus());
   }
 
-  validateTryCount(countInput) {
-    return Validator.validateTryCount(countInput);
-  }
-
   findMaxPosition() {
     return Math.max(...this.cars.map((car) => car.position));
   }
 
+  // 최종 우승자를 리턴하는 메서드
   findWinners() {
     const maxPosition = this.findMaxPosition();
     const winners = this.cars.filter((car) => car.position === maxPosition);
