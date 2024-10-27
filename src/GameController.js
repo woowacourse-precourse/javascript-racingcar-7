@@ -32,6 +32,11 @@ class GameController {
     }
 
     const carNames = names.split(',').map(name => name.trim());
+    if (carNames.length === 1) {
+      throw new Error(
+        '[ERROR] 경주를 위해서는 최소 2대 이상의 자동차가 필요합니다.',
+      );
+    }
     if (JSON.stringify([...new Set(carNames)]) !== JSON.stringify(carNames)) {
       throw new Error('[ERROR] 자동차 이름은 중복될 수 없습니다.');
     }
