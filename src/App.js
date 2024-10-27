@@ -42,13 +42,15 @@ class App {
   async checkCarNameError(carNames) {
     let errorType = '';
 
-    if (carNames.some((name) => name.length > 5)) errorType = 'carNameLength';
-
-    if (carNames.some((name) => SPACE_REGEX.test(name)))
+    if (carNames.some((name) => name.length === 0)) {
+      errorType = 'carNameBlank';
+    } else if (carNames.some((name) => name.length > 5)) {
+      errorType = 'carNameLength';
+    } else if (carNames.some((name) => SPACE_REGEX.test(name))) {
       errorType = 'carNameSpace';
-
-    if (carNames.some((name) => !ENGLISH_REGEX.test(name)))
+    } else if (carNames.some((name) => !ENGLISH_REGEX.test(name))) {
       errorType = 'carNameEnglish';
+    }
 
     await this.checkMessage(errorType);
   }
@@ -73,9 +75,11 @@ class App {
   async checkAttemptsError(attempts) {
     let errorType = '';
 
-    if (!NUMBER_REGEX.test(attempts)) errorType = 'attemptsNotNumber';
-
-    if (attempts > ATTEMPTS_LIMIT) errorType = 'attemptsLimit';
+    if (!NUMBER_REGEX.test(attempts)) {
+      errorType = 'attemptsNotNumber';
+    } else if (attempts > ATTEMPTS_LIMIT) {
+      errorType = 'attemptsLimit';
+    }
 
     await this.checkMessage(errorType);
   }
@@ -119,10 +123,12 @@ class App {
 
   async checkMessage(type) {
     switch (type) {
+      case 'carNameBlank':
+        throw new Error('[ERROR] 빈 문자인 자동차 이름이 입력되었습니다.');
       case 'carNameLength':
         throw new Error('[ERROR] 자동차 이름은 5자 이하여야 합니다.');
       case 'carNameSpace':
-        throw new Error('[ERROR] 자동차 이름은 공백 없이 입력해주세요.');
+        throw new Error('[ERROR] 각 자동차 이름은 공백 없이 입력해주세요.');
       case 'carNameEnglish':
         throw new Error('[ERROR] 자동차 이름은 영어로 입력해주세요.');
       case 'attemptsNotNumber':
