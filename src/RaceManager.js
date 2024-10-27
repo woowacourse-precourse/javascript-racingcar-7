@@ -1,5 +1,6 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import { CONDITIONS } from "./constants/conditon.js";
+import { OUTPUT_MESSAGES } from "./constants/gameMessage.js";
 class RaceManager {
   constructor(name) {
     this.name = name;
@@ -24,7 +25,7 @@ class RaceManager {
   }
 
   printRacingState() {
-    return "-".repeat(this.position);
+    return OUTPUT_MESSAGES.ADVANCE.repeat(this.position);
   }
 }
 

@@ -8,4 +8,5 @@ export const INPUT_MESSAGES = Object.freeze({
 export const OUTPUT_MESSAGES = Object.freeze({
   RESULT_MESSAGE: "\n실행 결과",
   WINNER_MESSAGE: "최종 우승자 : ",
+  ADVANCE: "-",
 });
