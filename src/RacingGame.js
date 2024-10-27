@@ -18,6 +18,28 @@ export class RacingGame {
             nameSet.add(name);
         });
     }
+
+    validateTryCount(count) {
+        if (isNaN(count) || count <= 0 || count != parseInt(count)) {
+            throw new Error("[ERROR] 자연수만 입력 가능합니다.");
+        }
+    }
+    
+    async getInput() {
+        const namesInput = await MissionUtils.Console.readLineAsync(
+            "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
+        );
+        const names = namesInput.split(',');
+        this.validateNames(names);
+        
+        const attemptsInput = await MissionUtils.Console.readLineAsync(
+            "시도할 횟수는 몇 회인가요?\n"
+        );
+        this.tryCount = Number(attemptsInput);
+        this.validateTryCount(this.tryCount);
+        
+        names.forEach(name => this.cars[name] = ""); 
+    }
 }
 
 export default RacingGame;
