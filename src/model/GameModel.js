@@ -33,3 +33,5 @@ class GameModel {
 		return winnerCars.map((car) => car.getName());
 	}
 }
+
+export default GameModel;
