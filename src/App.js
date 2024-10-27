@@ -20,11 +20,11 @@ class App {
   }
 
   readCarNames() {
-    return Console.readLineAsync(IO_MESSAGES.INPUT_CAR_NAMES);
+    return Console.readLineAsync(`${IO_MESSAGES.INPUT_CAR_NAMES}\n`);
   }
 
   readTryCnt() {
-    return Console.readLineAsync(IO_MESSAGES.INPUT_TRY_CNT);
+    return Console.readLineAsync(`${IO_MESSAGES.INPUT_TRY_CNT}\n`);
   }
 }
 

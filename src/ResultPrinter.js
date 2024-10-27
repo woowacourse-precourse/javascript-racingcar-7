@@ -7,7 +7,7 @@ class ResultPrinter {
   }
 
   print() {
-    Console.print(IO_MESSAGES.OUTPUT_TRY_RESULT);
+    Console.print(`\n${IO_MESSAGES.OUTPUT_TRY_RESULT}`);
     this.printTryResult();
     this.printWinner();
   }
