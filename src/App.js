@@ -5,6 +5,7 @@ class App {
 
   static ERROR_MESSAGES = {
     EMPTY_STRING: "빈 문자열은 입력할 수 없습니다.",
+    MAX_STRING: "자동차이름은 5자 이하만 가능합니다.",
     INVALID_NUMBER: "숫자만 입력 가능합니다.",
   };
 
@@ -29,6 +30,7 @@ class App {
     const carNames = carInput.split(",").map((name) => name.trim());
 
     carNames.forEach((carName) => {
+      carName.length > 5 && this.throwError(App.ERROR_MESSAGES.MAX_STRING);
       this.carObject[carName] = 0;
     });
   }
