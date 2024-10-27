@@ -1,5 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import {
+  DELIMITER_VALIDATOR,
   CAR_NAME_VALIDATOR,
   ATTEMPT_TIMES_VALIDATOR,
 } from './inputValidators.js';
@@ -11,6 +12,9 @@ class App {
     const CAR_NAME = await Console.readLineAsync(
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
     );
+
+    DELIMITER_VALIDATOR(CAR_NAME);
+
     const CAR_NAME_ARRAY = CAR_NAME.trim()
       .split(',')
       .map(name => name.trim());

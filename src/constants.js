@@ -1,5 +1,6 @@
 const ERROR_MESSAGE = Object.freeze({
   INPUT_VALIDATION: '[ERROR] 입력이 비어 있습니다.',
+  DELIMITER_VALIDATION: '[ERROR] 구분자는 쉼표(,)여야 합니다.',
   CAR_NAME_VALIDATION: '[ERROR] 자동차 이름은 공백이 될 수 없습니다.',
   CAR_NAME_LENGTH_VALIDATION:
     '[ERROR] 자동차 이름은 5글자 이하로 입력해주세요.',

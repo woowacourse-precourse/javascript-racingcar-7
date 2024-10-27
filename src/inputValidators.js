@@ -1,5 +1,11 @@
 import ERROR_MESSAGE from './constants.js';
 
+const DELIMITER_VALIDATOR = input => {
+  if (input.length > 5 && /![,]/.test(input)) {
+    throw new Error(ERROR_MESSAGE.DELIMITER_VALIDATION);
+  }
+};
+
 const CAR_NAME_VALIDATOR = input => {
   if (input === '') {
     throw new Error(ERROR_MESSAGE.INPUT_VALIDATION);
@@ -35,4 +41,4 @@ const ATTEMPT_TIMES_VALIDATOR = input => {
     throw new Error(ERROR_MESSAGE.ATTEMPT_TIMES_VALIDATION);
   }
 };
-export { CAR_NAME_VALIDATOR, ATTEMPT_TIMES_VALIDATOR };
+export { DELIMITER_VALIDATOR, CAR_NAME_VALIDATOR, ATTEMPT_TIMES_VALIDATOR };
