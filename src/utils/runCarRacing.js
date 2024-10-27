@@ -2,7 +2,7 @@ import {
   printTurnSeperator,
   printCurrentStatus,
   printStatusTitle,
-} from './printData.js';
+} from './printComment.js';
 
 // (Car[], number) => void
 const runCarRacing = (carList, turn) => {
