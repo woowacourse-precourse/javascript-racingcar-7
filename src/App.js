@@ -18,6 +18,8 @@ const PLAYER_NAME_REGEX = new RegExp(
 );
 const MIN_SUCCESS_SCORE = 4;
 const SCORE_SYMBOL = '-';
+const NEW_LINE = '\n';
+const PLAYER_NAME_DELIMITER = ', ';
 
 class App {
   async run() {
@@ -68,7 +70,7 @@ function runGame(playerScores, moveCount) {
 function playRounds(scoreBoard, moveCount) {
   for (let i = 0; i < moveCount; i++) {
     scoreBoard.forEach(playGame);
-    Console.print('\n');
+    Console.print(NEW_LINE);
   }
 }
 
@@ -86,7 +88,7 @@ function findWinners(playerScores) {
   return playerScores
     .filter((player) => player.score === maxScore)
     .map((player) => player.name)
-    .join(', ');
+    .join(PLAYER_NAME_DELIMITER);
 }
 
 function findMaxScorePlayer(prev, current) {
