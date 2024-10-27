@@ -32,7 +32,11 @@ class RacingManager {
   }
 
   static parseTotalRounds(totalRounds) {
-    return Number(totalRounds);
+    if (totalRounds !== null) {
+      return Number(totalRounds);
+    }
+
+    return totalRounds;
   }
 }
 
