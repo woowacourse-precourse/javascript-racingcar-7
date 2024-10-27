@@ -16,6 +16,16 @@ class RacingGameController {
     tryValidation(tryCountInput);
 
     RacingGameView.printStartMessage();
+
+    const game = new RacingGameModel(carNames, Number(tryCountInput));
+
+    for (let i = 0; i < game.tryCount; i++) {
+      const roundResult = game.raceCars();
+      roundResult.forEach((progress, index) => {
+        RacingGameView.printCarProgress(carNames[index], progress);
+      });
+      RacingGameView.printRoundEnd();
+    }
   }
 }
 
