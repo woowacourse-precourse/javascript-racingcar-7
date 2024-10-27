@@ -30,15 +30,15 @@ function moveCars(cars){
 
 function printCarPosition(cars){
   cars.forEach(car => {
-    printString(`${car.name} : ${'-'.repeat(car.position)}`);
+    printString(`${car.name} : ${'-'.repeat(car.getPosition())}`);
   })
   printString('');
 }
 
 
 function getWinnerList(cars){
-  const carPositions = cars.map(car => car.position);
+  const carPositions = cars.map(car => car.getPosition());
   const maxPosition = Math.max(...carPositions);
-  const winnerList = cars.filter(car => car.position === maxPosition).map(car => car.name);
+  const winnerList = cars.filter(car => car.getPosition() === maxPosition).map(car => car.name);
   return winnerList;
 }

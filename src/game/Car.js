@@ -9,7 +9,7 @@ export default class Car {
     this.#position = 0;
   }
 
-  get position() {
+  getPosition() {
     return this.#position;
   }
 

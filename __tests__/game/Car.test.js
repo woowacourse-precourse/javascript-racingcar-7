@@ -10,7 +10,7 @@ const testCases = [
 describe('Car 클래스 테스트', () => {
   test('초기 위치는 0이어야 합니다.', () => {
     const car = new Car('Hello');
-    expect(car.position).toBe(0);
+    expect(car.getPosition()).toBe(0);
   });
 
   test.each(testCases)(
@@ -18,7 +18,7 @@ describe('Car 클래스 테스트', () => {
     (name, randomNumber, expectedPosition) => {
       const car = new Car(name);
       car.checkAndMoveForward(randomNumber);
-      expect(car.position).toBe(expectedPosition);
+      expect(car.getPosition()).toBe(expectedPosition);
     }
   );
 });
