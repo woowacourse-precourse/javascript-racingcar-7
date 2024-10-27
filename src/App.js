@@ -10,8 +10,12 @@ class App {
       results.forEach((result, index) => {
         Console.print(`${carNames[index]} : ${result}`);
       });
+
+      const winners = this.determineWinners(carNames, results);
+      Console.print(`최종 우승자 : ${winners.join(", ")}`);
     } catch (error) {
       Console.print(error.message);
+      throw error;
     }
   }
 
@@ -81,6 +85,11 @@ class App {
     }
 
     return results;
+  }
+
+  determineWinners(carNames, results) {
+    const maxDistance = Math.max(...results.map((result) => result.length));
+    return carNames.filter((_, index) => results[index].length === maxDistance);
   }
 }
 
