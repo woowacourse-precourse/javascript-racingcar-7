@@ -32,6 +32,20 @@ class App {
     return TRY_COUNT;
   }
 
+  validateCarNames(carNames) {
+    checkEmptyString(carNames);
+    checkDuplicateNames(carNames);
+    checkMinimumCars(carNames);
+    validateCarNames(carNames);
+  }
+
+  validateTryCount(tryCount) {
+    tryCountEmptyCheck(tryCount);
+    tryCountNumberCheck(tryCount);
+    tryCountIntegerCheck(tryCount);
+    validateTryCountIsPositive(tryCount);
+  }
+
 }
 
 export default App;
