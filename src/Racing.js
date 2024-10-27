@@ -12,6 +12,7 @@ function initMovement(carNames) {
 function startRace(carNames, tryCount) {
   for (let i = 0; i < tryCount; i++) {
     raceTurn(carNames);
+    Console.print('\n');
   }
 }
 
@@ -36,7 +37,7 @@ export default class Racing {
   }
 
   start() {
-    Console.print('실행 결과\n');
+    Console.print('\n실행 결과');
     startRace(this.carNames, this.tryCount);
   }
 

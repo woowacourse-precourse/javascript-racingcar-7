@@ -15,6 +15,8 @@ export function carNameValidator(carNames) {
   if (carNames.some((carName) => carName.length > 5)) {
     throwError(ERROR.CAR_NAME_LENGTH);
   }
+
+  return carNames;
 }
 
 export function tryCountValidator(tryCount) {
@@ -35,4 +37,6 @@ export function tryCountValidator(tryCount) {
   if (tryCount > 100) {
     throwError(ERROR.TRY_COUNT_MAX);
   }
+
+  return tryCount;
 }

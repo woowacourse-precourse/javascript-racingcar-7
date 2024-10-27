@@ -4,11 +4,11 @@ import Racing from './Racing.js';
 
 class App {
   async run() {
-    const carNames = await UserInput.getCarNames();
-    validator.carNameValidator(carNames);
+    const inputCarNames = await UserInput.getCarNames();
+    const carNames = validator.carNameValidator(inputCarNames);
 
-    const tryCount = await UserInput.getTryCount();
-    validator.tryCountValidator(tryCount);
+    const inputTryCount = await UserInput.getTryCount();
+    const tryCount = validator.tryCountValidator(inputTryCount);
 
     const racing = new Racing(carNames, tryCount);
     racing.start();
