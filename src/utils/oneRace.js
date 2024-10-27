@@ -1,11 +1,11 @@
 import { Console } from "@woowacourse/mission-utils" 
-import makeRandomNumber from "./MakeRamdom.js"
+import makeRandom from "./makeRandom.js"
 
 //각 횟수마다의 위너를 기록한다.
 const oneRace = (names)=>{
     const winners=[]
     names.forEach(name=>{
-        const{ref,go} = makeRandomNumber()
+        const{ref,go} = makeRandom()
         if(go>=4){
             winners.push(name)
         }
