@@ -12,9 +12,12 @@ const throwError = (message) => {
   throw new Error(errorMessage);
 };
 
+const printMessage = (message) => Console.print(message);
+
 export { 
   getCarName,
   getAttempt,
   throwError,
   getRandomNumber,
+  printMessage,
 };

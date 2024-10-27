@@ -1,5 +1,4 @@
-import { MissionUtils } from "@woowacourse/mission-utils";
-import { getCarName, getAttempt, getRandomNumber } from './utils.js';
+import { getCarName, getAttempt, getRandomNumber, printMessage } from './utils.js';
 import { validateCarName, validateAttemptCount } from './validators.js';
 import { GAME_RULES } from './constants.js';
 import Car from './Car.js';
@@ -46,9 +45,9 @@ class Race {
   printRaceStatus() {
     this.cars.forEach(car => {
       const distanceSymbol = GAME_RULES.DISTANCE_SYMBOL.repeat(car.getDistance()); 
-      MissionUtils.Console.print(`${car.getName()} : ${distanceSymbol}`);
+      printMessage(`${car.getName()} : ${distanceSymbol}`);
     });
-    MissionUtils.Console.print(''); 
+    printMessage(''); 
   }
 
   getWinners() {
@@ -60,7 +59,7 @@ class Race {
 
   printWinners() {
     const winners = this.getWinners();
-    MissionUtils.Console.print(`최종 우승자 : ${winners.join(', ')}`);
+    printMessage(`최종 우승자 : ${winners.join(', ')}`);
   }
 }
 
