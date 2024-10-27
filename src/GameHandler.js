@@ -10,7 +10,7 @@ export async function runGame(cars, round) {
     printRoundResult(carPositions);
   }
 
-  return;
+  return carPositions;
 }
 
 // 차의 위치 초기화
@@ -44,4 +44,6 @@ function printRoundResult(carPositions) {
   for (const car in carPositions) {
     Console.print(`${car} : ${carPositions[car]}`);
   }
+
+  Console.print("");
 }

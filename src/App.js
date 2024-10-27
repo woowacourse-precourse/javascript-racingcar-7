@@ -1,6 +1,7 @@
 import { Console } from "@woowacourse/mission-utils";
 import { getCars, getRound } from "./InputHandler.js";
 import { runGame } from "./GameHandler.js";
+import { findWinners } from "./WinnerHandler.js";
 
 class App {
   async run() {
@@ -8,6 +9,8 @@ class App {
       const cars = await getCars();
       const round = await getRound();
       const result = await runGame(cars, round);
+      const winners = findWinners(result);
+      Console.print(`최종 우승자 : ${winners.join(", ")}`);
     } catch (error) {
       throw error;
     }
