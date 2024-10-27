@@ -4,28 +4,30 @@ import Car from './Car.js'
 
 class RacingGame {
     async start() {
-        let cars = [];
-
         const carNames = await InputParser.getCarNames();
         const numberOfRounds = await InputParser.getNumberOfRounds();
+        const cars = this.createCars(carNames);
 
-        //경주할 자동차 이름대로 차의 객체 생성
-        for (let i = 0; i < carNames.length; i++) {
-            cars[i] = new Car(carNames[i]);
+        await this.race(cars, numberOfRounds);
+
+        this.printWinner(cars);
+    }
+
+    createCars(carNames) {
+        return carNames.map(name => new Car(name));
+    }
+
+    executeRound(cars) {
+        for (let car = 0; car < cars.length; car++) {
+            cars[car].move();
         }
+    }
 
-        //라운드별 레이싱 진행
-        for (let i = 0; i < numberOfRounds; i++) {
-            //각 차량마다 레이싱 수행
-            for (let j = 0; j < cars.length; j++) {
-                cars[j].move();
-            }
-            MissionUtils.Console.print("\n");
+    async race(cars, numberOfRounds) {
+        for (let round = 0; round < numberOfRounds; round++) {
+            this.executeRound(cars)
+            MissionUtils.Console.print('\n');
         }
-
-        //우승자 추려내어 출력
-        let winner = this.determineWinner(cars);
-        MissionUtils.Console.print(`최종 우승자 : ${winner}`);
     }
 
     determineWinner(cars) {
@@ -36,17 +38,22 @@ class RacingGame {
             //가장 멀리 간 차의 위치와 비교
             if (cars[i].position > maxPosition) {
                 //가장 멀리 간 곳의 위치 갱신
-                maxPosition = cars[i].position
+                maxPosition = cars[i].position;
                 //승리자 배열 초기화
-                winner.splice(0)
+                winner.splice(0);
                 //승리자 배열에 가장 멀리 간 차의 이름 추가
-                winner.push(cars[i].name)
+                winner.push(cars[i].name);
             } else if (cars[i].position === maxPosition) {
                 //공동 우승자의 경우 차의 이름 추가
-                winner.push(cars[i].name)
+                winner.push(cars[i].name);
             }
         }
         return winner;
+    }
+
+    printWinner(cars) {
+        const winner = this.determineWinner(cars);
+        MissionUtils.Console.print(`최종 우승자 : ${winner}`);
     }
 }
 
