@@ -44,21 +44,38 @@ class App {
 
   showSingleRoundResult() {
     this.carsAndPositions.forEach((car) => {
-      Console.print(`${car.showResult}\n`);
+      Console.print(car.showResult);
     });
+    Console.print('\n');
   }
 
   startRacing(userCarInput, tryCount) {
     const cars = userCarInput.split(',');
     this.createCarsList(cars);
-    this.raceSingleRound();
-    this.showSingleRoundResult();
+    for (let i = 0; i < tryCount; i++) {
+      this.raceSingleRound();
+      this.showSingleRoundResult();
+    }
+  }
+
+  showRacingResult() {
+    const maxPosition = Math.max(
+      ...this.carsAndPositions.map((car) => car.position.length)
+    );
+    const winners = this.carsAndPositions.filter(
+      (car) => car.position.length === maxPosition
+    );
+    Console.print(
+      '최종우승자 : ' + winners.map((winner) => winner.name).join(', ')
+    );
   }
 
   async run() {
     const userCarInput = await this.getCarNames();
     const tryCount = await this.getTryCount();
+    Console.print('\n실행결과');
     this.startRacing(userCarInput, tryCount);
+    this.showRacingResult();
   }
 }
 
