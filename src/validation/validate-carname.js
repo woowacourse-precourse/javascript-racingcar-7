@@ -6,6 +6,7 @@ export const ERROR_MESSAGES = {
   EMPTY_CAR_NAME: '자동차 이름에 빈 값이 포함되어 있습니다.',
   NAME_LENGTH_EXCEEDED: '자동차 이름은 5자를 넘을 수 없습니다.',
   SINGLE_CAR_NAME: '두 대 이상의 자동차 이름을 입력해 주세요.',
+  DUPLICATE_CAR_NAME: '자동차 이름이 중복되었습니다.',
 };
 
 const checkForEmptyInput = (carNameList) => {
@@ -36,8 +37,16 @@ const checkNameLengthLimit = (carNameList) => {
   return carNameList;
 };
 
+const checkDuplicateNames = (carNameList) => {
+  const uniqueNames = new Set(carNameList);
+  if (uniqueNames.size !== carNameList.length) {
+    throwError(ERROR_MESSAGES.DUPLICATE_CAR_NAME);
+  }
+  return carNameList;
+};
+
 const validateCarName = (carNameList) => {
-  runValidators([checkForEmptyInput, checkEmptyValue, checkOneValue, checkNameLengthLimit], carNameList);
+  runValidators([checkForEmptyInput, checkEmptyValue, checkOneValue, checkNameLengthLimit, checkDuplicateNames], carNameList);
 };
 
 export default validateCarName;
