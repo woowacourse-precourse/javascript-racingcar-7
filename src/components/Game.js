@@ -10,7 +10,6 @@ class Game {
     this.nameList = Game.parseNames(names);
     this.#CARS_LIST = Game.allocateCars(this.nameList);
     this.repetitionNumber = repetitionNumber;
-    this.currentRepeat = 0;
   }
 
   static parseNames(names) {
@@ -23,10 +22,11 @@ class Game {
 
   play() {
     Console.print(OutputView.RESULT_PRINT_BEGINNING);
-    while (this.currentRepeat !== this.repetitionNumber) {
+    let currentRepeat = 0;
+    while (currentRepeat !== this.repetitionNumber) {
       this.startRound();
       this.printRoundResults();
-      this.currentRepeat += 1;
+      currentRepeat += 1;
     }
 
     const winners = this.getWinners();
