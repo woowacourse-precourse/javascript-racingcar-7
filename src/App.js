@@ -29,11 +29,20 @@ class RacingGame {
       this.cars.forEach((car) => car.move());
       this.displayCurrentStatus();
     }
+    this.displayWinners();
   }
 
   displayCurrentStatus() {
     this.cars.forEach((car) => Console.print(car.getPositionDisplay()));
     Console.print(""); // 줄바꿈
+  }
+
+  displayWinners() {
+    const maxPosition = Math.max(...this.cars.map((car) => car.position));
+    const winners = this.cars
+      .filter((car) => car.position === maxPosition)
+      .map((car) => car.name);
+    Console.print(`최종 우승자 : ${winners.join(", ")}`);
   }
 }
 
