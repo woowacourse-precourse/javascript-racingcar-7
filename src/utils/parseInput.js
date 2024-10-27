@@ -1,9 +1,15 @@
 import Car from '../Car.js';
 import { InputSeperator } from '../constants/displayConstant.js';
-import { validateCarNameList, validateTurnString } from './validateData.js';
+import {
+  validateCarNameInput,
+  validateCarNameList,
+  validateTurnInput,
+} from './validateInput.js';
 
 // string => Car[]
 export const parseCarNameInput = (input) => {
+  validateCarNameInput(input);
+
   const carNameList = input.split(InputSeperator.MARK);
   validateCarNameList(carNameList);
 
@@ -20,6 +26,6 @@ const createCarList = (carNameList) => {
 
 // string => number
 export const parseTurnInput = (input) => {
-  validateTurnString(input);
+  validateTurnInput(input);
   return Number(input);
 };

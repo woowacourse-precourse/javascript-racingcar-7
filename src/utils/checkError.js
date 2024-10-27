@@ -1,9 +1,14 @@
 import ErrorMessage from '../constants/ErrorMessage.js';
 import { CarInfo } from '../constants/racingConfig.js';
 
-export const isNoNameInput = (name) => {
+export const isNoNameInput = (nameInput) => {
+  if (nameInput == '' || nameInput === undefined || nameInput === null) {
+    throwError(ErrorMessage.PREFIX, ErrorMessage.NO_NAME_INPUT);
+  }
+};
+export const isNoCarName = (name) => {
   if (name.length == 0) {
-    throwError(ErrorMessage.PREFIX, ErrorMessage.NO_CAR_NAME_INPUT);
+    throwError(ErrorMessage.PREFIX, ErrorMessage.NO_CAR_NAME);
   }
 };
 export const isOverName = (name) => {
@@ -18,12 +23,8 @@ export const isDuplicateName = (nameList) => {
   }
 };
 
-export const isNoTurnInput = (numberString) => {
-  if (
-    numberString == '' ||
-    numberString === undefined ||
-    numberString === null
-  ) {
+export const isNoTurnInput = (turnInput) => {
+  if (turnInput == '' || turnInput === undefined || turnInput === null) {
     throwError(ErrorMessage.PREFIX, ErrorMessage.NO_TURN_INPUT);
   }
 };
