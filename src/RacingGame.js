@@ -22,6 +22,28 @@ class RacingGame {
       }
       Console.print("\n");
     }
+
+    return this.getWinner(movingForward);
+  }
+
+  getWinner(movingForward) {
+    let maxRange = movingForward[0];
+    let result = [];
+
+    for (const range of movingForward) {
+      if (range.length >= maxRange) {
+        maxRange = range.length;
+      }
+    }
+
+    for (let i = 0; i < this.cars.length; i++) {
+      if (movingForward[i] === maxRange) {
+        result.push(this.cars[i]);
+      }
+    }
+
+    const resultString = result.join(", ");
+    Console.print(`최종 우승자 : ${resultString}`);
   }
 }
 
