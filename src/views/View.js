@@ -11,3 +11,7 @@ export function printRacingState(carData) {
   // 한 턴이 끝난 후 빈 줄을 출력하여 구분
   MissionUtils.Console.print('');
 }
+
+export function printRacingWinner(winnerName) {
+  MissionUtils.Console.print(`최종 우승자 : ${winnerName.join(', ')}`);
+}
