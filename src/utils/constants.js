@@ -24,19 +24,19 @@ export const OUTPUT_MESSAGES = {
 };
 
 export const CAR_NAME_TEST_CASES = {
-  NO_INPUT: {
+  NO_CARS: {
     input: '',
     errorMessage: `${OUTPUT_MESSAGES.ERROR_PREFIX} ${ERROR_MESSAGES.NO_CARS}`,
   },
-  EMPTY_STRING: {
+  EMPTY_NAME: {
     input: ['pobi', ''],
     errorMessage: `${OUTPUT_MESSAGES.ERROR_PREFIX} ${ERROR_MESSAGES.EMPTY_NAME}`,
   },
-  BLANK_STRING: {
+  EMPTY_NAME_WITH_SPACE: {
     input: ['pobi', ' '],
     errorMessage: `${OUTPUT_MESSAGES.ERROR_PREFIX} ${ERROR_MESSAGES.EMPTY_NAME}`,
   },
-  TOO_LONG_NAME: {
+  NAME_TOO_LONG: {
     input: ['pobi', 'abcdef'],
     errorMessage: `${OUTPUT_MESSAGES.ERROR_PREFIX} ${ERROR_MESSAGES.NAME_TOO_LONG}`,
   },
@@ -51,11 +51,11 @@ export const CAR_NAME_TEST_CASES = {
 };
 
 export const GAME_ROUNDS_TEST_CASES = {
-  NO_INPUT: {
+  EMPTY_ROUNDS: {
     input: '',
     errorMessage: `${OUTPUT_MESSAGES.ERROR_PREFIX} ${ERROR_MESSAGES.EMPTY_ROUNDS}`,
   },
-  BLANK_INPUT: {
+  EMPTY_ROUNDS_WITH_SPACE: {
     input: ' ',
     errorMessage: `${OUTPUT_MESSAGES.ERROR_PREFIX} ${ERROR_MESSAGES.EMPTY_ROUNDS}`,
   },
@@ -67,11 +67,11 @@ export const GAME_ROUNDS_TEST_CASES = {
     input: '-1',
     errorMessage: `${OUTPUT_MESSAGES.ERROR_PREFIX} ${ERROR_MESSAGES.NEGATIVE_NUMBER}`,
   },
-  ZERO: {
+  ZERO_ROUNDS: {
     input: '0',
     errorMessage: `${OUTPUT_MESSAGES.ERROR_PREFIX} ${ERROR_MESSAGES.ZERO_ROUNDS}`,
   },
-  DECIMAL_NUMBER: {
+  NOT_INTEGER: {
     input: '1.5',
     errorMessage: `${OUTPUT_MESSAGES.ERROR_PREFIX} ${ERROR_MESSAGES.NOT_INTEGER}`,
   },
