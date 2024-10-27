@@ -10,23 +10,42 @@ class CarGameController {
     #printer;
 
     constructor() {
+        this.#initDepenency();
+    }
+
+    #initDepenency() {
         this.#inputHandler = new InputHandler();
         this.#validator = new Validator();
         this.#printer = new Printer();
     }
 
     async play() {
-        const inputCarNames = await this.#inputHandler.enterCarNames();
-        const splittedCarNames = Utils.transformCarNamesStringToArray(inputCarNames);
-        this.#validator.isValidCarName(splittedCarNames);
+        const carNames = this.#inputCarNames();
+        const tryCount = this.#inputTryCount();
 
-        const inputTryCnt = await this.#inputHandler.enterTryCount();
-        this.#validator.isValidTryCount(inputTryCnt);
+        const carGame = new CarGame(carNames, tryCount);
 
-        const carGame = new CarGame(splittedCarNames, inputTryCnt);
         const resultLogs = carGame.startRace();
         const winner = carGame.pickWinner();
 
+        this.#printResult(resultLogs, winner);
+    }
+
+    async #inputCarNames() {
+        const inputCarNames = await this.#inputHandler.enterCarNames();
+        const splittedCarNames = Utils.transformCarNamesStringToArray(inputCarNames);
+        this.#validator.checkCarName(splittedCarNames);
+
+        return splittedCarNames;
+    }
+
+    async #inputTryCount() {
+        const inputTryCnt = await this.#inputHandler.enterTryCount();
+        this.#validator.checkTryCount(inputTryCnt);
+        return inputTryCnt;
+    }
+
+    #printResult(resultLogs, winner) {
         this.#printer.printResultText();
         this.#printer.printLogs(resultLogs);
         this.#printer.printWinner(winner);
