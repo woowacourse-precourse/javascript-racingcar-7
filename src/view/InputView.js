@@ -1,14 +1,14 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import { PRINT_MESSAGE } from "../static/Static.js";
 
-class InputView {
-  static async readCarNames() {
+const InputView = {
+  readCarNames: async () => {
     return await MissionUtils.Console.readLineAsync(PRINT_MESSAGE.inputName);
-  }
+  },
 
-  static async readAttempts() {
+  readAttempts: async () => {
     return await MissionUtils.Console.readLineAsync(PRINT_MESSAGE.inputTries);
   }
-}
+};
 
 export default InputView;
