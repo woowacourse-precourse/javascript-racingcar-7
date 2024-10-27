@@ -9,13 +9,17 @@ class App {
       return acc;
     }, {});
 
+    MissionUtils.Console.print('\n실행 결과\n');
+
     for (let i = 0; i < TRY_INPUT; i++) {
       for (const car in carList) {
         let advanceChance = MissionUtils.Random.pickNumberInRange(0, 9);
         if (advanceChance >= 4) {
           carList[car] += 1;
         }
+        MissionUtils.Console.print(`${car} : ${'-'.repeat(carList[car])}`);
       }
+      MissionUtils.Console.print('\n');
     }
   }
 }
