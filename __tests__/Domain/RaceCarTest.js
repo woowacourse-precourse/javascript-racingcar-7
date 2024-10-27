@@ -1,4 +1,4 @@
-import RaceCar from '../../src/Model/RaceCar';
+import RaceCar from '../../src/Domain/RaceCar';
 
 describe('RaceCar', () => {
   test('이름과 초기 값을 설정한다', () => {

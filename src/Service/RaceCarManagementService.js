@@ -1,4 +1,4 @@
-import RaceCar from '../Model/RaceCar.js';
+import RaceCar from '../Domain/RaceCar.js';
 import ICarManagementService from './Interfaces/ICarManagementService.js';
 
 class RaceCarManagementService extends ICarManagementService {

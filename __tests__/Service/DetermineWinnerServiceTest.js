@@ -1,4 +1,4 @@
-import RaceCar from '../../src/Model/RaceCar';
+import RaceCar from '../../src/Domain/RaceCar';
 import DetermineWinnerService from '../../src/Service/DetermineWinnerService';
 
 describe('DetermineWinnerService', () => {
