@@ -30,7 +30,27 @@ class App {
     return attempts;
   }
 
-  
+  initializeCars(names) {
+    return names.map(name => ({ name, position: 0 }));
+  }
+
+  startRace(cars, attempts) {
+    for (let i = 0; i < attempts; i++) {
+      cars.forEach(car => {
+        const randomValue = MissionUtils.Random.pickNumberInRange(1, 9);
+        if (randomValue >= 4) {
+          car.position += 1;
+        }
+        MissionUtils.Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
+      });
+    }
+  }
+
+  printWinners(cars) {
+    const maxPosition = Math.max(...cars.map(car => car.position));
+    const winners = cars.filter(car => car.position === maxPosition).map(car => car.name);
+    MissionUtils.Console.print(`최종 우승자 : ${winners.join(", ")}`);
+  }
   
 }
 
