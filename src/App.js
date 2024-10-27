@@ -36,7 +36,6 @@ class App {
         input[item] += 1;
       }
     });
-    return input;
   }
 
   printResult(input) {
@@ -53,8 +52,14 @@ class App {
     const tryNumber = await this.getTryNumber('시도할 횟수는 몇 회인가요?\n');
 
     const scoreBoard = this.setGame(carNames);
-    const firstRound = this.executionResult(scoreBoard);
-    this.printResult(firstRound);
+
+    Console.print('\n실행 결과');
+
+    for (let i = 0; i < tryNumber; i++) {
+      this.executionResult(scoreBoard);
+      this.printResult(scoreBoard);
+      Console.print('');
+    }
   }
 }
 
