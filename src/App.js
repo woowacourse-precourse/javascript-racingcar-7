@@ -11,12 +11,18 @@ const getInput = async (inputMessage) => {
 const createCarState = (carsName) => {
   const carState = carsName
     .split(",")
+    .map((carName) => carName.trim())
+    .filter((carName) => carName.length !== 0)
     .map((carName) => ({ carName, distance: "" }));
+
+  if (countRacers(carState) > 25)
+    throw new Error("자동차가 너무 많습니다. 25대까지 참여 가능합니다.");
+
   return carState;
 };
 
-const updateCarState = (carState, movesNumber) => {
-  for (let i = 0; i < movesNumber; i++) {
+const updateCarState = (carState, noWhitespaceNumber) => {
+  for (let i = 0; i < noWhitespaceNumber; i++) {
     carState.forEach((car) => {
       const advanceCondition = Random.pickNumberInRange(0, 9);
       if (advanceCondition >= 4) {
@@ -34,6 +40,20 @@ const printRaceState = (carState) => {
   Console.print("");
 };
 
+const multipleWinners = (carState, winnerDistance) => {
+  const numberWinners = carState
+    .filter((car) => car.distance.length === winnerDistance)
+    .map((car) => car.carName).length;
+
+  return numberWinners;
+};
+
+const countRacers = (carState) => {
+  const numberRacers = carState.map((car) => car.carName).length;
+
+  return numberRacers;
+};
+
 const printWinners = (carState) => {
   const winnerDistance = Math.max(
     ...carState.map((car) => car.distance.length)
@@ -44,7 +64,21 @@ const printWinners = (carState) => {
     .map((car) => car.carName)
     .join(", ");
 
-  Console.print(`최종 우승자 : ${winners}`);
+  const numberWinners = multipleWinners(carState, winnerDistance);
+  const numberRacers = countRacers(carState);
+
+  if (numberWinners === 1) {
+    Console.print(`최종 우승자 : ${winners}`);
+  } else if (numberWinners === numberRacers) {
+    Console.print(`무승부 : ${winners}`);
+  } else {
+    Console.print(`공동 우승자 : ${winners}`);
+  }
+};
+
+const removeWhitespace = (movesNumber) => {
+  const noWhitespaceNumber = movesNumber.toString().replace(/\s/g, "");
+  return noWhitespaceNumber;
 };
 
 class App {
@@ -55,7 +89,7 @@ class App {
       );
       const carNameLengthLimit = carsName
         .split(",")
-        .every((carName) => carName.length <= 5);
+        .every((carName) => carName.trim().length <= 5);
 
       if (!carNameLengthLimit)
         throw new Error("자동차 이름은 5자 이하만 가능합니다.");
@@ -66,13 +100,26 @@ class App {
       const carState = createCarState(carsName);
 
       const movesNumber = await getInput("시도할 횟수는 몇 회인가요?\n");
+      const noWhitespaceNumber = removeWhitespace(movesNumber);
 
-      if (movesNumber.trim().length === 0)
+      if (isNaN(noWhitespaceNumber))
+        throw new Error("시도할 횟수는 숫자만 입력이 가능합니다.");
+
+      if (
+        !Number.isInteger(Number(noWhitespaceNumber)) ||
+        noWhitespaceNumber < 0
+      )
+        throw new Error("시도할 횟수는 양의 정수만 입력이 가능합니다.");
+
+      if (noWhitespaceNumber > Number.MAX_SAFE_INTEGER)
+        throw new Error("시도할 횟수가 너무 큽니다.");
+
+      if (noWhitespaceNumber.trim().length === 0)
         throw new Error("시도할 횟수를 입력해주세요.");
 
       Console.print("\n실행 결과");
 
-      updateCarState(carState, movesNumber);
+      updateCarState(carState, noWhitespaceNumber);
 
       printWinners(carState);
     } catch (error) {
