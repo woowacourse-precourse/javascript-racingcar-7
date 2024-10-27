@@ -20,6 +20,18 @@ class App {
     });
   }
 
+  determineWinners(carNames, distances) {
+    return None;
+  }
+
+  moveCars(carNames, attempts) {
+    return None;
+  }
+
+  validateCarNames(carNames) {
+    return None;
+  }
+
   playGame(carNames, attempts) {
     return ["pobi : -", "woni : ", "최종 우승자 : pobi"];
   }
