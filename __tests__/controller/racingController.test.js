@@ -33,8 +33,22 @@ describe('RacingController', () => {
     expect(carNames).toEqual(['pobi', 'wook', 'jay']);
   });
 
-  test('inputCarNames()에서 잘못된 자동차 이름 입력 시 오류를 발생시킨다', async () => {
-    Console.readLineAsync.mockResolvedValue('Car1, ,Car3');
+  test('inputCarNames()에서 이름이 6글자 이상인 단어가 포함될 경우 오류를 발생시킨다.', async () => {
+    Console.readLineAsync.mockResolvedValue('Carrasd, ,Carrasd');
+    await expect(racingController.inputCarNames()).rejects.toThrow(
+      ERROR_MESSAGE.inputNameError,
+    );
+  });
+
+  test('inputCarNames()에서 이름에 한글이 포함될 경우 오류를 발생시킨다', async () => {
+    Console.readLineAsync.mockResolvedValue('pobi,홍길동,jay');
+    await expect(racingController.inputCarNames()).rejects.toThrow(
+      ERROR_MESSAGE.inputNameError,
+    );
+  });
+
+  test('inputCarNames()에서 이름에 숫자가 포함될 경우 오류를 발생시킨다', async () => {
+    Console.readLineAsync.mockResolvedValue('pobi,car123,jay');
     await expect(racingController.inputCarNames()).rejects.toThrow(
       ERROR_MESSAGE.inputNameError,
     );
