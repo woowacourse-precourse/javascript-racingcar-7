@@ -52,7 +52,7 @@ class App {
   async playGame(game, attempts) {
     for (let i = 0; i < attempts; i++) {
       game.race();
-      Console.print(""); // 빈 줄 출력
+      Console.print("");
       game.printCurrentStatus();
     }
   }
