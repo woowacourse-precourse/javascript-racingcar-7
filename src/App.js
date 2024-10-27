@@ -6,6 +6,7 @@ class App {
     const roundCount = await UserInput.enterRoundCount();
 
     const game = new RacingGame(carNames);
+    game.play(roundCount);
   }
 }
 
