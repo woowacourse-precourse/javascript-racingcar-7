@@ -68,7 +68,9 @@ class RacingCar {
 		const maxLength = Math.max(
 			...this.carNamesAndNumberMap.map((car) => car.carNumbers.length)
 		);
-		printOutput("");
+
+		printOutput("\n실행 결과");
+
 		for (let i = 0; i < maxLength; i++) {
 			this.carNamesAndNumberMap.forEach((car) => {
 				const dashes = car.carNumbers
@@ -104,12 +106,8 @@ class RacingCar {
 	}
 
 	printWinners(winners) {
-		if (winners.length === 0) {
-			printOutput(`최종 우승자 : 우승자가 없습니다.`);
-		} else {
-			const winnersString = winners.join(", ");
-			printOutput(`최종 우승자 : ${winnersString}`);
-		}
+		const winnersString = winners.join(", ");
+		printOutput(`최종 우승자 : ${winnersString}`);
 	}
 }
 
