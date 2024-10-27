@@ -1,4 +1,4 @@
-import CarRacingGame from "./CarRacingGame.js";
+import CarRacingGame from './CarRacingGame.js';
 
 class CarRacingManager {
   constructor(inputHandler, outputHandler) {

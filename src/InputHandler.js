@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console } from '@woowacourse/mission-utils';
 
 class InputHandler {
 
@@ -23,28 +23,28 @@ class InputHandler {
 
   validateEmpty(input) {
     if (!input.trim()) {
-      throw new Error("[ERROR] 공백이 입력 되었습니다.");
+      throw new Error('[ERROR] 공백이 입력 되었습니다.');
     }
   }
 
   validateCarCount(carNames) {
     if (carNames.length < 2) {
-      throw new Error("[ERROR] 이름을 2개 이상 입력해주세요.");
+      throw new Error('[ERROR] 이름을 2개 이상 입력해주세요.');
     }
   }
 
   validateNamesLength(carNames) {
     carNames.forEach(name => {
       if (name.length > 5) {
-        throw new Error("[ERROR] 이름은 5자 이하만 허용됩니다.");
+        throw new Error('[ERROR] 이름은 5자 이하만 허용됩니다.');
       }
     });
   }
 
   validateNoEmptyNames(carNames) {
     carNames.forEach(name => {
-      if (name.trim() === "") {
-        throw new Error("[ERROR] 이름에 공백은 허용되지 않습니다.");
+      if (name.trim() === '') {
+        throw new Error('[ERROR] 이름에 공백은 허용되지 않습니다.');
       }
     });
   }
@@ -52,19 +52,19 @@ class InputHandler {
   validateIsNumber(input) {
     const numberInput = Number(input);
     if (Number.isNaN(numberInput)) {
-      throw new Error("[ERROR] 숫자를 입력해주세요.");
+      throw new Error('[ERROR] 숫자를 입력해주세요.');
     }
   }
 
   validatePositiveNumber(input) {
     if (Number(input) < 1) {
-      throw new Error("[ERROR] 1 이상의 숫자를 입력해주세요.");
+      throw new Error('[ERROR] 1 이상의 숫자를 입력해주세요.');
     }
   }
 
   validateIsInteger(input) {
     if (!Number.isInteger(Number(input))) {
-      throw new Error("[ERROR] 정수를 입력해주세요.");
+      throw new Error('[ERROR] 정수를 입력해주세요.');
     }
   }
 }
