@@ -11,6 +11,8 @@ class App {
 
     const ATTEMPTS = await this.getAttempts();
 
+    const SCORE = [];
+    await this.playGame(ATTEMPTS, SCORE, CARS_COUNT);
     
   }
 
@@ -68,6 +70,35 @@ class App {
     }
 
     return ATTEMPTS;
+  }
+
+  async playGame(ATTEMPTS, SCORE, CARS_COUNT){
+    while(ATTEMPTS > 0){
+      // 각 차마다 rand 뽑기
+      const CAN_GO = await this.getRandomNumberForEachCar(CARS_COUNT);
+
+      ATTEMPTS --;
+    }
+  }
+
+  async getRandomNumberForEachCar(CARS_COUNT){
+    const CAN_GO = [];
+    for(let i = 0; i<CARS_COUNT; i++){
+      // 무작위 값 뽑기
+      const RANDOM_NUMBER = Random.pickNumberInRange(0, 9);
+
+      // 전진
+      if(RANDOM_NUMBER >= 4){
+        CAN_GO.push(true);
+      // 정지
+      }else{
+        CAN_GO.push(false);
+      }
+    }
+
+    return CAN_GO;
+
+
   }
 }
 
