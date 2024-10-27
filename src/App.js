@@ -1,5 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import Car from './Car.js';
+import Validator from './Validator.js';
 
 class App {
   async run() {
@@ -7,8 +8,9 @@ class App {
       const inputCarNames = await Console.readLineAsync(
         '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
       );
-      if (!this.validateCarNamesLength(inputCarNames.split(',')))
-        throw new Error('자동차의 이름은 5글자 이하로 입력해주세요.');
+
+      const validator = new Validator();
+      validator.nameValidate(inputCarNames.split(','));
 
       const cars = inputCarNames.split(',').map(carName => new Car(carName));
 
@@ -41,10 +43,6 @@ class App {
     } catch (error) {
       throw new Error(`[ERROR] ${error.message}`);
     }
-  }
-
-  validateCarNamesLength(carNames) {
-    return carNames.every(name => name.length <= 5);
   }
 }
 
