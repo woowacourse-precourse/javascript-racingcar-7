@@ -9,7 +9,14 @@ class App {
       return acc;
     }, {});
 
-
+    for (let i = 0; i < TRY_INPUT; i++) {
+      for (const car in carList) {
+        let advanceChance = MissionUtils.Random.pickNumberInRange(0, 9);
+        if (advanceChance >= 4) {
+          carList[car] += 1;
+        }
+      }
+    }
   }
 }
 
