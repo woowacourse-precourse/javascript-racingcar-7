@@ -19,7 +19,7 @@ export default class RaceManager {
   }
 
   createCars(carNames) {
-    this.#cars = carNames.map(name => new Car(name));
+    this.#cars = carNames.map((name) => new Car(name));
   }
 
   getAttempts() {
@@ -31,7 +31,7 @@ export default class RaceManager {
   }
 
   moveAllCars() {
-    this.#cars.forEach(car => {
+    this.#cars.forEach((car) => {
       const randomNumber = this.#generateRandomNumber();
       car.move(randomNumber);
     });
@@ -40,7 +40,7 @@ export default class RaceManager {
   #generateRandomNumber() {
     return RandomNumber.pickNumberInRange(
       STATIC_NUMBER.game.MIN_RANDOM,
-      STATIC_NUMBER.game.MAX_RANDOM
+      STATIC_NUMBER.game.MAX_RANDOM,
     );
   }
 
@@ -50,10 +50,10 @@ export default class RaceManager {
   }
 
   #findMaxPosition() {
-    return Math.max(...this.#cars.map(car => car.getPosition()));
+    return Math.max(...this.#cars.map((car) => car.getPosition()));
   }
 
   #filterWinnersByPosition(maxPosition) {
-    return this.#cars.filter(car => car.getPosition() === maxPosition);
+    return this.#cars.filter((car) => car.getPosition() === maxPosition);
   }
 }

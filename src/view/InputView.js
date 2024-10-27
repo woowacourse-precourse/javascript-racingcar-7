@@ -8,7 +8,7 @@ const InputView = {
 
   readAttempts: async () => {
     return await MissionUtils.Console.readLineAsync(PRINT_MESSAGE.inputTries);
-  }
+  },
 };
 
 export default InputView;

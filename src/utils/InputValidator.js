@@ -1,4 +1,3 @@
-// src/utils/InputValidator.js
 import { ERROR_MESSAGE, STATIC_NUMBER } from "../static/Static.js";
 
 const InputValidator = {
