@@ -52,16 +52,12 @@ class App {
   // 라운드별 진행상황 처리 함수
   simulateRaceRound() {
     Object.keys(this.carObject).forEach((carName) => {
-      this.carObject[carName] += this.moveOrStop(
-        Random.pickNumberInRange(0, 9) // 0~9까지의 랜덤값
-      );
+      if (this.moveOrStop()) this.carObject[carName]++;
     });
   }
-
   //전진 or 멈춤 판단 함수
-  moveOrStop(randomNumber) {
-    if (randomNumber >= 4) return 1;
-    return 0;
+  moveOrStop() {
+    return Random.pickNumberInRange(0, 9) >= 4;
   }
 
   // 라운드별 진행상황 출력 함수
