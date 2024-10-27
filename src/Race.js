@@ -10,6 +10,7 @@ import { THRESHOLD } from './constants/threshold.js';
 export default class Race {
   #cars;
   #count;
+  #winner;
 
   async init() {
     const cars = await ViewIn.getCars();
@@ -27,7 +28,8 @@ export default class Race {
   start() {
     ViewOut.showResultMessage();
     this.#round();
-
+    this.#selectWinner();
+    console.log(this.#winner);
   }
 
   #round() {
@@ -43,5 +45,15 @@ export default class Race {
         THRESHOLD.MAX_RANDOM_NUMBER);
       car.move(randomNumber);
     });
+  }
+
+  #selectWinner() {
+    this.#sortScore();
+    const highScore = this.#cars[0].getPoints();
+    this.#winner = this.#cars.filter((car) => car.getPoints() === highScore);
+  }
+
+  #sortScore() {
+    this.#cars.sort((n, m) => m.getPoints() - n.getPoints());
   }
 }
