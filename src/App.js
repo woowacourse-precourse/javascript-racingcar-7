@@ -6,7 +6,7 @@ class App {
   static ERROR_MESSAGES = {
     EMPTY_STRING: "빈 문자열은 입력할 수 없습니다.",
     MAX_STRING: "자동차이름은 5자 이하만 가능합니다.",
-    INVALID_NUMBER: "숫자만 입력 가능합니다.",
+    INVALID_NUMBER: "양의 정수만 입력 가능합니다.",
   };
 
   async run() {
@@ -82,7 +82,10 @@ class App {
   validateNumberInput(numberInput) {
     if (!numberInput || !numberInput.trim())
       this.throwError(App.ERROR_MESSAGES.EMPTY_STRING);
-    if (isNaN(numberInput)) this.throwError(App.ERROR_MESSAGES.INVALID_NUMBER);
+
+    // 정규식을 사용해 양의 정수만 허용
+    if (!/^[1-9]\d*$/.test(numberInput))
+      this.throwError(App.ERROR_MESSAGES.INVALID_NUMBER);
   }
 
   // 공통 에러 처리 함수
