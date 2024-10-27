@@ -43,7 +43,7 @@ class InputHandler {
 
   validateNoEmptyNames(carNames) {
     carNames.forEach(name => {
-      if (name === "") {
+      if (name.trim() === "") {
         throw new Error("[ERROR] 이름에 공백은 허용되지 않습니다.");
       }
     });
