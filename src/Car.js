@@ -11,7 +11,7 @@ class Car {
     if (randomValueForMovement >= 4) this.moveForwardCnt += 1;
   }
 
-  getMoveFowradCnt() {
+  getMoveForwardCnt() {
     return this.moveForwardCnt;
   }
 

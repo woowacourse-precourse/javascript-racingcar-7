@@ -12,7 +12,7 @@ class RacingGame {
       this.cars.forEach(car => {
         car.moveForward();
         Console.print(
-          `${car.getName()} : ${'-'.repeat(car.getMoveFowradCnt())}`,
+          `${car.getName()} : ${'-'.repeat(car.getMoveForwardCnt())}`,
         );
       });
       Console.print('\n');
@@ -21,13 +21,13 @@ class RacingGame {
 
   printResult() {
     const maxMoveForward = this.cars.reduce((acc, curr) => {
-      if (acc < curr.getMoveFowradCnt()) return curr.getMoveFowradCnt();
+      if (acc < curr.getMoveForwardCnt()) return curr.getMoveForwardCnt();
       return acc;
     }, 0);
 
     Console.print(
       `최종 우승자 : ${this.cars
-        .filter(car => car.getMoveFowradCnt() === maxMoveForward)
+        .filter(car => car.getMoveForwardCnt() === maxMoveForward)
         .map(car => car.getName())
         .join(',')}`,
     );
