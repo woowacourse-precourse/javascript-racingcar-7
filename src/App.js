@@ -4,6 +4,12 @@ class App {
   async run() {
     const { carList, cnt } = await this.getInput();
     const cars = carList.map((name) => ({ name, position: 0 }));
+
+    Console.print("\n실행 결과");
+    for (let i = 0; i < cnt; i++) {
+      this.moveCars(cars);
+      this.PositionsPrint(cars);
+    }
   }
 
   // 입력 받기
@@ -26,6 +32,14 @@ class App {
         car.position += 1;
       }
     });
+  }
+
+  // 경주 결과 출력
+  PositionsPrint(cars) {
+    cars.forEach((car) => {
+      Console.print(`${car.name} : ${"-".repeat(car.position)}`);
+    });
+    Console.print("");
   }
 }
 
