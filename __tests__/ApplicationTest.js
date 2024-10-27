@@ -66,6 +66,8 @@ describe("자동차 경주", () => {
     ["123, ^&*", ERROR_MESSAGES.NAME_MUST_BE_KOREAN_OR_ENGLISH],
     ["emma", ERROR_MESSAGES.MINIMUM_TWO_CARS_REQUIRED],
     ["emma,jin,emma", ERROR_MESSAGES.DUPLICATE_CAR_NAMES],
+    ["emma,,jin", ERROR_MESSAGES.EMPTY_STRING],
+    ["emma,jin,", ERROR_MESSAGES.EMPTY_STRING],
   ])("validateCarName(%s) throws %s", (input, expected) => {
     expect(() => validateCarName(input)).toThrow(expected);
   });
