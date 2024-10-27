@@ -6,6 +6,7 @@ import { validateCars } from './utils/validator/car.js';
 import { validateCount } from './utils/validator/count.js';
 import { Random } from '@woowacourse/mission-utils';
 import { THRESHOLD } from './constants/threshold.js';
+import { sortScore } from './utils/sort.js';
 
 export default class Race {
   #cars;
@@ -48,12 +49,8 @@ export default class Race {
   }
 
   #selectWinner() {
-    this.#sortScore();
+    this.#cars = sortScore(this.#cars);
     const highScore = this.#cars[0].getPoints();
     this.#winner = this.#cars.filter((car) => car.getPoints() === highScore);
-  }
-
-  #sortScore() {
-    this.#cars.sort((n, m) => m.getPoints() - n.getPoints());
   }
 }
