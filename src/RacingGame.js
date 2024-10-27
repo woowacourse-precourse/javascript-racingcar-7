@@ -35,16 +35,16 @@ class RacingGame {
         let maxPosition = 0;
 
         for (let i = 0; i < cars.length; i++) {
-            //가장 멀리 간 차의 위치와 비교
+            // 가장 멀리 간 차의 위치와 비교
             if (cars[i].position > maxPosition) {
-                //가장 멀리 간 곳의 위치 갱신
+                // 가장 멀리 간 곳의 위치 갱신
                 maxPosition = cars[i].position;
-                //승리자 배열 초기화
+                // 승리자 배열 초기화
                 winners.splice(0);
-                //승리자 배열에 가장 멀리 간 차의 이름 추가
+                // 승리자 배열에 가장 멀리 간 차의 이름 추가
                 winners.push(cars[i].name);
             } else if (cars[i].position === maxPosition) {
-                //공동 우승자의 경우 차의 이름 추가
+                // 공동 우승자의 경우 차의 이름 추가
                 winners.push(cars[i].name);
             }
         }
