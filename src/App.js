@@ -12,6 +12,13 @@ class App {
 
     const cars = [];
     for (const carName of splitNames) cars.push(new RacingCar(carName));
+
+    for (let i = 0; i < TIMES; i++) {
+      for (const car of cars) {
+        car.move();
+      }
+      MissionUtils.Console.print('');
+    }
   }
 }
 

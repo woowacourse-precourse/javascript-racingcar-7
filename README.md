@@ -15,7 +15,7 @@
 - [x] 자동차 이름을 쉼표(,)로 구분하기
 - [x] 자동차 이름 양끝 여백 제거
 - [x] RacingCar 클래스 생성
-- [ ] Random.pickNumberInRange()을 사용하여 전진하는 기능 넣기
+- [x] Random.pickNumberInRange()을 사용하여 전진하는 기능 넣기
 - [ ] 우승자 구하고 출력하기
 
 ### 예외 처리
