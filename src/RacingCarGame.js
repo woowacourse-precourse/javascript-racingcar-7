@@ -14,6 +14,10 @@ class RacingCarGame {
     );
   }
 
+  validateRoundCount(roundCount) {
+    return isNaN(roundCount) || roundCount <= 0;
+  }
+
   async start() {
     const carNames = await Console.readLineAsync(
       `경주할 자동차 이름을 입력하세요.(이름은 쉼표(${RacingCarGame.CAR_NAME_SEPARATOR}) 기준으로 구분)\n`
@@ -25,6 +29,14 @@ class RacingCarGame {
         throw new Error("[ERROR] 유효하지 않은 자동차 이름이 입력되었습니다.");
       }
     });
+
+    const roundCount = await Console.readLineAsync(
+      `시도할 횟수는 몇 회인가요?\n`
+    );
+
+    if (this.validateRoundCount(roundCount)) {
+      throw new Error("[ERROR] 유효하지 않은 시도할 횟수가 입력되었습니다.");
+    }
   }
 }
 
