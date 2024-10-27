@@ -5,6 +5,7 @@ class App {
 
   static ERROR_MESSAGES = {
     EMPTY_STRING: "빈 문자열은 입력할 수 없습니다.",
+    DUPLICATE_STRING: "중복된 자동차 이름은 입력할 수 없습니다.",
     MAX_STRING: "자동차이름은 5자 이하만 가능합니다.",
     INVALID_NUMBER: "양의 정수만 입력 가능합니다.",
   };
@@ -73,9 +74,17 @@ class App {
 
   // 자동차 이름 입력 검증 함수
   validateCarInput(carInput) {
+    // 빈값 입력 검증
     if (!carInput.trim()) this.throwError(App.ERROR_MESSAGES.EMPTY_STRING);
+
+    // 자동차 이름 5자 이하 검증
     if (carInput.split(",").some((carName) => carName.trim().length > 5))
       this.throwError(App.ERROR_MESSAGES.MAX_STRING);
+
+    // 자동차 이름 중복 검증
+    if (new Set(carInput.split(",")).size !== carInput.split(",").length) {
+      this.throwError(App.ERROR_MESSAGES.DUPLICATE_STRING);
+    }
   }
 
   // 횟수 입력 검증 함수
