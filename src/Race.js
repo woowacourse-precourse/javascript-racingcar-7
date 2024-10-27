@@ -13,6 +13,12 @@ class Race {
             return new Car(name);
         });
 
+        // 이름이 중복되는 경우
+        const isName = new Set(names);
+        if (isName.size != names.length) {
+            throw new Error("[ERROR] 자동차 이름은 중복될 수 없습니다.");
+        }
+
         this.moveCount = moveCount;
     }
 
