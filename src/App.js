@@ -20,18 +20,22 @@ class App {
 
   async inputAttemptCount() {
     const attemptCountInput = await this.input('시도할 횟수는 몇 회인가요?');
-    return this.validateAndParseAttemptCount(attemptCountInput);
+    return this.parseAttemptCount(attemptCountInput);
   }
 
-  validateAndParseAttemptCount(attemptCountInput) {
+  parseAttemptCount(attemptCountInput) {
     const attemptCount = Number(attemptCountInput);
+    this.validateAttemptCount(attemptCount);
+    return attemptCount;
+  }
+
+  validateAttemptCount(attemptCount) {
     if (Number.isNaN(attemptCount)) {
       throw Error(`[ERROR] ${App.ERROR_MESSAGE.ATTEMPT_COUNT_ERROR}`);
     }
     if (attemptCount < 1) {
       throw Error(`[ERROR] ${App.ERROR_MESSAGE.ATTEMPT_COUNT_MINIMUM_ERROR}`);
     }
-    return attemptCount;
   }
 
   async inputCars() {
@@ -39,12 +43,14 @@ class App {
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)',
     );
     const cars = this.separateCar(carsInput);
+    this.validateCarNames(cars);
+    return cars;
+  }
 
+  validateCarNames(cars) {
     if (!this.isCarNameValid(cars)) {
       throw Error(`[ERROR] ${App.ERROR_MESSAGE.CAR_NAME_LENGTH_ERROR}`);
     }
-
-    return cars;
   }
 
   separateCar(cars) {
