@@ -26,11 +26,16 @@ function initializePositions(cars) {
 // 차의 위치 업데이트
 function updatePositions(carPositions) {
   for (const car in carPositions) {
-    const randomNumber = Random.pickNumberInRange(0, 9);
+    moveCar(carPositions, car);
+  }
+}
 
-    if (randomNumber >= 4) {
-      carPositions[car] += "-".repeat(randomNumber);
-    }
+// 차 전진 여부 확인 및 전진 진행
+function moveCar(carPositions, car) {
+  const randomNumber = Random.pickNumberInRange(0, 9);
+
+  if (randomNumber >= 4) {
+    carPositions[car] += "-".repeat(randomNumber);
   }
 }
 
