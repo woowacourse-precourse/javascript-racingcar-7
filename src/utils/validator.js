@@ -29,3 +29,18 @@ export const validateCarNameLength = (car) => {
     throw new Error("[ERROR] 자동차 이름은 5자 이하만 가능합니다.");
   }
 }
+
+// 시도하는 횟수가 숫자인지 확인
+export const validateNumberRound = (round) => {
+  if (isNaN(round)) {
+    throw new Error("[ERROR] 시도 횟수는 숫자여야 합니다.");
+  }
+}
+
+// 시도하는 횟수가 1 이상인지 확인
+export const validatePositiveRound = (round) => {
+  if (round < 1) {
+    throw new Error("[ERROR] 시도 횟수는 1 이상이어야 합니다.");
+  }
+}
+
