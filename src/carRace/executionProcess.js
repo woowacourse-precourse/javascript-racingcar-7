@@ -6,7 +6,7 @@ export function executionProcess(players, attemptsNumber) {
   const playersArray = players.split(",");
   const playersObject = new Object();
   playersArray.forEach((player) => {
-    playersObject[`${player}${GAP}`] = "";
+    playersObject[`${player}`] = "";
   });
   for (let i = 0; i < attemptsNumber; i++) {
     movingForward(playersObject);
