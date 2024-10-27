@@ -1,5 +1,5 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
-import { maxScoreCar } from "../src/Component/SearchMaxScore.js";
+import { maxScoreCar } from "../src/SearchWinner/SearchWinner.js";
 
 describe("최종 우승자 테스트", () => {
   test("단독 우승", () => {

@@ -5,7 +5,7 @@ import {
   ERR_TWO_CAR,
   ERR_POSITIVE,
   ERR_ISINT,
-} from "./Error.js";
+} from "../Error/Error.js";
 
 // 자동차 이름에 중복이 있는지 검사
 function isDuplicate(arr) {

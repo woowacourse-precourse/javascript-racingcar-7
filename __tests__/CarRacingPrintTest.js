@@ -1,5 +1,5 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
-import { startCarRacing } from "../src/Component/CarRacing.js";
+import { startCarRacing } from "../src/CarRacing/CarRacing.js";
 
 describe("자동차 경주 결과 출력 테스트", () => {
   test("경주 결과", () => {

@@ -1,8 +1,8 @@
-import Input from "./Component/Input.js";
-import { checkCarNames, checkAttemptNumber } from "./Component/Check.js";
-import { makeCarScore } from "./Component/CarScore.js";
-import { startCarRacing } from "./Component/CarRacing.js";
-import { maxScoreCar } from "./Component/SearchMaxScore.js";
+import Input from "./InputControl/Input.js";
+import { checkCarNames, checkAttemptNumber } from "./InputControl/Check.js";
+import { makeCarScore } from "./CarRacing/CarScore.js";
+import { startCarRacing } from "./CarRacing/CarRacing.js";
+import { maxScoreCar } from "./SearchWinner/SearchWinner.js";
 
 class App {
   async run() {

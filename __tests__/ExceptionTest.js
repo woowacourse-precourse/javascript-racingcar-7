@@ -5,7 +5,7 @@ import {
   ERR_TWO_CAR,
   ERR_POSITIVE,
   ERR_ISINT,
-} from "../src/Component/Error.js";
+} from "../src/Error/Error.js";
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
