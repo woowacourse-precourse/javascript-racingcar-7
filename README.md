@@ -197,23 +197,6 @@ function findWinners(playerScores) {
 }
 ```
 
-##### 테스트 케이스
-
-1. **입력**: `djfaksd,did` `불꽃코딩머신,불꽃코딩`
-
-   - 처리: **5자를 초과하는 자동차 이름**
-   - 결과: `[ERROR]`
-
-2. **입력**: `pobi woni jun` `pobi|woni|jun `
-
-   - 처리: **쉼표가 아닌 구분자**
-   - 결과: `[ERROR]`
-
-3. **입력**: `abc` `한`
-
-   - 처리: **숫자가 아닌 시도 횟수**
-   - 결과: `[ERROR]`
-
 ---
 
 ## 📄 테스트(Testing)
