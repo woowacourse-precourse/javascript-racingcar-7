@@ -11,7 +11,9 @@ class RacingGame {
     for (let i = 0; i < this.tryCnt; i += 1) {
       this.cars.forEach(car => {
         car.moveForward();
-        car.printMoveResult();
+        Console.print(
+          `${car.getName()} : ${'-'.repeat(car.getMoveFowradCnt())}`,
+        );
       });
       Console.print('\n');
     }
