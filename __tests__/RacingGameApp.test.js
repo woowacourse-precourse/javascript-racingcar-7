@@ -28,6 +28,13 @@ describe("InputValidator", () => {
         "[ERROR] 자동차 이름은 5자 이하만 가능합니다."
       );
     });
+
+    test("중복된 자동차 이름이 포함된 경우 에러를 발생시킨다", () => {
+      const carNames = ["pobi", "pobi", "jun"];
+      expect(() => inputValidator.validateCarNames(carNames)).toThrow(
+        "[ERROR] 자동차 이름에 중복된 값이 있습니다."
+      );
+    });
   });
 
   describe("validateMoveCount", () => {

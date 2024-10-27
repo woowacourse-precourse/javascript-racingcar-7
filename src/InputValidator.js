@@ -8,6 +8,11 @@ class InputValidator {
         throw new Error("[ERROR] 자동차 이름은 5자 이하만 가능합니다.");
       }
     });
+
+    const uniqueNames = new Set(carNames);
+    if (uniqueNames.size !== carNames.length) {
+      throw new Error("[ERROR] 자동차 이름에 중복된 값이 있습니다.");
+    }
   }
 
   validateMoveCount(moveCount) {
