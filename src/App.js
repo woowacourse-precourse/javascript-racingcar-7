@@ -4,6 +4,11 @@ class App {
   async run() {
     const names = await this.getNames();
     const move = await this.getMove();
+    let currentMove = Array(names.length).fill('');
+    MissionUtils.Console.print('\n실행 결과');
+    for(let i=0; i<move; i++){
+      this.play(names, currentMove);
+    }
   }
 
   async getNames() {
@@ -38,6 +43,19 @@ class App {
       }
     }
     return names;
+  }
+
+  getRandomNumber(){
+    return MissionUtils.Random.pickNumberInRange(0, 9);
+  }
+
+  play(names, currentMove){
+    names.forEach((_, index) => {
+      let randomNumber = this.getRandomNumber();
+      if(randomNumber >= 4){
+        currentMove[index] += '-';
+      }
+    })
   }
 }
 
