@@ -13,7 +13,7 @@ class CarRace {
   };
 
   async getInputCars() {
-    const carNamesInput = await Console.readLineAsync("경주할 자동차들의 이름을 입력해주세요.(*쉼표로 구분)");
+    const carNamesInput = await Console.readLineAsync("경주할 자동차들의 이름을 입력해주세요.(쉼표로 구분)");
     const carNames = carNamesInput.replace(/\s+/g, "").split(","); 
     
     Validator.checkEmptyNames(carNames);
