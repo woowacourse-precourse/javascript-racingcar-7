@@ -1,4 +1,5 @@
 import { Console, Random } from '@woowacourse/mission-utils';
+import { MESSAGES, ERROR_MESSAGES } from './constants';
 
 class App {
   async run() {
@@ -15,30 +16,28 @@ class App {
   }
 
   async getCarNames() {
-    const input = await Console.readLineAsync(
-      '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
-    );
+    const input = await Console.readLineAsync(MESSAGES.INPUT_CAR_NAMES);
     const names = input.split(',');
     if (!this.validateNameLengths(names)) {
-      throw new Error('[ERROR] 자동차 이름은 5자 이하만 가능합니다.');
+      throw new Error(ERROR_MESSAGES.INVALID_CAR_NAME_LENGTH);
     }
     if (!this.validateNoEmptyNames(names)) {
-      throw new Error('[ERROR] 자동차 이름은 빈 문자열일 수 없습니다.');
+      throw new Error(ERROR_MESSAGES.EMPTY_CAR_NAME);
     }
     if (!this.validateNoDuplicateNames(names)) {
-      throw new Error('[ERROR] 자동차 이름은 중복될 수 없습니다.');
+      throw new Error(ERROR_MESSAGES.DUPLICATE_CAR_NAME);
     }
 
     return names;
   }
 
   async getTryCount() {
-    const input = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+    const input = await Console.readLineAsync(MESSAGES.INPUT_TRY_COUNT);
     const count = Number(input);
     if (this.validateTryCount(count)) {
       return count;
     } else {
-      throw new Error('[ERROR] 시도 횟수는 1 이상의 숫자여야 합니다.');
+      throw new Error(ERROR_MESSAGES.INVALID_TRY_COUNT);
     }
   }
 
@@ -63,7 +62,7 @@ class App {
   }
 
   startRace(cars, tryCount) {
-    Console.print('\n실행 결과');
+    Console.print(MESSAGES.EXECUTION_RESULT);
     for (let i = 0; i < tryCount; i += 1) {
       cars.forEach((car) => {
         const randomNumber = Random.pickNumberInRange(0, 9);
@@ -81,7 +80,7 @@ class App {
     const winners = cars
       .filter((car) => car.position === maxPosition)
       .map((car) => car.name);
-    Console.print(`최종 우승자 : ${winners.join(', ')}`);
+    Console.print(MESSAGES.FINAL_WINNER(winners));
   }
 }
 
