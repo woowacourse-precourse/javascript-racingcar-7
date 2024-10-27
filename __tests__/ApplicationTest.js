@@ -25,16 +25,30 @@ const getLogSpy = () => {
 };
 
 describe("자동차 경주", () => {
-  test("기능 테스트", async () => {
-    // given
-    const MOVING_FORWARD = 4;
-    const STOP = 3;
-    const inputs = ["pobi,woni", "1"];
-    const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
+  test.each([
+    [
+      '우승자가 한 명인 케이스',
+      ["pobi,woni", "1"], 
+      ["pobi : -", "woni : ", "최종 우승자 : pobi"],
+      [[4, 3]]
+    ],
+    [
+      '우승자가 여러 명인 케이스',
+      ["a,b,c", "5"], 
+      ["a : -----", "b : ----", "c : -----","최종 우승자 : a, c"],
+      [[9, 0, 9], [9, 9, 9], [9, 9, 9], [9, 9, 9], [9, 9, 9]]
+    ],
+    [
+      '자동차 이름 입력 시 공백이 있는 케이스',
+      ["  gr,  sh  ", "3"], 
+      ["gr : ---", "sh : ","최종 우승자 : gr"],
+      [[7, 3], [4, 3], [5, 2]]
+    ]
+  ])("기능 테스트 : %s", async (describeCase, inputs, logs, randoms) => {
     const logSpy = getLogSpy();
 
     mockQuestions(inputs);
-    mockRandoms([MOVING_FORWARD, STOP]);
+    mockRandoms(randoms.flat());
 
     // when
     const app = new App();
