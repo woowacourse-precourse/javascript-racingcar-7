@@ -54,7 +54,7 @@ describe("자동차 경주", () => {
     );
   });
 
-  test("잘못된 구분자 입력", async () => {
+  test("잘못된 구분자 입력 - 쉼표 외의 다른 구분자", async () => {
     const invalidSeparators = [
       ";",
       "/",
@@ -77,5 +77,13 @@ describe("자동차 경주", () => {
     });
 
     await Promise.all(promises);
+  });
+
+  test("잘못된 시도 횟수 - 숫자 입력 안함", async () => {
+    mockQuestions(["pobi,woni", ""]); // 자동차 이름과 빈 입력
+    const app = new App();
+    await expect(app.run()).rejects.toThrow(
+      "[ERROR] 시도 횟수를 입력해주세요."
+    );
   });
 });
