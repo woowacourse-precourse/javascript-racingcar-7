@@ -8,5 +8,18 @@ class Racing {
     this.attempts = Validate.validateAttempts(inputAttempts);
   }
 
+  runGame() {
+    Console.print('실행결과');
+    for (let i = 0; i < inputAttempts; i++) {
+      this.showResult();
+      Console.print("");
+    }
+  }
+  showResult() {
+    this.car.forEach(car => {
+      car.move();
+      Console.print(`${car.name} : ${car.position}`);
+    });
+  }
 
 }
