@@ -1,4 +1,5 @@
 import Validation from '../src/Validation.js';
+import RacingManager from '../src/RacingManager.js';
 
 describe('유저 입력값 예외 처리를 검사하는 테스트', () => {
   test.each([
@@ -14,15 +15,16 @@ describe('유저 입력값 예외 처리를 검사하는 테스트', () => {
   ])('자동차 이름의 길이 예외 처리 테스트 (%s)', (name, expected) => {
     const ERROR_PREFIX = '[ERROR]';
     const MAXIMUM_LENGTH = 5;
+    const parsedName = RacingManager.parseCarNames(name);
 
     if (expected) {
       expect(() =>
-        Validation.isValidLength(name, MAXIMUM_LENGTH),
+        Validation.isValidLength(...parsedName, MAXIMUM_LENGTH),
       ).not.toThrow();
     } else {
-      expect(() => Validation.isValidLength(name, MAXIMUM_LENGTH)).toThrow(
-        ERROR_PREFIX,
-      );
+      expect(() =>
+        Validation.isValidLength(...parsedName, MAXIMUM_LENGTH),
+      ).toThrow(ERROR_PREFIX);
     }
   });
 });
