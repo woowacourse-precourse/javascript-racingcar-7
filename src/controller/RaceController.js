@@ -1,23 +1,20 @@
 import { InputView } from "../view/InputView.js";
-import { OutputView } from "../view/OutputView.js";
 import { isValidCarName } from "../validations/isValidCarName.js";
 import { isValidRound } from "../validations/isValidRound.js";
 import { Car } from "../model/Car.js";
-import { determineWinners } from "../utils/determineWinners.js";
-import { moveForwardEachCar } from "../utils/moveForwardEachCar.js";
-import { displayRoundResult } from "../utils/displayRoundResult.js";
+import { Race } from "./Race.js";
 
 export class RaceController {
   constructor() {
     this.inputView = new InputView();
-    this.outputView = new OutputView();
   }
 
   async run() {
     const cars = await this.initializeCarData();
     const round = await this.initializeRoundData();
 
-    this.race(cars, round);
+    const race = new Race(cars, round);
+    race.start();
   }
 
   async initializeCarData() {
@@ -30,15 +27,5 @@ export class RaceController {
     const round = await this.inputView.getRaceRound();
     isValidRound(round);
     return round;
-  }
-
-  race(cars, round) {
-    this.outputView.printNewLine();
-    this.outputView.printResultStart();
-    for (let i = 0; i < round; i++) {
-      moveForwardEachCar(cars);
-      displayRoundResult(cars);
-    }
-    this.outputView.printWinner(determineWinners(cars));
   }
 }
