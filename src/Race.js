@@ -6,6 +6,11 @@ class Race {
         this.moveCount = moveCount;
     }
 
+    // 각 라운드 결과
+    displayRoundResult() {
+        this.cars.forEach(car => MissionUtils.Console.print(car.moveForward()));
+        MissionUtils.Console.print('');
+    }
 }
 
 export default Race;
