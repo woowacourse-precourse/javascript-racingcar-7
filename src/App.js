@@ -1,6 +1,10 @@
 import { Console } from "@woowacourse/mission-utils";
+import Car from "./Car.js";
 
 class App {
+  constructor() {
+    this.cars = [];
+  }
   async run() {
     let inputNames, count;
     try {
@@ -12,8 +16,10 @@ class App {
       throw new Error("[ERROR] : 입력 에러가 발생했습니다.");
     }
     const names = inputNames.split(",");
-    Console.print(names);
-    Console.print(count);
+    this.cars = names.map((name) => new Car(name));
+    Console.print(this.cars);
+
+    for (let i = 0; i < count; i++) {}
   }
 }
 
