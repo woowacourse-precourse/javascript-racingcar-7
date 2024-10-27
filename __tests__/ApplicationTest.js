@@ -1,8 +1,8 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
-import App from '../src/App';
-import CarRacer from '../src/CarRacer';
-import InputParser from '../src/InputParser';
-import ResultPrinter from '../src/ResultPrinter';
+import App from '../src/App.js';
+import CarRacer from '../src/CarRacer.js';
+import InputParser from '../src/InputParser.js';
+import ResultPrinter from '../src/ResultPrinter.js';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -16,10 +16,7 @@ const mockQuestions = (inputs) => {
 const mockRandoms = (numbers) => {
   MissionUtils.Random.pickNumberInRange = jest.fn();
 
-  numbers.reduce(
-    (acc, number) => acc.mockReturnValueOnce(number),
-    MissionUtils.Random.pickNumberInRange,
-  );
+  numbers.reduce((acc, number) => acc.mockReturnValueOnce(number), MissionUtils.Random.pickNumberInRange);
 };
 
 const getLogSpy = () => {
@@ -100,9 +97,7 @@ describe('자동차 경주', () => {
     const logSpy = getLogSpy();
     resultPrinter.printWinner();
 
-    expect(logSpy).toHaveBeenCalledWith(
-      expect.stringContaining('최종 우승자 : woni'),
-    );
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining('최종 우승자 : woni'));
   });
 
   test('우승자가 여러 명일 경우 쉼표(,)를 이용하여 구분한다.', () => {
@@ -112,9 +107,7 @@ describe('자동차 경주', () => {
     const logSpy = getLogSpy();
     resultPrinter.printWinner();
 
-    expect(logSpy).toHaveBeenCalledWith(
-      expect.stringContaining('최종 우승자 : pobi, woni'),
-    );
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining('최종 우승자 : pobi, woni'));
   });
 
   test('자동차 이름이 5자를 초과할 경우 에러를 출력한다.', async () => {

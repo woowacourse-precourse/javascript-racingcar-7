@@ -1,3 +1,5 @@
+import { ERROR_MESSAGES } from './constants.js';
+
 class InputParser {
   constructor(carNamesStr, tryCntStr) {
     this.carNamesStr = carNamesStr;
@@ -21,7 +23,7 @@ class InputParser {
 
   validateAttempCnt() {
     if (this.tryCnt === 0 || !Number.isInteger(this.tryCnt)) {
-      this.printError('시도 횟수는 1 이상의 정수만 가능합니다.');
+      this.printError(ERROR_MESSAGES.TRY_CNT_MUST_BE_POSITIVE_INTEGER);
     }
   }
 
@@ -33,7 +35,7 @@ class InputParser {
 
   validateCarName(carName) {
     if (carName.length > 5) {
-      this.printError('자동차 이름은 5자 이하만 가능합니다.');
+      this.printError(ERROR_MESSAGES.CAR_NAME_MUST_BE_UNDER_FIVE_CHARACTERS);
     }
   }
 

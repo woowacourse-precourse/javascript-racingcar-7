@@ -1,4 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
+import { IO_MESSAGES } from './constants.js';
 
 class ResultPrinter {
   constructor(moveCntPerCar) {
@@ -6,7 +7,7 @@ class ResultPrinter {
   }
 
   print() {
-    Console.print('\n실행 결과');
+    Console.print(IO_MESSAGES.OUTPUT_TRY_RESULT);
     this.printAttemptResult();
     this.printWinner();
   }
@@ -27,7 +28,7 @@ class ResultPrinter {
       .filter(([_, moveCnt]) => moveCnt === maxMoveCnt)
       .map(([carName]) => carName);
 
-    Console.print(`최종 우승자 : ${winners.join(', ')}`);
+    Console.print(IO_MESSAGES.OUTPUT_WINNER + winners.join(', '));
   }
 }
 

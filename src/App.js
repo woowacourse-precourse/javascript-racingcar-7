@@ -1,7 +1,8 @@
 import { Console } from '@woowacourse/mission-utils';
-import InputParser from './InputParser';
-import CarRacer from './CarRacer';
-import ResultPrinter from './ResultPrinter';
+import InputParser from './InputParser.js';
+import CarRacer from './CarRacer.js';
+import ResultPrinter from './ResultPrinter.js';
+import { IO_MESSAGES } from './constants.js';
 
 class App {
   async run() {
@@ -19,13 +20,11 @@ class App {
   }
 
   readCarNames() {
-    return Console.readLineAsync(
-      '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
-    );
+    return Console.readLineAsync(IO_MESSAGES.INPUT_CAR_NAMES);
   }
 
   readTryCnt() {
-    return Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+    return Console.readLineAsync(IO_MESSAGES.INPUT_TRY_CNT);
   }
 }
 
