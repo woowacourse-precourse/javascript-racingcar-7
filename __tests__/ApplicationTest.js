@@ -46,17 +46,36 @@ describe("자동차 경주", () => {
     });
   });
 
-  test.each([
+  test("우승자가 두 명인 경우 테스트", async () => {
     //given
-    [["!pobi,Woni", "3"], "이름에 영문자, 쉼표 이외의 다른 문자를 입력"],
-    [["pobi, woni", "3"], "이름에 공백 문자 포함"],
-    [["pobi, javaji", "3"], "이름이 6글자 이상"],
-    [["pobi,woni,", "3"], "이름 입력이 쉼표로 종료"],
-    [["pobi,pobi,woni", "3"], "이름 중복"],
-    [["pobi,woni", "A"], "시도 횟수에 수가 아닌 다른 문자 입력"],
-    [["pobi,woni", "0"], "시도 횟수에 0 입력"],
-    [["pobi,woni", "-3"], "시도 횟수에 음수 입력"]
-  ])("%s 예외 테스트 - %s", async (inputs, description) => {
+    const MOVING_FORWARD = 4;
+    const inputs = ["pobi,woni", "1"];
+    const logs = ["pobi : -", "woni : -", "최종 우승자 : pobi"];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([MOVING_FORWARD, MOVING_FORWARD]);
+
+    //when
+    const app = new App();
+    await app.run();
+
+    //then
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    })
+  })
+
+  test.each([
+    ["이름에 영문자, 쉼표 이외의 다른 문자를 입력", ["!pobi,Woni", "3"]],
+    ["이름에 공백 문자 포함", ["pobi, woni", "3"]],
+    ["이름이 6글자 이상", ["pobi, javaji", "3"]],
+    ["이름 입력이 쉼표로 종료", ["pobi,woni,", "3"]],
+    ["이름 중복", ["pobi,pobi,woni", "3"]],
+    ["시도 횟수에 수가 아닌 다른 문자 입력", ["pobi,woni", "A"]],
+    ["시도 횟수에 0 입력", ["pobi,woni", "0"]],
+    ["시도 횟수에 음수 입력", ["pobi,woni", "-3"]]
+  ])("예외 테스트 - %s", async (description, inputs) => {
     mockQuestions([...inputs]);
 
     // when
@@ -65,4 +84,5 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
 });
