@@ -9,7 +9,7 @@ class CarModel {
 	}
 
 	move(randomNumber) {
-		if (canMove(randomNumber)) {
+		if (this.canMove(randomNumber)) {
 			this.#currentPosition++;
 		}
 	}
@@ -17,4 +17,14 @@ class CarModel {
 	canMove(randomNumber) {
 		return randomNumber >= MINIMUM_RANDOMNUMBER_TO_MOVE;
 	}
+
+	getName() {
+		return this.#name;
+	}
+
+	getCurrentPosition() {
+		return this.#currentPosition;
+	}
 }
+
+export default CarModel;
