@@ -12,7 +12,7 @@
 - [ ] 최종 우승자 출력
   - [ ] 2명 이상이면 `,`로 구분
 
-## 흐름도
+## ✏️ 흐름도
 
 <img width="779" alt="스크린샷 2024-10-27 오후 8 52 50" src="https://github.com/user-attachments/assets/9d274ab5-d43d-40bd-8946-29d57ef992a7">
 
@@ -63,3 +63,19 @@
 ```
 
 - `forEach()`를 사용하여 `input` 배열을 순회하며 자동차의 이름이 5자 초과이면 ERROR를 발생시키고 프로그램을 종료하였다.
+
+### 자동차마다 0에서 9 사이의 무작위 값 받기 & 4 이상이면 전진
+
+```
+  updateCarProgressRandomly(){
+    Object.keys(this.carNameObj).forEach(key => {
+      const random = MissionUtils.Random.pickNumberInRange(0,9);
+      if(random >= 4){
+        this.carNameObj[key]++;
+      }
+    });
+  }
+```
+
+- `forEach()`를 사용하여 `this.carNameObj`의 key 값을 순회하며 각 key마다 `MissionUtils.Random.pickNumberInRange(0,9)`로 0에서 9 사이의 값을 무작위로 받게 하였다.
+- 랜덤값이 4 이상이면 해당 key의 value값을 1 증가시켰다.
