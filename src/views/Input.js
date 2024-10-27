@@ -6,4 +6,10 @@ export class Input {
 		const input = Console.readLineAsync("");
 		return input ? input.split(",") : [];
 	}
+
+	static async getMoveCount() {
+		Console.print("시도할 횟수는 몇 회인가요?");
+		const input = Console.readLineAsync();
+		return parseInt(input, 10);
+	}
 }
