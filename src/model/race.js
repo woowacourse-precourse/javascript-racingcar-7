@@ -1,48 +1,50 @@
 import { Console, Random } from '@woowacourse/mission-utils';
-import OutputView from '../view/output-view.js';
+import Car from './car.js';
+
+const OUTPUT_MESSAGE = Object.freeze({
+  EXECUTION_RESULT_OUTPUT: '\n실행 결과',
+  WINNER_OUTPUT: '최종 우승자 :',
+});
 
 class Race {
-  constructor(carList, attemptCount) {
-    this.outputView = new OutputView();
-    this.carList = carList;
+  constructor(carNameList, attemptCount) {
+    this.carList = carNameList.map((carName) => new Car(carName));
     this.attemptCount = attemptCount;
-    this.record = {};
+  }
+
+  printStartMessage() {
+    Console.print(OUTPUT_MESSAGE.EXECUTION_RESULT_OUTPUT);
+  }
+
+  printWinners(winners) {
+    Console.print(`${OUTPUT_MESSAGE.WINNER_OUTPUT} ${winners.join(', ')}`);
   }
 
   run() {
-    // 여기서부터 race 시작
-    this.outputView.printStartRaceMessage();
-
-    const record = {};
-
-    this.carList.forEach((car) => {
-      record[car] = 0;
-    });
+    this.printStartMessage();
 
     for (let count = 1; count <= this.attemptCount; count += 1) {
-      for (let order = 0; order < this.carList.length; order += 1) {
+      this.carList = this.carList.map((car) => {
         const randomNumber = Random.pickNumberInRange(0, 9);
-        if (randomNumber >= 4) {
-          record[this.carList[order]] += 1;
-        }
-
-        this.outputView.printCarProgress(this.carList[order], record[this.carList[order]]);
-      }
+        car.move(randomNumber);
+        car.printProgress();
+        return car;
+      });
       Console.print('\n');
     }
 
-    const moves = Object.values(record);
-    const winnerMove = Math.max(...moves);
+    // const moves = Object.values(record);
+    // const winnerMove = Math.max(...moves);
 
-    const winner = [];
+    // const winner = [];
 
-    for (let car = 0; car < moves.length; car += 1) {
-      if (moves[car] === winnerMove) {
-        winner.push(this.carList[car]);
-      }
-    }
+    // for (let car = 0; car < moves.length; car += 1) {
+    //   if (moves[car] === winnerMove) {
+    //     winner.push(this.carList[car]);
+    //   }
+    // }
 
-    this.outputView.printWinners(winner);
+    // this.printWinners(winner);
   }
 }
 

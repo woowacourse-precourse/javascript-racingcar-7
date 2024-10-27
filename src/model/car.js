@@ -1,3 +1,5 @@
+import { Console } from '@woowacourse/mission-utils';
+
 class Car {
   constructor(name) {
     this.name = name;
@@ -6,8 +8,12 @@ class Car {
 
   move(randomNumber) {
     if (randomNumber >= 4) {
-      this.position += 1;
+      this.progress += 1;
     }
+  }
+
+  printProgress() {
+    Console.print(`${this.name} : ${'-'.repeat(this.progress)}`);
   }
 }
 
