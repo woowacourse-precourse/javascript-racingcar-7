@@ -6,6 +6,12 @@ class App {
     if (carNames.length < 2) {
       throw new Error("[ERROR] 자동차 이름을 두개 이상 입력해주세요");
     }
+    carNames.forEach((el) => {
+      if (el.length > 5) {
+        throw new Error("[ERROR] 자동차 이름은 5자 이하로 입력해주세요");
+      }
+    });
+
     return carNames;
   }
   async readCarNames() {
@@ -17,11 +23,6 @@ class App {
     }
     const parsedCarNames = this.parseCarNames(userCarNames);
 
-    // parsedCarNames.forEach((el) => {
-    //   if (el.length > 5) {
-    //     throw new Error("[ERROR] 자동차 이름은 5자 이하로 입력해주세요");
-    //   }
-    // });
     return parsedCarNames;
   }
 
