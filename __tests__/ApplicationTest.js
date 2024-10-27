@@ -97,5 +97,18 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+  test("시도할 횟수에 숫자가 아닌 것을 입력한 경우", async () => {
+    // given
+    const inputs = ["pobi,javai"];
+    mockQuestions(inputs);
+    const numbers = ['one'];
+    mockRandoms(numbers);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
 });
 
