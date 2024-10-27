@@ -7,31 +7,32 @@ class RacingGame {
     promptSequence = 1
     carArr = []
 
-    async start(promptMessage) {
-        const prompt = await this.input(promptMessage)
+    async handleRaceSequence(promptMessage) {
+        const prompt = await this.getInput(promptMessage)
         if (this.promptSequence === 1) {
             this.carArr = new Car().setCar(prompt)
             this.promptSequence++
-            return this.start(PROMPT_MESSAGE.SECOND)
+            return this.handleRaceSequence(PROMPT_MESSAGE.SECOND)
         }
         if (this.promptSequence === 2) {
             const tryNum = Number(prompt)
-            this.totalRace(tryNum)
+            this.getOutput(result)
+            this.playRace(tryNum)
             this.promptSequence++
         }
         const result = this.setWinner()
-        this.output(result)
+        this.getOutput(result)
     }
 
-    totalRace(tryNum) {
+    playRace(tryNum) {
         // this.output("실행결과")
         for (let i = 0; i < tryNum; i++) {
-            this.individualRace(this.carArr)
-            this.output()
+            this.winCounter(this.carArr)
+            this.getOutput()
         }
     }
 
-    individualRace(carArr) {
+    winCounter(carArr) {
         for (const car of carArr) {
             const randomNum = this.setRandomNum()
             if (randomNum >= 4) {
@@ -52,14 +53,15 @@ class RacingGame {
         return MissionUtils.Random.pickNumberInRange(0, 9);
     }
 
-    async input(message) {
+    async getInput(message) {
         const input = await Console.readLineAsync(message)
-        this.isError(input)
+        this.errorhandler(input)
         return input
     }
 
-    output(data) {
+    getOutput(data) {
         if (this.promptSequence === 2) {
+            Console.print("")
             this.carArr.map((car) => Console.print(`${car.carName} : ${"-".repeat(car.winCnt)}`))
             Console.print("\n")
         }
@@ -68,7 +70,7 @@ class RacingGame {
         }
     }
 
-    isError(string) {
+    errorhandler(string) {
         const firstErrorCondition = string.includes(" ") || string.length > 5
         const secondErrorCondition = string.includes(" ") || isNaN(string)
         if (this.promptSequence === 1 && firstErrorCondition) {
