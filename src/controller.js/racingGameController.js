@@ -1,11 +1,11 @@
 import { Console, MissionUtils } from "@woowacourse/mission-utils";
-import Car from "./model/car.js";
+import Car from "../model/car.js";
 import {
   validateCarName,
   countValidate,
   resetCarSet,
-} from "./utils/validation.js";
-import RacingGameView from "./view/racingGameView.js";
+} from "../utils/validation.js";
+import RacingGameView from "../view/racingGameView.js";
 class RacingGameController {
   constructor() {
     this.cars = [];
