@@ -1,4 +1,4 @@
-import Car from '../src/Car';
+import Car from '../src/car/Car';
 import { MissionUtils } from '@woowacourse/mission-utils';
 
 const mockCanMoveForward = (results) => {

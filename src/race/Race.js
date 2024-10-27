@@ -3,25 +3,18 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 class Race {
   #cars;
 
-  #time;
-
   #winners;
 
   #maxMoves;
 
-  constructor(cars, time) {
+  constructor(cars) {
     this.#cars = cars;
-    this.#time = time;
     this.#maxMoves = 0;
     this.#winners = [];
   }
 
   get cars() {
     return this.#cars;
-  }
-
-  get time() {
-    return this.#time;
   }
 
   static printWinner(winners) {
@@ -40,6 +33,7 @@ class Race {
     for (let i = 0; i < cars.length; i += 1) {
       cars[i].tryMoveForward();
     }
+    this.printRaceLog();
   }
 
   printRaceLog() {

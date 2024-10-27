@@ -1,6 +1,6 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
-import Car from '../src/Car';
-import Race from '../src/Race';
+import Car from '../src/car/Car';
+import Race from '../src/race/Race';
 
 const canMoveForwardSpy = (inputs) => {
   inputs.reduce(
@@ -17,8 +17,7 @@ describe('경주 클래스', () => {
     const car2 = new Car('car2');
     canMoveForwardSpy([true, false]);
 
-    const MOVE_CNT = 3;
-    const race = new Race([car1, car2], MOVE_CNT);
+    const race = new Race([car1, car2]);
 
     //when
     race.moveCars();
@@ -26,7 +25,6 @@ describe('경주 클래스', () => {
     //then
     expect(car1.moveCnt).toBe(1);
     expect(car2.moveCnt).toBe(0);
-    expect(race.time).toBe(2);
   });
 
   test('차수별 실행결과 출력 메서드', () => {
@@ -35,8 +33,7 @@ describe('경주 클래스', () => {
     const car2 = new Car('car2');
     canMoveForwardSpy([true, false]);
 
-    const MOVE_CNT = 3;
-    const race = new Race([car1, car2], MOVE_CNT);
+    const race = new Race([car1, car2]);
     race.moveCars();
 
     const logs = ['car1 : -', 'car2 : '];
@@ -59,8 +56,7 @@ describe('경주 클래스', () => {
     const car3 = new Car('car3');
     canMoveForwardSpy([true, false, true]);
 
-    const MOVE_CNT = 3;
-    const race = new Race([car1, car2, car3], MOVE_CNT);
+    const race = new Race([car1, car2, car3]);
     race.moveCars();
 
     //when

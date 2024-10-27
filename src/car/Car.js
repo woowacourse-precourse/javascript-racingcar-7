@@ -24,9 +24,7 @@ class Car {
   tryMoveForward() {
     if (Car.canMoveForward()) {
       this.#moveCnt += 1;
-      return true;
     }
-    return false;
   }
 
   static validateCarName(name) {

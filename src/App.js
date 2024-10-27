@@ -1,6 +1,6 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
-import Car from './Car.js';
-import Race from './Race.js';
+import Car from './car/Car.js';
+import Race from './race/Race.js';
 import parseCarString from './inputHandler.js';
 
 class App {
@@ -25,7 +25,6 @@ class App {
     MissionUtils.Console.print('실행결과');
     for (let i = 0; i < moveInput; i += 1) {
       race.moveCars();
-      race.printRaceLog();
     }
     const winners = race.selectWinner();
     Race.printWinner(winners);
