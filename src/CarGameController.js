@@ -1,35 +1,32 @@
 import { Console, Random } from "@woowacourse/mission-utils";
 import InputHandler from "./InputHandler.js";
+import Utils from "./Utils.js";
+import Validator from "./Validator.js";
 
 // 자동차 경주 게임 진행 클래스
 class CarGameController {
     inputHandler; // 입력 처리 객체
+    validator; // 예외 처리 객체
 
     constructor() {
         this.inputHandler = new InputHandler();
+        this.validator = new Validator();
     }
 
     async play() {
         const inputCarNames = await this.inputHandler.enterCarNames();
-        const splittedCarNames = inputCarNames.split(",");
-        const carCnt = splittedCarNames.length;
-
-        for (let car of splittedCarNames) {
-            if (car.length > 5) {
-                throw new Error("[ERROR] 자동차 이름은 5자 이하로 입력 가능합니다.");
-            }
-        }
+        const splittedCarNames = Utils.transformStringCarNamesToArray(inputCarNames);
+        this.validator.isValidCarName(splittedCarNames);
 
         const inputTryCnt = await this.inputHandler.enterTryCount();
-        if (isNaN(inputTryCnt) || Number(inputTryCnt) <= 0) {
-            throw new Error("[ERROR] 시도할 횟수는 숫자로 입력해야합니다.");
-        }
+        this.validator.isValidTryCount(inputTryCnt);
 
-        const runCntArr = Array.from({ length: carCnt }, () => Array(+inputTryCnt).fill(0));
+        const carCount = splittedCarNames.length;
+        const runCntArr = Array.from({ length: carCount }, () => Array(+inputTryCnt).fill(0));
 
         let tryCnt = 0;
         while (tryCnt < Number(inputTryCnt)) {
-            for (let i = 0; i < carCnt; i++) {
+            for (let i = 0; i < carCount; i++) {
                 const randomNumber = Random.pickNumberInRange(0, 9);
                 if (randomNumber >= 4) {
                     runCntArr[i][tryCnt] = 1;
@@ -39,7 +36,7 @@ class CarGameController {
             tryCnt++;
         }
 
-        for (let i = 0; i < carCnt; i++) {
+        for (let i = 0; i < carCount; i++) {
             for (let j = 1; j < +inputTryCnt; j++) {
                 runCntArr[i][j] += runCntArr[i][j - 1];
             }
@@ -48,7 +45,7 @@ class CarGameController {
         const result = [];
 
         for (let i = 0; i < +inputTryCnt; i++) {
-            for (let j = 0; j < carCnt; j++) {
+            for (let j = 0; j < carCount; j++) {
                 result.push(`${splittedCarNames[j]} : ${"-".repeat(runCntArr[j][i])}`);
             }
             result.push("");
@@ -59,7 +56,7 @@ class CarGameController {
 
         let winner = [];
         let maxCnt = -1;
-        for (let i = 0; i < carCnt; i++) {
+        for (let i = 0; i < carCount; i++) {
             const finalCnt = runCntArr[i][+inputTryCnt - 1];
             if (maxCnt < finalCnt) {
                 maxCnt = finalCnt;
