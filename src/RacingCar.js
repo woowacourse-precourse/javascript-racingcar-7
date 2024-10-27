@@ -14,6 +14,7 @@ class RacingCar {
 		this.carNames = [];
 		this.tryCount = 0;
 		this.carNamesAndNumberMap = [];
+		this.carNamesAndDashMap = [];
 	}
 
 	async runRacingCar() {
@@ -32,6 +33,7 @@ class RacingCar {
 			await validateMinCount(tryCountValue);
 
 			this.carNamesAndNumberMap = await this.setCarNumberMap();
+			this.carNamesAndDashMap = await this.changeNumbersToDash();
 		} catch (error) {
 			throw new Error(`${error.message}`);
 		}
@@ -54,6 +56,17 @@ class RacingCar {
 		}));
 
 		return carNamesAndNumberMap;
+	}
+
+	async changeNumbersToDash() {
+		const carNamesAndDashMap = this.carNamesAndNumberMap.map(
+			({ carName, carNumbers }) => {
+				const carDashes = carNumbers.map((number) => (number >= 4 ? "-" : ""));
+				return { carName, carDashes };
+			}
+		);
+
+		return carNamesAndDashMap;
 	}
 }
 
