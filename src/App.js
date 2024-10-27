@@ -25,9 +25,8 @@ class App {
     validateCarNameList(carNameList);
     this.generateCars(carNameList);
 
-    const tryCount = await this.readTryCount();
-    validateTryCount(tryCount);
-    this.#tryCount = tryCount;
+    this.#tryCount = await this.readTryCount();
+    validateTryCount(this.#tryCount);
 
     this.printGameStart();
     this.generateGame();
@@ -79,30 +78,20 @@ class App {
   }
 
   printCarmove(car) {
-    Console.print(car.getName() + " : " + "-".repeat(car.getProgressCount()));
+    Console.print(`${car.getName()} : ${"-".repeat(car.getProgressCount())}`);
   }
 
   generateGameResult() {
-    const winner = [];
-    let maximum = Number.MIN_SAFE_INTEGER;
-
-    this.#cars.forEach((car) => {
-      if (car.getProgressCount() === maximum) {
-        winner.push(car.getName());
-        maximum = car.getProgressCount();
-      }
-      if (car.getProgressCount() > maximum) {
-        winner.length = 0;
-        winner.push(car.getName());
-        maximum = car.getProgressCount();
-      }
-    });
-
-    return winner;
+    const maxProgress = Math.max(
+      ...this.#cars.map((car) => car.getProgressCount())
+    );
+    return this.#cars
+      .filter((car) => car.getProgressCount() === maxProgress)
+      .map((car) => car.getName());
   }
 
   printGameResult(winner) {
-    Console.print(WINNER_MESSAGE + winner.join(", "));
+    Console.print(`${WINNER_MESSAGE} : ${winner.join(", ")}`);
   }
 }
 
