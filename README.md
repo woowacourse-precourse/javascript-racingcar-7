@@ -1,4 +1,4 @@
-# javascript-racingcar-precourse
+# javascript-racingraceCar-precourse
 
 ## 기능 구현 목록
 

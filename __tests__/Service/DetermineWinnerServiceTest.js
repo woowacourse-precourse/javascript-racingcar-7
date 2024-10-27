@@ -1,34 +1,34 @@
-import Car from '../../src/Model/Car';
+import RaceCar from '../../src/Model/RaceCar';
 import DetermineWinnerService from '../../src/Service/DetermineWinnerService';
 
 describe('DetermineWinnerService', () => {
   test('우승자를 결정한다', () => {
-    const carName1 = 'pobi';
-    const carName2 = 'woni';
+    const raceCarName1 = 'pobi';
+    const raceCarName2 = 'woni';
 
-    const car1 = new Car(carName1);
-    const car2 = new Car(carName2);
-    const cars = [car1, car2];
+    const raceCar1 = new RaceCar(raceCarName1);
+    const raceCar2 = new RaceCar(raceCarName2);
+    const raceCars = [raceCar1, raceCar2];
 
     const determineWinnerService = new DetermineWinnerService();
-    car1.moveForward();
-    const winner = determineWinnerService.determineWinners(cars);
+    raceCar1.moveForward();
+    const winner = determineWinnerService.determineWinners(raceCars);
 
     expect(winner).toEqual(['pobi']);
   });
 
   test('가장 많이 전진한 자동차가 2대 이상일때 우승자들을 결정한다', () => {
-    const carName1 = 'pobi';
-    const carName2 = 'woni';
+    const raceCarName1 = 'pobi';
+    const raceCarName2 = 'woni';
 
-    const car1 = new Car(carName1);
-    const car2 = new Car(carName2);
-    const cars = [car1, car2];
+    const raceCar1 = new RaceCar(raceCarName1);
+    const raceCar2 = new RaceCar(raceCarName2);
+    const raceCars = [raceCar1, raceCar2];
 
     const determineWinnerService = new DetermineWinnerService();
-    car1.moveForward();
-    car2.moveForward();
-    const winners = determineWinnerService.determineWinners(cars);
+    raceCar1.moveForward();
+    raceCar2.moveForward();
+    const winners = determineWinnerService.determineWinners(raceCars);
 
     expect(winners).toEqual(['pobi', 'woni']);
   });

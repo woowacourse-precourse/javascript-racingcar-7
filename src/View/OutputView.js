@@ -13,19 +13,19 @@ class OutputView {
     this.printOutput('\n실행 결과');
   }
 
-  printCarProgress(carName, forwardCount) {
-    this.printOutput(`${carName} : ${'-'.repeat(forwardCount)}`);
+  printRaceCarProgress(raceCarName, forwardCount) {
+    this.printOutput(`${raceCarName} : ${'-'.repeat(forwardCount)}`);
   }
 
-  printRoundProgress(carNames, forwardCounts) {
-    carNames.forEach((carName, index) => {
-      this.printCarProgress(carName, forwardCounts[index]);
+  printRoundProgress(raceCarNames, forwardCounts) {
+    raceCarNames.forEach((raceCarName, index) => {
+      this.printRaceCarProgress(raceCarName, forwardCounts[index]);
     });
   }
 
-  printAllCarProgress(attemptCount, carNames, forwardCounts) {
+  printAllRaceCarProgress(attemptCount, raceCarNames, forwardCounts) {
     for (let i = 0; i < attemptCount; i++) {
-      this.printRoundProgress(carNames, forwardCounts[i]);
+      this.printRoundProgress(raceCarNames, forwardCounts[i]);
       this.printOutput('');
     }
   }

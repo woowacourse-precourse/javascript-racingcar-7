@@ -1,6 +1,6 @@
 import RaceController from '../../src/Controller/RaceController';
-import CarManagementService from '../../src/Service/CarManagementService';
-import CarMovementService from '../../src/Service/CarMovementService';
+import RaceCarManagementService from '../../src/Service/RaceCarManagementService';
+import RaceCarMovementService from '../../src/Service/RaceCarMovementService';
 import DetermineWinnerService from '../../src/Service/DetermineWinnerService';
 import RaceService from '../../src/Service/RaceService';
 import InputView from '../../src/View/InputView';
@@ -26,12 +26,12 @@ describe('RaceController', () => {
 
     const inputView = new InputView();
     const outputView = new OutputView();
-    const carManagementService = new CarManagementService();
-    const carMovementService = new CarMovementService();
+    const raceCarManagementService = new RaceCarManagementService();
+    const raceCarMovementService = new RaceCarMovementService();
     const determineWinnerService = new DetermineWinnerService();
     const raceService = new RaceService(
-      carManagementService,
-      carMovementService,
+      raceCarManagementService,
+      raceCarMovementService,
       determineWinnerService
     );
     const raceController = new RaceController(

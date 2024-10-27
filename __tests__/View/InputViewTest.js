@@ -9,9 +9,9 @@ describe('InputView', () => {
     mockQuestions(input);
 
     const inputView = new InputView();
-    const carNames = await inputView.readCarNames();
+    const raceCarNames = await inputView.readRaceCarNames();
 
-    expect(carNames).toEqual(output);
+    expect(raceCarNames).toEqual(output);
   });
 
   test('자동차 이름 입력에서 공백 제거', async () => {
@@ -21,9 +21,9 @@ describe('InputView', () => {
     mockQuestions(input);
 
     const inputView = new InputView();
-    const carNames = await inputView.readCarNames();
+    const raceCarNames = await inputView.readRaceCarNames();
 
-    expect(carNames).toEqual(output);
+    expect(raceCarNames).toEqual(output);
   });
 
   test('시도할 횟수를 입력받아 숫자로 변환하여 반환한다', async () => {
@@ -44,7 +44,7 @@ describe('InputView', () => {
 
     const inputView = new InputView();
 
-    await expect(inputView.readCarNames()).rejects.toThrow(
+    await expect(inputView.readRaceCarNames()).rejects.toThrow(
       '[ERROR] 자동차 이름은 5자 이하만 가능합니다.'
     );
   });
@@ -55,7 +55,7 @@ describe('InputView', () => {
 
     const inputView = new InputView();
 
-    await expect(inputView.readCarNames()).rejects.toThrow(
+    await expect(inputView.readRaceCarNames()).rejects.toThrow(
       '[ERROR] 자동차 이름은 중복되지 않아야 합니다.'
     );
   });

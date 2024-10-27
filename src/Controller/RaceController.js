@@ -6,18 +6,18 @@ class RaceController {
   }
 
   async run() {
-    const inputCarNames = await this.inputView.readCarNames();
+    const inputRaceCarNames = await this.inputView.readRaceCarNames();
     const attemptCount = await this.inputView.readAttemptCount();
 
-    this.raceService.start(inputCarNames, attemptCount);
+    this.raceService.start(inputRaceCarNames, attemptCount);
 
-    const { raceCarNames, raceRecords } = this.raceService.getRaceRecords();
+    const { raceRaceCarNames, raceRecords } = this.raceService.getRaceRecords();
     const winners = this.raceService.getWinners();
 
     this.outputView.printExecutionResults();
-    this.outputView.printAllCarProgress(
+    this.outputView.printAllRaceCarProgress(
       attemptCount,
-      raceCarNames,
+      raceRaceCarNames,
       raceRecords
     );
     this.outputView.printWinners(winners);

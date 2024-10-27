@@ -1,5 +1,5 @@
-import CarManagementService from '../../src/Service/CarManagementService';
-import CarMovementService from '../../src/Service/CarMovementService';
+import RaceCarManagementService from '../../src/Service/RaceCarManagementService';
+import RaceCarMovementService from '../../src/Service/RaceCarMovementService';
 import DetermineWinnerService from '../../src/Service/DetermineWinnerService';
 import RaceService from '../../src/Service/RaceService';
 import { mockRandoms } from '../ApplicationTest';
@@ -8,7 +8,7 @@ describe('RaceService', () => {
   test('경기를 시작하고 끝나면 우승자를 반환한다', async () => {
     const MOVING_FORWARD = 4;
     const STOP = 3;
-    const carNames = ['pobi', 'woni'];
+    const raceCarNames = ['pobi', 'woni'];
     const attemptCount = 3;
     const winner = ['pobi'];
 
@@ -21,16 +21,16 @@ describe('RaceService', () => {
       MOVING_FORWARD,
     ]);
 
-    const carManagementService = new CarManagementService();
-    const carMovementService = new CarMovementService();
+    const raceCarManagementService = new RaceCarManagementService();
+    const raceCarMovementService = new RaceCarMovementService();
     const determineWinnerService = new DetermineWinnerService();
     const raceService = new RaceService(
-      carManagementService,
-      carMovementService,
+      raceCarManagementService,
+      raceCarMovementService,
       determineWinnerService
     );
 
-    raceService.start(carNames, attemptCount);
+    raceService.start(raceCarNames, attemptCount);
     raceService.determineWinner();
 
     expect(raceService.getWinners()).toEqual(winner);
@@ -39,10 +39,10 @@ describe('RaceService', () => {
   test('경기를 시작하고 끝나면 경기 기록을 반환한다', async () => {
     const MOVING_FORWARD = 4;
     const STOP = 3;
-    const carNames = ['pobi', 'woni'];
+    const raceCarNames = ['pobi', 'woni'];
     const attemptCount = 3;
     const record = {
-      raceCarNames: carNames,
+      raceRaceCarNames: raceCarNames,
       raceRecords: [
         [1, 0],
         [2, 0],
@@ -59,16 +59,16 @@ describe('RaceService', () => {
       MOVING_FORWARD,
     ]);
 
-    const carManagementService = new CarManagementService();
-    const carMovementService = new CarMovementService();
+    const raceCarManagementService = new RaceCarManagementService();
+    const raceCarMovementService = new RaceCarMovementService();
     const determineWinnerService = new DetermineWinnerService();
     const raceService = new RaceService(
-      carManagementService,
-      carMovementService,
+      raceCarManagementService,
+      raceCarMovementService,
       determineWinnerService
     );
 
-    raceService.start(carNames, attemptCount);
+    raceService.start(raceCarNames, attemptCount);
     raceService.determineWinner();
 
     expect(raceService.getRaceRecords()).toEqual(record);

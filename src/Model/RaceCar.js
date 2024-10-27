@@ -1,9 +1,12 @@
-class Car {
+import ICar from './Interfaces/ICar.js';
+
+class RaceCar extends ICar {
   #name;
   #forwardCount;
   #records;
 
   constructor(name) {
+    super();
     this.#name = name;
     this.#forwardCount = 0;
     this.#records = [];
@@ -30,4 +33,4 @@ class Car {
   }
 }
 
-export default Car;
+export default RaceCar;

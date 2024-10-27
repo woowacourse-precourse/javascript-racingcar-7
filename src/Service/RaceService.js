@@ -2,55 +2,57 @@ class RaceService {
   #winners;
 
   constructor(
-    carManagementService,
-    carMovementService,
+    raceCarManagementService,
+    raceCarMovementService,
     determineWinnerService
   ) {
-    this.carManagementService = carManagementService;
-    this.carMovementService = carMovementService;
+    this.raceCarManagementService = raceCarManagementService;
+    this.raceCarMovementService = raceCarMovementService;
     this.determineWinnerService = determineWinnerService;
     this.#winners = null;
   }
 
-  start(carNames, attemptCount) {
-    this.setupCars(carNames);
+  start(raceCarNames, attemptCount) {
+    this.setupRaceCars(raceCarNames);
     this.runRace(attemptCount);
     this.determineWinner();
   }
 
-  setupCars(carNames) {
-    carNames.forEach(carName => this.carManagementService.addCar(carName));
+  setupRaceCars(raceCarNames) {
+    raceCarNames.forEach(raceCarName =>
+      this.raceCarManagementService.addRaceCar(raceCarName)
+    );
   }
 
   runRace(attemptCount) {
-    const cars = this.carManagementService.getCars();
+    const raceCars = this.raceCarManagementService.getRaceCars();
 
     for (let i = 0; i < attemptCount; i++) {
-      this.carMovementService.moveCars(cars);
+      this.raceCarMovementService.moveRaceCars(raceCars);
     }
   }
 
   determineWinner() {
-    const cars = this.carManagementService.getCars();
+    const raceCars = this.raceCarManagementService.getRaceCars();
 
-    this.#winners = this.determineWinnerService.determineWinners(cars);
+    this.#winners = this.determineWinnerService.determineWinners(raceCars);
   }
 
   getRaceRecords() {
-    const cars = this.carManagementService.getCars();
-    const carRecords = cars.map(car => car.getRecords());
-    const carNames = cars.map(car => car.getName());
-    const attemptCount = carRecords[0].length;
+    const raceCars = this.raceCarManagementService.getRaceCars();
+    const raceCarRecords = raceCars.map(raceCar => raceCar.getRecords());
+    const raceCarNames = raceCars.map(raceCar => raceCar.getName());
+    const attemptCount = raceCarRecords[0].length;
 
     let raceRecords = [];
 
     for (let i = 0; i < attemptCount; i++) {
-      let raceRecord = carRecords.map(record => record[i]);
+      let raceRecord = raceCarRecords.map(record => record[i]);
       raceRecords.push(raceRecord);
     }
 
     return {
-      raceCarNames: carNames,
+      raceRaceCarNames: raceCarNames,
       raceRecords: raceRecords,
     };
   }

@@ -1,6 +1,6 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 
-class CarMovementService {
+class RaceCarMovementService {
   generateRandomNumber() {
     return MissionUtils.Random.pickNumberInRange(0, 9);
   }
@@ -9,14 +9,14 @@ class CarMovementService {
     return this.generateRandomNumber() >= 4;
   }
 
-  moveCars(cars) {
-    cars.forEach(car => {
+  moveRaceCars(raceCars) {
+    raceCars.forEach(raceCar => {
       if (this.decideMoveForward()) {
-        car.moveForward();
+        raceCar.moveForward();
       }
-      car.saveForwardStatus();
+      raceCar.saveForwardStatus();
     });
   }
 }
 
-export default CarMovementService;
+export default RaceCarMovementService;

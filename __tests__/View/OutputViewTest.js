@@ -13,25 +13,25 @@ describe('OutputView', () => {
   });
 
   test('자동차의 전진 여부를 출력한다', () => {
-    const carName = 'pobi';
+    const raceCarName = 'pobi';
     const forwardCount = 3;
     const log = 'pobi : ---';
     const logSpy = getLogSpy();
 
     const outputView = new OutputView();
-    outputView.printCarProgress(carName, forwardCount);
+    outputView.printRaceCarProgress(raceCarName, forwardCount);
 
     expect(logSpy).toHaveBeenCalledWith(log);
   });
 
   test('모든 자동차의 전진 여부를 출력한다', () => {
-    const carNames = ['pobi', 'woni'];
+    const raceCarNames = ['pobi', 'woni'];
     const forwardCounts = [3, 1];
     const logs = ['pobi : ---', 'woni : -'];
     const logSpy = getLogSpy();
 
     const outputView = new OutputView();
-    outputView.printRoundProgress(carNames, forwardCounts);
+    outputView.printRoundProgress(raceCarNames, forwardCounts);
 
     logs.forEach(log => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
@@ -39,7 +39,7 @@ describe('OutputView', () => {
   });
 
   test('경기 기록을 출력한다', () => {
-    const carNames = ['pobi', 'woni'];
+    const raceCarNames = ['pobi', 'woni'];
     const forwardCounts = [
       [0, 1],
       [1, 1],
@@ -49,7 +49,11 @@ describe('OutputView', () => {
     const logSpy = getLogSpy();
 
     const outputView = new OutputView();
-    outputView.printAllCarProgress(attemptCount, carNames, forwardCounts);
+    outputView.printAllRaceCarProgress(
+      attemptCount,
+      raceCarNames,
+      forwardCounts
+    );
 
     logs.forEach(log => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));

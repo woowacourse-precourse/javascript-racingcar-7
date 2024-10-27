@@ -1,10 +1,12 @@
 class DetermineWinnerService {
-  determineWinners(cars) {
-    const maxDistance = Math.max(...cars.map(car => car.getForwardCount()));
+  determineWinners(raceCars) {
+    const maxDistance = Math.max(
+      ...raceCars.map(raceCar => raceCar.getForwardCount())
+    );
 
-    const winners = cars
-      .filter(car => car.getForwardCount() === maxDistance)
-      .map(car => car.getName());
+    const winners = raceCars
+      .filter(raceCar => raceCar.getForwardCount() === maxDistance)
+      .map(raceCar => raceCar.getName());
 
     return winners;
   }
