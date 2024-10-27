@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 
 
 class App {
@@ -39,15 +39,25 @@ class App {
       return tryNumber
     }
 
-    
+    // 전진 여부를 확인하여 차를 전진시킨다.
+    const advanceCheck = (carList) => {
+      for (let i = 0; i < carList.length; i++) {
+        if (Random.pickNumberInRange(0, 9) >= 4) {
+          carList[i][1]++;
+        }
+      }
+
+      return carList
+    }
+ 
 
     const racingGame = (carList, tryNumber) => {
-      Console.print(carList);
-      Console.print(tryNumber);
 
       while (tryNumber > 0) {
+        carList = advanceCheck(carList);
         tryNumber--;
       }
+
     }
 
 
