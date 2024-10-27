@@ -13,9 +13,20 @@ export const splitStringByComma = (string) => {
 
 const trimArrayElements = (array) => {
   return array.map((element) => {
-    if (element.trim() === "") {
+    const trimElement = element.trim();
+
+    if (trimElement === "") {
       throw new Error(ERROR.EMPTY_STRING);
     }
-    return element.trim();
+
+    checkMaxLength(trimElement);
+
+    return trimElement;
   });
+};
+
+const checkMaxLength = (element) => {
+  if (element.length >= 6) {
+    throw new Error(ERROR.MAX_NAME);
+  }
 };
