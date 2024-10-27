@@ -9,6 +9,5 @@ export const findWinnerIndex = carsMovement => {
       winnerIndex.push(index);
     }
   });
-
   return winnerIndex;
 };
