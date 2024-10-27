@@ -11,8 +11,8 @@ class Car{
     static getMax(){
         return Car.#max
     }
-    static setMax(value){
-        Car.#max = value;
+    static setMax(newMax){
+        Car.#max = newMax;
     }
     getName(){
         return this.#name;
