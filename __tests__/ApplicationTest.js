@@ -130,4 +130,80 @@ describe('자동차 경주', () => {
     // then
     await expect(app.run()).rejects.toThrow('[ERROR]');
   });
+
+  test('입출력 테스트 - 정상 경기 진행', async () => {
+    // given
+    const inputs = ['pobi,woni', '3'];
+    const logs = ['pobi : -', 'woni : ', 'pobi : --', 'woni : -', 'pobi : ---', 'woni : -', '최종 우승자 : pobi'];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([4, 3, 4, 4, 4, 3]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    logs.forEach(log => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
+  test('입출력 테스트 - 우승자 확인', async () => {
+    // given
+    const inputs = ['pobi,woni', '2'];
+    const logs = ['최종 우승자 : pobi'];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([4, 3, 4, 3]); // pobi가 우승
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    logs.forEach(log => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
+  test('입출력 테스트 - 복수 우승자 확인', async () => {
+    // given
+    const inputs = ['pobi,woni', '3'];
+    const logs = ['최종 우승자 : pobi, woni'];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([4, 4, 4, 4, 4, 4]); // pobi와 woni 동일 거리 이동
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    logs.forEach(log => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
+  test('입출력 테스트 - 경기 시작 시 초기 상태', async () => {
+    // given
+    const inputs = ['pobi,woni', '1'];
+    const logs = ['pobi : ', 'woni : '];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([3, 3]); // 모든 자동차 정지
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    logs.forEach(log => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
 });
