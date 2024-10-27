@@ -1,11 +1,12 @@
-import { MissionUtils } from '@woowacourse/mission-utils';
-
-import Car from './models/Car.js';
+import {
+  makeCars, repeat, getMaxPosition, findCarWithMaxPosition,
+} from './services/RacingGameService.js';
 
 import {
   getCarName, splitCarName, getAttemptCount, validateCarNames,
 } from './utils/InputUtils.js';
-import { printCarPosition, printWinnerCar } from './utils/OutputUtils.js';
+
+import { printWinnerCar } from './utils/OutputUtils.js';
 
 class App {
   constructor() {
@@ -19,51 +20,16 @@ class App {
 
     const attemptCount = await getAttemptCount();
 
-    this.carList = this.makeCars(splittedCarName);
-    this.repeat(attemptCount);
+    this.carList = makeCars(splittedCarName);
+    repeat(this.carList, attemptCount);
 
-    const winnerNames = this.findCarWithMaxPosition(this.getMaxPosition());
+    const maxPosition = getMaxPosition(this.carList);
+    const winnerNames = findCarWithMaxPosition(this.carList, maxPosition);
     printWinnerCar(winnerNames);
-  }
-
-  makeCars(names) {
-    return names.map((name) => new Car(name));
   }
 
   getCarList() {
     return this.carList;
-  }
-
-  getMaxPosition() {
-    return Math.max(...this.carList.map((car) => car.position));
-  }
-
-  findCarWithMaxPosition(maxPosition) {
-    return this.carList
-      .filter((car) => car.position === maxPosition)
-      .map((car) => car.name);
-  }
-
-  repeat(number) {
-    MissionUtils.Console.print('실행 결과');
-    for (let i = 0; i < number; i++) {
-      this.carList.forEach((car) => {
-        this.moveCarForward(car);
-        printCarPosition(car.name, car.position);
-      });
-      MissionUtils.Console.print('\n');
-    }
-  }
-
-  moveCarForward(car) {
-    if (this.isHighEnough()) {
-      car.move();
-    }
-  }
-
-  isHighEnough() {
-    const randomValue = MissionUtils.Random.pickNumberInRange(1, 10);
-    return randomValue >= 4;
   }
 }
 
