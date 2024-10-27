@@ -1,13 +1,26 @@
 import { Console, Random } from "@woowacourse/mission-utils";
 
-
 class InputHandler {
   async getInput(message) {
     return await Console.readLineAsync(message);
   }
+}
 
-  printMessage(message) {
+class OutputHandler {
+  static printMessage(message) {
     Console.print(message);
+  }
+
+  static printRaceStatus(cars) {
+    cars.forEach((car) => {
+      const position = "-".repeat(car.getPosition());
+      Console.print(`${car.getName()} : ${position}`);
+    });
+    Console.print(""); // 줄바꿈
+  }
+
+  static printWinners(winners) {
+    Console.print(`최종 우승자 : ${winners.join(", ")}`);
   }
 }
 
@@ -17,13 +30,31 @@ class RandomNumberGenerator {
   }
 }
 
-class PlayingCar {
-  constructor(name) {
-    if (!name || name.trim() === "") {
+class InputValidator {
+  static validateCarNames(carNames) {
+    if (carNames.some(name => !name || name.trim() === "")) {
       throw new Error("[ERROR] 자동차 이름은 빈 문자열일 수 없습니다.");
     }
+
+    const uniqueNames = new Set(carNames);
+    if (uniqueNames.size !== carNames.length) {
+      throw new Error("[ERROR] 자동차 이름은 중복될 수 없습니다.");
+    }
+  }
+
+  static validateAttempts(input) {
+    const attempts = parseInt(input, 10);
+    if (isNaN(attempts) || attempts <= 0) {
+      throw new Error("[ERROR] 시도 횟수는 1 이상의 정수여야 합니다.");
+    }
+    return attempts;
+  }
+}
+
+class PlayingCar {
+  constructor(name) {
     this.name = name;
-    this.position = 0;
+    this.position = 0; // 초기 위치
   }
 
   move() {
@@ -55,36 +86,18 @@ class App {
       );
       const carNames = input.split(",").map((name) => name.trim());
 
-      this.validateCarNames(carNames); // 자동차 이름 검증
+      InputValidator.validateCarNames(carNames);
       this.createCars(carNames);
 
       const attemptsInput = await this.inputHandler.getInput("시도할 횟수는 몇 회인가요?");
-      const attempts = this.parseAttempts(attemptsInput); // 시도 횟수 검증
+      const attempts = InputValidator.validateAttempts(attemptsInput);
       this.raceCars(attempts);
 
       this.printWinners();
     } catch (error) {
-      Console.print(error.message);
-      throw error; // 예외를 다시 던져 테스트에서 감지 가능하게 함
+      OutputHandler.printMessage(error.message);
+      throw error;
     }
-  }
-
-  validateCarNames(carNames) {
-    const uniqueNames = new Set();
-    carNames.forEach((name) => {
-      if (uniqueNames.has(name)) {
-        throw new Error("[ERROR] 자동차 이름은 중복될 수 없습니다.");
-      }
-      uniqueNames.add(name);
-    });
-  }
-
-  parseAttempts(input) {
-    const attempts = parseInt(input, 10);
-    if (isNaN(attempts) || attempts <= 0) {
-      throw new Error("[ERROR] 시도 횟수는 1 이상의 정수여야 합니다.");
-    }
-    return attempts;
   }
 
   createCars(carNames) {
@@ -94,16 +107,8 @@ class App {
   raceCars(attempts) {
     for (let i = 0; i < attempts; i++) {
       this.cars.forEach((car) => car.move());
-      this.printRaceStatus();
+      OutputHandler.printRaceStatus(this.cars);
     }
-  }
-
-  printRaceStatus() {
-    this.cars.forEach((car) => {
-      const position = "-".repeat(car.getPosition());
-      this.inputHandler.printMessage(`${car.getName()} : ${position}`);
-    });
-    this.inputHandler.printMessage(""); // 줄바꿈
   }
 
   printWinners() {
@@ -112,7 +117,7 @@ class App {
         .filter((car) => car.getPosition() === maxPosition)
         .map((car) => car.getName());
 
-    this.inputHandler.printMessage(`최종 우승자 : ${winners.join(", ")}`);
+    OutputHandler.printWinners(winners);
   }
 }
 
