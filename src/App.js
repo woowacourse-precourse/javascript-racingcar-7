@@ -14,7 +14,7 @@ const determineCarName = (input) => {
 };
 
 const goAhead = (names, raceNum) => {
-  Console.print('\n실행 결과');
+  Console.print('실행 결과');
 
   const namesArray = names.split(',');
   const raceRecord = namesArray.map((name) => ({ name, aheadNum: 0 }));
@@ -29,6 +29,13 @@ const goAhead = (names, raceNum) => {
     );
     Console.print('');
   }
+
+  const maxAhead = Math.max(...raceRecord.map((record) => record.aheadNum));
+  const topRecords = raceRecord.filter(
+    (record) => record.aheadNum === maxAhead
+  );
+  const top = topRecords.map((record) => record.name);
+  Console.print(`최종 우승자 : ${top.join(',')}`);
 };
 
 class App {
