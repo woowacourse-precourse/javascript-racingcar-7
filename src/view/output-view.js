@@ -6,7 +6,7 @@ const OUTPUT_MESSAGE = Object.freeze({
 });
 
 class OutputView {
-  printExecutionResultMessage() {
+  printStartRaceMessage() {
     Console.print(OUTPUT_MESSAGE.EXECUTION_RESULT_OUTPUT);
   }
 

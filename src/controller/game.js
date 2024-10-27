@@ -13,16 +13,16 @@ class Game {
 
   async process() {
     const carNamesInput = await this.inputView.getCarNames(GAME_MESSAGE.CAR_NAMES_INPUT);
-
     validateCarName(carNamesInput);
-    const carNameList = carNamesInput.split(',');
 
     const attemptCountInput = await this.inputView.getAttemptCount(GAME_MESSAGE.ATTEMPT_COUNT_INPUT);
     validateAttemptCount(attemptCountInput);
+
+    const carNameList = carNamesInput.split(',');
     const attemptCount = parseInt(attemptCountInput, 10);
 
     // 여기서부터 race 시작
-    this.outputView.printExecutionResultMessage();
+    this.outputView.printStartRaceMessage();
 
     const record = {};
 
