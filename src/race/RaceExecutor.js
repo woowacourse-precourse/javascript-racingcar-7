@@ -42,10 +42,10 @@ export default class RaceExcutor {
         return result;
     }
 
-    executeForRaceCount(cars, raceCount) {
+    executeForMoveTryCount(cars, moveTryCount) {
         this.#printStartExcuteResultMessage();
 
-        for (let i = 0; i < raceCount; i++) {
+        for (let i = 0; i < moveTryCount; i++) {
             const executionResult = this.#execute(cars);
             this.#printExcuteResult(executionResult);
         }

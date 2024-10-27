@@ -12,24 +12,24 @@ class RaceManager {
         return carManager.getCars();
     }
 
-    #validateRacingCount(count) {
+    #validateMoveTryCount(count) {
         Validator.checkNotBlank(count);
         Validator.checkNumberValue(count);
         Validator.checkLessThanOrEqualMaxCount(count, this.#MAX_RACE_COUNT);
     }
 
-    async #getRacingCountFromInput() {
+    async #getMoveTryCountFromInput() {
         const inputCount = await IOHandler.input("시도할 횟수는 몇 회인가요?\n");
-        this.#validateRacingCount(inputCount);
+        this.#validateMoveTryCount(inputCount);
 
         return inputCount;
     }
 
     async #getRacingInfo() {
         const cars = await this.#getCars();
-        const racingCount = await this.#getRacingCountFromInput();
+        const moveTryCount = await this.#getMoveTryCountFromInput();
 
-        return { cars, racingCount };
+        return { cars, moveTryCount };
     }
 
     #printWinners(winnerNames) {
@@ -41,7 +41,7 @@ class RaceManager {
         const racingInfo = await this.#getRacingInfo();
 
         const raceExcutor = new RaceExcutor();
-        raceExcutor.executeForRaceCount(racingInfo.cars, racingInfo.racingCount);
+        raceExcutor.executeForMoveTryCount(racingInfo.cars, racingInfo.moveTryCount);
 
         const winnerNames = getWinners(racingInfo.cars);
         this.#printWinners(winnerNames);
