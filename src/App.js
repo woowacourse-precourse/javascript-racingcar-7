@@ -2,6 +2,7 @@ import { getUserInput } from './utils/Console.js';
 import { parseCarNames, parseAttempt } from './utils/Parser.js';
 import CarNameValidator from './validators/CarNameValidator.js';
 import AttemptValidator from './validators/AttemptValidator.js';
+import RacingGame from './RacingGame.js';
 
 class App {
   async run() {
@@ -16,6 +17,12 @@ class App {
 
     const roundAttempt = parseAttempt(userInputAttempt);
     AttemptValidator.validate(roundAttempt);
+
+    const racingGame = new RacingGame(carNameList, roundAttempt);
+    racingGame.Racing();
+
+    const winners = racingGame.getWinners();
+    RacingGame.printWinners(winners);
   }
 }
 
