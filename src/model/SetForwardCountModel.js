@@ -1,20 +1,27 @@
 class SetForwardCountModel {
   constructor() {}
-  getForwardCount(attempts, arrayLength) {
-    let forwardCount = Array(arrayLength).fill(0);
+  getTotalDistant(attempts, arrayLength, initialTotalDistant) {
+    const attemptDistant = this.getAttemptDistant(attempts, arrayLength);
+    const totalDistant = attemptDistant.map(
+      (value, index) => value + initialTotalDistant[index]
+    );
+    return totalDistant;
+  }
+  getAttemptDistant(attempts, arrayLength) {
+    let attemptDistant = Array(arrayLength).fill(0);
     for (let index = 0; index < attempts.length; index++) {
       const criteriaNum = attempts[index];
-      this.checkCarMoveForward(criteriaNum, forwardCount, index);
+      this.checkCarMoveForward(criteriaNum, attemptDistant, index);
     }
-    return forwardCount;
+    return attemptDistant;
   }
-  checkCarMoveForward(criteriaNum, forwardCount, index) {
+  checkCarMoveForward(criteriaNum, attemptDistant, index) {
     if (criteriaNum >= 4) {
-      this.calculateForwardCount(forwardCount, index);
+      this.addForwardCount(attemptDistant, index);
     }
   }
-  calculateForwardCount(forwardCount, index) {
-    forwardCount[index] += 1;
+  addForwardCount(attemptDistant, index) {
+    attemptDistant[index] += 1;
   }
 }
 

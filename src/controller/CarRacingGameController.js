@@ -14,26 +14,24 @@ class CarRacingGameController {
     this.OutputView = new OutputView();
   }
   async setCarMovement() {
-    //입력받은 자동차 이름 배열과 시도 횟수를 SetCarMovementModel에 전달
     const carNames = await this.InputView.getCarNames();
     const tryCount = await this.InputView.getTryCount();
     const carMovement = this.SetCarMovementModel.setCarMovementValues(
       carNames,
       tryCount
     );
-    let totalMovement = Array(carNames.length).fill(0);
+
+    let totalDistant = Array(carNames.length).fill(0);
     for (let attempts of carMovement) {
-      //한 try별 움직인 거리
-      const attemptMovement = this.SetForwardCountModel.getForwardCount(
+      totalDistant = this.SetForwardCountModel.getTotalDistant(
         attempts,
-        carNames.length
+        carNames.length,
+        totalDistant
       );
-      totalMovement = attemptMovement.map(
-        (value, index) => value + totalMovement[index]
-      );
-      this.OutputView.printEachTemp(carNames, totalMovement);
+      this.OutputView.printEachTemp(carNames, totalDistant);
     }
-    const winner = this.SetWinnerModel.setWinner(carNames, totalMovement);
+
+    const winner = this.SetWinnerModel.setWinner(carNames, totalDistant);
     this.OutputView.printWinner(winner);
   }
 }
