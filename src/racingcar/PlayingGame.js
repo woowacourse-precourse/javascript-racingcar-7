@@ -1,5 +1,5 @@
 import PlayingCar from "./PlayingCar.js";
-import OutputHandler from "../../utils/OutputHandler.js";
+import OutputHandler from "../utils/OutputHandler.js";
 
 class RacingGame {
     constructor(carNames) {

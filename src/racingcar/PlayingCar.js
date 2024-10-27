@@ -1,5 +1,5 @@
-import RandomNumberGenerator from "../../utils/RandonNumberGenerator.js";
-import { CAR_SETTINGS } from "../../constants/Settings.js";
+import RandomNumberGenerator from "../utils/RandonNumberGenerator.js";
+import { CAR_SETTINGS } from "../constants/Settings.js";
 
 class PlayingCar {
     constructor(name) {
