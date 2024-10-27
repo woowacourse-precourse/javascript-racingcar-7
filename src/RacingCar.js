@@ -80,7 +80,7 @@ class RacingCar {
 					.join("");
 				printOutput(`${car.carName} : ${dashes}`);
 			});
-			printOutput("");
+			printOutput("\n");
 		}
 	}
 
@@ -107,7 +107,7 @@ class RacingCar {
 
 	printWinners(winners) {
 		const winnersString = winners.join(", ");
-		printOutput(`최종 우승자 : ${winnersString}`);
+		printOutput(`\n최종 우승자 : ${winnersString}`);
 	}
 }
 
