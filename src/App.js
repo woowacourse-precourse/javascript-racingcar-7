@@ -17,7 +17,7 @@ class App {
 
     carNames.forEach(name => {
       if (name.length > MAX_CAR) {
-        throw new Error('[ERROR] 자동차 이름은 5자 이하만 가능합니다.');
+        throw new Error('자동차 이름은 5자 이하만 가능합니다.');
       }
     });
 
@@ -29,7 +29,7 @@ class App {
     const moveAttempts = parseInt(inputAttempts, 10);
 
     if (Number.isNaN(moveAttempts) || moveAttempts <= 0) {
-      throw new Error('[ERROR] 시도할 횟수는 양의 정수여야 합니다.');
+      throw new Error('시도할 횟수는 양의 정수여야 합니다.');
     }
 
     return moveAttempts;
