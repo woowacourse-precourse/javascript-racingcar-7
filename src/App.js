@@ -8,6 +8,14 @@ class App {
 }
 
 class Validator {
+    static CAR_COUNT = 2;
+    static ERROR_MESSAGES = {
+        INVALID_ROUND_COUNT: "[ERROR] 시도 횟수는 1회 이상 30회 이하의 정수여야 합니다.",
+        INVALID_CAR_COUNT: `[ERROR] 자동차 이름은 ${this.CAR_COUNT}개 이상이어야 합니다.`,
+        DUPLICATED_CAR_NAME: "[ERROR] 자동차 이름은 중복되어서는 안됩니다.",
+        INVALID_CAR_NAME_LENGTH: "[ERROR] 자동차 이름은 1자 이상 5자 이하여야 합니다.",
+    };
+
     static validateRoundCount(attempts) {
         const attemptsNumber = Number(attempts);
 
@@ -17,15 +25,13 @@ class Validator {
             attemptsNumber <= 0 ||
             attemptsNumber > 30
         ) {
-            const errorMessage = "[ERROR] 시도 횟수는 1회 이상 30회 이하의 정수여야 합니다.";
-            throw new Error(errorMessage);
+            throw new Error(this.ERROR_MESSAGES.INVALID_ROUND_COUNT);
         }
     }
 
-    static validateCarCount(carNames, carCount) {
-        if (carNames.length < carCount) {
-            const errorMessage = `[ERROR] 자동차는 ${carCount} 이상이어야 합니다.`;
-            throw new Error(errorMessage);
+    static validateCarCount(carNames) {
+        if (carNames.length < this.CAR_COUNT) {
+            throw new Error(this.ERROR_MESSAGES.INVALID_CAR_COUNT);
         }
     }
 
@@ -42,15 +48,13 @@ class Validator {
         });
 
         if (!isCarNameUnique) {
-            const errorMessage = "[ERROR] 자동차 이름은 중복되어서는 안됩니다.";
-            throw new Error(errorMessage);
+            throw new Error(this.ERROR_MESSAGES.DUPLICATED_CAR_NAME);
         }
     }
 
     static validateCarNameLength(name) {
         if (name.length === 0 || name.length > 5) {
-            const errorMessage = "[ERROR] 자동차 이름은 1자 이상 5자 이하여야 합니다.";
-            throw new Error(errorMessage);
+            throw new Error(this.ERROR_MESSAGES.INVALID_CAR_NAME_LENGTH);
         }
     }
 }
@@ -58,6 +62,7 @@ class Validator {
 class CarRace {
     #cars = [];
     #round = 0;
+    static CAR_COUNT = 2;
 
     addCar(carNames) {
         this.#cars = carNames.map((car) => new Car(car));
@@ -115,9 +120,8 @@ class CarRace {
         );
         const carNames = carNamesString.split(",");
         const round = await MissionUtils.Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
-        const CAR_COUNT = 2;
 
-        Validator.validateCarCount(carNames, CAR_COUNT);
+        Validator.validateCarCount(carNames);
         Validator.validateUniqueCarNames(carNames);
         Validator.validateRoundCount(round);
 
