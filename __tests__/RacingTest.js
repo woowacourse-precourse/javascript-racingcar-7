@@ -110,4 +110,27 @@ describe('Racing 메서드 테스트', () => {
       }
     });
   });
+
+  test('announceWinner 메서드에서 우승자가 정상적으로 선정되는지 테스트', () => {
+    const MOVING_FORWARD = 6;
+    const STOP = 1;
+    const TOTAL_ROUNDS = 3;
+    const CAR_NAMES = ['woowa', 'tech', '코스'];
+    const carsMoving = [
+      [MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD],
+      [MOVING_FORWARD, MOVING_FORWARD, STOP],
+      [MOVING_FORWARD, STOP, STOP],
+    ];
+    const WINNER = 'woowa';
+    const logSpy = getLogSpy();
+
+    carsMoving.forEach((moving) => mockRandoms(moving));
+
+    const cars = CAR_NAMES.map((name) => new Car(name));
+    const racing = new Racing(TOTAL_ROUNDS, cars);
+    racing.play();
+    racing.announceWinners();
+
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(WINNER));
+  });
 });
