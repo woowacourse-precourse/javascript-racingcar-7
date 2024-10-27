@@ -4,18 +4,16 @@ class CarGame {
     carNames;
     tryCount;
     runCountInfo;
-    resultLogs;
-    carCount;
 
     constructor(carNames, tryCount) {
         this.carNames = carNames;
         this.tryCount = tryCount;
         this.runCountInfo = Array.from({ length: carNames.length }, () => Array(tryCount).fill(0));
-        this.resultLogs = [];
         this.carCount = this.carNames.length;
     }
 
     startRace() {
+        const resultLogs = [];
         let tryCnt = 0;
         while (tryCnt < this.tryCount) {
             for (let i = 0; i < this.carCount; i++) {
@@ -36,19 +34,17 @@ class CarGame {
 
         for (let i = 0; i < this.tryCount; i++) {
             for (let j = 0; j < this.carCount; j++) {
-                this.resultLogs.push(
-                    `${this.carNames[j]} : ${"-".repeat(this.runCountInfo[j][i])}`
-                );
+                resultLogs.push(`${this.carNames[j]} : ${"-".repeat(this.runCountInfo[j][i])}`);
             }
-            this.resultLogs.push("");
+            resultLogs.push("");
         }
 
-        return this.resultLogs;
+        return resultLogs;
     }
 
     pickWinner() {
-        let maxCnt = -1;
         let winner = [];
+        let maxCnt = -1;
         for (let i = 0; i < this.carCount; i++) {
             const finalCnt = this.runCountInfo[i][this.tryCount - 1];
             if (maxCnt < finalCnt) {
