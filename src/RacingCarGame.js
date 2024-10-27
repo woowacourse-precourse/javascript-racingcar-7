@@ -1,4 +1,5 @@
 import { Console, Random } from "@woowacourse/mission-utils";
+import { ERROR_MESSAGES } from "./constants/errorMessages.js";
 
 class RacingCarGame {
   static CAR_NAME_SEPARATOR = ",";
@@ -28,11 +29,16 @@ class RacingCarGame {
     const carNames = await Console.readLineAsync(
       `경주할 자동차 이름을 입력하세요.(이름은 쉼표(${RacingCarGame.CAR_NAME_SEPARATOR}) 기준으로 구분)\n`
     );
+
+    if (carNames === "") {
+      throw new Error(ERROR_MESSAGES.emptyCarNames);
+    }
+
     const carNameList = carNames.split(RacingCarGame.CAR_NAME_SEPARATOR);
     const isValidCarNameList = carNameList.every(this.validateCarName);
 
     if (!isValidCarNameList) {
-      throw new Error("[ERROR] 유효하지 않은 자동차 이름이 입력되었습니다.");
+      throw new Error(ERROR_MESSAGES.invalidCarName);
     }
 
     const roundCount = await Console.readLineAsync(
@@ -40,7 +46,7 @@ class RacingCarGame {
     );
 
     if (!this.validateRoundCount(roundCount)) {
-      throw new Error("[ERROR] 유효하지 않은 시도할 횟수가 입력되었습니다.");
+      throw new Error(ERROR_MESSAGES.invalidRoundCount);
     }
 
     Console.print("\n실행 결과");
