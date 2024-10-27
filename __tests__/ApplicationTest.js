@@ -33,7 +33,6 @@ describe('구현할 기능 목록 테스트 코드 작성', () => {
     const userInput = ['pobi,woni ,jun'];
     const expectedResult = ['pobi', 'woni', 'jun'];
 
-    const logSpy = getLogSpy();
     const app = new App();
 
     mockQuestions(userInput);
@@ -79,9 +78,9 @@ describe('구현할 기능 목록 테스트 코드 작성', () => {
     const app = new App();
     mockRandoms([MOVING_FORWARD_ONE, STOP, MOVING_FORWARD_TWO]);
 
-    app.executionResult(input);
+    const result = app.executionResult(input);
 
-    expect(input).toEqual(expectedResult);
+    expect(result).toEqual(expectedResult);
   });
 
   test('1경기 실행 결과 츨력', () => {

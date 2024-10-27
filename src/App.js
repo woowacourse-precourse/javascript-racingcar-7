@@ -32,13 +32,15 @@ class App {
   }
 
   executionResult(input) {
-    const inputKeys = Object.keys(input);
-    inputKeys.forEach((item) => {
+    const updatedInput = { ...input };
+
+    Object.keys(updatedInput).forEach((item) => {
       const isFowrad = Random.pickNumberInRange(0, 9);
       if (isFowrad >= 4) {
-        input[item] += 1;
+        updatedInput[item] += 1;
       }
     });
+    return updatedInput;
   }
 
   printResult(input) {
@@ -76,12 +78,12 @@ class App {
     );
     const tryNumber = await this.getTryNumber('시도할 횟수는 몇 회인가요?\n');
 
-    const scoreBoard = this.setGame(carNames);
+    let scoreBoard = this.setGame(carNames);
 
     Console.print('\n실행 결과');
 
     for (let i = 0; i < tryNumber; i++) {
-      this.executionResult(scoreBoard);
+      scoreBoard = this.executionResult(scoreBoard);
       this.printResult(scoreBoard);
       Console.print('');
     }
