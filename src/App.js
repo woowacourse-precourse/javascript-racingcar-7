@@ -26,13 +26,14 @@ class App {
 
   //numberInput 바탕으로 각 라운드를 시뮬레이션하여 랜덤값 부여 함수
   simulateRaceRounds(numberInput) {
+    Console.print(`\n실행 결과`);
     for (let i = 0; i < numberInput; i++) {
       Object.keys(this.carObject).forEach((carName) => {
         this.carObject[carName] += this.moveOrStop(
           Math.floor(Math.random() * 10) // 0~9까지의 랜덤값
         );
       });
-      Console.print(this.carObject);
+      this.printRaceRound(this.carObject);
     }
   }
 
@@ -40,6 +41,14 @@ class App {
   moveOrStop(randomNumber) {
     if (randomNumber >= 4) return 1;
     return 0;
+  }
+
+  // 라운드별 진행상황 출력 함수
+  printRaceRound(carObject) {
+    Object.keys(carObject).forEach((carName) => {
+      Console.print(`${carName} : ${"-".repeat(carObject[carName])}`);
+    });
+    Console.print("\n");
   }
 
   //최종 우승자 판별 함수
