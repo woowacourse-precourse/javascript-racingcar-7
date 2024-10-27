@@ -1,6 +1,8 @@
-import {Random, Console} from '@woowacourse/mission-utils';
+import {Console, Random} from '@woowacourse/mission-utils';
 import RacingCar from "../RacingCar.js";
 import IOHandler from "./IOHandler.js";
+import ValidationUtils from "./ValidationUtils.js";
+import ErrorCode from "../datas/ErrorCode.js";
 
 class RacingCarUtils {
     static findWinners(carList) {
@@ -14,6 +16,9 @@ class RacingCarUtils {
     }
 
     static createCarListByPlayerList(players) {
+        if (ValidationUtils.checkDuplicate(players)) {
+            throw new Error(ErrorCode.CAR_NAME_DUPLICATE)
+        }
         return players.reduce((cars, player) => {
             cars.push(new RacingCar(player));
             return cars;
@@ -21,7 +26,8 @@ class RacingCarUtils {
     }
 
     static race(carList, tryNumber) {
-        while (tryNumber--) {
+        let num = ValidationUtils.isValidNumber(tryNumber);
+        while (num--) {
             carList.forEach(car => {
                 car.goForward(Random.pickNumberInRange(0, 9))
                 IOHandler.printCarDistance(car)
@@ -40,9 +46,7 @@ class RacingCarUtils {
             return obj.map(this.deepCopy);
         }
 
-        const copy = new RacingCar(obj.name, obj.distState);
-
-        return copy
+        return new RacingCar(obj.name, obj.distState)
     }
 
 }
