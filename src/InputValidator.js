@@ -10,7 +10,7 @@ class InputValidator {
     static validateCarNameList(carNameList) {
         const regex = /^[a-zA-Z가-힣0-9]{1,5}$/;
 
-        if (carNameList.length === 0) {
+        if (carNameList.length === 0 || (carNameList.length === 1 && carNameList[0] === "")) {
             InputValidator.#throwError(InputValidator.ERROR_MESSAGES.CAR_NAME_EMPTY);
         } else if (!carNameList.every((carName) => regex.test(carName))) {
             InputValidator.#throwError(InputValidator.ERROR_MESSAGES.INVALID_NAME);
