@@ -3,7 +3,6 @@ import { ERRORMESAGE, MAGICNUMBER } from '../constants/index.js';
 
 export default class Racingcar {
   #inputArr;
-  #tryNum;
   #board;
   /**
    *
@@ -11,7 +10,7 @@ export default class Racingcar {
    */
   constructor(inputArr, tryNum) {
     this.#validate(inputArr, tryNum);
-    [this.#inputArr, this.#tryNum] = [inputArr, tryNum];
+    this.#inputArr = inputArr;
     this.#board = this.#createBoard();
   }
 
@@ -46,8 +45,7 @@ export default class Racingcar {
 
   rank() {
     const firstPlayer = this.#calculateFirstPlayer();
-    const sortFirstPlayer = sortArr(firstPlayer);
-    return sortFirstPlayer;
+    return sortArr(firstPlayer);
   }
 
   #calculateFirstPlayer() {
