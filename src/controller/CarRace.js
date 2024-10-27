@@ -1,5 +1,5 @@
 import InputView from "../view/InputView.js";
-import Validator from "./validator.js";
+import Validator from "./Validator.js";
 
 class CarRace {
   constructor() {}
