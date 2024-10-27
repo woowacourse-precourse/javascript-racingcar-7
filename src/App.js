@@ -2,7 +2,7 @@ import { Random, Console } from '@woowacourse/mission-utils';
 import validateCarNames from './validateCarNames.js';
 import validateRounds from './validateRounds.js';
 import getWinner from './getWinner.js';
-
+import { updateRaceCount, printRaceResults } from './raceCount.js';
 class App {
   async run() {
     const inputCarNames = await Console.readLineAsync(
@@ -16,24 +16,11 @@ class App {
     );
     validateRounds(inputRounds);
 
-    const printRaceCount = (count) => {
-      let string = '';
-      for (let i = 0; i < count; i++) {
-        string += '-';
-      }
-      return string;
-    };
-
     let raceCount = new Array(carNames.length).fill(0);
     Console.print('\n실행 결과');
     for (let i = 0; i < inputRounds; i++) {
-      for (let j = 0; j < carNames.length; j++) {
-        if (Random.pickNumberInRange(0, 9) >= 4) {
-          raceCount[j] += 1;
-        }
-        Console.print(`${carNames[j]} : ${printRaceCount(raceCount[j])}`);
-      }
-      Console.print('');
+      raceCount = updateRaceCount(raceCount);
+      printRaceResults(carNames, raceCount);
     }
 
     Console.print(`최종 우승자 : ${getWinner(raceCount, carNames).join(', ')}`);
