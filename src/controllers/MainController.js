@@ -1,8 +1,8 @@
 import { finalRace } from "../utils/finalRace.js";
 import { sepateInput } from "../utils/parser.js";
-import OutputView from "../views/outputView.js";
+import OutputView from "../views/OutputView.js";
 import { decisionFinalWinner } from "../models/decisionFinalWinner.js";
-import InputView from "../views/inputView.js";
+import InputView from "../views/InputView.js";
 import { InputValid } from "../valid/inputValid.js";
 
 export class MainController{
