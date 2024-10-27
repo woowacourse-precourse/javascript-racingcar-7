@@ -29,9 +29,16 @@ class App {
     return MissionUtils.Random.pickNumberInRange(0, 9);
   }
 
+  detemineMovingOrStop(randomNumber, carNumber) {
+    if (randomNumber >= 4) {
+      this.carsAndPositions[carNumber].moveForward();
+    }
+  }
+
   raceSingleRound() {
-    this.carsAndPositions.forEach((_, index) => {
+    this.carsAndPositions.forEach((_, carNumber) => {
       const randomNumber = this.getRandomNumber();
+      this.detemineMovingOrStop(randomNumber, carNumber);
     });
   }
 
