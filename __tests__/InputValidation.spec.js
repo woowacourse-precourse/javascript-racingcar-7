@@ -2,6 +2,7 @@ import { OUTPUT_MESSAGES, CAR_NAME_VALIDATION_ERROR, RACE_COUNT_VALIDATION_ERROR
 import parseStringToArray from '../src/utils/parseStringToArray';
 import CarNameValidations from '../src/validations/CarNameValidations';
 import RaceCountValidations from '../src/validations/RaceCountValidations.js';
+import OutputView from '../src/view/OutputView.js';
 
 const MOCK_ERROR_PREFIX = OUTPUT_MESSAGES.ERROR;
 
@@ -42,6 +43,7 @@ describe('단위 테스트: 입력 값 유효성 검증', () => {
 
       // then
       expect(() => CarNameValidations(parsedArray)).toThrow(`${MOCK_ERROR_PREFIX} ${expectedError}`);
+      expect(OutputView.printErrorMessage).toHaveBeenCalledWith(expectedError);
     });
   });
 
@@ -57,6 +59,7 @@ describe('단위 테스트: 입력 값 유효성 검증', () => {
     ])('%s', (_, input, expectedError) => {
       // when & then
       expect(() => RaceCountValidations(input)).toThrow(`${MOCK_ERROR_PREFIX} ${expectedError}`);
+      expect(OutputView.printErrorMessage).toHaveBeenCalledWith(expectedError);
     });
   });
 });
