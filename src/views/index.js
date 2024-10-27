@@ -1,2 +1,2 @@
-export * from "./inputHandler.js";
-export * from "./outputHandler.js";
+export * from './inputHandler.js';
+export * from './outputHandler.js';

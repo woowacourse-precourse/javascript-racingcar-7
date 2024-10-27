@@ -1,8 +1,8 @@
-import { inputHandler, outputHandler } from "./views/index.js";
-import { GAME_MESSAGES, RULES } from "./constants/index.js";
-import { carNameParser, randomNumber } from "./utils/index.js";
-import { validateCarNames } from "./validation/validateCarName.js";
-import { Car } from "./models/index.js";
+import { inputHandler, outputHandler } from './views/index.js';
+import { GAME_MESSAGES, RULES } from './constants/index.js';
+import { carNameParser, randomNumber } from './utils/index.js';
+import { validateCarNames } from './validation/validateCarName.js';
+import { Car } from './models/index.js';
 
 class RacingGame {
   #cars;
@@ -25,7 +25,7 @@ class RacingGame {
     for (let i = 0; i < this.#tryCount; i++) {
       this.playRound();
       outputHandler.printRoundResult(this.#cars);
-      outputHandler.printMessage("");
+      outputHandler.printMessage('');
     }
 
     this.endGame();
@@ -35,7 +35,7 @@ class RacingGame {
     this.#cars.forEach((car) => {
       const number = randomNumber(
         RULES.RANDOM_MIN_NUMBER,
-        RULES.RANDOM_MAX_NUMBER
+        RULES.RANDOM_MAX_NUMBER,
       );
       if (this.#shouldProgress(number)) {
         car.moveForward();
@@ -49,12 +49,12 @@ class RacingGame {
 
   endGame() {
     const winners = this.#getWinners();
-    outputHandler.printMessage(`${GAME_MESSAGES.WINNER}${winners.join(", ")}`);
+    outputHandler.printMessage(`${GAME_MESSAGES.WINNER}${winners.join(', ')}`);
   }
 
   #getWinners() {
     const maxPosition = Math.max(
-      ...this.#cars.map((car) => car.getCarPosition())
+      ...this.#cars.map((car) => car.getCarPosition()),
     );
 
     return this.#cars

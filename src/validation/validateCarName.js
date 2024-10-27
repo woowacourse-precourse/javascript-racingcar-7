@@ -1,4 +1,4 @@
-import { ERROR_MESSAGES, RULES } from "../constants/index.js";
+import { ERROR_MESSAGES, RULES } from '../constants/index.js';
 
 export const validateCarNames = (carNames) => {
   validateCarNameLength(carNames);
@@ -13,7 +13,7 @@ const validateCarNameLength = (carNames) => {
 };
 
 const validateNoEmptyName = (carNames) => {
-  if (carNames.some((name) => name === "")) {
+  if (carNames.some((name) => name === '')) {
     throw new Error(ERROR_MESSAGES.CAR_ERROR_MESSAGES.NO_NAME);
   }
 };

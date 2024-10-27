@@ -1,11 +1,11 @@
-import { Console } from "@woowacourse/mission-utils";
-import { GAME_MESSAGES, ERROR_MESSAGES } from "../constants/index.js";
+import { Console } from '@woowacourse/mission-utils';
+import { GAME_MESSAGES, ERROR_MESSAGES } from '../constants/index.js';
 
 export const inputHandler = {
   carNameInput: async () => {
     const carNames = await Console.readLineAsync(GAME_MESSAGES.START);
 
-    if (carNames.trim() === "") {
+    if (carNames.trim() === '') {
       throw new Error(ERROR_MESSAGES.CAR_ERROR_MESSAGES.BLANK);
     }
     return carNames;
@@ -13,9 +13,9 @@ export const inputHandler = {
 
   racingTryCountInput: async () => {
     const racingTryCount = await Console.readLineAsync(
-      GAME_MESSAGES.ANSWER_COUNT
+      GAME_MESSAGES.ANSWER_COUNT,
     );
-    if (racingTryCount.trim() === "") {
+    if (racingTryCount.trim() === '') {
       throw new Error(ERROR_MESSAGES.CAR_ERROR_MESSAGES.BLANK);
     }
     if (isNaN(racingTryCount)) {

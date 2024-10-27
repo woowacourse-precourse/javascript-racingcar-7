@@ -1,6 +1,6 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console } from '@woowacourse/mission-utils';
 
-import { GAME_MESSAGES } from "../constants/index.js";
+import { GAME_MESSAGES } from '../constants/index.js';
 
 export const outputHandler = {
   printMessage: (message) => {
