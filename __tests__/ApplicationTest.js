@@ -25,7 +25,7 @@ const getLogSpy = () => {
 };
 
 describe("자동차 경주", () => {
-  test("기능 테스트", async () => {
+  test("기본 입력", async () => {
     // given
     const MOVING_FORWARD = 4;
     const STOP = 3;
@@ -46,15 +46,36 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트", async () => {
-    // given
-    const inputs = ["pobi,javaji"];
-    mockQuestions(inputs);
-
-    // when
+  test("잘못된 자동차 이름 - 5자 이상 입력", async () => {
+    mockQuestions(["fiveupper, four"]);
     const app = new App();
+    await expect(app.run()).rejects.toThrow(
+      "[ERROR] 자동차 이름은 5자 이하만 가능합니다."
+    );
+  });
 
-    // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
+  test("잘못된 구분자 입력", async () => {
+    const invalidSeparators = [
+      ";",
+      "/",
+      " ",
+      ":",
+      "`",
+      "#",
+      "@",
+      "!",
+      "^",
+      "&",
+    ];
+
+    const promises = invalidSeparators.map(async (separator) => {
+      mockQuestions([`pobi${separator}woni`]);
+      const app = new App();
+      await expect(app.run()).rejects.toThrow(
+        new Error("[ERROR] 각 자동차를 구분하는 구분자는 쉼표(,)만 가능합니다.")
+      );
+    });
+
+    await Promise.all(promises);
   });
 });
