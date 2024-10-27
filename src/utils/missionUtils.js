@@ -14,3 +14,7 @@ export async function userInput(string) {
 export function getRandomInRangeNumber(min, max) {
 	return MissionUtils.Random.pickNumberInRange(min, max);
 }
+
+export function printOutput(string) {
+	return MissionUtils.Console.print(string);
+}

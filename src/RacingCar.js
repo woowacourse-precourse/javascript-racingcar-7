@@ -1,4 +1,8 @@
-import { getRandomInRangeNumber, userInput } from "./utils/MissionUtils.js";
+import {
+	getRandomInRangeNumber,
+	printOutput,
+	userInput,
+} from "./utils/MissionUtils.js";
 import {
 	validateDuplicateName,
 	validateMinCar,
@@ -34,6 +38,7 @@ class RacingCar {
 
 			this.carNamesAndNumberMap = await this.setCarNumberMap();
 			this.carNamesAndDashMap = await this.changeNumbersToDash();
+			this.printRunResults();
 		} catch (error) {
 			throw new Error(`${error.message}`);
 		}
@@ -67,6 +72,22 @@ class RacingCar {
 		);
 
 		return carNamesAndDashMap;
+	}
+
+	printRunResults() {
+		const totalResults = Array.from({ length: this.tryCount }, (_, i) => {
+			return this.carNamesAndDashMap
+				.map(({ carName, carDashes }) => {
+					const dashes = carDashes.slice(0, i + 1).join("");
+					return `${carName} : ${dashes}`;
+				})
+				.join("\n");
+		});
+		printOutput("\n실행 결과");
+		totalResults.forEach((result) => {
+			printOutput(result);
+			printOutput("");
+		});
 	}
 }
 
