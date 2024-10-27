@@ -4,15 +4,34 @@ class App {
   static ERROR_MESSAGE = {
     CAR_NAME_LENGTH_ERROR:
       '차량 이름이 너무 깁니다! 각 차량 이름은 5글자 이하로 입력해주세요!',
+    ATTEMPT_COUNT_ERROR: '올바른 숫자를 입력해주세요!',
+    ATTEMPT_COUNT_MINIMUM_ERROR: '1이상의 숫자를 입력해주세요!',
   };
 
   async run() {
     const cars = await this.inputCars();
+    const attemptCount = await this.inputAttemptCount();
   }
 
   async input(msg) {
     const input = await Console.readLineAsync(`${msg}\n`);
     return input;
+  }
+
+  async inputAttemptCount() {
+    const attemptCountInput = await this.input('시도할 횟수는 몇 회인가요?');
+    return this.validateAndParseAttemptCount(attemptCountInput);
+  }
+
+  validateAndParseAttemptCount(attemptCountInput) {
+    const attemptCount = Number(attemptCountInput);
+    if (Number.isNaN(attemptCount)) {
+      throw Error(`[ERROR] ${App.ERROR_MESSAGE.ATTEMPT_COUNT_ERROR}`);
+    }
+    if (attemptCount < 1) {
+      throw Error(`[ERROR] ${App.ERROR_MESSAGE.ATTEMPT_COUNT_MINIMUM_ERROR}`);
+    }
+    return attemptCount;
   }
 
   async inputCars() {
