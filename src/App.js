@@ -14,6 +14,7 @@ class App {
 
     const raceResult = this.getRaceResult(carNamesInput, moveAttemptCountInput);
     const winners = this.getWinners(raceResult);
+
     this.printWinners(winners);
   }
 
