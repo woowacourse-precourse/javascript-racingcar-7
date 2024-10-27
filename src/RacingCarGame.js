@@ -17,7 +17,11 @@ class RacingCarGame {
   }
 
   validateRoundCount(roundCount) {
-    return isNaN(roundCount) || roundCount <= 0;
+    return (
+      !isNaN(roundCount) &&
+      Number.isInteger(Number(roundCount)) &&
+      Number(roundCount) > 0
+    );
   }
 
   async start() {
@@ -36,7 +40,7 @@ class RacingCarGame {
       `시도할 횟수는 몇 회인가요?\n`
     );
 
-    if (this.validateRoundCount(roundCount)) {
+    if (!this.validateRoundCount(roundCount)) {
       throw new Error("[ERROR] 유효하지 않은 시도할 횟수가 입력되었습니다.");
     }
 
