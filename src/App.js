@@ -8,7 +8,7 @@ class App {
         if (carNameList.some(name => name.length > 5)) {
             throw new Error("[ERROR] 자동차 이름은 5자 이하만 가능합니다.");
         }
-        return carNameList;
+        return carNameList.map(name => ({ name: name.trim(), position: 0 }));
     }
 
     async getTryCount() {
@@ -20,11 +20,20 @@ class App {
         return tryCount;
     }
 
+    // async playRaceGame(cars, tryCount) {
+    //     for (let i = 0; i < tryCount; i++) {
+    //         Console.print(tryCount);
+    //     }
+    // }
+
     async run() {
         const cars = await this.getCarNameList();
         const tryCount = await this.getTryCount();
         Console.print(cars);
         Console.print(tryCount);
+
+        // const race = await this.playRaceGame();
+        // Console.print("ddd", race);
     }
 }
 
