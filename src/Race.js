@@ -1,5 +1,4 @@
-import { getCarName, getAttempt, getRandomNumber, printMessage, splitByDelimiter } from './utils.js';
-import { validateCarName, validateAttemptCount } from './validators.js';
+import { getRandomNumber, printMessage } from './utils.js';
 import { GAME_RULES } from './constants.js';
 import Car from './Car.js';
 
@@ -10,27 +9,12 @@ class Race {
   }
 
   async startRace() {
-    await this.setCarName();
-    await this.setAttemptCount();
-
     for (let i = 0; i < this.attemptCount; i++) {
       this.generateRandomDistances();
       this.printRaceStatus();
     }
 
     this.printWinners();
-  }
-
-  async setCarName() {
-    const carNameInput = await getCarName();  
-    validateCarName(carNameInput);       
-    this.cars = splitByDelimiter(carNameInput).map(name => new Car(name.trim()));             
-  }
-
-  async setAttemptCount() {
-    const attemptCount = await getAttempt();
-    validateAttemptCount(attemptCount);
-    this.attemptCount = Number(attemptCount);
   }
 
   generateRandomDistances() {

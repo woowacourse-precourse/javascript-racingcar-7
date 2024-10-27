@@ -1,11 +1,11 @@
-import Race from './Race.js';
+import RaceController from './RaceController.js';
 
 class App {
   constructor() {
-    this.race = new Race();  
+    this.raceController = new RaceController();  
   }
   async run() {
-    await this.race.startRace(); 
+    await this.raceController.startRace(); 
   }
 }
 
