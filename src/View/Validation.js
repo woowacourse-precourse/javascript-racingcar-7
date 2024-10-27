@@ -9,14 +9,17 @@ class Validation {
   }
 
   static checkForErrors(name) {
-    if (this.hasSpecialCharacters(name)) {
-      this.throwError(ERROR.specialChar);
+    if (!name) {
+      this.throwError(ERROR.emptyName);
+    }
+    if (this.hasSpace(name)) {
+      this.throwError(ERROR.space);
     }
     if (this.isMoreThanFiveLetters(name)) {
       this.throwError(ERROR.moreThanFiveLetters);
     }
-    if (this.hasSpace(name)) {
-      this.throwError(ERROR.space);
+    if (this.hasSpecialCharacters(name)) {
+      this.throwError(ERROR.specialChar);
     }
   }
 
