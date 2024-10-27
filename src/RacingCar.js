@@ -1,4 +1,5 @@
 import ErrorCode from "./datas/ErrorCode.js";
+import {Console} from '@woowacourse/mission-utils';
 
 class RacingCar {
 
@@ -26,6 +27,9 @@ class RacingCar {
         }
     }
 
+    printDistance() {
+        Console.print(this.name + " : " + this.distState);
+    }
 }
 
 export default RacingCar

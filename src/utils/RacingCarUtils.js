@@ -1,6 +1,5 @@
 import {Console, Random} from '@woowacourse/mission-utils';
 import RacingCar from "../RacingCar.js";
-import IOHandler from "./IOHandler.js";
 import ValidationUtils from "./ValidationUtils.js";
 import ErrorCode from "../datas/ErrorCode.js";
 
@@ -30,7 +29,7 @@ class RacingCarUtils {
         while (num--) {
             carList.forEach(car => {
                 car.goForward(Random.pickNumberInRange(0, 9))
-                IOHandler.printCarDistance(car)
+                car.printDistance(car)
             })
             Console.print('') //개행
         }

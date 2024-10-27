@@ -10,7 +10,7 @@
 
 
 ### 1-2. 서브 클래스
-- IOHandler.js : 입출력을 제어한다
+- InputHandler.js : 입출력을 제어한다
 - ErrorCode.js : 에러 메세지를 담은 클래스
 - RacingHelper.js : utility 클래스, 경주에 필요한 static함수를 선언한다
 
