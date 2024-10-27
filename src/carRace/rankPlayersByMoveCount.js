@@ -1,7 +1,6 @@
-import { Console } from "@woowacourse/mission-utils";
-import { CAR_RACE, GAP } from "../constants/constants.js";
+import { GAP } from "../constants/constants.js";
 
-export function runResult(playersObject) {
+export function rankPlayersByMoveCount(playersObject) {
   let maxMove = 0;
   let winners = [];
 
@@ -16,5 +15,5 @@ export function runResult(playersObject) {
       winners.push(`${GAP}${player}`);
   }
 
-  Console.print(`${CAR_RACE.FINAL_WINNER}${winners.join(",")}`);
+  return winners.join(",");
 }
