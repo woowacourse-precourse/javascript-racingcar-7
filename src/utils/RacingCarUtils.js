@@ -1,5 +1,6 @@
-import {Console} from '@woowacourse/mission-utils';
+import {Random, Console} from '@woowacourse/mission-utils';
 import RacingCar from "../RacingCar.js";
+import IOHandler from "./IOHandler.js";
 
 class RacingCarUtils {
     static findWinners(carList) {
@@ -18,6 +19,18 @@ class RacingCarUtils {
             return cars;
         }, []);
     }
+
+    static race(carList, tryNumber) {
+        while (tryNumber--) {
+            carList.forEach(car => {
+                car.goForward(Random.pickNumberInRange(0, 9))
+                IOHandler.printCarDistance(car)
+            })
+            Console.print('') //개행
+        }
+        return carList;
+    }
+
 }
 
 export default RacingCarUtils;
