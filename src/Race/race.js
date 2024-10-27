@@ -1,28 +1,29 @@
-// 전진하는 조건은 0에서 9 사이에서 무작위 값을 구한 후 무작위 값이 4 이상일 경우이다.
-//4 이상이면 +1 아니면 +0이걸 n번 반복
-// 자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다. 우승자는 한 명 이상일 수 있다.
-//최대를 비교
 import { MissionUtils } from '@woowacourse/mission-utils';
+import Car from '../Car/car.js';
 
-//랜덤값을 게임 횟수만큼 뽑아서 배열에 넣음
-export async function getRandomNumbers(gameCount) {
-  const RANDOM_RESULT = [];
-  for (let i = 0; i < gameCount; i++) {
-    const RANDOM_NUMBER = MissionUtils.Random.pickNumberInRange(0, 9);
-    RANDOM_RESULT.push(RANDOM_NUMBER);
+class Race {
+  constructor(car, round) {
+    this.car = car.map((name) => new Car(name));
+    this.round = round;
   }
-  return RANDOM_RESULT;
-}
-//배열에서 4이상의 값의 갯수를 구함
-export function countValidAttempt(numbers) {
-  const VALID_ATTEMPT = numbers.filter((number) => number >= 4).length;
-  return VALID_ATTEMPT;
+
+  // 경주 시작
+  async startRace() {
+    for (let i = 0; i < this.round; i++) {
+      this.runRound();
+      this.viewPosition();
+    }
+  }
+
+  // 라운드에서 자동차의 이동 실행
+  runRound() {
+    this.car.forEach((car) => car.move());
+  }
+
+  // 모든 자동차의 현재 위치 출력
+  viewPosition() {
+    this.car.forEach((car) => MissionUtils.Console.print(car.viewPosition()));
+  }
 }
 
-//car position 0에서 numbers만큼 1을 더함
-export function changeCarPosition(carPosition, numbers) {
-  const VALID_ATTEMPT = countValidAttempt(numbers);
-  return carPosition + VALID_ATTEMPT;
-}
-
-//
+export default Race;

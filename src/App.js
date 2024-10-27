@@ -2,7 +2,8 @@ import { getInputCar } from './Input/carName.js';
 import { getInputCount } from './Input/gameCount.js';
 import { CAR_VALIDATION } from './Validator/carValidation.js';
 import { GAME_VALIDATION } from './Validator/gameValidation.js';
-import { getRandomNumbers, changeCarPosition } from './Race/race.js';
+import Race from './Race/race.js';
+import { gameStartComment } from './Output/outPut.js';
 class App {
   async run() {
     await this.inputValidate();
@@ -16,10 +17,9 @@ class App {
     this.inputGameCount = Number(inputGameCount);
     this.inputCarNames = inputCarName.split(',');
   }
-  //경주시작
   async startRace() {
-    const cars = this.inputCarNames.map((name) => ({ name, position: 0 }));
+    const race = new Race(this.inputCarNames, this.inputGameCount);
+    await race.startRace();
   }
 }
-
 export default App;
