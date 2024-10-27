@@ -23,5 +23,9 @@ export class raceController {
 
   raceWinner() {
     const maxLocation = Math.max(...this.cars.map((car) => car.getLocation()));
+    const winners = this.cars
+      .filter((car) => car.getLocation() == maxLocation)
+      .map((car) => car.getName());
+    Console.print(`최종 우승자 : ${winners.join(', ')}`);
   }
 }
