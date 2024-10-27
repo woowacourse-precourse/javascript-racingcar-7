@@ -31,7 +31,7 @@ class App {
       const carNames = await this.getCarNames();
       const attemptCount = await this.getAttemptCount();
 
-      MissionUtils.Console.print("\n실행 결과"); // 실행 결과 메시지 출력 및 줄바꿈 실행
+      MissionUtils.Console.print("\n실행 결과");
 
       // 자동차 인스턴스 생성 후 전진 여부 출력
       const cars = carNames.map((name) => new Car(name));
@@ -42,12 +42,16 @@ class App {
         cars.forEach((car) => MissionUtils.Console.print(car.showPosition()));
         MissionUtils.Console.print(""); // 줄바꿈
       }
+
+      // 우승자 출력
+      const winners = this.getWinners(cars);
+      MissionUtils.Console.print(`최종 우승자: ${winners.join(", ")}`);
     } catch (error) {
-      MissionUtils.Console.print(error.message);
+      MissionUtils.Console.print(error.message); // 오류 발생 시 에러 메시지 출력
     }
   }
 
-  // 자동차 이름 입력
+  // 자동차 이름 입력 함수
   async getCarNames() {
     const input = await MissionUtils.Console.readLineAsync(
       "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
@@ -65,7 +69,7 @@ class App {
     return carNames;
   }
 
-  // 시도 횟수 입력
+  // 시도 횟수 입력 함수
   async getAttemptCount() {
     const input = await MissionUtils.Console.readLineAsync(
       "시도할 횟수는 몇 회인가요?\n"
@@ -77,6 +81,16 @@ class App {
     }
 
     return attemptCount;
+  }
+
+  // 우승자 가리기 함수
+  getWinners(cars) {
+    const maxPosition = Math.max(...cars.map((car) => car.position));
+    const winners = cars
+      .filter((car) => car.position === maxPosition) // 멀리 간 자동차 필터링
+      .map((car) => car.name); // 필터링된 자동차의 이름만 배열에 반환
+
+    return winners;
   }
 }
 
