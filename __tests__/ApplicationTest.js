@@ -35,7 +35,7 @@ describe("자동차 경주", () => {
 
     // when
     const app = new App();
-    await app.run();
+    await expect(app.run()).resolves.not.toThrow();
 
     // then
     logs.forEach((log) => {
@@ -45,9 +45,9 @@ describe("자동차 경주", () => {
 });
 
 describe("1. 자동차 이름 확인", () => {
-  test("5자를 초과하는 이름이나 잘못된 입력에 대해 함수에서 오류가 발생한다.", () => {
+  test("5자를 초과하는 이름이나 잘못된 입력에 대해 함수에서 오류가 발생한다.", async () => {
     const app = new App();
-    expect(() => app.validateCarNames(["pobi,javaji"])).toThrow("[ERROR]");
+    await expect(() => app.validateCarNames(["pobi,javaji"])).rejects.toThrow("[ERROR]");
   });
 
   test("유효한 자동차 이름을 확인한다.", () => {
@@ -57,9 +57,9 @@ describe("1. 자동차 이름 확인", () => {
 });
 
 describe("2. 이동 횟수 확인", () => {
-  test("음수 또는 정수가 아닌 입력값은 함수에서 오류가 발생한다.", () => {
+  test("음수 또는 정수가 아닌 입력값은 함수에서 오류가 발생한다.", async () => {
     const app = new App();
-    expect(() => app.validateMoveCount("0")).toThrow("[ERROR]");
+    await expect(() => app.validateMoveCount("0")).rejects.toThrow("[ERROR]");
   });
 
   test("유효한 시도 횟수를 확인한다.", () => {
