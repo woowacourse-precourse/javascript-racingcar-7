@@ -1,21 +1,19 @@
-import converStringToNumber from './convertStringToNumber.js';
-import getAttemptsInput from './getAttemptsInput.js';
-import getCarNamesInput from './getCarNamesInput.js';
+import InputManager from './InputManager.js';
 import playGame from './playGame.js';
-import splitStringByComma from './splitIStringByComma.js';
-import Validator from './utils/Validator.js';
 
 class App {
   async run() {
-    const carNamesInput = await getCarNamesInput();
-    const carNames = splitStringByComma(carNamesInput);
-    Validator.validateCarNames(carNames);
-
-    const attemptsInput = await getAttemptsInput();
-    Validator.validateAttempts(attemptsInput);
-    const attempts = converStringToNumber(attemptsInput);
-
+    const carNames = await this.getCarNames();
+    const attempts = await this.getAttempts();
     playGame(carNames, attempts);
+  }
+
+  async getCarNames() {
+    return InputManager.getCarNames();
+  }
+
+  async getAttempts() {
+    return InputManager.getAttempts();
   }
 }
 
