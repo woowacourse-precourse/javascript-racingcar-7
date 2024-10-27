@@ -1,4 +1,4 @@
-import CarModel from './CarModel';
+import { MissionUtils } from '@woowacourse/mission-utils';
 
 class GameModel {
 	#cars;
@@ -12,7 +12,8 @@ class GameModel {
 
 	runRound() {
 		this.#cars.forEach((car, _) => {
-			car.move();
+			const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
+			car.move(randomNumber);
 		});
 		this.#currentRound++;
 	}
