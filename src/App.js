@@ -36,6 +36,7 @@ class App {
       }
       Console.print(`${car} : ${racingCarsPos[car]}`);
     });
+    Console.print("\n");
   }
 
   moveCar(racingCarsPos, car) {
