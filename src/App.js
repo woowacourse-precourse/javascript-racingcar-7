@@ -29,22 +29,32 @@ class Car {
 class App {
   async run() {
     try {
-      Console.print('자동차 기능 테스트');
-
       const carNames = await this.getCarNames();
+      const attempts = await this.getAttempts();
       const cars = this.createCars(carNames);
 
-      Console.print('\n생성된 자동차들');
-      cars.forEach((car) => {
-        Console.print(`${car.getName()} (초기 위치 : ${car.getPosition()})`);
-      });
+      // Console.print('\n생성된 자동차들');
+      // cars.forEach((car) => {
+      //   Console.print(`${car.getName()} (초기 위치 : ${car.getPosition()})`);
+      // });
 
       // 전진 기능 테스트
-      Console.print('\n전진 테스트');
-      cars.forEach((car) => {
-        car.move(true);
-        Console.print(`${car.getName()} : ${'-'.repeat(car.getPosition())}`);
-      });
+      // Console.print('\n전진 테스트');
+
+      //   cars.forEach((car) => {
+      //     car.move(true);
+      //     Console.print(`${car.getName()} : ${'-'.repeat(car.getPosition())}`);
+      //   });
+      // } catch (error) {
+      //   Console.print(error.message);
+      // }
+
+      Console.print('\n경주를 시작합니다.');
+
+      for (let i = 0; i < attempts; i++) {
+        Console.print(`\n${i + 1}회차 실행`);
+        await this.playOneRound(cars);
+      }
     } catch (error) {
       Console.print(error.message);
     }
@@ -84,6 +94,20 @@ class App {
     if (!Number.isInteger(attempts) || attempts <= 0) {
       throw new Error('[ERROR] 시도 횟수는 1 이상의 정수여야 합니다.');
     }
+  }
+
+  async playOneRound(cars) {
+    cars.forEach((car) => {
+      const shouldMove = Random.pickNumberInRange(0, 9) >= 4;
+      car.move(shouldMove);
+    });
+    await this.printRoundResult(cars);
+  }
+
+  async printRoundResult(cars) {
+    cars.forEach((car) => {
+      Console.print(`${car.getName()} : ${'-'.repeat(car.getPosition())}`);
+    });
   }
 }
 
