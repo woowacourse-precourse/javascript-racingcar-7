@@ -1,16 +1,14 @@
 import { Console } from '@woowacourse/mission-utils';
 import Racer from './Racer.js';
 import Racing from './Racing.js';
-import CustomError from './Error.js';
-import ERROR_MESSAGES from './constants/error.js';
 import {
   FIRST_USER_INPUT_PLACEHOLDER,
   SECOND_USER_INPUT_PLACEHOLDER,
   NAME_SEPARATOR,
-  MAX_NAME_LENGTH,
   OUTPUT_PREFIX,
 } from './constants/index.js';
 import Winners from './Winners.js';
+import Validator from './Validator.js';
 
 class App {
   #totalRound = 0;
@@ -33,6 +31,7 @@ class App {
       SECOND_USER_INPUT_PLACEHOLDER,
     );
 
+    Validator.validateEmptyUserInput(secondUserInput);
     this.#totalRound = secondUserInput;
   }
 
@@ -41,10 +40,10 @@ class App {
       FIRST_USER_INPUT_PLACEHOLDER,
     );
 
+    Validator.validateSeparator(firstUserInput);
+    Validator.validateEmptyUserInput(firstUserInput);
     const racers = firstUserInput.split(NAME_SEPARATOR).map((racer) => {
-      if (racer.length > MAX_NAME_LENGTH) {
-        throw new CustomError(ERROR_MESSAGES.LESS_THAN_FIVE_LETTERS);
-      }
+      Validator.validateMaxRacerName(racer);
       return new Racer(racer);
     });
 
