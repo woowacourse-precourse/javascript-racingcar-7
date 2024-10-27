@@ -82,6 +82,14 @@ describe("자동차 경주", () => {
     );
   });
 
+  test("자동차 이름 입력 안함", async () => {
+    mockQuestions([""]);
+    const app = new App();
+    await expect(app.run()).rejects.toThrow(
+      "[ERROR] 경주할 자동차 이름을 입력하세요."
+    );
+  });
+
   test("잘못된 구분자 입력 - 쉼표 외의 다른 구분자", async () => {
     const invalidSeparators = [
       ";",
