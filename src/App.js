@@ -1,11 +1,15 @@
 import { Console } from '@woowacourse/mission-utils'
 
 const validateCarName = (input) => {
+  const regex = /^[A-Za-z0-9]+$/;
 
   if (input.length > 5){
     throw new Error("[ERROR] 자동차 이름은 5자 이하로 입력해주세요.");
   }
 
+  if(!regex.test(input)){
+    throw new Error("[ERROR] 자동차 이름에는 영어, 숫자만 사용할 수 있어요.")
+  }
 }
 const determineCarName = (input) => {
   const names = input.split(',');
