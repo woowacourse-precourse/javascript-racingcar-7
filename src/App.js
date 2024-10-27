@@ -1,6 +1,6 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 
-import Car from './Car.js';
+import Car from './models/Car.js';
 
 import {
   getCarName, splitCarName, getAttemptCount, validateCarNames,

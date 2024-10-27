@@ -1,7 +1,7 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 
 import App from '../src/App.js';
-import Car from '../src/Car.js';
+import Car from '../src/models/Car.js';
 
 describe('자동차 경주', () => {
   let app;

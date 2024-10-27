@@ -1,4 +1,4 @@
-import Car from '../src/Car.js';
+import Car from '../src/models/Car.js';
 
 describe('자동차 객체', () => {
   test('자동차는 처음에 위치 0에 있다.', () => {
