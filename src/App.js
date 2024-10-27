@@ -20,6 +20,7 @@ class App {
     const CAR_NAMES = await this.initializeCarNames();
     const TRY_COUNT = await this.initializeTryCount();
 
+    const WINNERS = this.startRace(CAR_NAMES, TRY_COUNT);
   async initializeCarNames() {
     const PARSED_CAR_NAMES = await getCarNames();
     this.validateCarNames(PARSED_CAR_NAMES);
@@ -44,6 +45,18 @@ class App {
     tryCountNumberCheck(tryCount);
     tryCountIntegerCheck(tryCount);
     validateTryCountIsPositive(tryCount);
+  }
+
+  startRace(carNames, tryCount) {
+    const MOVE_FORWARD_COUNT_ARRAY = new Array(carNames.length).fill(0);
+    Console.print('\n실행 결과');
+
+    Array.from({ length: tryCount }).forEach(() => {
+      runRaceRound(carNames, MOVE_FORWARD_COUNT_ARRAY);
+      Console.print('');
+    });
+
+    return MOVE_FORWARD_COUNT_ARRAY;
   }
 
 }
