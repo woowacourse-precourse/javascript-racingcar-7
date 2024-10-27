@@ -7,6 +7,10 @@ const OutputView = {
     });
     Console.print('\n');
   },
+
+  printError(message) {
+    Console.print(message);
+  },
 };
 
 export default OutputView;
