@@ -35,6 +35,7 @@ export const CAR_VALIDATION = {
 export const ROUND_VALIDATION = {
   MIN_ROUND: 1,
   MAX_ROUND: 20,
+  REGEX_NUMERIC: /^[0-9]+$/,
 };
 
 export const CAR = {
