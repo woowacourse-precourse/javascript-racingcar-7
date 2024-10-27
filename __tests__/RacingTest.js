@@ -79,6 +79,8 @@ describe('Racing 메서드 테스트', () => {
   test('showResult 메서드에서 1라운드 결과에만 header가 출력되는지 테스트', () => {
     const TOTAL_ROUNDS = 2;
     const CAR_NAME = 'woowa';
+    const HEADER = '실행 결과';
+    const EXPECTED_TIMES_WITH_HEADER = 2;
 
     const logSpy = getLogSpy();
 
@@ -88,14 +90,24 @@ describe('Racing 메서드 테스트', () => {
     racing.play();
     racing.showResult();
 
-    expect(logSpy).toHaveBeenNthCalledWith(
-      2,
-      expect.stringContaining('실행 결과'),
+    const expectedLogLength = TOTAL_ROUNDS * 2 + 2;
+    const calledTimes = Array.from(
+      { length: expectedLogLength },
+      (arrayLike, index) => index + 1,
     );
 
-    expect(logSpy).toHaveBeenNthCalledWith(
-      5,
-      expect.not.stringContaining('실행 결과'),
-    );
+    calledTimes.forEach((nth) => {
+      if (nth === EXPECTED_TIMES_WITH_HEADER) {
+        expect(logSpy).toHaveBeenNthCalledWith(
+          nth,
+          expect.stringContaining(HEADER),
+        );
+      } else {
+        expect(logSpy).toHaveBeenNthCalledWith(
+          nth,
+          expect.not.stringContaining(HEADER),
+        );
+      }
+    });
   });
 });
