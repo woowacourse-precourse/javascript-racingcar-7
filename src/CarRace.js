@@ -1,5 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import Car from "./Car.js";
+import carHandler from './carHandler.js';
 
 class CarRace {
     carArray = [];
@@ -20,24 +21,11 @@ class CarRace {
         const data = await Console.readLineAsync('닉네임을 입력해주세요.(이름은 쉼표(,) 기준으로 구분)\n');
         const carNames = data.split(',');
         
+        carHandler(carNames);
+        
         this.carArray = carNames.map((name) => {
-            this.checkDuplicatedName(name);
-            this.checkContainBlank(name);
             return new Car(name);
         })
-
-    }
-
-    checkDuplicatedName(name) {
-        if(this.carArray.includes(name)) {
-            throw new Error('[ERROR] 이미 존재하는 이름입니다.');
-        }
-    }
-
-    checkContainBlank(name) {
-        if(name.includes(' ')){
-            throw new Error('[ERROR] 이름에는 공백이 포함될 수 없습니다.');
-        }
     }
 
     async getNumOfAttempt() {
