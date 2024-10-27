@@ -1,5 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
-import { splitComma, isSameCar, makeCarClassList } from "./functions.js";
+import { splitComma, isSameCar, makeCarClassList, goRacing } from "./functions.js";
 
 class App {
   async run() {
@@ -7,8 +7,11 @@ class App {
     const carList = splitComma(inputString);
     isSameCar(carList);
     const carClassList = makeCarClassList(carList);
-    const ATTEMPTS = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\ㅜ");
-    
+    const ATTEMPTS = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+
+    for(let i=0; i<ATTEMPTS; i++){
+      goRacing(carClassList);
+    }
   }
 }
 

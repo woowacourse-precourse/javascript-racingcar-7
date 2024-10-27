@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, MissionUtils } from "@woowacourse/mission-utils";
 import Car from "./Car.js";
 
 export function splitComma(string){
@@ -40,4 +40,21 @@ export function makeCarClassList(carList){
         carClassList.push(carClass);
     })
     return carClassList;
+}
+
+export function goRacing(carClassList){
+    carClassList.forEach((carClass)=>{
+        let number = MissionUtils.Random.pickNumberInRange(0,9);
+        if(number >= 4){
+            carClass.setValue(carClass.getValue() + 1);
+        }
+    })
+    printResult(carClassList);
+}
+
+function printResult(carClassList){
+    Console.print("\n실행 결과\n")
+    carClassList.forEach((carClass)=>{
+        Console.print(carClass.getName() + " : " + "-".repeat(carClass.getValue()) + "\n");
+    })
 }
