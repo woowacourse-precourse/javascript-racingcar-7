@@ -91,7 +91,7 @@ class App {
       Console.print(`최종 우승자 : ${winners[0]}`)
     }
     else{
-      Console.print(`공동 우승자 : ${winners.join(',')}`)     
+      Console.print(`최종 우승자 : ${winners.join(',')}`)     
     }
   }
 
