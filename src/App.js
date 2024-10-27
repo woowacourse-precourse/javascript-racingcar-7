@@ -21,7 +21,10 @@ class App {
       }
       MissionUtils.Console.print('\n');
     }
+    const maxAdvance = Math.max(...Object.values(carList));
+    const winners = Object.keys(carList).filter(car => carList[car] === maxAdvance);
 
+    MissionUtils.Console.print(`최종 우승자 : ${winners.join(', ')}`);
   }
 }
 
