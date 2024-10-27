@@ -10,15 +10,20 @@ class RacingCalc {
 
   moveRacing(attemptCnt) {
     for (let cnt = 0; cnt < attemptCnt; cnt++) {
-      for (let carIdx = 0; carIdx < this.carArr.length; carIdx++) {
-        let random = Random.pickNumberInRange(0, 9);
-        if (random >= 4) this.moveCntArr[carIdx]++;
-
-        this.output.printCurRacing(this.carArr, carIdx, this.moveCntArr);
-      }
+      this.makeRandom();
       this.output.printGap();
     }
     this.calcMaxScoreWinner();
+  }
+
+  makeRandom() {
+    const MOVING_CONDITION = 4;
+    for (let carIdx = 0; carIdx < this.carArr.length; carIdx++) {
+      let random = Random.pickNumberInRange(0, 9);
+      if (random >= MOVING_CONDITION) this.moveCntArr[carIdx]++;
+
+      this.output.printCurRacing(this.carArr, carIdx, this.moveCntArr);
+    }
   }
 
   calcMaxScoreWinner() {
