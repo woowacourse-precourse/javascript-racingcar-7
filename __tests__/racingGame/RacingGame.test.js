@@ -18,14 +18,22 @@ const testCase = [
   ],
 ];
 
-describe.each(testCase)('%s', (_, initialCars, tryCount, expectedMoveCount) => {
-  let racingGame;
-  beforeEach(() => {
-    racingGame = new RacingGame(initialCars, tryCount);
-  });
+describe.each(testCase)(
+  '%s',
+  (_, initialCars, tryCount, expectedMoveCount, expectedWinner) => {
+    let racingGame;
+    beforeEach(() => {
+      racingGame = new RacingGame(initialCars, tryCount);
+    });
 
-  test('각 자동차의 최종 전진 횟수가 예상된 전진 횟수와 일치하는지 확인', () => {
-    const moveCounts = racingGame.cars.map((car) => car.getMoveCount());
-    expect(moveCounts).toEqual(expectedMoveCount);
-  });
-});
+    test('각 자동차의 최종 전진 횟수가 예상된 전진 횟수와 일치하는지 확인', () => {
+      const moveCounts = racingGame.cars.map((car) => car.getMoveCount());
+      expect(moveCounts).toEqual(expectedMoveCount);
+    });
+
+    test('최대 전진 횟수를 가진 자동차의 이름 목록이 예상된 우승자와 일치하는지 확인', () => {
+      const winners = racingGame.getWinnerNames();
+      expect(winners).toEqual(expectedWinner);
+    });
+  },
+);
