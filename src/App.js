@@ -5,7 +5,7 @@ class App {
     this.InputView = new InputView();
   }
   async run() {
-    await this.InputView.getCarNames();
+    const value = await this.InputView.getCarNames();
   }
 }
 

@@ -9,7 +9,7 @@ class InputView {
     return this.isValidCarNames(carNames) ? carNames : "[ERROR]";
   }
   isValidCarNames(carNames) {
-    const isValid = carNames.map((i) => i != "");
+    const isValid = carNames.filter((i) => i == "").length == 0;
     return isValid;
   }
 }
