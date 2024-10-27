@@ -1,6 +1,7 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 import Car from "../src/domains/car.js";
+import CarRace from "../src/domains/carRace.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -68,5 +69,18 @@ describe("자동차 기능 테스트", () => {
     car.move();
 
     expect(car.position).toEqual(2);
+  });
+});
+
+describe("자동차 경주 테스트", () => {
+  test("우승자는 한 명 이상일 수 있다.", () => {
+    const carNames = ["a", "b", "c"];
+    const carInstance = carNames.map((carName) => new Car(carName));
+    carInstance.map((car) => car.move());
+    const carRace = new CarRace(carInstance);
+
+    const winner = carRace.getWinner();
+
+    expect(winner.length).toEqual(3);
   });
 });
