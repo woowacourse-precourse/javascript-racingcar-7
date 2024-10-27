@@ -1,18 +1,18 @@
 import { Console, Random } from '@woowacourse/mission-utils';
 
 import { PRINT_MESSAGE } from './constants.js';
-import { validateCarNamesInput, validateAttemptCount } from './validator.js';
+import { validateCarNamesInput, validateTryCount } from './validator.js';
 
 class App {
   async run() {
     const carNamesInput = await this.getCarNamesInput();
     validateCarNamesInput(carNamesInput);
-    const moveAttemptCountInput = await this.getMoveAttemptCount();
-    validateAttemptCount(moveAttemptCountInput);
+    const tryCountInput = await this.getTryCountInput();
+    validateTryCount(tryCountInput);
 
     this.printStartMessage();
 
-    const raceResult = this.getRaceResult(carNamesInput, moveAttemptCountInput);
+    const raceResult = this.getRaceResult(carNamesInput, tryCountInput);
     const winners = this.getWinners(raceResult);
 
     this.printWinners(winners);
@@ -24,7 +24,7 @@ class App {
     return input.replace(/ /g, '');
   }
 
-  async getMoveAttemptCount() {
+  async getTryCountInput() {
     const input = await Console.readLineAsync(
       PRINT_MESSAGE.INPUT_MOVE_ATTEMPT_COUNT,
     );
@@ -62,10 +62,10 @@ class App {
     car.position += 1;
   }
 
-  getRaceResult(carNames, moveAttemptCount) {
+  getRaceResult(carNames, tryCountInput) {
     const carsData = this.changeCarNamesInputToCarsData(carNames);
 
-    for (let i = 0; i < Number(moveAttemptCount); i++) {
+    for (let i = 0; i < Number(tryCountInput); i++) {
       this.playRound(carsData);
       this.printRoundResult(carsData);
     }

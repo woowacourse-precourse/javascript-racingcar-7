@@ -1,9 +1,6 @@
 import App from '../src/App.js';
 import { Console } from '@woowacourse/mission-utils';
-import {
-  validateCarNamesInput,
-  validateAttemptCount,
-} from '../src/validator.js';
+import { validateCarNamesInput, validateTryCount } from '../src/validator.js';
 
 const getLogSpy = () => {
   const logSpy = jest.spyOn(Console, 'print');
@@ -41,7 +38,7 @@ describe('validator 테스트', () => {
     const inputs = ['-1', '', '1.2', '11', '0', 'a', '.2'];
 
     inputs.forEach((input) => {
-      expect(() => validateAttemptCount(input)).toThrow('[ERROR]');
+      expect(() => validateTryCount(input)).toThrow('[ERROR]');
     });
   });
 
@@ -49,7 +46,7 @@ describe('validator 테스트', () => {
     const inputs = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 
     inputs.forEach((input) => {
-      expect(() => validateAttemptCount(input)).not.toThrow();
+      expect(() => validateTryCount(input)).not.toThrow();
     });
   });
 });

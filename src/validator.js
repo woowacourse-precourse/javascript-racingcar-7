@@ -58,7 +58,7 @@ const isInRange = (attemptCount) => {
   }
 };
 
-const validateAttemptCount = (attemptCount) => {
+const validateTryCount = (attemptCount) => {
   const attemptNumber = Number(attemptCount);
 
   isNumber(attemptNumber);
@@ -66,4 +66,4 @@ const validateAttemptCount = (attemptCount) => {
   isInRange(attemptNumber);
 };
 
-export { validateCarNamesInput, validateAttemptCount };
+export { validateCarNamesInput, validateTryCount };
