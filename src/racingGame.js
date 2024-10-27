@@ -1,12 +1,16 @@
 import { Console, MissionUtils } from "@woowacourse/mission-utils";
-import Car from "./car.js";
-import { validateCarName, countValidate, resetCarSet } from "./validation.js";
-import { INPUT_CAR_NAME, INPUT_COUNT_EXECUTE } from "./constant.js";
-class RacingGame {
+import Car from "./model/car.js";
+import {
+  validateCarName,
+  countValidate,
+  resetCarSet,
+} from "./utils/validation.js";
+import RacingGameView from "./view/racingGameView.js";
+class RacingGameController {
   constructor() {
     this.cars = [];
     this.counts = "";
-    this.startGame();
+    this.view = new RacingGameView();
   }
 
   async init() {
@@ -20,10 +24,10 @@ class RacingGame {
 
   async getUserInput() {
     try {
-      const userInputNames = await Console.readLineAsync(INPUT_CAR_NAME);
+      const userInputNames = await this.view.inputCarNames();
       const names = userInputNames.split(",");
       this.checkCarName(names);
-      const userInputCounts = await Console.readLineAsync(INPUT_COUNT_EXECUTE);
+      const userInputCounts = await this.view.inputAttemptCounts();
       countValidate(userInputCounts);
       this.counts = userInputCounts;
       return true;
@@ -52,14 +56,14 @@ class RacingGame {
       if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) {
         car.score += "-";
       }
-      Console.print(`${car.name} : ${car.score} `);
+      this.view.printCarStatus(car.name, car.score);
     });
-    Console.print("");
+    this.view.printEmptyLine();
   }
 
   async startGame() {
     await this.init();
-    Console.print("실행 결과");
+    this.view.printExecutionResult();
     for (let i = 0; i < this.counts; i++) {
       this.getScores();
     }
@@ -77,8 +81,8 @@ class RacingGame {
         winners = e.name;
       }
     });
-    Console.print(`최종 우승자: ${winners}`);
+    this.view.printWinners(winners);
   }
 }
 
-export default RacingGame;
+export default RacingGameController;
