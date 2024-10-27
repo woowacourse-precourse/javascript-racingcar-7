@@ -25,6 +25,8 @@ module.exports = {
       'no-else-return': 'error', // else 사용 금지, if문 안에 return 있을 경우
       'no-implicit-coercion': ['error', { allow: ['!!'] }], // !! 외의 암시적 형 변환 금지
       'no-magic-numbers': ['warn', { ignore: [0, 1] }], // 0, 1 외의 상수 숫자 경고
+      'max-depth': ['error', 2], // 들여쓰기 깊이 2로 제한
+      'no-ternary': 'error', // 삼항 연산자 사용 금지
     },
   };
   
