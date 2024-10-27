@@ -11,8 +11,10 @@ class App {
     );
 
     const nameList = this.splitNameInput(nameInput);
-    const carNames = this.validateNameList(nameList);
+    this.validateNameList(nameList);
     const number = this.validateNumber(numberInput);
+    const randomNumbers = this.generateRandomNumbers(nameList, number);
+    console.log(randomNumbers);
   }
   catch(error) {
     throw new Error(`[ERROR] ${error.message}`);
@@ -52,6 +54,17 @@ class App {
     }
 
     return number;
+  }
+
+  generateRandomNumbers(nameList, number) {
+    const randomNumbers = [];
+
+    for (let i = 0; i < nameList.length * number; i++) {
+      const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
+      randomNumbers.push(randomNumber);
+    }
+
+    return randomNumbers;
   }
 }
 
