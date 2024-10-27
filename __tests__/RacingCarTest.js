@@ -22,7 +22,7 @@ describe('예외 테스트', () => {
     describe('자동차명 유효성 검사', () => {
         const NAME_NAX_LENGTH = 5;
 
-        test("자동차명에 빈값을 입력하면 에러가 발생한다.", async () => {
+        test("자동차명 입력 시 공백을 입력할 수 없습니다.", async () => {
             // given
             const inputs = [''];
             mockQuestions(inputs);
@@ -32,7 +32,7 @@ describe('예외 테스트', () => {
             await expect(app.run()).rejects.toThrow(ERROR_MESSAGE.EMPTY_INPUT_NOT_ALLOW);
         });
 
-        test("자동차명 사이에 빈값을 입력하면 에러가 발생한다.", async () => {
+        test("자동차명으로 빈값을 입력할 수 없습니다.", async () => {
             // given
             const inputs = ['pobi,,woni'];
             mockQuestions(inputs);
@@ -42,7 +42,7 @@ describe('예외 테스트', () => {
             await expect(app.run()).rejects.toThrow(ERROR_MESSAGE.EMPTY_INPUT_NOT_ALLOW);
         });
 
-        test(`자동차명이 ${NAME_NAX_LENGTH}자가 넘어가면 에러가 발생한다.`, async () => {
+        test(`자동차명이 ${NAME_NAX_LENGTH}자를 초과할 수 없습니다.`, async () => {
             // given
             const errorName = 'pineapple';
             const input = [`pobi,${errorName}`];
@@ -84,7 +84,7 @@ describe('예외 테스트', () => {
     describe("자동차 전진 시도 횟수 유효성 검사", () => {
         const MAX_RACING_COUNT = 100;
 
-        test(`입력된 전진 시도 횟수가 ${MAX_RACING_COUNT}회를 초과할 경우 에러가 발생한다.`, async () => {
+        test(`입력된 전진 시도 횟수가 ${MAX_RACING_COUNT}회를 초과할 수 없습니다.`, async () => {
             const racingCount = 101;
 
             // given
