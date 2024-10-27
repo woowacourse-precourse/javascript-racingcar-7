@@ -11,11 +11,10 @@ const getMaxPosition = (carList) => {
 const checkWinner = (carList) => {
   const maxPosition = getMaxPosition(carList);
 
-  const winnerList = [];
-  carList.forEach(({ name, position }) => {
-    if (position === maxPosition) winnerList.push(name);
-  });
-  return winnerList.join(OUTPUT_SEPERATOR);
+  return carList
+    .filter(({ position }) => position === maxPosition)
+    .map(({ name }) => name)
+    .join(OUTPUT_SEPERATOR);
 };
 
 export default checkWinner;
