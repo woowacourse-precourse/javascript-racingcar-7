@@ -14,4 +14,10 @@ export class raceController {
     });
     Console.print('\n');
   }
+
+  raceAttemps() {
+    for (let i = 0; i < this.attemps; i++) {
+      this.raceResult();
+    }
+  }
 }
