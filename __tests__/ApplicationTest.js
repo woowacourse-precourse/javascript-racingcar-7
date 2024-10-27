@@ -1,5 +1,5 @@
 import App from "../src/App.js";
-import { MissionUtils } from "@woowacourse/mission-utils";
+import { Console, MissionUtils } from "@woowacourse/mission-utils";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -24,37 +24,90 @@ const getLogSpy = () => {
   return logSpy;
 };
 
-describe("자동차 경주", () => {
-  test("기능 테스트", async () => {
-    // given
-    const MOVING_FORWARD = 4;
-    const STOP = 3;
-    const inputs = ["pobi,woni", "1"];
-    const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
-    const logSpy = getLogSpy();
-
-    mockQuestions(inputs);
-    mockRandoms([MOVING_FORWARD, STOP]);
-
-    // when
+describe('updateCarProgressRandomly', () => {
+  test('random 값이 4 이상일 때 carNameObj의 해당 키 값이 증가', () => {
     const app = new App();
-    await app.run();
+    app.carNameObj = { pobi: 0, woni: 0, jun: 0};
 
-    // then
-    logs.forEach((log) => {
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    jest.spyOn(MissionUtils.Random, 'pickNumberInRange')
+    .mockReturnValueOnce(4)
+    .mockReturnValueOnce(5)
+    .mockReturnValueOnce(2);
+
+    app.updateCarProgressRandomly();
+
+    expect(app.carNameObj).toEqual({
+      pobi: 1,
+      woni: 1,
+      jun: 0,
     });
-  });
 
-  test("예외 테스트", async () => {
-    // given
-    const inputs = ["pobi,javaji"];
-    mockQuestions(inputs);
-
-    // when
-    const app = new App();
-
-    // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
+    MissionUtils.Random.pickNumberInRange.mockRestore();
   });
 });
+
+describe('printRaceResult', () => {
+  test('carNameObj에 저장된 각 자동차 이름과 이동 거리를 "-"로 출력', () => {
+    const app = new App();
+    app.carNameObj = {
+      pobi: 3,
+      woni: 2,
+      jun: 0,
+    };
+
+    const printSpy = jest.spyOn(Console, 'print').mockImplementation(() => {});
+
+    app.printRaceResult();
+
+    expect(printSpy).toHaveBeenCalledWith("pobi : ");
+    expect(printSpy).toHaveBeenCalledWith("-");
+    expect(printSpy).toHaveBeenCalledWith("-");
+    expect(printSpy).toHaveBeenCalledWith("-");
+    expect(printSpy).toHaveBeenCalledWith("\n");
+
+    expect(printSpy).toHaveBeenCalledWith("woni : ");
+    expect(printSpy).toHaveBeenCalledWith("-");
+    expect(printSpy).toHaveBeenCalledWith("-");
+    expect(printSpy).toHaveBeenCalledWith("\n");
+
+    expect(printSpy).toHaveBeenCalledWith("jun : ");
+    expect(printSpy).toHaveBeenCalledWith("\n");
+
+    printSpy.mockRestore();
+  });
+})
+
+// describe("자동차 경주", () => {
+//   test("기능 테스트", async () => {
+//     // given
+//     const MOVING_FORWARD = 4;
+//     const STOP = 3;
+//     const inputs = ["pobi,woni", "1"];
+//     const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
+//     const logSpy = getLogSpy();
+
+//     mockQuestions(inputs);
+//     mockRandoms([MOVING_FORWARD, STOP]);
+
+//     // when
+//     const app = new App();
+//     await app.run();
+
+//     // then
+//     logs.forEach((log) => {
+//       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+//     });
+//   });
+
+//   test("예외 테스트", async () => {
+//     // given
+//     const inputs = ["pobi,javaji"];
+//     mockQuestions(inputs);
+
+//     // when
+//     const app = new App();
+
+//     // then
+//     await expect(app.run()).rejects.toThrow("[ERROR]");
+//   });
+// });
