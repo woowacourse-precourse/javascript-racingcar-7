@@ -8,6 +8,10 @@ class Race {
     this.attemptCount = 0;
   }
 
+  setCars(carNames) {
+    this.cars = carNames.map(name => new Car(name.trim()));
+  }
+
   generateRandomDistances() {
     this.cars.forEach(car => {
       const randomDistance = getRandomNumber(0, 9);

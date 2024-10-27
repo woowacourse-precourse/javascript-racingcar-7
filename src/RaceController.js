@@ -26,7 +26,8 @@ class RaceController {
   async setCarName() {
     const carNameInput = await getCarName();
     validateCarName(carNameInput);
-    this.race.cars = splitByDelimiter(carNameInput).map(name => new Car(name.trim()));
+    const carNames = splitByDelimiter(carNameInput);
+    this.race.setCars(carNames);
   }
 
   async setAttemptCount() {
