@@ -33,6 +33,53 @@
 
 ## 👩🏻‍💻 구현 내용 정리
 
-## 🧐 어려웠던 점
+### Car 클래스
+
+- 속성으로 이름과 이동 횟수 Private 설정
+
+```js
+class Car {
+  #name;
+  #move;
+
+  constructor(name, move) {
+    this.#name = name;
+    this.#move = move;
+  }
+
+  // ...
+}
+```
+
+- 전진 메서드는 전진 판단 후 setMove 메서드를 통해 전진
+
+```js
+  moveCar() {
+    const number = MissionUtils.Random.pickNumberInRange(0, 9);
+    if (number >= 4) this.setMove(1);
+  }
+```
+
+### 우승자 판단
+
+- reduce 메서드 활용
+- 우승자가 한 명인 경우 현재 값을 가진 하나의 배열
+- 우승자가 여러 명인 경우 배열에 푸시하는 형식으로 진행
+
+```js
+const findMaxMoveCars = (cars) => {
+  return cars.reduce((acc, currentCar) => {
+    if (acc.length === 0 || currentCar.getMove() > acc[0].getMove()) {
+      return [currentCar];
+    }
+    if (currentCar.getMove() === acc[0].getMove()) {
+      acc.push(currentCar);
+    }
+    return acc;
+  }, []);
+};
+
+export default findMaxMoveCars;
+```
 
 ## 📖 참고 사항
