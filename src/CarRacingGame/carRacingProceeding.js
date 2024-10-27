@@ -1,6 +1,6 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 import { inputCarNames, inputTryCount } from './input.js';
-import { printExecutionResult } from './output.js';
+import { printExecutionResult, printWinner } from './output.js';
 import { validateCarName, validateTryCount } from './validation.js';
 
 export async function carRacingProceed() {
@@ -36,4 +36,7 @@ export async function carRacingProceed() {
     carList.forEach((car) => car.move());
     printExecutionResult(carList);
   }
+
+  const maxMoveNum = Math.max(...carList.map((car) => car.number));
+  printWinner(carList, maxMoveNum);
 }
