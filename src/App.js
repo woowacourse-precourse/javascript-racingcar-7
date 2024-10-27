@@ -10,20 +10,29 @@ import { MAGICNUMBER } from './constants/index.js';
 import { printFirstPlayer } from './utils/inputoutputMethod.js';
 
 class App {
+  #racingcar;
+  #tryNum;
+
   async run() {
+    await this.#gameSetting();
+    printProgressResult();
+    this.#racingcarGoAndStop();
+    printFirstPlayer(this.#racingcar.rank());
+  }
+
+  async #gameSetting() {
     const inputs = await inputCarName();
     const inputArr = inputs.split(MAGICNUMBER.SEPARATOR);
-    const tryNum = Number(await inputTryNum());
-    const racingcar = new Racingcar(inputArr, tryNum);
-    printProgressResult();
+    this.#tryNum = Number(await inputTryNum());
+    this.#racingcar = new Racingcar(inputArr, this.#tryNum);
+  }
+
+  #racingcarGoAndStop() {
     let board;
-    for (let idx = 0; idx < tryNum; idx += 1) {
-      board = racingcar.play();
+    for (let idx = 0; idx < this.#tryNum; idx += 1) {
+      board = this.#racingcar.play();
       printGameProgress(board);
-      printNewLine();
     }
-    const firstPlayer = racingcar.rank();
-    printFirstPlayer(firstPlayer);
   }
 }
 

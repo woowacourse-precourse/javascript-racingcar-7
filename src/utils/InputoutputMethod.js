@@ -23,9 +23,10 @@ export const printGameProgress = (gameBoard) => {
   for (const [key, value] of Object.entries(gameBoard)) {
     Console.print(`${key} : ${value}`);
   }
+  printNewLine();
 };
 
-export const printNewLine = () => {
+const printNewLine = () => {
   Console.print(`${IOMESSAGE.NEWLINE}`);
 };
 
