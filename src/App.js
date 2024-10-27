@@ -1,4 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
+import Car from "./Car.js";
 
 class App {
   parseCarNames(userCarNames) {
@@ -15,6 +16,7 @@ class App {
     return carNames;
   }
   async readCarNames() {
+    const cars = [];
     let userCarNames = "";
     while (!userCarNames.trim()) {
       userCarNames = await Console.readLineAsync(
@@ -23,7 +25,9 @@ class App {
     }
     const parsedCarNames = this.parseCarNames(userCarNames);
 
-    return parsedCarNames;
+    parsedCarNames.forEach((car) => cars.push(new Car(car)));
+
+    return cars;
   }
 
   async run() {
