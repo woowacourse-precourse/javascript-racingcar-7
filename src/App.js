@@ -1,5 +1,12 @@
 import { Console } from "@woowacourse/mission-utils";
-import { validateCarCount, validateCarNameLength, validateDuplicate, validateEmpty, validateNumberRound, validatePositiveRound } from "./utils/validator";
+import {
+  validateCarCount,
+  validateCarNameLength,
+  validateDuplicate,
+  validateEmpty,
+  validateNumberRound,
+  validatePositiveRound,
+} from "./utils/validator.js";
 
 class App {
   async run() {
@@ -17,7 +24,11 @@ class App {
       validateCarNameLength(car);
     });
 
-    const roundInput = await Console.readLineAsync("시도할 횟수는 몇회인가요?\n");
+    const roundInput = await Console.readLineAsync(
+      "시도할 횟수는 몇회인가요?\n"
+    );
+    // 입력값이 비어있는지 검사
+    validateEmpty(roundInput);
     const round = Number(roundInput);
     // 시도 횟수가 숫자인지 확인
     validateNumberRound(round);
