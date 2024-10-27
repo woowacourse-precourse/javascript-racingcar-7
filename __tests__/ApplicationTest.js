@@ -128,7 +128,18 @@ describe('Custom Test', () => {
     expect(logSpy).toHaveBeenCalledWith('');
   });
 
-  test('우승자 찾기', () => {
-    expect(findWinners(CAR_MOVES)).toEqual(['happy']);
+  test.each([
+    // [자동차 데이터, 기대 값]
+    [{ names: ['happy', 'car', 'fast'], positions: [5, 3, 2] }, ['happy']],
+    [
+      { names: ['happy', 'car', 'fast'], positions: [5, 5, 2] },
+      ['happy', 'car'],
+    ],
+    [
+      { names: ['one', 'two', 'three'], positions: [1, 1, 1] },
+      ['one', 'two', 'three'],
+    ],
+  ])('우승자 찾기', (carData, expectedWinners) => {
+    expect(findWinners(carData)).toEqual(expectedWinners);
   });
 });
