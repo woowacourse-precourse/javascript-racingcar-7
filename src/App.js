@@ -1,22 +1,13 @@
 import { Console } from "@woowacourse/mission-utils";
-import { ERRROR_MESSAGE } from "./errorMessage.js";
+import { getCarNames } from "./input/getCarNames.js";
+import { getMoveCount } from "./input/getMoveCount.js";
 
 class App {
   async run() {
     try {
-      const racingCarsInput = await Console.readLineAsync(
-        "경주할 자동차 이름을 입력 하세요.(이름은 쉼표(,) 기준 으로 구분)\n",
-      );
-
-      const racingCars = racingCarsInput.split(",");
-      racingCars.map(racingCar => {
-        if (racingCar.length > 5) {
-          throw new Error(ERRROR_MESSAGE.WORD_LIMIT);
-        }
-      });
-
-      const tryNumber =
-        await Console.readLineAsync("시도할 횟수는 몇 회 인가요?\n");
+      const racingCars = await getCarNames();
+      const racingCarsNumber = racingCars.length;
+      const moveCount = await getMoveCount();
     } catch (error) {
       throw error;
     }
