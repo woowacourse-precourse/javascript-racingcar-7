@@ -11,18 +11,19 @@ const checkForEmptyInput = (input) => {
   return input;
 };
 
-const checkNameLengthLimit = (input) => {
-  const carList = input.split(',');
-  carList.forEach((carName) => {
+const checkNameLengthLimit = (carNameList) => {
+  carNameList.forEach((carName) => {
     if (carName.length >= 5) {
       throwError(ERROR_MESSAGES.NAME_LENGTH_EXCEEDED);
     }
   });
-  return input;
+  return carNameList;
 };
 
 const validateCarName = (input) => {
-  runValidators([checkForEmptyInput, checkNameLengthLimit], input);
+  checkForEmptyInput(input);
+  const carNameList = input.split(',');
+  runValidators([checkNameLengthLimit], carNameList);
 };
 
 export default validateCarName;
