@@ -1,5 +1,5 @@
 import { Console, Random } from '@woowacourse/mission-utils';
-import { LOG_MESSAGE, TAG } from './constants.js'; 
+import { LOG_MESSAGE, TAG, GAME_RULES } from './constants.js'; 
 
 const getCarName = () => { return Console.readLineAsync(LOG_MESSAGE.START_MESSAGE); }
 
@@ -14,7 +14,7 @@ const throwError = (message) => {
 
 const printMessage = (message) => Console.print(message);
 
-const splitByDelimiter = (input) => input.split(',').map(name => name.trim()); 
+const splitByDelimiter = (input) => input.split(GAME_RULES.DELIMITER).map(name => name.trim()); 
 
 export { 
   getCarName,
