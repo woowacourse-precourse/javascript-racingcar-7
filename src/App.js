@@ -1,15 +1,17 @@
 import { Console } from '@woowacourse/mission-utils';
 import Car from './Car.js';
 import Validator from './Validator.js';
+import RacingGame from './RacingGame.js';
 
 class App {
   async run() {
     try {
+      const validator = new Validator();
+
       const inputCarNames = await Console.readLineAsync(
         '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
       );
 
-      const validator = new Validator();
       validator.nameValidate(inputCarNames.split(','));
 
       const cars = inputCarNames.split(',').map(carName => new Car(carName));
@@ -20,26 +22,10 @@ class App {
 
       validator.tryCntValidate(tryCnt);
 
-      Console.print('\n실행 결과');
-      for (let i = 0; i < tryCnt; i++) {
-        cars.forEach(car => {
-          car.moveForward();
-          car.printMoveResult();
-        });
-        Console.print('\n');
-      }
+      const game = new RacingGame(cars, tryCnt);
+      game.play();
 
-      const maxMoveForward = cars.reduce((acc, curr) => {
-        if (acc < curr.getMoveFowradCnt()) return curr.getMoveFowradCnt();
-        return acc;
-      }, 0);
-
-      Console.print(
-        `최종 우승자 : ${cars
-          .filter(car => car.getMoveFowradCnt() === maxMoveForward)
-          .map(car => car.getName())
-          .join(',')}`,
-      );
+      game.printResult();
     } catch (error) {
       throw new Error(`[ERROR] ${error.message}`);
     }
