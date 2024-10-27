@@ -96,6 +96,18 @@ describe('자동차 경주', () => {
         await expect(app.run()).rejects.toThrow('[ERROR]');
       });
 
+      test('자동차가 2대 이상 입력되지 않았을 때 에러를 발생시킨다.', async () => {
+        // given
+        const inputs = ['benz,benz,audi'];
+        mockQuestions(inputs);
+
+        // when
+        const app = new App();
+
+        // then
+        await expect(app.run()).rejects.toThrow('[ERROR]');
+      });
+
       test('시도 횟수가 숫자가 아닌 문자가 들어오는 경우 에러를 발생시킨다.', async () => {
         // given
         const inputs = ['benz,audi', 'k'];
