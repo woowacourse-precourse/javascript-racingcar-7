@@ -3,7 +3,6 @@ import { ERROR_MESSAGE, REGEXP } from './Constants.js';
 class Validator {
   nameValidate(inputCarNames) {
     const carNames = inputCarNames.split(',').map(name => name.trim());
-    console.log(carNames);
     // SRP, 원칙을 위반하지 않도록 수정 필요~
     const isNameLengthValid = carNames.every(
       name => name.length > 0 && name.length <= 5,
