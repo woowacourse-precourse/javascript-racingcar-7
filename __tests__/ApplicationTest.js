@@ -70,17 +70,17 @@ describe('Car 클래스', () => {
 
 describe('자동차 이름 문자열 입력', () => {
   test('문장이 구분자로 끝날 수 없음', () =>{
-    const INPUT = 'kia,hyun,gene,';
+    const input = 'kia,hyun,gene,';
     const app = new App();
 
-    expect(() => app.validateCarNames(INPUT).toThrow('[ERROR] 문장 양식이 구분자로 끝날 수 없습니다!'));
+    expect(() => app.validateCarNames(input).toThrow('[ERROR] 문장 양식이 구분자로 끝날 수 없습니다!'));
   });
 
   test('문장이 구분자로 시작할 수 없음', () =>{
-    const INPUT = ',kia,hyun,gene';
+    const input = ',kia,hyun,gene';
     const app = new App();
 
-    expect(() => app.validateCarNames(INPUT).toThrow('[ERROR] 문장 양식이 구분자로 시작할 수 없습니다!'));
+    expect(() => app.validateCarNames(input).toThrow('[ERROR] 문장 양식이 구분자로 시작할 수 없습니다!'));
   });
 });
 
@@ -95,24 +95,24 @@ describe('자동차 이름 문자열 분리', () => {
   });
 
   test('이름은 공백으로 할 수 없음', () => {
-    const INPUT = ['kia','','hyun'];
+    const input = ['kia','','hyun'];
     const app = new App();
 
-    expect(() => app.validateSplitCarNames(INPUT).toThrow('[ERROR] 이름은 공백으로 설정할 수 없습니다!'));
+    expect(() => app.validateSplitCarNames(input).toThrow('[ERROR] 이름은 공백으로 설정할 수 없습니다!'));
   });
 
   test('이름은 중복으로 사용할 수 없음', () =>{
-    const INPUT = ['kia','kia','hyun'];
+    const input = ['kia','kia','hyun'];
     const app = new App();
 
-    expect(() => app.validateSplitCarNames(INPUT).toThrow('[ERROR] 이름은 중복으로 설정할 수 없습니다!'));
+    expect(() => app.validateSplitCarNames(input).toThrow('[ERROR] 이름은 중복으로 설정할 수 없습니다!'));
   });
   
   test('이름은 5글자를 넘을 수 없음', () =>{
-    const INPUT = ['kia','hyundai','gene'];
+    const input = ['kia','hyundai','gene'];
     const app = new App();
 
-    expect(() => app.validateSplitCarNames(INPUT).toThrow('[ERROR] 이름은 5글자를 넘을 수 없습니다!'));
+    expect(() => app.validateSplitCarNames(input).toThrow('[ERROR] 이름은 5글자를 넘을 수 없습니다!'));
   });
 });
 
