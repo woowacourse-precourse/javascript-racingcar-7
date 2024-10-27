@@ -1,5 +1,7 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
+import { ERROR_MESSAGE } from "../src/message.js";
+import { validateCarNames, validateCount } from "../src/error.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -58,3 +60,36 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 });
+
+
+describe("App 추가 테스트", () => {
+
+  test("자동차 이름이 한 글자인 경우", async () => {
+    const MOVING_FORWARD = 4;
+    const STOP = 3;
+    const inputs = ["a,b", "2"];
+    const logs = ["a : -", "b : "];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([MOVING_FORWARD, STOP]);
+
+    const app = new App();
+    await app.run();
+
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
+  test("기회 수가 0일 때 에러 발생", async () => {
+    const inputs = ["pobi,woni", "0"];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");});
+});
+
