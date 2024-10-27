@@ -13,12 +13,12 @@ const mockQuestions = (inputs) => {
 const mockRandoms = (numbers) => {
   MissionUtils.Random.pickNumberInRange = jest.fn();
 
-  // numbers.reduce((acc, number) => {
-  //   return acc.mockReturnValueOnce(number);
-  // }, MissionUtils.Random.pickNumberInRange);
-  numbers.forEach(number => {
-    return MissionUtils.Random.pickNumberInRange.mockReturnValueOnce(number);
-  });
+  numbers.reduce((acc, number) => {
+    return acc.mockReturnValueOnce(number);
+  }, MissionUtils.Random.pickNumberInRange);
+  // numbers.forEach(number => {
+  //   return MissionUtils.Random.pickNumberInRange.mockReturnValueOnce(number);
+  // });
 };
 
 const getLogSpy = () => {
