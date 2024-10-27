@@ -15,3 +15,8 @@ export const validateCarName = (input) => {
     throw new Error('[ERROR] 자동차 이름에는 공백을 입력할 수 없어요.');
   }
 };
+export const checkDuplicateCarName = (names) => {
+  if (new Set(names).size !== names.length) {
+    throw new Error('[ERROR] 자동차 이름은 중복되지 않게 입력해주세요.');
+  }
+};
