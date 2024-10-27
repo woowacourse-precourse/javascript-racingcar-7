@@ -18,15 +18,12 @@ class OutputView {
   }
 
   printRoundProgress(carNames, forwardCounts) {
-    console.log(forwardCounts);
-
     carNames.forEach((carName, index) => {
       this.printCarProgress(carName, forwardCounts[index]);
     });
   }
 
   printAllCarProgress(attemptCount, carNames, forwardCounts) {
-    console.log(forwardCounts);
     for (let i = 0; i < attemptCount; i++) {
       this.printRoundProgress(carNames, forwardCounts[i]);
     }
