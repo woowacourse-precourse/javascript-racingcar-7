@@ -27,16 +27,8 @@ export function isValidateRounds(inputnumberOfRounds) {
     try {
         const numberOfRounds = Number(inputnumberOfRounds);
 
-        if (Number.isNaN(numberOfRounds)) {
+        if (Number.isNaN(numberOfRounds) || numberOfRounds <= 0 || !Number.isInteger(numberOfRounds)) {
             throw new Error('[ERROR] 유효하지 않은 입력값입니다. 자연수를 입력해 주세요.');
-        }
-
-        if (numberOfRounds <= 0) {
-            throw new Error('[ERROR] 유효하지 않은 입력값입니다. 양수를 입력해주세요.')
-        }
-
-        if (!Number.isInteger(numberOfRounds)) {
-            throw new Error('[ERROR] 유효하지 않은 입력값입니다. 정수를 입력해주세요.')
         }
 
         return true;

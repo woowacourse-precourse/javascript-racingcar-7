@@ -28,7 +28,7 @@ class InputParser {
 
             if (isValidateRounds(inputNumberOfRounds)) {
                 MissionUtils.Console.print('\n');
-                return numberOfRounds;
+                return Number(inputNumberOfRounds);
             }
 
         } catch (error) {
