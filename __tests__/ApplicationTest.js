@@ -84,6 +84,16 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 
+  test("예외 테스트 - 경주할 자동차에 쉼표와 다른 구분자를 사용한 경우", async () => {
+    const inputs = ["pobi, javaji; wnin"];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+
   test("예외 테스트 - 시도할 횟수에 음수를 입력한 경우", async () => {
     const inputs = ["pobi,javai"];
     mockQuestions(inputs);
