@@ -12,6 +12,10 @@ class Race {
     this.cars = carNames.map(name => new Car(name.trim()));
   }
 
+  setAttemptCount(attemptCount) {
+    this.attemptCount = attemptCount;
+  }
+
   generateRandomDistances() {
     this.cars.forEach(car => {
       const randomDistance = getRandomNumber(0, 9);

@@ -33,7 +33,7 @@ class RaceController {
   async setAttemptCount() {
     const attemptCount = await getAttempt();
     validateAttemptCount(attemptCount);
-    this.race.attemptCount = Number(attemptCount);
+    this.race.setAttemptCount(Number(attemptCount));
   }
 
   printRaceStatus() {
