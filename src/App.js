@@ -3,7 +3,6 @@ import {
   inputCarName,
   inputTryNum,
   printGameProgress,
-  printNewLine,
   printProgressResult,
 } from './utils/index.js';
 import { MAGICNUMBER } from './constants/index.js';
