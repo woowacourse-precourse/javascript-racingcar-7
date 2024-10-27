@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, MissionUtils } from "@woowacourse/mission-utils";
 
 class App {
   constructor(){
@@ -9,6 +9,12 @@ class App {
   async run() {
     // 자동차 이름, 횟수 입력받기
     await this.getCarNameCount();
+
+    Console.print("실행 결과\n");
+    for(let i = 0; i < this.count; i++){
+      this.getRandomNAdvance();
+
+    }
   }
 
   async getCarNameCount(){
@@ -18,6 +24,7 @@ class App {
       // 이름 길이 확인
       this.checkNameLength(input);
 
+      // 배열을 객체로 변환해 저장
       this.carNameObj = input.reduce((obj, key) => {
         obj[key] = 0;
         return obj;
@@ -36,6 +43,15 @@ class App {
       if(carName.length > 5){
         Console.print("ERROR: 자동차 이름이 5자보다 많습니다.")
         throw new Error("[ERROR]");
+      }
+    });
+  }
+
+  getRandomNAdvance(){
+    Object.keys(this.carNameObj).forEach(key => {
+      const random = MissionUtils.Random.pickNumberInRange(0,9);
+      if(random >= 4){
+        this.carNameObj[key]++;
       }
     });
   }
