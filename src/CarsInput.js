@@ -13,12 +13,12 @@ export class CarsInput {
 
   validateCarNames(cars) {
     if (cars.length < 0 || cars.length > 9) {
-      Console.print("올바른 자동차 개수를 입력해주세요.");
+      throw new Error("[ERROR] 자동차 이름은 최소 1개에서 9개까지 가능합니다.");
     }
 
     cars.forEach(car => {
       if (car.length < 0 || car.length > 6) {
-        Console.print("자동차 이름은 1자 이상 5자 이하로 입력할 수 있습니다.");
+        throw new Error("자동차 이름은 1자 이상 5자 이하로 입력할 수 있습니다.");
       }
     });
   }
