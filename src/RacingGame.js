@@ -42,6 +42,11 @@ class RacingGame {
 
     return winners;
   }
+
+  printWinners() {
+    const winners = this.determineWinners();
+    MissionUtils.Console.print(`최종 우승자 : ${winners.join(", ")}`);
+  }
 }
 
 export default RacingGame;

@@ -21,6 +21,7 @@ class App {
 
       const racingGame = new RacingGame(carNames);
       racingGame.startRace(moveCount);
+      racingGame.printWinners();
     } catch (error) {
       MissionUtils.Console.print(error.message);
       throw error;

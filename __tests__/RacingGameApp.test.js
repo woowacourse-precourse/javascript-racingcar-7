@@ -142,6 +142,44 @@ describe("RacingGame", () => {
     });
   });
 
+  describe("printWinners", () => {
+    test("위치가 가장 먼 자동차를 최종 우승자로 출력한다", () => {
+      racingGame.cars[0].position = "----";
+      racingGame.cars[1].position = "--";
+      racingGame.cars[2].position = "---";
+
+      racingGame.printWinners();
+
+      expect(MissionUtils.Console.print).toHaveBeenCalledWith(
+        "최종 우승자 : pobi"
+      );
+    });
+
+    test("위치가 가장 먼 자동차가 여러개일 때 모두 최종 우승자로 출력한다", () => {
+      racingGame.cars[0].position = "----";
+      racingGame.cars[1].position = "----";
+      racingGame.cars[2].position = "---";
+
+      racingGame.printWinners();
+
+      expect(MissionUtils.Console.print).toHaveBeenCalledWith(
+        "최종 우승자 : pobi, woni"
+      );
+    });
+
+    test("모든 자동차의 위치가 동일할 때 모든 자동차를 최종 우승자로 출력한다", () => {
+      racingGame.cars[0].position = "----";
+      racingGame.cars[1].position = "----";
+      racingGame.cars[2].position = "----";
+
+      racingGame.printWinners();
+
+      expect(MissionUtils.Console.print).toHaveBeenCalledWith(
+        "최종 우승자 : pobi, woni, jun"
+      );
+    });
+  });
+
   afterEach(() => {
     jest.restoreAllMocks();
   });
