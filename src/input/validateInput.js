@@ -6,7 +6,7 @@ export function checkCarName(carNameList) {
     throw new Error(ErrorMessage.CAR_NAME_DUPLICATE);
   }
   carNameList.forEach(carName => {
-    if (carName.length <= 0) {
+    if (carName.trim().length <= 0) {
       throw new Error(ErrorMessage.CAR_NAME_TOO_SHORT);
     }
     else if (carName.length > 5) {
