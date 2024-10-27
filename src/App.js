@@ -42,10 +42,17 @@ class App {
     });
   }
 
+  showSingleRoundResult() {
+    this.carsAndPositions.forEach((car) => {
+      Console.print(`${car.showResult}\n`);
+    });
+  }
+
   startRacing(userCarInput, tryCount) {
     const cars = userCarInput.split(',');
     this.createCarsList(cars);
     this.raceSingleRound();
+    this.showSingleRoundResult();
   }
 
   async run() {
