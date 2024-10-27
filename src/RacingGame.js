@@ -14,8 +14,6 @@ class RacingGame {
             cars[i] = new Car(carNames[i]);
         }
 
-        MissionUtils.Console.print("\n"); //출력 포멧에 맞게 하기 위해 추가
-
         //라운드별 레이싱 진행
         for (let i = 0; i < numberOfRounds; i++) {
             //각 차량마다 레이싱 수행
