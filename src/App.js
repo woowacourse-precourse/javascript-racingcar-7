@@ -37,7 +37,15 @@ class App {
   }
 
   splitNames(input) {
-    let names = input.split(',');
+    let splitedNames = input.split(',');
+    let names = [];
+    splitedNames.forEach((name) => {
+      const trimmedName = name.trim();
+      if (trimmedName.length) {
+        names.push(trimmedName);
+      }
+    });
+    console.log(names);
     for(let name of names){
       if (name.length > 6){
         throw new Error ('[ERROR]: 자동차의 이름은 5자 이하여야한다.');
