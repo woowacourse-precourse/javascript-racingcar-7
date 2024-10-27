@@ -8,12 +8,6 @@ class Race {
     this.attemptCount = 0;
   }
 
-  async startRace() {
-    for (let i = 0; i < this.attemptCount; i++) {
-      this.generateRandomDistances();
-    }
-  }
-
   generateRandomDistances() {
     this.cars.forEach(car => {
       const randomDistance = getRandomNumber(0, 9);
