@@ -1,6 +1,10 @@
 # Personal
 memo.md
 
+# Code Formatting
+.prettierrc.json
+eslint.config.js
+
 # Logs
 logs
 *.log
