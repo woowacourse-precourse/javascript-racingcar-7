@@ -12,12 +12,12 @@ describe('유저 입력값 예외 처리를 검사하는 테스트', () => {
     [' ', false, '공백 포함 1자'],
     ['5자 초과 이름', false, '공백 포함 5자 초과'],
     ['5자 이하', true, '공백 포함 5자'],
-  ])('자동차 이름의 길이 예외 처리 테스트 (%s)', (name, expected) => {
+  ])('자동차 이름의 길이 예외 처리 테스트 (%s)', (name, isValid) => {
     const ERROR_PREFIX = '[ERROR]';
     const MAXIMUM_LENGTH = 5;
     const parsedName = RacingManager.parseCarNames(name);
 
-    if (expected) {
+    if (isValid) {
       expect(() =>
         Validation.isValidLength(...parsedName, MAXIMUM_LENGTH),
       ).not.toThrow();
@@ -35,11 +35,11 @@ describe('유저 입력값 예외 처리를 검사하는 테스트', () => {
     ['중복 이다, 중복 이다', false, '공백 포함 중복'],
     ['소나타,소 나타', true, '중복 아님으로 인정'],
     ['벤츠,BMW', true, '중복 아님'],
-  ])('자동차 이름의 중복 예외 처리 테스트 (%s)', (name, expected) => {
+  ])('자동차 이름의 중복 예외 처리 테스트 (%s)', (name, isValid) => {
     const ERROR_PREFIX = '[ERROR]';
     const parsedName = RacingManager.parseCarNames(name);
 
-    if (expected) {
+    if (isValid) {
       expect(() => Validation.isNoDuplicated(parsedName)).not.toThrow();
     } else {
       expect(() => Validation.isNoDuplicated(parsedName)).toThrow(ERROR_PREFIX);
@@ -51,23 +51,20 @@ describe('유저 입력값 예외 처리를 검사하는 테스트', () => {
     ['woowa,tech', true, '2개'],
     ['woowa,tech,코스', true, '3개'],
     ['woo/wa', false, '1개'],
-  ])(
-    '자동차 이름이 2개 미만인 경우 예외 처리 테스트 (%s)',
-    (name, expected) => {
-      const ERROR_PREFIX = '[ERROR]';
-      const parsedName = RacingManager.parseCarNames(name);
+  ])('자동차 이름이 2개 미만인 경우 예외 처리 테스트 (%s)', (name, isValid) => {
+    const ERROR_PREFIX = '[ERROR]';
+    const parsedName = RacingManager.parseCarNames(name);
 
-      if (expected) {
-        expect(() =>
-          Validation.hasMeetMinimalCompetition(parsedName),
-        ).not.toThrow();
-      } else {
-        expect(() => Validation.hasMeetMinimalCompetition(parsedName)).toThrow(
-          ERROR_PREFIX,
-        );
-      }
-    },
-  );
+    if (isValid) {
+      expect(() =>
+        Validation.hasMeetMinimalCompetition(parsedName),
+      ).not.toThrow();
+    } else {
+      expect(() => Validation.hasMeetMinimalCompetition(parsedName)).toThrow(
+        ERROR_PREFIX,
+      );
+    }
+  });
 
   test.each([
     ['4', true, '파싱했을때 유효한 데이터 타입'],
@@ -78,11 +75,11 @@ describe('유저 입력값 예외 처리를 검사하는 테스트', () => {
     [undefined, false, 'undefined'],
   ])(
     '이동 시도 횟수(총 라운드)의 데이터 타입에 관한 예외 처리 테스트 (%s)',
-    (totalRounds, expected) => {
+    (totalRounds, isValid) => {
       const ERROR_PREFIX = '[ERROR]';
       const parsedTotalRounds = RacingManager.parseTotalRounds(totalRounds);
 
-      if (expected) {
+      if (isValid) {
         expect(() => Validation.isNumber(parsedTotalRounds)).not.toThrow();
       } else {
         expect(() => Validation.isNumber(parsedTotalRounds)).toThrow(
@@ -100,11 +97,11 @@ describe('유저 입력값 예외 처리를 검사하는 테스트', () => {
     [1.4, false, '1 이상 정수가 아닌 실수'],
   ])(
     '이동 시도 횟수(총 라운드)의 데이터 타입에 관한 예외 처리 테스트 (%s)',
-    (totalRounds, expected) => {
+    (totalRounds, isValid) => {
       const ERROR_PREFIX = '[ERROR]';
       const parsedTotalRounds = RacingManager.parseTotalRounds(totalRounds);
 
-      if (expected) {
+      if (isValid) {
         expect(() =>
           Validation.isValidTotalRounds(parsedTotalRounds),
         ).not.toThrow();
