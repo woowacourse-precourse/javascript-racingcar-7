@@ -5,7 +5,26 @@
   "type": "module",
   "scripts": {
     "start": "node src/index.js",
-    "test": "jest --detectOpenHandles"
+    "test": "jest --detectOpenHandles",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --fix --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --write ."
+  },
+  "eslintConfig": {
+    "extends": [
+      "airbnb",
+      "prettier",
+      "plugin:prettier/recommended"
+    ],
+    "rules": {
+      "prettier/prettier": ["error", { "singleQuote": true }]
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": true
   },
   "devDependencies": {
     "@babel/core": "^7.25.8",
