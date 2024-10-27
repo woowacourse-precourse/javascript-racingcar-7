@@ -55,11 +55,24 @@ describe("자동차 경주", () => {
   });
 
   test("자동차 전진 기능 테스트", () => {
-    const app = new App();
+    // given
     const carNames = ["pobi", "woni"];
     const attempts = 3;
-    const distances = app.moveCars(carNames, attempts);
+    const distances = Array(carNames.length).fill(0);
+    const logSpy = getLogSpy();
+
+    mockRandoms([4, 4, 4, 4, 4, 4]);
+
+    const app = new App();
+    for (let i = 0; i < attempts; i++) {
+      app.moveCars(carNames, distances);
+    }
+
+    // then
     expect(distances.length).toBe(carNames.length);
+    distances.forEach((distance) => {
+      expect(distance).toBeGreaterThan(0); // 모든 자동차가 전진했는지 확인
+    });
   });
 
   test("자동차 이름 부여 기능 테스트", () => {
