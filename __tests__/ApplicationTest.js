@@ -1,5 +1,8 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import App from '../src/App.js';
+import CarManager from '../src/CarManager.js';
+import InputParser from '../src/InputParser.js';
+import ResultPrinter from '../src/ResultPrinter.js';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -61,30 +64,30 @@ describe('자동차 경주', () => {
 
   // Add test
   test('자동차 이름을 쉼표(,)를 기준으로 구분한다.', () => {
-    const racingCarNames = 'pobi,woni';
+    const carNamesStr = 'pobi,woni';
 
-    const app = new App();
-    const racingCarNamesArray = app.parseRacingCarNames(racingCarNames);
+    const inputParser = new InputParser(carNamesStr, 1);
+    const { carNamesArr } = inputParser.parse();
 
-    expect(racingCarNamesArray).toEqual(['pobi', 'woni']);
+    expect(carNamesArr).toEqual(['pobi', 'woni']);
   });
 
   test('무작위 값이 4 이상일 경우 전진한다.', () => {
-    const app = new App();
+    const carManager = new CarManager(['pobi', 'woni'], 1);
 
-    expect(app.isCarMove(4)).toBe(true);
-    expect(app.isCarMove(5)).toBe(true);
-    expect(app.isCarMove(9)).toBe(true);
-    expect(app.isCarMove(3)).toBe(false);
-    expect(app.isCarMove(0)).toBe(false);
+    expect(carManager.isCarMove(4)).toBe(true);
+    expect(carManager.isCarMove(5)).toBe(true);
+    expect(carManager.isCarMove(9)).toBe(true);
+    expect(carManager.isCarMove(3)).toBe(false);
+    expect(carManager.isCarMove(0)).toBe(false);
   });
 
   test('매 시도에서 실행 결과를 출력한다.', () => {
     const moveCntPerCar = { pobi: 1, woni: 2 };
 
-    const app = new App();
+    const resultPrinter = new ResultPrinter(moveCntPerCar);
     const logSpy = getLogSpy();
-    app.printAttemptResult(moveCntPerCar);
+    resultPrinter.printAttemptResult();
 
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining('pobi : -'));
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining('woni : --'));
@@ -93,9 +96,9 @@ describe('자동차 경주', () => {
   test('최종 우승자를 출력한다.', () => {
     const moveCntPerCar = { pobi: 1, woni: 2 };
 
-    const app = new App();
+    const resultPrinter = new ResultPrinter(moveCntPerCar);
     const logSpy = getLogSpy();
-    app.printWinner(moveCntPerCar);
+    resultPrinter.printWinner();
 
     expect(logSpy).toHaveBeenCalledWith(
       expect.stringContaining('최종 우승자 : woni'),
@@ -105,9 +108,9 @@ describe('자동차 경주', () => {
   test('우승자가 여러 명일 경우 쉼표(,)를 이용하여 구분한다.', () => {
     const moveCntPerCar = { pobi: 2, woni: 2 };
 
-    const app = new App();
+    const resultPrinter = new ResultPrinter(moveCntPerCar);
     const logSpy = getLogSpy();
-    app.printWinner(moveCntPerCar);
+    resultPrinter.printWinner();
 
     expect(logSpy).toHaveBeenCalledWith(
       expect.stringContaining('최종 우승자 : pobi, woni'),
