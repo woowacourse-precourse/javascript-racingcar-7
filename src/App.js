@@ -44,6 +44,14 @@ class App {
       }
     });
 
+    // 중복된 이름 검사
+    const uniqueNames = new Set(names);
+    if (uniqueNames.size !== names.length) {
+      throw new Error(
+        `[ERROR] 서로 다른 이름으로 자동차의 이름들을 지정하세요.`
+      );
+    }
+
     return names; // 유효한 자동차 이름 반환
   }
 
