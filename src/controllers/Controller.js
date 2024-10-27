@@ -3,7 +3,7 @@ import CarParser from '../utils/CarParser.js';
 import MoveCar from '../models/MoveCar.js';
 import OutputView from '../views/OutputView.js';
 import Winners from '../models/Winners.js';
-import GameInputValidator from '../models/validations/GameInputValidator.js';
+import gameInputValidator from '../models/validations/GameInputValidator.js';
 import carInputValidator from '../models/validations/CarInputValidator.js';
 
 class Controller {
@@ -15,7 +15,7 @@ class Controller {
       const carList = CarParser.splitCar(carInput);
       carInputValidator(carList);
       const gameInput = await InputView.readGameInput();
-      GameInputValidator.validateNum(gameInput);
+      gameInputValidator(gameInput);
 
       // 게임 시작
       OutputView.printNewLine();
