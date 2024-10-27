@@ -47,20 +47,20 @@ describe("자동차 경주", () => {
   });
 
   test("기능 테스트 - 최종 우승자가 2명 이상인 경우", async () => {
-  const MOVING_FORWARD = 4;
-  const inputs = ["pobi,jun", "1"];
-  const logs = ["pobi : -", "jun : -", "최종 우승자 : pobi, jun"];
-  const logSpy = getLogSpy();
+    const MOVING_FORWARD = 4;
+    const inputs = ["pobi,jun", "1"];
+    const logs = ["pobi : -", "jun : -", "최종 우승자 : pobi, jun"];
+    const logSpy = getLogSpy();
 
-  mockQuestions(inputs);
-  mockRandoms([MOVING_FORWARD, MOVING_FORWARD]);
+    mockQuestions(inputs);
+    mockRandoms([MOVING_FORWARD, MOVING_FORWARD]);
 
-  const app = new App();
-  await app.run();
+    const app = new App();
+    await app.run();
 
-  logs.forEach((log) => {
-    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-  });
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
   });
 
   test("예외 테스트 - 자동차의 이름을 5글자 초과하여 입력한 경우", async () => {
@@ -90,7 +90,6 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 
-
   test("예외 테스트 - 시도할 횟수에 음수를 입력한 경우", async () => {
     const inputs = ["pobi,javai"];
     mockQuestions(inputs);
@@ -116,7 +115,7 @@ describe("자동차 경주", () => {
   test("예외 테스트 - 시도할 횟수에 숫자가 아닌 것을 입력한 경우", async () => {
     const inputs = ["pobi,javai"];
     mockQuestions(inputs);
-    const numbers = ['one'];
+    const numbers = ["one"];
     mockRandoms(numbers);
 
     const app = new App();
@@ -124,4 +123,3 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 });
-
