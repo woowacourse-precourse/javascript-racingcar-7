@@ -1,6 +1,8 @@
+import { MissionUtils } from "@woowacourse/mission-utils";
 import InputHandler from "../src/InputHandler.js";
 import Car from "../src/Car.js";
-import { MissionUtils } from "@woowacourse/mission-utils";
+import OutputHandler from '../src/OutputHandler.js';
+import CarRacingManager from "../src/CarRacingManager.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -13,6 +15,12 @@ const mockQuestions = (inputs) => {
 const mockRandoms = (numbers) => {
   MissionUtils.Random.pickNumberInRange = jest.fn();
   numbers.reduce((acc, number) => acc.mockReturnValueOnce(number), MissionUtils.Random.pickNumberInRange);
+};
+
+const getLogSpy = () => {
+  const logSpy = jest.spyOn(MissionUtils.Console, "print");
+  logSpy.mockClear();
+  return logSpy;
 };
 
 describe("자동차 이름 입력 기능 테스트", () => {
@@ -89,5 +97,29 @@ describe("자동차 전진 결정 기능 테스트", () => {
     });
 
     expect(car.moveCount).toBe(0);
+  });
+});
+
+describe("자동차 경기 결과 출력 테스트", () => {
+  test("처음에만 '실행 결과' 문구를 출력하고, 각 라운드마다 전진 상태를 출력한다", async () => {
+    // given
+    const carNames = "pobi,woni";
+    const attemptCount = 2;
+    const inputs = [carNames, String(attemptCount)];
+    const logs = ["\n실행 결과", "pobi : -", "woni : ", "", "pobi : --", "woni : "];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([4, 3, 5, 2]);
+
+    const inputHandler = new InputHandler();
+    const outputHandler = new OutputHandler();
+    const manager = new CarRacingManager(inputHandler, outputHandler);
+
+    await manager.startGame();
+
+    logs.forEach((log, index) => {
+      expect(logSpy).toHaveBeenNthCalledWith(index + 1, log);
+    });
   });
 });
