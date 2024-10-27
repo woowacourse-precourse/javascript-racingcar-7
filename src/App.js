@@ -19,7 +19,7 @@ class Car {
     }
   }
 
-  // 현재 위치 출력
+  // 현재 자동차 위치 출력 (-)
   showPosition() {
     return `${this.name} : ${"-".repeat(this.position)}`;
   }
@@ -31,14 +31,17 @@ class App {
       const carNames = await this.getCarNames();
       const attemptCount = await this.getAttemptCount();
 
-      // 각 자동차 인스턴스를 생성하고 전진 여부를 테스트
+      MissionUtils.Console.print("\n실행 결과"); // 실행 결과 메시지 출력 및 줄바꿈 실행
+
+      // 자동차 인스턴스 생성 후 전진 여부 출력
       const cars = carNames.map((name) => new Car(name));
       for (let i = 0; i < attemptCount; i++) {
         cars.forEach((car) => car.move());
-      }
 
-      // 각 자동차의 위치를 출력
-      cars.forEach((car) => MissionUtils.Console.print(car.showPosition()));
+        // 각각 자동차의 위치를 출력
+        cars.forEach((car) => MissionUtils.Console.print(car.showPosition()));
+        MissionUtils.Console.print(""); // 줄바꿈
+      }
     } catch (error) {
       MissionUtils.Console.print(error.message);
     }
