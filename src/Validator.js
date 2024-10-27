@@ -1,37 +1,40 @@
+import { ERROR_MESSAGE, REGEXP } from './Constants';
+
 class Validator {
-  nameValidate(carNames) {
+  nameValidate(inputCarNames) {
+    const carNames = inputCarNames.split(',');
     // SRP, 원칙을 위반하지 않도록 수정 필요~
     const isNameLengthValid = carNames.every(
       name => name.length > 0 && name.length <= 5,
     );
     const isCarNameValid = carNames.every(name =>
-      /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]*$/.test(name),
+      REGEXP.CAR_NAME_VALID_CHARACTERS.test(name),
     );
-    const isStartsWithNumber = carNames.some(name => /^\d/.test(name));
+    const isStartsWithNumber = carNames.some(name =>
+      REGEXP.STARTS_WITH_NUMBER.test(name),
+    );
 
     if (!isNameLengthValid) {
-      throw new Error(
-        '자동차 이름은 비어 있지 않고 5글자 이하로 입력해주세요.',
-      );
+      throw new Error(ERROR_MESSAGE.CAR_NAME_VALIDATION);
     }
 
     if (!isCarNameValid) {
-      throw new Error(
-        '자동차의 이름은 한글, 숫자, 영어로만 구성되어야 합니다.',
-      );
+      throw new Error(ERROR_MESSAGE.CAR_NAME_ALLOWED_CHARACTERS);
     }
 
     if (isStartsWithNumber) {
-      throw new Error('자동차 이름은 숫자로 시작할 수 없습니다.');
+      throw new Error(ERROR_MESSAGE.CAR_NAME_STARTS_WITH_NUMBER);
     }
   }
 
-  tryCntValidate(tryCnt) {
-    if (Number.isNaN(tryCnt)) {
-      throw new Error('이동을 시도할 횟수는 숫자로 입력해주세요.');
+  moveAttemptsValidate(inputMoveAttempts) {
+    const moveAttempts = Number(inputMoveAttempts);
+
+    if (Number.isNaN(moveAttempts)) {
+      throw new Error(ERROR_MESSAGE.MOVE_ATTEMPTS_MUST_BE_NUMBER);
     }
-    if (tryCnt <= 0) {
-      throw new Error('이동을 시도할 횟수는 0보다 큰 값이어야 합니다.');
+    if (moveAttempts <= 0) {
+      throw new Error(ERROR_MESSAGE.MOVE_ATTEMPTS_MUST_BE_GREATER_THAN_ZERO);
     }
   }
 }

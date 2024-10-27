@@ -2,29 +2,27 @@ import { Console } from '@woowacourse/mission-utils';
 import Car from './Car.js';
 import Validator from './Validator.js';
 import RacingGame from './RacingGame.js';
+import { INPUT_PROMPT } from './Constants.js';
 
 class App {
   async run() {
     try {
       const validator = new Validator();
 
-      const inputCarNames = await Console.readLineAsync(
-        '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
-      );
-
-      validator.nameValidate(inputCarNames.split(','));
+      const inputCarNames = await Console.readLineAsync(INPUT_PROMPT.CAR_NAMES);
+      validator.nameValidate(inputCarNames);
 
       const cars = inputCarNames.split(',').map(carName => new Car(carName));
 
-      const inputTryCnt =
-        await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
-      const tryCnt = Number(inputTryCnt);
+      const inputMoveAttempts = await Console.readLineAsync(
+        INPUT_PROMPT.MOVE_ATTEMPTS,
+      );
+      validator.moveAttemptsValidate(inputMoveAttempts);
 
-      validator.tryCntValidate(tryCnt);
+      const moveAttempts = Number(inputMoveAttempts);
 
-      const game = new RacingGame(cars, tryCnt);
+      const game = new RacingGame(cars, moveAttempts);
       game.play();
-
       game.printResult();
     } catch (error) {
       throw new Error(`[ERROR] ${error.message}`);
