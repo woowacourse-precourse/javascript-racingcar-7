@@ -17,4 +17,18 @@ const CAR_NAME_VALIDATOR = input => {
   }
 };
 
-export { CAR_NAME_VALIDATOR };
+const ATTEMPT_TIMES_VALIDATOR = input => {
+  const INPUT_NUMBER = Number(input);
+  if (input === '') {
+    throw new Error(ERROR_MESSAGE.INPUT_VALIDATION);
+  }
+
+  if (Number.isNaN(INPUT_NUMBER)) {
+    throw new Error(ERROR_MESSAGE.ATTEMP_TIMES_TYPE_VALIDATION);
+  }
+
+  if (INPUT_NUMBER < 1) {
+    throw new Error(ERROR_MESSAGE.ATTEMP_TIMES_VALIDATION);
+  }
+};
+export { CAR_NAME_VALIDATOR, ATTEMPT_TIMES_VALIDATOR };
