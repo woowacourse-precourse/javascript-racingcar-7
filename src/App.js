@@ -4,14 +4,20 @@ class Car {
   constructor(name) {
     this.name = name;
     this.race = []; // 전진 저장할 배열변수
-    this.raceNum = []; // 전진 저장할 배열 숫자 변수
   }
 }
 
 class App {
   startGame(cars) {
-    for (let i = 0; i < cars.length; i++) {
-      Console.print(cars[i].name);
+    for (const car of cars) {
+      let rand = Math.floor(Math.random() * 10);
+      if (rand >= 4) {
+        car.race.push("-");
+      }
+    }
+
+    for (const car of cars) {
+      Console.print(car.name + " : " + car.race.join(""));
     }
   }
 
@@ -78,8 +84,10 @@ class App {
     }
 
     const cars = carNames.map((name) => new Car(name));
-
-    this.startGame(cars);
+    for (let i = 0; i < numInput; i++) {
+      this.startGame(cars);
+      Console.print("");
+    }
   }
 }
 
