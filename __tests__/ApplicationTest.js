@@ -3,6 +3,7 @@ import App from '../src/App.js';
 import { validateCars, validateCount } from '../src/validate.js';
 import { moveCars, parseStringToObject } from '../src/racing.js';
 import { getInputCars, getInputCount, input } from '../src/input.js';
+import { printProgress, printResult } from '../src/output.js';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -150,5 +151,43 @@ describe('입력 처리 (input.js)', () => {
 
     const count = await getInputCount();
     expect(count).toBe('3');
+  });
+});
+
+describe('출력 처리 (output.js)', () => {
+  const logSpy = getLogSpy();
+
+  test('진행상황 출력', () => {
+    const cars = [
+      { name: 'pobi', distance: 2 },
+      { name: 'woni', distance: 1 },
+    ];
+
+    printProgress(cars);
+
+    expect(logSpy).toHaveBeenCalledWith('pobi : --');
+    expect(logSpy).toHaveBeenCalledWith('woni : -');
+  });
+
+  test('단독 우승자 결과 출력', () => {
+    const cars = [
+      { name: 'pobi', distance: 3 },
+      { name: 'woni', distance: 2 },
+    ];
+
+    printResult(cars);
+
+    expect(logSpy).toHaveBeenCalledWith('최종 우승자 : pobi');
+  });
+
+  test('공동 우승자 결과 출력', () => {
+    const cars = [
+      { name: 'pobi', distance: 3 },
+      { name: 'woni', distance: 3 },
+    ];
+
+    printResult(cars);
+
+    expect(logSpy).toHaveBeenCalledWith('최종 우승자 : pobi,woni');
   });
 });
