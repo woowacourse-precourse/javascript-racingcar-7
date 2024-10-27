@@ -5,7 +5,6 @@ export async function userInput(string) {
 	try {
 		returnValue = await Console.readLineAsync(string);
 	} catch (error) {
-		console.error(error);
 		throw error;
 	}
 	return returnValue;

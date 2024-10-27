@@ -13,14 +13,14 @@ import {
 	validateString,
 } from "./validate.js";
 
-class RacingCar {
+class Car {
 	constructor() {
 		this.carNames = [];
 		this.tryCount = 0;
 		this.carNamesAndNumberMap = [];
 	}
 
-	async runRacingCar() {
+	async runRacing() {
 		try {
 			const { carNameValue, tryCountValue } = await this.getUserInput();
 			this.carNames = carNameValue.split(",");
@@ -69,7 +69,8 @@ class RacingCar {
 			...this.carNamesAndNumberMap.map((car) => car.carNumbers.length)
 		);
 
-		printOutput("\n실행 결과");
+		printOutput("");
+		printOutput("실행 결과");
 
 		for (let i = 0; i < maxLength; i++) {
 			this.carNamesAndNumberMap.forEach((car) => {
@@ -106,13 +107,9 @@ class RacingCar {
 	}
 
 	printWinners(winners) {
-		if (winners.length === 0) {
-			printOutput(`최종 우승자 : 우승자가 없습니다.`);
-		} else {
-			const winnersString = winners.join(", ");
-			printOutput(`최종 우승자 : ${winnersString}`);
-		}
+		const winnersString = winners.join(", ");
+		printOutput(`최종 우승자 : ${winnersString}`);
 	}
 }
 
-export default RacingCar;
+export default Car;
