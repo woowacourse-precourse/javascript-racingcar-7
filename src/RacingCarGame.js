@@ -42,11 +42,7 @@ class RacingCarGame {
 
     Console.print("\n실행 결과");
 
-    const pointsMap = new Map();
-
-    carNameList.forEach((carName) => {
-      pointsMap.set(carName, 0);
-    });
+    const pointsMap = new Map(carNameList.map((carName) => [carName, 0]));
 
     for (let round = 0; round < roundCount; round += 1) {
       for (const carName of carNameList) {
@@ -62,18 +58,10 @@ class RacingCarGame {
       Console.print("\n");
     }
 
-    const winnerCarNameList = [];
-    let maxPoint = 0;
-
-    for (const point of pointsMap.values()) {
-      maxPoint = Math.max(maxPoint, point);
-    }
-
-    for (const [carName, point] of pointsMap) {
-      if (maxPoint === point) {
-        winnerCarNameList.push(carName);
-      }
-    }
+    const maxPoint = Math.max(...pointsMap.values());
+    const winnerCarNameList = carNameList.filter(
+      (carName) => pointsMap.get(carName) === maxPoint
+    );
 
     Console.print(`최종 우승자 : ${winnerCarNameList.join(", ")}`);
   }
