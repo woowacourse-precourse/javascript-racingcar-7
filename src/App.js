@@ -8,6 +8,9 @@ class App {
 
     const carNames = inputCarNames.split(',');
     const validateCarNames = carNames.forEach((name) => {
+      if (!name) {
+        throw new Error('[ERROR] 경주할 자동차 이름을 입력해야 합니다.');
+      }
       if (name.length > 5) {
         throw new Error('[ERROR] 자동차 이름은 5자 이하만 입력 가능합니다.');
       }
@@ -22,9 +25,17 @@ class App {
       throw new Error('[ERROR] 경주할 자동차는 2대 이상 입력해야 합니다.');
     }
 
+    if (carNames.length !== new Set(carNames).size) {
+      throw new Error('[ERROR] 자동차 이름은 중복하여 입력할 수 없습니다.');
+    }
+
     const inputRounds = await Console.readLineAsync(
       '시도할 횟수는 몇 회인가요?\n'
     );
+
+    if (!inputRounds) {
+      throw new Error('[ERROR] 시도 횟수를 입력해야 합니다.');
+    }
 
     if (isNaN(inputRounds)) {
       throw new Error('[ERROR] 시도 횟수는 숫자만 입력 가능합니다.');
