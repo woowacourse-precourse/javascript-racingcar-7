@@ -3,7 +3,9 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 class App {
   async run() {
     const CARS_INPUT = await MissionUtils.Console.readLineAsync("경주할 자동차 이름(이름은 쉼표(,) 기준으로 구분)\n");
+    if (CARS_INPUT == '') throw new Error("[ERROR] 자동차 입력 에러");
     const TRY_INPUT = await MissionUtils.Console.readLineAsync("시도할 횟수\n");
+    if (TRY_INPUT == '' || isNaN(TRY_INPUT) || TRY_INPUT == 0) throw new Error("[ERROR] 횟수 입력 에러");
     const carList = CARS_INPUT.split(',').reduce((acc, car) => {
       acc[car.trim()] = 0;
       return acc;
