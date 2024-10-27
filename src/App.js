@@ -39,7 +39,6 @@ class App {
     for (let i = 0; i < attempts; i++) {
       this.runRaceRound(carPositions);
     }
-    Console.print('레이스가 종료되었습니다.');
     this.announceRaceResults(carPositions);
   }
 
@@ -59,6 +58,7 @@ class App {
       (car) => carPositions[car] === maxDistance
     );
     Console.print(`\n최종 우승자 : ${winners.join(', ')}`);
+    Console.close();
   }
 }
 
