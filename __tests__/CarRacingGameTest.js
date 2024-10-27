@@ -123,3 +123,47 @@ describe("자동차 경기 결과 출력 테스트", () => {
     });
   });
 });
+
+describe("자동차 최종 우승자 결정, 출력 테스트", () => {
+  test("단독 우승", async () => {
+    const carNames = "pobi,woni";
+    const attemptCount = 3;
+    const inputs = [carNames, String(attemptCount)];
+    const logSpy = getLogSpy();
+    const logs = ["최종 우승자 : pobi"];
+
+    mockQuestions(inputs);
+    mockRandoms([4, 4, 4, 3, 3, 3]); //pobi만 전진
+
+    const inputHandler = new InputHandler();
+    const outputHandler = new OutputHandler();
+    const manager = new CarRacingManager(inputHandler, outputHandler);
+
+    await manager.startGame();
+
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
+  test("공동 우승", async () => {
+    const carNames = "pobi,woni";
+    const attemptCount = 3;
+    const inputs = [carNames, String(attemptCount)];
+    const logSpy = getLogSpy();
+    const logs = ["최종 우승자 : pobi, woni"];
+
+    mockQuestions(inputs);
+    mockRandoms([4, 4, 4, 4, 4, 4]); //둘다 같이 전진
+
+    const inputHandler = new InputHandler();
+    const outputHandler = new OutputHandler();
+    const manager = new CarRacingManager(inputHandler, outputHandler);
+
+    await manager.startGame();
+
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+});
