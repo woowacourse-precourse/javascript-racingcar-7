@@ -17,14 +17,33 @@ class App {
       )
         .then((input) => {
           const names = input.split(",").map((name) => name.trim());
-          if (names.some((name) => name === "")) {
-            reject(new Error("[ERROR] 자동차 이름은 공백일 수 없습니다."));
-          } else {
+          try {
+            this.validateCarNames(names);
             resolve(names);
+          } catch (error) {
+            reject(error);
           }
         })
         .catch((error) => reject(error));
     });
+  }
+
+  validateCarNames(names) {
+    if (names.some((name) => name === "")) {
+      throw new Error("[ERROR] 자동차 이름은 공백일 수 없습니다.");
+    }
+
+    names.forEach((name) => {
+      if (name.length > 5) {
+        throw new Error(
+          "[ERROR] 자동차 이름은 1자 이상 5자 이하로 입력해야 합니다."
+        );
+      }
+    });
+
+    if (new Set(names).size !== names.length) {
+      throw new Error("[ERROR] 자동차 이름은 중복될 수 없습니다.");
+    }
   }
 }
 
