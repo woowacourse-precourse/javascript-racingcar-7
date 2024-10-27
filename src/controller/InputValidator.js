@@ -1,23 +1,36 @@
+import {
+  CAR_NAME_EMPTY,
+  CAR_NAME_LIMIT_LENGTH,
+} from '../constants/constraints.js';
+import {
+  ERROR_ATTEMPT_COUNT_MUST_BE_POSITIVE,
+  ERROR_CAR_NAME_LENGTH,
+  ERROR_DUPLCIATE_CAR_NAMES,
+  ERROR_EMPTY_CAR_NAME,
+  ERROR_NO_COMMA,
+} from '../constants/errorMessage.js';
+import throwError from '../Error/handleError.js';
+
 class InputValidator {
   static validateCarName(names) {
-    if (names.some((name) => name.length === 0)) {
-      throw new Error('자동차 이름은 빈칸일 수 없습니다.');
+    if (names.some((name) => name.length === CAR_NAME_EMPTY)) {
+      throwError(ERROR_EMPTY_CAR_NAME);
     }
-    if (names.some((name) => name.length > 5)) {
-      throw new Error('자동차 이름은 5자 이하만 가능 합니다.');
+    if (names.some((name) => name.length > CAR_NAME_LIMIT_LENGTH)) {
+      throwError(ERROR_CAR_NAME_LENGTH);
     }
     const hasDuplicates = names.length !== new Set(names).size;
     if (hasDuplicates) {
-      throw new Error('중복되는 자동차 이름이 있습니다.');
+      throwError(ERROR_DUPLCIATE_CAR_NAMES);
     }
     if (names.length < 2) {
-      throw new Error('자동차 이름은 쉼표(,)로 구분되어야 합니다.');
+      throwError(ERROR_NO_COMMA);
     }
   }
 
   static validateAttemptCount(attemptCount) {
     if (Number.isNaN(Number(attemptCount)) || attemptCount <= 0) {
-      throw new Error('시도 횟수는 양수여야 합니다.');
+      throwError(ERROR_ATTEMPT_COUNT_MUST_BE_POSITIVE);
     }
   }
 }
