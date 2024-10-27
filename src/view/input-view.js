@@ -1,14 +1,13 @@
 import { Console } from '@woowacourse/mission-utils';
-import GAME_MESSAGE from '../constant/message';
+import GAME_MESSAGE from '../constant/message.js';
 
 class InputView {
-  async getCarNames() {
-    const answer = await Console.readLineAsync(GAME_MESSAGE.CAR_NAMES_INPUT);
-    return answer;
+  getCarNames() {
+    return Console.readLineAsync(GAME_MESSAGE.CAR_NAMES_INPUT);
   }
 
-  async getAttemptCount() {
-    await Console.readLineAsync(GAME_MESSAGE.ATTEMPT_COUNT_INPUT);
+  getAttemptCount() {
+    return Console.readLineAsync(GAME_MESSAGE.ATTEMPT_COUNT_INPUT);
   }
 }
 
