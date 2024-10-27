@@ -1,4 +1,4 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 
 class App {
   async run() {
@@ -48,6 +48,31 @@ class App {
 
     if (!Number.isInteger(tryCountInput) || !tryCountInput)
       throw new Error('[ERROR] 시도할 횟수는 자연수만 입력해야 합니다.');
+
+    const participantListMap = new Map();
+    participantList.forEach((participant) => {
+      participantListMap.set(participant, '');
+    });
+
+    Console.print('\n실행 결과');
+    let randomNumber = 0;
+
+    for (let i = 0; i < tryCountInput; i++) {
+      for (let participant of participantListMap) {
+        randomNumber = Random.pickNumberInRange(0, 9);
+
+        if (randomNumber >= 4) {
+          participantListMap.set(
+            participant[0],
+            participantListMap.get(participant[0]) + '-',
+          );
+        }
+        Console.print(
+          `${participant[0]} : ${participantListMap.get(participant[0])}`,
+        );
+      }
+      Console.print('');
+    }
   }
 }
 
