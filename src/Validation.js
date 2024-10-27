@@ -47,9 +47,9 @@ class Validation {
 
   static checkCarNames(names, maxNameLength) {
     const targetNames = [...names];
+    targetNames.forEach((name) => this.isValidLength(name, maxNameLength));
     this.isNoDuplicated(targetNames);
     this.hasMeetMinimalCompetition(targetNames);
-    targetNames.forEach((name) => this.isValidLength(name, maxNameLength));
 
     return targetNames;
   }
