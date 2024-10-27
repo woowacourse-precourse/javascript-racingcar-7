@@ -18,9 +18,10 @@ class App {
     const repeatCount = await this.input.getRepeatCount(InputValidation.repeatCountString);
 
     this.game.setGame(carNames, repeatCount);
+    this.game.start();
 
     this.output.printResultTitle();
-    this.game.start();
+    this.output.printResults(this.game.getRaceLogs());
     this.output.printWinners(this.game.getWinners());
   }
 }

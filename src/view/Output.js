@@ -11,6 +11,13 @@ export default class Output {
     });
   }
 
+  static printResults(raceLogs) {
+    raceLogs.forEach((cars) => {
+      Output.printResult(cars);
+      Output.printNewLine();
+    });
+  }
+
   static printResultTitle() {
     MissionUtils.Console.print("\n실행 결과");
   }

@@ -1,14 +1,16 @@
 import Car from "./Car.js";
-import Output from "../view/Output.js";
 
 export default class RacingGame {
   repeatCount;
 
   cars;
 
+  raceLogs;
+
   constructor() {
     this.cars = [];
     this.repeatCount = 0;
+    this.raceLogs = [];
   }
 
   static formatNamesToCars(carNames) {
@@ -23,8 +25,7 @@ export default class RacingGame {
   start() {
     for (let i = 0; i < this.repeatCount; i += 1) {
       this.play();
-      Output.printResult(this.cars);
-      Output.printNewLine();
+      this.raceLogs.push(this.cars);
     }
   }
 
@@ -32,6 +33,10 @@ export default class RacingGame {
     this.cars.forEach((car) => {
       car.move();
     });
+  }
+
+  getRaceLogs() {
+    return this.raceLogs;
   }
 
   getWinners() {

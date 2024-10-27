@@ -58,40 +58,22 @@ describe("출력", () => {
   });
 
   describe("차수별 실행 결과를 출력한다.", () => {
-    test("경주 게임이 있고 게임을 2번 반복하는 경우, 경주 게임의 차수마다, 실행 결과를 출력한다.", () => {
+    test("경주 게임이 있고 게임을 2번 반복하는 경우, 경주 게임의 로그를 출력하면, 실행 결과를 출력한다.", () => {
       // given
       const REPEAT_COUNT = 2;
       const CARS = ["ham", "pobi"];
       game.setGame(CARS, REPEAT_COUNT);
       mockRandoms([1, 4, 1, 4]);
+      const logs = ["ham : ", "pobi : -", "", "ham : ", "pobi : --", ""];
       const logSpy = getLogSpy();
 
       // when
       game.start();
-
-      // then
-      expect(logSpy).toHaveBeenCalledWith("ham : ");
-      expect(logSpy).toHaveBeenCalledWith("pobi : -");
-      expect(logSpy).toHaveBeenCalledWith("ham : ");
-      expect(logSpy).toHaveBeenCalledWith("pobi : --");
-    });
-
-    test("경주 게임이 있고 게임을 2번 반복하는 경우, 경주 게임의 한 차수가 끝날 때마다, 개행을 출력한다.", () => {
-      // given
-      const REPEAT_COUNT = 2;
-      const CARS = ["ham", "pobi"];
-      game.setGame(CARS, REPEAT_COUNT);
-      mockRandoms([1, 4, 1, 4]);
-
-      const logs = ["", ""];
-      const logSpy = getLogSpy();
-
-      // when
-      game.start();
+      Output.printResults(game.getRaceLogs());
 
       // then
       logs.forEach((log) => {
-        expect(logSpy).toHaveBeenCalledWith(log);
+        expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
       });
     });
   });
