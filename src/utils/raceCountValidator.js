@@ -1,9 +1,9 @@
 import { Message, ROUND_VALIDATION, INPUT_VALIDATION_REGEX } from './constants.js';
 
 const isNum = (userInput) => {
-  const setNum = INPUT_VALIDATION_REGEX.NUMERIC;
+  const NUMERIC_REGIX = INPUT_VALIDATION_REGEX.NUMERIC;
 
-  if (setNum.test(userInput) === true) {
+  if (NUMERIC_REGIX.test(userInput) === true) {
     return true;
   }
   return false;
