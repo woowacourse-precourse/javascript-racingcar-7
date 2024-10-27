@@ -15,15 +15,9 @@ const determineCarName = (input) => {
 
 const goAhead = (names, raceNum) => {
   Console.print('실행 결과');
+  const raceRecord = updateRaceStatus(names, raceNum);
 
-  const namesArray = names.split(',');
-  const raceRecord = namesArray.map((name) => ({ name, aheadNum: 0 }));
   for (let i = 0; i < raceNum; i++) {
-    raceRecord.forEach((record) => {
-      if (Random.pickNumberInRange(0, 9) >= 4) {
-        record.aheadNum += 1;
-      }
-    });
     raceRecord.forEach((record) =>
       Console.print(`${record.name} : ${'-'.repeat(record.aheadNum)}`)
     );
@@ -32,6 +26,24 @@ const goAhead = (names, raceNum) => {
 
   const winner = findWinner(raceRecord);
   Console.print(`최종 우승자 : ${winner.join(',')}`);
+};
+
+const updateRaceStatus = (names, raceNum) => {
+  const namesArray = names.split(',');
+  const raceRecord = namesArray.map((name) => ({ name, aheadNum: 0 }));
+  for (let i = 0; i < raceNum; i++) {
+    raceRecord.forEach((record) => {
+      determineMovement(record);
+    });
+  }
+  return raceRecord;
+};
+
+const determineMovement = (record) => {
+  if (Random.pickNumberInRange(0, 9) >= 4) {
+    return (record.aheadNum += 1);
+  }
+  return;
 };
 
 const findWinner = (raceRecord) => {
