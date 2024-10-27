@@ -25,7 +25,7 @@ const getLogSpy = () => {
 };
 
 describe("자동차 경주", () => {
-  test("기능 테스트", async () => {
+  test("기능 테스트 - 최종 우승자가 1명인 경우", async () => {
     // given
     const MOVING_FORWARD = 4;
     const STOP = 3;
@@ -46,7 +46,8 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트", async () => {
+
+  test("예외 테스트 - 자동자의 이름이 5글자를 초과한 경우", async () => {
     const inputs = ["pobi,javaji"];
     mockQuestions(inputs);
 
@@ -55,7 +56,7 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 
-  test("경주할 자동차에 쉼표를 구분자로 사용하지 않은 경우", async () => {
+  test("예외 테스트 - 경주할 자동차에 쉼표를 구분자로 사용하지 않은 경우", async () => {
     const inputs = ["pobi; javaji"];
     mockQuestions(inputs);
 
@@ -64,7 +65,7 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 
-  test("시도할 횟수에 음수를 입력한 경우", async () => {
+  test("예외 테스트 - 시도할 횟수에 음수를 입력한 경우", async () => {
     const inputs = ["pobi,javai"];
     mockQuestions(inputs);
     const numbers = [-3];
@@ -75,7 +76,7 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 
-  test("시도할 횟수에 실수를 입력한 경우", async () => {
+  test("예외 테스트 - 시도할 횟수에 실수를 입력한 경우", async () => {
     const inputs = ["pobi,javai"];
     mockQuestions(inputs);
     const numbers = [3.5];
@@ -86,7 +87,7 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 
-  test("시도할 횟수에 숫자가 아닌 것을 입력한 경우", async () => {
+  test("예외 테스트 - 시도할 횟수에 숫자가 아닌 것을 입력한 경우", async () => {
     const inputs = ["pobi,javai"];
     mockQuestions(inputs);
     const numbers = ['one'];
