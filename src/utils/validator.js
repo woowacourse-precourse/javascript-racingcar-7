@@ -1,5 +1,6 @@
 import throwError from './throwError.js';
 import * as ERROR from '../constants/errorConstants.js';
+import { MAX_CAR_NAME_LENGTH, MAX_TRY_COUNT, MIN_TRY_COUNT } from '../constants/numberConstants.js';
 
 export function carNameValidator(carNames) {
   if (carNames.length === 1 && carNames[0].length === 0) {
@@ -12,7 +13,7 @@ export function carNameValidator(carNames) {
     throwError(ERROR.CAR_NAME_BLANK);
   }
 
-  if (carNames.some((carName) => carName.length > 5)) {
+  if (carNames.some((carName) => carName.length > MAX_CAR_NAME_LENGTH)) {
     throwError(ERROR.CAR_NAME_LENGTH);
   }
 
@@ -30,11 +31,11 @@ export function tryCountValidator(tryCount) {
 
   tryCount = Number(tryCount);
 
-  if (!Number.isInteger(tryCount) || tryCount < 1) {
+  if (!Number.isInteger(tryCount) || tryCount < MIN_TRY_COUNT) {
     throwError(ERROR.TRY_COUNT_NUMBER);
   }
 
-  if (tryCount > 100) {
+  if (tryCount > MAX_TRY_COUNT) {
     throwError(ERROR.TRY_COUNT_MAX);
   }
 
