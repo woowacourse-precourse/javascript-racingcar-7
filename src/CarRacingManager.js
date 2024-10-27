@@ -7,7 +7,7 @@ class CarRacingManager {
 
   async startGame() {
     try {
-      const carNames = this.inputHandler.readCarsName();
+      const carNames = await this.inputHandler.readCarsName();
     } catch (error) {
       this.outputHandler.printErrorMessage(error.message);
       throw error;
