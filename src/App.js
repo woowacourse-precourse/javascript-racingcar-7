@@ -15,6 +15,19 @@ class App {
       if (Number.isNaN(movingNumber)) {
         throw new Error('[ERROR]');  
       }
+      const giveDash = () => {
+        const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
+        if (randomNumber >= 4) {
+          return '-';
+        }
+        return '';
+      };
+      const oneCycle = () => {
+        namesArray.forEach((element, index) => {
+          namesArray[index] = `${namesArray[index]} : ` + giveDash();
+          MissionUtils.Console.print(namesArray[index]);
+        });
+      };
     } catch {
       MissionUtils.Console.print('[ERROR]');
       throw new Error('[ERROR]');
