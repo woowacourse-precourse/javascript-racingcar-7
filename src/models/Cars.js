@@ -15,7 +15,7 @@ class Cars {
     }
 
     static getRacingCarNames(inputRacingCar) {
-        const cars = inputRacingCar.split(this.SEPARATOR);
+        const cars = inputRacingCar.split(Cars.SEPARATOR);
         const carsInstantce = new Cars(cars);
         return carsInstantce.#cars;
     }
@@ -45,7 +45,7 @@ class Cars {
 
     // 자동차 이름이 5자를 초과하는 경우
     validateNameExceedsMaxLength() {
-        const EXCEEDING_MAX_LENGTH_FLAG = this.#cars.some(name => name.trim().length > EXCEEDS_MAX_LENGTH);
+        const EXCEEDING_MAX_LENGTH_FLAG = this.#cars.some(name => name.trim().length > Cars.EXCEEDS_MAX_LENGTH);
         if(EXCEEDING_MAX_LENGTH_FLAG) {
             throw new RacingCarError(ERROR_MESSAGE.input_name_exceeds_max_length);
         }
