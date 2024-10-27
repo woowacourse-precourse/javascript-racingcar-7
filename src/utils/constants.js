@@ -22,3 +22,65 @@ export const OUTPUT_MESSAGES = {
   WINNERS_PREFIX: '최종 우승자 : ',
   ERROR_PREFIX: '[ERROR]',
 };
+
+export const CAR_NAME_TEST_CASES = {
+  NO_INPUT: {
+    input: '',
+    errorMessage: `${OUTPUT_MESSAGES.ERROR_PREFIX} ${ERROR_MESSAGES.NO_CARS}`,
+  },
+  EMPTY_STRING: {
+    input: ['pobi', ''],
+    errorMessage: `${OUTPUT_MESSAGES.ERROR_PREFIX} ${ERROR_MESSAGES.EMPTY_NAME}`,
+  },
+  BLANK_STRING: {
+    input: ['pobi', ' '],
+    errorMessage: `${OUTPUT_MESSAGES.ERROR_PREFIX} ${ERROR_MESSAGES.EMPTY_NAME}`,
+  },
+  TOO_LONG_NAME: {
+    input: ['pobi', 'abcdef'],
+    errorMessage: `${OUTPUT_MESSAGES.ERROR_PREFIX} ${ERROR_MESSAGES.NAME_TOO_LONG}`,
+  },
+  DUPLICATE_NAME: {
+    input: ['pobi', 'jason', 'pobi'],
+    errorMessage: `${OUTPUT_MESSAGES.ERROR_PREFIX} ${ERROR_MESSAGES.DUPLICATE_NAME}`,
+  },
+  VALID_NAMES: {
+    input: ['pobi', 'woni', 'jun'],
+    expected: ['pobi', 'woni', 'jun'],
+  },
+};
+
+export const GAME_ROUNDS_TEST_CASES = {
+  NO_INPUT: {
+    input: '',
+    errorMessage: `${OUTPUT_MESSAGES.ERROR_PREFIX} ${ERROR_MESSAGES.EMPTY_ROUNDS}`,
+  },
+  BLANK_INPUT: {
+    input: ' ',
+    errorMessage: `${OUTPUT_MESSAGES.ERROR_PREFIX} ${ERROR_MESSAGES.EMPTY_ROUNDS}`,
+  },
+  NOT_A_NUMBER: {
+    input: 'abc',
+    errorMessage: `${OUTPUT_MESSAGES.ERROR_PREFIX} ${ERROR_MESSAGES.NOT_A_NUMBER}`,
+  },
+  NEGATIVE_NUMBER: {
+    input: '-1',
+    errorMessage: `${OUTPUT_MESSAGES.ERROR_PREFIX} ${ERROR_MESSAGES.NEGATIVE_NUMBER}`,
+  },
+  ZERO: {
+    input: '0',
+    errorMessage: `${OUTPUT_MESSAGES.ERROR_PREFIX} ${ERROR_MESSAGES.ZERO_ROUNDS}`,
+  },
+  DECIMAL_NUMBER: {
+    input: '1.5',
+    errorMessage: `${OUTPUT_MESSAGES.ERROR_PREFIX} ${ERROR_MESSAGES.NOT_INTEGER}`,
+  },
+  OVERFLOW: {
+    input: String(Number.MAX_SAFE_INTEGER + 1),
+    errorMessage: `${OUTPUT_MESSAGES.ERROR_PREFIX} ${ERROR_MESSAGES.OVERFLOW}`,
+  },
+  VALID_NUMBER: {
+    input: '5',
+    expected: 5,
+  },
+};
