@@ -28,7 +28,7 @@ class App {
     // Validate user input
     this.validator.validateNameLength(userInputArray);
     this.validator.validateRound(userInputCount);
-
+    this.validator.validateSeparator(userInput);
 
     // Game start
     Console.print("\n실행 결과");
