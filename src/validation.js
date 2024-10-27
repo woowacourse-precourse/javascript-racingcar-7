@@ -11,4 +11,6 @@ export function validateRoundInput(inputRound) {
 export function validateName(name) {
     if (name.length > 5)
         throw Error(formatErrorMessage(MESSAGES.ERROR_NAME_LENGTH));
+    else if(name === '')
+        throw Error(formatErrorMessage(MESSAGES.ERROR_NAME_NULL));
 }
