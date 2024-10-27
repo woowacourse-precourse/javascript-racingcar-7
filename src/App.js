@@ -23,7 +23,8 @@ class App {
       };
     }
 
-    const cars = carname.split(",");
+    const removedWhitespace = carname.replace(/ /g, "");
+    const cars = removedWhitespace.split(",");
     const carObjs = cars.map((name) => new Car(name));
 
     function printResult() {
