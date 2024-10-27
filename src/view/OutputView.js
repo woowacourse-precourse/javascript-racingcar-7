@@ -9,9 +9,9 @@ class OutputView{
       Console.print("실행 결과");
       this.thisFirstprint= false;
     }
-    for(let i=0;i<car.length;i++){
-      Console.print(car[i] + ' : ' + '-'.repeat(arr[i])); 
-    }
+    car.forEach((num,i) => {
+      Console.print(num + ' : ' + '-'.repeat(arr[i])); 
+    });
     Console.print('\n');
   }
 
