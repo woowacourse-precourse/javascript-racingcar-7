@@ -1,6 +1,6 @@
 import { Random, Console } from '@woowacourse/mission-utils';
-import { displayCarMovement } from './UserInterface.js';
-import { GAME_PROGRESS_MESSAGE } from './Message.js';
+import { displayCarMovement } from '../UserInterface.js';
+import { GAME_PROGRESS_MESSAGE } from '../Message.js';
 
 export default function progressGame(carDataList, moveCount) {
   Console.print(`\n${GAME_PROGRESS_MESSAGE.EXECUTION_RESULT}`);

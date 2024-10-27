@@ -1,4 +1,7 @@
-import { prepareCarData, prepareMoveCount } from '../src/GamePrepare.js';
+import {
+  prepareCarData,
+  prepareMoveCount,
+} from '../src/GameUtil/GamePrepare.js';
 
 describe('입력값 유효성 검사', () => {
   test('사용 가능 하지 않는 자동차 이름 존재 시 에러 발생', () => {

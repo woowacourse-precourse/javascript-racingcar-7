@@ -1,6 +1,6 @@
-import progressGame from './GamePlayHandler.js';
-import { prepareCarData, prepareMoveCount } from './GamePrepare.js';
-import pickWinner from './GameResult.js';
+import progressGame from './GameUtil/GamePlayHandler.js';
+import { prepareCarData, prepareMoveCount } from './GameUtil/GamePrepare.js';
+import pickWinner from './GameUtil/GameResult.js';
 import {
   announceWinner,
   inputCarNames,
