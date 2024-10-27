@@ -28,8 +28,8 @@ class App {
     const names = input.split(",").map((name) => name.trim());
 
     // 자동차 이름에 쉼표(,) 외의 다른 문자가 포함되어 있는지 확인
-    const invalidSeparator = names.some((name) =>
-      /[^a-zA-Z0-9가-힣,]/.test(name)
+    const invalidSeparator = names.some(
+      (name) => /[^a-zA-Z0-9가-힣,]/.test(name) // 쉼표 제외
     );
     if (invalidSeparator) {
       throw new Error(
@@ -49,7 +49,7 @@ class App {
 
   async getRounds() {
     const input = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
-    this.numberOfRounds = this.validateRounds(input); // 시도 횟수 검증
+    this.numberOfRounds = this.validateRounds(String(input)); // 시도 횟수 검증
   }
 
   validateRounds(input) {
@@ -58,9 +58,12 @@ class App {
       throw new Error("[ERROR] 시도 횟수를 입력해주세요.");
     }
 
+    // 입력값을 숫자로 변환
     const rounds = Number(input);
-    if (isNaN(rounds) || rounds <= 0) {
-      throw new Error("[ERROR] 유효한 시도 횟수를 입력하세요.");
+
+    // 입력값이 양의 정수가 아닐 경우 처리
+    if (!Number.isInteger(rounds) || rounds <= 0) {
+      throw new Error("[ERROR] 양의 정수로 된 시도횟수를 입력하세요.");
     }
 
     return rounds; // 유효한 시도 횟수 반환
