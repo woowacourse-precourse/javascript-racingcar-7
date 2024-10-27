@@ -1,4 +1,4 @@
-import { Random } from '@woowacourse/mission-utils';
+import { Random, Console } from '@woowacourse/mission-utils';
 import RaceView from '../view/RaceView.js';
 import CarModel from '../model/CarModel.js';
 import RaceModel from '../model/RaceModel.js';
@@ -20,8 +20,10 @@ class RaceController {
   }
 
   runRace(attemptCount) {
+    Console.print('\n실행 결과');
     for (let i = 0; i < attemptCount; i++) {
       this.determineCarMovements();
+      this.view.displayRaceStatus(this.race.cars);
     }
   }
 

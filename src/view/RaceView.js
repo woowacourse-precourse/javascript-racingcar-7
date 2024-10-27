@@ -9,8 +9,15 @@ class RaceView {
   }
 
   async getAttemptCount() {
-    const input = await Console.readLineAsync('\n시도할 횟수는 몇 회인가요?\n');
+    const input = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
     return input;
+  }
+
+  displayRaceStatus(cars) {
+    cars.forEach((car) => {
+      Console.print(`${car.name} : ${'-'.repeat(car.distance)}`);
+    });
+    Console.print(' ');
   }
 }
 export default RaceView;
