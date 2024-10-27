@@ -16,7 +16,7 @@ class RacingGame {
         }
         if (this.promptSequence === 2) {
             const tryNum = Number(prompt)
-            this.getOutput(result)
+            this.getOutput()
             this.playRace(tryNum)
             this.promptSequence++
         }
@@ -55,26 +55,26 @@ class RacingGame {
 
     async getInput(message) {
         const input = await Console.readLineAsync(message)
-        this.errorhandler(input)
+        this.handleValid(input)
         return input
     }
 
     getOutput(data) {
         if (this.promptSequence === 2) {
             this.carArr.map((car) => Console.print(`${car.carName} : ${"-".repeat(car.winCnt)}`))
-            Console.print("\n")
+            return Console.print("\n")
         }
         if (this.promptSequence === 3) {
-            Console.print(OUTPUT_MESSAGE.ERROR+data)
+            return Console.print(OUTPUT_MESSAGE.ERROR.DEFAULT+data)
         }
     }
 
-    errorhandler(string) {
+    handleValid(string) {
         if (this.promptSequence === 1 && firstErrorCondition(string)) {
-            throw new Error(OUTPUT_MESSAGE.ERROR)
+            throw new Error(OUTPUT_MESSAGE.ERROR.DEFAULT)
         }
         if (this.promptSequence === 2 && secondErrorCondition(string)) {
-            throw new Error(OUTPUT_MESSAGE.ERROR)
+            throw new Error(OUTPUT_MESSAGE.ERROR.DEFAULT)
         }
     }
 }
