@@ -2,7 +2,7 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 
 const isRandomMove = () => {
   const randNum = () => MissionUtils.Random.pickNumberInRange(0, 9);
-  if (randNum >= 4) return true;
+  if (randNum() >= 4) return true;
   return false;
 };
 
