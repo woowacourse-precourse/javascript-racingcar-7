@@ -21,3 +21,7 @@
 - refactor : 가독성을 위해 App내의 로직을 메서드로 분리
 - docs : 기능 목록 수정
 - chore : eslint 설정 적용
+- refactor : 하드코딩된 값을 상수로 대체
+- feat : Validator 클래스 구현
+- refactor : racers와 totalRound 입력값 검증하는 로직 수정
+- feat : CustomErrorTest 구현 후 에러케이스 추가
