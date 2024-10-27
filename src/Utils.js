@@ -45,14 +45,6 @@ class Utils {
     }
     return carName;
   }
-  checkTryNum(tryNum) {
-    // 시도 횟수 유효성 검사
-    if (/^[0-9]+$/.test(tryNum)) {
-      return this.limitingNum(tryNum);
-    } else {
-      throw new Error(ERROR_MESSAGE.ONLY_INTGER);
-    }
-  }
 }
 
 export default Utils;
