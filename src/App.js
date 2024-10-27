@@ -34,11 +34,10 @@ class App {
     // 시도 횟수가 숫자인지 확인
     validateNumberRound(round);
     validatePositiveRound(round);
-    Console.print("");
 
-    Console.print("실행 결과");
     // 게임 시작
     let cars = carList.map((name) => createCar(name));
+    Console.print("\n실행 결과");
     for (let i = 0; i < round; i++) {
       cars = cars.map((car) => moveForward(car));
       Console.print(cars.map((car) => getCurrentPosition(car)).join("\n"));
