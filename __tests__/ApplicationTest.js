@@ -4,6 +4,7 @@ import { validateCars, validateCount } from '../src/validate.js';
 import { moveCars, parseStringToObject } from '../src/racing.js';
 import { getInputCars, getInputCount, input } from '../src/input.js';
 import { printProgress, printResult } from '../src/output.js';
+import { isMoveForward } from '../src/random.js';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -189,5 +190,17 @@ describe('출력 처리 (output.js)', () => {
     printResult(cars);
 
     expect(logSpy).toHaveBeenCalledWith('최종 우승자 : pobi,woni');
+  });
+});
+
+describe('랜덤 숫자로 이동 여부 판단(random.js)', () => {
+  test('4 이상일 때 true 반환', () => {
+    mockRandoms([4]);
+    expect(isMoveForward()).toBeTruthy();
+  });
+
+  test('3 이하일 때 false 반환', () => {
+    mockRandoms([3]);
+    expect(isMoveForward()).toBeFalsy();
   });
 });
