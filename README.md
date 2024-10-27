@@ -20,8 +20,8 @@
 ### 출력
 
 - [x] 전진하는 자동차를 출력할 때 자동차 이름을 같이 출력한다. ('pobi : --')
-- [ ] 자동차 경주 게임을 완료한 후 누가 우승했는지 알려준다. ('최종 우승자 : pobi')
-- [ ] 우승자는 한 명 이상일 수 있다. ('최종 우승자 : pobi, jun')
+- [x] 자동차 경주 게임을 완료한 후 누가 우승했는지 알려준다. ('최종 우승자 : pobi')
+- [x] 우승자는 한 명 이상일 수 있다. ('최종 우승자 : pobi, jun')
 
 ### 예외사항
 
@@ -45,4 +45,4 @@
 
 - @woowacourse/mission-utils에서 제공하는 Random 및 Console API를 사용하여 구현한다.
   - [x] Random값 추출은 Random.pickNumberInRange()를 활용한다.
-  - [ ] 사용자 값 입력 및 출력은 Console.readLineAsync()와 Console.print()를 활용한다.
+  - [x] 사용자 값 입력 및 출력은 Console.readLineAsync()와 Console.print()를 활용한다.

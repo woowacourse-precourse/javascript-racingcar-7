@@ -1,3 +1,4 @@
+import { Console } from '@woowacourse/mission-utils';
 import { Car } from './Car.js';
 
 export class raceController {

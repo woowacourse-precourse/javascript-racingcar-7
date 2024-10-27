@@ -14,7 +14,8 @@ class App {
     ).trim();
 
     try {
-      const Racing = new raceController(inputNames, inputAttemps);
+      const Controller = new raceController(inputNames, inputAttemps);
+      Controller.startRace();
     } catch (error) {
       throw new Error('[ERROR]' + error.message);
     }
