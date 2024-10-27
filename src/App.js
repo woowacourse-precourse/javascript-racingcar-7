@@ -76,7 +76,6 @@ class CarRace {
 
     startRace() {
         MissionUtils.Console.print("\n실행 결과");
-
         Array.from({ length: this.round }).forEach(() => {
             this.startRound();
             MissionUtils.Console.print("");
@@ -86,6 +85,23 @@ class CarRace {
     printResultByRound(car) {
         const resultByRound = `${car.getName()} : ${car.getPosition()}`;
         MissionUtils.Console.print(resultByRound);
+    }
+
+    getWinner() {
+        const maxPosition = Math.max(...this.cars.map((car) => car.getPosition().length));
+        const winningCars = this.cars.filter((car) => car.getPosition().length === maxPosition);
+
+        return winningCars;
+    }
+
+    printWinner() {
+        const winner = this.getWinner()
+            .map((car) => car.getName())
+            .join(", ");
+
+        const winnerMessage = `최종 우승자 : ${winner}`;
+
+        MissionUtils.Console.print(winnerMessage);
     }
 
     async start() {
@@ -103,6 +119,8 @@ class CarRace {
         this.setRound(round);
 
         this.startRace();
+
+        this.printWinner();
     }
 }
 
