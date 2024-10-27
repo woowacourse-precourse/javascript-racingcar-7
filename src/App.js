@@ -156,10 +156,12 @@ class Car {
         this.#position = "";
     }
 
-    move() {
-        const shouldMove = MissionUtils.Random.pickNumberInRange(0, 9) >= 4;
+    shouldMove() {
+        return MissionUtils.Random.pickNumberInRange(0, 9) >= 4;
+    }
 
-        if (shouldMove) {
+    move() {
+        if (this.shouldMove()) {
             this.#position += "-";
         }
     }
