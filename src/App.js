@@ -3,7 +3,7 @@ class App {
   async run() {
     const racingCar = new RacingCar();
 
-    racingCar.start();
+    await racingCar.start();
   }
 }
 
