@@ -20,7 +20,6 @@ class App {
     this.game.setGame(carNames, repeatCount);
     this.game.start();
 
-    this.output.printResultTitle();
     this.output.printResults(this.game.getRaceLogs());
     this.output.printWinners(this.game.getWinners());
   }

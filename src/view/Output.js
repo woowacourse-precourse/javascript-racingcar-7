@@ -1,6 +1,14 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 const Output = {
+  printResultTitle() {
+    MissionUtils.Console.print("\n실행 결과");
+  },
+
+  printNewLine() {
+    MissionUtils.Console.print("");
+  },
+
   printWinners(winners) {
     MissionUtils.Console.print(`최종 우승자 : ${winners.join(", ")}`);
   },
@@ -12,19 +20,13 @@ const Output = {
   },
 
   printResults(raceLogs) {
+    Output.printResultTitle();
     raceLogs.forEach((cars) => {
       Output.printResult(cars);
       Output.printNewLine();
     });
   },
 
-  printResultTitle() {
-    MissionUtils.Console.print("\n실행 결과");
-  },
-
-  printNewLine() {
-    MissionUtils.Console.print("");
-  },
 };
 
 export default Output;
