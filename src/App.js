@@ -50,11 +50,28 @@ class RacingCar {
 class InputValidator {
   // 자동차 이름 유효성 검사
   static validateCarNames(names){
+    if (names.some(name => name.trim() === '')) {
+      throw new Error('[ERROR] 자동차 이름은 빈 값일 수 없습니다.');
+    }
+    if (names.some(name => name.length > 5)){
+      throw new Error('[ERROR] 자동차 이름은 5자 이하만 가능합니다.');
+    }
 
+    return names;
   }
   // 시도 횟수 유효성 검사
   static validateAttempts(attempts){
+    const number = Number(attempts);
 
+    if (isNaN(number) || !Number.isInteger(number)) {
+      throw new Error('[ERROR] 시도 횟수는 정수여야 합니다.');
+    }
+
+    if (number <= 0){
+      throw new Error('[ERROR] 시도 횟수는 0보다 커야 합니다.');
+    }
+
+    return number;
   }
 }
 
@@ -62,6 +79,8 @@ class InputValidator {
 
 class App {
   async run() {
+
+
   }
 
 
