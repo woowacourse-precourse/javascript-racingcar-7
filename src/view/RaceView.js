@@ -13,11 +13,15 @@ class RaceView {
     return input;
   }
 
-  displayRaceStatus(cars) {
+  printRaceStatus(cars) {
     cars.forEach((car) => {
       Console.print(`${car.name} : ${'-'.repeat(car.distance)}`);
     });
     Console.print(' ');
+  }
+
+  printWinner(winner) {
+    Console.print(`최종 우승자 : ${winner.join(', ')}`);
   }
 }
 export default RaceView;

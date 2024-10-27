@@ -17,13 +17,14 @@ class RaceController {
     this.race = new RaceModel(cars);
 
     this.runRace(attemptCount);
+    this.showWinners();
   }
 
   runRace(attemptCount) {
     Console.print('\n실행 결과');
     for (let i = 0; i < attemptCount; i++) {
       this.determineCarMovements();
-      this.view.displayRaceStatus(this.race.cars);
+      this.view.printRaceStatus(this.race.cars);
     }
   }
 
@@ -39,6 +40,11 @@ class RaceController {
 
   canAdvance(randomValue) {
     return randomValue >= 4;
+  }
+
+  showWinners() {
+    const winner = this.race.getWinner();
+    this.view.printWinner(winner);
   }
 }
 
