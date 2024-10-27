@@ -14,9 +14,7 @@ export const InputHandlers = Object.freeze({
   async getTrials() {
     const input = await Console.readLineAsync(INPUT_MESSAGES.TRIALS);
 
-    if (validateTrials(input)) {
-      return input;
-    }
-    return null;
+    validateTrials(input);
+    return input;
   },
 });
