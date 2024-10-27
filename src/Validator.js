@@ -20,7 +20,7 @@ class Validator {
 
   static validCountInput(count) {
     const trimmedCount = count.trim();
-    if (regex.invalidCountInput.test(trimmedCountt) || !trimmedCount) {
+    if (regex.invalidCountInput.test(trimmedCount) || !trimmedCount) {
       throw new Error(`${errorMessages.prefix} ${errorMessages.invalidCount}`);
     }
 
