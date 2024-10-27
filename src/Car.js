@@ -1,11 +1,20 @@
 // Car.js
 import { Console } from "@woowacourse/mission-utils";
-import { shouldMoveForward } from "./Random.js";
 
 export class Car {
   constructor(name) {
+    this.validate(name);
     this.name = name;
     this.position = 0;
+  }
+
+  validate(name) {
+    if (name.length > 5) {
+      throw new Error("[ERROR] 자동차 이름은 5자 이하만 가능합니다.");
+    }
+    if (name.trim().length === 0) {
+      throw new Error("[ERROR] 자동차 이름은 빈 값일 수 없습니다.");
+    }
   }
 
   move() {

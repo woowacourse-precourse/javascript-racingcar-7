@@ -1,6 +1,5 @@
 // GameManage.js
-import Car from "./Car";
-
+import { Car } from "./Car";
 export class GameManage {
   constructor(carNames) {
     this.cars = this.createCars(carNames);
