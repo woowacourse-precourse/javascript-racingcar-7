@@ -9,6 +9,7 @@ export class raceController {
   raceResult() {
     this.cars.forEach((car) => {
       car.move();
+      const displayLocation = '-'.repeat(car.getLocation());
     });
   }
 }
