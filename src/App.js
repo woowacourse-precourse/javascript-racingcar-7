@@ -1,16 +1,18 @@
 import {MissionUtils} from "@woowacourse/mission-utils";
-import View from "./View.js";
+import RacingGame from "./RacingGame.js";
 import Utils from "./Utils.js";
+import View from "./View.js";
 
 class App {
   async run() {
-    const carArray = await View.readLineCarNames();
+    const carNames = await View.readLineCarNames();
 
-    const racingRecords = carArray.map((car) => {
-      return {name: car, records: []};
-    });
+    const game = new RacingGame();
 
-    const tryNumber = await View.readLineTryCount();
+    game.getInitialBoard(carNames);
+    const scoreBoard = game.getScoreBoard();
+
+    const tryCount = await View.readLineTryCount();
 
     const getRacingRoundResult = (array, count) => {
       const rounds = [...array];
@@ -27,12 +29,12 @@ class App {
       return rounds;
     }
 
-    const racingRoundResult = getRacingRoundResult(racingRecords, tryNumber);
+    const racingRoundResult = getRacingRoundResult(scoreBoard, tryCount);
 
     MissionUtils.Console.print('');
     MissionUtils.Console.print(`실행 결과`);
 
-    Utils.range(tryNumber).forEach((_, index) => {
+    Utils.range(tryCount).forEach((_, index) => {
       racingRoundResult.forEach((count) => {
         const recordsRound = count.records.slice(0, index + 1).filter(Boolean).length;
 
