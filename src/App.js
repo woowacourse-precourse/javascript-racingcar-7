@@ -4,7 +4,7 @@ import inputCarList from "./Components/Input/inputCarList.js";
 class App {
   async run() {
     try {
-      const carList = inputCarList(GIDE_MESSAGE.carList);
+      const carList = await inputCarList(GIDE_MESSAGE.carList);
     } catch (error) {
       throw new Error(error.message);
     }
