@@ -19,6 +19,19 @@ class App {
       )
       this.validTryCount(inputTryCount);
 
+      // 자동차들 움직이는 상태
+      for(let i = 0; inputTryCount > i; i++) {
+        carNameList.forEach((carName, index) => {
+          const step = this.goCount();
+          carStepList[index] += step;
+          console.log(`${carName}: ${'-'.repeat(carStepList[index])}`);
+        });
+        console.log('\n');
+      }
+
+      // 우승자 출력
+      this.printWinners(carNameList, carStepList);
+
     } catch (error) {
       Console.print(`[ERROR] ${error.message}`);
     }
@@ -45,6 +58,19 @@ class App {
     if(inputTryCount < 0) {
       throw new Error('양수만 입력해주세요');
     }
+  }
+
+  // 전진 가능한 조건 함수
+  goCount = () => {
+    return Random.pickNumberInRange(0, 9) >= 4 ? 1 : 0;
+  }
+
+  // 우승자 출력 함수
+  printWinners(carNameList, carStepList) {
+    const maxDistance = Math.max(...carStepList);
+    const winners = carNameList
+      .filter((_, index) => carStepList[index] === maxDistance);
+    console.log(`우승자: ${winners.join(', ')}`);
   }
 
 }
