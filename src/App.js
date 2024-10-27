@@ -24,7 +24,7 @@ class App {
       outputView
     );
 
-    raceController.run();
+    await raceController.run();
   }
 }
 

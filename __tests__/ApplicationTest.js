@@ -46,14 +46,14 @@ describe('자동차 경주', () => {
     });
   });
 
-  test('예외 테스트 : 자동차 이름은 이름은 5자 이하만 가능하다', async () => {
+  test('예외 테스트 : 자동차 이름은 5자 이하만 가능하다', async () => {
     const inputs = ['pobi,javaji'];
     mockQuestions(inputs);
 
     const app = new App();
 
     await expect(app.run()).rejects.toThrow(
-      '[ERROR] 자동차 이름은 이름은 5자 이하만 가능합니다.'
+      '[ERROR] 자동차 이름은 5자 이하만 가능합니다.'
     );
   });
 
