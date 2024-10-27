@@ -47,7 +47,6 @@ describe("자동차 경주", () => {
   });
 
   test("기능 테스트 - 최종 우승자가 2명 이상인 경우", async () => {
-  // given
   const MOVING_FORWARD = 4;
   const inputs = ["pobi,jun", "1"];
   const logs = ["pobi : -", "jun : -", "최종 우승자 : pobi, jun"];
@@ -56,11 +55,9 @@ describe("자동차 경주", () => {
   mockQuestions(inputs);
   mockRandoms([MOVING_FORWARD, MOVING_FORWARD]);
 
-  // when
   const app = new App();
   await app.run();
 
-  // then
   logs.forEach((log) => {
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
   });
