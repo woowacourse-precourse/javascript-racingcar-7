@@ -1,4 +1,4 @@
-import {Console, MissionUtils} from '@woowacourse/mission-utils';
+import { Console, MissionUtils } from '@woowacourse/mission-utils';
 
 class App {
     constructor() {
@@ -11,6 +11,7 @@ class App {
         this.rounds = await this.countInput();
         Console.print('실행 결과');
         await this.playGame();
+        this.printWinners();
     }
 
     async carNameInput() {
@@ -60,6 +61,16 @@ class App {
             this.printResult();
             Console.print('');
         }
+    }
+
+    findWinners() {
+        const maxDashes = Math.max(...this.result.map(car => (car.match(/-/g) || []).length));
+        return this.result.filter(car => (car.match(/-/g) || []).length === maxDashes);
+    }
+
+    printWinners() {
+        const winners = this.findWinners().map(car => car.split(' : ')[0]);
+        Console.print(`최종 우승자 : ${winners.join(', ')}`);
     }
 }
 
