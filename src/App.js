@@ -7,9 +7,8 @@ class App {
   async run() {
     const inputHandler = new InputHandler();
     const outputHandler = new OutputHandler();
-    const carRacingGame = new CarRacingGame();
-    const carRacingManager = new CarRacingManager(inputHandler, carRacingGame, outputHandler);
-
+    const carRacingManager = new CarRacingManager(inputHandler, outputHandler);
+    
     await carRacingManager.startGame();
   }
 }
