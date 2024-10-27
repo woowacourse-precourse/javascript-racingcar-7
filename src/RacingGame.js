@@ -37,7 +37,6 @@ export class RacingGame {
         );
         this.tryCount = Number(attemptsInput);
         this.validateTryCount(this.tryCount);
-        
         names.forEach(name => this.cars[name] = ""); 
     }
 
@@ -62,6 +61,13 @@ export class RacingGame {
         const maxDistance = Math.max(...Object.values(this.cars).map(car => car.length));
         const winners = Object.keys(this.cars).filter(car => this.cars[car].length === maxDistance);
         MissionUtils.Console.print(`최종 우승자 : ${winners.join(', ')}`);
+    }
+
+    startRace() {
+        for (let i = 0; i < this.tryCount; i++) {
+            this.playRound();
+        }
+        this.printWinners();
     }
 }
 
