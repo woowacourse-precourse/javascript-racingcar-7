@@ -20,8 +20,8 @@ class Validate {
       // 시도횟수가 공백일 때 error
       throw new Error('[Error]');
     }
-    if (isNaN(parseNumber)) {
-      // 시도횟수를 숫자로 입력 하지 않았을 때 error
+    if (isNaN(parseNumber) || parseNumber <= 0) {
+      // 시도횟수를 숫자로 입력 하지 않았을 때나 음수일 때 error
       throw new Error('[Error]');
     }
     return attempts;
