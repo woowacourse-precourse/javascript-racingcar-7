@@ -4,7 +4,6 @@ import {
   printStatusTitle,
 } from './printComment.js';
 
-// (Car[], number) => void
 const runCarRacing = (carList, turn) => {
   printStatusTitle();
   for (let i = 0; i < turn; i++) {
@@ -14,7 +13,6 @@ const runCarRacing = (carList, turn) => {
   }
 };
 
-// Car[] => void
 const actionAllCarOneTurn = (carList) => {
   carList.forEach((car) => {
     car.actionOneTurn();

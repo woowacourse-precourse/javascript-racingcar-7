@@ -9,14 +9,12 @@ class App {
   async run() {
     const firstUserInput = await Console.readLineAsync(InputComment.CAR_NAME);
     const carList = parseCarNameInput(firstUserInput);
-
     const secondUserInput = await Console.readLineAsync(InputComment.TURN);
     const turn = parseTurnInput(secondUserInput);
 
     runCarRacing(carList, turn);
 
     const winner = checkWinner(carList);
-
     printWinner(winner);
   }
 }

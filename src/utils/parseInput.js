@@ -15,7 +15,6 @@ export const parseCarNameInput = (input) => {
 
   return createCarList(carNameList);
 };
-
 // string[] => Car[]
 const createCarList = (carNameList) => {
   const carList = carNameList.map((name) => {
