@@ -19,11 +19,21 @@ class App {
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
     );
     const names = input.split(',');
-    if (this.validateCarNames(names)) {
-      return names;
-    } else {
+    if (!this.validateNameLengths(names)) {
       throw new Error('[ERROR] 자동차 이름은 1자 이상 5자 이하만 가능합니다.');
     }
+
+    // 빈 문자열 체크
+    if (!this.validateNoEmptyNames(names)) {
+      throw new Error('[ERROR] 자동차 이름은 빈 문자열일 수 없습니다.');
+    }
+
+    // 중복 이름 체크
+    if (!this.validateNoDuplicateNames(names)) {
+      throw new Error('[ERROR] 자동차 이름은 중복될 수 없습니다.');
+    }
+
+    return names;
   }
 
   async getTryCount() {
