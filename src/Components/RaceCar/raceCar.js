@@ -1,8 +1,8 @@
-import { Console } from "@woowacourse/mission-utils";
 import { GIDE_MESSAGE } from "../../Constants/constant.js";
 import randomGenerator from "../../Utils/randomGenerator.js";
 import printResultMessage from "../Output/printResultMessage.js";
 import printCurrRaceState from "../Output/printCurrRaceState.js";
+import printWinner from "../Output/printWinner.js";
 
 const moveRaceCar = (car) => {
   const randomNum = randomGenerator();
@@ -25,5 +25,9 @@ const raceCar = (carList, tryNumber) => {
     raceCarList.forEach(moveRaceCar);
     printCurrRaceState(raceCarList);
   }
+
+  const maxnumber = Math.max(...raceCarList.map((car) => car.position));
+  const winnerCars = raceCarList.filter((car) => car.position === maxnumber);
+  printWinner(winnerCars);
 };
 export default raceCar;
