@@ -82,4 +82,13 @@ describe("자동차 경주", () => {
     app.startRace([{ name: "pobi", position: 0 }], 3);
     expect(runRoundSpy).toHaveBeenCalledTimes(3);
   });
+
+  // 5. 단일 라운드 실행
+  test("단일 라운드에서 자동차가 예상대로 움직이거나 멈추는지 확인한다.", () => {
+    const app = new App();
+    const moveCarSpy = jest.spyOn(app, "moveCar");
+    const cars = [{ name: "pobi", position: 0 }, { name: "woni", position: 0 }];
+    app.runRound(cars);
+    expect(moveCarSpy).toHaveBeenCalledTimes(cars.length);
+  });
 });
