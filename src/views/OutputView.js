@@ -9,6 +9,7 @@ class OutputView {
     Console.print(input);
   }
 
+  // 처음 실행 시 출력
   static printRun() {
     Console.print('실행 결과');
   }

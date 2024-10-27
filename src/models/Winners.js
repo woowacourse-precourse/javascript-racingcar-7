@@ -5,7 +5,7 @@ class Winners {
     carList.forEach(car => {
       if (car.distance > maxDistance) {
         maxDistance = car.distance;
-        winners = [car.name];
+        winners = [car.name]; // 배열 초기화
       } else if (car.distance === maxDistance) {
         winners.push(car.name);
       }

@@ -25,6 +25,7 @@ class Controller {
         OutputView.printGame(carList);
         OutputView.printNewLine();
       }
+      // 우승자 출력
       const winners = Winners.findWinners(carList);
       OutputView.printWinners(winners);
     } catch (error) {
