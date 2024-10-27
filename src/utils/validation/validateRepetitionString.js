@@ -1,29 +1,26 @@
+import ErrorMessage from '../../resources/ErrorMessage.js';
+
 function validateNotNumber(repetitionString) {
   if (repetitionString.match(/[^0-9]+/))
-    throw new Error('[ERROR] 시도 횟수는 숫자만 입력해주세요.');
+    throw new Error(ErrorMessage.INVALID_NUMBER_INPUT);
 }
 
 function validateZeroNumber(repetitionString) {
   if (repetitionString.match(/^[0]$/))
-    throw new Error('[ERROR] 시도 횟수는 1 이상의 정수로 입력해주세요.');
+    throw new Error(ErrorMessage.GREATER_THAN_ZERO);
 }
 
 function validateZeroStarting(repetitionString) {
   if (repetitionString.startsWith('0'))
-    throw new Error(
-      '[ERROR] 시도 횟수의 첫째 자리수는 1 이상으로 입력해주세요.',
-    );
+    throw new Error(ErrorMessage.STARTSWITH_ZERO_FORMAT);
 }
 
 export default function validateRepetitionString(repetitionString) {
-  if (!repetitionString)
-    throw new Error(
-      '[ERROR] 시도 횟수가 입력되지 않았습니다. 시도 횟수를 입력해주세요.',
-    );
+  if (!repetitionString) throw new Error(ErrorMessage.EMPTY_NAMES_NOT_ALLOW);
   if (!repetitionString.match(/^[1-9](\d+)*$/)) {
     validateNotNumber(repetitionString);
     validateZeroNumber(repetitionString);
     validateZeroStarting(repetitionString);
-    throw new Error('[ERROR] 시도 횟수를 입력해주세요.');
+    throw new Error(ErrorMessage.UNKNOWN_INVALID_NUMBERs);
   }
 }
