@@ -25,20 +25,22 @@ class CarModel {
   }
 
   findWinner() {
-    const winner = [''];
     let max = 0;
-    for (let [key, value] of this.carMap) {
-      if (value.length === max) {
-        winner.push(key);
-        max = value.length;
+    const winners = [];
+
+    this.carMap.forEach((position, name) => {
+      if (position.length > max) {
+        max = position.length;
+        winners.length = 0;
+        winners.push(name);
+        return;
       }
-      if (value.length > max) {
-        winner.pop();
-        winner.push(key);
-        max = value.length;
+      if (position.length === max) {
+        winners.push(name);
       }
-    }
-    return winner.join(',');
+    });
+
+    return winners.join(',');
   }
 }
 
