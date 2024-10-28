@@ -52,8 +52,9 @@ class RacingGame {
     }
 
     printWinner(cars) {
-        const winner = this.determineWinner(cars);
-        MissionUtils.Console.print(`최종 우승자 : ${winner}`);
+        const winners = this.determineWinner(cars);
+        const winnerMessage = `최종 우승자 : ${winners.join(', ')}`;
+        MissionUtils.Console.print(winnerMessage);
     }
 }
 
