@@ -14,3 +14,7 @@ export const ERROR_MESSAGES = Object.freeze({
   emptyCarName: '자동차 이름을 입력해주세요.',
   emptyRoundCount: '시도 횟수를 입력해주세요.',
 });
+
+export const REGEX = Object.freeze({
+  isInvalidDelimiter: /[^,가-힣a-zA-Z0-9]/,
+});
