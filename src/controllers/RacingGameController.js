@@ -1,7 +1,7 @@
 import RacingGame from '../models/RacingGame.js';
 import OutputView from '../views/OutputView.js';
 import InputView from '../views/InputView.js';
-import { Console } from "@woowacourse/mission-utils";
+import {Console} from "@woowacourse/mission-utils";
 
 
 class RacingGameController {
@@ -11,7 +11,7 @@ class RacingGameController {
     }
 
     async run() {
-        const { car, tryNumber } = await this.inputView.getInput();
+        const {car, tryNumber} = await this.inputView.getInput();
 
         const game = new RacingGame(car);
 

@@ -3,11 +3,13 @@ class Car {
         this.name = name;
         this.position = 0;
     }
-    getPosition(){
+
+    getPosition() {
         return this.position;
     }
+
     move(randomNumber) {
-        if(randomNumber >= 4) {
+        if (randomNumber >= 4) {
             this.position++;
         }
     }

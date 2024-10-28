@@ -1,5 +1,5 @@
-import { Console } from "@woowacourse/mission-utils";
-import { validateCarNames, validateTryNumber } from "../utils/validators.js";
+import {Console} from "@woowacourse/mission-utils";
+import {validateCarNames, validateTryNumber} from "../utils/validators.js";
 
 class InputView {
     async getInput() {
@@ -11,7 +11,7 @@ class InputView {
         validateTryNumber(tryNumber);
         Console.print('\n');
 
-        return { car, tryNumber: parseInt(tryNumber, 10) };
+        return {car, tryNumber: parseInt(tryNumber, 10)};
     }
 }
 
