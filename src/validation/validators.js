@@ -16,3 +16,8 @@ export const hasDoubleComma = (carNames) => {
 export const hasSpecialCharacters = (carNames) => {
   return CHAR_REGEX.test(carNames);
 };
+
+export const hasDuplicateNames = (carNameArr) => {
+  const uniqueCarSet = new Set(carNameArr);
+  return uniqueCarSet.size !== carNameArr.length;
+};
