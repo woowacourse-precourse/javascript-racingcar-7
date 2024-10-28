@@ -55,10 +55,17 @@ class Race{
     }
   }
 
+//3. 경주 실행 및 결과 출력
 class App {
+  async run() {
+  
+  }
 
-
-  async run() {}
+  // 자동차 이름을 입력받는 메서드
+  async getCarNames(){
+    const carNamesInput = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)');
+    return carNamesInput.split(',').map(name => name.trim()).filter(name => name.length > 0 && name.length <= 5);
+  }
 }
 
 
