@@ -1,5 +1,5 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
-import { RESULT_MESSAGE } from "./constants.js";
+import { RESULT_MESSAGE, WINNER_MESSAGE } from "./constants.js";
 
 export function displayCurrentProgress(raceResults) {
     Object.entries(raceResults).forEach(([name, progress]) => {
@@ -11,5 +11,5 @@ export function displayCurrentProgress(raceResults) {
 export function displayWinners(raceResults) {
     const MAX_DISTANCE = Math.max(...Object.values(raceResults).map(result => result.length));
     const WINNERS = Object.keys(raceResults).filter(name => raceResults[name].length === MAX_DISTANCE);
-    MissionUtils.Console.print(`${RESULT_MESSAGE} : ${WINNERS.join(", ")}`);
+    MissionUtils.Console.print(`${WINNER_MESSAGE} : ${WINNERS.join(", ")}`);
   }

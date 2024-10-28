@@ -1,5 +1,5 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
-import { MIN_RANDOM_VALUE } from "./constants.js";
+import { MIN_RANDOM_VALUE, RESULT_MESSAGE } from "./constants.js";
 import { displayCurrentProgress } from "./raceView.js";
 
 function shouldMoveForward() {
@@ -13,6 +13,8 @@ export function simulateRace(carNames, attemptCount) {
       return acc;
     }, {});
   
+    MissionUtils.Console.print(RESULT_MESSAGE); 
+
     for (let i = 0; i < attemptCount; i++) {
       carNames.forEach((name) => {
         if (shouldMoveForward()) {
