@@ -122,4 +122,12 @@ describe("자동차 경주 입력 관련 예외 테스트", () => {
     const app = new App();
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
+  test("자동차 이름이 중복되는 경우", async () => {
+    const inputs = ["자동차", "1"];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
 });
