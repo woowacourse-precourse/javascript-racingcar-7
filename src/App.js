@@ -1,5 +1,6 @@
 import { Console, Random } from "@woowacourse/mission-utils";
 import Input from "./utils/input.js";
+import Output from "./utils/output.js";
 
 class App {
   async run() {
@@ -17,7 +18,7 @@ class App {
 
     const tries = await Input.getTries();
 
-    Console.print(`경주할 자동차: ${cars.join(", ")} 시도할 횟수: ${tries}`);
+    Output.printWinners(cars);
   }
 }
 
