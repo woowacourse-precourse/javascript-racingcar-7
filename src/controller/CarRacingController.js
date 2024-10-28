@@ -1,62 +1,59 @@
-import { MissionUtils } from "@woowacourse/mission-utils";
-import CarRacingController from "../src/controller/CarRacingController.js";
+import InputValidator from "../utils/InputValidator.js";
+import InputView from "../view/InputView.js";
+import OutputView from "../view/OutputView.js";
+import RaceManager from "../domain/RaceManager.js";
 
-const getLogSpy = () => {
-  const logSpy = jest.spyOn(MissionUtils.Console, "print");
-  logSpy.mockClear();
-  return logSpy;
-};
+class CarRacingController {
+  #raceManager;
 
-describe("CarRacingController 테스트", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
+  constructor() {
+    this.#raceManager = new RaceManager();
+  }
 
-  test("여러 명이 동시 우승하는 경우", async () => {
-    const controller = new CarRacingController();
-    const logSpy = getLogSpy();
+  async play() {
+    try {
+      await this.#initializeGame();
+      await this.#raceLoop();
+      this.announceWinners();
+    } catch (error) {
+      console.error("게임 실행 중 오류 발생:", error.message);
+      throw error;
+    }
+  }
 
-    // 입력값 모킹
-    jest
-      .spyOn(MissionUtils.Console, "readLineAsync")
-      .mockResolvedValueOnce("pobi,jun,woni") // 자동차 이름 입력
-      .mockResolvedValueOnce("1"); // 시도 횟수 입력
+  async #initializeGame() {
+    await this.#initializeCars();
+    await this.#initializeAttempts();
+  }
 
-    // 랜덤값 모킹
-    jest
-      .spyOn(MissionUtils.Random, "pickNumberInRange")
-      .mockReturnValueOnce(5) // pobi 이동
-      .mockReturnValueOnce(5) // jun 이동
-      .mockReturnValueOnce(3); // woni 정지
+  async #initializeCars() {
+    const carNamesInput = await InputView.readCarNames();
+    const carNames = InputValidator.validateCarNames(carNamesInput);
+    this.#raceManager.createCars(carNames);
+  }
 
-    await controller.play();
+  async #initializeAttempts() {
+    const attemptsInput = await InputView.readAttempts();
+    const validatedAttempts = InputValidator.validateAttempts(attemptsInput);
+    this.#raceManager.setAttempts(validatedAttempts);
+  }
 
-    expect(logSpy).toHaveBeenCalledWith(
-      expect.stringContaining("최종 우승자 : pobi, jun")
-    );
-  });
+  async #raceLoop() {
+    const attempts = this.#raceManager.getAttempts();
+    for (let i = 0; i < attempts; i++) {
+      await this.#processRaceRound();
+    }
+  }
 
-  test("단독 우승하는 경우", async () => {
-    const controller = new CarRacingController();
-    const logSpy = getLogSpy();
+  async #processRaceRound() {
+    this.#raceManager.moveAllCars();
+    OutputView.printRaceStatus(this.#raceManager.getCars());
+  }
 
-    // 입력값 모킹
-    jest
-      .spyOn(MissionUtils.Console, "readLineAsync")
-      .mockResolvedValueOnce("pobi,jun,woni") // 자동차 이름 입력
-      .mockResolvedValueOnce("1"); // 시도 횟수 입력
+  announceWinners() {
+    const winners = this.#raceManager.findWinners();
+    OutputView.printWinners(winners);
+  }
+}
 
-    // 랜덤값 모킹
-    jest
-      .spyOn(MissionUtils.Random, "pickNumberInRange")
-      .mockReturnValueOnce(5) // pobi 이동
-      .mockReturnValueOnce(3) // jun 정지
-      .mockReturnValueOnce(3); // woni 정지
-
-    await controller.play();
-
-    expect(logSpy).toHaveBeenCalledWith(
-      expect.stringContaining("최종 우승자 : pobi")
-    );
-  });
-});
+export default CarRacingController;
