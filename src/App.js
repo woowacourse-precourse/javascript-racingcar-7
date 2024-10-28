@@ -45,6 +45,49 @@ function isErrorAttempt(input){
     return false
   }
 }
+
+function initCarObject(arr){
+  var obj = {}
+  arr.forEach(element => {
+    obj[element] = 0
+  });
+  return obj;
+}
+function goForward(val){
+  var randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
+  if(randomNumber >= 4){
+    return val+1;
+  }
+  else{
+    return val;
+  }
+}
+function processTurn(obj){
+  Object.keys(obj).forEach(key=> {
+    obj[key] = goForward(obj[key])
+  })
+  return obj
+}
+
+
+function printResult(obj){
+  Object.keys(obj).forEach(key=>{
+    var dashCount = '-'.repeat(obj[key])
+    Console.print(`${key} : ${dashCount}`)
+  })
+}
+
+function processRacing (obj, attempt){
+  for(var count = 0 ; count < attempt ; count++){
+    obj = processTurn(obj)
+    printResult(obj)
+    Console.print('')
+  }
+  return obj
+}
+
+
+
 class App {
 
   async run() {
@@ -57,10 +100,9 @@ class App {
     const INPUT_ATTEMPT = await inputAttempt()
     const ISERROR_ATTEMPT = isErrorAttempt(INPUT_ATTEMPT)
 
-    Console.print([...CAR_ARRAY])
-    Console.print(INPUT_ATTEMPT)
-
-    
+    //3.경주
+    var carObject = initCarObject(CAR_ARRAY)
+    carObject = processRacing(carObject,INPUT_ATTEMPT)
     
   }
 }
