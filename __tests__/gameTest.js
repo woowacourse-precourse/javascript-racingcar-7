@@ -3,6 +3,7 @@ import { OutputView } from '../src/resources/Constants.js';
 import Game from '../src/components/Game.js';
 import Car from '../src/components/Car.js';
 import Rules from '../src/resources/Rules.js';
+import Output from '../src/utils/io/Output.js';
 
 jest.mock('@woowacourse/mission-utils', () => ({
   Console: { print: jest.fn() },
@@ -59,7 +60,9 @@ describe('Game 클래스 테스트', () => {
         .mockReturnValueOnce(Rules.THRESHOLD_NUMBER - 1); // Wa 정지
 
       game.startRound();
-      game.printRoundResults();
+
+      const carStatuses = game.getCarsStatuses();
+      Output.printRoundResults(carStatuses);
 
       expect(Console.print).toHaveBeenNthCalledWith(
         1,
