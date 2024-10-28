@@ -45,8 +45,10 @@ describe("자동차 경주", () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
+});
 
-  test("예외 테스트", async () => {
+describe("예외 처리", () => { 
+  test("이름이 5글자 넘을 경우 에러 발생", async () => {
     // given
     const inputs = ["pobi,javaji"];
     mockQuestions(inputs);
@@ -57,4 +59,31 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
-});
+
+  test("이름이 빈문자열일 경우 에러 발생", async () => {
+    const inputs = ["pobi,"];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("횟수 음수값이면 에러 발생", async () => {
+    const input = ["pobi","woni",-1];
+    mockQuestions(input);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("횟수 문자열이면 에러 발생", async () => {
+    const input = ["pobi","woni", "aa"];
+    mockQuestions(input);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+ })
