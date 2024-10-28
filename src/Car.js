@@ -4,11 +4,11 @@ class Car {
     this.distance = 0;
   }
 
-  getName() {
+  get Name() {
     return this.name;
   }
 
-  getDistance() {
+  get Distance() {
     return this.distance;
   }
 }
