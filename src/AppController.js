@@ -10,6 +10,7 @@ export default class AppController {
 
     async control() {
         const inputCarName = await Console.readLineAsync(gameMessage.inputCarNameMessage);
+        Parser.separateCarName(inputCarName);
         
         const inputTime = await Console.readLineAsync(gameMessage.inputTimeMessage);
 
