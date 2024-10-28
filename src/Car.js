@@ -11,5 +11,9 @@ class Car {
   get Distance() {
     return this.distance;
   }
+
+  increaseDistance() {
+    return this.distance++;
+  }
 }
 export default Car;

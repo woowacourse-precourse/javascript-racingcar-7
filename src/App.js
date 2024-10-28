@@ -38,7 +38,9 @@ class App {
   excuteAttempt(cars) {
     cars.forEach((car) => {
       const randomNuber = Random.pickNumberInRange(0, 9);
-      console.log(randomNuber);
+      if (randomNuber > 3) {
+        car.increaseDistance();
+      }
     });
   }
 
