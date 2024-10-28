@@ -47,6 +47,12 @@ class Validator {
       throw new Error('[ERROR] 횟수는 1회 이상부터 가능합니다.');
     }
   }
+
+  #checkNegative(attempt) {
+    if (attempt < 0) {
+      throw new Error('[ERROR] 횟수는 자연수만 가능합니다.');
+    }
+  }
 }
 
 export default Validator;
