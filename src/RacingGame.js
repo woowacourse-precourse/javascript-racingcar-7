@@ -1,14 +1,13 @@
-import { Console } from '@woowacourse/mission-utils';
-import UserInput from "./Input.js";
+import IOProcess from "./IOProcess.js";
 import Race from "./Race.js";
 
 class RacingGame{
     constructor(){
-        this.userInput = new UserInput();
+        this.ioProcessor = new IOProcess();
     }
     async newRacingGame(){
-        await this.userInput.initialize(); 
-        const race = new Race(this.userInput);
+        await this.ioProcessor.getInputForRaceInfo(); 
+        const race = new Race(this.ioProcessor);
         await race.doRace();
     }
 }

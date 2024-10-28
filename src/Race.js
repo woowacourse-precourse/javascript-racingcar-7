@@ -1,7 +1,5 @@
 import { Console, MissionUtils } from '@woowacourse/mission-utils';
 
-// import UserInput from "./Input.js";
-
 class Car{
     constructor(name) {
         this.name = name;
@@ -27,7 +25,6 @@ class Race{
 
     async doRace(){
         this.cars = await this.setCars();
-        // await this.input.viewAttemptResultMessage();
         await this.startRace();
         await this.judgeWinnerCar();
         await this.racingResult();

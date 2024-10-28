@@ -1,13 +1,12 @@
 import { Console } from '@woowacourse/mission-utils';
-import Car from './Race.js';
 import * as cs from './constants.js';
-class UserInput {
+class IOProcess {
     constructor(){
         this.carsNameString = '';
         this.carsNameList = [];
         this.attemptNum = 0;
     }
-    async initialize(){
+    async getInputForRaceInfo(){
         this.carsNameString = await Console.readLineAsync('경주할 자동차 이름을 입력하세요. (이름은 쉼표(,) 기준으로 구분)\n');
         await this.separateCarsNameString();
         await this.checkCarNames();
@@ -57,4 +56,4 @@ class UserInput {
     }
 }
 
-export default UserInput;
+export default IOProcess;

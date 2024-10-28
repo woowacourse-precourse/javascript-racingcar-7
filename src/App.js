@@ -1,14 +1,13 @@
 import RacingGame from './RacingGame.js';
 class App {
-  async run() {}
+  async run() {
+    await this.racingGame.newRacingGame(); 
+  }
 
   constructor() {
     this.racingGame = new RacingGame();
   }
   
-  async run() {
-    await this.racingGame.newRacingGame(); 
-  }
   
 }
 
