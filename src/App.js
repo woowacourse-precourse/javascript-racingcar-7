@@ -15,6 +15,7 @@ class App {
     await this.getMoveCount();
 
     this.startRace();
+    this.showWinners();
   }
 
   async getCarNames() {
@@ -68,6 +69,14 @@ class App {
       Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
     });
     Console.print('');
+  }
+
+
+  showWinners() {
+    const maxPosition = Math.max(...this.cars.map((car) => car.position));
+    const winners = this.cars.filter((car) => car.position === maxPosition).map((car) => car.name);
+
+    Console.print(`최종 우승자 : ${winners.join(', ')}`);
   }
 
 
