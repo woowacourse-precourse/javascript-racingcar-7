@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, MissionUtils } from "@woowacourse/mission-utils";
 
 class App {
   async run() {
@@ -16,6 +16,14 @@ class App {
       await Console.readLineAsync("시도할 횟수는 몇회인가요?\n"),
       10
     );
+
+    function canCarMove() {
+      const randomValue = MissionUtils.Random.pickNumberInRange(0, 9);
+      if (randomValue >= 4) {
+        return true;
+      }
+      return false;
+    }
 
     Console.print(carNameArr);
     Console.print(tryNumber);
