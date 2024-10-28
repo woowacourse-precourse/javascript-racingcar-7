@@ -13,7 +13,7 @@ class App {
       return new Car(name);
     });
 
-    const rounds = 2;
+    const rounds = await getInput(INFO_MESSAGE.QUESTION_TRAIL);
 
     for (let i = 0; i < rounds; i++) {
       cars.forEach((car) => {
