@@ -17,9 +17,23 @@ class App {
 		return carNames.map((name) => ({ name: name.trim(), position: 0 }));
 	}
 
+	async getCountInput() {
+		const countInput = await Console.readLineAsync(
+			'시도할 횟수는 몇 회인가요?\n'
+		);
+		const count = parseInt(countInput, 10);
+
+		if (!Number.isInteger(count) || count <= 0) {
+			throw new Error('[ERROR] 시도할 횟수는 1 이상의 정수여야 합니다.');
+		}
+
+		return count;
+	}
+
 	async run() {
 		try {
 			const cars = await this.getCarInput();
+			const tryCount = await this.getCountInput();
 		} catch (error) {
 			Console.print(error.message);
 			throw error;
