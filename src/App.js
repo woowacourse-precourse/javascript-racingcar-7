@@ -9,6 +9,7 @@ class App {
         `자동차 이름: ${carNames.join(", ")} | 시도 횟수: ${attemptCount}`
       );
       const raceResults = this.startRace(carNames, attemptCount);
+      this.printRaceStatus(raceResults);
       this.printWinners(raceResults);
     } catch (error) {
       Console.print(`[ERROR] ${error.message}`);
@@ -18,7 +19,7 @@ class App {
   }
 
   getCarNames() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       Console.readLine(
         "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분): ",
         (input) => {
@@ -27,7 +28,7 @@ class App {
             resolve(carNames);
           } catch (error) {
             Console.print(`[ERROR] ${error.message}`);
-            reject(error);
+            resolve(this.getCarNames()); // 오류 시 재입력 받기
           }
         }
       );
@@ -43,14 +44,14 @@ class App {
   }
 
   getAttemptCount() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       Console.readLine("시도할 횟수는 몇 회인가요?: ", (input) => {
         try {
           const attemptCount = this.validateAttemptCount(input);
           resolve(attemptCount);
         } catch (error) {
           Console.print(`[ERROR] ${error.message}`);
-          reject(error);
+          resolve(this.getAttemptCount()); // 오류 시 재입력 받기
         }
       });
     });
@@ -72,7 +73,6 @@ class App {
           car.position++;
         }
       });
-      this.printRaceStatus(results);
     }
     return results;
   }
