@@ -1,5 +1,5 @@
 class Car {
-  #DECISION_POINT_NUMBER = 4;
+  static DECISION_POINT_NUMBER = 4;
 
   #carName;
   #movingDistance = 0;

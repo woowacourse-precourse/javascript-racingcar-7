@@ -1,8 +1,8 @@
-import MESSAGE from "./constant/string";
+import { MESSAGE, NUMBER } from "./constants";
 
 class InputValidator {
   static checkPositive(number) {
-    if (!Number.isInteger(number) || number < 1) {
+    if (!Number.isInteger(number) || number < NUMBER.MIN_TRYCOUNT) {
       throw new Error(MESSAGE.ERROR.TYPE);
     }
 
@@ -10,7 +10,7 @@ class InputValidator {
   }
 
   static checkBlank(carNames) {
-    const hasBlankName = carNames.some((carName) => carName.trim().length === 0);
+    const hasBlankName = carNames.some((carName) => !carName.trim().length);
 
     if (hasBlankName) {
       throw new Error(MESSAGE.ERROR.BLANK);
@@ -30,7 +30,7 @@ class InputValidator {
   }
 
   static checkMultiple(carNames) {
-    if (carNames.length < 2) {
+    if (carNames.length < NUMBER.MIN_NAME_COUNT) {
       throw new Error(MESSAGE.ERROR.NUMBER_OF_INPUT);
     }
 
@@ -38,7 +38,7 @@ class InputValidator {
   }
 
   static checkNameLength(carNames) {
-    const hasLongName = carNames.some((carName) => carName.length > 5);
+    const hasLongName = carNames.some((carName) => carName.length > NUMBER.MAX_NAME_LENGTH);
 
     if (hasLongName) {
       throw new Error(MESSAGE.ERROR.LENGTH);

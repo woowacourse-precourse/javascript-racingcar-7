@@ -1,5 +1,6 @@
-import { Console, Random } from "@woowacourse/mission-utils";
+import { Random } from "@woowacourse/mission-utils";
 import Car from "./Car.js";
+import { NUMBER } from "./constants.js";
 
 class RacingGame {
   #tryCount;
@@ -28,7 +29,7 @@ class RacingGame {
   play() {
     for (let gameRound = 0; gameRound < this.#tryCount; gameRound++) {
       this.#cars.forEach((car) => {
-        const randomNumber = Random.pickNumberInRange(0, 9);
+        const randomNumber = Random.pickNumberInRange(NUMBER.START_INCLUSIVE, NUMBER.END_INCLUSIVE);
         car.move(randomNumber);
         car.saveResult();
       });
@@ -37,7 +38,7 @@ class RacingGame {
 
   findWinner(winners = []) {
     this.#cars.forEach((car) => {
-      if (winners.length === 0) {
+      if (!winners.length) {
         return winners.push(car);
       }
 
