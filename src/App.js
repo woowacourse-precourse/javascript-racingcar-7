@@ -1,5 +1,15 @@
+import RaceController from "./RaceController.js";
+
 class App {
-  async run() {}
+  #raceController;
+
+  constructor() {
+    this.#raceController = new RaceController();
+  }
+
+  async run() {
+    await this.#raceController.run();
+  }
 }
 
 export default App;
