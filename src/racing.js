@@ -1,5 +1,5 @@
 import * as MissionUtils from '@woowacourse/mission-utils';
-import { displayWinner } from "./IO.js";
+import { displayWinner } from "../src/IO.js";
 
 export function randomRacing(carNames, count, displayResults) {
   let results = carNames.map(name => ({ name, position: "", advanceCount: 0 })); 
@@ -11,7 +11,7 @@ export function randomRacing(carNames, count, displayResults) {
   displayWinner(results);
 }
 
-function updatePositions(results) {
+export function updatePositions(results) {
   return results.map(car => {
     const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
     if (randomNumber >= 4) { 
