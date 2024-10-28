@@ -34,10 +34,14 @@ export class raceController {
   }
 
   raceWinner() {
-    const maxPosition = Math.max(...this.cars.map((car) => car.getPosition()));
+    const maxPosition = this.getMaxPosition();
     const winners = this.cars
       .filter((car) => car.getPosition() == maxPosition)
       .map((car) => car.getName());
     Console.print(`최종 우승자 : ${winners.join(', ')}`);
+  }
+
+  getMaxPosition() {
+    return Math.max(...this.cars.map((car) => car.getPosition()));
   }
 }
