@@ -1,4 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
+import InputView from '../src/InputView.js';
 
 const mockQuestions = (inputs = []) => {
   Console.readLineAsync = jest.fn();
