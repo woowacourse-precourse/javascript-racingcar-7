@@ -11,22 +11,18 @@ class RacingGame {
     async handleRaceSequence(promptMessage) {
         const fistPrompt = await this.getInput(PROMPT_MESSAGE.FIRST)
         this.promptSequence++
+        this.createCarList(fistPrompt)
         const secondPrompt = await this.getInput(PROMPT_MESSAGE.SECOND)
-
-        /*if (this.promptSequence === 1) {
-            this.carArr = new Car().setCar(prompt) //함수로?
-            this.promptSequence++
-            return this.handleRaceSequence(PROMPT_MESSAGE.SECOND)
-        }
-        if (this.promptSequence === 2) {
-            this.playRace(Number(prompt))
-            this.promptSequence++
-        }
+        this.playRace(secondPrompt)
         const result = this.setWinner()
-        this.getOutput(result)*/
+        this.getOutput(result)
     }
 
     //입력, 출력, 에러 처리 제외한 게임 로직을 클래스로 분리하자
+
+    createCarList(prompt) {
+        this.carArr = new Car().setCar(prompt)
+    }
 
     playRace(tryNum) {
         // this.output("실행결과")
@@ -77,14 +73,6 @@ class RacingGame {
         throw new Error(OUTPUT_MESSAGE.ERROR.UNKNOWN)
     }
 
-    /*    handleValid(string) {
-            if (this.promptSequence === 1) {
-                getFirstPromptError(string)
-            }
-            if (this.promptSequence === 2) {
-                getSecondPromptError(string)
-            }
-        }*/
 }
 
 export default RacingGame
