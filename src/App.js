@@ -19,6 +19,21 @@ export function checkNameValid(cars) {
   return cars.every(name => NAME_PATTERN.test(name));
 }
 
+export async function inputTrialNumber() {
+  const inputString = await Console.readLineAsync("시도할 횟수는 몇 회인가요?");
+  const trialNumber = parseInt(inputString, 10);
+
+  if (!isNumberValid(trialNumber)) {
+    throw new Error("[ERROR]");
+  }
+
+  return trialNumber;
+}
+
+export function isNumberValid(number) {
+  return Number.isInteger(number) && number >= 1;
+}
+
 class App {
   async run() {}
 }

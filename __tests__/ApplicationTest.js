@@ -3,7 +3,9 @@ import {
   inputCarsNameWithDelimeter, 
   splitCarsName, 
   checkNameUnique, 
-  checkNameValid 
+  checkNameValid,
+  inputTrialNumber,
+  isNumberValid,
 } from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
@@ -104,6 +106,52 @@ describe("자동차 경주", () => {
 
     // then
     expect(result).toBe(false);
+  });
+});
+
+describe("자동차 경주", () => {
+  // isNumberValid 테스트
+  test("isNumberValid - 1 이상의 정수를 입력받으면 true 반환", () => {
+    expect(isNumberValid(1)).toBe(true);
+    expect(isNumberValid(3)).toBe(true);
+  });
+
+  test("isNumberValid - 1 미만이거나 정수가 아니면 false 반환", () => {
+    expect(isNumberValid(0)).toBe(false);
+    expect(isNumberValid(-1)).toBe(false);
+    expect(isNumberValid(1.5)).toBe(false);
+    expect(isNumberValid("3")).toBe(false); // 문자열일 경우
+  });
+
+  // inputTrialNumber 함수 테스트
+  test("inputTrialNumber - 1 이상의 숫자 입력 시 해당 숫자 반환", async () => {
+    // given
+    const inputs = ["3"];
+    mockQuestions(inputs);
+
+    // when
+    const result = await inputTrialNumber();
+
+    // then
+    expect(result).toBe(3);
+  });
+
+  test("inputTrialNumber - 1 미만의 숫자 입력 시 예외 발생", async () => {
+    // given
+    const inputs = ["0"];
+    mockQuestions(inputs);
+
+    // when, then
+    await expect(inputTrialNumber()).rejects.toThrow("[ERROR]");
+  });
+
+  test("inputTrialNumber - 숫자가 아닌 값 입력 시 예외 발생", async () => {
+    // given
+    const inputs = ["invalid"];
+    mockQuestions(inputs);
+
+    // when, then
+    await expect(inputTrialNumber()).rejects.toThrow("[ERROR]");
   });
 });
 
