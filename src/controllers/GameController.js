@@ -23,10 +23,14 @@ class GameController {
   }
 
   static async #getNumberOfGame() {
-    let input = await InputView.numberInput();
-    input = parseFloat(input);
-    Validator.numberOfGamesValidation(input);
-    return input;
+    const input = await InputView.numberInput();
+    return GameController.#parseAndValidateNumber(input);
+  }
+
+  static #parseAndValidateNumber(input) {
+    const number = parseFloat(input);
+    Validator.numberOfGamesValidation(number);
+    return number;
   }
 
   static #printHighScoreCar(carsMap) {
