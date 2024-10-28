@@ -1,7 +1,9 @@
 import { splitByComma } from './utils/splitByComma.js';
+import { generateRandomNumber } from './utils/generateRandomNumber.js';
 import InputView from './views/InputView.js';
 import Car from './Car.js';
 import Validator from './Validator.js';
+import OutputView from './views/OutputView.js';
 
 const MOVE_THRESHOLD = 4;
 
@@ -15,6 +17,13 @@ class Race {
 
     const raceAttempt = await InputView.inputAttempt();
     const validAttempt = this.#validateAttempt(raceAttempt);
+
+    OutputView.printResultMessage();
+
+    for (let i = 0; i < validAttempt; i++) {
+      this.#executeRound();
+      OutputView.printRountResult(this.#carInstance);
+    }
   }
 
   #canMoveForward() {
