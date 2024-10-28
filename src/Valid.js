@@ -1,5 +1,5 @@
 
-export const NAMESTRValid = (NAMESTR) => {
+export const nameStrValid = (NAMESTR) => {
     const nameStr = NAMESTR.toString()
 
     if (NAMESTR === '') {
@@ -16,7 +16,7 @@ export const NAMESTRValid = (NAMESTR) => {
 
 }
 
-export const RUNTIMESValid = (RUNTIMES) => {
+export const runTimesValid = (RUNTIMES) => {
 
     if (RUNTIMES === '') {
         throw new Error("횟수를 입력해주세요")
