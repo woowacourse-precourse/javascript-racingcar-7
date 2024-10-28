@@ -48,19 +48,22 @@ class App {
   }
 
   
-<<<<<<< HEAD
   // 8. 자동차경주 - 결과
   racing_result(racing_start) {
     for (let i = 0; i <racing_start.length;i++) {
       const car = racing_start[i];
-      Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
-
     }
   }
+  
+  // 9. 최종우승자 결과출력
+  racing_winner(racing_start) {
+    const maxPosition = Math.max(...racing_start.map(car => car.position));
+    const winners = racing_start
+      .filter(car => car.position === maxPosition)
+      .map(car => car.name);
+    Console.print('최종 우승자 : ' + winners.join(', '));
+  }
 
-
-
-=======
->>>>>>> eac8eae (feat:자동차전진)
 }
+
 export default App;
