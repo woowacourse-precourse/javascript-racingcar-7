@@ -5,8 +5,12 @@ class App {
     try {
       let carNameInput = await Console.readLineAsync(`경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n`);
       let carNames = this.validateCarNames(carNameInput);
+
       let raceCountInput = await Console.readLineAsync(`시도할 횟수는 몇 회인가요?\n`);
       let raceCount = parseInt(raceCountInput, 10);
+      if (isNaN(raceCount) || raceCount <= 0) {
+        throw new Error("[ERROR] 시도 횟수는 1 이상의 정수를 입력해야 합니다.");
+      }
 
       let carPositions = this.initializeCarPositions(carNames);
       this.runRace(carNames, carPositions, raceCount);
