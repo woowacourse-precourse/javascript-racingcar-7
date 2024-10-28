@@ -7,9 +7,14 @@ class App {
   }
 
   async run() {
-    await this.initGame();
-    this.playRounds();
-    this.printWinners();
+    try {
+      await this.initGame();
+      this.playRounds();
+      this.printWinners();
+    } catch (error) {
+      MissionUtils.Console.print(error.message);
+      throw error;
+    }
   }
 
   // 1. 사용자 입력받기
