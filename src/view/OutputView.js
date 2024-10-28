@@ -1,8 +1,8 @@
-import { Console } from "@woowacourse/mission-utils";
-import { OUTPUT_MESSAGE } from "../constants/messages.js";
+import { Console } from '@woowacourse/mission-utils';
+import { OUTPUT_MESSAGE } from '../constants/messages.js';
 
 class OutputView {
-  static #DASH = "-";
+  static #DASH = '-';
 
   static printExecutionResult() {
     OutputView.#printMessage(OUTPUT_MESSAGE.EXECUTION_RESULT);

@@ -1,10 +1,10 @@
-import InputView from "../view/InputView.js";
-import Validator from "./Validator.js";
-import RacingCars from "../model/RacingCars.js";
-import OutputView from "../view/OutputView.js";
+import InputView from '../view/InputView.js';
+import Validator from './Validator.js';
+import RacingCars from '../model/RacingCars.js';
+import OutputView from '../view/OutputView.js';
 
 class CarRacing {
-  static #WINNER_LIST_DELIMITER = ", ";
+  static #WINNER_LIST_DELIMITER = ', ';
 
   constructor() {}
 
@@ -21,7 +21,7 @@ class CarRacing {
   }
 
   #parseCarNames(input) {
-    return input.split(",");
+    return input.split(',');
   }
 
   async #registerRacingCars(racingCars) {

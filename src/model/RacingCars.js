@@ -1,4 +1,4 @@
-import RacingCar from "./RacingCar.js";
+import RacingCar from './RacingCar.js';
 
 class RacingCars {
   constructor() {

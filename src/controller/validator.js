@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from "../constants/messages.js";
+import { ERROR_MESSAGE } from '../constants/messages.js';
 
 class Validator {
   static #MIN_NAME_LENGTH = 1;
@@ -7,7 +7,7 @@ class Validator {
   static #NAME_LANGUAGE_REGEX = /^[a-zA-Z가-힣ㄱ-ㅎㅏ-ㅣ0-9\s]+$/;
   static #MIN_CAR_LIST_SIZE = 2;
   static #MAX_CAR_LIST_SIZE = 100;
-  static #EMPTY_STRING = "";
+  static #EMPTY_STRING = '';
   static #POSITIVE_NUMBER_REGEX = /^\d+$/;
   static #MIN_MOVE_ATTEMPTS_SIZE = 1;
   static #MAX_MOVE_ATTEMPTS_SIZE = 1000;

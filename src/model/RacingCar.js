@@ -1,4 +1,4 @@
-import { getRandomDigit } from "../utils/random.js";
+import { getRandomDigit } from '../utils/random.js';
 
 class RacingCar {
   constructor(name) {
