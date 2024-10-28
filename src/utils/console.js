@@ -14,9 +14,9 @@ export const getTryCount = async () => {
 
 export function printRaceStatus(cars) {
   cars.forEach((car) => {
-    console.log(`${car.name} : ${"-".repeat(car.position)}`);
+    Console.print(`${car.name} : ${"-".repeat(car.position)}`);
   });
-  console.log("");
+  Console.print("");
 }
 
 export function printWinners(cars) {
@@ -25,5 +25,5 @@ export function printWinners(cars) {
     .filter((car) => car.position === maxPosition)
     .map((car) => car.name);
 
-  console.log(`최종 우승자 : ${winners.join(", ")}`);
+  Console.print(`최종 우승자 : ${winners.join(", ")}`);
 }
