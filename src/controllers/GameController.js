@@ -7,11 +7,14 @@ import GameManager from '../models/GameManager.js';
 
 class GameController {
   static async play() {
-    const carsMap = await GameController.#initialGame();
+    const initialCarsMap = await GameController.#initialGame();
     const numberOfGames = await GameController.#getNumberOfGame();
     MissionUtils.Console.print('\n실행 결과');
-    GameManager.getAfterGameMap(carsMap, numberOfGames);
-    GameController.#printHighScoreCar(carsMap);
+    const updatedCarsMap = GameManager.getAfterGameMap(
+      initialCarsMap,
+      numberOfGames,
+    );
+    GameController.#printHighScoreCar(updatedCarsMap);
   }
 
   static async #initialGame() {

@@ -3,19 +3,23 @@ import OutputView from '../views/OutputView.js';
 
 class GameManager {
   static #addOneRandomValue(map) {
+    const newMap = new Map();
     map.forEach((value, key) => {
       let randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
       if (randomNumber < 4) randomNumber = 0;
-      map.set(key, value + randomNumber);
+      newMap.set(key, value + randomNumber);
     });
-    OutputView.printCurrentGame(map);
+    OutputView.printCurrentGame(newMap);
+    return newMap;
   }
 
   static getAfterGameMap(map, NumberOfGames) {
+    let currentMap = new Map(map);
     for (let i = 0; i < NumberOfGames; i += 1) {
-      GameManager.#addOneRandomValue(map);
+      currentMap = GameManager.#addOneRandomValue(currentMap);
       MissionUtils.Console.print('');
     }
+    return currentMap;
   }
 }
 
