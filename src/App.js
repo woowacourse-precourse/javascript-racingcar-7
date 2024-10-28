@@ -6,6 +6,14 @@ import {
     displayWinners,
 } from './racingCar.js';
 
+import {
+    validateNameLength,
+    isCarNameEmpty,
+    hasDuplicateNames,
+    isTrialCountZero,
+    validateTrial,
+} from './handleError.js';
+
 class App {
     async run() {
         const RACING_CARS = await Console.readLineAsync(
@@ -13,9 +21,16 @@ class App {
         );
         const CAR_NAMES = separateCarNames(RACING_CARS);
 
+        validateNameLength(CAR_NAMES);
+        isCarNameEmpty(CAR_NAMES);
+        hasDuplicateNames(CAR_NAMES);
+
         const TRIAL_NUMBER = await Console.readLineAsync(
             '시도할 횟수는 몇 회인가요?\n'
         );
+
+        isTrialCountZero(TRIAL_NUMBER);
+        validateTrial(Number(TRIAL_NUMBER));
 
         const MOVE_RESULTS = initializeMove(CAR_NAMES);
 
