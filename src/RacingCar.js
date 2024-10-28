@@ -1,4 +1,4 @@
-class RacingCars {
+class RacingCar {
   constructor(name) {
     this.name = name;
     this.position = '';
@@ -13,4 +13,4 @@ class RacingCars {
   }
 }
 
-export default RacingCars;
+export default RacingCar;

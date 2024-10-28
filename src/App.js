@@ -1,5 +1,5 @@
 import { MissionUtils, Console } from '@woowacourse/mission-utils';
-import RacingCars from './RacingCar.js';
+import RacingCar from './RacingCar.js';
 import {
   validateEmptyInput,
   validateCarNameLength,
@@ -20,64 +20,58 @@ class App {
     return Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
   }
 
-  createRacingCar(car) {
-    return new RacingCars(car);
-  }
-
   createCarsList(cars) {
     cars.forEach((car) => {
-      const racingCar = this.createRacingCar(car);
+      const racingCar = new RacingCar(car);
       this.carsAndPositions.push(racingCar);
     });
   }
 
-  getRandomNumber() {
-    return MissionUtils.Random.pickNumberInRange(0, 9);
-  }
+  moveForwardOrStop(carNumber) {
+    const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
 
-  detemineMovingOrStop(randomNumber, carNumber) {
     if (randomNumber >= 4) {
       this.carsAndPositions[carNumber].moveForward();
     }
   }
 
   raceSingleRound() {
-    this.carsAndPositions.forEach((_, carNumber) => {
-      const randomNumber = this.getRandomNumber();
-      this.detemineMovingOrStop(randomNumber, carNumber);
-    });
+    this.carsAndPositions.forEach((_, carNumber) =>
+      this.moveForwardOrStop(carNumber)
+    );
   }
 
   showSingleRoundResult() {
-    this.carsAndPositions.forEach((car) => {
-      Console.print(car.showResult);
-    });
+    this.carsAndPositions.forEach((car) => Console.print(car.showResult));
     Console.print('\n');
   }
 
-  startRacing(userCarInput, tryCount) {
-    const cars = userCarInput.split(',');
-    this.createCarsList(cars);
+  startRacing(tryCount) {
     for (let i = 0; i < tryCount; i++) {
       this.raceSingleRound();
       this.showSingleRoundResult();
     }
   }
 
-  showRacingResult() {
-    const maxPosition = Math.max(
-      ...this.carsAndPositions.map((car) => car.position.length)
-    );
-    const winners = this.carsAndPositions.filter(
+  getMaxPosition() {
+    return Math.max(...this.carsAndPositions.map((car) => car.position.length));
+  }
+
+  getWinners() {
+    const maxPosition = this.getMaxPosition();
+    return this.carsAndPositions.filter(
       (car) => car.position.length === maxPosition
     );
+  }
+
+  showFinalResult() {
+    const winners = this.getWinners();
     Console.print(
       '최종 우승자 : ' + winners.map((winner) => winner.name).join(', ')
     );
   }
 
-  validateUserInput(userCarInput, tryCount) {
-    const cars = userCarInput.split(',');
+  validateUserInput(cars, tryCount) {
     validateCarNameLength(cars);
     validateEmptyInput(cars);
     validateDuplicateCarName(cars);
@@ -87,10 +81,13 @@ class App {
   async run() {
     const userCarInput = await this.getCarNames();
     const tryCount = await this.getTryCount();
-    this.validateUserInput(userCarInput, tryCount);
+
+    const cars = userCarInput.split(',');
+    this.validateUserInput(cars, tryCount);
+    this.createCarsList(cars);
     Console.print('\n실행결과');
-    this.startRacing(userCarInput, tryCount);
-    this.showRacingResult();
+    this.startRacing(tryCount);
+    this.showFinalResult();
   }
 }
 
