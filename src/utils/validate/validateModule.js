@@ -1,4 +1,4 @@
-import { SERVICE_CONSTSANSTS } from '../../assets/constants.js';
+import { SERVICE_CONSTSANSTS } from '../../constants.js';
 import { Validator } from './Validator.js';
 
 export class ValidateModule {

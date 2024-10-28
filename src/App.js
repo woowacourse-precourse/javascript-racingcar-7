@@ -1,6 +1,6 @@
 import RandomUtil from './utils/Random.js';
 import RacingCar from './Models/RacingCar.js';
-import { SERVICE_CONSTSANSTS } from './assets/constants.js';
+import { SERVICE_CONSTSANSTS } from './constants.js';
 import { IOManager } from './utils/IOManager.js';
 import { ValidateModule } from './utils/validate/validateModule.js';
 

@@ -1,4 +1,4 @@
-import { ERROR_PREFIX, SERVICE_CONSTSANSTS } from '../../assets/constants.js';
+import { ERROR_PREFIX, SERVICE_CONSTSANSTS } from '../../constants.js';
 
 export class Validator {
   static isEmptyString(string) {
