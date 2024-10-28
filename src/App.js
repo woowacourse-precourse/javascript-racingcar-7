@@ -8,7 +8,9 @@ class App {
       
       // 사용자로부터 시도 횟수 입력 받기
       const attemptCount = await this.getAttemptCount();
+
       // 자동차 데이터를 초기화 (각 자동차의 이름과 위치)
+      const carData = carNames.map((name) => ({ name, position: 0 }));
       
       // 게임 진행
       
