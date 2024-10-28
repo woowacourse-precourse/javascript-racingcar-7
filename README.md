@@ -12,7 +12,10 @@
 ### 기능 목록
 - 사용자의 입력이 ERROR CASE에 해당하는지 확인
   ```js
-  inputValid = () =>{
+  NAMESTRValid = (NAMESTR) =>{
+    ...
+  }
+  RUNTIMESValid = (RUNTIMES)=>{
     ...
   }
   ```
@@ -46,6 +49,7 @@
 - RUNTIMES
   - 숫자 아님
   - 입력 없음
+
 ## 목표
 ### 학습 목표
 - 여러 역할을 수행하는 큰 함수를 단일 역할을 수행하는 작은 함수로 분리한다.
