@@ -1,11 +1,11 @@
-import { Random, Console, MissionUtils } from "@woowacourse/mission-utils";
+import { Random, Console } from "@woowacourse/mission-utils";
 
 class App {
   async run() {
     const inputCars = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
     const inputCount = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
-
     let carsList = this.getCarList(inputCars);
+    this.checkInputCount(inputCount);
 
     console.log("\n실행 결과")
     for (let i = 0; i < inputCount; i++) {
@@ -14,6 +14,13 @@ class App {
     }
 
     this.printFinalResult(carsList);
+  }
+
+  checkInputCount(str) {
+    const regExp = /^[0-9]*$/;
+    if (!regExp.test(str)) {
+      this.throwError("시도할 횟수에 숫자 외의 입력이 있습니다.");
+    }
   }
 
   getCarList(str) {
