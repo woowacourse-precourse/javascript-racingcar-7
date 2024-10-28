@@ -25,7 +25,6 @@ class App {
 
   getCarList(str) {
     const cars = str.split(",");
-    console.log(cars);
 
     if (!cars.every((car) => car.length <= 5 && car.trim() != '')) {
       this.throwError("자동차 이름은 5자 이하, 1자 이상이어야 합니다.");
