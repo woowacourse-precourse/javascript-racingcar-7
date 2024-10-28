@@ -24,6 +24,17 @@ describe('Game Test', () => {
     expect(loser.getLength()).toBe(0);
   })
 
+  test('우승자 이름 배열을 리턴한다.', () => {
+    const attemptCount = 1;
+    const cars = [new Car('Jelly'), new Car('Yummy')];
+
+    mockRandomNumbers([WINNING_NUMBER - 1, WINNING_NUMBER]);
+
+    const winnerArr = new Game().play(attemptCount, cars)
+    const expectWinner = cars[1];
+    expect(winnerArr).toContain(expectWinner.getName());
+  })
+
   test('최소 시도 횟수 미만인 값을 입력하면 에러를 던진다.', () => {
     const underMinAttemptCount = `${MIN_ATTEMPT_COUNT - 1}`;
     const cars = [new Car('Jelly'), new Car('Yummy')];
