@@ -5,13 +5,21 @@ class RacingCars {
     this.racingCars = [];
   }
 
-  registerCar(name) {
-    const racingCar = new RacingCar(name);
-    this.racingCars.push(racingCar);
+  registerCar(carName) {
+    const newCar = new RacingCar(carName);
+    this.racingCars.push(newCar);
   }
 
-  getCarNames() {
-    return this.racingCars.map((car) => car.name);
+  getAllCars() {
+    return this.racingCars;
+  }
+
+  moveAllCars() {
+    this.racingCars.map((car) => {
+      if (car.move()) {
+        return (car.position += 1);
+      }
+    });
   }
 }
 

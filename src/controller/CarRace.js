@@ -1,6 +1,8 @@
 import InputView from "../view/InputView.js";
 import Validator from "./Validator.js";
 import RacingCars from "../model/RacingCars.js";
+import { getRandomDigit } from "../utils/random.js";
+import OutputView from "../view/OutputView.js";
 
 class CarRace {
   constructor() {}
@@ -8,7 +10,16 @@ class CarRace {
   async init() {
     const racingCars = new RacingCars();
     await this.registerRacingCars(racingCars);
+    this.startRace(racingCars, racingCars.getAllCars());
+  }
+
+  async startRace(racingCars, racingCarArray) {
     const moveAttempts = await this.setMoveAttempts();
+    OutputView.executionResult();
+    for (let i = 0; i < moveAttempts; i++) {
+      racingCars.moveAllCars();
+      OutputView.raceProgress(racingCarArray);
+    }
   }
 
   async getCarNamesFromUserInput() {
@@ -29,6 +40,7 @@ class CarRace {
   async registerRacingCars(racingCars) {
     const carList = await this.getCarNamesFromUserInput();
     Validator.checkCarList(carList);
+    console.log(carList);
     carList.forEach((carName) => {
       Validator.checkName(carName);
       racingCars.registerCar(carName);
