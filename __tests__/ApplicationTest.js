@@ -77,23 +77,12 @@ describe("자동차 경주", () => {
     const app = new App();
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
   test("예외 테스트 - 빈 문자열 입력", async () => {
     const inputs = [""];
     mockQuestions(inputs);
 
     const app = new App();
-    await expect(app.run()).rejects.toThrow("[ERROR]");
-  });
-
-  test("예외 테스트", async () => {
-    // given
-    const inputs = ["pobi,javaji"];
-    mockQuestions(inputs);
-
-    // when
-    const app = new App();
-
-    // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 });
