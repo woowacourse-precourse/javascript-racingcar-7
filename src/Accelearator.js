@@ -24,7 +24,7 @@ class Accelerator {
    */
   isAccelerate() {
     return (
-      Random.number(this.#minRandomNumber, this.#maxRandomNumber) >=
+      Random.pickNumberInRange(this.#minRandomNumber, this.#maxRandomNumber) >=
       this.#threshold
     );
   }
