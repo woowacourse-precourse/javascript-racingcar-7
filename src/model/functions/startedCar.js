@@ -1,7 +1,7 @@
 import { isStart } from './isStart.js';
 
-export const startedCar = async (car) => {
-  if (await isStart()) {
-    car.go++;
+export const startedCar = (car) => {
+  if (isStart()) {
+    car.go += 1;
   }
 };
