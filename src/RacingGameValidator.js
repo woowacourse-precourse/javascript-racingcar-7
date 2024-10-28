@@ -12,6 +12,10 @@ class RacingGameValidator {
   static validateTryCountIsNumber(tryCount) {
     if (isNaN(tryCount)) throw Error('[ERROR] 시도할 횟수는 숫자만 입력할 수 있습니다.');
   }
+
+  static validateTryCountOverZero(tryCount) {
+    if (tryCount === 0) throw Error('[ERROR] 0회 이상의 시도 횟수를 입력해 주세요.');
+  }
 }
 
 export default RacingGameValidator;

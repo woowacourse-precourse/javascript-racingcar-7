@@ -18,6 +18,7 @@ class View {
     const tryCount = parseInt(input, 10);
 
     RacingGameValidator.validateTryCountIsNumber(tryCount);
+    RacingGameValidator.validateTryCountOverZero(tryCount);
 
     return tryCount;
   }

@@ -79,4 +79,14 @@ describe("자동차 경주", () => {
 
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
+  test("예외 테스트 - 시도 횟수가 0인 경우", async () => {
+    // given
+    const inputs = ["pobi,woni", 0];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
 });
