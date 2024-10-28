@@ -80,18 +80,14 @@ describe('자동차 경주게임 통합테스트', () => {
   test.each(PASS_CASES)(
     '통과 테스트',
     async (carNames, randomValue, winnerResult) => {
-      // given
-
       const logSpy = getLogSpy();
 
       mockQuestions(carNames);
       mockRandoms(randomValue);
 
-      // when
       const app = new App();
       await app.run();
 
-      // then
       winnerResult.forEach((log) => {
         expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
       });
