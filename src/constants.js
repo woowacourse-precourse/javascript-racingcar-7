@@ -13,3 +13,7 @@ export const number = {
     startNum: 0,
     endNum: 9,
 }
+
+export const showProgressing = {
+    progressBar: '-',
+}
