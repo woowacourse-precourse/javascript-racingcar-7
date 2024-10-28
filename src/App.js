@@ -11,17 +11,13 @@ class App {
 
     try {
       const { resultList, parsed } = this.racing(input, count);
-
       resultList.forEach((item) => {
         for (const key in item) {
           MissionUtils.Console.print(`${key} : ${item[key]}`);
         }
-        MissionUtils.Console.print(""); // 빈 문자열을 출력하여 개행
+        MissionUtils.Console.print("");
       });
-      // MissionUtils.Console.print(`${JSON.stringify(resultList)}`);
       MissionUtils.Console.print(parsed);
-      // MissionUtils.Console.print(` 실행 결과 : ${result} `);
-      // MissionUtils.Console.print(result);
     } catch (error) {
       MissionUtils.Console.print(error.message);
 
@@ -32,12 +28,7 @@ class App {
   racing(input, count) {
     const arr = input.split(",").map((item) => item.trim());
 
-    //score라는 이름의 각 차량의 득점을 저장할 수 있는 배열을 만들자
-    // arr = [치킨, 닭, 다리]
-    // scoreArr = [1,2,3]
-    // 치킨이 1회 승리, 닭이 2회 승리, 다리가 3회 승리했다는 것
-
-    //scoreArray는 arr과 길이가 같으면서 모든 값을 0으로 초기화된 배열이다.
+    //scoreArray는 각 자동차의 득점을 저장할 배열이다.
     const scoreArray = arr.map(() => 0);
 
     //중간 결과를 저장
@@ -57,14 +48,13 @@ class App {
         if (num >= 4) {
           scoreArray[j] = scoreArray[j] + 1;
         }
+
         currentRace[arr[j]] = "-".repeat(scoreArray[j]);
       }
-
       raceResult.push(currentRace);
     }
 
     const parsed = this.determineWinner(arr, scoreArray);
-
     return { resultList: raceResult, parsed };
   }
 
