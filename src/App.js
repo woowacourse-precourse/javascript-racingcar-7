@@ -57,6 +57,13 @@ class App {
       return winners.join(", ");
     }
 
+    // 횟수 만큼 경주 진행
+    while ((tryCnt -= 1)) {
+      const carCnt = carArr.length;
+      TryRace();
+      Console.print("");
+    }
+
 }
 
 export default App;
