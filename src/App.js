@@ -17,15 +17,22 @@ class App {
     const inputs = await ioMethod.inputCarName();
     const inputArr = inputs.split(MAGICNUMBER.SEPARATOR);
     this.#racingcar = new Racingcar(inputArr);
-    this.#tryNum = Number(await ioMethod.inputTryNum());
+    this.#tryNum = await ioMethod.inputTryNum();
     this.#tryNumvalidation(this.#tryNum);
     this.#board = this.#createBoard(inputArr);
     ioMethod.printProgressResult();
   }
 
   #tryNumvalidation(tryNum) {
-    if (!validation.isPositiveInteger(tryNum))
+    if (!validation.isPositiveInteger(Number(tryNum)))
       throw new Error(`${ERRORMESAGE.NOT_POSITIVE_INTEGER}`);
+
+    const tryNumArr = String(tryNum).split('');
+    console.log(tryNumArr);
+    if (validation.hasSpace(tryNumArr))
+      throw new Error(`${ERRORMESAGE.WRONG_NUMBER_FORM_SPACE}`);
+
+    Number(this.#tryNum);
   }
 
   #createBoard(inputArr) {
