@@ -10,12 +10,12 @@ class Input {
   }
 
   static async CarList() {
-    const carList = await this.inputGideMessage(GIDE_MESSAGE.carList);
-    InputValidator.validateInputCarList(carList);
+    const cars = await this.inputGideMessage(GIDE_MESSAGE.carList);
+    InputValidator.validateInputCarList(cars);
 
-    const carListArr = parserCarList(carList);
-    InputValidator.validateCarArray(carListArr);
-    return carListArr;
+    const carList = parserCarList(cars);
+    InputValidator.validateCarArray(carList);
+    return carList;
   }
 
   static async TryNum() {
