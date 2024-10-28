@@ -126,7 +126,19 @@ describe("자동차 경주", () => {
 
   test("자동차 이름이 5자를 초과하는 경우", async () => {
     // given
-    const inputs = ["우테코,우테콩콩,우테꽁꽁꽁꽁"];
+    const inputs = ["파이썬,자바,자바스크립트"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("중복된 자동차 이름을 입력한 경우", async () => {
+    // given
+    const inputs = ["수학,대머리,대머리,빛"];
     mockQuestions(inputs);
 
     // when
