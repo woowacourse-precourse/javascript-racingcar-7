@@ -23,7 +23,7 @@ class App {
     }
 
     Console.print(
-      `최종 우승자 : ${this.whoiswinner(racingCars)
+      `최종 우승자 : ${this.getWinner(racingCars)
         .map((car) => car.name)
         .join(", ")}`
     );
@@ -37,6 +37,21 @@ class App {
 
   printRacingcarInfo(car) {
     Console.print(`${car.name} : ${"-".repeat(car.score)}`);
+  }
+
+  getWinner(racingCars) {
+    let winner = [];
+    racingCars.map((car) => {
+      if (winner.length === 0) {
+        winner.push(car);
+      } else if (winner[0].score === car.score) {
+        winner.push(car);
+      } else if (winner[0].score < car.score) {
+        winner = [car];
+      }
+    });
+
+    return winner;
   }
 }
 
