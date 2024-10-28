@@ -18,7 +18,7 @@ class App {
   validateCarNames(input) {
     const carNames = input.split(",").map((name) => name.trim());
     if (carNames.some((name) => name.length === 0 || name.length > 5)) {
-      throw new Error("[ERROR] 자동차 이름이 5자 이하가 아님");
+      throw new Error("[ERROR]");
     }
     return carNames;
   }
@@ -26,7 +26,7 @@ class App {
   validateRaceRounds(input) {
     const rounds = parseInt(input, 10);
     if (isNaN(rounds) || rounds <= 0) {
-      throw new Error("[ERROR] 시도횟수가 양의 정수가 아님");
+      throw new Error("[ERROR]");
     }
     return rounds;
   }
