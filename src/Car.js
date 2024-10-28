@@ -19,6 +19,14 @@ class Car {
     const validNames = validator.validateCarName(name);
     return this.#setNameIfEmpty(validNames);
   }
+
+  getName() {
+    return this.#name;
+  }
+
+  getDistance() {
+    return this.#distance;
+  }
 }
 
 export default Car;
