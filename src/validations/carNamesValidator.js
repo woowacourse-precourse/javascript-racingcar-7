@@ -22,7 +22,7 @@ const validateStringInput = (carNames) => {
 const validateArrNotDuplication = (carNames) => {
   const uniqueNames = new Set(carNames);
   if (carNames.length !== uniqueNames.size) {
-    throw new Error(ERROR_MESSAGES.NOT_UNIQUE)
+    throw new Error(ERROR_MESSAGES.NOT_UNIQUE);
   }
 };
 
