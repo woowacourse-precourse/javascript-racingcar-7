@@ -9,7 +9,6 @@ import {
 } from '../lib/utils.js';
 import Validator from '../lib/Validator.js';
 
-// TODO: rule model 테스트 추가
 export class RuleModel {
   /** @type {Validator} */
   #validator;
