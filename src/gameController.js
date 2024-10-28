@@ -6,7 +6,6 @@ function canForward(randomNum, carDistances, i) {
   if (randomNum >= 4) {
     carDistances[i] += 1;
   }
-  return;
 }
 
 function updateCarDistance(carDistances, carCount) {
