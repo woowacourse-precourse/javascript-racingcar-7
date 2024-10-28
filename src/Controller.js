@@ -19,6 +19,7 @@ class Controller {
     const userInputObject = await this.InputView.getUserInputObject();
     this.model.setUserData(userInputObject);
     this.startGame();
+    this.announceWinner();
   }
 
   startGame() {
@@ -38,9 +39,9 @@ class Controller {
     this.OutputView.renderCarInfos(CarInfos);
   }
 
-  getWinner() {
-    this.model.getWinner();
-    this.OutputView.renderWinnerInfo();
+  announceWinner() {
+    const winner = this.model.getWinner();
+    this.OutputView.renderWinnerInfo(winner);
   }
 }
 

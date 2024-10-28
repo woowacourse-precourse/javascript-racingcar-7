@@ -14,8 +14,8 @@ export default class ViewOut {
     this.print(`${car} : ${'-'.repeat(distance)}`);
   }
 
-  renderWinnerInfo(car) {
-    this.print(`최종 우승자 : ${car.join(', ')}`);
+  renderWinnerInfo(winner) {
+    this.print(`최종 우승자 : ${winner.join(', ')}`);
   }
 
   print(message) {

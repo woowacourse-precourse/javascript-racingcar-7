@@ -54,6 +54,18 @@ export default class Model {
     }
   }
 
+  getWinner() {
+    const maxDistance = Math.max(
+      ...this.carList.map((car) => car.getDistance()),
+    );
+
+    const winners = this.carList
+      .filter((car) => car.getDistance() === maxDistance)
+      .map((car) => car.getName());
+
+    return winners;
+  }
+
   meetTheCondition() {
     return (
       MissionUtils.Random.pickNumberInRange(0, 9) >= this.FORWARD_CONDITION
