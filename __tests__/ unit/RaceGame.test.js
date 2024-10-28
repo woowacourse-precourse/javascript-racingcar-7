@@ -1,3 +1,6 @@
+import RaceGameService from "../../src/service/RaceGameService";
+import { MissionUtils } from "@woowacourse/mission-utils";
+
 const mockRandoms = (numbers) => {
   MissionUtils.Random.pickNumberInRange = jest.fn();
 
@@ -9,13 +12,13 @@ const mockRandoms = (numbers) => {
 describe("[🏁 RaceGameService 테스트]", () => {
   let raceService;
   beforeEach(() => {
-    raceService = new RaceService();
+    raceService = new RaceGameService();
   });
   test("레이스게임을 준비할 수 있다.", () => {
-    const carNames = ["chan", "wonni", "choi", "kofe"];
+    const carNames = ["chan", "wooni", "choi", "kofe"];
     const iteration = 5;
     raceService.ready(carNames, iteration);
-    expected(raceService.getStatus()).toStricteEqual({
+    expect(raceService.getStatus()).toStrictEqual({
       status: "ready",
       cars: [
         { name: "chan", move: 0 },
@@ -27,12 +30,12 @@ describe("[🏁 RaceGameService 테스트]", () => {
   });
 
   test("레이스게임의 각 라운드를 진행 수 있다.", () => {
-    const carNames = ["chan", "wonni", "choi", "kofe"];
-    const iteration = 5;
+    const carNames = ["chan", "wooni", "choi", "kofe"];
+    const iteration = 1;
     raceService.ready(carNames, iteration);
     mockRandoms([8,0,0,0]);
     raceService.playRound();
-    expected(raceService.getStatus()).toStricteEqual({
+    expect(raceService.getStatus()).toStrictEqual({
       status: "playing",
       cars: [
         { name: "chan", move: 1 },
@@ -48,11 +51,11 @@ describe("[🏁 RaceGameService 테스트]", () => {
     const iteration = 1;
     raceService.ready(carNames, iteration);
     mockRandoms([8,0,0,0]);
-    reaceSservice.start();
+    raceService.start();
     const result = raceService.getResult();
-    expected(result).toStricteEqual({
-      status: 'end',
-      winners: [{ name: 'chan' }]
-    })
+    expect(result).toStrictEqual({
+      status: "end",
+      winners: ["chan"],
+    });
   });
 });
