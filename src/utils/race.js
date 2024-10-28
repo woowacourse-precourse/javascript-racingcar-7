@@ -1,5 +1,4 @@
 import { printRaceStatus } from "./console.js";
-import { Console } from "@woowacourse/mission-utils";
 
 export function startRace(cars, tryCount) {
   for (let i = 0; i < tryCount; i++) {
