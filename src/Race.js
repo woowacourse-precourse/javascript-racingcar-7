@@ -22,4 +22,4 @@ const moveCars = (cars) => {
   });
 };
 
-const canMove = () => Random.pickNumberInRange(0, CONSTANTS.MAX_RANDOM_RANGE) >= CONSTANTS.MIN_MOVABLE_NUMBER;
+export const canMove = () => Random.pickNumberInRange(0, CONSTANTS.MAX_RANDOM_RANGE) >= CONSTANTS.MIN_MOVABLE_NUMBER;

@@ -3,6 +3,9 @@ import { CONSTANTS } from '../constant/Constant.js';
 
 export const getCarNames = async () => {
   const inputNames = await Console.readLineAsync(CONSTANTS.INPUT_NAME);
+  if (!inputNames.trim()) { 
+    throw new Error(CONSTANTS.ERROR_MSG0);
+  }
   const carNames = inputNames.split(',').map((name) => name.trim());
 
   carNames.forEach((name) => {
