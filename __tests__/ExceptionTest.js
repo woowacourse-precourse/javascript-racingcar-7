@@ -11,6 +11,12 @@ const mockQuestions = (inputs) => {
 };
 
 describe("자동차 경주 예외 처리 테스트", () => {
+    let app;
+
+    beforeEach(() => {
+        app = new App();
+    });
+
     test.each([
         { carNames: "티볼리,제네시스G80", tryCnt: "3", expected: "[ERROR]" },
         { carNames: "트레일블레이저", tryCnt: "3", expected: "[ERROR]" },
@@ -19,7 +25,6 @@ describe("자동차 경주 예외 처리 테스트", () => {
         "5자를 초과하는 자동차 이름이 있는 경우 예외 발생 ($carNames, $tryCnt) => $expected",
         async ({ carNames, tryCnt, expected }) => {
             mockQuestions([carNames, tryCnt]);
-            const app = new App();
             await expect(app.run()).rejects.toThrow(expected);
         }
     );
@@ -32,7 +37,6 @@ describe("자동차 경주 예외 처리 테스트", () => {
         "이름이 없는 자동차가 있는 경우 예외 발생 ($carNames, $tryCnt) => $expected",
         async ({ carNames, tryCnt, expected }) => {
             mockQuestions([carNames, tryCnt]);
-            const app = new App();
             await expect(app.run()).rejects.toThrow(expected);
         }
     );
@@ -45,7 +49,6 @@ describe("자동차 경주 예외 처리 테스트", () => {
         "시도 횟수가 숫자가 아닌 경우 예외 발생 ($carNames, $tryCnt) => $expected",
         async ({ carNames, tryCnt, expected }) => {
             mockQuestions([carNames, tryCnt]);
-            const app = new App();
             await expect(app.run()).rejects.toThrow(expected);
         }
     );
@@ -58,7 +61,6 @@ describe("자동차 경주 예외 처리 테스트", () => {
         "시도 횟수가 숫자가 음수나 0인 경우 예외 발생 ($carNames, $tryCnt) => $expected",
         async ({ carNames, tryCnt, expected }) => {
             mockQuestions([carNames, tryCnt]);
-            const app = new App();
             await expect(app.run()).rejects.toThrow(expected);
         }
     );
