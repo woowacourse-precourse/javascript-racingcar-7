@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 import Car from "./Car.js";
 import Validator from "./Validator.js";
 
@@ -35,10 +35,24 @@ class App {
     return userAttemptCount;
   }
 
+  excuteAttempt(cars) {
+    cars.forEach((car) => {
+      const randomNuber = Random.pickNumberInRange(0, 9);
+      console.log(randomNuber);
+    });
+  }
+
+  runRace(cars, attemptCount) {
+    for (let i = 0; i < attemptCount; i++) {
+      this.excuteAttempt(cars);
+    }
+  }
+
   async run() {
     const cars = [];
     await this.readCarNames(cars);
     const attemptCount = await this.readAttemptCount();
+    this.runRace(cars, attemptCount);
     Console.print(cars[0].Name);
     Console.print(attemptCount);
   }
