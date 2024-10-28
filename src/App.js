@@ -14,6 +14,9 @@ class App {
         "시도할 횟수는 몇 회인가요?\n"
       );
       this.validMoveCount(playNum);
+
+      const movingCars = this.goToCars(nameList, playNum);
+      this.winnerCar(nameList, movingCars);
     } catch (error) {
       Console.print(`[ERROR] ${error.message}`);
       throw error;
@@ -61,6 +64,15 @@ class App {
       const carPosition = "-".repeat(distance);
       Console.print(`${car} : ${carPosition}`);
     });
+  }
+
+  winnerCar(nameList, movingCars) {
+    const maxDistance = Math.max(...movingCars);
+    const winners = nameList.filter(
+      (_, idx) => movingCars[idx] === maxDistance
+    );
+
+    Console.print(`최종 우승자 : ${winners.join(", ")}`);
   }
 }
 
