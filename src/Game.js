@@ -1,5 +1,6 @@
 import Car from './Car.js';
 import InputView from './InputView.js';
+import OutputView from './OutputView.js';
 import { splitCarNames } from './utils/splitCarNames.js';
 import { validateCarName, validateRoundCount } from './validate.js';
 
@@ -26,14 +27,31 @@ class Game {
     this.#round = roundCount;
     this.cars = this.#createCars(inputCarNames);
 
-    this.progress();
+    OutputView.printEmptyLine();
+    this.#progress();
   }
 
-  progress() {
-    // 라운드 진행
+  #progress() {
+    let currentRound = 0;
+
+    while (currentRound < this.#round) {
+      if (currentRound === 0) OutputView.printExecutionResultMessage();
+
+      this.cars.map((car) => {
+        car.runRound();
+        const [name, forwardCount] = [car.name, car.forwardCount];
+        OutputView.printCurrentCarInfo(name, forwardCount);
+      });
+
+      OutputView.printEmptyLine();
+
+      currentRound += 1;
+    }
+
+    this.#end();
   }
 
-  end() {
+  #end() {
     // 게임 종료
   }
 
