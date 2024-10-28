@@ -1,9 +1,12 @@
+import Car from '../../src/model/Car';
+
 describe('Car 유닛 테스트', () => {
   let car;
   beforeEach(() => {
     car = new Car('chan');
   })
   test('Car의 이름을 넣어 생성할 수 있다.', () => {
+    const name = 'chan';
     expect(car.name).toBe(name);
   });
 
