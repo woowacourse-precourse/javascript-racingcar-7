@@ -79,9 +79,9 @@ class RacingGameController {
     try {
       await this.init();
       this.view.printExecutionResult();
-      for (let i = 0; i < this.counts; i++) {
+      Array.from({ length: this.counts }).forEach(() => {
         this.getScores();
-      }
+      });
       this.printWinner();
     } catch (error) {
       throw error;
