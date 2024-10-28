@@ -5,6 +5,7 @@ import {
   isPositiveNumber,
   isUniqueCarNames,
 } from './utils/validators.js';
+import Car from './models/Car.js';
 
 export default class App {
   async run() {
@@ -17,8 +18,14 @@ export default class App {
         isPositiveNumber,
       ]);
 
-      Console.print(carNames);
-      Console.print(tryNumber);
+      const cars = carNames.split(',').map((name) => new Car(name));
+
+      for (let index = 0; index < tryNumber; index++) {
+        cars.forEach((car) => {
+          Console.print(`${car.getName()} : ${'-'.repeat(car.move())}`);
+        });
+        Console.print('');
+      }
     } catch (error) {
       throw new Error(`[ERROR] ${error.message}`);
     }
