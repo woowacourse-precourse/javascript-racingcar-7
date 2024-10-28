@@ -1,11 +1,4 @@
-import {
-  DUPLICATE_NAME_MESSAGE,
-  MINUS_NUMBER_MESSAGE,
-  NOT_NUMBER_MESSAGE,
-  ONE_CAR_MESSAGE,
-  WRONG_SEPARATOR_MESSAGE,
-  ZERO_NUMBER_MESSAGE,
-} from "../src/constants/errorMessage.js";
+import ERROR_MESSAGE from "../src/constants/errorMessage.js";
 import { validateCarNameList, validateTryCount } from "../src/validation.js";
 
 describe("자동차 입력 테스트", () => {
@@ -18,9 +11,9 @@ describe("자동차 입력 테스트", () => {
   });
 
   it.each([
-    ["phobi; woni", WRONG_SEPARATOR_MESSAGE],
-    ["phobi", ONE_CAR_MESSAGE],
-    ["phobi,phobi", DUPLICATE_NAME_MESSAGE],
+    ["phobi; woni", ERROR_MESSAGE.WRONG_SEPARATOR],
+    ["phobi", ERROR_MESSAGE.ONE_CAR],
+    ["phobi,phobi", ERROR_MESSAGE.DUPLICATE_NAME],
   ])("자동차 이름 예외 테스트", (input, message) => {
     expect(() => validateCarNameList(input)).toThrow(message);
   });
@@ -36,9 +29,9 @@ describe("시도 횟수 테스트", () => {
   });
 
   it.each([
-    [0, ZERO_NUMBER_MESSAGE],
-    [-5, MINUS_NUMBER_MESSAGE],
-    ["n", NOT_NUMBER_MESSAGE],
+    [0, ERROR_MESSAGE.ZERO_NUMBER],
+    [-5, ERROR_MESSAGE.MINUS_NUMBER],
+    ["n", ERROR_MESSAGE.NOT_NUMBER],
   ])("시도 횟수가 양수가 아닌 경우 예외 테스트", (input, message) => {
     expect(() => validateTryCount(input).toThrow(message));
   });

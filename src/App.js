@@ -25,8 +25,9 @@ class App {
     validateCarNameList(carNameList);
     this.generateCars(carNameList);
 
-    this.#tryCount = await this.readTryCount();
-    validateTryCount(this.#tryCount);
+    const tryCount = await this.readTryCount();
+    validateTryCount(Number(tryCount));
+    this.#tryCount = Number(tryCount);
 
     this.printGameStart();
     this.generateGame();
@@ -78,7 +79,7 @@ class App {
   }
 
   printCarmove(car) {
-    Console.print(`${car.getName()} : ${"-".repeat(car.getProgressCount())}`);
+    car.printCarmove();
   }
 
   generateGameResult() {

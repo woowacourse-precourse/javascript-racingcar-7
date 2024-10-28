@@ -1,7 +1,5 @@
-import {
-  EMPTY_NAME_MESSAGE,
-  MAX_NAME_MESSAGE,
-} from "./constants/errorMessage.js";
+import { Console } from "@woowacourse/mission-utils";
+import ERROR_MESSAGE from "./constants/errorMessage.js";
 
 class Car {
   static MAX_NAME_LENGTH = 5;
@@ -19,12 +17,12 @@ class Car {
 
   #validateNameEmpty(name) {
     if (name === "") {
-      throw new Error(EMPTY_NAME_MESSAGE);
+      throw new Error(ERROR_MESSAGE.EMPTY_NAME);
     }
   }
   #validateNameLength(name) {
     if (name.length > Car.MAX_NAME_LENGTH) {
-      throw new Error(MAX_NAME_MESSAGE);
+      throw new Error(ERROR_MESSAGE.MAX_NAME);
     }
   }
 
@@ -38,6 +36,10 @@ class Car {
 
   increaseProgressCount() {
     this.#progressCount = this.#progressCount + 1;
+  }
+
+  printCarmove() {
+    Console.print(`${this.getName()} : ${"-".repeat(this.getProgressCount())}`);
   }
 }
 

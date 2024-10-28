@@ -1,8 +1,5 @@
 import Car from "../src/Car.js";
-import {
-  EMPTY_NAME_MESSAGE,
-  MAX_NAME_MESSAGE,
-} from "../src/constants/errorMessage.js";
+import ERROR_MESSAGE from "../src/constants/errorMessage.js";
 
 describe("자동차 생성자 테스트", () => {
   test("올바른 자동차 정보로 Car 인스턴스 생성 테스트", async () => {
@@ -24,7 +21,7 @@ describe("자동차 생성자 테스트", () => {
     // when, then
     expect(() => {
       new Car(NAME);
-    }).toThrow(MAX_NAME_MESSAGE);
+    }).toThrow(ERROR_MESSAGE.MAX_NAME);
   });
 
   test("자동차 이름 공백인 예외 테스트", async () => {
@@ -34,7 +31,7 @@ describe("자동차 생성자 테스트", () => {
     // when, then
     expect(() => {
       new Car(NAME);
-    }).toThrow(EMPTY_NAME_MESSAGE);
+    }).toThrow(ERROR_MESSAGE.EMPTY_NAME);
   });
 });
 
