@@ -6,10 +6,6 @@ class App {
       const carNames = await App.getCarNames();
       const moveAttempts = await App.getMoveAttempts();
       const raceResults = App.startRace(carNames, moveAttempts);
-
-      raceResults.forEach(result => {
-        Console.print(`${result.name} : ${'-'.repeat(result.position)}`);
-      });
     } catch (error) {
       Console.print(`[ERROR] ${error.message}`);
     }
@@ -46,6 +42,7 @@ class App {
 
     for (let i = 0; i < moveAttempts; i += 1) {
       App.moveCars(raceResults);
+      App.printCurrentRound(raceResults);
     }
 
     return raceResults;
@@ -64,6 +61,13 @@ class App {
     const MIN_MOVABLE_NUMBER = 4;
 
     return Random.pickNumberInRange(0, MAX_RANDOM_RANGE) >= MIN_MOVABLE_NUMBER;
+  }
+
+  static printCurrentRound(raceResults) {
+    raceResults.forEach((car) => {
+      Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
+    });
+    Console.print('');
   }
 }
 
