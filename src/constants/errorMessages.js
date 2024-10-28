@@ -4,10 +4,12 @@ const NOT_STRING = '[ERROR] 문자가 아닙니다. ';
 const NOT_NUMBER = '[ERROR] 숫자가 아닙니다. ';
 const NOT_UNIQUE = '[ERROR] 자동차 이름이 중복되었습니다. ';
 
-export const ERROR_MESSAGES = {
+const ERROR_MESSAGES = {
   EMPTY_INPUT,
   TOO_LONG,
   NOT_STRING,
   NOT_NUMBER,
   NOT_UNIQUE,
 };
+
+export default ERROR_MESSAGES;

@@ -1,4 +1,4 @@
-import { ERROR_MESSAGES } from '../constants/errorMessages.js';
+import ERROR_MESSAGES from '../constants/errorMessages.js';
 
 const isValidLength = (carNames) => {
   const lessThanSixCarNames = carNames.every((element) => element.length < 6);
