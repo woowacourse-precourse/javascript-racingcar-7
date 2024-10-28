@@ -31,7 +31,20 @@ function isErrorNames(arr){
   }
   
 }
+function inputAttempt(){
+  const INPUT_ATTEMPT = Console.readLineAsync('시도 할 횟수 : ')
+  return INPUT_ATTEMPT
+}
 
+function isErrorAttempt(input){
+  const ATTEMPT_COUNT = parseInt(input)
+  if(isNaN(ATTEMPT_COUNT)){
+    throw Error('[ERROR] 시도할 횟수는 숫자만 입력 가능합니다.')
+  }
+  else{
+    return false
+  }
+}
 class App {
 
   async run() {
@@ -40,7 +53,9 @@ class App {
     const CAR_ARRAY = splitNames(INPUT_NAME)
     const ISERROR_NAME = isErrorNames(CAR_ARRAY)
 
-
+    //2. 시도 횟수 입력
+    const INPUT_ATTEMPT = await inputAttempt()
+    const ISERROR_ATTEMPT = isErrorAttempt(INPUT_ATTEMPT)
 
     Console.print([...CAR_ARRAY])
     Console.print(INPUT_ATTEMPT)
