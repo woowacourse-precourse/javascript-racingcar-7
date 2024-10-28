@@ -1,8 +1,8 @@
 import arrayToObject from './utils/arrayToObject';
-import getNumber from './utils/getNumber';
-import getRandomValue from './utils/getRandomValue';
-import getString from './utils/getString';
-import moveCarForward from './utils/moveCarForward';
+import getNumber from './inputHandlers/getNumber';
+import getRandomValue from './games/getRandomValue';
+import getString from './inputHandlers/getString';
+import moveCarForward from './games/moveCarForward';
 import splitByComma from './utils/splitByComma';
 
 class App {
