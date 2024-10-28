@@ -1,4 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
+import { validateCarNames, validateMoveCount } from './validate.js';
 
 export async function getCarNames() {
   const userInput = await Console.readLineAsync(
@@ -12,6 +13,7 @@ export async function getCarNames() {
 
   carNames = Array.from(new Set(carNames)); // 중복 제거
 
+  validateCarNames(carNames);
   return carNames;
 }
 
@@ -19,5 +21,6 @@ export async function getMoveCount() {
   const userInput = await Console.readLineAsync('시도할 횟수는 몇 회인가요?');
   const count = parseInt(userInput, 10);
 
+  validateMoveCount(count);
   return count;
 }
