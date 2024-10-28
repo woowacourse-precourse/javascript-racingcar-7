@@ -61,6 +61,13 @@ class App {
     return updatedCarObject;
   }
 
+  printCarPositions(cars, carObject) {
+    for (let car of cars) {
+      MissionUtils.Console.print(`${car} : ${carObject[car]}`);
+    }
+    MissionUtils.Console.print("");
+  }
+
   async run() {
     try {
       const carsName = await this.inputCars();
