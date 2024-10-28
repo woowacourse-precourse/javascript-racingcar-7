@@ -1,6 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import { Car } from './Car.js';
-import { attempsError } from './Constants.js';
+import { attempsNegativeTest, attempsNumberTest } from './Constants.js';
 
 export class raceController {
   constructor(inputNames, inputAttemps) {
@@ -23,7 +23,8 @@ export class raceController {
   }
 
   raceAttemps() {
-    attempsError(this.attemps);
+    attempsNumberTest(this.attemps);
+    attempsNegativeTest(this.attemps);
     for (let i = 0; i < this.attemps; i++) {
       this.raceResult();
     }

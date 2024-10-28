@@ -1,4 +1,4 @@
-import { nameLimit5 } from './Constants.js';
+import { nameLimitTest } from './Constants.js';
 import { getRandomNumber } from './Constants.js';
 
 export class Car {
@@ -19,7 +19,7 @@ export class Car {
   }
 
   getName() {
-    nameLimit5(this.name);
+    nameLimitTest(this.name);
     return this.name;
   }
 }
