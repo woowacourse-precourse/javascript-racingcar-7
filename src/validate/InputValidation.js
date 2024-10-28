@@ -45,6 +45,9 @@ class InputValidation {
     if (attempts < 0) {
       throw new Error("[ERROR] : 시도 횟수는 양수만 가능합니다.");
     }
+    if(attempts===""){
+      throw new Error("[ERROR] : 시도 횟수는 공백일 수 없습니다.");
+    }
   }
 }
 
