@@ -32,7 +32,8 @@ class App {
 
       // 시도 횟수에 대한 예외 케이스
       Validator.isNumber(tryCount);
-      Validator.isPositiveInteger(tryCount);
+      Validator.isInteger(tryCount);
+      Validator.isPositive(tryCount);
 
       // 줄 구분용 빈칸
       Console.print('');

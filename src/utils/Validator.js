@@ -1,4 +1,4 @@
-import { ERROR_PREFIX, SERVICE_CONSTSANSTS } from '../assets/constants';
+import { ERROR_PREFIX, SERVICE_CONSTSANSTS } from '../assets/constants.js';
 
 export class Validator {
   static isEmptyString(string) {
@@ -36,7 +36,12 @@ export class Validator {
       throw new Error(`${ERROR_PREFIX} 숫자만 입력해주세요.`);
   }
 
-  static isPositiveInteger(tryCount) {
+  static isInteger(tryCount) {
+    if (tryCount % 1 != 0)
+      throw new Error(`${ERROR_PREFIX} 정수를 입력해주세요.`);
+  }
+
+  static isPositive(tryCount) {
     if (tryCount < 0)
       throw new Error(`${ERROR_PREFIX} 0보다 큰 수를 입력해주세요.`);
   }
