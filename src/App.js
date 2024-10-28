@@ -11,6 +11,13 @@ class App {
 
     // 유효성 검사 하기 6자 이상이면 Error
     const cars = race_car.split(",").map((car) => car.trim()); //[ 'so', 'sun' ], 앞뒤 공백 제거
+
+    for (let i = 0; i < cars.length; i++) {
+      if (cars[i].length > 5) {
+        throw Error("[ERROR] 이름은 5자 이하만 가능합니다.");
+      }
+    }
+
     let record = Array(cars.length).fill("");
 
     Console.print("실행 결과");
@@ -44,7 +51,8 @@ class App {
 
     // 잘못된 입력값은
     // 1. race_car 입력이 6자 이상일 때
-    // 2. 경주 시 "" , "-" 말고 이외의 값이 들어올 때
+
+    // 메소드 분리
   }
 }
 
