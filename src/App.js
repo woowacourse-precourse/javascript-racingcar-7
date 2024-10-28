@@ -1,8 +1,9 @@
-import RaceController from "./controllers/RaceController"
+import RaceController from './controllers/RaceController.js';
+
 class App {
   async run() {
     const raceController = new RaceController();
-    raceController.run()
+    await raceController.run();
   }
 }
 

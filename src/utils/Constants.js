@@ -4,9 +4,9 @@ const Constants = {
     NUMBER_QUESTION: "시도할 횟수는 몇 회인가요?",
   },
   ERROR_MESSAGES: {
-    CAR_NAME_LENGTH: "[ERROR] 자동차 이름은 5자 이하만 가능합니다.",
-    EMPTY_CAR_NAME: "[ERROR] 자동차 이름은 공백일 수 없습니다.",
-    INVALID_ATTEMPT_COUNT: "[ERROR] 이동 횟수는 1 이상이어야 합니다."
+    CAR_NAME_LENGTH: "[ERROR] 자동차 이름은 1자 이상 5자 이하이어야 합니다.",
+    EMPTY_CAR_NAME: "[ERROR] 자동차 이름이 입력되지 않았습니다.",
+    INVALID_ATTEMPT_COUNT: "[ERROR] 시도 횟수는 양의 정수여야 합니다."
   },
 };
 
