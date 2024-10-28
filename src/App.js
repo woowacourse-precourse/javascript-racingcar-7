@@ -1,8 +1,9 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 class App {
   constructor() {
     this.carNames = [];
     this.total = 0;
+    this.moveForwardCount = {};
   }
   checkCarNames(inputString) {
     const carNames = inputString.split(",");
@@ -16,6 +17,11 @@ class App {
   checkMoveCount(moveCountString) {
     return !isNaN(moveCountString);
   }
+  includeSameNames(inputString) {
+    const carNames = inputString.split(",");
+    const setCarNames = new Set(carNames);
+    return carNames.length !== setCarNames.size;
+  }
   async inputCarNames() {
     try {
       const names = await Console.readLineAsync(
@@ -28,6 +34,9 @@ class App {
         throw new Error(
           "[ERROR] 쉼표(,)를 구분자로 두어서 각 5자 이하로 입력해야 합니다."
         );
+      }
+      if (this.includeSameNames(names)) {
+        throw new Error("[ERROR] 동명이인은 입력하실 수 없습니다.");
       }
     } catch (error) {
       throw error;
@@ -48,11 +57,44 @@ class App {
       throw error;
     }
   }
+  moveForwardStepByStep() {
+    for (const name of this.carNames) {
+      const number = Random.pickNumberInRange(0, 9);
+      if (number >= 4) {
+        this.moveForwardCount[name] += 1;
+      }
+    }
+  }
 
+  printStateStepByStep(nth) {
+    if (nth === 0) {
+      Console.print("");
+      Console.print("실행 결과");
+    } else {
+      for (const name of this.carNames) {
+        const text = "-".repeat(this.moveForwardCount[name]);
+        Console.print(`${name} : ${text}`);
+      }
+      Console.print("");
+    }
+  }
+
+  moveForward() {
+    for (const name of this.carNames) {
+      this.moveForwardCount[name] = 0;
+    }
+
+    for (let i = 0; i < this.total; i++) {
+      this.moveForwardStepByStep();
+      this.printStateStepByStep(i);
+    }
+  }
   async run() {
     try {
       await this.inputCarNames();
       await this.inputMoveCount();
+
+      this.moveForward();
     } catch (error) {
       Console.print(error.message);
       throw error;
