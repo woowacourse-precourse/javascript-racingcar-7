@@ -3,14 +3,17 @@ import { Console, Random } from "@woowacourse/mission-utils";
 class App {
   async run() {
     const names = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
+    const nameMap = this.separateNameHandler(names);
+    this.nameExceptionHandler(nameMap);
+
     const count = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n")
     
-    this.exceptionHandler(names, count);
+    this.countExceptionHandler(names, count);
 
-    const nameMap = this.separateNameHandler(names);
+
 
     Console.print("실행 결과");
-    const raceResultMap = this.raceHanlder(nameMap, count);
+    this.raceHanlder(nameMap, count);
     
     this.displayFinalRaceResultHandler(nameMap);
   }
@@ -36,8 +39,6 @@ class App {
       }
       this.displayRaceResultHandler(nameMap);
     }
-
-    return nameMap;
   }
 
   // 각 레이스마다의 실행 결과 출력 함수
@@ -67,9 +68,17 @@ class App {
     Console.print(`최종 우승자 : ${winners.join(', ')}`)
   }
 
-  exceptionHandler(names, count){
+  countExceptionHandler(count){
     if(count==undefined||count==''||count==null){
       throw new Error("[ERROR] count 값을 입력해주세요.")
+    }
+  }
+
+  nameExceptionHandler(nameMap){
+    for(let name of nameMap.keys()){
+      if(name.length>5){
+        throw new Error("[ERROR] 이름은 5자 이하만 가능합니다.")
+      }
     }
   }
 }
