@@ -20,7 +20,7 @@ class App {
     Console.print("\n");
     Console.print("실행 결과 \n");
     for (let i = 0; i < count; i++) {
-      cars.forEach((car, idx) => {
+      cars.forEach((_, idx) => {
         const randomNum = Random.pickNumberInRange(0, 9);
         if (randomNum >= 4) {
           movingCars[idx]++;
@@ -36,6 +36,12 @@ class App {
 
       Console.print("\n");
     }
+
+    // 5. 우승자 결정
+    const maxDistance = Math.max(...movingCars);
+    const winners = cars.filter((_, idx) => movingCars[idx] === maxDistance);
+
+    Console.print(`최종 우승자: ${winners.join(", ")}`);
   }
 }
 
