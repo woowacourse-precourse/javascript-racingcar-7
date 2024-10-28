@@ -11,13 +11,13 @@ class Car {
   }
 
   async getMoveForwardResult() {
-    const randomValue = await pickNumberInRange(this.#min, this.#max);
-    const isOver4 = randomValue >= 4;
-    if (isOver4) {
+    const RANDOM_VALUE = await pickNumberInRange(this.#min, this.#max);
+    const IS_OVER_4 = RANDOM_VALUE >= 4;
+    if (IS_OVER_4) {
       this.setDitance('-');
     }
-    const carStatusString = `${this.#name} : ${this.#distance}\n`;
-    return carStatusString;
+    const CAR_STATUS_STRING = `${this.#name} : ${this.#distance}\n`;
+    return CAR_STATUS_STRING;
   }
 
   setDitance(distance) {

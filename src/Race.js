@@ -16,16 +16,16 @@ class Race {
   }
 
   async processCars() {
-    const cars = await readUserInput(START_MESSAGE.CAR_NAME_INPUT);
-    const carsArray = cars.split(',').map((car) => car.trim());
-    validCarName(carsArray);
-    this.setCar(carsArray);
+    const CARS = await readUserInput(START_MESSAGE.CAR_NAME_INPUT);
+    const CARS_NAME = CARS.split(',').map((car) => car.trim());
+    validCarName(CARS_NAME);
+    this.setCar(CARS_NAME);
   }
 
   async processTryNumber() {
-    const tryNumber = await readUserInput(START_MESSAGE.TRY_NUMBER_INPUT);
-    validTryNumber(tryNumber);
-    this.setTryNumber(tryNumber);
+    const TRY_NUMBER = await readUserInput(START_MESSAGE.TRY_NUMBER_INPUT);
+    validTryNumber(TRY_NUMBER);
+    this.setTryNumber(TRY_NUMBER);
   }
 
   setTryNumber(number) {
@@ -40,21 +40,23 @@ class Race {
     await printResult(RESULT_MESSAGE.EXECUTE);
 
     while (this.#tryNumber > 0) {
-      const distaceResult = await Promise.all(
+      const DISTANCE_RESULT = await Promise.all(
         this.#cars.map((car) => car.getMoveForwardResult())
       );
 
-      await printResult(distaceResult.join(''));
+      await printResult(DISTANCE_RESULT.join(''));
 
       this.#tryNumber -= 1;
     }
   }
 
   async winnerResult() {
-    const carDistanceArray = this.#cars.map((car) => car.getDistance().length);
-    const maxDistance = Math.max(...carDistanceArray);
-    const winner = await getWinner(this.#cars, maxDistance);
-    await printResult(`${RESULT_MESSAGE.WINNER} ${winner.join(', ')}`);
+    const CAR_DISTANCE_ARRAY = this.#cars.map(
+      (car) => car.getDistance().length
+    );
+    const MAX_DISTANCE = Math.max(...CAR_DISTANCE_ARRAY);
+    const WINNER = await getWinner(this.#cars, MAX_DISTANCE);
+    await printResult(`${RESULT_MESSAGE.WINNER} ${WINNER.join(', ')}`);
   }
 }
 

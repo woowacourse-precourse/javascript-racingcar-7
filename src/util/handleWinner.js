@@ -2,11 +2,11 @@ export const getWinner = async (cars, maxDistance) => {
   const winner = [];
 
   for (const car of cars) {
-    const carDistanceLength = await car.getDistance().length;
-    const carName = await car.getName();
+    const CAR_DISTANCE = await car.getDistance().length;
+    const CAR_NAME = await car.getName();
 
-    if (carDistanceLength === maxDistance) {
-      winner.push(carName);
+    if (CAR_DISTANCE === maxDistance) {
+      winner.push(CAR_NAME);
     }
   }
   return winner;
