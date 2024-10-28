@@ -1,4 +1,4 @@
-class RaceResult {
+class RacingResult {
     findWinners(cars) {
         const maxDistance = Math.max(...cars.map(car => car.distance)); //가장 멀리 이동한 maxDistance를 구함
         const winnersArray = this.parsingWinnersArray(cars, maxDistance); // 이동거리가 maxDistance인 자동차 객체 배열에서 자동차 이름만 남김 
@@ -11,4 +11,4 @@ class RaceResult {
     }
 }
 
-export default RaceResult;
+export default RacingResult;
