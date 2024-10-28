@@ -16,10 +16,12 @@ class InputView extends IInputView {
 
   async readRaceCarNames() {
     const raceCarNamesInput = await this.readInput(
-      '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n'
+      INPUT_PROMPTS.ENTER_CAR_NAMES
     );
 
-    const raceCarNames = raceCarNamesInput.split(',').map(name => name.trim());
+    const raceCarNames = raceCarNamesInput
+      .split(CAR_NAME_DELIMITER)
+      .map(name => name.trim());
 
     this.validateRaceCarNames(raceCarNames);
 
@@ -29,7 +31,7 @@ class InputView extends IInputView {
   async readAttemptCount() {
     let attemptCount = 0;
 
-    const input = await this.readInput('시도할 횟수는 몇 회인가요?\n');
+    const input = await this.readInput(INPUT_PROMPTS.ENTER_ATTEMPT_COUNT);
     attemptCount = Number(input);
 
     return attemptCount;
@@ -38,13 +40,13 @@ class InputView extends IInputView {
   validateRaceCarNames(raceCarNames) {
     raceCarNames.forEach(name => {
       if (name.length > 5) {
-        throw new Error('[ERROR] 자동차 이름은 5자 이하만 가능합니다.');
+        throw new Error(ERROR_MESSAGES.NAME_TOO_LONG);
       }
     });
 
     const uniqueRaceCarNames = new Set(raceCarNames);
     if (uniqueRaceCarNames.size !== raceCarNames.length) {
-      throw new Error('[ERROR] 자동차 이름은 중복되지 않아야 합니다.');
+      throw new Error(ERROR_MESSAGES.NAME_DUPLICATE);
     }
   }
 }
