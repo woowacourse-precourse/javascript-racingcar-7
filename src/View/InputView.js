@@ -4,6 +4,7 @@ import {
   CAR_NAME_DELIMITER,
   ERROR_MESSAGES,
   INPUT_PROMPTS,
+  CAR_NAME_MAX_LENGTH,
 } from '../constants.js';
 
 class InputView extends IInputView {
@@ -44,7 +45,7 @@ class InputView extends IInputView {
 
   validateRaceCarNames(raceCarNames) {
     raceCarNames.forEach(name => {
-      if (name.length > 5) {
+      if (name.length > CAR_NAME_MAX_LENGTH) {
         throw new Error(ERROR_MESSAGES.NAME_TOO_LONG);
       }
     });

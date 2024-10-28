@@ -5,6 +5,8 @@ const RANDOM_NUMBER_END = 9;
 
 const MOVE_FORWARD_THRESHOLD = 4;
 
+const CAR_NAME_MAX_LENGTH = 5;
+
 const INPUT_PROMPTS = {
   ENTER_CAR_NAMES:
     '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
@@ -21,6 +23,7 @@ export {
   RANDOM_NUMBER_START,
   RANDOM_NUMBER_END,
   MOVE_FORWARD_THRESHOLD,
+  CAR_NAME_MAX_LENGTH,
   INPUT_PROMPTS,
   ERROR_MESSAGES,
 };
