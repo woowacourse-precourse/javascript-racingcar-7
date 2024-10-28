@@ -16,7 +16,8 @@ class App {
       const gameRounds = await game.runRacingGame(carList, gameRound);
       result.printWinner(carList, gameRounds);
     } catch (error) {
-      Console.print(`[ERROR] ${error.message}`);
+      Console.print(`${error.message}`);
+      throw error;
     }
   }
 }
