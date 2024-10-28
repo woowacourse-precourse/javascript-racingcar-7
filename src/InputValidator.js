@@ -8,21 +8,6 @@ class InputValidator {
 
         const uniqueNames = new Set();
         for (const name of carNames) {
-            // 쉼표로 끝나는 경우
-            if (name.endsWith(",")) {
-                throw new Error("[ERROR] 자동차 이름이 쉼표로 끝날 수 없습니다.");
-            }
-
-            // 이름이 비어있거나 공백으로만 구성된 경우
-            if (!name || name.trim() === "") {
-                throw new Error("[ERROR] 자동차 이름이 비어 있습니다.");
-            }
-
-            // 두 개의 쉼표가 연속으로 존재할 경우
-            if (name.includes(",,")) {
-                throw new Error("[ERROR] 자동차 이름에 두 개의 쉼표가 연속으로 포함될 수 없습니다.");
-            }
-
             // 특수 문자가 포함된 경우
             if (/[^a-zA-Z0-9]/.test(name)) {
                 throw new Error("[ERROR] 자동차 이름에 특수 문자는 포함될 수 없습니다.");
