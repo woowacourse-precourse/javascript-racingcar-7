@@ -6,6 +6,7 @@
 export function initializeCumulativeResults(carNames) {
     return carNames.reduce((acc, car) => {
         acc[car] = '';
+
         return acc;
     }, {});
 }
