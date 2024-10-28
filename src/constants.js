@@ -1,0 +1,1 @@
+export const ONLY_NUMBER = /[^0-9]/;
