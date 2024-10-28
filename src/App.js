@@ -38,14 +38,14 @@ class App {
   racing(carNames, attempts) {
     const cars = carNames.map((name) => ({ name, go: 0 }));
 
-    cars.forEach((car) => {
-      for (let i = 0; i < attempts; i++) {
+    for (let i = 0; i < attempts; i++) {
+      cars.forEach((car) => {
         const randomNum = MissionUtils.Random.pickNumberInRange(0, 9);
         if (randomNum > 3) {
           car.go++;
         }
-      }
-    });
+      });
+    }
   }
 }
 
