@@ -10,8 +10,8 @@ class App {
       const nameList = carsNames.split(",").map((car) => car.trim());
       this.validCarNames(nameList);
 
-      const playNum = await Console.readLineAsync(
-        "시도할 횟수는 몇 회인가요?\n"
+      const playNum = Number(
+        await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n")
       );
       this.validMoveCount(playNum);
 
@@ -19,14 +19,15 @@ class App {
       this.winnerCar(nameList, movingCars);
     } catch (error) {
       Console.print(`[ERROR] ${error.message}`);
-      throw error;
     }
   }
 
   validCarNames(nameList) {
     nameList.forEach((name) => {
       if (name.length === 0 || name.length > 5) {
-        throw new Error("자동차 이름은 1자 이상 5자 이하만 가능합니다.");
+        throw new Error(
+          "[ERROR] 자동차 이름은 1자 이상 5자 이하만 가능합니다."
+        );
       }
     });
   }
@@ -58,9 +59,9 @@ class App {
     });
   }
 
-  nowCar(cars, movingCars) {
+  nowCar(nameList, movingCars) {
     movingCars.forEach((distance, idx) => {
-      const car = cars[idx];
+      const car = nameList[idx];
       const carPosition = "-".repeat(distance);
       Console.print(`${car} : ${carPosition}`);
     });
