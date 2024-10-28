@@ -1,5 +1,10 @@
 export class Validator {
     static CarNames(names) {
+
+        if (names.length === 0 || names.some(name => name.trim() === '')) {
+            throw new Error("[ERROR] 이름은 공백이 올 수 없습니다.");
+        }
+
         for (let i = 0; i < names.length; i++) {
             const name = names[i].trim();
 
