@@ -6,6 +6,9 @@ class App {
       "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
     );
     const carNameArr = carNames.split(",").map((name) => name.trim());
+    if (carNameArr.length == 0) {
+      throw new Error("[ERROR] 자동차 이름은 1개 이상이어야 합니다.");
+    }
     for (const name of carNameArr) {
       if (name.length > 5) {
         throw new Error("[ERROR] 자동차 이름을 5자 이하로 작성해주세요.");
@@ -16,6 +19,9 @@ class App {
       await Console.readLineAsync("시도할 횟수는 몇회인가요?\n"),
       10
     );
+    if (isNaN(tryNumber) || tryNumber < 1) {
+      throw new Error("[ERROR] 시도 횟수는 1 이상의 숫자여야 합니다.");
+    }
 
     function canCarMove() {
       const randomValue = MissionUtils.Random.pickNumberInRange(0, 9);
