@@ -90,4 +90,28 @@ describe("자동차 경주 입력 관련 예외 테스트", () => {
     const app = new App();
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
+  test("자동차 이름에 특수문자가 포함된 경우", async () => {
+    const inputs = ["㈖동차,car", "1"];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("자동차 이름에 특수문자가 포함된 경우", async () => {
+    const inputs = ["자동차,car.", "1"];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("자동차 이름에 특수문자가 포함된 경우", async () => {
+    const inputs = ["자동차,🚓", "1"];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
 });
