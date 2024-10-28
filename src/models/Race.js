@@ -1,5 +1,5 @@
 import { validateRacerAmount, validateRounds } from "../libs/validate.js";
-import Car from "./car.js";
+import Car from "./Car.js";
 
 export default class Race {
   /**

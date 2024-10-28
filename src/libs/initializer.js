@@ -1,6 +1,6 @@
 import { validateRacerAmount, validateRounds } from "./validate.js";
 
-import Car from "../models/car.js";
+import Car from "../models/Car.js";
 import Race from "../models/Race.js";
 
 export function initialRace(carsName, rounds) {
