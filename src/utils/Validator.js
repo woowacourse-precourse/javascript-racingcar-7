@@ -1,7 +1,9 @@
+import ErrorMessages from "../constants/ErrorMessages";
+
 // 자동차 이름 입력 검증 함수
 export function validateCars(cars) {
   if (cars.length < 2 || cars.length > 10) {
-    throw new Error('[ERROR] 자동차의 수는 2대 이상 10대 이하여야 한다.')
+    throw new Error(ErrorMessages.CAR_COUNT_INVALID);
   }
 
   const validNameRegex = /^[a-zA-Z0-9가-힣]+$/;
@@ -9,13 +11,13 @@ export function validateCars(cars) {
 
   cars.forEach(car => {
     if (car.length < 1 || car.length > 5) {
-      throw new Error('[ERROR] 자동차의 이름은 1글자 이상 5글자 이하여야 한다.')
+      throw new Error(ErrorMessages.CAR_NAME_LENGTH);
     }
     if (!validNameRegex.test(car)) {
-      throw new Error('[ERROR] 자동차의 이름은 한글, 영어, 숫자로 이루어져야 한다.');
+      throw new Error(ErrorMessages.CAR_NAME_FORMAT);
     }
     if (checkedCars.includes(car)) {
-      throw new Error('[ERROR] 자동차의 이름은 중복되면 안 된다.');
+      throw new Error(ErrorMessages.CAR_NAME_DUPLICATE);
     }
     checkedCars.push(car); 
   });
@@ -28,13 +30,13 @@ export function validateRound(roundInput) {
   const round = Number(roundInput);
 
   if (isNaN(round)) {
-    throw new Error('[ERROR] 시도할 횟수는 숫자로 입력해야 한다.');
+    throw new Error(ErrorMessages.ROUND_NOT_NUMERIC);
   }
   if (!Number.isInteger(round)) {
-    throw new Error('[ERROR] 시도할 횟수는 정수로 입력해야 한다.');
+    throw new Error(ErrorMessages.ROUND_NOT_INTEGER);
   }
   if (round < 1 || round > 50) {
-    throw new Error('[ERROR] 시도할 횟수는 1회 이상 50회 이하로 입력해야 한다.');
+    throw new Error(ErrorMessages.ROUND_OUT_OF_RANGE);
   }
 
   return;

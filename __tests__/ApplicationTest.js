@@ -1,5 +1,6 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
+import ErrorMessages from "../src/constants/ErrorMessages.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -51,9 +52,7 @@ describe("자동차 경주", () => {
     mockQuestions(inputs);
 
     const app = new App();
-    await expect(app.run()).rejects.toThrow(
-      "[ERROR] 자동차의 이름은 1글자 이상 5글자 이하여야 한다."
-    );
+    await expect(app.run()).rejects.toThrow(ErrorMessages.CAR_NAME_LENGTH);
   });
 
   test("예외 테스트 2: 자동차의 이름이 한글, 영어, 숫자 외의 다른 문자로 이루어진 경우", async () => {
@@ -61,9 +60,7 @@ describe("자동차 경주", () => {
     mockQuestions(inputs);
 
     const app = new App();
-    await expect(app.run()).rejects.toThrow(
-      "[ERROR] 자동차의 이름은 한글, 영어, 숫자로 이루어져야 한다."
-    );
+    await expect(app.run()).rejects.toThrow(ErrorMessages.CAR_NAME_FORMAT);
   });
 
   test("예외 테스트 3: 자동차의 이름이 중복되는 경우", async () => {
@@ -71,9 +68,7 @@ describe("자동차 경주", () => {
     mockQuestions(inputs);
 
     const app = new App();
-    await expect(app.run()).rejects.toThrow(
-      "[ERROR] 자동차의 이름은 중복되면 안 된다."
-    );
+    await expect(app.run()).rejects.toThrow(ErrorMessages.CAR_NAME_DUPLICATE);
   });
 
   test("예외 테스트 4: 자동차의 수가 2대 이상 10대 이하가 아닌 경우", async () => {
@@ -81,9 +76,7 @@ describe("자동차 경주", () => {
     mockQuestions(inputs);
 
     const app = new App();
-    await expect(app.run()).rejects.toThrow(
-      "[ERROR] 자동차의 수는 2대 이상 10대 이하여야 한다."
-    );
+    await expect(app.run()).rejects.toThrow(ErrorMessages.CAR_COUNT_INVALID);
   });
 
   test("예외 테스트 5: 시도할 횟수 입력이 숫자가 아닌 경우", async () => {
@@ -91,9 +84,7 @@ describe("자동차 경주", () => {
     mockQuestions(inputs);
 
     const app = new App();
-    await expect(app.run()).rejects.toThrow(
-      "[ERROR] 시도할 횟수는 숫자로 입력해야 한다."
-    );
+    await expect(app.run()).rejects.toThrow(ErrorMessages.ROUND_NOT_NUMERIC);
   });
 
   test("예외 테스트 6: 시도할 횟수 입력이 정수가 아닌 경우", async () => {
@@ -101,9 +92,7 @@ describe("자동차 경주", () => {
     mockQuestions(inputs);
 
     const app = new App();
-    await expect(app.run()).rejects.toThrow(
-      "[ERROR] 시도할 횟수는 정수로 입력해야 한다."
-    );
+    await expect(app.run()).rejects.toThrow(ErrorMessages.ROUND_NOT_INTEGER);
   });
 
   test("예외 테스트 7: 시도할 횟수가 1회 이상 50회 이하가 아닌 경우", async () => {
@@ -111,8 +100,6 @@ describe("자동차 경주", () => {
     mockQuestions(inputs);
 
     const app = new App();
-    await expect(app.run()).rejects.toThrow(
-      "[ERROR] 시도할 횟수는 1회 이상 50회 이하로 입력해야 한다."
-    );
+    await expect(app.run()).rejects.toThrow(ErrorMessages.ROUND_OUT_OF_RANGE);
   });
 });
