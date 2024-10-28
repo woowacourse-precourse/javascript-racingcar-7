@@ -1,12 +1,11 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
-import { MIN_RANDOM_VALUE, RESULT_MESSAGE } from "./constants.js";
+import { MIN_RANDOM_VALUE } from "./constants.js";
+import { displayCurrentProgress } from "./raceView.js";
 
-function displayCurrentProgress(raceResults) {
-    Object.entries(raceResults).forEach(([name, progress]) => {
-      MissionUtils.Console.print(`${name} : ${progress}`);
-    });
-    MissionUtils.Console.print(""); 
-  }
+function shouldMoveForward() {
+  const RANDOM_VALUE = MissionUtils.Random.pickNumberInRange(0, 9);
+  return RANDOM_VALUE >= MIN_RANDOM_VALUE;
+}
 
 export function simulateRace(carNames, attemptCount) {
     const RACE_RESULT = carNames.reduce((acc, name) => {
@@ -26,13 +25,3 @@ export function simulateRace(carNames, attemptCount) {
     return RACE_RESULT;
   }
   
-  function shouldMoveForward() {
-    const RANDOM_VALUE = MissionUtils.Random.pickNumberInRange(0, 9);
-    return RANDOM_VALUE >= MIN_RANDOM_VALUE;
-  }
-  
-  export function displayWinners(raceResults) {
-    const MAX_DISTANCE = Math.max(...Object.values(raceResults).map(result => result.length));
-    const WINNERS = Object.keys(raceResults).filter(name => raceResults[name].length === MAX_DISTANCE);
-    MissionUtils.Console.print(`${RESULT_MESSAGE} : ${WINNERS.join(", ")}`);
-  }
