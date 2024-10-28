@@ -4,6 +4,15 @@ import { mockRandoms, mockQuestions, getLogSpy } from "./ApplicationTest.js";
 describe("기능 검사", () => {
   const app = new App();
 
+  test("initRacingCarsPos 함수 테스트", () => {
+    const racingCars = ["pobi", "woni", "jason"];
+    expect(app.initRacingCarsPos(racingCars)).toEqual({
+      pobi: "",
+      woni: "",
+      jason: "",
+    });
+  });
+
   test("pickWinner 함수 테스트", () => {
     const racingCarsPos = { pobi: "---", woni: "--", jason: "--" };
     expect(app.pickWinner(racingCarsPos)).toEqual(["pobi"]);
