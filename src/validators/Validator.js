@@ -35,10 +35,6 @@ class Validator {
       throw new Error(ERROR_MESSAGES.SINGLE_PLAYER);
     }
 
-    if (names.every((name) => name === names[0])) {
-      throw new Error(ERROR_MESSAGES.ALL_NAMES_SAME);
-    }
-
     const nameSet = new Set(names);
     if (nameSet.size !== names.length) {
       throw new Error(ERROR_MESSAGES.SAME_NAMES);
