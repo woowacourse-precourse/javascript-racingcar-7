@@ -27,6 +27,11 @@ class Validate {
             throw new Error(errMessage);
         }
 
+        if (attempts <= 0) {
+            const errMessage = `[ERROR] 시도 횟수는 양수를 입력해주세요(Not Positive Number: ${attempts})`;
+            throw new Error(errMessage);
+        }
+
         return attempts;
     }
 
