@@ -51,49 +51,21 @@ const validateGameCount = (gameCount) => {
 };
 
 class App {
+  constructor() {
+    this.cars = [];
+    this.carDistances = [];
+  }
+
   async run() {
     const carNames = await this.getCarNames();
     const gameCount = await this.getGameCount();
+    this.initialize(carNames);
+
     Console.print('\n실행 결과');
 
-    const cars = carNames.split(',');
-    const carDistances = Array.from({ length: cars.length }, () => '');
+    this.playGames(gameCount);
 
-    const moveCars = (carsCanMove) => {
-      carsCanMove.forEach((canMove, index) => {
-        if (canMove) {
-          carDistances[index] += '-';
-        }
-      });
-    };
-
-    const printCarDistances = () => {
-      cars.forEach((car, index) => {
-        Console.print(`${car} : ${carDistances[index]}`);
-      });
-    };
-
-    for (let count = 0; count < gameCount; count++) {
-      const carsCanMove = Array.from(
-        { length: cars.length },
-        () => Random.pickNumberInRange(0, 9) >= 4,
-      );
-
-      moveCars(carsCanMove);
-
-      printCarDistances();
-
-      Console.print('');
-    }
-
-    const maxDistance = Math.max(
-      ...carDistances.map((distance) => distance.length),
-    );
-
-    const winners = [...carDistances.keys()]
-      .filter((index) => carDistances[index].length === maxDistance)
-      .map((index) => cars[index]);
-    Console.print(`최종 우승자 : ${winners.join(', ')}`);
+    this.printWinners();
   }
 
   async getCarNames() {
@@ -109,6 +81,50 @@ class App {
       await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
     validateGameCount(gameCount);
     return Number(gameCount);
+  }
+
+  initialize(carNames) {
+    const cars = carNames.split(',');
+    this.cars = cars;
+    this.carDistances = Array.from({ length: cars.length }, () => '');
+  }
+
+  playGames(gameCount) {
+    for (let count = 0; count < gameCount; count++) {
+      const carsCanMove = Array.from(
+        { length: this.cars.length },
+        () => Random.pickNumberInRange(0, 9) >= 4,
+      );
+
+      this.moveCars(carsCanMove);
+      this.printCarDistances();
+      Console.print('');
+    }
+  }
+
+  moveCars(carsCanMove) {
+    carsCanMove.forEach((canMove, index) => {
+      if (canMove) {
+        this.carDistances[index] += '-';
+      }
+    });
+  }
+
+  printCarDistances() {
+    this.cars.forEach((car, index) => {
+      Console.print(`${car} : ${this.carDistances[index]}`);
+    });
+  }
+
+  printWinners() {
+    const maxDistance = Math.max(
+      ...this.carDistances.map((distance) => distance.length),
+    );
+
+    const winners = [...this.carDistances.keys()]
+      .filter((index) => this.carDistances[index].length === maxDistance)
+      .map((index) => this.cars[index]);
+    Console.print(`최종 우승자 : ${winners.join(', ')}`);
   }
 }
 
