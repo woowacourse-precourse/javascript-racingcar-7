@@ -14,7 +14,7 @@ export default class Validator {
     }
 
     static isZero(inputTime) {
-        if(inputTime === 0)
+        if(inputTime == 0)
             CauseError.causeError(errorMessage.isZeroErrorMessage);
     }
 }
