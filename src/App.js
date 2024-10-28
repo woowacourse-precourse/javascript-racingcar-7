@@ -2,11 +2,17 @@ import { Console, Random } from "@woowacourse/mission-utils";
 
 class App {
   async run() {
+    const MESSAGES = {
+      GETNAME:
+        "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n",
+      NAME_LEN_ERROR: "[ERROR] 자동차 이름은 1~5자 사이여야 합니다.",
+      GETTRYCNT: "시도할 횟수는 몇 회인가요?\n",
+      TRYCNT_RANGE_ERROR: "[ERROR] 시도 횟수는 1 이상의 숫자여야 합니다.",
+    };
+
     /** 자동차 이름 받기 */
     const getCarNames = async () => {
-      const input = await Console.readLineAsync(
-        "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
-      );
+      const input = await Console.readLineAsync(MESSAGES.GETNAME);
       const carNames = input.split(",").map((name) => name.trim());
       checkCarNames(carNames);
       return carNames;
@@ -15,13 +21,13 @@ class App {
     /** 자동차 이름 검증 */
     const checkCarNames = (names) => {
       if (names.some((name) => name.length > 5 || !name)) {
-        throw new Error("[ERROR] 자동차 이름은 1~5자 사이여야 합니다.");
+        throw new Error(MESSAGES.NAME_LEN_ERROR);
       }
     };
 
     /** 시도 횟수 입력 */
     const getTryCount = async () => {
-      const input = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+      const input = await Console.readLineAsync(MESSAGES.GETTRYCNT);
       const tryCount = parseInt(input, 10);
       checkTryCnt(tryCount);
       return tryCount;
@@ -30,7 +36,7 @@ class App {
     /** 시도 횟수 검증 */
     const checkTryCnt = (cnt) => {
       if (isNaN(cnt) || cnt <= 0) {
-        throw new Error("[ERROR] 시도 횟수는 1 이상의 숫자여야 합니다.");
+        throw new Error(MESSAGES.TRYCNT_RANGE_ERROR);
       }
     };
 
