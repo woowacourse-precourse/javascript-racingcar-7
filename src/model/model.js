@@ -4,10 +4,4 @@ import { isWinner } from './functions/isWinner.js';
 import { getRace } from './functions/getRace.js';
 import { validateSeparator } from './functions/validateSeparator.js';
 
-export {
-  verifyRacingCarName,
-  validateSeparator,
-  verifyTryNumber,
-  isWinner,
-  getRace,
-};
+export { verifyRacingCarName, validateSeparator, verifyTryNumber, isWinner, getRace };
