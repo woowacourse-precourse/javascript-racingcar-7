@@ -2,6 +2,7 @@ import { Console } from '@woowacourse/mission-utils';
 import validateCarNames from '../validators/CarNameValidator.js';
 import validateTryCount from '../validators/TryCountValidator.js';
 import readLineAsync from '../utils/readLineAsync.js';
+
 export async function promptCarNames() {
   try {
     const input = await readLineAsync(
@@ -9,6 +10,7 @@ export async function promptCarNames() {
     );
     const carNames = validateCarNames(input);
     Console.print(`입력된 자동차 이름: ${carNames.join(', ')}`);
+    return carNames;
   } catch (error) {
     Console.print(error.message);
   }
@@ -19,6 +21,7 @@ export async function promptTryCount() {
     const input = await readLineAsync('시도할 횟수를 입력하세요.\n');
     const tryCount = validateTryCount(input);
     Console.print(`입력된 시도 횟수: ${tryCount}`);
+    return tryCount;
   } catch (error) {
     Console.print(error.message);
   }

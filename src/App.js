@@ -1,9 +1,11 @@
 import { promptCarNames, promptTryCount } from './controllers/CarController.js';
+import { startRace } from './controllers/RaceController.js';
 
 class App {
   async run() {
-    await promptCarNames();
-    await promptTryCount();
+    const carNames = await promptCarNames();
+    const tryCount = await promptTryCount();
+    startRace(carNames, tryCount);
   }
 }
 
