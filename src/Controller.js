@@ -33,15 +33,19 @@ export class raceController {
     }
   }
 
-  raceWinner() {
-    const maxPosition = this.getMaxPosition();
-    const winners = this.cars
-      .filter((car) => car.getPosition() == maxPosition)
-      .map((car) => car.getName());
-    Console.print(`최종 우승자 : ${winners.join(', ')}`);
-  }
-
   getMaxPosition() {
     return Math.max(...this.cars.map((car) => car.getPosition()));
+  }
+
+  getWinners(maxPosition) {
+    return this.cars
+      .filter((car) => car.getPosition() == maxPosition)
+      .map((car) => car.getName());
+  }
+
+  raceWinner() {
+    const maxPosition = this.getMaxPosition();
+    const winners = this.getWinners(maxPosition);
+    Console.print(`최종 우승자 : ${winners.join(', ')}`);
   }
 }
