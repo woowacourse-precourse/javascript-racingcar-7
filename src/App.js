@@ -11,6 +11,7 @@ class App {
       gameInfo = await this.makeRandomNum(gameInfo, NAMES_COUNT)
       await this.printGame(gameInfo, NAMES, NAMES_COUNT);
     }
+    const WINNER = await this.findWinner(gameInfo);
   }
 
   async getNames() {
@@ -63,6 +64,20 @@ class App {
       Console.print(NAMES[i] + ' : ' + '-'.repeat(gameInfo[i]));
     }
     Console.print('');
+  }
+
+  async findWinner(gameInfo) {
+    const WINNER_VALUE = Math.max.apply(Math, gameInfo);
+    let winners = [];
+    let winnerIndex = gameInfo.indexOf(WINNER_VALUE);
+
+    while (winnerIndex !== -1) {
+      gameInfo[winnerIndex] = -1
+      winners.push(winnerIndex);
+      winnerIndex = gameInfo.indexOf(WINNER_VALUE);
+    }
+
+    return winners;
   }
 }
 
