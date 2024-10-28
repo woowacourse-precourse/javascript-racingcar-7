@@ -12,18 +12,20 @@ import {
   formatAllCarPositions,
   findCarWinners,
 } from './models/Model.js';
-import { validateCarInputs } from './models/ErrorHandler.js';
+import {
+  validateCarNames,
+  validateRaceCountInput,
+} from './models/ErrorHandler.js';
 
 class App {
   async run() {
     try {
       const carNames = await this.getValidatedCarNames();
       const raceAttempts = await this.getValidatedRaceAttempts();
-      validateCarInputs(carNames, raceAttempts);
 
       const initialCarData = createCarDataArray(carNames);
-      MissionUtils.Console.print(`\n실행 결과`);
 
+      MissionUtils.Console.print(`\n실행 결과`);
       const finalCarData = this.executeRace(initialCarData, raceAttempts);
       const winnerName = findCarWinners(finalCarData);
 
@@ -37,11 +39,13 @@ class App {
   async getValidatedCarNames() {
     const userInputCar = await getUserCarName();
     const carNames = splitCarNamesByDelimiter(userInputCar.toString());
+    validateCarNames(carNames);
     return carNames;
   }
 
   async getValidatedRaceAttempts() {
     const userInputRacingNum = await getUserRaceAttempts();
+    validateRaceCountInput(userInputRacingNum);
     return userInputRacingNum;
   }
 
