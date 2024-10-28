@@ -1,60 +1,130 @@
-import App from "../src/App.js";
-import { MissionUtils } from "@woowacourse/mission-utils";
+import App from '../src/App.js';
+import { MissionUtils } from '@woowacourse/mission-utils';
 
-const mockQuestions = (inputs) => {
+const MOVING_FORWARD = 4;
+const STOP = 3;
+
+const mockQuestionsAndRandoms = (inputs, randoms) => {
   MissionUtils.Console.readLineAsync = jest.fn();
+  MissionUtils.Console.readLineAsync.mockImplementation(() =>
+    Promise.resolve(inputs.shift())
+  );
 
-  MissionUtils.Console.readLineAsync.mockImplementation(() => {
-    const input = inputs.shift();
-    return Promise.resolve(input);
-  });
-};
-
-const mockRandoms = (numbers) => {
   MissionUtils.Random.pickNumberInRange = jest.fn();
-
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, MissionUtils.Random.pickNumberInRange);
+  randoms.reduce(
+    (acc, number) => acc.mockReturnValueOnce(number),
+    MissionUtils.Random.pickNumberInRange
+  );
 };
 
 const getLogSpy = () => {
-  const logSpy = jest.spyOn(MissionUtils.Console, "print");
+  const logSpy = jest.spyOn(MissionUtils.Console, 'print');
   logSpy.mockClear();
   return logSpy;
 };
 
-describe("자동차 경주", () => {
-  test("기능 테스트", async () => {
-    // given
-    const MOVING_FORWARD = 4;
-    const STOP = 3;
-    const inputs = ["pobi,woni", "1"];
-    const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
+describe('자동차 경주 기능 테스트', () => {
+  const testRaceWithLogs = async (inputs, randoms, expectedLogs) => {
     const logSpy = getLogSpy();
+    mockQuestionsAndRandoms(inputs, randoms);
 
-    mockQuestions(inputs);
-    mockRandoms([MOVING_FORWARD, STOP]);
-
-    // when
     const app = new App();
     await app.run();
 
-    // then
-    logs.forEach((log) => {
+    expectedLogs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
+  };
+
+  test('정상적인 이동 및 우승자 단수 출력 테스트', async () => {
+    await testRaceWithLogs(
+      ['pobi,woni,jun', '1'],
+      [MOVING_FORWARD, STOP, STOP],
+      ['pobi : -', 'woni : ', 'jun : ', '최종 우승자 : pobi']
+    );
   });
 
-  test("예외 테스트", async () => {
-    // given
-    const inputs = ["pobi,javaji"];
-    mockQuestions(inputs);
+  test('정상적인 이동 및 우승자 복수 출력 테스트', async () => {
+    await testRaceWithLogs(
+      ['pobi,woni,jun', '5'],
+      [
+        MOVING_FORWARD,
+        STOP,
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+      ],
+      [
+        'pobi : -',
+        'woni : ',
+        'jun : -',
+        'pobi : --',
+        'woni : -',
+        'jun : --',
+        'pobi : ---',
+        'woni : --',
+        'jun : ---',
+        'pobi : ----',
+        'woni : ---',
+        'jun : ----',
+        'pobi : -----',
+        'woni : ----',
+        'jun : -----',
+        '최종 우승자 : pobi, jun',
+      ]
+    );
+  });
+});
 
-    // when
+describe('입력 예외 테스트', () => {
+  const testInvalidInput = async (inputs) => {
+    mockQuestionsAndRandoms(inputs, []);
     const app = new App();
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  };
 
-    // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
+  describe('자동차 이름 입력 예외 테스트', () => {
+    test('6자 이상 이름 입력 시 오류', async () => {
+      await testInvalidInput(['pobi,javaji']);
+    });
+
+    test('숫자와 영어 외 문자 입력 시 오류', async () => {
+      await testInvalidInput(['pobi,*']);
+    });
+
+    test('공백 이름 입력 시 오류', async () => {
+      await testInvalidInput(['pobi, ']);
+    });
+
+    test('중복된 자동차 이름 입력 시 오류', async () => {
+      await testInvalidInput(['pobi,pobi']);
+    });
+
+    test('자동차 이름이 하나만 입력됐을 때 오류', async () => {
+      await testInvalidInput(['pobi']);
+    });
+  });
+  describe('실행 차수 입력 예외 테스트', () => {
+    test('음수 차수 입력 시 오류', async () => {
+      await testInvalidInput(['pobi,james', '-3']);
+    });
+
+    test('0 또는 공백 입력 시 오류', async () => {
+      await testInvalidInput(['pobi,james', '0']);
+    });
+
+    test('숫자 외 문자를 차수에 입력 시 오류', async () => {
+      await testInvalidInput(['pobi,james', 'abc']);
+    });
   });
 });

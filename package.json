@@ -5,9 +5,37 @@
   "type": "module",
   "scripts": {
     "start": "node src/index.js",
-    "test": "jest --detectOpenHandles"
+    "test": "jest --detectOpenHandles",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --fix --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --write ."
+  },
+  "eslintConfig": {
+    "extends": [
+      "airbnb",
+      "prettier",
+      "plugin:prettier/recommended"
+    ],
+    "rules": {
+      "prettier/prettier": ["error", { "singleQuote": true }]
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": true
   },
   "devDependencies": {
+    "eslint": "^8.x.x",
+    "prettier": "^3.x.x",
+    "eslint-config-airbnb": "^19.x.x",
+    "eslint-plugin-import": "^2.x.x",
+    "eslint-plugin-jsx-a11y": "^6.x.x",
+    "eslint-plugin-react": "^7.x.x",
+    "eslint-plugin-react-hooks": "^4.x.x",
+    "eslint-config-prettier": "^8.x.x",
+    "eslint-plugin-prettier": "^4.x.x",
     "@babel/core": "^7.25.8",
     "@babel/preset-env": "^7.25.8",
     "babel-jest": "^29.6.0",
