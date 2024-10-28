@@ -10,7 +10,11 @@ class App {
       .trim()
       .split(",");
 
+    const racingInfo = {};
+
     cars.forEach((car) => {
+      racingInfo[car] = 0;
+
       if (5 < car.length) {
         throw new Error("[ERROR] 자동차 이름은 5자 이하만 가능합니다.");
       }
