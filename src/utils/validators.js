@@ -24,7 +24,6 @@ const nameValidation = (carNames) => {
 const tryValidation = (tryCount) => {
   const tryNumber = Number(tryCount);
 
-  console.log(tryNumber);
   if (tryCount.trim() === "") {
     throw new Error(ERROR_MESSAGE.EMPTY_TRY_INPUT);
   }
