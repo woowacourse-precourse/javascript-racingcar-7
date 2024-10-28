@@ -2,6 +2,9 @@ export function checkValidCarInput(carListNames){
     if(carListNames.some(carName =>  carName.trim() === "")){
         throw new Error("[ERROR] 자동차 이름은 빈 문자열일 수 없습니다.");
     }
+    else if(carListNames.some(carName => carName.length > 5)){
+        throw new Error("[ERROR] 자동차 이름은 5자 이하로 가능합니다.");
+    }
 }
 export function checkValidTimeInput(INPUTTIMES){
     if(isNaN(INPUTTIMES)){
