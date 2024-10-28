@@ -16,6 +16,10 @@ const OutputView = {
     });
     Console.print('');
   },
+
+  printRaceWinner(winners) {
+    Console.print(`${OUTPUT_MESSAGE.WINNER}${winners.join(', ')}`);
+  },
 };
 
 export default OutputView;
