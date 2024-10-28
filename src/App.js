@@ -8,7 +8,7 @@ class App {
     const carNames = await this.#input_view.readCarNamesFromInput();
     const raceCount = await this.#input_view.readRaceCountFromInput();
 
-    const carRace = new CarRace(carNames);
+    const carRace = new CarRace(carNames, raceCount);
   }
 }
 

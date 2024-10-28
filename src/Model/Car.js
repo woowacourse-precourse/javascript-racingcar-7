@@ -8,4 +8,8 @@ export default class Car {
 
     this.#name = name;
   }
+
+  getName() {
+    return this.#name;
+  }
 }
