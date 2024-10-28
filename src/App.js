@@ -15,7 +15,11 @@ class App {
       for (let j = 0; j < carArray.length; j++) {
         const randomNumber = Random.pickNumberInRange(0, 9);
         carArray[j].goIfNumberOverFour(randomNumber);
+        Console.print(
+          `${carArray[j].name} : ${"-".repeat(carArray[j].distance)}`
+        );
       }
+      Console.print(" ");
     }
 
   }
