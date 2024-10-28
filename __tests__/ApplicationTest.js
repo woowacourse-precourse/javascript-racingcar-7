@@ -1,5 +1,6 @@
 import App from '../src/App.js';
 import { MissionUtils } from '@woowacourse/mission-utils';
+import RacingCar from '../src/Models/RacingCar.js';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -43,6 +44,39 @@ describe('자동차 경주', () => {
     // then
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
+  describe('Model 테스트', () => {
+    describe('Racing Car', () => {
+      test('Car를 생성했을 떄 이름과 이동 거리에 대한 정보를 가지고 있다.', async () => {
+        // given
+        const carName = 'benz';
+
+        // when
+        const car = new RacingCar(carName);
+
+        // then
+        await expect(car.name).toBe(carName);
+        await expect(car.movedDistance).toBe(0);
+      });
+
+      test.each([1, 3, 5])(
+        'Car가 %s만큼 움직인 값을 저장하고 있다.',
+        async (moveCount) => {
+          // given
+          const carName = 'benz';
+
+          // when
+          const car = new RacingCar(carName);
+          for (let i = 0; i < moveCount; i++) {
+            car.move();
+          }
+
+          // then
+          await expect(car.movedDistance).toBe(moveCount);
+        },
+      );
     });
   });
 
