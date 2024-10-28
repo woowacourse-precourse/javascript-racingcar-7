@@ -4,11 +4,13 @@ import Car from './Car.js';
 class RacingGame {
   constructor() {
     this.cars = [];
+    this.count = 0;
   }
 
   async play() {
     try {
       await this.initializeGame();
+      await this.race();
     } catch (error) {
       Console.print(error.message);
     }
@@ -17,10 +19,9 @@ class RacingGame {
   async initializeGame() {
     const carNames = await this.getCarNames();
     this.validateCarNames(carNames);
-    const count = await this.getCount();
-    this.validateCount(count);
-    const cars = carNames.map((name) => new Car(name));
-    Console.print(cars);
+    this.count = await this.getCount();
+    this.validateCount(this.count);
+    this.cars = carNames.map((name) => new Car(name));
   }
 
   async getCarNames() {
@@ -52,6 +53,30 @@ class RacingGame {
     if (isNaN(count) || count <= 0 || !Number.isInteger(count)) {
       throw new Error('[ERROR] 시도 횟수는 양의 정수여야 합니다.');
     }
+  }
+
+  async race() {
+    Console.print('\n실행 결과');
+
+    for (let i = 0; i < this.count; i++) {
+      this.moveAllCars();
+      this.printCurrentPositions();
+      Console.print('');
+    }
+  }
+
+  moveAllCars() {
+    this.cars.forEach((car) => {
+      const number = Random.pickNumberInRange(0, 9);
+      car.move(number);
+    });
+  }
+
+  printCurrentPositions() {
+    this.cars.forEach((car) => {
+      const position = '-'.repeat(car.getPosition());
+      Console.print(`${car.getName()} : ${position}`);
+    });
   }
 }
 
