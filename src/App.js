@@ -1,9 +1,14 @@
 import { Console } from "@woowacourse/mission-utils";
-import { getCarNames } from "./utils/index.js";
+import { getCarNames, checkForDuplicates } from "./utils/index.js";
 
 class App {
   async run() {
-    const carNames = await getCarNames();
+    try {
+      const carNames = await getCarNames();
+      checkForDuplicates(carNames);
+    } catch (error) {
+      console.error(error.message);
+    }
   }
 }
 
