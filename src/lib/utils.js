@@ -35,25 +35,17 @@ export const validatePositiveInteger = num => {
   if (!isInteger) throw new Error(ERROR_MESSAGE_NOT_INTEGER);
 };
 
-export const getMapFilledZero = array => {
-  const map = new Map();
-  array.forEach(item => {
-    map.set(item, 0);
-  });
-  return map;
-};
+export const getMapFilledZero = array =>
+  array.reduce((map, item) => map.set(item, 0), new Map());
 
 export const getRepeatedString = (str, repeatNum) => str.repeat(repeatNum);
 
 export const getMaxValueInMap = map => Math.max(...map.values());
 
-export const getKeyArrayHasTargetValueInMap = (map, targetValue) => {
-  const array = [];
-  map.forEach((value, key) => {
-    if (value === targetValue) array.push(key);
-  });
-  return array;
-};
+export const getKeyArrayHasTargetValueInMap = (map, targetValue) =>
+  Array.from(map.entries())
+    .filter(([_, value]) => value === targetValue)
+    .map(([key]) => key);
 
 export const checkArrayAllUnique = array =>
   array.length === [...new Set(array)].length;
