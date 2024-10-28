@@ -87,7 +87,7 @@ class App {
     const maxDistance = Math.max(...movingCars);
     const winners = cars.filter((_, idx) => movingCars[idx] === maxDistance);
 
-    Console.print(`최종 우승자: ${winners.join(", ")}`);
+    Console.print(`최종 우승자 : ${winners.join(", ")}`);
   }
 }
 
