@@ -112,8 +112,12 @@ class App {
 
   validateAttempts(attempts){
     // 이동 횟수 유효성 검사
-    if (isNaN(attempts) || attempts <= 0) {
-      throw new Error('[ERROR] 유효한 이동 횟수를 입력해야 합니다.');
+    if (isNaN(attempts)) {
+      throw new Error('[ERROR] 이동 횟수는 숫자여야 합니다.');
+    }
+  
+    if (!Number.isInteger(attempts) || attempts <= 0) {
+      throw new Error('[ERROR] 유효한 이동 횟수를 입력해야 합니다. (자연수만 허용됩니다.)');
     }
   }
 }
