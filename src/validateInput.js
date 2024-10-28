@@ -34,7 +34,7 @@ export const inputValidator = {
 
   checkEmptyName(carNames) {
     if (carNames.some((name) => name === '')) {
-      throw new Error('[ERROR] 지정하지 않은 이름이 있습니다.');
+      throw new Error('[ERROR] 빈 이름이 포함되어 있습니다.');
     }
   },
 
