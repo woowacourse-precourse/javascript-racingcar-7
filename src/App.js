@@ -68,6 +68,16 @@ class App {
     }
     return results;
   }
+
+  displayRaceResults(results) {
+    results.forEach((result, index) => {
+      Console.print(`\n[Attempt ${index + 1}]`);
+      const output = result.names
+        .map((name, i) => `${name} : ${"-".repeat(result.distances[i])}`)
+        .join("\n");
+      Console.print(output);
+    });
+  }
 }
 
 export default App;
