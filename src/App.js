@@ -1,10 +1,10 @@
-import { Console } from "@woowacourse/mission-utils"
+import { Console, Random } from "@woowacourse/mission-utils"
 
 class App {
   async run() {
     const NAMES = await this.getNames();
     const TIMES = await this.getTime();
-    let GAME_INFO = Array.from({length: NAMES}, () => 0);
+    let GAME_INFO = Array.from({ length: NAMES }, () => 0);
 
   }
 
@@ -41,6 +41,16 @@ class App {
         throw new Error("[ERROR] 자동차 이름이 5글자 초과입니다.");
       }
     }
+  }
+
+  async makeRandomNum(GAME_INFO) {
+    for (let i = 0; i < GAME_INFO; i++) {
+      let random = Random.pickNumberInRange(0, 9);
+      if (random >= 4) {
+        GAME_INFO[i] += 1;
+      }
+    }
+    return GAME_INFO;
   }
 }
 
