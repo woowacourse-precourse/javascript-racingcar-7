@@ -72,6 +72,13 @@ class App {
     const attemptsInput = await Console.readLineAsync('시도할 횟수는 몇 회인가요?');
     return Number(attemptsInput);
   }
+
+  // 입력값의 유효성을 검사하고 에러 처리하는 메서드
+  validateInput(carNames, attempts){
+    if (!carNames || carNames.length === 0 || attempts <= 0) {
+      throw new Error('[ERROR] 유효하지 않은 입력입니다.');
+    }
+  }
 }
 
 
