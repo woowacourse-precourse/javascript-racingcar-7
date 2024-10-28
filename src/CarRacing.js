@@ -16,7 +16,7 @@ class CarRacing {
     const processedStr = input.split(',');
     const isSatisfyLength = processedStr.every((element) => element.length > 0 && element.length < 6);
     if(!isSatisfyLength) {
-      throw new Error('[ERROR]');
+      throw new Error('[ERROR]: 이름을 입력하지 않거나, 5자를 초과할 수 없습니다.');
     }
 
     let duplicationCheckArr = [];
@@ -24,7 +24,7 @@ class CarRacing {
       if(!duplicationCheckArr.includes(element)) {
         duplicationCheckArr.push(element);
       } else {
-        throw new Error('[ERROR]');
+        throw new Error('[ERROR]: 이름은 중복 될 수 없습니다.');
       }
     });
     return processedStr;
@@ -45,7 +45,7 @@ class CarRacing {
   #validationAttemptNumber(number) {
     const isSatisfyCondition = !Number.isNaN(number) && number % 1 === 0 && number > 0;
     if(!isSatisfyCondition) {
-      throw new Error('[ERROR]');
+      throw new Error('[ERROR]: 시도 횟수는 음수, 소수, 숫자가 아닌 것들이 될 수 없습니다.');
     }
     return number;
   }
