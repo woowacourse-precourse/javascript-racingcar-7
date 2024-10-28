@@ -5,6 +5,7 @@ export default class OutputView {
     EXECUTION_RESULT: '\n실행 결과',
     RACE_RESULT: (name, count) => `${name} : ${'-'.repeat(count)}`,
     LINE_BREAK: '\n',
+    RACE_WINNERS: (winners) => `최종 우승자 : ${winners.join(', ')}`,
   });
 
   printExecutionResult() {
@@ -17,5 +18,9 @@ export default class OutputView {
 
   printLineBreak() {
     Console.print(this.#OUTPUT_MESSAGE.LINE_BREAK);
+  }
+
+  printRaceWinners(winners) {
+    Console.print(this.#OUTPUT_MESSAGE.RACE_WINNERS(winners));
   }
 }

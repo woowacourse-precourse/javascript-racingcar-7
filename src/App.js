@@ -22,6 +22,10 @@ class App {
       });
       this.#output_view.printLineBreak();
     });
+
+    const winners = carRace.getRaceWinners();
+
+    this.#output_view.printRaceWinners(winners);
   }
 }
 
