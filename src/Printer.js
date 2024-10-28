@@ -18,7 +18,7 @@ class Printer {
   static printFinal(winners) {
     const winnerNames = winners.map((winner) => winner.getName());
 
-    Console.print(`${PREFIX.WINNER} : ${winnerNames.join(", ")}`);
+    Console.print(`${PREFIX.WINNER} ${winnerNames.join(", ")}`);
   }
 }
 
