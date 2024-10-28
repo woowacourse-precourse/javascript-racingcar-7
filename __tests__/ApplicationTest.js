@@ -149,6 +149,18 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 
+  test("자동차 이름 예외 테스트", async () => {
+    // given
+    const inputs = ["pobi,woni,a     b"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
   test("자동차 이름 중복 테스트", async () => {
     // given
     const inputs = ["pobi,pobi"];
