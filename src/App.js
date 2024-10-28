@@ -2,7 +2,7 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 
 function printWinner(carNames, carProgress){
   const winValue = Math.max(...carProgress);
-  let winners = [];
+  const winners = [];
 
   carProgress.forEach((element, index) => {
     if(element === winValue) winners.push(carNames[index]);
@@ -12,7 +12,7 @@ function printWinner(carNames, carProgress){
 }
 
 function saveRandom(carCount, randomArray){
-  let array = randomArray;
+  const array = randomArray;
 
   for(let i = 0; i < carCount; i++){
     let randomValue = MissionUtils.Random.pickNumberInRange(0, 9);
@@ -25,7 +25,7 @@ function saveRandom(carCount, randomArray){
 
 function printProgress(carNames, number){
   const carCount = carNames.length;
-  var randomArray = Array.from({length: carCount}, () => 0);
+  const randomArray = Array.from({length: carCount}, () => 0);
   let carProgress;
   const progress = '-';
 
@@ -42,6 +42,7 @@ function printProgress(carNames, number){
 }
 
 function numberException(input){
+  if(!input) throw new Error("[ERROR] 시도 횟수가 입력되지 않았습니다");
   if(isNaN(input)) throw new Error("[ERROR] 시도 횟수를 숫자로 입력해주세요.");
   if(Number(input) <= 0) throw new Error("[ERROR] 시도 횟수는 1 이상의 수만 가능합니다.");
 }
