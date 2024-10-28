@@ -1,4 +1,4 @@
-import { Random } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 
 function canMove() {
   const randomValue = Random.pickNumberInRange(0, 9);
@@ -17,11 +17,20 @@ function move(results, cars) {
   });
 }
 
+function printResults(cars, results) {
+  results.forEach((result, index) => {
+    Console.print(`${cars[index]} : ${result}`);
+  });
+  Console.print("");
+}
+
 export function race(cars, moveAttempts) {
   const results = cars.map(() => "");
 
   for (let i = 0; i < moveAttempts; i++) {
     move(results, cars);
+    printResults(cars, results);
   }
+
   return results;
 }
