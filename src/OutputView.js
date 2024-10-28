@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { FORWARD_SYMBOL, OUTPUT_MESSAGE } from '../src/constants.js';
+import { FORWARD_SYMBOL, NAME_SEPARATOR, OUTPUT_MESSAGE } from '../src/constants.js';
 
 const OutputView = {
   printCurrentCarInfo(name, forwardCount) {
@@ -8,9 +8,7 @@ const OutputView = {
     Console.print(`${name} : ${forwardResult}`);
   },
   printWinners(winners) {
-    Console.print(
-      `${OUTPUT_MESSAGE.winner} ${OUTPUT_MESSAGE.messageSeparator} ${winners.join(OUTPUT_MESSAGE.winnerSeparator)})}`
-    );
+    Console.print(`${OUTPUT_MESSAGE.winner} ${OUTPUT_MESSAGE.messageSeparator} ${winners.join(NAME_SEPARATOR)})}`);
   },
 };
 
