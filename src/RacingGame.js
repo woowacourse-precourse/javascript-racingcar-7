@@ -2,6 +2,7 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 import RacingCar from './RacingCar.js';
 
 const SPACE_PATTERN = /\s/;
+const MAX_CAR_NAME_LENGTH = 5;
 class RacingGame {
   constructor() {
     this.carList = [];
@@ -9,35 +10,42 @@ class RacingGame {
   }
 
   setRacingCars(carNames) {
-    const hasSpace = SPACE_PATTERN.test(carNames);
-    if (hasSpace) {
-      throw new Error('문자열에 공백이 있습니다. 공백 없이 작성해주세요.');
-    }
+    this.validateCarNames(carNames);
 
-    const carNameList = carNames.split(',');
-    if (carNameList.length !== new Set(carNameList).size) {
-      throw new Error('중복된 자동차 이름이 있습니다. 중복 없이 작성해주세요.');
-    }
-
-    this.carList = carNameList.map((carName) => {
-      if (carName.length > 5) {
-        throw new Error('자동차 이름은 5자 이하만 가능합니다.');
-      }
+    this.carList = carNames.split(',').map((carName) => {
+      this.validateCarNameLength(carName);
       return new RacingCar(carName);
     });
   }
 
+  validateCarNames(carNames) {
+    if (SPACE_PATTERN.test(carNames)) {
+      throw new Error('문자열에 공백이 있습니다. 공백 없이 작성해주세요.');
+    }
+    const carNameList = carNames.split(',');
+    if (carNameList.length !== new Set(carNameList).size) {
+      throw new Error('중복된 자동차 이름이 있습니다. 중복 없이 작성해주세요.');
+    }
+  }
+
+  validateCarNameLength(carName) {
+    if (carName.length > MAX_CAR_NAME_LENGTH) {
+      throw new Error(`자동차 이름은 ${MAX_CAR_NAME_LENGTH}자 이하만 가능합니다.`);
+    }
+  }
+
   setCount(count) {
-    const isInteger = Number.isInteger(count);
-    if (!isInteger) {
+    this.validateCount(count);
+    this.count = count;
+  }
+
+  validateCount(count) {
+    if (!Number.isInteger(count)) {
       throw new Error('시도할 횟수는 정수로만 입력이 가능합니다.');
     }
-
     if (count <= 0) {
       throw new Error('시도할 횟수는 양수로만 입력이 가능합니다.');
     }
-
-    this.count = count;
   }
 
   startRacing() {

@@ -11,7 +11,7 @@ class App {
       const count = await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
 
       racingGame.setRacingCars(carNames);
-      racingGame.setCount(count);
+      racingGame.setCount(Number(count));
       MissionUtils.Console.print('\n실행 결과');
       racingGame.startRacing();
 
