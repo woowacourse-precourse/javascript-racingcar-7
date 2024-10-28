@@ -6,10 +6,8 @@ class Car {
     this.#name = name;
   }
 
-  forward(random) {
-    if (random >= 4 ){
-      this.#forwadCount++;
-    }
+  forward() {
+    this.#forwadCount++;
   }
 
   getName() {
