@@ -54,6 +54,14 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 
+  test("예외 테스트 - 이동 횟수가 음수", async () => {
+    const inputs = ["pobi,woni", "-1"];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
   test("예외 테스트", async () => {
     // given
     const inputs = ["pobi,javaji"];
