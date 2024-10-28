@@ -12,7 +12,7 @@ class App {
     const carsState = Array.from({ length: carsName.length }, () => '');
 
     for (let i = 0; i < attemptCnt; i++) {
-      startRound(carsName, carsState);
+      this.startRound(carsName, carsState);
     }
 
     Console.print(`최종 우승자 : ${this.getFinalWinner(carsName, carsState)}`)
@@ -65,7 +65,7 @@ class App {
 
   async getAttemptCount() {
     Console.print("시도할 횟수는 몇 회인가요?");
-    let attemptCnt = await Console.readLineAsync("").trim();
+    let attemptCnt = await Console.readLineAsync("");
 
     attemptCnt = +attemptCnt;
     if (isNaN(attemptCnt) || attemptCnt <= 0)
