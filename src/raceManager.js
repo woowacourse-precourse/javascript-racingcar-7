@@ -3,9 +3,9 @@ import { MIN_RANDOM_VALUE, RESULT_MESSAGE } from "./constants.js";
 
 function displayCurrentProgress(raceResults) {
     Object.entries(raceResults).forEach(([name, progress]) => {
-      console.log(`${name} : ${progress}`);
+      MissionUtils.Console.print(`${name} : ${progress}`);
     });
-    console.log(""); 
+    MissionUtils.Console.print(""); 
   }
 
 export function simulateRace(carNames, attemptCount) {
@@ -34,5 +34,5 @@ export function simulateRace(carNames, attemptCount) {
   export function displayWinners(raceResults) {
     const MAX_DISTANCE = Math.max(...Object.values(raceResults).map(result => result.length));
     const WINNERS = Object.keys(raceResults).filter(name => raceResults[name].length === MAX_DISTANCE);
-    console.log(`${RESULT_MESSAGE} : ${WINNERS.join(", ")}`);
+    MissionUtils.Console.print(`${RESULT_MESSAGE} : ${WINNERS.join(", ")}`);
   }
