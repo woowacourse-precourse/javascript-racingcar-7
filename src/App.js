@@ -4,6 +4,8 @@ class App {
   async run() {
     const NAMES = await this.getNames();
     const TIMES = await this.getTime();
+    let GAME_INFO = Array.from({length: NAMES}, () => 0);
+
   }
 
   async getNames() {
