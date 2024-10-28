@@ -32,13 +32,17 @@ class UserInput {
             throw new Error('[ERROR] 자동차 이름 에러. (특수문자 사용 불가)')
         }   
     }   
-
-    async viewAttemptResult(cars){
+    async viewAttemptResult(cars, attempt){
+        Console.print('실행 결과');
+        for(let nowAttempt = 0; nowAttempt < this.input.attemptNum; nowAttempt++){
+            await this.raceAttempt();
+        }
+    }
+    async attemptResult(cars){
         for(let car of cars){
             let printString = car.name + ' : ' + await this.makeDistanceHyphen(car);
             Console.print(printString);
         }
-        Console.print('');
     }
     async makeDistanceHyphen(car){
         let hyphens = '';

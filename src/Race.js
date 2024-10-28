@@ -1,5 +1,4 @@
-import { Console } from '@woowacourse/mission-utils';
-import { MissionUtils } from "@woowacourse/mission-utils";
+import { Console, MissionUtils } from '@woowacourse/mission-utils';
 
 // import UserInput from "./Input.js";
 
@@ -42,10 +41,7 @@ class Race{
         return carObjects;
     }
     async startRace(){
-        Console.print('\n실행 결과\n');
-        for(let nowAttempt = 0; nowAttempt < this.input.attemptNum; nowAttempt++){
-            await this.raceAttempt();
-        }
+        await this.input.viewAttemptResult(this.cars, this.input.attemptNum);
     }
     async raceAttempt() {
         for(let carIndex in this.cars){
