@@ -30,10 +30,13 @@ export class RaceManager {
   }
 
   getMaxDistance() {
-    return this.carArray.reduce(
-      (acc, current) => (acc > current.distance ? acc : current.distance),
-      0,
-    );
+    return this.carArray.reduce((acc, current) => {
+      if (acc > current.distance) {
+        return acc;
+      } else {
+        return current.distance;
+      }
+    }, 0);
   }
 
   getWinnerCar(maxDistance) {
