@@ -99,5 +99,28 @@ describe('Racing 테스트', () => {
       // then
       expect(winners).toEqual(['car1', 'car2']);
     });
+
+    test('우승자가 없을 경우 확인', () => {
+      // given
+      const mockCars = [
+        { getCarName: () => 'car1', getMoveCount: () => 0 },
+        { getCarName: () => 'car2', getMoveCount: () => 0 },
+        { getCarName: () => 'car3', getMoveCount: () => 0 },
+      ];
+      const mockRacingCars = {
+        getCars: () => mockCars,
+      };
+      const mockRound = {
+        getTargetRound: () => 3,
+        isFinished: () => true,
+      };
+      const racing = new Racing(mockRacingCars, mockRound);
+
+      // when
+      const winners = racing.getWinners();
+
+      // then
+      expect(winners).toEqual([]);
+    });
   });
 });
