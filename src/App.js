@@ -78,6 +78,15 @@ class App {
       Console.print(output);
     });
   }
+
+  displayWinner(results) {
+    const finalResult = results[results.length - 1];
+    const maxDistance = Math.max(...finalResult.distances);
+    const winnerNames = finalResult.names.filter(
+      (_, i) => finalResult.distances[i] === maxDistance
+    );
+    Console.print(`\n최종 우승자 : ${winnerNames.join(", ")}`);
+  }
 }
 
 export default App;
