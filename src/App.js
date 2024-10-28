@@ -1,6 +1,6 @@
-import { readRound, readUsers } from "./gameSetting/features/handleInput.js";
-import { setRoundNum, setUserList } from "./gameSetting/gameSetting.js";
-import { playRacingGame } from "./racingGame/racingGame.js";
+import { readRound, readUsers } from './gameSetting/features/handleInput.js';
+import { setRoundNum, setUserList } from './gameSetting/gameSetting.js';
+import { playRacingGame } from './racingGame/racingGame.js';
 
 class App {
   async run() {
