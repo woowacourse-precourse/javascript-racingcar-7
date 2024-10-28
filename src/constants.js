@@ -6,7 +6,10 @@ export const gameMessage = {
 }
 
 export const errorMessage = {
-    inputEmptyErrorMessage: '[Error] 값이 입력되지 않았습니다.',
+    inputEmptyErrorMessage: '[ERROR] 값이 입력되지 않았습니다.',
+    isNotNuberErrorMessage: '[ERROR] 숫자가 아닙니다.',
+    isZeroErrorMessage: '[ERROR] 1이상의 숫자를 입력해주세요.',
+    isFiveOrMoreErrorMessage: '[ERROR] 자동차 이름은 5글자 이하로 작성해주세요.'
 }
 
 export const number = {
