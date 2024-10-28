@@ -9,6 +9,8 @@ class App {
     const forwardTime = await Console.readLineAsync("시도할 횟수는 몇 회인가요?");
 
     const carPosition = this.moveCar(carNames, Number(forwardTime));
+
+    this.victoryCar(carNames, carPosition);
   }
   
   Separator(carName) {
@@ -23,7 +25,7 @@ class App {
       carPosition[name] = this.calculatePosition(forwardTime);
       Console.print(`${name} : ${"-".repeat(carPosition[name])}`);
     });
-    
+
     return carPosition;
   }
   
@@ -40,6 +42,17 @@ class App {
   shouldMove() {
     const randomNum = Random.pickNumberInRange(0, 9);
     return randomNum >= 4;
+  }
+  
+  victoryCar(carNames, carPosition) {
+
+    const maxPosition = Math.max(...Object.values(carPosition));
+
+    const winner = carNames.filter(
+      (name) => carPosition[name] === maxPosition
+    ).join(", ");
+
+    Console.print(`최종 우승자 : ${winner}`);
   }
 }
 
