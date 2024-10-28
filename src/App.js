@@ -29,7 +29,11 @@ class App {
     );
   }
 
-
+  randomForward(car) {
+    if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) {
+      car.score += 1;
+    }
+  }
 }
 
 export default App;
