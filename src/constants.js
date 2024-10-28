@@ -6,4 +6,10 @@ const INPUT_MESSAGE = Object.freeze({
 
 const DELEMETER = ',';
 
-export { INPUT_MESSAGE, DELEMETER };
+const RANDOM_NUMBER = Object.freeze({
+  MIN: 0,
+  MAX: 9,
+  THRESHOLD: 4,
+});
+
+export { INPUT_MESSAGE, DELEMETER, RANDOM_NUMBER };
