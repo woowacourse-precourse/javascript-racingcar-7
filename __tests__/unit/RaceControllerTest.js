@@ -27,6 +27,30 @@ describe("setCarName()", () => {
   });
 });
 
+describe("setAttemptCount()", () => {
+  test("시도 횟수가 올바르게 설정되어야 한다", async () => {
+    const raceController = new RaceController();
+    await raceController.setAttemptCount();
+    const attemptCount = raceController.race.attemptCount;
+    
+    expect(attemptCount).toBe(5);
+  });
+});
+
+describe("runRaceRounds()", () => {
+  test("시도 횟수만큼 레이스 라운드가 실행되어야 한다", async () => {
+    const raceController = new RaceController();
+    await raceController.setCarName();
+    await raceController.setAttemptCount();
+    const printRaceStatusSpy = jest.spyOn(raceController, 'printRaceStatus');
+    const attemptCount = raceController.race.attemptCount;
+    
+    raceController.runRaceRounds();
+
+    expect(printRaceStatusSpy).toHaveBeenCalledTimes(attemptCount);
+  });
+});
+
 describe("printRaceStatus()", () => {
   test("자동차 이동 상태가 올바르게 출력되어야 한다", async () => {
     const raceController = new RaceController();
@@ -40,18 +64,6 @@ describe("printRaceStatus()", () => {
     expect(printMessage).toHaveBeenCalledWith(`Audi : ${GAME_RULES.DISTANCE_SYMBOL}`);
     expect(printMessage).toHaveBeenCalledWith("BMW : ");
     expect(printMessage).toHaveBeenCalledWith(`Ford : ${GAME_RULES.DISTANCE_SYMBOL}`);
-  });
-
-  test("시도 횟수만큼 자동차 이동 상태가 출력되어야 한다", async () => {
-    const raceController = new RaceController();
-    await raceController.setCarName();
-    await raceController.setAttemptCount();
-    const printRaceStatusSpy = jest.spyOn(raceController, 'printRaceStatus');
-    const attemptCount = raceController.race.attemptCount;
-    
-    await raceController.startRace();
-
-    expect(printRaceStatusSpy).toHaveBeenCalledTimes(attemptCount);
   });
 });
 
