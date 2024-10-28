@@ -99,7 +99,7 @@ class App {
       );
       determineWinner(RESULT_ARRAY);
     } catch (error) {
-      Console.print(error.message);
+      throw error;
     }
   }
 }
