@@ -1,5 +1,5 @@
-export const createCarArr = (NAMESTR) => {
-    let nameStr = NAMESTR.toString()
+export const createCarArr = (NAME_STR) => {
+    let nameStr = NAME_STR.toString()
     let separatorIndex = nameStr.search(/,/)
     let carArr = []
 

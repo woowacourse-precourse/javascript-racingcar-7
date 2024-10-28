@@ -3,7 +3,7 @@ import { Console } from "@woowacourse/mission-utils";
 import { getWinner } from "./getWinner.js";
 
 
-export const carRun = (carArr, RUNTIMES) => {
+export const carRun = (carArr, RUN_TIMES) => {
     const racing = () => {
 
         for (let i = 1; i <= carArr.length; i += 2) {
@@ -21,10 +21,10 @@ export const carRun = (carArr, RUNTIMES) => {
         let result = ''
 
         for (let i = 0; i < carArr.length; i += 2) {
-            const CARNAME = carArr[i]
-            const CARMOVENODE = '-'.repeat(carArr[i + 1])
+            const CAR_NAME = carArr[i]
+            const CAR_MOVE_NODE = '-'.repeat(carArr[i + 1])
 
-            result += `${CARNAME} : ${CARMOVENODE}\n`
+            result += `${CAR_NAME} : ${CAR_MOVE_NODE}\n`
         }
 
         Console.print(result)
@@ -32,7 +32,7 @@ export const carRun = (carArr, RUNTIMES) => {
 
     Console.print("실행 결과")
 
-    for (let i = 0; i < RUNTIMES; i++) {
+    for (let i = 0; i < RUN_TIMES; i++) {
         racing()
         printRacing()
     }
