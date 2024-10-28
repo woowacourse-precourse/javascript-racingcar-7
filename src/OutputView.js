@@ -14,7 +14,7 @@ const OutputView = {
     Console.print(`${name} : ${forwardResult}`);
   },
   printWinners(winners) {
-    Console.print(`${OUTPUT_MESSAGE.winner} ${OUTPUT_MESSAGE.messageSeparator} ${winners.join(NAME_SEPARATOR)})}`);
+    Console.print(`${OUTPUT_MESSAGE.winner} ${OUTPUT_MESSAGE.messageSeparator} ${winners.join(NAME_SEPARATOR)}`);
   },
 };
 
