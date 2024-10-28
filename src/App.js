@@ -30,10 +30,24 @@ class App {
 		return count;
 	}
 
+	async startRace(cars, tryCount) {
+		for (let i = 0; i < tryCount; i++) {
+			cars.forEach((car) => {
+				if (Random.pickNumberInRange(0, 9) >= 4) {
+					car.position += 1;
+				}
+
+				Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
+			});
+		}
+	}
+
 	async run() {
 		try {
 			const cars = await this.getCarInput();
 			const tryCount = await this.getCountInput();
+
+			this.startRace(cars, tryCount);
 		} catch (error) {
 			Console.print(error.message);
 			throw error;
