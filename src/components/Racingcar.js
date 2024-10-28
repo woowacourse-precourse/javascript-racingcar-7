@@ -3,7 +3,6 @@ import { ERRORMESAGE, MAGICNUMBER } from '../constants/index.js';
 
 export default class Racingcar {
   #inputArr;
-  #board;
   /**
    *
    * @param {Array} inputArr
@@ -11,7 +10,6 @@ export default class Racingcar {
   constructor(inputArr, tryNum) {
     this.#validate(inputArr, tryNum);
     this.#inputArr = inputArr;
-    this.#board = this.#createBoard();
   }
 
   #validate(inputArr, tryNum) {
@@ -27,26 +25,17 @@ export default class Racingcar {
       throw new Error(`${ERRORMESAGE.NOT_POSITIVE_INTEGER}`);
   }
 
-  play() {
+  play(board) {
     for (const car of this.#inputArr) {
-      if (pickRandomNumber() >= MAGICNUMBER.GOCONDITIONNUM)
-        this.#board[car] += '-';
+      if (pickRandomNumber() >= MAGICNUMBER.GOCONDITIONNUM) board[car] += '-';
     }
-    return this.#board;
-  }
-
-  #createBoard() {
-    const board = {};
-    this.#inputArr.map((car) => {
-      board[car] = '';
-    });
     return board;
   }
 
-  rank() {
+  rank(board) {
     let firstPlayer = [];
     let max = 0;
-    for (const [key, value] of Object.entries(this.#board)) {
+    for (const [key, value] of Object.entries(board)) {
       if (max < value.length) {
         firstPlayer.splice(0);
         firstPlayer.push(key);

@@ -11,11 +11,12 @@ import { printFirstPlayer } from './utils/inputoutputMethod.js';
 class App {
   #racingcar;
   #tryNum;
+  #board;
 
   async run() {
     await this.#gameSetting();
     this.#carRacing();
-    printFirstPlayer(this.#racingcar.rank());
+    printFirstPlayer(this.#racingcar.rank(this.#board));
   }
 
   async #gameSetting() {
@@ -23,14 +24,22 @@ class App {
     const inputArr = inputs.split(MAGICNUMBER.SEPARATOR);
     this.#tryNum = Number(await inputTryNum());
     this.#racingcar = new Racingcar(inputArr, this.#tryNum);
+    this.#board = this.#createBoard(inputArr);
     printProgressResult();
   }
 
+  #createBoard(inputArr) {
+    const board = {};
+    inputArr.map((car) => {
+      board[car] = '';
+    });
+    return board;
+  }
+
   #carRacing() {
-    let board;
     for (let idx = 0; idx < this.#tryNum; idx += 1) {
-      board = this.#racingcar.play();
-      printGameProgress(board);
+      this.#board = this.#racingcar.play(this.#board);
+      printGameProgress(this.#board);
     }
   }
 }
