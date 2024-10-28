@@ -1,7 +1,7 @@
 import { Console, MissionUtils } from "@woowacourse/mission-utils";
 
 export async function inputCarsNameWithDelimeter() {
-  const inputString = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
+  const inputString = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
   return inputString;
 }
 
@@ -20,7 +20,7 @@ export function checkNameValid(cars) {
 }
 
 export async function inputTrialNumber() {
-  const inputString = await Console.readLineAsync("시도할 횟수는 몇 회인가요?");
+  const inputString = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
   const trialNumber = parseInt(inputString, 10);
 
   if (!isNumberValid(trialNumber)) {
