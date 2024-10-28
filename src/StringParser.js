@@ -15,7 +15,7 @@ class StringParser {
    *
    */
   parseString(cars) {
-    return cars.split(this.delemeter);
+    return cars.split(this.delemeter).map((car) => car.trim());
   }
 }
 
