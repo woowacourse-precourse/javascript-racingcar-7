@@ -11,15 +11,14 @@
       }
     }
   },
-  "extends": [
-    "airbnb",
-    "airbnb/hooks",
-    "eslint:recommended",
-  ],
+  "rules": {
+    "quotes": ["warn", "single"]
+  },
+  "extends": ["airbnb", "airbnb/hooks", "eslint:recommended"],
   "parser": "babel-eslint",
   "parserOptions": {
     "sourceType": "module",
-    "ecmaVersion": "latest",
+    "ecmaVersion": "latest"
   },
-  "plugins": ["airbnb"],
+  "plugins": ["airbnb"]
 }

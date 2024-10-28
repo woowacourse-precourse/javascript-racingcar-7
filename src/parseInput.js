@@ -1,8 +1,8 @@
-import errorMessage from "./ErrorMessage";
+import errorMessage from './ErrorMessage';
 
 export function parsePlayers(inputstring) {
-  if (inputstring === "") throw new Error(errorMessage.NO_PLAYER);
-  const resultArray = inputstring.split(",");
+  if (inputstring === '') throw new Error(errorMessage.NO_PLAYER);
+  const resultArray = inputstring.split(',');
   if (resultArray.some((value) => value.length > 5))
     throw new Error(errorMessage.NAME_IS_TOO_LONG);
   return resultArray;
