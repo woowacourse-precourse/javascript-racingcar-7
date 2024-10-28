@@ -12,4 +12,6 @@ export const validateCarName = (value) => {
   });
 };
 
-export const validateRoundCount = () => {};
+export const validateRoundCount = (value) => {
+  if (REGEX.roundCount.test(value)) throw new Error(ERROR_MESSAGE.roundCountFormat);
+};
