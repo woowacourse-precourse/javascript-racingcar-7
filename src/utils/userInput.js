@@ -7,4 +7,12 @@ async function getCarList() {
   const carList = carInput.split(',').map((name) => name.trim());
 
   return carList;
-export { getCarList };
+}
+
+async function getRound() {
+  const round = await Console.readLineAsync(`시도할 횟수는 몇 회인가요?\n`);
+
+  return round;
+}
+
+export { getCarList, getRound };
