@@ -1,8 +1,11 @@
+import { Car } from './model/Car.js';
+import { Race } from './model/Race.js';
 import { View } from './view/view.js';
 
 class App {
   async run() {
     const view = new View();
+    const race = new Race();
 
     const carNames = await view.promptCarNames();
     const nameSet = new Set();
@@ -19,6 +22,7 @@ class App {
       }
 
       nameSet.add(name);
+      race.addCar(new Car(name));
     });
   }
 }
