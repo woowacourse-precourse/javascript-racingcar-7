@@ -16,7 +16,7 @@ class App {
       this.playGame(carData, attemptCount);
 
       // 최종 우승자 발표
-      
+      this.announceWinners(carData);
     } catch (error) {
       // 오류 발생 시 오류 메시지 출력
       Console.print(`[ERROR] ${error.message}`);
@@ -71,6 +71,12 @@ class App {
     Console.print('');
   }
   
+  // 최종 우승자를 발표하는 함수
+  announceWinners(carData) {
+    const maxPosition = Math.max(...carData.map((car) => car.position));
+    const winners = carData.filter((car) => car.position === maxPosition).map((car) => car.name);
+    Console.print(`최종 우승자 : ${winners.join(', ')}`);
+  }
 }
 
 export default App;
