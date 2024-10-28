@@ -2,6 +2,8 @@
 
 ## 📖 2주차 학습 내용 정리
 
+[@sooyeoniya - 2주차 학습 내용 정리](https://www.notion.so/sooyeoniya/2-12d28d20974f808f91d9c8b737346bc3)
+
 ## ✅ 기능 목록
 
 ### 입력

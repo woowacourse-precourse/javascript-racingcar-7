@@ -76,7 +76,7 @@ describe('자동차 경주', () => {
         MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD,
         MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD,
         MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD,
-        MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD
+        MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD,
       ],
       ['pobi : -----', 'woni : ----', 'jun : -----', '최종 우승자 : pobi, jun'],
     );
