@@ -1,12 +1,13 @@
-import { MissionUtils } from "@woowacourse/mission-utils";
+import { MissionUtils } from '@woowacourse/mission-utils';
 
-function printWinner(carnames, carProgress){
+function printWinner(carNames, carProgress){
   const winValue = Math.max(...carProgress);
   let winners = [];
+
   carProgress.forEach((element, index) => {
-    if(element === winValue)
-      winners.push(carnames[index]);
+    if(element === winValue) winners.push(carNames[index]);
   });
+  
   MissionUtils.Console.print('최종 우승자 : ' + winners.map((win) => win).join(', '));
 }
 
@@ -22,8 +23,8 @@ function saveRandom(carCount, randomArray){
   return array;
 };
 
-function printProgress(carnames, number){
-  const carCount = carnames.length;
+function printProgress(carNames, number){
+  const carCount = carNames.length;
   var randomArray = Array.from({length: carCount}, () => 0);
   let carProgress;
   const progress = '-';
@@ -33,7 +34,7 @@ function printProgress(carnames, number){
   for(let i = 0; i < number; i++){
     carProgress = saveRandom(carCount, randomArray);
     for(let j = 0; j < carCount; j++){
-      MissionUtils.Console.print(carnames[j] + ' : ' + progress.repeat(carProgress[j]));
+      MissionUtils.Console.print(carNames[j] + ' : ' + progress.repeat(carProgress[j]));
     }
     MissionUtils.Console.print('\n');
   }
@@ -42,7 +43,6 @@ function printProgress(carnames, number){
 
 function numberException(input){
   if(!input) throw new Error("[ERROR] 시도 횟수가 입력되지 않았습니다");
-  
   if(Number(input) <= 0) throw new Error("[ERROR] 시도 횟수는 1 이상의 수만 가능합니다.");
 }
 
@@ -58,12 +58,11 @@ async function getNumber() {
 
 function carNameException(input) {
   if(!input) throw new Error("[ERROR] 자동차 이름이 입력되지 않았습니다");
-
   if(!input.includes(',')) throw new Error("[ERROR] 자동차 이름 구분을 위한 쉼표(,)를 입력하지 않았습니다.");
 
   const inputArray = input.split(',');
-
   const checkDuplication = new Set(inputArray);
+  
   if(inputArray.length !== checkDuplication.size) throw new Error("[ERROR] 자동차 이름이 중복되었습니다.")
 
   const checkLength = inputArray;
@@ -85,10 +84,10 @@ async function getCarname() {
 class App {
   async run() {
     try{
-      const carnames = await getCarname();
+      const carNames = await getCarname();
       const number = await getNumber();
-      const carProgress = printProgress(carnames, number);
-      printWinner(carnames, carProgress);
+      const carProgress = printProgress(carNames, number);
+      printWinner(carNames, carProgress);
     } catch (error) {
       MissionUtils.Console.print(error.message || "[ERROR] 프로그램이 종료되었습니다.");
       throw error; 
