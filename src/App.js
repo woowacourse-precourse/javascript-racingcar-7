@@ -65,6 +65,9 @@ class App {
     for (let i = 0; i < Number(moveCount); i++) {
       this.moveCarsAndPrint(cars);
     }
+
+    // 최종 우승자 출력
+    this.printWinners(cars);
   }
 
   // 유효성 검사 함수
@@ -80,6 +83,21 @@ class App {
       Console.print(`${car.name} : ${"-".repeat(car.position)}`);
     });
     Console.print("");
+  }
+
+  // 우승자 판별 및 출력
+  printWinners(cars) {
+    const maxPosition = Math.max(...cars.map((car) => car.position));
+    const winners = cars
+      .filter((car) => car.position === maxPosition)
+      .map((car) => car.name);
+
+    // 우승자 출력
+    if (winners.length > 1) {
+      Console.print(`최종 우승자 : ${winners.join(", ")}`);
+    } else {
+      Console.print(`최종 우승자 : ${winners[0]}`);
+    }
   }
 }
 
