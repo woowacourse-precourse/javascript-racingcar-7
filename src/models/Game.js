@@ -20,5 +20,7 @@ export default class Game {
 
             console.log(print + "\n");
         }
+
+        console.log("\n최종 우승자 : " + this.winners.join(", "));
     }
 }
