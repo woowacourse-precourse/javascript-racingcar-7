@@ -14,6 +14,9 @@ class Car {
       this.position++;
     }
   }
+  showPosition() {
+    Console.print(`${this.name} : ${"-".repeat(this.position)}`);
+  }
 }
 
 class RacingGame {
@@ -28,10 +31,15 @@ class RacingGame {
     }
     for (let i = 0; i < rounds; i++) {
       this.moveAllCars();
+      this.showCurrentPositions();
+      Console.print("");
     }
   }
   moveAllCars() {
     this.cars.forEach((car) => car.move());
+  }
+  showCurrentPositions() {
+    this.cars.forEach((car) => car.showPosition());
   }
 }
 
