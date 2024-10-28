@@ -41,7 +41,7 @@ export default class Car {
     const winnerName = carList
       .filter(player => player.movement === maxMovement)
       .map(player => player.name)
-      .join(', ')
+      .join(', ');
 
     MissionUtils.Console.print(`최종 우승자 : ${winnerName}`);
   }
