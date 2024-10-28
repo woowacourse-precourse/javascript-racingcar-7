@@ -12,6 +12,12 @@ class Validator {
     }
   }
 
+  #validateNotEmpty() {
+    if (!this.#value) {
+      throw new Error(ERROR_MESSAGE.EMPTY_INPUT);
+    }
+  }
+
   #validateMaxLength() {
     this.#value.forEach((value) => {
       if (value.length > MAX_INPUT_LENGTH) {
@@ -21,7 +27,7 @@ class Validator {
   }
 
   #validateNoDuplicates() {
-    const hasDuplicates = new Set(value).size !== this.#value.length;
+    const hasDuplicates = new Set(this.#value).size !== this.#value.length;
     if (hasDuplicates) {
       throw new Error(ERROR_MESSAGE.DUPLICATE_NAME);
     }
@@ -32,6 +38,7 @@ class Validator {
     if (typeof validator.#value === 'number') {
       validator.#validatePositiveNumber();
     } else if (typeof validator.#value === 'object') {
+      validator.#validateNotEmpty();
       validator.#validateMaxLength();
       validator.#validateNoDuplicates();
     }
