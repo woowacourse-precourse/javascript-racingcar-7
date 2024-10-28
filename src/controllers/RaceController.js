@@ -5,15 +5,24 @@ export default class RaceController {
   static async startRace(carNames, attemptCount) {
     const results = {};
     carNames.forEach((carName) => {
-      results[carName] = this.isMovingForward();
+      results[carName] = this.getForwardCount(attemptCount);
     });
+  }
+
+  static getForwardCount(attemptCount) {
+    let forwardCount = 0;
+
+    for (let i = 0; i < attemptCount; i++) {
+      if (this.isMovingForward()) {
+        forwardCount++;
+      }
+    }
+
+    return forwardCount;
   }
 
   static isMovingForward() {
     const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
-    if (STANDARD_VALUE >= randomNumber) {
-      return true;
-    }
-    return false;
+    return randomNumber >= STANDARD_VALUE;
   }
 }
