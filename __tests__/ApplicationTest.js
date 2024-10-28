@@ -48,13 +48,25 @@ describe("자동차 경주", () => {
 
   test("예외 테스트", async () => {
     // given
-    const inputs = ["pobi,javaji"];
+    const inputs = ["pobi,javaji"]; // 5자 초과
     mockQuestions(inputs);
 
     // when
     const app = new App();
 
     // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
+    await expect(app.run()).rejects.toThrow("[ERROR] 자동차 이름은 1자 이상 5자 이하만 가능합니다.");
+  });
+
+  test("시도 횟수 예외 테스트", async () => {
+    // given
+    const inputs = ["pobi,woni", "0"];  // 시도 횟수 0회
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR] 시도 횟수는 1 이상의 정수를 입력해야 합니다.");
   });
 });
