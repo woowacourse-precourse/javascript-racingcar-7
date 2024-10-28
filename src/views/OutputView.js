@@ -3,9 +3,14 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 class OutputView {
   static printCurrentGame(map) {
     map.forEach((value, key) => {
-      const currentGameLine = '-'.repeat(value);
-      MissionUtils.Console.print(`${key} : ${currentGameLine}`);
+      const formattedLine = this.formatGameLine(key, value);
+      MissionUtils.Console.print(formattedLine);
     });
+  }
+
+  static formatGameLine(key, value) {
+    const currentGameLine = '-'.repeat(value);
+    return `${key} : ${currentGameLine}`;
   }
 
   static getStringHighScoreCars(carsArray) {
