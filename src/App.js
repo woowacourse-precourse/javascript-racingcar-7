@@ -11,7 +11,7 @@ class App {
     Validator.validate(cars);
 
     const attemptCount = await readUserInput(MESSAGE.PROMPT_COUNT_USER_INPUT);
-    Validator.validate(attemptCount);
+    Validator.validate(+attemptCount);
 
     const simulator = new Simulator(cars);
     for (let i = 0; i < attemptCount; i++) {
