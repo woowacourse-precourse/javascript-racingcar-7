@@ -31,7 +31,9 @@ function carNameValidation(arrCarName) {
 }
 
 function playTimesValidation(playTimes) {
-  if (playTimes == 0) {
+  if (playTimes == "") {
+    throw new Error("[ERROR] 이동 횟수를 입력하지 않았습니다.");
+  } else if (playTimes == 0) {
     return 0;
   } else if (playTimes % 1 == 0 && playTimes > 0) {
     return 0;
