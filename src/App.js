@@ -9,10 +9,24 @@ class App {
     return input.split(",");
   }
 
+  checkCarName(car) {
+    if (!(car.length <= 5 && car.length > 0)) {
+      throw new Error("[ERROR]");
+    }
+  }
+
+  validateCarNames(cars) {
+    for (let car of cars) {
+      this.checkCarName(car);
+    }
+  }
+
   async run() {
     try {
       const carsName = await this.inputCars();
       const carsList = await this.splitCars(carsName);
+
+      this.validateCarNames(carsList);
     } catch (error) {
       throw new Error("[ERROR]");
     }
