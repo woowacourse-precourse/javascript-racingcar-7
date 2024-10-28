@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 
 class Vehicle {
   constructor(vehicleName) {
@@ -10,6 +10,12 @@ class Vehicle {
     }
     this.name = vehicleName;
     this.position = 0;
+  }
+
+  move() {
+    if (Random.pickNumberInRange(0, 9) >= 4) {
+      this.position++;
+    }
   }
 }
 
@@ -23,6 +29,14 @@ class Race {
     if (isNaN(attemptCount) || attemptCount <= 0) {
       throw new Error("[ERROR] 이동 횟수는 1 이상의 정수여야 합니다.");
     }
+
+    for (let i = 0; i < attemptCount; i++) {
+      this.moveAllVehicles();
+    }
+  }
+
+  moveAllVehicles() {
+    this.vehicles.forEach((vehicle) => vehicle.move());
   }
 }
 
