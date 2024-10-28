@@ -25,16 +25,30 @@ class CarController {
   }
 
   #playGames(attemptCount, cars) {
+    this.#printResult();
+
     while (attemptCount.hasAttemptsRemaining()) {
       this.#moveCars(cars);
+      this.#printCarStatus(cars);
       this.#decrementAttempt(attemptCount);
     }
+  }
+
+  #printResult() {
+    OutputView.printResult();
   }
 
   #moveCars(cars) {
     cars.forEach((car) => {
       const randomNumber = generateRandomNumber();
       car.movePosition(randomNumber);
+    });
+  }
+
+  #printCarStatus(cars) {
+    cars.forEach((car) => {
+      const carStatus = car.getResult();
+      OutputView.printCarStatus(carStatus);
     });
   }
 

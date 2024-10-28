@@ -3,6 +3,10 @@ const INPUT_MESSAGE = Object.freeze({
   attemptCount: '시도할 횟수는 몇 회인가요?',
 });
 
+const OUTPUT_MESSAGE = Object.freeze({
+  result: '실행 결과',
+});
+
 const CAR_NAME_LENGTH = Object.freeze({
   minRange: 1,
   maxRange: 5,
@@ -19,4 +23,10 @@ const RANDOM_NUMBER = Object.freeze({
   minNumber: 4,
 });
 
-export { INPUT_MESSAGE, CAR_NAME_LENGTH, ERROR_MESSAGE, RANDOM_NUMBER };
+export {
+  INPUT_MESSAGE,
+  OUTPUT_MESSAGE,
+  CAR_NAME_LENGTH,
+  ERROR_MESSAGE,
+  RANDOM_NUMBER,
+};
