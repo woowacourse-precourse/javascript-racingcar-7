@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import Input from '../src/components/Input.js';
+import Input from '../src/utils/io/Input';
 
 describe('Input 클래스 테스트', () => {
   beforeAll(() => {

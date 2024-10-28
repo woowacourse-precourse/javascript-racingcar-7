@@ -1,6 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
-import Output from '../src/components/Output';
 import { OutputView } from '../src/resources/Constants';
+import Output from '../src/utils/io/Output';
 
 describe('Output 클래스 테스트', () => {
   beforeAll(() => {

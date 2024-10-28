@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { OutputView } from '../resources/Constants.js';
+import { OutputView } from '../../resources/Constants.js';
 
 export default class Output {
   static printResult(winners) {

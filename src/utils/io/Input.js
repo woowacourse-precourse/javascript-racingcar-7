@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { InputView } from '../resources/Constants.js';
+import { InputView } from '../../resources/Constants.js';
 
 export default class Input {
   static async get() {
@@ -7,7 +7,6 @@ export default class Input {
     const repetitionString = await Console.readLineAsync(
       InputView.INPUT_REPETITION_COUNT_PROMPT,
     );
-
     return { names, repetitionString };
   }
 }
