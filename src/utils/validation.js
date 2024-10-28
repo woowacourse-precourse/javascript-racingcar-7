@@ -28,3 +28,9 @@ export const hasInvalidCarNameLength = (carNames) => {
     throw new Error("[ERROR] 자동차 이름의 길이가 유효하지 않습니다.");
   }
 };
+
+export const isPositiveInteger = (number) => {
+  if (number <= 0 || !Number.isInteger(number)) {
+    throw new Error("[ERROR] 양의 정수만 가능합니다.");
+  }
+};

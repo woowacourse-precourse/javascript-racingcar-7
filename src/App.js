@@ -4,6 +4,7 @@ import {
   checkForDuplicates,
   hasInvalidCarNameLength,
   getTryCount,
+  isPositiveInteger,
 } from "./utils/index.js";
 
 class App {
@@ -14,6 +15,7 @@ class App {
       hasInvalidCarNameLength(carNames);
 
       const tryCount = await getTryCount();
+      isPositiveInteger(tryCount);
     } catch (error) {
       console.error(error.message);
     }
