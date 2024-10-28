@@ -12,7 +12,7 @@ class App {
       this.runRace(carNames, carPositions, raceCount);
 
       const winners = this.getWinners(carPositions);
-      Console.print(`\n최종 우승자: ${winners.join(", ")}`);
+      Console.print(`\n최종 우승자 : ${winners.join(", ")}`);
 
     } catch (error) {
       Console.print(`[ERROR] ${error.message}`);
@@ -29,11 +29,11 @@ class App {
   validateCarNames(carNameInput) {
     let carNames = carNameInput.split(",").map(name => name.trim());
     if (carNames.length < 2) {
-      throw new Error("자동차 이름은 2개 이상 입력해야 합니다.");
+      throw new Error("[ERROR] 자동차 이름은 2개 이상 입력해야 합니다.");
     }
     carNames.forEach(name => {
       if(name.length === 0 || name.length > 5) {
-        throw new Error("자동차 이름은 1자 이상 5자 이하만 가능합니다.");
+        throw new Error("[ERROR] 자동차 이름은 1자 이상 5자 이하만 가능합니다.");
       }
     })
 
@@ -90,8 +90,6 @@ class App {
    */
   runRace(carNames, carPositions, raceCount) {
     for(let i=0 ; i < raceCount; i++) {
-      Console.print(`\n${i+1}회 경주 결과`);
-
       carNames.forEach(car => {
         const isMoving = this.shouldMove();
         this.carMovingCheck(car, isMoving, carPositions);
