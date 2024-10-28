@@ -12,22 +12,6 @@ class RacingCar {
     this.#status = [];
   }
 
-  printForward() {
-    this.#cars.forEach((car, index) => {
-      Console.print(`${car} : ${this.#status[index]}`);
-    });
-    Console.print('');
-  }
-
-  moveForward() {
-    this.#cars.forEach((car, index) => {
-      const number = Random.pickNumberInRange(0, 9);
-      if (number >= 4) this.#status[index] += '-';
-    });
-
-    this.printForward();
-  }
-
   async receiveInput() {
     const cars = await Console.readLineAsync(
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
@@ -40,6 +24,33 @@ class RacingCar {
     });
 
     this.#count = count;
+  }
+
+  printForward() {
+    this.#cars.forEach((car, index) => {
+      Console.print(`${car} : ${this.#status[index]}`);
+    });
+
+    Console.print('');
+  }
+
+  moveForward() {
+    this.#cars.forEach((car, index) => {
+      const number = Random.pickNumberInRange(0, 9);
+      if (number >= 4) this.#status[index] += '-';
+    });
+
+    this.printForward();
+  }
+
+  playRace() {
+    Console.print('');
+    Console.print('실행 결과');
+
+    while (this.#count > 0) {
+      this.moveForward();
+      this.#count -= 1;
+    }
   }
 }
 
