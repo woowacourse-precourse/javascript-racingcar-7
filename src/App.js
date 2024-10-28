@@ -1,8 +1,8 @@
 import { Console, MissionUtils } from '@woowacourse/mission-utils';
 
 async function InputValue() {
-  let inputName = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
-  let carName = inputName.split(',');
+  const inputName = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
+  const carName = inputName.split(',');
 
   carName.forEach(index => {
     if (index.length > 5) throw new Error("[ERROR] 잘못된 입력입니다.");
@@ -10,8 +10,8 @@ async function InputValue() {
 
   if (carName[carName.length - 1] == '') throw new Error("[ERROR] 잘못된 입력입니다.");
 
-  let inputTimes = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
-  let times = Number(inputTimes);  // 숫자가 아닌 무언가가 들어가면 NaN 반환
+  const inputTimes = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+  const times = Number(inputTimes);  // 숫자가 아닌 무언가가 들어가면 NaN 반환
 
   if (Number.isNaN(times)) throw new Error("[ERROR] 잘못된 입력입니다.");
 
@@ -19,7 +19,7 @@ async function InputValue() {
 }
 
 function Forward_Judgment() {  // 랜덤 돌리고 결과값 boolean 값으로 반환
-  let randomNum = MissionUtils.Random.pickNumberInRange(0, 9);
+  const randomNum = MissionUtils.Random.pickNumberInRange(0, 9);
   
   if (randomNum >= 4)
     return true;
@@ -42,7 +42,7 @@ function WinnerDecision(cntArray) {
   let maxValue = 0;
   maxValue = Math.max.apply(null, cntArray);  // 최대값 구하기
 
-  let result = []
+  const result = []
   let i = 0;
   cntArray.forEach(value => {  // 최대값 인덱스 구하기
     if (value === maxValue) result.push(i);
@@ -53,7 +53,7 @@ function WinnerDecision(cntArray) {
 }
 
 function WinnerPrint(carArr, winArr) {  // 우승자 출력
-  let result = []
+  const result = []
   winArr.forEach(i => {
     result.push(carArr[i]);
   })
@@ -65,22 +65,23 @@ function WinnerPrint(carArr, winArr) {  // 우승자 출력
 class App {
   async run() {
 
-    let [carName, inputTimes] = await InputValue();
-    let forwardCount = Array.from({ length: carName.length }, () => 0);
-    Console.print('forward : '+ forwardCount);
+    const [carName, inputTimes] = await InputValue();
+    const forwardCount = Array.from({ length: carName.length }, () => 0);
+
     Console.print("\n실행 결과");
+    
     for (let i=0; i<inputTimes; i++) {
       for (let j=0; j<carName.length; j++) {
-        let forwardDecision = Forward_Judgment();
-        forwardCount[j] = await IncreaseCount(forwardDecision, forwardCount[j]);
-        let tmp = DrawForward(carName[j], forwardCount[j]);
+        const forwardDecision = Forward_Judgment();
+        forwardCount[j] = IncreaseCount(forwardDecision, forwardCount[j]);
+        const drawing = DrawForward(carName[j], forwardCount[j]);
       }
       Console.print('');
     }
 
     const winner = WinnerDecision(forwardCount);
 
-    let winCar = WinnerPrint(carName, winner);
+    const winCar = WinnerPrint(carName, winner);
     
     Console.print('최종 우승자 : ' + winCar);
   }
