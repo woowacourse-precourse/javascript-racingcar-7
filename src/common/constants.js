@@ -20,6 +20,8 @@ const GAME_RULES = Object.freeze({
   DISTANCE_SYMBOL: '-',
   DELIMITER: ',',
   MAX_CAR_NAME_LENGTH: 5,
+  MIN_RANDOM_NUMBER: 0,
+  MAX_RANDOM_NUMBER: 9,
 });
 
 export {

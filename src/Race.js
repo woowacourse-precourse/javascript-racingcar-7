@@ -21,7 +21,7 @@ class Race {
   }
 
   tryMoveCar(car) {
-    const randomDistance = getRandomNumber(0, 9);
+    const randomDistance = getRandomNumber(GAME_RULES.MIN_RANDOM_NUMBER, GAME_RULES.MAX_RANDOM_NUMBER);
     if (randomDistance >= GAME_RULES.MOVE_THRESHOLD) {
       car.move(1);
     }
