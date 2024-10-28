@@ -1,0 +1,5 @@
+const ALPHABET_COMMA_AND_NUMBER_REGEX = /^[a-zA-Z\d,]$/;
+
+const NUMBER_REGEX = /^[0-9]+$/;
+
+export { ALPHABET_COMMA_AND_NUMBER_REGEX, NUMBER_REGEX };
