@@ -1,7 +1,7 @@
 const ERROR_PREFIX="[ERROR] ";
 const MIN_CAR_NAME_LENGTH=5;
 const MIN_RANDOM_VALUE=4;
-const RESULT_MESSAGE="최종 우승자 : ";
+const RESULT_MESSAGE="최종 우승자";
 
 const INPUT_MESSAGES={
     CAR_NAME_MESSAGE:"경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n",
