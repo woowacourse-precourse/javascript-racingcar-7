@@ -44,4 +44,22 @@ async getUserTryNumbers() {
 
   return tryNumber;
 }
+initializeCarScores(carNames) {
+  return carNames.reduce((acc, name) => ({ ...acc, [name]: "" }), {});
+}
+
+runRace(carNames, tryCount, carScores) {
+  for (let i = 0; i < tryCount; i++) {
+    this.moveCars(carNames, carScores);
+    this.printRoundResults(carScores);
+  }
+}
+
+moveCars(carNames, carScores) {
+  carNames.forEach(name => {
+    if (Random.pickNumberInRange(0, 9) >= 4) {
+      carScores[name] += "-";
+    }
+  });
+}
 }
