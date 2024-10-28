@@ -27,6 +27,16 @@ class Game {
     });
     Console.print("");
   }
+
+  generateGameWinner() {
+    const winnerDistance = Math.max(
+      ...this.cars.map((car) => car.getDistance())
+    );
+    const winners = this.cars
+      .filter((car) => car.getDistance() === winnerDistance)
+      .map((car) => car.getName());
+    Console.print("최종 우승자 : " + winners.join(", "));
+  }
 }
 
 export default Game;
