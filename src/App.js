@@ -65,16 +65,16 @@ class App {
 
   playTurn(racingCars, racingCarsPos) {
     racingCars.forEach((car) => {
-      if (this.getRandomNumber() >= 4) {
-        this.moveCar(racingCarsPos, car);
-      }
+      this.moveCar(racingCarsPos, car);
       Console.print(`${car} : ${racingCarsPos[car]}`);
     });
     Console.print("\n");
   }
 
   moveCar(racingCarsPos, car) {
-    racingCarsPos[car] += "-";
+    if (this.getRandomNumber() >= 4) {
+      racingCarsPos[car] += "-";
+    }
   }
 
   getRandomNumber() {
