@@ -56,4 +56,15 @@ describe("자동차 경주 시도 횟수", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+  test("시도 횟수가 정수가 아닌 경우", async () => {
+    // given
+    const inputs = ["pobi,woni", "2.2"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
 });
