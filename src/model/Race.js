@@ -5,13 +5,9 @@ import outputView from '../view/outputView.js';
 import Car from './Car.js';
 
 class Race {
-  constructor() {
-    this.cars = [];
-  }
-
-  /**@param {string[]} carNames  */
-  initializeCars(carNames) {
-    this.cars = carNames.map((car) => new Car(car));
+  /**@param {Car[]} cars  */
+  constructor(cars) {
+    this.cars = cars;
   }
 
   /**@param {number} attempts  */

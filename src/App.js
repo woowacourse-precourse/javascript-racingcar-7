@@ -6,8 +6,7 @@ import outputView from './view/outputView.js';
 class App {
   constructor() {
     const user = new User();
-    const race = new Race();
-    this.game = new Game(user, outputView, race);
+    this.game = new Game(user, outputView, Race);
   }
   async run() {
     await this.game.process();

@@ -2,26 +2,33 @@ import { GAME_MESSAGE } from '../constants/messages.js';
 import outputView from '../view/outputView.js';
 import { validateCarName } from '../Validator/validateCarName.js';
 import { validateAttempts } from '../Validator/validateAttempts.js';
+import Car from '../model/Car.js';
 
 class Game {
-  constructor(user, outputView, raceModel) {
+  constructor(user, outputView, RaceClass) {
     this.user = user;
     this.outputView = outputView;
-    this.raceModel = raceModel;
+    this.RaceClass = RaceClass;
+    this.raceInstance = null;
+  }
+
+  initializeCars(carNameInput) {
+    return carNameInput.split(',').map((name) => new Car(name));
   }
 
   async process() {
     const carNameInput = await this.user.readUserInput(GAME_MESSAGE.START);
     validateCarName(carNameInput);
-    this.raceModel.initializeCars(carNameInput.split(','));
+    const cars = this.initializeCars(carNameInput);
+    this.raceInstance = new this.RaceClass(cars);
 
     const attempts = await this.user.readUserInput(GAME_MESSAGE.ATTEMPTS);
     validateAttempts(attempts);
 
     outputView.printMessage(`\n${GAME_MESSAGE.RESULT}`);
-    this.raceModel.race(Number(attempts));
+    this.raceInstance.race(Number(attempts));
 
-    const winners = this.raceModel.determineWinners();
+    const winners = this.raceInstance.determineWinners();
     this.outputView.announceWinner(winners);
   }
 }
