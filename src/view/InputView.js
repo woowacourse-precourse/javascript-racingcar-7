@@ -20,7 +20,8 @@ class InputView {
    */
   static async getCarNames() {
     const input = await Console.readLineAsync(GAME_MESSAGE.START_MESSAGE);
-    const names = input.split(",").map(name => name.trim());
+    const splitNames = input.split(",");
+    const names = splitNames.map(name => name.trim());
     await InputValidation.validationName(names);
     return input;
   }

@@ -12,7 +12,8 @@ class Extractor {
    * Extractor.extractName("pobi, woni, jun") // returns ["pobi", "woni", "jun"]
    */
   static extractName(namesInput) {
-    return namesInput.split(",").map(name => name.trim());
+    const splitNames = namesInput.split(",");
+    return splitNames.map(name => name.trim());
   }
 
   /**
