@@ -10,6 +10,7 @@ class App {
     Console.print(MESSAGES.EXECUTION_RESULT);
     const result = race(cars, attemps);
     const winner = getWinner(cars, result);
+    Console.print(`${MESSAGES.WINNER_OUTPUT} : ${winner.join(", ")}`);
   }
 }
 
