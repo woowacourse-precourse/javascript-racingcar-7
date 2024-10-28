@@ -15,5 +15,5 @@ function printRaceRound(raceResults) {
   raceResults.forEach((car) => {
     Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
   });
-  Console.print(''); // 라운드마다 빈 줄 추가
+  Console.print('');
 }

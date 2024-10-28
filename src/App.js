@@ -1,5 +1,6 @@
 import { Console, Random } from '@woowacourse/mission-utils';
 import carRoundPosition from './carRace/carRoundPosition';
+import printRacetWinner from './carRace/printRacetWinner';
 
 class App {
   async getCarNames() {
@@ -37,13 +38,7 @@ class App {
     for (let i = 0; i < raceAttempts; i++) {
       carRoundPosition(raceResults);
     }
-
-    const maxPosition = Math.max(...raceResults.map((car) => car.position));
-    const winners = raceResults
-      .filter((car) => car.position === maxPosition)
-      .map((car) => car.name);
-
-    Console.print(`최종 우승자 : ${winners.join(', ')}`);
+    printRacetWinner(raceResults);
   }
 
   async run() {
