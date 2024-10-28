@@ -15,6 +15,10 @@ class App {
     if (!(car.length <= 5 && car.length > 0)) {
       throw new Error("[ERROR]");
     }
+
+    if (car.includes(" ")) {
+      throw new Error("[ERROR]");
+    }
   }
 
   validateCarNames(cars) {
