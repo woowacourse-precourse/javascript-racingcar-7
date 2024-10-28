@@ -38,13 +38,17 @@ class RacingGamePlayer {
       .map((car) => car.name);
   }
 
+  announceWinner() {
+    MissionUtils.Console.print(
+      `${messages.announceWinner}${this.winner.join(', ')}`
+    );
+  }
+
   play() {
     MissionUtils.Console.print(messages.newLine + messages.showRoundResults);
     this.moveCars();
     this.winner = this.findWinner();
-    MissionUtils.Console.print(
-      `${messages.announceWinner}${this.winner.join(', ')}`
-    );
+    this.announceWinner();
   }
 }
 
