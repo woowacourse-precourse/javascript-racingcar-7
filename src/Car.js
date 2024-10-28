@@ -24,7 +24,11 @@ class Car {
    *
    */
   setName(name) {
-    if (name.length < 1 || name.length > MAX_NAME_LENGTH) {
+    if (!name) {
+      throw new Error(ERROR_MESSAGE.INVALID_NAME_NULL);
+    }
+
+    if (name.length > MAX_NAME_LENGTH) {
       throw new Error(ERROR_MESSAGE.INVALID_NAME_LENGTH);
     }
 
