@@ -14,6 +14,8 @@ class App {
       racingGame.setCount(count);
       MissionUtils.Console.print('\n실행 결과');
       racingGame.startRacing();
+
+      MissionUtils.Console.print(`최종 우승자 : ${racingGame.getWinner()}`);
     } catch (error) {
       throw new Error(`[ERROR] ${error.message}`);
     }
