@@ -16,6 +16,19 @@ class App {
       });
     }
 
+    const carStr = await Console.readLineAsync(
+      "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
+    );
+    const carArr = carStr.split(",");
+    validateCarArrayLength(carArr);
+    const carObj = carArr.reduce((acc, name) => {
+      acc[name] = 0;
+      return acc;
+    }, {});
+    let tryCnt = await Console.readLineAsync("시도할 횟수는 몇 회인가요?");
+    tryCnt = parseInt(tryCnt) + 1;
+
+    Console.print("실행 결과");
 }
 
 export default App;
