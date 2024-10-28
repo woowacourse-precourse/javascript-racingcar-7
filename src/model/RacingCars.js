@@ -15,7 +15,7 @@ class RacingCars {
   }
 
   moveAllCars() {
-    this.racingCars.map((car) => {
+    this.racingCars.forEach((car) => {
       if (car.move()) {
         return (car.position += 1);
       }
