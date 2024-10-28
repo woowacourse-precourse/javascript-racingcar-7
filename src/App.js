@@ -4,68 +4,79 @@ import { Random } from "@woowacourse/mission-utils";
 class App {
   async run() {
     try {
+      const carNames = await this.getCarNames();
+      const forwardTime = await this.getForwardTime();
 
-    const carName = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
-    const carNames = this.Separator(carName);
-
-    const forwardTime = await Console.readLineAsync("시도할 횟수는 몇 회인가요?");
-
-    const carPosition = this.moveCar(carNames, Number(forwardTime));
-
-    this.victoryCar(carNames, carPosition);
+      const carPositions = this.moveCarsByRounds(carNames, forwardTime);
+      this.displayWinners(carNames, carPositions);
     } catch (error) {
       Console.print(error.message);
       throw error;
     }
   }
-  
-  Separator(carName) {
+
+  async getCarNames() {
+    const carName = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
+    return this.validateAndSeparateNames(carName);
+  }
+
+  validateAndSeparateNames(carName) {
     const carNames = carName.split(",");
-    carNames.forEach((name) => {
+    carNames.forEach(name => {
       if (name.length > 5) {
         throw new Error("[ERROR] 자동차 이름은 5자 이하만 가능합니다.");
       }
     });
     return carNames;
   }
-  
-  moveCar(carNames, forwardTime) {
-    const carPosition = Object.fromEntries(carNames.map(name => [name, 0]));
-    
-    carNames.forEach(name => {
-      carPosition[name] = this.calculatePosition(forwardTime);
-      Console.print(`${name} : ${"-".repeat(carPosition[name])}`);
-    });
 
-    return carPosition;
+  async getForwardTime() {
+    const forwardTime = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+    return Number(forwardTime);
   }
-  
-  calculatePosition(forwardTime) {
-    let position = 0;
+
+  moveCarsByRounds(carNames, forwardTime) {
+    const carPositions = this.initializePositions(carNames);
+    Console.print("\n실행 결과");
     for (let i = 0; i < forwardTime; i++) {
-      if (this.shouldMove()) {
-        position += 1;
-      }
+      this.playRound(carNames, carPositions);
+      this.displayRoundResults(carNames, carPositions);
     }
-    return position;
+    return carPositions;
   }
-  
+
+  initializePositions(carNames) {
+    return carNames.reduce((positions, name) => {
+      positions[name] = 0;
+      return positions;
+    }, {});
+  }
+
+  playRound(carNames, carPositions) {
+    carNames.forEach(name => {
+      if (this.shouldMove()) {
+        carPositions[name] += 1;
+      }
+    });
+  }
+
   shouldMove() {
     const randomNum = Random.pickNumberInRange(0, 9);
     return randomNum >= 4;
   }
 
-  victoryCar(carNames, carPosition) {
+  displayRoundResults(carNames, carPositions) {
+    carNames.forEach(name => {
+      Console.print(`${name} : ${"-".repeat(carPositions[name])}`);
+    });
+    Console.print("");
+  }
 
-    const maxPosition = Math.max(...Object.values(carPosition));
-
-    const winner = carNames.filter(
-      (name) => carPosition[name] === maxPosition
-    ).join(", ");
-
-    Console.print(`최종 우승자 : ${winner}`);
+  displayWinners(carNames, carPositions) {
+    const maxPosition = Math.max(...Object.values(carPositions));
+    const winners = carNames.filter(name => carPositions[name] === maxPosition).join(", ");
+    Console.print(`최종 우승자 : ${winners}`);
   }
 }
-
 
 export default App;
