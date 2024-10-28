@@ -1,5 +1,3 @@
-# javascript-racingcar-precourse
-
 # 🚕 [우아한 테크코스/프리코스 ] 2주차 - 자동차경주 🚕
 
 ## 🍞 기능 목록 정리
@@ -84,9 +82,8 @@
         1. `isInputFalsy(degreeInput)`
 
 ### 5️⃣ 결과
+![image](https://github.com/user-attachments/assets/2094fea4-bdf4-4fac-800e-403d50293795)
 
-![alt text](image.png)
-![alt text](image-1.png)
 
 ## 🍞 주어진 요구사항 체크
 
