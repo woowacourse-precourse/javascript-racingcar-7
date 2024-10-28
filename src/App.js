@@ -1,14 +1,17 @@
+import { Console } from '@woowacourse/mission-utils';
 import getCarName from './component/getCarName.js';
 import getNumberOfRaces from './component/getNumberOfRaces.js';
+import playGame from './component/playGame.js';
+
 class App {
    async run() {
       try {
-         this.carsName = await getCarName();
-         console.log('입력한 자동차 이름:', this.carsName); // => getCarName에서 return한 값
-         this.numberOfRaces = await getNumberOfRaces();
-         console.log('시도할 횟수:', this.numberOfRaces);
+         const carNames = await getCarName();
+         const numberOfRaces = await getNumberOfRaces();
+         const winners = await playGame(carNames, numberOfRaces);
+         Console.print(`최종 우승자 : ${winners.join(', ')}`);
       } catch (err) {
-         console.log('error', err);
+         throw new Error(`[ERROR] ${err.message}`);
       }
    }
 }
