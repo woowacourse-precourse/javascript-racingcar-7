@@ -15,7 +15,6 @@ describe('Simulator simulate test', () => {
     const names = ['Car1'];
     const simulator = new Simulator(names);
     pickRandomNumberInRange.mockReturnValue(5);
-    console.log(simulator.state);
 
     simulator.simulate(1);
     expect(printOutput).toHaveBeenCalledWith(MESSAGE.EXECUTE_OUTPUT);
