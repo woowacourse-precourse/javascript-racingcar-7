@@ -4,4 +4,8 @@ const getUserInput = (message) => {
   return Console.readLineAsync(message);
 };
 
-export default getUserInput;
+const printMessage = (message) => {
+  Console.print(message);
+};
+
+export default { getUserInput, printMessage };
