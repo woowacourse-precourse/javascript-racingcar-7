@@ -1,4 +1,4 @@
-import {Console} from "@woowacourse/mission-utils";
+import {Console, Random} from "@woowacourse/mission-utils";
 
 class App {
   async run() {
@@ -34,6 +34,42 @@ class App {
     }
 
     Console.print(`시도할 횟수: ${attempts}`);
+
+    // 자동차 초기화
+    const cars = carNames.map((name) => ({name, position: 0}));
+
+    // 경주 시작
+    for (let i = 0; i < attempts; i++) {
+      this.moveCars(cars);
+      this.printCars(cars);
+    }
+
+    // 최종 우승자 출력
+    const winners = this.determineWinners(cars);
+    Console.print(`최종 우승자: ${winners.join(", ")}`);
+  }
+
+  moveCars(cars) {
+    cars.forEach((car) => {
+      const randomNumber = Random.pickNumberInRange(0, 9);
+      if (randomNumber >= 4) {
+        car.position += 1;
+      }
+    });
+  }
+
+  printCars(cars) {
+    cars.forEach((car) => {
+      Console.print(`${car.name} : ${"-".repeat(car.position)}`);
+    });
+    Console.print(""); // 구분을 위한 빈 줄 추가
+  }
+
+  determineWinners(cars) {
+    const maxPosition = Math.max(...cars.map((car) => car.position));
+    return cars
+      .filter((car) => car.position === maxPosition)
+      .map((car) => car.name);
   }
 }
 
