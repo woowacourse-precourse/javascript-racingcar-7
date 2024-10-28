@@ -5,7 +5,6 @@ class App {
     const cars = await this.getCarNames();
     const count = await this.getMoveCount();
     const movingCars = this.startRace(cars, count);
-    this.displayResults(cars, movingCars);
     this.displayWinners(cars, movingCars);
   }
 
