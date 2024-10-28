@@ -46,7 +46,7 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트", async () => {
+  test("예외 테스트-이름 5자 초과", async () => {
     // given
     const inputs = ["pobi,javaji"];
     mockQuestions(inputs);
@@ -55,6 +55,24 @@ describe("자동차 경주", () => {
     const app = new App();
 
     // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트-중복 이름", async () => {
+    const inputs = ["pobi,pobi,woni"];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트-유효하지 않은 횟수 입력", async () => {
+    const input = ["네번"];
+    mockQuestions(input);
+
+    const app = new App();
+
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 });
