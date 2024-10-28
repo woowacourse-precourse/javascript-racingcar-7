@@ -2,7 +2,7 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 class App {
   async run() {
     try {
-      const input = await MissionUtils.Console.readLineAsync('이름을 쉼표(,)로 구분하여 입력해 주세요: ');
+      const input = await MissionUtils.Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)');
 
       const names = this.NameStorage(input);
       this.validateNames(names);
@@ -10,8 +10,8 @@ class App {
       const num = await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?');
       this.validateNum(num);
 
-      this.start(names,num);
-      
+      this.start(names, num);
+
     } catch (error) {
       MissionUtils.Console.print(`${error.message}`);
       throw error;
@@ -74,7 +74,7 @@ class App {
       this.displayProgress(names, results);
     }
 
-    this.displayWinner(names,results);
+    this.displayWinner(names, results);
   }
 
   displayProgress(names, results) {
