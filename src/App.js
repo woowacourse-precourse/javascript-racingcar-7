@@ -12,6 +12,14 @@ class App {
       .split(",")
       .map((carName) => carName.trim());
 
+    // 공백 문자열이나 빈 문자열 예외 처리
+    const gapInvalidName = carNamesArray.some((carName) => carName === "");
+    if (gapInvalidName) {
+      throw new Error(
+        "[ERROR] 자동차 이름에 빈 문자열 또는 공백을 입력할 수 없습니다."
+      );
+    }
+
     // 자동차 이름 5문자 초과일 경우 예외 발생
     const invalidName = carNamesArray.find((carName) => carName.length > 5);
     if (invalidName) {
