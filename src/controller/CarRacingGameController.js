@@ -21,6 +21,13 @@ class CarRacingGameController {
       tryCount
     );
 
+    const totalDistant = this.setEachTemp(carMovement, carNames);
+
+    const winner = this.SetWinnerModel.setWinner(carNames, totalDistant);
+    this.OutputView.printWinner(winner);
+  }
+  setEachTemp(carMovement, carNames) {
+    //각 try별 이동 거리 구하고 출력
     let totalDistant = Array(carNames.length).fill(0);
     for (let attempts of carMovement) {
       totalDistant = this.SetForwardCountModel.getTotalDistant(
@@ -30,9 +37,8 @@ class CarRacingGameController {
       );
       this.OutputView.printEachTemp(carNames, totalDistant);
     }
-
-    const winner = this.SetWinnerModel.setWinner(carNames, totalDistant);
-    this.OutputView.printWinner(winner);
+    return totalDistant;
   }
 }
+
 export default CarRacingGameController;
