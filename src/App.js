@@ -1,4 +1,3 @@
-// @woowacourse/mission-utils Console API 사용
 import { Console, Random } from "@woowacourse/mission-utils";
 
 class App {
@@ -9,7 +8,8 @@ class App {
       Console.print(
         `자동차 이름: ${carNames.join(", ")} | 시도 횟수: ${attemptCount}`
       );
-      this.startRace(carNames, attemptCount);
+      const raceResults = this.startRace(carNames, attemptCount);
+      this.printWinners(raceResults);
     } catch (error) {
       Console.print(`[ERROR] ${error.message}`);
     } finally {
@@ -76,7 +76,7 @@ class App {
       });
       this.printRaceStatus(results);
     }
-    this.printWinners(results);
+    return results;
   }
 
   printRaceStatus(results) {
