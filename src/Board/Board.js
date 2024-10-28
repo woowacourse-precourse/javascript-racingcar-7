@@ -23,6 +23,7 @@ export default class Board{
         const dash = "-".repeat(raceStatus);
         return `${car} : ${dash}`;
     }
+
     getWinner(){
         const maxCurrent = this.getWinnerCurrent();
         const winner = this.findWinner(maxCurrent);

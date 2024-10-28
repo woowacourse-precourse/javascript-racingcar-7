@@ -1,5 +1,5 @@
 import Car from "./Car.js";
-import Board from "./Board.js";
+import Board from "./Board/Board.js";
 import { inputNames, splitName, inputNameValidation, inputTryCount } from "./inputValue/InputValue.js";
 import { raceStart } from "./Move/Move.js";
 
