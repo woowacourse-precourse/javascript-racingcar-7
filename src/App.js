@@ -28,7 +28,7 @@ class App {
     });
   }
 
-  #showCarRacing(carInstanceArr) {
+  #showCarRacing(carInstanceArr, tryCount) {
     for (let curCount = 0; curCount < tryCount; curCount++) {
       this.#carRacing(carInstanceArr);
       // 줄 구분용 빈칸
@@ -97,7 +97,7 @@ class App {
       // 실행 결과 출력
       IOManager.OutputManager('실행 결과');
 
-      this.#showCarRacing(carInstanceArr);
+      this.#showCarRacing(carInstanceArr, tryCount);
 
       const racingResult = this.#calculateWinner(carInstanceArr);
 
