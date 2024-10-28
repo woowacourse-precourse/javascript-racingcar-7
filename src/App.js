@@ -6,7 +6,7 @@ class App {
   async run() {
     try{
       const carNames = await GetInput.getCarNames();
-      const tryCount = await GetInput.getTryCount();
+      const tryCount = await GetInput.sgetTryCount();
       StartGame.start(carNames, tryCount);
     } catch (error) {
       Console.print(error.message);
