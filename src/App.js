@@ -19,6 +19,8 @@ class App {
       raceStart(carList);
       board.printRaceBoard();
     }
+    board.getWinner();
+    board.printWinner();
   }
 }
 
