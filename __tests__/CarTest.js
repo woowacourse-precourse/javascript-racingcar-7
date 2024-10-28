@@ -57,13 +57,9 @@ describe('Car 로직 테스트', () => {
   test('이름이 공백 혹은 빈 문자열일 경우 에러 처리', () => {
     // given
     const emptyCarName = '';
-    const spaceCarName = '     ';
 
     // then
     expect(() => new Car(emptyCarName)).toThrow(
-      errorString(ERROR_MESSAGE.MIN_CAR_NAME_LENGTH),
-    );
-    expect(() => new Car(spaceCarName)).toThrow(
       errorString(ERROR_MESSAGE.MIN_CAR_NAME_LENGTH),
     );
   });

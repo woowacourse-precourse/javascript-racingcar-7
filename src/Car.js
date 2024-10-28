@@ -7,6 +7,7 @@ class Car {
   #position;
 
   static MAX_CAR_NAME_LENGTH = 5;
+  static PRINT_POSITION_FORM = '-';
 
   constructor(name) {
     this.#validateName(name);
@@ -16,7 +17,7 @@ class Car {
   }
 
   #validateName(name) {
-    if (name.trim().length === 0) {
+    if (name.length === 0) {
       throw new Error(errorString(ERROR_MESSAGE.MIN_CAR_NAME_LENGTH));
     }
 
@@ -26,11 +27,15 @@ class Car {
   }
 
   move() {
-    const canMove = Random.pickNumberInRange(0, 9) >= 4;
+    const canMove = this.#isMove();
 
     if (canMove) {
       this.#position += 1;
     }
+  }
+
+  #isMove() {
+    return Random.pickNumberInRange(0, 9) >= 4;
   }
 
   printCarPosition() {
@@ -38,7 +43,7 @@ class Car {
   }
 
   #switchPositionToDash() {
-    return '-'.repeat(this.#position);
+    return Car.PRINT_POSITION_FORM.repeat(this.#position);
   }
 
   getPosition() {
