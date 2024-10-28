@@ -1,3 +1,5 @@
+import { ERROR_MESSAGES } from '../../constants';
+
 class ICar {
   constructor() {
     if (new.target === ICar) {

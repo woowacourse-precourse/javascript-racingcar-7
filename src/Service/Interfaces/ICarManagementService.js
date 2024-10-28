@@ -1,3 +1,5 @@
+import { ERROR_MESSAGES } from '../../constants';
+
 class ICarManagementService {
   constructor() {
     if (new.target === ICarManagementService) {

@@ -1,3 +1,5 @@
+import { ERROR_MESSAGES } from '../../constants';
+
 class IDetermineWinnerService {
   determineWinners(cars) {
     throw new Error('determineWinners' + ERROR_MESSAGES.MUST_OVERRIDE_METHOD);
