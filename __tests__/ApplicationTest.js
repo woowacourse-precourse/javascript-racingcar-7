@@ -101,4 +101,18 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR] 이름은 5자 이하만 가능합니다.");
   });
 
+  test("자동차 이름을 중복으로 입력했을 때 예외 테스트", async () => {
+    // given
+    const invalidInput = ["pobi,pobi"]; // 시도 횟수로 유효하지 않은 값
+    mockQuestions(invalidInput);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR] 이름은 중복될 수 없습니다.");
+  });
+
+
+
 });
