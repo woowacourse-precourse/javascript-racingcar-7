@@ -38,7 +38,7 @@ class App {
   }
 
   playGame(carList, tryNumber) {
-    const moveCarList = this.checkMoveForward(carList);
+    const moveCarList = this.makeMoveCarList(carList);
   }
 }
 
