@@ -31,9 +31,16 @@ class App {
     }
   }
   validateCarNames(names) {
+    const uniqueNames = new Set();
+    
     for (let name of names) {
-      if (name.length > 5 || name.length < 1)
+      if (name.length > 5 || name.length < 1){
         throw new Error('[ERROR] 자동차 이름은 1자 이상 5자 이하여야 합니다.');
+      }
+      if (uniqueNames.has(name)){
+        throw new Error('[ERROR] 중복된 이름이 있습니다.');
+      }
+      uniqueNames.add(name);
     }
   }
 
