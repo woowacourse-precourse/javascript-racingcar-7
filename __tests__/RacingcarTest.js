@@ -1,5 +1,3 @@
-import App from '../src/App.js';
-import { MissionUtils } from '@woowacourse/mission-utils';
 import Racingcar from '../src/components/Racingcar.js';
 
 const [inputArr, tryNum] = [['pobi', 'jun', 'woni', 'moo'], 7];
