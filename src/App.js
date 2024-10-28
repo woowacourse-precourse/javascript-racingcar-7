@@ -25,9 +25,8 @@ class App {
     const raceCars = [];
 
     carNames.forEach((carName) => {
-      if (raceCars.some((car) => car.Name === carName)) {
-        throw new Error("[ERROR]: 같은 이름은 불가능합니다.");
-      }
+      this.validateCarNameDuplicate(raceCars, carName);
+
       if (carName.length > 5) {
         throw new Error("[ERROR]: 이름은 5자 이하만 가능합니다.");
       }
@@ -89,6 +88,12 @@ class App {
   validateCarNames(inputCarNames) {
     if (inputCarNames === "") {
       throw new Error("[ERROR]: 빈 문자열은 입력할 수 없습니다.");
+    }
+  }
+
+  validateCarNameDuplicate(raceCars, carName) {
+    if (raceCars.some((car) => car.name === carName)) {
+      throw new Error("[ERROR]: 같은 이름은 불가능합니다.");
     }
   }
 }
