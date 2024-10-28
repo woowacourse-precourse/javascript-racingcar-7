@@ -25,3 +25,10 @@ function carMovePrint(carName, moveResult) {
 function allCarMove(moveResults) {
     return moveResults.map((moveResult) => oneCarMove(moveResult));
 }
+
+function allCarPrint(carNames, moveResults) {
+    for (let i = 0; i < carNames.length; i++) {
+        carMovePrint(carNames[i], moveResults[i]);
+    }
+    Console.print(' ');
+}
