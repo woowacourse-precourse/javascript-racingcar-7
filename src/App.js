@@ -10,7 +10,6 @@ class App {
     const game = new RacingGame();
 
     game.getInitialBoard(carNames);
-    const scoreBoard = game.getScoreBoard();
 
     const getRacingRoundResult = (array, count) => {
       const rounds = [...array];
@@ -27,6 +26,7 @@ class App {
       return rounds;
     }
 
+    const scoreBoard = game.getScoreBoard();
     const racingRoundResult = getRacingRoundResult(scoreBoard, tryCount);
 
     View.printNewLine();
@@ -43,19 +43,13 @@ class App {
     });
 
     const getWinner = (array) => {
-      const carRecordValue = array.map((round) => {
-        const countTruthy = round.records.filter(Boolean);
-        return countTruthy.length;
-      });
+      const carRecordValue = array.map((round) => round.records.filter(Boolean).length);
 
       const winnerScore = Math.max(...carRecordValue);
 
-      const winners = array.filter((round) => {
-        return round.records.filter(Boolean).length === winnerScore;
-      }).map((round) => round.name)
-        .join(', ')
-
-      return winners;
+      return array.filter((round) => (round.records.filter(Boolean).length === winnerScore))
+        .map((round) => round.name)
+        .join(', ');
     }
 
     const finalWinner = getWinner(racingRoundResult);
