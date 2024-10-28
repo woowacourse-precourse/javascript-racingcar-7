@@ -6,14 +6,17 @@ class App {
     // 자동차 이름 입력
     const CARS_INPUT = await this.getCarsInput();
 
+    // 자동차 이름 분리
     const CARS = this.splitCars(CARS_INPUT);
     const CARS_COUNT = CARS.length;
 
+    // 시도 횟수 입력
     const ATTEMPTS = await this.getAttempts();
 
     const SCORE = [];
     this.initScore(SCORE, CARS_COUNT);
 
+    // 게임 실행
     Console.print('\n실행 결과');
     await this.playGame(ATTEMPTS, SCORE, CARS_COUNT, CARS);
 
