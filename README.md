@@ -114,15 +114,15 @@ jun : -----
 
 <br>
 
-### ✨ utils 함수 정리
+### ✨ 다양한 함수 정리
 
 - `inputoutputMethod.js` : 입출력문을 담당.
 
-- `pickRandomNumber.js` : 랜덤 숫자 생성 담당.
+- `uilts.js` 내부의 메서드
 
-- `sorArr.js` : 최종 승리자 오름차순 정리 담당. (x) --> **삭제**
-
-  - 특수문자를 대응하기 위해 아스키 코드로 사용 (x) ---> 오름차순으로 정렬하는 것이 아니라, 등록된 순서로 출력함.
+  - `pickRandomNumber` : 랜덤 숫자 생성 담당.
+  - `tryNumValidation` : 시도 횟수 오류 검증 담당.
+  - `createBoard` : 게임 진행 판.
 
 - `validation.js` : 오류 검증을 위한 함수들 모음.
 
