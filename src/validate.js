@@ -1,4 +1,7 @@
 export function validateCarNames(carNames) {
+  if (carNames.length == 0) {
+    throw new Error('[ERROR] 자동차 이름을 입력해주세요.');
+  }
   carNames.forEach((name) => {
     if (name.length > 5) {
       throw new Error('[ERROR] 자동차 이름은 5자 이하여야 합니다.');
