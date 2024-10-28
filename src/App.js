@@ -5,6 +5,61 @@ import { Validator } from './utils/Validator.js';
 import { IOManager } from './utils/IOManager.js';
 
 class App {
+  #moveCarWithRandomNumber(car) {
+    const randomNumber = RandomUtil.getRandomNumber();
+
+    if (randomNumber >= SERVICE_CONSTSANSTS.MOVING_REFERENCE_NUMBER) {
+      car.move();
+    }
+  }
+
+  #showCarCurrentPosition(car) {
+    const distanceString = new Array(car.movedDistance)
+      .fill(SERVICE_CONSTSANSTS.MOVING_INDICATOR)
+      .join('');
+
+    IOManager.OutputManager(`${car.name} : ${distanceString}`);
+  }
+
+  #carRacing(carInstanceArr) {
+    carInstanceArr.forEach((car) => {
+      this.#moveCarWithRandomNumber(car);
+      this.#showCarCurrentPosition(car);
+    });
+  }
+
+  #showCarRacing(carInstanceArr) {
+    for (let curCount = 0; curCount < tryCount; curCount++) {
+      this.#carRacing(carInstanceArr);
+      // 줄 구분용 빈칸
+      IOManager.OutputManager('');
+    }
+  }
+
+  #calculateWinner(carInstanceArr) {
+    let winner = [carInstanceArr[0]];
+
+    for (let carIndex = 1; carIndex < carInstanceArr.length; carIndex += 1) {
+      const curCarInstance = carInstanceArr[carIndex];
+
+      if (curCarInstance.movedDistance > winner[0].movedDistance) {
+        winner = [curCarInstance];
+      } else if (curCarInstance.movedDistance == winner[0].movedDistance) {
+        winner.push(curCarInstance);
+      } else {
+        continue;
+      }
+    }
+
+    return winner;
+  }
+
+  #winnerToString(racingResult) {
+    return racingResult
+      .map((car) => car.name)
+      .join(`${SERVICE_CONSTSANSTS.DELIMITER} `);
+  }
+
   async run() {
     try {
       // 자동차 이름 받기
@@ -24,7 +79,6 @@ class App {
       const carInstanceArr = carNameArr.map((name) => new RacingCar(name));
 
       // 시도 횟수 받기
-
       let tryCount = await IOManager.InputManager('', (value) => {
         const num = Number(value);
         Validator.isNumber(num);
@@ -40,43 +94,14 @@ class App {
       // 실행 결과 출력
       IOManager.OutputManager('실행 결과');
 
-      for (let curCount = 0; curCount < tryCount; curCount++) {
-        carInstanceArr.forEach((car) => {
-          // 각 자동차 이동
-          const randomNumber = RandomUtil.getRandomNumber();
+      this.#showCarRacing(carInstanceArr);
 
-          if (randomNumber >= SERVICE_CONSTSANSTS.MOVING_REFERENCE_NUMBER) {
-            car.move();
-          }
-
-          // 각 자동차 위치 출력
-          const distanceString = new Array(car.movedDistance)
-            .fill(SERVICE_CONSTSANSTS.MOVING_INDICATOR)
-            .join('');
-          IOManager.OutputManager(`${car.name} : ${distanceString}`);
-        });
-
-        // 줄 구분용 빈칸
-        IOManager.OutputManager('');
-      }
-
-      // 우승자 계산
-      let winner = [carInstanceArr[0]];
-      for (let carIndex = 1; carIndex < carInstanceArr.length; carIndex += 1) {
-        const curCarInstance = carInstanceArr[carIndex];
-        if (curCarInstance.movedDistance > winner[0].movedDistance) {
-          winner = [curCarInstance];
-        } else if (curCarInstance.movedDistance == winner[0].movedDistance) {
-          winner.push(curCarInstance);
-        } else {
-          continue;
-        }
-      }
+      const racingResult = this.#calculateWinner(carInstanceArr);
 
       // 우승자 출력
-      IOManager.OutputManager(
-        `최종 우승자 : ${winner.map((car) => car.name).join(`${SERVICE_CONSTSANSTS.DELIMITER} `)}`,
-      );
+      const winnerNameText = this.#winnerToString(racingResult);
+
+      IOManager.OutputManager(`최종 우승자 : ${winnerNameText}`);
     } catch (error) {
       IOManager.OutputManager(error.message);
       throw error;
