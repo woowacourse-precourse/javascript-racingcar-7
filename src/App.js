@@ -40,28 +40,32 @@ class App {
     //중간 결과를 저장
     const raceResult = [];
 
-    //depth가 깊어진다. 후에 메서드를 분리해줘야 한다.
     console.log("");
     console.log("실행결과");
 
     //경주가 한 번씩 실행되는 턴
     for (let i = 0; i < count; i++) {
-      const currentRace = {};
-
-      for (let j = 0; j < arr.length; j++) {
-        const num = MissionUtils.Random.pickNumberInRange(0, 9);
-
-        if (num >= 4) {
-          scoreArray[j] = scoreArray[j] + 1;
-        }
-
-        currentRace[arr[j]] = "-".repeat(scoreArray[j]);
-      }
+      const currentRace = this.updateCurrentRace(arr, scoreArray);
       raceResult.push(currentRace);
     }
 
     const parsed = this.determineWinner(arr, scoreArray);
     return { resultList: raceResult, parsed };
+  }
+
+  //현재 경기를 업데이트하는 메서드 분리
+  updateCurrentRace(arr, scoreArray) {
+    const currentRace = {};
+
+    arr.forEach((car, index) => {
+      const num = MissionUtils.Random.pickNumberInRange(0, 9);
+      if (num >= 4) {
+        scoreArray[index] += 1;
+      }
+      currentRace[car] = "-".repeat(scoreArray[index]);
+    });
+
+    return currentRace;
   }
 
   getRaceResult(arr, scoreArray) {
