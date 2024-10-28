@@ -9,6 +9,11 @@ class Car {
     this.#forwardCount = 0;
   }
 
+  runRound() {
+    const randomNumber = this.getRandomNumber();
+    this.moveForward(randomNumber);
+  }
+
   getRandomNumber() {
     return Random.pickNumberInRange(0, 9);
   }
