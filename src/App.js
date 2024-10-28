@@ -4,17 +4,16 @@ import CarNameValidator from './validators/CarNameValidator.js';
 import AttemptValidator from './validators/AttemptValidator.js';
 import RacingGame from './RacingGame.js';
 import RaceStatusDisplay from './RaceStatusDisplay.js';
+import { GAME_MESSAGE } from './constants/Message.js';
 
 class App {
   async run() {
-    const userInputCarNames = await getUserInput(
-      '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
-    );
+    const userInputCarNames = await getUserInput(GAME_MESSAGE.INPUT_CAR_NAME);
 
     const carNameList = parseCarNames(userInputCarNames);
     CarNameValidator.validate(carNameList);
 
-    const userInputAttempt = await getUserInput('시도할 횟수는 몇 회인가요?\n');
+    const userInputAttempt = await getUserInput(GAME_MESSAGE.INPUT_ATTEMPT);
 
     const roundAttempt = parseAttempt(userInputAttempt);
     AttemptValidator.validate(roundAttempt);

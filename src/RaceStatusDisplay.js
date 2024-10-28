@@ -1,8 +1,9 @@
 import { printMessage } from './utils/Console.js';
+import { GAME_MESSAGE } from './constants/Message.js';
 
 class RaceStatusDisplay {
   static printRaceStartMessage() {
-    printMessage('\n실행 결과');
+    printMessage(GAME_MESSAGE.EXECUTION_RESULT);
   }
 
   static printRoundStatus(cars) {
@@ -13,7 +14,7 @@ class RaceStatusDisplay {
   }
 
   static printWinners(winners) {
-    const finalWinners = `최종 우승자 : ${winners.join(', ')}`;
+    const finalWinners = `${GAME_MESSAGE.WINNERS}${winners.join(', ')}`;
     printMessage(finalWinners);
   }
 }
