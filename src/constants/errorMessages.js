@@ -1,4 +1,4 @@
-export const ERROR_MESSAGES = {
+export const ERROR_MESSAGES = Object.freeze({
   name: {
     MIN_NAMES: '[ERROR] 두 명 이상의 이름을 입력해주세요.',
     DUPLICATEED: '[ERROR] 중복되지 않는 이름을 입력해주세요.',
@@ -12,4 +12,4 @@ export const ERROR_MESSAGES = {
     MIN_ATTEMPTS: '[ERROR] 1 이상의 시도 횟수를 입력해주세요.',
     MAX_LENGTH: '[ERROR] 15자리수 이내의 시도 횟수를 입력해주세요.',
   },
-};
+});
