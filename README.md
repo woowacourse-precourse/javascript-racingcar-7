@@ -8,7 +8,7 @@
 
 ### Application Layer
 
-- [ ] **Presentation Layer**의 입력값을 처리하는 기능 
+- [x] **Presentation Layer**의 입력값을 처리하는 기능 
 
   * [x] 입력된 Raw Input의 유효성을 검증하는 기능 (validation)
     +  입력값은 공백이 될 수 없다.
