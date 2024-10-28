@@ -1,7 +1,6 @@
 import Input from "./utils/input.js";
 import Output from "./utils/output.js";
 import Game from "./main/game.js";
-import { Console } from "@woowacourse/mission-utils";
 
 class App {
   async run() {
