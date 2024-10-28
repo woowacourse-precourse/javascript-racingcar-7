@@ -1,6 +1,6 @@
 import Car from './Car.js';
 import IOProcessor from './IOProcessor.js';
-import { OUTPUT_MESSAGE, DELEMETER } from './constants.js';
+import { OUTPUT_MESSAGE, DELEMETER, ERROR_MESSAGE } from './constants.js';
 
 /**
  *
@@ -15,6 +15,7 @@ class RacingController {
   run(carsString, count) {
     try {
       this.setCars(carsString);
+      this.validateDuplicateCarName();
     } catch (error) {
       this.ioProcessor.processOutput(error.message);
       return;
@@ -43,6 +44,18 @@ class RacingController {
    */
   setCount(count) {
     this.#count = count;
+  }
+
+  /**
+   *
+   */
+  validateDuplicateCarName() {
+    const carNames = this.#cars.map((car) => car.getName());
+    const uniqueCarNames = new Set(carNames);
+
+    if (carNames.length !== uniqueCarNames.size) {
+      throw new Error(ERROR_MESSAGE.DUPLICATE_CAR_NAME);
+    }
   }
 
   /**

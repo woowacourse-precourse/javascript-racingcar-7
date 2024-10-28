@@ -26,6 +26,7 @@ const ERROR_MESSAGE = Object.freeze({
   INVALID_NAME_SPECIAL_CHARACTER: ERROR_TAG.concat(
     '이름에 알파벳과 숫자만 입력해주세요.'
   ),
+  DUPLICATE_CAR_NAME: ERROR_TAG.concat('중복된 이름이 있습니다.'),
 });
 
 export {
