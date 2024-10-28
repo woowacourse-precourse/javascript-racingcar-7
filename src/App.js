@@ -17,10 +17,11 @@ class App {
       this.#race.addRacingCar(new Car(carName));
     });
 
-    for (let count=0; count < this.#race.raceCount; count ++){
+    for (let count=0; count < this.#race.getRaceCount(); count ++){
       this.#race.racing();
+      this.#race.showRacingResult();
+      
     }
-
 
   }
 }

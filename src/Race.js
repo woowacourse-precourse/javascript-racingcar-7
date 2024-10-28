@@ -1,11 +1,10 @@
-import { Random } from "@woowacourse/mission-utils";
+import { Random, Console } from "@woowacourse/mission-utils";
 
 class Race {
   #cars = [];
+  #winners = [];
   #raceCount;
 
-  constructor() {
-  }
 
   addRacingCar(car) {
     this.#cars.push(car);
@@ -15,23 +14,26 @@ class Race {
     this.#raceCount = raceCount;
   }
 
+  getRaceCount() {
+    return this.#raceCount;
+  }
+
   racing() {
     this.#cars.forEach(car => {
       const random = Random.pickNumberInRange(0, 9);
+      // 4 이상일 경우 전진
       car.forward(random);
     })
   }
 
-  getRaceCount(){
-    return this.#raceCount;
-  }
-
   showRacingResult() {
-
+    // name : --- 형식으로 출력
+    this.#cars.forEach( car => {
+      Console.print(car.getName() + ' : ' + '-'.repeat(car.getForwardCount()));
+    })
+    Console.print('');
   }
 
-
-  
 
 }
 
