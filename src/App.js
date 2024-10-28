@@ -32,8 +32,14 @@ class App {
       throw new Error("[ERROR] 중복된 자동차 이름은 입력할 수 없습니다.");
     }
 
+    // 이동 횟수 입력
+    const moveCount = await Console.readLineAsync(
+      `시도할 횟수는 몇 회인가요?\n`
+    );
+
     // 테스트 코드: 유효한 경우 자동차 이름 배열 출력
     Console.print(carNamesArray);
+    Console.print(moveCount);
   }
 }
 
