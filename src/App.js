@@ -9,9 +9,11 @@ class App {
     const carsInput = await Console.readLineAsync(
       "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)\n"
     );
+    this.cars = carsInput.split(",");
+    this.checkCarValidation();
+
     const rounds = await Console.readLineAsync("시도할 회수는 몇 회인가요?\n");
 
-    this.cars = carsInput.split(",");
     this.distances = Array(this.cars.length).fill(0);
 
     Console.print("\n실행 결과");
@@ -42,6 +44,24 @@ class App {
     for (let car of this.cars) {
       if (this.distances[this.cars.indexOf(car)] === maxDistance) {
         this.winner.push(car);
+      }
+    }
+  }
+
+  checkCarValidation() {
+    if (this.cars.length < 2) {
+      throw new Error("[ERROR] 자동차는 2대 이상이어야 합니다.");
+    } else {
+      this.cars.forEach((car) => {
+        if (car.length > 5) {
+          throw new Error("[ERROR] 자동차 이름은 5자 이하여야 합니다.");
+        } else if (car.trim() === "") {
+          throw new Error("[ERROR] 자동차 이름은 공백이 아니어야 합니다.");
+        }
+      });
+
+      if (new Set(this.cars).size !== this.cars.length) {
+        throw new Error("[ERROR] 중복된 자동차 이름이 있습니다.");
       }
     }
   }
