@@ -7,7 +7,7 @@ import {
   MIN_RANDOM_NUMBER,
   WINNING_NUMBER
 } from "./constants/Constants.js";
-import { ATTEMPT_COUNT_ERROR_MESSAGE } from "./constants/Messages.js";
+import { ATTEMPT_COUNT_ERROR_MESSAGE, INVALID_CAR_ERROR_MESSAGE } from "./constants/Messages.js";
 
 export class Game {
   #printRoundResult;
@@ -18,6 +18,7 @@ export class Game {
 
   play(attemptCount, cars) {
     this.#checkAttemptCountRange(attemptCount);
+    this.#checkCars(cars);
 
     for (let i = 0; i < attemptCount; i++) {
       this.#playRound(cars);
@@ -27,6 +28,10 @@ export class Game {
 
   #checkAttemptCountRange(attemptCount) {
     if (attemptCount < MIN_ATTEMPT_COUNT) throw new Error(ATTEMPT_COUNT_ERROR_MESSAGE);
+  }
+
+  #checkCars(cars) {
+    if (!cars) throw new Error(INVALID_CAR_ERROR_MESSAGE);
   }
 
   #playRound(cars) {
