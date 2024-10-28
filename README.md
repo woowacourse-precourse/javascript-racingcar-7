@@ -81,10 +81,46 @@
     2. 시도할 횟수가 ‘’”이거나, Falsy하거나, 공백인경우 : **[ERROR] 시도할 횟수를 입력해주세요.**
         1. `isInputFalsy(degreeInput)`
 
-### 5️⃣ 결과
-![image](https://github.com/user-attachments/assets/2094fea4-bdf4-4fac-800e-403d50293795)
+
+### 5️⃣ 테스트
+
+1. **예외 테스트**
+    1. 입력받은 이름이 5글자 초과할 경우
+    2. 쉼표(,) 이외에 다른 구분자를 사용하는 경우
+    3. 공백을 입력한 경우
+    4. 아무것도 입력하지 않은 경우
+    5. 시도할 횟수가 0회인 경우
+    6. 시도할 횟수가 공백일 경우
+    7. 시도할 횟수를 입력하지 않은 경우
+2. **자동차 경기 및 결과 테스트**
+    1. 랜덤 값이 4가 넘는지 판별하는가?
+    2. 자동차의 거리가 1 증가하는가?
+    3. 자동차 배열 중 최대 거리 값이 출력되는가?
+    4. 최대 거리값으로 이긴 자동차들의 이름 배열이 반환되는가?
 
 
+### 6️⃣ 결과
+![image](https://github.com/user-attachments/assets/a19a9fac-4b80-4fa5-95e7-85c1c93d1773)
+
+
+### 7️⃣ 리팩토링 및 이외 사항
+
+- **폴더 구조 리팩토링 (src/function/)**
+    - 자동차 경기 함수 모음 : `darRacingFunctions.js`
+    - 자동차 경기 결과 함수 모음 : `carRacingResultFunctions.js`
+    - 자동차 경기 예외 함수 모음 : `carRacingExecptionFunctions.js`
+    - ![image](https://github.com/user-attachments/assets/908ead51-caef-4fb9-aa3c-7561591894ea)
+- `.prettierrc`를 활용한 코드 포맷팅
+- 의미없는 주석 삭제
+- 오류를 찾을 때 출력 함수 대신 VSCODE 디버거 사용
+- ![image](https://github.com/user-attachments/assets/31b0614b-e47d-4b2c-8196-bc154168e56f)
+
+- 이름을 통해 의도를 드러내고, 축약하지 않기
+- 의미없는 주석 사용하지 않기
+- JavaScript에서 제공하는 API를 적극 활용하기
+    - `map`, `forEach`, `filter`, `Math`.`max`, `join`, 정규식 `test`, `some` 등
+
+---
 ## 🍞 주어진 요구사항 체크
 
 ### ✅ **학습 목표**
