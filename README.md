@@ -145,9 +145,9 @@
 
 ### **라이브러리**
 
-- [ ] `@woowacourse/mission-utils`에서 제공하는 `Random` 및 `Console` API를 사용하여 구현해야 한다.
-  - [ ] Random 값 추출은 `Random.pickNumberInRange()`를 활용한다.
-  - [ ] 사용자의 값을 입력 및 출력하려면 `Console.readLineAsync()`와 `Console.print()`를 활용한다.
+- [O] `@woowacourse/mission-utils`에서 제공하는 `Random` 및 `Console` API를 사용하여 구현해야 한다.
+  - [O] Random 값 추출은 `Random.pickNumberInRange()`를 활용한다.
+  - [O] 사용자의 값을 입력 및 출력하려면 `Console.readLineAsync()`와 `Console.print()`를 활용한다.
 
 ### **사용 예시**
 
