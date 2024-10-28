@@ -48,13 +48,18 @@ class App {
   }
 
   
-  // 8. 자동차경주 - 결과
-  racing_result(racing_start) {
+   // 8. 자동차경주 - 결과
+   racing_result(racing_start) {
     for (let i = 0; i <racing_start.length;i++) {
       const car = racing_start[i];
+      Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
+
     }
   }
-  
+
+
+
+
   // 9. 최종우승자 결과출력
   racing_winner(racing_start) {
     const maxPosition = Math.max(...racing_start.map(car => car.position));
