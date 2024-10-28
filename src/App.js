@@ -6,8 +6,10 @@ class App {
       const carNames = await App.getCarNames();
       const moveAttempts = await App.getMoveAttempts();
       const raceResults = App.startRace(carNames, moveAttempts);
+      App.printWinners(raceResults);
     } catch (error) {
-      Console.print(`[ERROR] ${error.message}`);
+      Console.print(`${error.message}`);
+      throw error;
     }
   }
 
@@ -19,7 +21,7 @@ class App {
 
     carNames.forEach(name => {
       if (name.length > MAX_CAR_NAME) {
-        throw new Error('자동차 이름은 5자 이하만 가능합니다.');
+        throw new Error('[ERROR] 자동차 이름은 5자 이하만 가능합니다.');
       }
     });
 
@@ -31,7 +33,7 @@ class App {
     const moveAttempts = parseInt(inputAttempts, 10);
 
     if (Number.isNaN(moveAttempts) || moveAttempts <= 0) {
-      throw new Error('시도할 횟수는 양의 정수여야 합니다.');
+      throw new Error('[ERROR] 시도할 횟수는 양의 정수여야 합니다.');
     }
 
     return moveAttempts;
@@ -64,10 +66,18 @@ class App {
   }
 
   static printCurrentRound(raceResults) {
-    raceResults.forEach((car) => {
+    raceResults.forEach(car => {
       Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
     });
     Console.print('');
+  }
+
+  static printWinners(raceResults) {
+    const maxPos = Math.max(...raceResults.map(car => car.position));
+    const winners = raceResults
+      .filter(car => car.position === maxPos)
+      .map(car => car.name);
+    Console.print(`최종 우승자 : ${winners.join(', ')}`);
   }
 }
 
