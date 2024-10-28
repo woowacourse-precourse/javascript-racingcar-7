@@ -1,3 +1,6 @@
+import {MissionUtils} from "@woowacourse/mission-utils";
+import Utils from "./Utils.js";
+
 class RacingGame {
   constructor() {
     this.scoreBoard = [];
@@ -9,6 +12,21 @@ class RacingGame {
 
   getInitialBoard(carNames) {
     this.scoreBoard = carNames.map((car) => ({name: car, records: []}));
+  }
+
+  generateMove() {
+    const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
+    return randomNumber >= 4;
+  }
+
+  getRacingRoundResult (array, count) {
+    Utils.range(count).forEach(() => {
+      this.scoreBoard.forEach((round) => {
+       const isMove = this.generateMove();
+       round.records.push(isMove);
+      });
+    });
+    return this.scoreBoard;
   }
 
   getWinner(array) {
