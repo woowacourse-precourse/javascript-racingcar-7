@@ -2,7 +2,26 @@
 
 ## 파일 구조
 
-![img](https://github.com/user-attachments/assets/ea8d9298-1850-4c8a-843d-74dff4590c63)
+```markdown
+src
+┣ constants
+┃ ┣ message.js
+┃ ┗ threshold.js
+┣ utils
+┃ ┣ validator
+┃ ┃ ┣ car.js
+┃ ┃ ┗ count.js
+┃ ┣ view
+┃ ┃ ┣ input.js
+┃ ┃ ┗ output.js
+┃ ┣ error.js
+┃ ┣ parser.js
+┃ ┗ sort.js
+┣ App.js
+┣ Car.js
+┣ Race.js
+┗ index.js
+```
 
 ## 진행 순서도
 
