@@ -11,8 +11,12 @@ const printRoundStatus = (cars) => {
   printMessage('');
 };
 
+const printToStartGame = () => {
+  printMessage('\n실행 결과');
+};
+
 const printWinners = (winners) => {
   printMessage(`최종 우승자 : ${winners.join(', ')}`);
 };
 
-export { printMessage, printRoundStatus, printWinners };
+export { printMessage, printRoundStatus, printToStartGame, printWinners };
