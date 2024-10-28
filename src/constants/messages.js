@@ -27,4 +27,19 @@ const ERROR_MESSAGE = {
   NULL_INPUT: '[ERROR] 입력값이 비어 있습니다. 값을 입력해 주세요.',
   LIMIT_CAR_COUNT: `[ERROR] 자동차 개수는 최대 ${MAX_CAR_COUNT}대를 초과할 수 없습니다.`,
 };
-export { PRINT_MESSAGES, ERROR_MESSAGE };
+
+const GUIDE_MESSAGE = {
+  HEADER: '----------[자동차 경주 게임 안내]----------',
+  INTRO:
+    '게임 설명: 자동차 이름과 시도 횟수를 입력하고 가장 멀리 전진한 자동차가 우승하는 게임입니다!\n',
+  NAME_RULE_1:
+    '- 자동차 이름은 쉼표(,)로 구분하여 알파벳과 숫자로 입력 가능합니다.',
+  NAME_RULE_2: '- 이름은 1~5자 이내, 최대 100대까지 입력 가능합니다.',
+  NAME_RULE_3: '- 자동차의 이름은 중복이 불가합니다.',
+  TRY_COUNT_RULE: '- 시도 횟수는 1~1000 사이의 숫자로 입력 가능합니다.',
+  MOVE_RULE:
+    '- 매 시도마다 0부터 9 사이의 무작위 값이 나오며 4 이상이면 1칸 전진합니다.',
+  WINNER_RULE: '- 가장 멀리 전진한 자동차가 최종 우승합니다.',
+  FOOTER: '------------------------------------------\n',
+};
+export { PRINT_MESSAGES, ERROR_MESSAGE, GUIDE_MESSAGE };
