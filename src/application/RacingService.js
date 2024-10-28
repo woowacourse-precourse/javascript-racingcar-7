@@ -10,6 +10,6 @@ export default class RacingService {
   }
 
   async execute () {
-    this.#racing = await this.#racingInputProcessor.process();
+    this.#racing = await this.#racingInputProcessor.createRacing();
   }
 }
