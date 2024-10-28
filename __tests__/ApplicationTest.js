@@ -1,5 +1,13 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import App from '../src/App.js';
+import {
+  checkArrayLength,
+  checkIsEmptyOrNull,
+  checkIsInteger,
+  checkIsRoundOutOfRange,
+  checkStringLength,
+  hasDuplicates
+} from '../src/utils/index.js';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -162,5 +170,33 @@ describe('자동차 경주', () => {
     const app = new App();
 
     await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+});
+
+describe('유틸 함수', () => {
+  test('배열의 길이가 2보다 작으면 true를 반환한다.', () => {
+    expect(checkArrayLength(['pobi'])).toBe(true);
+  });
+
+  test('배열에 빈 문자열이나 null이 있으면 true를 반환한다.', () => {
+    expect(checkIsEmptyOrNull(['pobi', '', 'woni'])).toBe(true);
+  });
+
+  test('배열에 길이가 5보다 큰 문자열이 있으면 true를 반환한다.', () => {
+    expect(checkStringLength(['pobi', 'javaji'])).toBe(true);
+  });
+
+  test('배열에 중복되는 값이 있으면 true를 반환한다.', () => {
+    expect(hasDuplicates(['pobi', 'pobi'])).toBe(true);
+  });
+
+  test('값이 1보다 작거나 100보다 크면 true를 반환한다.', () => {
+    expect(checkIsRoundOutOfRange(-1)).toBe(true);
+    expect(checkIsRoundOutOfRange(200)).toBe(true);
+  });
+
+  test('정수가 아닌 값을 입력하면 true를 반환한다.', () => {
+    expect(checkIsInteger(1.5)).toBe(true);
+    expect(checkIsInteger('a')).toBe(true);
   });
 });
