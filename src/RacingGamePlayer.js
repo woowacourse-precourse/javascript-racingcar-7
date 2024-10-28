@@ -23,19 +23,19 @@ class RacingGamePlayer {
 
   printRoundResults() {
     this.cars.forEach((car) => {
-      MissionUtils.Console.print(`${car.name} : ${'-'.repeat(car.dist)}`);
+      MissionUtils.Console.print(`${car.name} : ${'-'.repeat(car.distance)}`);
     });
     MissionUtils.Console.print(''); //라운드 간 개행
   }
 
   findMaxMovingDistance() {
-    return Math.max(...this.cars.map((car) => car.dist));
+    return Math.max(...this.cars.map((car) => car.distance));
   }
 
   findWinner() {
     const maxMovingDistance = this.findMaxMovingDistance();
     return this.cars
-      .filter((car) => car.dist == maxMovingDistance)
+      .filter((car) => car.distance == maxMovingDistance)
       .map((car) => car.name);
   }
 

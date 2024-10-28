@@ -3,7 +3,7 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 class Car {
   constructor(name) {
     this.name = name;
-    this.dist = 0;
+    this.distance = 0;
   }
 
   getRandomNumber() {
@@ -15,7 +15,7 @@ class Car {
   }
 
   increaseDistance() {
-    this.dist++;
+    this.distance++;
   }
 
   move() {
