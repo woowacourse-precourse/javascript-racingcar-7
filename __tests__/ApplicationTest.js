@@ -81,4 +81,16 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   })
+
+  test("시도 횟수 음수 테스트", async()=>{
+    // given
+    const inputs = ["pobi,eric", "-3"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  })
 });

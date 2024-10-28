@@ -79,8 +79,8 @@ class App {
       '시도할 횟수는 몇 회인가요?\n'
     );
 
-    if (isNaN(ATTEMPTS)) {
-      throw new Error('[ERROR] 시도할 횟수는 숫자여야 합니다. \n');
+    if (isNaN(ATTEMPTS) || ATTEMPTS <= 0) {
+      throw new Error('[ERROR] 시도할 횟수는 양의 숫자여야 합니다. \n');
     }
 
     return ATTEMPTS;
