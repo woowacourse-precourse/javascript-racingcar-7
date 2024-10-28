@@ -10,4 +10,5 @@ export const ERROR_MESSAGE = {
   DUPLICATE_NAME: `${MESSAGE.ERROR} 자동차 이름이 중복되었습니다.`,
   OVER_LENGTH_NAME: `${MESSAGE.ERROR}} 자동차 이름이 5글자를 초과합니다.`,
   SPACE_NAME: `${MESSAGE.ERROR} 자동차 이름에 공백이 존재합니다.`,
+  INVALID_CHAR_NAME: `${MESSAGE.ERROR} 올바르지 않은 문자가 포함되어 있습니다.`,
 };

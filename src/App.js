@@ -1,9 +1,11 @@
 import { Console } from "@woowacourse/mission-utils";
-import { MESSAGE } from "./constants.js";
+import { ERROR_MESSAGE, MESSAGE } from "./constants.js";
 
 class App {
   async run() {
     const nameInput = await Console.readLineAsync(MESSAGE.CARNAME_INPUT);
+    this.validateNameInput(nameInput);
+
     Console.print(nameInput);
   }
 
@@ -19,6 +21,11 @@ class App {
     }
     if (nameInput.includes(" ")) {
       throw new Error(ERROR_MESSAGE.SPACE_NAME); // 입력할 때 공백이 있는지 확인
+    }
+
+    const nameFormat = /^[A-Za-z]+$/; // 영문자만 허용하는 정규 표현식
+    if (names.some((name) => !nameFormat.test(name))) {
+      throw new Error(ERROR_MESSAGE.INVALID_CHAR_NAME); // 숫자나 특수 문자가 포함된 경우 에러 발생
     }
   }
 }
