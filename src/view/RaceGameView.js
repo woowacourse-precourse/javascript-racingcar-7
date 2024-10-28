@@ -19,11 +19,12 @@ class RaceGameView {
   }
 
   showStatus (cars) {
+    const outputMessages = [];
     for (const car of cars) {
       const { name, move } = car;
-      this.#io.out(`${name} : ${POSITION_MARKER.repeat(move)}`);
+      outputMessages.push(`${name} : ${POSITION_MARKER.repeat(move)}\n`);
     }
-    this.#io.out('');
+    this.#io.out(outputMessages.join(''));
   }
 
   showWinner (winners) {
