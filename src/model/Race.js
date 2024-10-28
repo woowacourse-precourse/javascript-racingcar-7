@@ -14,4 +14,13 @@ export class Race {
   play() {
     this.cars.forEach((car) => car.move());
   }
+
+  getWinner() {
+    const maxPosition = Math.max(...this.cars.map((car) => car.getPosition()));
+
+    return this.cars
+      .filter((car) => car.getPosition() === maxPosition)
+      .map((car) => car.getName())
+      .join(', ');
+  }
 }

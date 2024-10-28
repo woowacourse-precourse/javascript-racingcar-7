@@ -20,4 +20,8 @@ export class View {
     });
     Console.print('\n');
   }
+
+  displayWinners(winners) {
+    Console.print(`최종 우승자 : ${winners}`);
+  }
 }

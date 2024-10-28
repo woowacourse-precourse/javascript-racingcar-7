@@ -39,6 +39,9 @@ class App {
       race.play();
       view.displayCurrentPosition(race.getCars());
     }
+
+    const winners = race.getWinner();
+    view.displayWinners(winners);
   }
 }
 
