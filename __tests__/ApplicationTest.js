@@ -143,5 +143,11 @@ describe('자동차 이름 입력 예외 테스트', () => {
   });
 });
 
+describe('차수별 입력 예외 테스트', () => {
+  test('음수를 입력했을 경우', async () => {
+    const inputs = ['pobi,james', '-3'];
+    mockQuestions(inputs);
+    const app = new App();
+    await expect(app.run()).rejects.toThrow('[ERROR]');
   });
 });
