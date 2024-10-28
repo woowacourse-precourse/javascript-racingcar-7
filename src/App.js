@@ -22,6 +22,16 @@ class App {
     return attempt;
   }
 
+  randomMove(cars) {
+    return cars.map(car => {
+      const randomNumber = this.random.pickNumberInRange(0, 9);
+      if (randomNumber >= 4) {
+        car.position.push('-'); // 이동 시 '-' 추가
+      }
+      return car;
+    });
+  }
+
   async run() {
     try {
       const input = await this.console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
@@ -29,6 +39,16 @@ class App {
 
       const attemptInput = await this.console.readLineAsync("시도할 횟수를 입력하세요.\n");
       const attemptCount = this.validateAttempt(attemptInput);
+
+      let cars = validInput.map(name => ({
+        name,
+        position: [] // 빈 배열로 초기화
+      }));
+
+      for (let i = 0; i < attemptCount; i++) {
+        cars = this.randomMove(cars); // 각 시도마다 랜덤 이동 적용
+        this.printCurrentStatus(cars); // 현재 상태 출력
+      }
 
     } catch (error) {
       this.console.print(error.message);
