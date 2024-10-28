@@ -1,5 +1,6 @@
 import Car from "./Car.js";
 import { Console } from "@woowacourse/mission-utils";
+import { validateName } from "./validate.js";
 
 class Game {
   constructor() {
@@ -7,7 +8,9 @@ class Game {
   }
 
   initializeCars(carNames) {
-    carNames.forEach((name) => {
+    const validCarNames = carNames.map((name) => name.trim());
+    validateName(validCarNames);
+    validCarNames.forEach((name) => {
       const car = new Car(name);
       this.cars.push(car);
     });
