@@ -12,12 +12,28 @@ class App {
     );
     //횟수가 양의 정수가 아니면 에러 처리
 
-    this.playGame(car_list, try_number);
+    MissionUtils.Console.print("\n실행 결과");
+    const carDistance = this.playGame(car_list, try_number);
+    this.printWinner(car_list, carDistance);
   }
 
   separateCarList(carName) {
     const car_list = carName.split(",");
     return car_list;
+  }
+
+  printWinner(carList, carDistance) {
+    carDistance = carDistance.map((distance) => {
+      return distance.length;
+    });
+
+    let winnerDistance = Math.max(...carDistance);
+    let winner = [];
+    carDistance.forEach((distance, index) => {
+      if (winnerDistance == distance) {
+        winner.push(carList[index]);
+      }
+    });
   }
 
   checkMoveForward() {
@@ -38,7 +54,18 @@ class App {
   }
 
   playGame(carList, tryNumber) {
-    const moveCarList = this.makeMoveCarList(carList);
+    const carDistance = new Array(carList.length).fill("");
+    for (let j = 0; j < tryNumber; j++) {
+      const moveCarList = this.makeMoveCarList(carList);
+      for (let i = 0; i < carList.length; i++) {
+        if (moveCarList[i] == true) {
+          carDistance[i] += "-";
+        }
+        MissionUtils.Console.print(`${carList[i]} : ${carDistance[i]}`);
+      }
+      MissionUtils.Console.print(" ");
+    }
+    return carDistance;
   }
 }
 
