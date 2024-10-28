@@ -18,23 +18,26 @@ function printCarAdvance(advanceValue) {
   return "-".repeat(advanceValue);
 }
 
-function randomAdvanceCars(cars, count) {
+function generateRandomAdvance(cars, result) {
   const n = cars.length;
-  const result = new Array(n).fill(0);
+  for (let i = 0; i < n; i++) {
+    const randomValue = MissionUtils.Random.pickNumberInRange(0, 9);
+    if (randomValue >= 4) result[i] += 1;
+  }
+}
 
+function printCurrentStatus(cars, result) {
+  cars.forEach((car, index) => {
+    Console.print(`${car} : ${printCarAdvance(result[index])}`);
+  });
+  Console.print("");
+}
+
+function randomAdvanceCars(cars, count) {
+  const result = new Array(cars.length).fill(0);
   for (let round = 0; round < count; round++) {
-    const random_result = [];
-    for (let i = 0; i < n; i++) {
-      random_result[i] = MissionUtils.Random.pickNumberInRange(0, 9);
-      if (random_result[i] >= 4) {
-        result[i] += 1;
-      }
-    }
-
-    for (let i = 0; i < n; i++) {
-      Console.print(`${cars[i]} : ${printCarAdvance(result[i])}`);
-    }
-    Console.print("");
+    generateRandomAdvance(cars, result);
+    printCurrentStatus(cars, result);
   }
   return result;
 }
