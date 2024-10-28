@@ -1,6 +1,6 @@
 class CheckValue {
-  checkLength(input) {
-    if (input.length > 5) {
+  checkLength(input, length) {
+    if (input.length > length) {
       throw new Error("[ERROR] 5자 이상의 이름을 입력했습니다.");
     }
   }

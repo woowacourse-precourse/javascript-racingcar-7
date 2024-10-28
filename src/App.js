@@ -14,9 +14,8 @@ class App {
     let userNames = userInput.split(",");
     let userCounts = new Array(userNames.length).fill(0);
 
-    // 파라미터 추가해서 5자 이외의 길이도 검사할 수 있게 해보자.
     for (let i = 0; i < userNames.length; i++) {
-      checkValue.checkLength(userNames[i]);
+      checkValue.checkLength(userNames[i], 5);
     }
 
     // 시도할 횟수를 입력
