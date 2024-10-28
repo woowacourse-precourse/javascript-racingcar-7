@@ -5,7 +5,7 @@ class Utils {
   async getCarName() {
     const input = await Console.readLineAsync(LOG_MESSAGE.START_MESSAGE);
     const carInput = input.split(",");
-    this.carCountLimitCheck(carInput);
+    //this.carCountLimitCheck(carInput); //ttt
     return this.carNameLimitCheck(carInput);
   }
 
@@ -19,7 +19,7 @@ class Utils {
   }
 
   carCountLimitCheck(carInput) {
-    if (carInput.length > 5) {
+    if (carInput.length >= 5) {
       // 자동차 개수 체크 5이하만 가능
       throw new Error(ERROR_MESSAGE.LIMIT_COUNT_INCORRECT_VALUE);
     }
