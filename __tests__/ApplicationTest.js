@@ -70,6 +70,13 @@ describe('자동차 경주', () => {
     const app = new App();
     await expect(app.run()).rejects.toThrow('[ERROR]');
   });
+  test('예외 테스트 : 자동차 이름의 형식이 올바르지 않은 경우2', async () => {
+    const inputs = ['😎,java'];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
   test('예외 테스트 : 이름 5자 이상', async () => {
     const inputs = ['pobi,javaji'];
     mockQuestions(inputs);
@@ -118,8 +125,22 @@ describe('자동차 경주', () => {
     await expect(app.run()).rejects.toThrow('[ERROR]');
   });
 
-  test('예외 테스트: 유효하지 않은 숫자를 시도 횟수로 입력할 경우', async () => {
+  test('예외 테스트: 숫자가 아닌 것을 시도 횟수로 입력할 경우', async () => {
     const inputs = ['pobi,woni', 'abc'];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+  test('예외 테스트: 양수 아닌 수를 시도 횟수로 입력할 경우', async () => {
+    const inputs = ['pobi,woni', '2.5'];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+  test('예외 테스트: 양수 아닌 수를 시도 횟수로 입력할 경우2', async () => {
+    const inputs = ['pobi,woni', '-3'];
     mockQuestions(inputs);
 
     const app = new App();

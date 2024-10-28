@@ -30,7 +30,11 @@ class InputValidator {
   }
 
   static validateAttemptCount(attemptCount) {
-    if (Number.isNaN(Number(attemptCount)) || attemptCount <= 0) {
+    if (
+      Number.isNaN(Number(attemptCount)) ||
+      attemptCount <= 0 ||
+      !Number.isInteger(Number(attemptCount))
+    ) {
       throwError(ERROR_ATTEMPT_COUNT_MUST_BE_POSITIVE);
     }
   }
