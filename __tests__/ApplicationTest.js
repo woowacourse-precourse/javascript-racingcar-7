@@ -45,16 +45,126 @@ describe("자동차 경주", () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
+});
 
-  test("예외 테스트", async () => {
-    // given
-    const inputs = ["pobi,javaji"];
+describe("예외 테스트", () => {
+  test("이름이 6자 이상인 경우", async () => {
+    //given
+    const inputs = ["car1,carcar2", "5"];
     mockQuestions(inputs);
 
-    // when
+    //when
     const app = new App();
 
-    // then
+    //then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("이름이 공백일 경우", async () => {
+    //given
+    const inputs = ["car1,,car3", "5"];
+    mockQuestions(inputs);
+
+    //when
+    const app = new App();
+
+    //then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("자동차 이름이 10개 이상일 경우", async () => {
+    //given
+    const inputs = ["car1,car2,car3,car4,car5,car6,car7,car8,car9,car10", "5"];
+    mockQuestions(inputs);
+
+    //when
+    const app = new App();
+
+    //then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("자동차 이름이 중복일 경우", async () => {
+    //given
+    const inputs = ["car1,car1", "5"];
+    mockQuestions(inputs);
+
+    //when
+    const app = new App();
+
+    //then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("시도할 횟수 입력이 공백일 경우", async () => {
+    //given
+    const inputs = ["car1, car2", ""];
+    mockQuestions(inputs);
+
+    //when
+    const app = new App();
+
+    //then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("시도할 횟수 입력이 음수일 경우", async () => {
+    //given
+    const inputs = ["car1, car2", "-1"];
+    mockQuestions(inputs);
+
+    //when
+    const app = new App();
+
+    //then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("시도할 횟수 입력이 0일 경우", async () => {
+    //given
+    const inputs = ["car1, car2", "0"];
+    mockQuestions(inputs);
+
+    //when
+    const app = new App();
+
+    //then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("시도할 횟수 입력이 숫자가 아닐 경우", async () => {
+    //given
+    const inputs = ["car1, car2", "a"];
+    mockQuestions(inputs);
+
+    //when
+    const app = new App();
+
+    //then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("시도할 횟수 입력이 음수일 경우", async () => {
+    //given
+    const inputs = ["car1, car2", "-1"];
+    mockQuestions(inputs);
+
+    //when
+    const app = new App();
+
+    //then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("시도할 횟수 입력이 소수일 경우", async () => {
+    //given
+    const inputs = ["car1, car2", "1.1"];
+    mockQuestions(inputs);
+
+    //when
+    const app = new App();
+
+    //then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 });
