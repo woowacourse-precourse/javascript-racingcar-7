@@ -44,7 +44,7 @@ describe("자동차 경주", () => {
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
-  }, 30000);
+  });
 
   test("예외 테스트", async () => {
     // given
@@ -56,5 +56,5 @@ describe("자동차 경주", () => {
 
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
-  }, 30000);
+  });
 });

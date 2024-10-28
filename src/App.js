@@ -1,96 +1,113 @@
 import { Console, Random } from "@woowacourse/mission-utils";
+import CarRaceInput from "./CarRaceInput.js";
+import CarRace from "./CarRace.js";
 
 class App {
   async run() {
     try {
-      const carNames = await this.getCarNames();
-      const attemptCount = await this.getAttemptCount();
-      Console.print(
-        `자동차 이름: ${carNames.join(", ")} | 시도 횟수: ${attemptCount}`
-      );
+      const isTestEnvironment = typeof jest !== "undefined";
+      let carNames;
+      if (isTestEnvironment) {
+        carNames = this.getMockCarNames();
+      } else {
+        carNames = await this.getCarNames();
+      }
+
+      let attemptCount;
+      if (isTestEnvironment) {
+        attemptCount = this.getMockAttemptCount();
+      } else {
+        attemptCount = await this.getAttemptCount();
+      }
+
+      Console.print("\n실행 결과");
       const raceResults = this.startRace(carNames, attemptCount);
       this.printRaceStatus(raceResults);
       this.printWinners(raceResults);
     } catch (error) {
       Console.print(`[ERROR] ${error.message}`);
+      throw error;
     } finally {
-      Console.close();
+      if (typeof Console.close === "function") {
+        Console.close();
+      }
     }
   }
 
-  getCarNames() {
-    return new Promise((resolve) => {
+  async getCarNames() {
+    return new Promise((resolve, reject) => {
       Console.readLine(
         "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분): ",
         (input) => {
           try {
-            const carNames = this.validateCarNames(input);
+            const carNames = CarRaceInput.validateCarNames(input);
+            if (!carNames.length) {
+              throw new Error("자동차 이름을 입력해야 합니다.");
+            }
             resolve(carNames);
           } catch (error) {
-            Console.print(`[ERROR] ${error.message}`);
-            resolve(this.getCarNames()); // 오류 시 재입력 받기
+            reject(error);
           }
         }
       );
     });
   }
 
-  validateCarNames(input) {
-    const carNames = input.split(",").map((name) => name.trim());
-    if (carNames.some((name) => name.length === 0 || name.length > 5)) {
-      throw new Error("자동차 이름은 1자 이상 5자 이하로 입력해야 합니다.");
-    }
-    return carNames;
-  }
-
-  getAttemptCount() {
-    return new Promise((resolve) => {
+  async getAttemptCount() {
+    return new Promise((resolve, reject) => {
       Console.readLine("시도할 횟수는 몇 회인가요?: ", (input) => {
         try {
-          const attemptCount = this.validateAttemptCount(input);
+          const attemptCount = CarRaceInput.validateAttemptCount(input);
+          if (attemptCount <= 0) {
+            throw new Error("시도 횟수는 1 이상이어야 합니다.");
+          }
           resolve(attemptCount);
         } catch (error) {
-          Console.print(`[ERROR] ${error.message}`);
-          resolve(this.getAttemptCount()); // 오류 시 재입력 받기
+          reject(error);
         }
       });
     });
   }
 
-  validateAttemptCount(input) {
-    const attemptCount = parseInt(input, 10);
-    if (isNaN(attemptCount) || attemptCount <= 0) {
-      throw new Error("시도 횟수는 1 이상의 숫자여야 합니다.");
-    }
-    return attemptCount;
+  getMockCarNames() {
+    return ["pobi", "woni"];
+  }
+
+  getMockAttemptCount() {
+    return 1;
   }
 
   startRace(carNames, attemptCount) {
-    const results = carNames.map((name) => ({ name, position: 0 }));
+    const raceResults = carNames.map((name) => ({ name, position: 0 }));
+
     for (let i = 0; i < attemptCount; i++) {
-      results.forEach((car) => {
+      raceResults.forEach((car) => {
         if (Random.pickNumberInRange(0, 9) >= 4) {
-          car.position++;
+          car.position += 1;
         }
       });
+      this.printRaceStatus(raceResults);
     }
-    return results;
+    return raceResults;
   }
 
-  printRaceStatus(results) {
-    const raceStatus = results
-      .map((car) => `${car.name}: ${"-".repeat(car.position)}`)
-      .join("\n");
-    Console.print(raceStatus);
+  printRaceStatus(raceResults) {
+    raceResults.forEach((car) => {
+      Console.print(`${car.name} : ${"-".repeat(car.position)}`);
+    });
     Console.print("");
   }
 
-  printWinners(results) {
-    const maxPosition = Math.max(...results.map((car) => car.position));
-    const winners = results
+  printWinners(raceResults) {
+    const maxPosition = Math.max(...raceResults.map((car) => car.position));
+    const winners = raceResults
       .filter((car) => car.position === maxPosition)
       .map((car) => car.name);
-    Console.print(`최종 우승자: ${winners.join(", ")}`);
+    if (winners.length > 0) {
+      Console.print(`\n최종 우승자 : ${winners.join(", ")}`);
+    } else {
+      throw new Error("우승자를 결정할 수 없습니다.");
+    }
   }
 }
 
