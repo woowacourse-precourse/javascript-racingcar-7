@@ -33,4 +33,12 @@ class App {
       return { name, distance: 0 };
     });
   }
+
+  playRound(cars) {
+    cars.forEach((car) => {
+      if (Random.pickNumberInRange(0, 9) >= 4) car.distance++;
+      Console.print(`${car.name} : ${"-".repeat(car.distance)}`);
+    });
+    Console.print("");
+  }
 }
