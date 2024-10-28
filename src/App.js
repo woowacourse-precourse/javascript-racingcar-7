@@ -34,12 +34,23 @@ class RacingGame {
       this.showCurrentPositions();
       Console.print("");
     }
+    this.showWinner();
   }
+
   moveAllCars() {
     this.cars.forEach((car) => car.move());
   }
   showCurrentPositions() {
     this.cars.forEach((car) => car.showPosition());
+  }
+  showWinner() {
+    const maxPosition = Math.max(...this.cars.map((car) => car.position));
+    const winners = this.cars
+      .filter((car) => car.position === maxPosition)
+      .map((car) => car.name)
+      .join(", ");
+
+    Console.print(`최종 우승자 : ${winners}`);
   }
 }
 
