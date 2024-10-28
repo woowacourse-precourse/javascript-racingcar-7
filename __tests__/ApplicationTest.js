@@ -100,45 +100,35 @@ describe('자동차 이름 입력 예외 테스트', () => {
   test('6자 이상 입력했을 경우', async () => {
     const inputs = ['pobi,javaji'];
     mockQuestions(inputs);
-
     const app = new App();
-
     await expect(app.run()).rejects.toThrow('[ERROR]');
   });
 
   test('이름에 숫자와 영어외의 문자가 입력됐을 경우', async () => {
     const inputs = ['pobi,*'];
     mockQuestions(inputs);
-
     const app = new App();
-
     await expect(app.run()).rejects.toThrow('[ERROR]');
   });
 
-  test('0 또는 공백을 입력했을 경우', async () => {
+  test('공백을 입력했을 경우', async () => {
     const inputs = ['pobi, '];
     mockQuestions(inputs);
-
     const app = new App();
-
     await expect(app.run()).rejects.toThrow('[ERROR]');
   });
 
   test('중복된 자동차 이름을 입력했을 경우', async () => {
     const inputs = ['pobi,pobi'];
     mockQuestions(inputs);
-
     const app = new App();
-
     await expect(app.run()).rejects.toThrow('[ERROR]');
   });
 
   test('자동차 이름을 하나만 입력했을 경우', async () => {
     const inputs = ['pobi', '3'];
     mockQuestions(inputs);
-
     const app = new App();
-
     await expect(app.run()).rejects.toThrow('[ERROR]');
   });
 });
@@ -146,6 +136,20 @@ describe('자동차 이름 입력 예외 테스트', () => {
 describe('차수별 입력 예외 테스트', () => {
   test('음수를 입력했을 경우', async () => {
     const inputs = ['pobi,james', '-3'];
+    mockQuestions(inputs);
+    const app = new App();
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('0 또는 공백을 입력했을 경우', async () => {
+    const inputs = ['pobi,james', '0'];
+    mockQuestions(inputs);
+    const app = new App();
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('숫자외에 문자를 입력했을 경우', async () => {
+    const inputs = ['pobi,james', 'abc'];
     mockQuestions(inputs);
     const app = new App();
     await expect(app.run()).rejects.toThrow('[ERROR]');
