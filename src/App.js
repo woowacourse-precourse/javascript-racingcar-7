@@ -1,5 +1,6 @@
 import GetInput from './io/GetInput.js';
 import StartGame from './play/StartGame.js';
+import { Console } from '@woowacourse/mission-utils';
 
 class App {
   async run() {
@@ -8,7 +9,7 @@ class App {
       const tryCount = await GetInput.getTryCount();
       StartGame.start(carNames, tryCount);
     } catch (error) {
-      // 에러 처리
+      Console.print(error.message);
     }
   }
 }
