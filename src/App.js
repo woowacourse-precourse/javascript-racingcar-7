@@ -56,6 +56,18 @@ class App {
     return NUMBER;
   }
 
+  printRoundState(cars) {
+    cars.forEach((car) => {
+      car.moveOrStop();
+      car.printCurrentState();
+    })
+    MissionUtils.Console.print('');
+  }
+
+  printWinner(cars) {
+    const MAX_POSITION = cars.reduce((maxValue, car) => maxValue,0)
+  }
+
   async run() {
     try {
       const CAR_NAMES = await MissionUtils.Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
@@ -63,9 +75,13 @@ class App {
       const SPLIT_CAR_NAMES = this.splitName(VALID_CAR_NAMES);
       const VALID_SPLIT_CAR_NAMES = this.validateSplitCarNames(SPLIT_CAR_NAMES);
       const CARS = this.createCars(VALID_SPLIT_CAR_NAMES);
-      const ROUND = MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+      const ROUND = await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
       const VALID_ROUND_NUMBER = this.validateRoundNumber(ROUND);
 
+      MissionUtils.Console.print('실행결과');
+      for (let i = 0; i < VALID_ROUND_NUMBER; i++) {
+        this.printRoundState(CARS);
+      }
       
 
     } catch (error) {

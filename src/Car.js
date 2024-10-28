@@ -13,6 +13,11 @@ class Car {
         this.position = this.position + 1;
       }
     }
+
+    printCurrentState() {
+      const MOVE_STATE = '-'.repeat(this.position);
+      MissionUtils.Console.print(`${this.name} : ${MOVE_STATE}`);
+    }
   }
 
   export default Car;
