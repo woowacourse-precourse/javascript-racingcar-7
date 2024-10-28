@@ -6,9 +6,9 @@ import { userInput } from "./userInput.js";
 const Main = async () => {
   try {
     StartMessage();
-    const { carNames, parseTryNumber } = await userInput();
+    const { carNames, parsedTryNumber } = await userInput();
     const carList = createCarList(carNames);
-    gameController(carList, parseTryNumber);
+    gameController(carList, parsedTryNumber);
   } catch (error) {
     throw error;
   }

@@ -1,8 +1,8 @@
 import raceController from "./raceController.js";
 import gameResultController from "./gameResultController.js";
 
-const gameController = (carList, parseTryNumber) => {
-  for (let i = 0; i < parseTryNumber; i++) {
+const gameController = (carList, parsedTryNumber) => {
+  for (let i = 0; i < parsedTryNumber; i++) {
     raceController(carList);
   }
   gameResultController(carList);

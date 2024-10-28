@@ -1,6 +1,7 @@
 import { InputCarName, InputTryNumber } from "../view/ConsoleView.js";
 import InputValidator from "../utils/InputValidator.js";
-import { Console } from "@woowacourse/mission-utils";
+import Parser from "../utils/Parser.js";
+import { validateTryNumber } from "../utils/validateTryNumber.js";
 
 export const userInput = async () => {
   try {
@@ -8,11 +9,12 @@ export const userInput = async () => {
     InputValidator.isEmpty(carNames);
 
     const tryNumber = await InputTryNumber();
-    const parseTryNumber = Number(tryNumber);
-    InputValidator.isMaxValue(parseTryNumber, 10000);
-    InputValidator.isNotInteger(parseTryNumber);
+    InputValidator.isEmpty(tryNumber);
 
-    return { carNames, parseTryNumber };
+    const parsedTryNumber = Parser.parseNumber(tryNumber);
+    validateTryNumber(parsedTryNumber);
+
+    return { carNames, parsedTryNumber };
   } catch (error) {
     throw error;
   }

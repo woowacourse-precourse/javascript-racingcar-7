@@ -10,6 +10,8 @@ const MESSAGES = {
     NOT_INTEGER: "[ERROR] 정수만 입력해주세요.",
     MAX_TRY: "[ERROR] 시도할 횟수는 10000번 이하여야합니다.",
     MAX_NAME_LENGTH: "[ERROR] 이름이 너무 깁니다.(5글자 이내)",
+    SAME_NAME: "[ERROR] 중복된 이름이 있습니다.",
+    NOT_POSITIVE_INTEGER: "[ERROR] 양의 정수를 입력해주세요.",
   },
   RESULT: {
     WINNER: "최종 우승자 : ",

@@ -8,10 +8,18 @@ const InputValidator = {
   },
 
   isNameLength: (inputArray) => {
-    const tooLongName = inputArray.some((item) => [...item].length > 5);
+    const tooLongName = inputArray.some((name) => [...name].length > 5);
 
     if (tooLongName) {
       throw new Error(MESSAGES.ERROR.MAX_NAME_LENGTH);
+    }
+  },
+
+  isSameName: (inputArray) => {
+    const distinctNames = new Set(inputArray);
+
+    if (distinctNames.size !== inputArray.length) {
+      throw new Error(MESSAGES.ERROR.SAME_NAME);
     }
   },
 
@@ -25,6 +33,12 @@ const InputValidator = {
   isMaxValue: (value, max) => {
     if (value > max) {
       throw new Error(MESSAGES.ERROR.MAX_TRY);
+    }
+  },
+
+  isPositiveInteger: (value) => {
+    if (value <= 0) {
+      throw new Error(MESSAGES.ERROR.NOT_POSITIVE_INTEGER);
     }
   },
 };
