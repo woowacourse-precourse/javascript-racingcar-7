@@ -4,6 +4,8 @@ import RacingCars from "../model/RacingCars.js";
 import OutputView from "../view/OutputView.js";
 
 class CarRacing {
+  static #WINNER_LIST_DELIMITER = ", ";
+
   constructor() {}
 
   async init() {
@@ -63,7 +65,9 @@ class CarRacing {
 
   announceWinner(racingCars) {
     const winnerList = this.getFinalWinner(racingCars);
-    OutputView.printFinalWinner(winnerList.join(", "));
+    OutputView.printFinalWinner(
+      winnerList.join(CarRacing.#WINNER_LIST_DELIMITER)
+    );
   }
 
   async setRaceRound() {
