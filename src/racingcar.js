@@ -1,0 +1,44 @@
+import { Console, Random } from '@woowacourse/mission-utils';
+
+class Racingcar {
+  constructor() {
+    this.cars = [];
+    this.counts = 0;
+  }
+
+  setCarsAndCounts(carNames, counts) {
+    this.verifyCarNames(carNames);
+    this.verifyCounts(counts);
+    this.counts = parseInt(counts, 10);
+  }
+
+  verifyCarNames(carNames) {
+    if (!carNames.length) throw new Error('[ERROR] 자동차 이름이 없습니다.');
+    this.checkCarNameSeparation(carNames);
+    this.checkCarNameLength(carNames);
+  }
+
+  checkCarNameSeparation(carNames) {
+    const invalidSeparators = /[^a-zA-Z0-9, ]/;
+    if (invalidSeparators.test(carNames)) {
+      throw new Error('[ERROR] 이름 구분은 쉼표로만 가능합니다.');
+    }
+  }
+
+  checkCarNameLength(carNames) {
+    const carArray = carNames.split(',').map((name) => name.trim());
+    if (carArray.some((name) => !name || name.length > 5)) {
+      throw new Error('[ERROR] 자동차 이름은 1자 이상 5자 이하만 가능합니다.');
+    }
+  }
+
+  verifyCounts(counts) {
+    const parsedCounts = parseInt(counts, 10);
+    if (isNaN(parsedCounts) || parsedCounts <= 0) {
+      throw new Error('[ERROR] 시도 횟수는 양의 정수만 가능합니다.');
+    }
+  }
+
+}
+
+export default Racingcar;
