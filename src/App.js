@@ -1,12 +1,13 @@
 import { getCarName, getTryNumber } from "./functions/get-input.js";
-import { Console } from '@woowacourse/mission-utils';
+import Race from './Car.js';
 
 class App {
   async run() {
-    const carName = await getCarName();
-    Console.print(carName);
-    const tryNum = await getTryNumber();
-    Console.print(tryNum);
+    const carList = await getCarName();
+    const tryNumber = await getTryNumber();
+    let positionList = [...carList].map((name) => 0);
+    const car = new Race();
+    car.raceCar(tryNumber, carList, positionList);
   }
 }
 
