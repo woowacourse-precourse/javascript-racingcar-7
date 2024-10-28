@@ -13,7 +13,7 @@ describe('Views', () => {
     jest.clearAllMocks();
   });
 
-  describe('InputView', () => {
+  describe('InputView 테스트', () => {
     it('Console.readLineAsync를 올바른 메시지로 호출하고 입력을 반환합니다', async () => {
       const mockMessage = 'Enter your input: ';
       const mockInput = 'test input';
