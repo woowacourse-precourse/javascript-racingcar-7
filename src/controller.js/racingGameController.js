@@ -19,16 +19,24 @@ class RacingGameController {
 
   async getUserInput() {
     try {
-      const userInputNames = await this.view.inputCarNames();
-      const names = userInputNames.split(",");
-      this.checkCarName(names);
-      const userInputCounts = await this.view.inputAttemptCounts();
-      this.checkCount(userInputCounts);
-      this.counts = userInputCounts;
+      await this.getCarNames();
+      await this.getAttemptCounts();
     } catch (error) {
       this.handleInitError(error);
       throw error;
     }
+  }
+
+  async getCarNames() {
+    const userInputNames = await this.view.inputCarNames();
+    const names = userInputNames.split(",");
+    this.checkCarName(names);
+  }
+
+  async getAttemptCounts() {
+    const userInputCounts = await this.view.inputAttemptCounts();
+    this.checkCount(userInputCounts);
+    this.counts = userInputCounts;
   }
 
   handleInitError(error) {
