@@ -14,7 +14,7 @@ export function validateCars(cars) {
     if (!validNameRegex.test(car)) {
       throw new Error('[ERROR] 자동차의 이름은 한글, 영어, 숫자로 이루어져야 한다.');
     }
-    if (car in checkedCars) {
+    if (checkedCars.includes(car)) {
       throw new Error('[ERROR] 자동차의 이름은 중복되면 안 된다.');
     }
     checkedCars.push(car); 
