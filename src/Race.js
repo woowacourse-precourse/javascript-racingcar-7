@@ -49,6 +49,7 @@ class Race {
   static #moveCarForward(currentPosition) {
     const randomNum = pickNumberInRange(Race.#MIN_RANDOM, Race.#MAX_RANDOM);
     const isMoveForward = Race.#getIsMoveForward(randomNum);
+
     if (isMoveForward) return currentPosition + Race.#FORWARD_STEP;
     return currentPosition;
   }
