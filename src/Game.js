@@ -52,7 +52,9 @@ class Game {
   }
 
   #end() {
-    // 게임 종료
+    const winners = this.getWinners();
+
+    OutputView.printWinners(winners);
   }
 
   #getCardAdvances() {
