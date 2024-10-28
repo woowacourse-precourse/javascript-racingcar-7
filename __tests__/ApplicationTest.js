@@ -80,7 +80,7 @@ describe("자동차 경주", () => {
     [',,aaaa', '자동차 이름이 설정되지 않았습니다.'],
     ['aaaaa,bbbb,ccccccc', '자동차 이름이 5글자를 초과 합니다.'],
     ['aaa,aaa,bbb,bbb,c', '중복된 자동차 이름이 존재 합니다.']
-  ])('기능 단위 예외 테스트: carNameInput() { input: %s, result: %d }',
+  ])('기능 단위 예외 테스트: carNameInput() { input: %s, result: %s }',
     async (input, result) => {
       // given
       const userInput = [input];
