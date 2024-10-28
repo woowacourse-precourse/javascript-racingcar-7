@@ -1,5 +1,5 @@
 import { Random } from '@woowacourse/mission-utils';
-import pickRandomNumberInRange from '../src/util/random';
+import pickRandomNumberInRange from '../src/util/pickRandomNumberInRange';
 
 describe('random function', () => {
   beforeEach(() => {
