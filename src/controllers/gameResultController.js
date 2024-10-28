@@ -1,19 +1,19 @@
 import { GameWinnerMessage } from "../view/ConsoleView.js";
 
+const getWinner = (carList) => {
+  const isArrayAdvance = carList.cars.map((car) => car.advance);
+  const isMaxAdvance = Math.max(...isArrayAdvance);
+  return carList.cars.filter((car) => car.advance === isMaxAdvance);
+};
+
+const setWinner = (winnerCars) => {
+  return winnerCars.map((car) => car.name).join(", ");
+};
+
 const gameResultController = (carList) => {
-  const getWinner = () => {
-    const isArrayAdvance = carList.cars.map((car) => car.advance);
-    const isMaxAdvance = Math.max(...isArrayAdvance);
-    const isWinnerCar = carList.cars.filter(
-      (car) => car.advance === isMaxAdvance
-    );
-
-    // 우승자 이름 배열을 생성하고 출력
-    const isWinnerName = isWinnerCar.map((car) => car.name).join(", ");
-    GameWinnerMessage(isWinnerName);
-  };
-
-  getWinner();
+  const winnerCars = getWinner(carList);
+  const winnerNames = setWinner(winnerCars);
+  GameWinnerMessage(winnerNames);
 };
 
 export default gameResultController;

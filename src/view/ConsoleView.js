@@ -1,5 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
-import MESSAGES from "../utils/message.js";
+import MESSAGES from "../constants/Message.js";
 
 export const StartMessage = () => {
   Console.print(MESSAGES.INFO.START);
