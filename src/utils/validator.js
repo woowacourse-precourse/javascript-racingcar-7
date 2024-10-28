@@ -3,5 +3,5 @@ export const isEmptyString = function (string) {
 };
 
 export const isLongerThan = function (len) {
-  return (str) => str.length > len;
+  return (str) => str.trim().length > len;
 };
