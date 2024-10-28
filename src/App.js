@@ -4,16 +4,6 @@ class App {
   async run() {
     const raceCars = await this.getRaceCars();
 
-    carNames.forEach((carName) => {
-      if (raceCars.some((car) => car.Name === carName)) {
-        throw new Error("[ERROR]: 같은 이름은 불가능합니다.");
-      }
-      if (carName.length > 5) {
-        throw new Error("[ERROR]: 이름은 5자 이하만 가능합니다.");
-      }
-      raceCars.push({ name: carName, location: "" });
-    });
-
     const inputNum = await Console.readLineAsync(
       "시도할 횟수는 몇 회인가요?\n"
     );
@@ -45,9 +35,23 @@ class App {
     }
 
     const carNames = inputCarNames.split(",");
-    return carNames;
+    return this.createRaceCars(carNames);
   }
 
+  createRaceCars(carNames) {
+    const raceCars = [];
+
+    carNames.forEach((carName) => {
+      if (raceCars.some((car) => car.Name === carName)) {
+        throw new Error("[ERROR]: 같은 이름은 불가능합니다.");
+      }
+      if (carName.length > 5) {
+        throw new Error("[ERROR]: 이름은 5자 이하만 가능합니다.");
+      }
+      raceCars.push({ name: carName, location: "" });
+    });
+    return raceCars;
+  }
   race(raceCars) {
     raceCars.forEach((raceCar) => {
       if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) {
