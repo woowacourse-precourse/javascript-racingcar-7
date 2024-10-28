@@ -1,63 +1,72 @@
 import { Console, Random } from '@woowacourse/mission-utils';
+
 class App {
+  constructor() {
+    this.cars = [];
+  }
   async run() {
-    Console.print("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
+    await this.inputCarNames();
+    await this.inputNumberOfAttempts();
+    this.race();
+    this.announceWinners();
+  }
+
+  async inputCarNames() {
+    Console.print(
+      '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)'
+    );
     const carNameInput = await Console.readLineAsync('');
-
-    //error: 쉼표가 없을 때
-    if(!carNameInput.includes(',')){
-      throw new Error('[ERROR] 입력 형식에 맞지 않습니다.');
-    }
-    
+    this.checkInput(carNameInput); //error: 쉼표가 없을 때 = 입력이 한 개 일때
     const carNames = carNameInput.split(',');
+    this.validateCarNames(carNames); // error: 5자초과, 공백 이름 존재(=쉼표 중복)
 
-    //error: 5자 초과, 공백일 경우(=쉼표중복)
-    for(let carName of carNames){
-      let carNameTrim = carName.trim();
-      if(carNameTrim.length > 5 || carNameTrim.length < 1){
+    this.cars = carNames.map((name) => ({ name, moving: 0 })); //{자동차이름: 전진값} 객체 생성
+  }
+  checkInput(input) {
+    if (!input.includes(',')) {
+      throw new Error(
+        '[ERROR] 입력 형식에 맞지 않습니다. 두 개 이상의 이름을 입력하세요.'
+      );
+    }
+  }
+  validateCarNames(names) {
+    for (let name of names) {
+      const trimmedName = name.trim();
+      if (trimmedName.length > 5 || trimmedName.length < 1)
         throw new Error('[ERROR] 자동차 이름은 1자 이상 5자 이하여야 합니다.');
-      }
     }
+  }
 
-    Console.print("시도할 횟수는 몇 회 인가요?");
+  async inputNumberOfAttempts() {
+    Console.print('시도할 횟수는 몇 회 인가요?');
     const games = await Console.readLineAsync('');
-    
-    //error: 숫자가 아닌 값을 입력
-    if(Number.isNaN(Number(games))) {
+    this.validateNumberOfAttempts(games); //error: 숫자가 아닌 값을 입력
+    this.numberOfAttempts = Number(games);
+  }
+  validateNumberOfAttempts(num) {
+    if (Number.isNaN(Number(num)))
       throw new Error('[ERROR] 숫자를 입력해주세요.');
-    }
-
-    //경주
-    //{자동차이름: 전진값} 객체 생성
-    const cars = carNames.map(name => ({name, moving:0}));
-
+  }
+  race() {
     Console.print('\n실행 결과');
-    for(let i=0; i< games; i++){
-      for(let car of cars){
+    for (let i = 0; i < this.numberOfAttempts; i++) {
+      for (let car of this.cars) {
         const randomNum = Random.pickNumberInRange(0, 9);
         if (randomNum >= 4) {
           car.moving += 1;
         }
-        Console.print(`${car.name} : `+'-'.repeat(car.moving));
+        Console.print(`${car.name} : ` + '-'.repeat(car.moving));
       }
       Console.print(' ');
     }
+  }
 
-    //결과
-    //전진 횟수 최댓값
-    let movingResult = 0;
-    for(let car of cars){
-      movingResult = Math.max(car.moving, movingResult);
-    }
-    //우승자
-    let winner = [];
-    for(let car of cars){
-      if(car.moving === movingResult) {
-        winner.push(car.name);
-      }
-    }
-    Console.print("최종 우승자 : "+winner.join(', '));
-
+  announceWinners() {
+    const maxMoving = Math.max(...this.cars.map((car) => car.moving));
+    const winners = this.cars
+      .filter((car) => car.moving === maxMoving)
+      .map((car) => car.name);
+    Console.print('최종 우승자 : ' + winners.join(', '));
   }
 }
 
