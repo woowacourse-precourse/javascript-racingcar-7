@@ -7,7 +7,7 @@ class App {
       "경주할 자동차 이름을 입력하세요. (이름은 쉼표(,) 기준으로 구분) \n"
     );
 
-    const cars = carName.split(",").map((car) => car.trim()); // 자동차 이름 공백 제거
+    const cars = carName.split(",").map((car) => car.trim());
 
     // 2. 이동 횟수 입력
     const count = Number(
@@ -15,7 +15,7 @@ class App {
     );
 
     // 3. 자동차 전진
-    let movingCars = new Array(cars.length).fill(0); // 자동차 이동 거리 초기화
+    let movingCars = new Array(cars.length).fill(0);
 
     Console.print("\n");
     Console.print("실행 결과 \n");
@@ -23,9 +23,18 @@ class App {
       cars.forEach((car, idx) => {
         const randomNum = Random.pickNumberInRange(0, 9);
         if (randomNum >= 4) {
-          movingCars[idx]++; // 4 이상일 경우 전진
+          movingCars[idx]++;
         }
       });
+
+      // 4. 결과 출력
+      movingCars.forEach((distance, idx) => {
+        const car = cars[idx];
+        const carPosition = "-".repeat(distance);
+        Console.print(`${car} : ${carPosition}`);
+      });
+
+      Console.print("\n");
     }
   }
 }
