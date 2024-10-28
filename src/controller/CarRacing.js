@@ -39,6 +39,10 @@ class CarRacing {
     return attempts;
   }
 
+  async #setRaceRound() {
+    return await this.#getMoveAttemptsFromUserInput();
+  }
+
   async #startRace(racingCars) {
     const raceRound = await this.#setRaceRound();
     OutputView.printBlankLine();
@@ -68,10 +72,6 @@ class CarRacing {
     OutputView.printFinalWinner(
       winnerList.join(CarRacing.#WINNER_LIST_DELIMITER)
     );
-  }
-
-  async #setRaceRound() {
-    return await this.#getMoveAttemptsFromUserInput();
   }
 }
 
