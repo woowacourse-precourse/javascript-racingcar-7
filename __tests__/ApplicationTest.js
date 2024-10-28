@@ -64,10 +64,8 @@ describe('자동차 경주', () => {
       [
         'pobi : ',
         'woni : ',
-        '',
         'pobi : -',
         'woni : -',
-        '',
         '최종 우승자 : pobi, woni',
       ],
     );
@@ -81,29 +79,40 @@ describe('자동차 경주', () => {
         'pobi : -',
         'woni : ',
         'jun : -',
-        '',
         'pobi : --',
         'woni : -',
         'jun : --',
-        '',
         'pobi : ---',
         'woni : --',
         'jun : ---',
-        '',
         'pobi : ----',
         'woni : ---',
         'jun : ----',
-        '',
         'pobi : -----',
         'woni : ----',
         'jun : -----',
-        '',
         '최종 우승자 : pobi, jun',
       ],
     );
   });
 
-  test('예외 테스트', async () => {
+  test('예외 테스트 - 참가자 수가 두 명 이상이 아닌 경우', async () => {
+    await exceptionTestCase(['pobi'], ERROR_MESSAGES.NOT_ENOUGH_PATICIPANTS);
+  });
+
+  test('예외 테스트 - 쉼표가 올바르지 않은 위치에 있는 경우', async () => {
+    await exceptionTestCase([',pobi,jun'], ERROR_MESSAGES.INVALID_COMMA);
+  });
+
+  test('예외 테스트 - 경주할 자동차 이름 입력 시 숫자, 영어, 쉼표 이외의 문자를 입력한 경우', async () => {
+    await exceptionTestCase(['pobi, jun'], ERROR_MESSAGES.INVALID_NAME);
+  });
+
+  test('예외 테스트 - 중복된 자동차 이름이 있는 경우', async () => {
+    await exceptionTestCase(['pobi,pobi,jun'], ERROR_MESSAGES.DUPLICATE_NAME);
+  });
+
+  test('예외 테스트 - 자동차 이름이 5자 이상인 경우', async () => {
     await exceptionTestCase(['pobi,javaji'], ERROR_MESSAGES.EXCEED_NAME_LENGTH);
   });
 });
