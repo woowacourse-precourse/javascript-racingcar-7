@@ -57,4 +57,96 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
+  test("자동차 이름 입력값 공백 제거", async () => {
+    const MOVING_FORWARD = 4;
+    const STOP = 3;
+    const inputs = ["pobi, woni", "1"];
+    const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([MOVING_FORWARD, STOP]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
+  test("이름에 빈 문자열 입력 시 오류", async () => {
+    // given
+    const inputs = [""];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("이름에 공백만 입력 시 오류", async () => {
+    // given
+    const inputs = [" "];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("횟수에 빈 문자열 입력 시 오류", async () => {
+    // given
+    const inputs = ["pobi,woni", ""];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("횟수에 공백 입력 시 오류", async () => {
+    // given
+    const inputs = ["pobi,woni", " "];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("횟수에 숫자 이외 문자 입력 시 오류", async () => {
+    // given
+    const inputs = ["pobi,woni", "9k"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("횟수에 0 입력 시 오류", async () => {
+    // given
+    const inputs = ["pobi,woni", "0"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
 });
