@@ -23,7 +23,7 @@ export const validateCarName = (name) => {
 };
 export const countValidate = (input) => {
   const count = parseInt(input, 10);
-  if (input < 1 || isNaN(count)) {
+  if (count < 1 || Number.isNaN(count)) {
     throw new Error(ERROR_EXECUTE_COUNT);
   }
 };
