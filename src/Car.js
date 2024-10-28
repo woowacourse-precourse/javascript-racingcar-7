@@ -14,10 +14,14 @@ class Car {
     return number >= 4;
   }
 
+  increaseDistance() {
+    this.dist++;
+  }
+
   move() {
     const randomNumber = this.getRandomNumber();
     if (this.canMove(randomNumber)) {
-      this.dist++;
+      this.increaseDistance();
     }
   }
 }
