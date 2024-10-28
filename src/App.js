@@ -47,10 +47,7 @@ class App {
             process.stdout.write("-");
           }
           console.log("");
-
-          // console.log(arr[j] + " : " + scoreArray[j]);
         } else {
-          // console.log(arr[j] + " : " + scoreArray[j]);
           process.stdout.write(arr[j] + " : ");
           for (let k = 0; k < scoreArray[j]; k++) {
             process.stdout.write("-");
@@ -59,14 +56,15 @@ class App {
         }
       }
     }
-    //우승자 판별 로직 추가
+    return this.determineWinner(arr, scoreArray);
+  }
+
+  //우승자 판별 로직 메서드 분리
+  determineWinner(arr, scoreArray) {
     //scoreArr에서 최댓값을 찾고 그와 index가 같은 우승자를 arr에서 가져오자
     const max = Math.max(...scoreArray);
-
     console.log("");
-    // console.log("최대 득점수 : ", max);
-
-    //최종 우승자를 담을 배열 winners
+    // //최종 우승자를 담을 배열 winners
     const winners = [];
 
     scoreArray.forEach((value, index) => {
@@ -75,7 +73,7 @@ class App {
         winners.push(arr[index]);
       }
     });
-    //join은 배열 요소를 쉼표와 띄어쓰기로 연결해 하나의 문자열로 만들어준다.
+    // //join은 배열 요소를 쉼표와 띄어쓰기로 연결해 하나의 문자열로 만들어준다.
     console.log("최종 우승자 : " + winners.join(", "));
   }
 }
