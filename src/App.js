@@ -19,6 +19,10 @@ class App {
             for (let i = 0; i < tryNum; i++) {
                 moveCar(carArray, count);
             }
+
+            // 우승한 자동차
+            const max = Math.max(...count);
+            const winnerCarArr = winnerCar(carArray, count, max);
         } catch (error) {
             Console.print(error.message);
             throw error;
@@ -47,4 +51,14 @@ function moveCar(cars, count) {
         }
     }
     return cars, count;
+}
+
+function winnerCar(carArray, count, max) {
+    const winnerArray = [];
+    for (let i = 0; i < count.length; i++) {
+        if (count[i] === max) {
+            winnerArray.push(carArray[i]);
+        }
+    }
+    return winnerArray;
 }
