@@ -1,4 +1,4 @@
-import { ERROR_MESSAGES, VALID_CHARACTER_REGEX } from '../constatns/validation';
+import { ERROR_MESSAGES } from '../constatns/validation';
 
 const hasWhiteSpace = (str) => {
 	return str.includes(' ');
