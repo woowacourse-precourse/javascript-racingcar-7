@@ -1,35 +1,36 @@
 import inputParser from "../utils/inputParser.js";
 import { nameValidation, tryValidation } from "../utils/validators.js";
-import RacingGameView from "../views/RacingGameView.js";
+import OutputView from "../views/OutputView.js";
+import InputView from "../views/InputView.js";
 import RacingGameModel from "../models/RacingGameModel.js";
 
 class RacingGameController {
   async run() {
-    const carNames = await this.getCarNames();
-    const tryCount = await this.getTryCount();
+    try {
+      const carNames = await this.setCarnames();
+      const tryCount = await this.setTryCount();
 
-    RacingGameView.printStartMessage();
+      OutputView.printStartMessage();
 
-    const game = new RacingGameModel(carNames, Number(tryCount));
+      const game = new RacingGameModel(carNames, Number(tryCount));
 
-    this.playRounds(game, carNames);
-    this.displayWinners(game);
+      this.playRounds(game, carNames);
+      this.displayWinners(game);
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 
-  async getCarNames() {
-    const carNamesInput = await RacingGameView.getInput(
-      "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
-    );
-    const carNames = inputParser(carNamesInput);
-    nameValidation(carNames);
+  async setCarnames() {
+    const carNamesInput = await InputView.getCarNames();
+    const splitedCarNames = inputParser(carNamesInput);
+    nameValidation(splitedCarNames);
 
-    return carNames;
+    return splitedCarNames;
   }
 
-  async getTryCount() {
-    const tryCountInput = await RacingGameView.getInput(
-      "시도할 횟수는 몇 회인가요?\n"
-    );
+  async setTryCount() {
+    const tryCountInput = await InputView.getTryCount();
     tryValidation(tryCountInput);
 
     return tryCountInput;
@@ -39,19 +40,19 @@ class RacingGameController {
     for (let i = 0; i < game.tryCount; i++) {
       const roundResult = game.raceCars();
       this.displayRoundProgress(roundResult, carNames);
-      RacingGameView.printRoundEnd();
+      OutputView.printRoundEnd();
     }
   }
 
   displayRoundProgress(roundResult, carNames) {
     roundResult.forEach((progress, index) => {
-      RacingGameView.printCarProgress(carNames[index], progress);
+      OutputView.printCarProgress(carNames[index], progress);
     });
   }
 
   displayWinners(game) {
     const winners = game.getWinner();
-    RacingGameView.printWinner(winners);
+    OutputView.printWinner(winners);
   }
 }
 
