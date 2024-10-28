@@ -22,10 +22,6 @@ export default class Racingcar {
     if (!validation.isNotDuplicate(inputArr))
       throw new Error(`${ERRORMESAGE.NOT_DUPLICATE_NAME}`);
   }
-  #tryNumvalidate(tryNum) {
-    if (!validation.isPositiveInteger(tryNum))
-      throw new Error(`${ERRORMESAGE.NOT_POSITIVE_INTEGER}`);
-  }
 
   play(board) {
     for (const car of this.#inputArr) {
