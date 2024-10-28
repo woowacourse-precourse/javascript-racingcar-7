@@ -6,7 +6,7 @@ describe('Input 클래스 테스트', () => {
     Console.readLineAsync = jest.fn();
   });
 
-  test('자동차 이름과 반복 횟수를 올바르게 입력받아 반환한다.', async () => {
+  test('자동차 이름과 게임 반복 횟수를 올바르게 입력받아 반환한다.', async () => {
     const mockNames = 'car1,car2,car3';
     const mockRepetition = '5';
 

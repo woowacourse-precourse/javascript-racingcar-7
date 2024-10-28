@@ -9,7 +9,7 @@ export default {
 
   EMPTY_NUMBER_NOT_ALLOW: `${ERROR_PREFIX} 시도 횟수가 입력되지 않았습니다. 시도 횟수를 입력해주세요.`,
   INVALID_NUMBER_INPUT: `${ERROR_PREFIX} 시도 횟수는 숫자만 입력해주세요.`,
-  GREATER_THAN_ZERO: `${ERROR_PREFIX} 시도 횟수는 1 이상의 정수로 입력해주세요.`,
+  GREATER_THAN_ZERO: `${ERROR_PREFIX} 시도 횟수는 0이 될 수 없습니다. 1 이상의 정수로 입력해주세요.`,
   STARTSWITH_ZERO_FORMAT: `${ERROR_PREFIX} 시도 횟수의 첫째 자리수는 1 이상으로 입력해주세요.`,
   NEGATIVE_NUMBER_INPUT: `${ERROR_PREFIX} 시도 횟수는 음수가 입력될 수 없습니다. 1 이상의 정수로 입력해주세요.`,
   DECIMAL_NUMBER_INPUT: `${ERROR_PREFIX} 시도 횟수는 소수점을 포함한 수가 입력될 수 없습니다. 1 이상의 정수로 입력해주세요.`,
