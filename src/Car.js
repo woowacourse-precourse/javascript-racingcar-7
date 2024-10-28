@@ -1,19 +1,36 @@
 class Car {
-  #carName;
-  #movingDistance;
   #DECISION_POINT_NUMBER = 4;
+
+  #carName;
+  #movingDistance = 0;
+  #distanceLog = [];
 
   constructor(carName) {
     this.#carName = carName;
-    this.#movingDistance = 0;
   }
 
   move(randomNumber) {
     if (randomNumber < this.#DECISION_POINT_NUMBER) {
-      return this.#movingDistance;
+      return;
     }
 
-    return ++this.#movingDistance;
+    this.#movingDistance++;
+  }
+
+  saveResult() {
+    this.#distanceLog.push(this.#movingDistance);
+  }
+
+  moveFurtherThan(maxCar) {
+    return maxCar.#movingDistance < this.#movingDistance;
+  }
+
+  moveLessThan(maxCar) {
+    return maxCar.#movingDistance > this.#movingDistance;
+  }
+
+  getResultBy(gameRound) {
+    return this.#distanceLog[gameRound];
   }
 
   getName() {
