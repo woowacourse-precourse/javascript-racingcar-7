@@ -37,17 +37,29 @@ class App {
 
   validateInput(input) {
     const cars = input.split(",").map((item) => item.trim());
+
+    //자동차 이름이 공백일 경우
     if (cars.length === 0 || cars.some((car) => car === "")) {
       MissionUtils.Console.print("[ERROR] 자동차 이름을 입력해야 합니다.");
       throw new Error("[ERROR]");
     }
 
+    //자동차 이름이 5자 초과일 경우
     if (cars.some((car) => car.length >= 6)) {
       MissionUtils.Console.print(
         "[ERROR] 자동차 이름은 5자 이하만 가능합니다."
       );
       throw new Error("[ERROR]");
     }
+
+    //자동차 이름 중에 중복되는 것이 있을 경우
+    // Set 객체는 중복된 값을 허용하지 않는다, 같은 값을 두 번 이상 추가하면 첫 번째 값 이후로는 무시된다. 즉 Set 객체와 길이가 다르다면 중복된 값이 있는 것!
+    const uniqueCars = new Set(cars);
+    if (uniqueCars.size !== cars.length) {
+      MissionUtils.Console.print("[ERROR] 자동차 이름은 중복될 수 없습니다.");
+      throw new Error("[ERROR]");
+    }
+
     return;
   }
 
@@ -109,7 +121,6 @@ class App {
       const parsed = "최종 우승자 : " + winners.join(", ");
       return parsed;
     }
-    // return parsed;
   }
 }
 
