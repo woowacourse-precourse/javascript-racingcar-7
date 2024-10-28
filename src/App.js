@@ -4,18 +4,18 @@ class App {
     Console.print(
       "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)"
     );
-    const INPUT = await Console.readLineAsync("");
+    const CARS_INPUT = await Console.readLineAsync("");
 
     Console.print("시도할 횟수는 몇 회인가요?");
     const TIMES_INPUT = await Console.readLineAsync("");
 
-    let cars = this.validateCarInput(INPUT);
-    let times = this.validTimesInput(TIMES_INPUT);
-    this.StartPlayCarRacing(cars, times);
+    const CARS = this.validateCarInput(CARS_INPUT);
+    const TIMES = this.validateTimesInput(TIMES_INPUT);
+    this.StartPlayCarRacing(CARS, TIMES);
   }
 
   validateCarInput(input) {
-    const cars = input.split(",");
+    let cars = input.split(",");
     if (input.indexOf(",") == -1 || input == "") {
       throw new Error("[ERROR] 잘못된 입력입니다.");
     }
@@ -28,12 +28,12 @@ class App {
   }
 
   validateCarNameLength(car) {
-    if (car.length > 5 ) {
+    if (car.length > 5) {
       throw new Error("[ERROR] 각 자동차 이름은 5자를 초과할 수 없습니다.");
     }
   }
 
-  validTimesInput(input) {
+  validateTimesInput(input) {
     let times = Number(input);
     if (isNaN(times) || times <= 0 || !Number.isInteger(times)) {
       throw new Error("[ERROR] 시도 횟수는 양의 정수여야 합니다.");
@@ -48,7 +48,7 @@ class App {
       this.movingForward(cars);
       times--;
     }
-    return this.findWinner(cars);
+    return this.findWinners(cars);
   }
 
   movingForward(cars) {
@@ -72,7 +72,7 @@ class App {
     });
   }
 
-  findWinner(cars) {
+  findWinners(cars) {
     let maxDistanceLength = 0;
     let winners = [];
     cars.forEach((car) => {
@@ -80,7 +80,7 @@ class App {
       this.updateWinners(distanceLength, maxDistanceLength, winners, car);
       maxDistanceLength = Math.max(maxDistanceLength, distanceLength);
     });
-    return this.printWinner(winners);
+    return this.printWinners(winners);
   }
 
   updateWinners(distanceLength, maxDistanceLength, winners, car) {
@@ -92,7 +92,7 @@ class App {
     }
   }
 
-  printWinner(winners) {
+  printWinners(winners) {
     if (winners.length <= 1) {
       Console.print(`최종 우승자 : ${winners[0]}`);
     } else {
