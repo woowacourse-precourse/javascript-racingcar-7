@@ -10,6 +10,13 @@ describe('입력', () => {
     expect(splitCarName(INPUT)).toEqual(NAMES);
   });
 
+  test('자동차 이름의 앞 뒤 공백은 제거한다.', () => {
+    const INPUT = 'po bi, woni, jun';
+    const NAMES = ['po bi', 'woni', 'jun'];
+
+    expect(splitCarName(INPUT)).toEqual(NAMES);
+  });
+
   test('자동차 이름은 5자 이하만 가능하다.', () => {
     const inputs = ['pobi, javaji'];
     expect(() => validateCarNameLength(inputs)).toThrow('[ERROR]');
