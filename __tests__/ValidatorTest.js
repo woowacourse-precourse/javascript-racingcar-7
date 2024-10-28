@@ -16,4 +16,20 @@ describe('Validator 클래스 테스트', () => {
       expect(() => Validator.checkRoundCount(input)).not.toThrow();
     }
   });
+
+  // names 검증
+  test.each([
+    [['pobi', 'crong'], undefined], // 정상적인 경우
+    [['pobi', 'pobi'], ERROR_MESSAGES.SAME_NAMES], // 중복된 이름 예외 발생
+    [['pobi', 'crong', ''], ERROR_MESSAGES.NAME_NOT_ALPHABET], // 공백 이름 예외 발생
+    [['abcdef'], ERROR_MESSAGES.NAME_TOO_LONG], // 이름 길이 초과 예외 발생
+    [['pobi', '크롱'], ERROR_MESSAGES.NAME_NOT_ALPHABET], // 한글 포함 예외 발생
+    [['pobi'], ERROR_MESSAGES.SINGLE_PLAYER], // 한 명일 때 예외 발생
+  ])('checkNames(%p) 테스트', (names, expectedError) => {
+    if (expectedError) {
+      expect(() => Validator.checkNames(names)).toThrow(expectedError);
+    } else {
+      expect(() => Validator.checkNames(names)).not.toThrow();
+    }
+  });
 });
