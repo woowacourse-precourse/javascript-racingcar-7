@@ -2,7 +2,6 @@ import { Console, Random } from "@woowacourse/mission-utils";
 // Console.readLineAsync() / Console.print() / Random.pickNumberInRange()
 import Validate from "./Validate.js";
 
-// 이름은 5자 이하만 가능하다.
 // 사용자가 잘못된 값을 입력할 경우 "[ERROR]"로 시작하는 메시지와 함께 Error를 발생시킨 후 애플리케이션은 종료되어야 한다.
 
 class App {
@@ -17,7 +16,7 @@ class App {
       name: CAR_NAME_ARRAY,
       position: CAR_POSITION_ARRAY,
     };
-    // 이름 5자 이하인지 유효성 체크 필요하다.
+
     car.name.forEach(Validate.nameValidate);
 
     Console.print("\n실행 결과");
