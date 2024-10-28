@@ -3,10 +3,13 @@ import { STANDARD_VALUE } from "../constants/Constants.js";
 
 export default class RaceController {
   static async startRace(carNames, attemptCount) {
-    const isMovingForward = getRandomNumber();
+    const results = {};
+    carNames.forEach((carName) => {
+      results[carName] = this.isMovingForward();
+    });
   }
 
-  static getRandomNumber() {
+  static isMovingForward() {
     const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
     if (STANDARD_VALUE >= randomNumber) {
       return true;
