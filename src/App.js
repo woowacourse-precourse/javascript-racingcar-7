@@ -6,6 +6,11 @@ class App {
     );
     const car_list = this.separateCarList(car_name);
     // 자동차 이름이 5자 이상이면 에러 처리
+
+    const try_number = await MissionUtils.Console.readLineAsync(
+      "시도할 횟수는 몇 회인가요?"
+    );
+    //횟수가 양의 정수가 아니면 에러 처리
   }
 
   separateCarList(carName) {
