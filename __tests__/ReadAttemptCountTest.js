@@ -17,9 +17,9 @@ describe("ReadAttemptCount Class 테스트", () => {
     expect(input).rejects.toThrow(ATTEMPT_COUNT_ERROR_MESSAGE);
   })
 
-  test('시도 횟수가 숫자가 아니면 에러를 던진다.', () => {
-    const NaNAttemptCount = 'asdf';
-    mockReadLineAsync(NaNAttemptCount);
+  const inValidInputs = ['asd', '%', '100a'];
+  test.each(inValidInputs)('시도 횟수가 숫자가 아니면 에러를 던진다.', (inValidInput) => {
+    mockReadLineAsync(inValidInput);
     const input = new ReadAttemptCount().read();
     expect(input).rejects.toThrow(NAN_ERROR_MESSAGE);
   })
