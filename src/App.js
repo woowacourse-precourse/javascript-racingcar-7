@@ -24,7 +24,8 @@ class App {
     this.race.attempt(parsedAttempts);
 
     // 제대로 작동하는지 확인
-    Console.print(this.race);
+    const winners = this.race.getWinners();
+    Console.print(`\n최종 우승자: ${winners.join(", ")}`);
   }
 }
 

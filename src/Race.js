@@ -27,6 +27,19 @@ class Race {
       Console.print(`${car.getName()} : ${positionMarker}`);
     });
   }
+
+  /**
+   * 최종 우승자 반환
+   * @returns {Array} 최종 우승자들의 이름 배열
+   */
+  getWinners() {
+    const maxPosition = Math.max(...this.cars.map((car) => car.getPosition()));
+    const winners = this.cars
+      .filter((car) => car.getPosition() === maxPosition)
+      .map((car) => car.getName());
+
+    return winners;
+  }
 }
 
 export default Race;
