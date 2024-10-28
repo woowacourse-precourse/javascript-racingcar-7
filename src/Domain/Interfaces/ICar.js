@@ -1,32 +1,30 @@
 class ICar {
   constructor() {
     if (new.target === ICar) {
-      throw new Error('CarInterface는 인스턴스화할 수 없는 추상 클래스입니다.');
+      throw new Error(
+        'CarInterface' + ERROR_MESSAGES.CANNOT_INSTANTIATE_ABSTRACT_CLASS
+      );
     }
   }
 
   moveForward() {
-    throw new Error('moveForward() 메서드는 반드시 오버라이딩 되어야 합니다.');
+    throw new Error('moveForward' + ERROR_MESSAGES.MUST_OVERRIDE_METHOD);
   }
 
   saveForwardStatus() {
-    throw new Error(
-      'saveForwardStatus() 메서드는 반드시 오버라이딩 되어야 합니다.'
-    );
+    throw new Error('saveForwardStatus' + ERROR_MESSAGES.MUST_OVERRIDE_METHOD);
   }
 
   getForwardCount() {
-    throw new Error(
-      'getForwardCount() 메서드는 반드시 오버라이딩 되어야 합니다.'
-    );
+    throw new Error('getForwardCount' + ERROR_MESSAGES.MUST_OVERRIDE_METHOD);
   }
 
   getName() {
-    throw new Error('getName() 메서드는 반드시 오버라이딩 되어야 합니다.');
+    throw new Error('getName' + ERROR_MESSAGES.MUST_OVERRIDE_METHOD);
   }
 
   getRecords() {
-    throw new Error('getRecords() 메서드는 반드시 오버라이딩 되어야 합니다.');
+    throw new Error('getRecords' + ERROR_MESSAGES.MUST_OVERRIDE_METHOD);
   }
 }
 

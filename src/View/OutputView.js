@@ -1,5 +1,6 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import IOutputView from './Interfaces/IOutputView.js';
+import { OUTPUT_PROMPTS } from '../constants.js';
 
 class OutputView extends IOutputView {
   async printOutput(string) {
@@ -11,7 +12,7 @@ class OutputView extends IOutputView {
   }
 
   printExecutionResults() {
-    this.printOutput('\n실행 결과');
+    this.printOutput(OUTPUT_PROMPTS.EXECUTION_RESULT);
   }
 
   printRaceCarProgress(raceCarName, forwardCount) {
@@ -33,7 +34,9 @@ class OutputView extends IOutputView {
 
   printWinners(winners) {
     const formattedWinners = winners.join(', ');
-    this.printOutput(`최종 우승자 : ${formattedWinners}`);
+    this.printOutput(
+      OUTPUT_PROMPTS.FINAL_WINNER_ANNOUNCEMENT + formattedWinners
+    );
   }
 }
 

@@ -16,6 +16,14 @@ const INPUT_PROMPTS = {
 const ERROR_MESSAGES = {
   NAME_TOO_LONG: '[ERROR] 자동차 이름은 5자 이하만 가능합니다.',
   NAME_DUPLICATE: '[ERROR] 자동차 이름은 중복되지 않아야 합니다.',
+  MUST_OVERRIDE_METHOD: '() 메서드는 반드시 오버라이딩 되어야 합니다.',
+  CANNOT_INSTANTIATE_ABSTRACT_CLASS:
+    '는 인스턴스화할 수 없는 추상 클래스입니다.',
+};
+
+const OUTPUT_PROMPTS = {
+  EXECUTION_RESULT: '\n실행 결과',
+  FINAL_WINNER_ANNOUNCEMENT: '최종 우승자 : ',
 };
 
 export {
@@ -26,4 +34,5 @@ export {
   CAR_NAME_MAX_LENGTH,
   INPUT_PROMPTS,
   ERROR_MESSAGES,
+  OUTPUT_PROMPTS,
 };
