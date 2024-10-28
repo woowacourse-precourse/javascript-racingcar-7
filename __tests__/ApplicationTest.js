@@ -1,5 +1,6 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
+import { ERROR_MESSAGES } from "../src/constant.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -46,15 +47,27 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트", async () => {
+  // Parameterized Test
+  test.each([
+    { name: ERROR_MESSAGES.CAR_NAMES_EMPTY, inputs: ["", "1"] },
+    { name: ERROR_MESSAGES.CAR_NAME_CONTAINS_SPACE, inputs: ["pobi, woni"] },
+    {
+      name:ERROR_MESSAGES.CAR_NAME_TOO_LONG,
+      inputs: ["pobi,javada"],
+    },
+    { name: ERROR_MESSAGES.CAR_NAME_DUPLICATE, inputs: ["pobi,pobi"] },
+    { name: ERROR_MESSAGES.ATTEMPTS_EMPTY, inputs: ["pobi,woni", ""] },
+    { name: ERROR_MESSAGES.ATTEMPTS_NOT_NUMBER, inputs: ["pobi,woni", "abc"] },
+    { name: ERROR_MESSAGES.ATTEMPTS_NOT_INTEGER, inputs: ["pobi,woni", "1.5"] },
+    { name: ERROR_MESSAGES.ATTEMPTS_NOT_POSITIVE, inputs: ["pobi,woni", "-1"] },
+  ])("$name", async ({ name, inputs }) => {
     // given
-    const inputs = ["pobi,javaji"];
     mockQuestions(inputs);
 
     // when
     const app = new App();
 
     // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
+    await expect(app.run()).rejects.toThrow(`${name}`);
   });
 });
