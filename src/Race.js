@@ -1,7 +1,9 @@
+import { RANDOM_MAX, RANDOM_MIN } from "./constants.js";
+import { Car } from "./Car.js";
+import { OutputManager } from "./OutputManager.js";
 import { Random } from "@woowacourse/mission-utils";
-import { RANDOM_MAX, RANDOM_MIN } from "./constants";
 
-class Race {
+export class Race {
   constructor(carNames) {
     this.cars = carNames.map((name) => new Car(name));
   }
