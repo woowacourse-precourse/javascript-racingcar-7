@@ -1,9 +1,12 @@
+import { validateCarNameLength } from "../libs/validate.js";
+
 export default class Car {
   /**
    *
    * @param {string} name
    */
   constructor(name) {
+    validateCarNameLength(name);
     this.name = name;
     this.position = 0;
   }

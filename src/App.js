@@ -1,11 +1,20 @@
 import Car from "./models/car.js";
 import { getInput, printResult } from "./libs/utils.js";
+import { CARS_NAME_REGEXP, INFO_MESSAGE } from "./libs/constants.js";
+import { validateCarNameLength, validateRacerAmount } from "./libs/validate.js";
 
 class App {
   async run() {
-    const rounds = await getInput("시도할 횟수는 몇 회인가요?");
-    const carsName = ["a", "b", "c"];
-    const cars = carsName.map((car) => new Car(car));
+    const carsName = await getInput(INFO_MESSAGE.QUESTION_CARS_NAME);
+    const carseNameArr = carsName.split(CARS_NAME_REGEXP).filter((name) => name.trim());
+    validateRacerAmount(carseNameArr.length);
+    const cars = carseNameArr.map((name) => {
+      validateCarNameLength(name);
+      return new Car(name);
+    });
+
+    const rounds = 2;
+
     for (let i = 0; i < rounds; i++) {
       cars.forEach((car) => {
         car.moveForward();
