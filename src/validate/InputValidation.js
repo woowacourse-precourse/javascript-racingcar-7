@@ -1,3 +1,5 @@
+import {ERROR_MESSAGES} from "../constant/error.js"
+
 /**
  * 사용자 입력값의 유효성을 검사하는 클래스
  * @class
@@ -18,10 +20,10 @@ class InputValidation {
    */
   static async validationName(names) {
     if (names.some(name => name.length > 5)) {
-      throw new Error("[ERROR] : 자동차 이름은 5자 이하만 가능합니다.");
+      throw new Error(ERROR_MESSAGES.LENGTH_OVER_CAR_NAME);
     }
     if (names.some(name => name === "")) {
-      throw new Error("[ERROR] : 자동차 이름은 공백일 수 없습니다. ");
+      throw new Error(ERROR_MESSAGES.EMPTY_CAR_NAME);
     }
   }
 
@@ -40,13 +42,16 @@ class InputValidation {
    */
   static async validationAttempts(attempts) {
     if (isNaN(attempts)) {
-      throw new Error("[ERROR] : 시도 횟수는 숫자만 가능합니다.");
+      throw new Error(ERROR_MESSAGES.NAN_ATTEMPTS);
     }
     if (attempts < 0) {
-      throw new Error("[ERROR] : 시도 횟수는 양수만 가능합니다.");
+      throw new Error(ERROR_MESSAGES.NEGATIVE_ATTEMPTS);
     }
-    if(attempts===""){
-      throw new Error("[ERROR] : 시도 횟수는 공백일 수 없습니다.");
+    if(attempts === 0){
+      throw new Error(ERROR_MESSAGES.ZERO_ATTEMPTS)
+    }
+    if (attempts === "") {
+      throw new Error(ERROR_MESSAGES.EMPTY_ATTEMPTS);
     }
   }
 }

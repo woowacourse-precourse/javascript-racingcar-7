@@ -1,4 +1,5 @@
 import { Console } from "@woowacourse/mission-utils"
+import { GAME_MESSAGE } from '../constant/message.js';
 
 /**
  * 자동차 경주 게임의 결과를 출력하는 뷰 클래스
@@ -10,7 +11,7 @@ class OutputView {
    * @returns {void}
    */
   static printRaceResult() {
-    Console.print("\n실행 결과");
+    Console.print(GAME_MESSAGE.RESULT_MESSAGE);
   }
 
   /**

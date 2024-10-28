@@ -1,5 +1,6 @@
 import { Console } from "@woowacourse/mission-utils"
 import InputValidation from '../validate/InputValidation.js';
+import { GAME_MESSAGE } from '../constant/message.js';
 
 /**
  * 사용자로부터 입력을 받는 뷰 클래스
@@ -18,7 +19,7 @@ class InputView {
    * // returns: "pobi,woni,jun"
    */
   static async getCarNames() {
-    const input = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
+    const input = await Console.readLineAsync(GAME_MESSAGE.START_MESSAGE);
     const names = input.split(",").map(name => name.trim());
     await InputValidation.validationName(names);
     return input;
@@ -36,7 +37,7 @@ class InputView {
    * // returns: "3"
    */
   static async getAttempts() {
-    const attempts = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+    const attempts = await Console.readLineAsync(GAME_MESSAGE.ATTEMPTS_MESSAGE);
     await InputValidation.validationAttempts(attempts);
     return attempts;
   }
