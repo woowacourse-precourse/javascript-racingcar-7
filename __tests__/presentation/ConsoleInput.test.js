@@ -1,7 +1,7 @@
 import ConsoleInput from '../../src/presentation/ConsoleInput.js';
 import { MissionUtils } from '@woowacourse/mission-utils';
 
-describe('Console Input Class 테스트', () => {
+describe('ConsoleInput Class 테스트', () => {
   const mockReadLineAsync = (input) => {
     MissionUtils.Console.readLineAsync = jest.fn().mockResolvedValue(input);
   };
