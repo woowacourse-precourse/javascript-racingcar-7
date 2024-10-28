@@ -1,6 +1,7 @@
 import IOProcessor from "./IOProcessor.js";
 import StringParser from "./StringParser.js";
 import RacingController from "./RacingController.js";
+import { INPUT_MESSAGE } from "./constants.js";
 
 class App {
   constructor() {
@@ -10,7 +11,8 @@ class App {
   }
 
   async run() {
-    const {cars, count} = await this.ioProcessor.processInput();
+    const cars = await this.ioProcessor.processInput(INPUT_MESSAGE.CARS);
+    const count = await this.ioProcessor.processInput(INPUT_MESSAGE.COUNT);
     const carsString = this.stringParser.parseString(cars);
     this.racingController.run(carsString, count);
   }
