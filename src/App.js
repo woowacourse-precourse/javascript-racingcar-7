@@ -1,5 +1,5 @@
 import { getCarNames, getRoundCount } from './services/input.js';
-import Race from './Race.js';
+import Race from './models/Race.js';
 
 class App {
   async run() {

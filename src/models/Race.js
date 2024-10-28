@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { RACE_MESSAGES } from './constant.js';
+import { RACE_MESSAGES } from '../constant.js';
 import Car from './Car.js';
 
 class Race {
