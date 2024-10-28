@@ -26,6 +26,15 @@ class App {
     return Random.pickNumberInRange(0, 9) >= 4;
   }
 
+  getWinner() {
+    const maxLength = Math.max(...this.answer_candidate.map((el) => el.length));
+    for (let i = 0; i < this.answer_candidate.length; i++) {
+      if (this.answer_candidate[i].length === maxLength) {
+        this.winner.push(this.carsName[i]);
+      }
+    }
+  }
+
   validateCarName(name) {
     if (name.length < 1 || name.length > 5) {
       throw new Error("[ERROR] 자동차 이름은 1자 이상 5자 이하만 가능합니다.");
@@ -62,6 +71,8 @@ class App {
       }
       await this.showInput("");
     }
+
+    this.getWinner();
   }
 
   async run() {
