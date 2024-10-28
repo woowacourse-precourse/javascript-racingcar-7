@@ -10,6 +10,13 @@ export default class Validator {
         });
     }
 
+    static checkInputTime(inputTime) {
+        this.isEmpty(inputTime);
+        this.isNumber(inputTime);
+        this.isZero(inputTime);
+    }
+
+
     static isEmpty(input) {
         if(!input)
             CauseError.causeError(errorMessage.inputEmptyErrorMessage);
