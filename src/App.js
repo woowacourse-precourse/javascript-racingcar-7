@@ -5,14 +5,69 @@ import Car from "./Car.js";
 class App {
   #tryCount;
   #carNames;
+  #cars = [];
 
   async init() {
     await this.setCarNames();
     await this.setTryCount();
+    this.makeCar();
   }
 
   async run() {
     await this.init();
+    this.play();
+    this.printResult();
+    this.printWinners(this.findWinner());
+  }
+
+  play() {
+    for (let gameRound = 0; gameRound < this.#tryCount; gameRound++) {
+      this.#cars.forEach((car) => {
+        const randomNumber = Random.pickNumberInRange(0, 9);
+        car.move(randomNumber);
+        car.saveResult();
+      });
+    }
+  }
+
+  printWinners(winners) {
+    Console.print(`결과: ${winners.join(", ")}`);
+  }
+
+  findWinner(maxDistance = 0, winners = []) {
+    this.#cars.forEach((car) => {
+      const carDistance = car.getDistance();
+
+      if (maxDistance < carDistance) {
+        maxDistance = carDistance;
+        winners.length = 0;
+        winners.push(car.getName());
+      } else if (maxDistance === carDistance) {
+        winners.push(car.getName());
+      }
+    });
+
+    return winners;
+  }
+
+  printResult() {
+    Console.print("실행 결과");
+
+    for (let gameRound = 0; gameRound < this.#tryCount; gameRound++) {
+      this.#cars.forEach((car) => {
+        const distanceByRound = car.getResultBy(gameRound);
+        Console.print(`${car.getName()}: ${"-".repeat(distanceByRound)}`);
+      });
+
+      Console.print("");
+    }
+  }
+
+  makeCar() {
+    this.#carNames.forEach((carName) => {
+      const car = new Car(carName);
+      this.#cars.push(car);
+    });
   }
 
   async setCarNames() {
@@ -50,13 +105,5 @@ class App {
     InputValidator.checkPositive(tryCount);
   }
 }
-
-/*
-    const carNames = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
-    this.#carNames = carNames;
-    const tryCount = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
-    this.#tryCount = tryCount;
-    Console.print(this.#carNames);
-*/
 
 export default App;
