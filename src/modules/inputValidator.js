@@ -21,3 +21,19 @@ export function carNameArrayValidate(carNameArray) {
     }
   });
 }
+
+export function countValidate(count) {
+  const countNumber = Number(count);
+
+  if (!count) {
+    throwError("시도할 횟수를 입력해 주세요.");
+  }
+
+  if (countNumber.isNaN()) {
+    throwError("올바른 값을 입력해 주세요.");
+  }
+
+  if (!Number.isInteger(countNumber) || countNumber < 0) {
+    throwError("횟수는 자연수로 입력해 주세요.");
+  }
+}
