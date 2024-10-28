@@ -16,12 +16,11 @@ class RacingController {
     try {
       this.setCars(carsString);
       this.validateDuplicateCarName();
+      this.setCount(count);
     } catch (error) {
       this.ioProcessor.processOutput(error.message);
       return;
     }
-
-    this.setCount(count);
 
     this.ioProcessor.processOutput('');
     this.ioProcessor.processOutput(OUTPUT_MESSAGE.RESULT);
@@ -43,6 +42,10 @@ class RacingController {
    *
    */
   setCount(count) {
+    if (!Number.isInteger(Number(count)) || count <= 0) {
+      throw new Error(ERROR_MESSAGE.INVALID_COUNT);
+    }
+
     this.#count = count;
   }
 
