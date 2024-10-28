@@ -25,7 +25,18 @@ class Vehicle {
 
 class Race {
   constructor(vehicleNames) {
-    this.vehicles = vehicleNames.map((name) => new Vehicle(name));
+    this.vehicles = this.createVehicles(vehicleNames.split(",").map((name) => name.trim()));
+  }
+
+  createVehicles(names) {
+    const uniqueNames = new Set();
+    names.forEach(name => {
+      if (uniqueNames.has(name)) {
+        throw new Error(`[ERROR] 자동차 이름이 중복되었습니다.`);
+      }
+      uniqueNames.add(name);
+    });
+    return names.map((name) => new Vehicle(name));
   }
 
   startRace(rounds) {
@@ -33,7 +44,7 @@ class Race {
     if (isNaN(attemptCount) || attemptCount <= 0) {
       throw new Error("[ERROR] 이동 횟수는 1 이상의 정수여야 합니다.");
     }
-
+    
     for (let i = 0; i < attemptCount; i++) {
       this.moveAllVehicles();
       this.displayCurrentPositions();
@@ -68,7 +79,7 @@ class App {
       );
       const roundCount = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
 
-      const race = new Race(vehicleNames.split(",").map((name) => name.trim()));
+      const race = new Race(vehicleNames);
       race.startRace(roundCount);
     } catch (error) {
       throw new Error(error.message);
