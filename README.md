@@ -114,5 +114,8 @@ MVC 패턴을 통한 기능 구현을 목표했습니다.
 - validator.js에서 기존에 하드코딩되었던 에러 메시지들을 constants.js의 ERROR_MESSAGES로 대체
 - inputView.js에서 기존에 하드코딩되었던 입력 메시지들을 constants.js의 INPUT_MESSAGES로 대체
 - outputView.js에서 기존에 하드코딩되었던 입력 메시지들을 constants.js의 OUTPUT_MESSAGES로 대체
-- 테스트 케이스 상수 CAR_NAME_TEST_CASES, GAME_ROUNDS_TEXT_CASES의 이름들을 ERROR_MESSAGES 값들과 일치 시켜서 혼란을 방지
-- 실제 구현 가능한 테스트 케이스만 남도록 NO_CARS 상수 삭제
+- constants.js에서 테스트 케이스 상수 CAR_NAME_TEST_CASES, GAME_ROUNDS_TEXT_CASES의 이름들을 ERROR_MESSAGES 값들과 일치 시켜서 혼란을 방지
+- constants.js에서 실제 구현 가능한 테스트 케이스만 남도록 NO_CARS 상수 삭제
+- constants.js에서 불필요한 상수 제거 및 TEST_DESCRIPTIONS를 test.each 사용에 적합하게 사용
+- ApplicationTest.js에서 테스트 설명을 상수들을 활용
+- ApplicationTest.js에서자동차 이름 검증과 시도 횟수 검증을 test.each를 활용해서 코드 가독성 향상
