@@ -1,5 +1,5 @@
 import CarRacingModel from "../model/CarRacingModel.js";
-import ValidateCarNamesInput from "../utils/validateCarNamesInput.js";
+import ValidateCarNamesInput from "../utils/ValidateCarNamesInput.js";
 import ValidateTryCountInput from "../utils/ValidateTryCountInput.js";
 import CarRacingView from "../view/CarRacingView.js";
 
