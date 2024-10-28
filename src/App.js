@@ -4,27 +4,27 @@ import { Random } from "@woowacourse/mission-utils";
 class App {
   async run() {
     try {
-      const carNames = await this.getCarNames();
-      const forwardTime = await this.getForwardTime();
+      const carNames = await this.promptCarNames();
+      const forwardTime = await this.promptForwardTime();
 
-      const carPositions = this.moveCarsByRounds(carNames, forwardTime);
-      this.displayWinners(carNames, carPositions);
+      const carPositions = this.runRaceRounds(carNames, forwardTime);
+      this.showWinners(carNames, carPositions);
     } catch (error) {
       Console.print(error.message);
       throw error;
     }
   }
 
-  async getCarNames() {
+  async promptCarNames() {
     const carNameInput = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
-    const carNames = this.separateCarNames(carNameInput); // 이름 분리
-    this.validateCarNameLength(carNames); // 길이 검증
-    this.nameBlank(carNames); // 이름 공백
-    this.DuplicateNames(carNames) // 이름 중복
+    const carNames = this.splitCarNames(carNameInput);
+    this.validateCarNameLength(carNames);
+    this.validateNoBlankNames(carNames);
+    this.validateUniqueNames(carNames);
     return carNames;
   }
 
-  separateCarNames(carNameInput) {
+  splitCarNames(carNameInput) {
     return carNameInput.split(",").map(name => name.trim());
   }
 
@@ -36,7 +36,7 @@ class App {
     });
   }
 
-  nameBlank(carNames) {
+  validateNoBlankNames(carNames) {
     carNames.forEach(name => {
       if (name === '') {
         throw new Error("[ERROR] 자동차 이름은 공백으로 둘 수 없습니다.");
@@ -50,57 +50,57 @@ class App {
     }
   }
 
-  DuplicateNames(carNames) {
+  validateUniqueNames(carNames) {
     const uniqueNames = new Set(carNames);
     if (uniqueNames.size !== carNames.length) {
       throw new Error("[ERROR] 자동차 이름은 중복될 수 없습니다.");
     }
   }
   
-  async getForwardTime() {
+  async promptForwardTime() {
     const forwardTime = Number(await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n"));
-    this.validateForwardTime(forwardTime);  // 횟수 검증
+    this.validateForwardTime(forwardTime);
     return forwardTime;
-}
+  }
 
-  moveCarsByRounds(carNames, forwardTime) {
-    const carPositions = this.initializePositions(carNames);
+  runRaceRounds(carNames, forwardTime) {
+    const carPositions = this.initializeCarPositions(carNames);
     Console.print("\n실행 결과");
     for (let i = 0; i < forwardTime; i++) {
-      this.playRound(carNames, carPositions);
-      this.displayRoundResults(carNames, carPositions);
+      this.advanceRound(carNames, carPositions);
+      this.showRoundResults(carNames, carPositions);
     }
     return carPositions;
   }
 
-  initializePositions(carNames) {
+  initializeCarPositions(carNames) {
     return carNames.reduce((positions, name) => {
       positions[name] = 0;
       return positions;
     }, {});
   }
 
-  playRound(carNames, carPositions) {
+  advanceRound(carNames, carPositions) {
     carNames.forEach(name => {
-      if (this.moveForward()) {
+      if (this.shouldMoveForward()) {
         carPositions[name] += 1;
       }
     });
   }
 
-  moveForward() {
+  shouldMoveForward() {
     const randomNum = Random.pickNumberInRange(0, 9);
     return randomNum >= 4;
   }
 
-  displayRoundResults(carNames, carPositions) {
+  showRoundResults(carNames, carPositions) {
     carNames.forEach(name => {
       Console.print(`${name} : ${"-".repeat(carPositions[name])}`);
     });
     Console.print(""); // 라운드 구분용 공백 출력
   }
 
-  displayWinners(carNames, carPositions) {
+  showWinners(carNames, carPositions) {
     const maxPosition = Math.max(...Object.values(carPositions));
     const winners = carNames.filter(name => carPositions[name] === maxPosition).join(", ");
     Console.print(`최종 우승자 : ${winners}`);
