@@ -1,5 +1,6 @@
 ## Docs Changes
 
+- docs(changelog): update CHANGELOG.md
 - docs(changelog): add CHANGELOG.md
 - docs(readme): update directory structure for recent changes
 - docs(readme): add edge cases for exception handling
@@ -12,6 +13,8 @@
 
 ## New Features
 
+- test(exception): update edgy cases for exception test
+- refactor(utils): move utils into src
 - test(exception): move exception tests from ApplicationTest to ExceptionTest
 - test(success): move success tests from ApplicationTest to SuccessTest
 - style(model): remove unnecessary comments in Game.js
