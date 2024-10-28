@@ -9,6 +9,9 @@ class App {
     const cars = splitByComma(input);
     const simulator = Simulator(cars);
     const attemptCount = await readUserInput(MESSAGE.PROMPT_COUNT_USER_INPUT);
+    for (let i = 0; i < attemptCount; i++) {
+      simulator.simulate();
+    }
   }
 }
 
