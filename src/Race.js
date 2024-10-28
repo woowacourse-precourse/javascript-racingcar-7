@@ -1,5 +1,5 @@
 import Car from "./Car.js";
-import { Random } from "@woowacourse/mission-utils/src";
+import { Random, Console } from "@woowacourse/mission-utils/src";
 
 class Race {
     constructor(carNames, raceAttempts) {
@@ -17,6 +17,14 @@ class Race {
                 car.move();
             }
         })
+        this.printRoundResults();
+    }
+
+    printRoundResults() {
+        this.cars.forEach(car => {
+            Console.print(`${car.getName} : ${'-'.repeat(car.getPosition())}`);
+        })
+        Console.print('');
     }
 }
 
