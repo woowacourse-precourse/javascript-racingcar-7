@@ -7,3 +7,10 @@ export const OUTPUT_MESSAGE = {
   executionResult : "\n실행 결과\n" ,
   finalWinner : "\n최종 우승자 : " ,
 };
+
+export const MOVE_CONDITION = {
+  minRange : 0,
+  maxRange : 9,
+  condition : 4,
+  move : 1,
+}
