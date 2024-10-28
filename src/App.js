@@ -5,11 +5,14 @@ class App {
     const carNameString = await Console.readLineAsync(
       "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
     );
-    //TODO: validateName check
-    const playNum = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
-    //TODO: isNum or validateNum check
+    const carNames = carNameString
+      .split(",")
+      .map((carName) => this.validateName(carName));
 
-    const racingCars = carNameString.split(",").map((carName) => {
+    let playNum = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+    playNum = this.isNumber(playNum);
+
+    const racingCars = carNames.map((carName) => {
       return { name: carName, score: 0 };
     });
 
@@ -41,6 +44,7 @@ class App {
 
   getWinner(racingCars) {
     let winner = [];
+
     racingCars.map((car) => {
       if (winner.length === 0) {
         winner.push(car);
@@ -52,6 +56,27 @@ class App {
     });
 
     return winner;
+  }
+
+  validateName(name) {
+    if (name === "" || name === null || name === undefined) {
+      throw new Error("[ERROR] 자동차 이름은 비어있을 수 없습니다");
+    }
+    if (name.length > 5) {
+      throw new Error("[ERROR] 자동차 이름은 5자 이하여야 합니다");
+    }
+
+    return name;
+  }
+
+  isNumber(num) {
+    if (isNaN(num)) {
+      throw new Error("[ERROR] 시도 횟수를 올바른 숫자로 입력해 주세요");
+    } else if (num <= 0) {
+      throw new Error("[ERROR] 시도 횟수를 양수로 입력해 주세요");
+    }
+
+    return num;
   }
 }
 
