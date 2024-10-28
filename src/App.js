@@ -47,6 +47,7 @@ class App {
 
   validateTryCount(tryCount) {
     TryCountValidator.checkPositive(tryCount);
+    TryCountValidator.checkOverMax(tryCount);
   }
 }
 
