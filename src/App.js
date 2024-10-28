@@ -11,12 +11,6 @@ class App {
 
     try {
       const result = this.racing(input, count);
-
-      //반복문이 여기 들어가야하나...?!
-      //각 자동차에 해당하는 배열을 만들고 거기에 승리한 횟수만큼 넣어줘야 하나?
-      // for (let i = 0; i < count; i++) {
-      // }
-
       // MissionUtils.Console.print(` 실행 결과 : ${result} `);
     } catch (error) {
       MissionUtils.Console.print(error.message);
@@ -27,12 +21,30 @@ class App {
 
   racing(input, count) {
     const arr = input.split(",").map((item) => item.trim());
+
+    //score라는 이름의 각 차량의 득점을 저장할 수 있는 배열을 만들자
+    // arr = [치킨, 닭, 다리]
+    // scoreArr = [1,2,3]
+    // 치킨이 1회 승리, 닭이 2회 승리, 다리가 3회 승리했다는 것
+
+    //scoreArray는 arr과 길이가 같으면서 모든 값을 0으로 갖는 배열이다.
+    const scoreArray = arr.map(() => 0);
+
+    //depth가 깊어진다. 후에 메서드를 분리해줘야 한다.
     for (let i = 0; i < count; i++) {
       console.log("");
       console.log(i + 1 + "번째 경기");
+      let score = 0;
       for (let j = 0; j < arr.length; j++) {
         const num = MissionUtils.Random.pickNumberInRange(0, 9);
-        console.log(arr[j] + num);
+        console.log(num);
+
+        if (num >= 4) {
+          scoreArray[j] = scoreArray[j] + 1;
+          console.log(arr[j] + " " + scoreArray[j]);
+        } else {
+          console.log(arr[j] + " " + scoreArray[j]);
+        }
       }
     }
   }
