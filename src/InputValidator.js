@@ -1,21 +1,65 @@
 class InputValidator {
-    // 자동차 이름 배열을 확인하여 각 이름이 5자 이하인지 검사
+    // 자동차 이름 배열을 확인하여 이름의 유효성을 검사
     validateCarNames(carNames) {
+        // 이름이 비어있는 경우
+        if (!carNames || carNames.length === 0) {
+            throw new Error("[ERROR] 자동차 이름이 비어 있습니다.");
+        }
+
+        const uniqueNames = new Set();
         for (const name of carNames) {
+            // 쉼표로 끝나는 경우
+            if (name.endsWith(",")) {
+                throw new Error("[ERROR] 자동차 이름이 쉼표로 끝날 수 없습니다.");
+            }
+
+            // 이름이 비어있거나 공백으로만 구성된 경우
+            if (!name || name.trim() === "") {
+                throw new Error("[ERROR] 자동차 이름이 비어 있습니다.");
+            }
+
+            // 두 개의 쉼표가 연속으로 존재할 경우
+            if (name.includes(",,")) {
+                throw new Error("[ERROR] 자동차 이름에 두 개의 쉼표가 연속으로 포함될 수 없습니다.");
+            }
+
+            // 특수 문자가 포함된 경우
+            if (/[^a-zA-Z0-9]/.test(name)) {
+                throw new Error("[ERROR] 자동차 이름에 특수 문자는 포함될 수 없습니다.");
+            }
+
+            // 이름이 5자 이상인 경우
             if (name.length > 5) {
                 throw new Error("[ERROR] 자동차 이름은 5자 이하로 입력해야 합니다.");
             }
+
+            // 이름이 중복된 경우
+            if (uniqueNames.has(name)) {
+                throw new Error("[ERROR] 자동차 이름이 중복되었습니다.");
+            }
+            uniqueNames.add(name);
         }
-        return true; 
+
+        return true;
     }
 
     // 시도 횟수가 양의 정수인지 확인
     validateAttempts(attempts) {
-        if (attempts <= 0) {
-            throw new Error("[ERROR] 경주 시도 횟수는 양수여야 합니다.");
+
+        // 시도 횟수가 숫자가 아닌 경우
+        if (isNaN(attempts)) {
+            throw new Error("[ERROR] 횟수는 숫자여야 합니다.");
         }
-        return true; 
+
+
+
+        // 시도 횟수가 양수가 아닌 경우
+        if (attempts <= 0) {
+            throw new Error("[ERROR] 횟수는 양수여야 합니다.");
+        }
+
+        return true;
     }
 }
 
-export default  InputValidator
+export default InputValidator;
