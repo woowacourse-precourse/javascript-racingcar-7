@@ -1,5 +1,12 @@
 import { Console, MissionUtils } from "@woowacourse/mission-utils";
 
+const ERROR_MESSAGES = {
+  EMPTY_CAR_NAMES: "[ERROR]: 빈 문자열은 입력할 수 없습니다.",
+  DUPLICATE_CAR_NAME: "[ERROR]: 같은 이름은 불가능합니다.",
+  INVALID_CAR_NAME_LENGTH: "[ERROR]: 이름은 5자 이하만 가능합니다.",
+  INVALID_ATTEMPT_COUNT: "[ERROR]: 숫자만 입력 가능합니다.",
+  ZERO_ATTEMPT_COUNT: "[ERROR]: 0은 입력할 수 없습니다.",
+};
 class App {
   async run() {
     const raceCars = await this.getRaceCars();
@@ -78,28 +85,28 @@ class App {
 
   validateCarNames(inputCarNames) {
     if (inputCarNames === "") {
-      throw new Error("[ERROR]: 빈 문자열은 입력할 수 없습니다.");
+      throw new Error(ERROR_MESSAGES.EMPTY_CAR_NAMES);
     }
   }
 
   validateCarNameDuplicate(raceCars, carName) {
     if (raceCars.some((car) => car.name === carName)) {
-      throw new Error("[ERROR]: 같은 이름은 불가능합니다.");
+      throw new Error(ERROR_MESSAGES.DUPLICATE_CAR_NAME);
     }
   }
 
   validateCarNameLength(carName) {
     if (carName.length > 5) {
-      throw new Error("[ERROR]: 이름은 5자 이하만 가능합니다.");
+      throw new Error(ERROR_MESSAGES.INVALID_CAR_NAME_LENGTH);
     }
   }
 
   validateAttemptCount(inputNum) {
     if (isNaN(inputNum)) {
-      throw new Error("[ERROR]: 숫자만 입력 가능합니다.");
+      throw new Error(ERROR_MESSAGES.INVALID_ATTEMPT_COUNT);
     }
     if (inputNum == 0) {
-      throw new Error("[ERROR]: 0은 입력할 수 없습니다.");
+      throw new Error(ERROR_MESSAGES.ZERO_ATTEMPT_COUNT);
     }
   }
 }
