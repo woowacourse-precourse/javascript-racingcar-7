@@ -25,12 +25,14 @@ class RacingManager {
   }
 
   #playRounds(round) {
-    repeat(round, () => {
-      this.carList.forEach((car) => {
-        this.#handleCarMovement(car);
-      });
-      OutputView.printEmptyLine();
+    repeat(round, this.#playRound.bind(this));
+  }
+
+  #playRound() {
+    this.carList.forEach((car) => {
+      this.#handleCarMovement(car);
     });
+    OutputView.printEmptyLine();
   }
 
   #handleCarMovement(car) {
