@@ -25,8 +25,31 @@ class App {
       return false;
     }
 
-    Console.print(carNameArr);
-    Console.print(tryNumber);
+    const carObj = carNameArr.reduce((acc, name) => {
+      acc[name] = {
+        name,
+        position: 0,
+      };
+      return acc;
+    }, {});
+
+    for (let i = 0; i < tryNumber; i++) {
+      for (const car in carObj) {
+        if (canCarMove()) {
+          carObj[car].position++;
+        }
+      }
+      Console.print(carObj);
+    }
+
+    const maxPosition = Math.max(
+      ...Object.values(carObj).map((car) => car.position)
+    );
+    const winner = Object.values(carObj)
+      .filter((car) => car.position === maxPosition)
+      .map((car) => car.name)
+      .join(", ");
+    Console.print(winner);
   }
 }
 
