@@ -4,11 +4,13 @@ class Racingcar {
   constructor() {
     this.cars = [];
     this.counts = 0;
+    this.winners = [];
   }
 
   setCarsAndCounts(carNames, counts) {
     this.verifyCarNames(carNames);
     this.verifyCounts(counts);
+    this.cars = this.setCars(carNames);
     this.counts = parseInt(counts, 10);
   }
 
@@ -39,6 +41,12 @@ class Racingcar {
     }
   }
 
+  setCars(carNames) {
+    return carNames.split(',').map((name) => ({
+      name: name.trim(),
+      position: 0,
+    }));
+  }
 }
 
 export default Racingcar;
