@@ -6,7 +6,7 @@ class App {
 
     const car = await this.Car();
     const tryCount = await this.TryCount();
-      
+
     const carCount = new Array(car.length).fill(0);
 
     Console.print('\n실행 결과');
@@ -33,10 +33,6 @@ class App {
     // 이름 공백 검사
     if (car.some(e => e === "")) {
       throw new Error("[ERROR] 이름에 공백이 포함될 수 없습니다.");
-    }
-    // 쉼표로 시작/끝 검사
-    if (input.startsWith(",") || input.endsWith(",")) {
-      throw new Error("[ERROR] 이름이 쉼표로 시작하거나 끝날 수 없습니다.");
     }
     // 중복 검사
     if (new Set(car).size !== car.length) {
