@@ -26,10 +26,7 @@ class App {
 
     carNames.forEach((carName) => {
       this.validateCarNameDuplicate(raceCars, carName);
-
-      if (carName.length > 5) {
-        throw new Error("[ERROR]: 이름은 5자 이하만 가능합니다.");
-      }
+      this.validateCarNameLength(carName);
       raceCars.push({ name: carName, location: "" });
     });
     return raceCars;
@@ -94,6 +91,12 @@ class App {
   validateCarNameDuplicate(raceCars, carName) {
     if (raceCars.some((car) => car.name === carName)) {
       throw new Error("[ERROR]: 같은 이름은 불가능합니다.");
+    }
+  }
+
+  validateCarNameLength(carName) {
+    if (carName.length > 5) {
+      throw new Error("[ERROR]: 이름은 5자 이하만 가능합니다.");
     }
   }
 }
