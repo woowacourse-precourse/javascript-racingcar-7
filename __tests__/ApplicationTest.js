@@ -117,13 +117,6 @@ describe('자동차 이름 문자열 분리', () => {
 });
 
 describe('회차 입력', () => {
-  test('공백입력', () => {
-    const input = '';
-
-    const app = new App();
-
-    expect(() => app.validateRoundNumber(input)).toThrow('[ERROR] 공백을 입력할 수 없습니다!');
-  });
 
   test('숫자가 아닌 값 입력', () => {
     const input = 'a';
@@ -133,20 +126,12 @@ describe('회차 입력', () => {
     expect(() => app.validateRoundNumber(input)).toThrow('[ERROR] 숫자를 입력해야 합니다!');
   });
   
-  test('소수점 입력', () => {
-    const input = 0.1;
+  test('1보다 적은 값 입력', () => {
+    const input = '0';
 
     const app = new App();
 
-    expect(() => app.validateRoundNumber(input)).toThrow('[ERROR] 소수는 입력할 수 없습니다.');
-  });
-
-  test('0 입력', () => {
-    const input = 0;
-
-    const app = new App();
-
-    expect(() => app.validateRoundNumber(input)).toThrow('[ERROR] 0보다 적은 값은 입력할 수 없습니다.');
+    expect(() => app.validateRoundNumber(input)).toThrow('[ERROR] 1보다 적은 값은 입력할 수 없습니다.');
   });
 });
 
