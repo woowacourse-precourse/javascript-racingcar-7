@@ -34,10 +34,27 @@ class App {
       }
     };
 
+    /** 이동하기 */
+    const moveCars = (cars) => {
+      cars.forEach((car) => {
+        const randNum = Random.pickNumberInRange(0, 9);
+        if (randNum >= 4) {
+          car.position++;
+        }
+      });
+    };
+
     async function racingGame() {
       try {
         const carNames = await getCarNames();
         const tryCount = await getTryCount();
+
+        const cars = carNames.map((name) => ({ name, position: 0 }));
+        Console.print("\n실행 결과");
+
+        for (let i = 0; i < tryCount; i++) {
+          moveCars(cars);
+        }
       } catch (error) {
         Console.print(error.message);
         throw error;
