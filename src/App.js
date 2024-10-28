@@ -12,6 +12,7 @@ import {
     hasDuplicateNames,
     isTrialCountZero,
     validateTrial,
+    isOneCar,
 } from './handleError.js';
 
 class App {
@@ -24,6 +25,7 @@ class App {
         validateNameLength(CAR_NAMES);
         isCarNameEmpty(CAR_NAMES);
         hasDuplicateNames(CAR_NAMES);
+        isOneCar(CAR_NAMES);
 
         const TRIAL_NUMBER = await Console.readLineAsync(
             '시도할 횟수는 몇 회인가요?\n'
