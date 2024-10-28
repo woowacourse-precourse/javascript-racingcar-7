@@ -12,6 +12,11 @@ export class Validator {
                 throw new Error("[ERROR] 이름은 5자 이하만 가능합니다.");
             }
         }
+
+        const uniqueNames = new Set(names.map(name => name.trim()));
+        if (uniqueNames.size !== names.length) {
+            throw new Error("[ERROR] 이름은 중복될 수 없습니다.");
+        }
     }
 
     static RaceRounds(num) {
