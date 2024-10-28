@@ -1,4 +1,4 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 import Car from './car.js';
 
 const OUTPUT_MESSAGE = Object.freeze({
@@ -24,9 +24,16 @@ class Race {
     }
   }
 
+  getRandomNumber() {
+    return Random.pickNumberInRange(0, 9);
+  }
+
   executeTurn() {
     this.carList.forEach((car) => {
-      car.move();
+      const randomNumber = this.getRandomNumber();
+      if (randomNumber >= 4) {
+        car.move();
+      }
       car.printProgress();
     });
   }
