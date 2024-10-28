@@ -16,7 +16,7 @@ class Car {
     return this.#name;
   }
 
-  getStatus() {
+  get status() {
     return {name: this.#name, move: this.#moveCount};
   }
 

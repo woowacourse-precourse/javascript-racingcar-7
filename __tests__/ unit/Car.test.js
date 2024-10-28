@@ -11,11 +11,11 @@ describe('Car 유닛 테스트', () => {
   });
 
   test('Car는 자신의 상태를 나타낼 수있다.', () => {
-    expect(car.getStatus()).toStrictEqual({name: 'chan', move: 0});
+    expect(car.status).toStrictEqual({name: 'chan', move: 0});
   });
 
   test('Car는 움직일 수 있다.', () => {
     car.move();
-    expect(car.getStatus()).toStrictEqual({name:'chan',move: 1});
+    expect(car.status).toStrictEqual({name:'chan',move: 1});
   });
 });
