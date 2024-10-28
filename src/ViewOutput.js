@@ -18,4 +18,10 @@ export default class ViewOutput {
     static printExecutionResult() {
         Console.print(gameMessage.runResultMessage);
     }
+
+    static printWinner(winnerList) {
+        const winnerNames = winnerList.join(", ");
+        Console.print(`${gameMessage.finalWinnerMessage}${winnerNames}`);
+
+    }
 }
