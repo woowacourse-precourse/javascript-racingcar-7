@@ -1,4 +1,4 @@
-const MissionUtils = require('@woowacourse/mission-utils');
+import * as MissionUtils from '@woowacourse/mission-utils';
 const { Random, Console } = MissionUtils;
 
 //1. 자동차 클래스
