@@ -33,7 +33,6 @@ javascript-racing-car/
 │       ├── RaceTest.js            # Race 클래스에 대한 유닛 테스트
 │       └── validatorsTest.js      # 유효성 검사 함수에 대한 유닛 테스트
 ├── docs/
-│   ├── FUNCTIONS.md               # 함수별 기능 설명 문서
 │   └── REQUIREMENTS.md            # 프로젝트 요구사항 문서
 ├── node_modules/                  # 프로젝트 의존성 모듈들
 ├── src/
