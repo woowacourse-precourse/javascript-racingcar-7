@@ -52,15 +52,8 @@ const validateGameCount = (gameCount) => {
 
 class App {
   async run() {
-    const carNames = await Console.readLineAsync(
-      '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
-    );
-    validateCarNames(carNames);
-
-    const gameCount =
-      await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
-    validateGameCount(gameCount);
-
+    const carNames = await this.getCarNames();
+    const gameCount = await this.getGameCount();
     Console.print('\n실행 결과');
 
     const cars = carNames.split(',');
@@ -80,7 +73,7 @@ class App {
       });
     };
 
-    for (let count = 1; count <= gameCount; count++) {
+    for (let count = 0; count < gameCount; count++) {
       const carsCanMove = Array.from(
         { length: cars.length },
         () => Random.pickNumberInRange(0, 9) >= 4,
@@ -89,9 +82,8 @@ class App {
       moveCars(carsCanMove);
 
       printCarDistances();
-      if (count !== gameCount) {
-        Console.print('');
-      }
+
+      Console.print('');
     }
 
     const maxDistance = Math.max(
@@ -102,6 +94,21 @@ class App {
       .filter((index) => carDistances[index].length === maxDistance)
       .map((index) => cars[index]);
     Console.print(`최종 우승자 : ${winners.join(', ')}`);
+  }
+
+  async getCarNames() {
+    const carNames = await Console.readLineAsync(
+      '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
+    );
+    validateCarNames(carNames);
+    return carNames;
+  }
+
+  async getGameCount() {
+    const gameCount =
+      await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+    validateGameCount(gameCount);
+    return Number(gameCount);
   }
 }
 
