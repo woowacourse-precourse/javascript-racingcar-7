@@ -1,4 +1,6 @@
 import { Console, Random } from "@woowacourse/mission-utils";
+import { validateCarInput, validateTimesInput } from "./validation";
+
 class App {
   async run() {
     Console.print(
@@ -9,37 +11,11 @@ class App {
     Console.print("시도할 횟수는 몇 회인가요?");
     const TIMES_INPUT = await Console.readLineAsync("");
 
-    const CARS = this.validateCarInput(CARS_INPUT);
-    const TIMES = this.validateTimesInput(TIMES_INPUT);
+    const CARS = validateCarInput(CARS_INPUT);
+    const TIMES = validateTimesInput(TIMES_INPUT);
     this.StartPlayCarRacing(CARS, TIMES);
   }
 
-  validateCarInput(input) {
-    let cars = input.split(",");
-    if (input.indexOf(",") == -1 || input == "") {
-      throw new Error("[ERROR] 잘못된 입력입니다.");
-    }
-    cars.forEach(this.validateCarNameLength);
-    const uniqueCars = new Set(cars);
-    if (uniqueCars.size !== cars.length) {
-      throw new Error("[ERROR] 중복된 자동차 이름이 있습니다.");
-    }
-    return cars.map((car) => ({ name: car, distance: "" }));
-  }
-
-  validateCarNameLength(car) {
-    if (car.length > 5) {
-      throw new Error("[ERROR] 각 자동차 이름은 5자를 초과할 수 없습니다.");
-    }
-  }
-
-  validateTimesInput(input) {
-    let times = Number(input);
-    if (isNaN(times) || times <= 0 || !Number.isInteger(times)) {
-      throw new Error("[ERROR] 시도 횟수는 양의 정수여야 합니다.");
-    }
-    return times;
-  }
 
   StartPlayCarRacing(cars, times) {
     Console.print("");
