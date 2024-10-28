@@ -7,12 +7,13 @@ class View {
   #raceCount = "시도할 횟수는 몇 회인가요?\n";
 
   async readInputCar() {
-    const carNames = await Console.readLineAsync(this.#carInputMessage);
+    const carNamesStr = await Console.readLineAsync(this.#carInputMessage);
 
-    if (!this.#inputCarNameRegx.test(carNames)){
+    if (!this.#inputCarNameRegx.test(carNamesStr)){
       throw new Error("[ERROR] : 잘못된 이름 입력\n");
     }
 
+    const carNames = carNamesStr.split(',');
     return carNames;
   }
 
