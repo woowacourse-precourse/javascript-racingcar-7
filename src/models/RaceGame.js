@@ -1,5 +1,13 @@
+import {
+  validateParticipants,
+  validateGameAttempts,
+} from '../validations/InputValidation.js';
+
 export default class RaceGame {
   constructor(participants, gameAttempts) {
+    validateParticipants(participants.map((car) => car.name));
+    validateGameAttempts(gameAttempts);
+
     this.participants = participants;
     this.gameAttempts = gameAttempts;
   }
