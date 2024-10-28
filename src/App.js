@@ -13,6 +13,9 @@ class App {
     }
     return true;
   }
+  checkMoveCount(moveCountString) {
+    return !isNaN(moveCountString);
+  }
   async inputCarNames() {
     try {
       const names = await Console.readLineAsync(
@@ -30,9 +33,30 @@ class App {
       throw error;
     }
   }
+  async inputMoveCount() {
+    try {
+      const moveCount = await Console.readLineAsync(
+        `시도할 횟수는 몇 회인가요?\n`
+      );
+
+      if (this.checkMoveCount(moveCount)) {
+        this.total = +moveCount;
+      } else {
+        throw new Error("[ERROR] 시도 횟수는 숫자여야 합니다.");
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async run() {
-    this.inputCarNames();
-    this.input;
+    try {
+      await this.inputCarNames();
+      await this.inputMoveCount();
+    } catch (error) {
+      Console.print(error.message);
+      throw error;
+    }
   }
 }
 
