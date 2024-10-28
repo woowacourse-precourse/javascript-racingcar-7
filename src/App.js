@@ -17,6 +17,9 @@ const validateCarNames = (names) => {
   if (names.length <= 1) {
     throw new Error("자동차는 2대 이상이어야 합니다.")
   }
+  if (new Set(names).size < names.length) {
+    throw new Error("자동차 이름은 중복될 수 없습니다.")
+  }
   if (names.some(name => name.length > 5)) {
     throw new Error("자동차 이름은 5자 이하만 가능합니다.");
   }
