@@ -1,16 +1,13 @@
 import InputValidation from "./validation/InputValidation.js";
+import Input from "./view/Input.js";
+import Output from "./view/Output.js";
+import RacingGame from "./model/RacingGame.js";
 
 class App {
-  input;
-
-  output;
-
-  game;
-
-  constructor(input, output, game) {
-    this.input = input;
-    this.output = output;
-    this.game = game;
+  constructor() {
+    this.input = Input;
+    this.output = Output;
+    this.game = new RacingGame();
   }
 
   async run() {

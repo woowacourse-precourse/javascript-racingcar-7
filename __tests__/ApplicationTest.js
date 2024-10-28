@@ -1,9 +1,5 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import App from "../src/App.js";
-import Input from "../src/view/Input.js";
-import Output from "../src/view/Output.js";
-import RacingGame from "../src/model/RacingGame.js";
-import { OUTPUT_PRINT_MESSAGES } from "../src/constants/printMessage.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -30,23 +26,19 @@ const getLogSpy = () => {
 };
 
 describe("자동차 경주", () => {
-  let app;
-  beforeEach(() => {
-    app = new App(Input, Output, new RacingGame());
-  });
-
   test("기능 테스트", async () => {
     // given
     const MOVING_FORWARD = 4;
     const STOP = 3;
     const inputs = ["pobi,woni", "1"];
-    const logs = [OUTPUT_PRINT_MESSAGES.resultTitle, "pobi : -", "woni : ", OUTPUT_PRINT_MESSAGES.winners("pobi")];
+    const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
     const logSpy = getLogSpy();
 
     mockQuestions(inputs);
     mockRandoms([MOVING_FORWARD, STOP]);
 
     // when
+    const app = new App();
     await app.run();
 
     // then
@@ -61,6 +53,8 @@ describe("자동차 경주", () => {
     mockQuestions(inputs);
 
     // when
+    const app = new App();
+
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
