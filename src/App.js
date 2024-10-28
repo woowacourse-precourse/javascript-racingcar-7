@@ -16,6 +16,7 @@ class RacingCarApp {
             this.announceWinners();
         } catch (error) {
             Console.print(error.message);
+            throw error;
         }
     }
 
