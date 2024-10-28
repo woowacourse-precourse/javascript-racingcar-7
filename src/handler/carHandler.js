@@ -16,8 +16,6 @@ function carHandler(carNames) {
     if (name.includes(' ')) {
       throw new Error('[ERROR] 이름에는 공백이 포함될 수 없습니다.');
     }
-
-    
   });
 }
 
