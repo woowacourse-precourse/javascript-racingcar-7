@@ -1,5 +1,8 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
+import { increaseCarDistance, isValueMoreThanFour } from "../src/function/carRacingFunctions.js";
+import { getMaxDistance, getWinnerCarNameArrayWithMaxValue } from "../src/function/carRacingResultFunctions.js";
+import Car from "../src/Car.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -122,4 +125,40 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR] 시도할 횟수를 입력해주세요.");
   });
 
+  test("랜덤값이 4가 넘는가? isValueMoreThanFour()" , ()  => {
+    expect(isValueMoreThanFour(5)).toBe(true);
+  });
+
+  test("자동차의 거리가 1 증가하는가?", () => {
+    const car = new Car({name: 'carName', distance: 1});
+
+    increaseCarDistance(car);
+
+    expect(car.distance).toEqual(2);
+  })
+
+  test("자동차 배열중 최대 거리 값이 출력되는가? getMaxDistance()" , ()  => {
+    const carArray = [ 
+      new Car( { name : 'carA', distance: 1} ),
+      new Car( { name : 'carB', distance: 3}),
+      new Car( { name : 'carC', distance: 2})
+    ]
+    expect(getMaxDistance(carArray)).toBe(3);
+  });
+
+  test("최대 거리값으로 이긴 자동차들의 이름 배열이 출력되는가?" , ()  => {
+    const carArray = [ 
+      new Car( { name : 'carA', distance: 1} ),
+      new Car( { name : 'carB', distance: 3} ),
+      new Car( { name : 'carC', distance: 3} )
+    ]
+
+    const maxDistance = 3;
+
+    expect(getWinnerCarNameArrayWithMaxValue(carArray, maxDistance)).toEqual(["carB", "carC"]);
+  });
+
+
+
 });
+

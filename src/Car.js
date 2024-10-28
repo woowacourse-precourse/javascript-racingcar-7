@@ -2,8 +2,9 @@
 class Car {
     _distance = 0; // 인스턴스 변수
 
-    constructor({name}){ // 생성자
+    constructor({ name, distance = 0}){ // 생성자
         this.name = name; // * 처음부터 name으로 지정해주기 때문에, getter가 필요없다.
+        this.distance = distance;
     }
 
     //* 그냥 distance 이렇게 쓰면, 무한 루프가 발생한다. setter 함수내에서 자기자신을 호출하기 때문.
