@@ -58,6 +58,8 @@ class App {
 
       if (carsSet.has(car))
         throw new Error("[ERROR] 중복된 자동차 이름이 있습니다.");
+
+      carsSet.add(car);
     })
 
     return cars;
