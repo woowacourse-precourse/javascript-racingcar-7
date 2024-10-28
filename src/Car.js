@@ -1,23 +1,27 @@
 import { Random } from '@woowacourse/mission-utils';
 
 class Car {
-  name;
-  go = '';
+  #name;
+  #go = '';
 
   constructor(name) {
-    this.name = name;
+    this.#name = name;
+  }
+
+  getName() {
+    return this.#name;
   }
 
   tryToGo() {
     if (Random.pickNumberInRange(0, 9) >= 4) {
-      this.go += '-';
+      this.#go += '-';
     }
 
-    return this.go;
+    return this.#go;
   }
 
   getNumOfGo() {
-    return this.go.length;
+    return this.#go.length;
   }
 }
 

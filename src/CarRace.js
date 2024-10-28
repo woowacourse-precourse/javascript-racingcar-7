@@ -4,8 +4,8 @@ import carHandler from './handler/carHandler.js';
 import attemptHandler from './handler/attemptHandler.js';
 
 class CarRace {
-  carArray = [];
-  numOfAttempt;
+  #carArray = [];
+  #numOfAttempt;
 
   async raceStart() {
     await this.getCarArray();
@@ -22,7 +22,7 @@ class CarRace {
 
     carHandler(carNames);
 
-    this.carArray = carNames.map((name) => {
+    this.#carArray = carNames.map((name) => {
       return new Car(name);
     });
   }
@@ -32,19 +32,19 @@ class CarRace {
       '시도할 횟수는 몇 회인가요?\n'
     );
     attemptHandler(dataOfAttempt);
-    this.numOfAttempt = Number(dataOfAttempt);
+    this.#numOfAttempt = Number(dataOfAttempt);
   }
 
 
 
   startRace() {
     Console.print('\n실행결과');
-    while (this.numOfAttempt) {
-      this.carArray.map((car) => {
-        Console.print(`${car.name} : ${car.tryToGo()}`);
+    while (this.#numOfAttempt) {
+      this.#carArray.map((car) => {
+        Console.print(`${car.getName()} : ${car.tryToGo()}`);
       });
 
-      this.numOfAttempt -= 1;
+      this.#numOfAttempt -= 1;
       Console.print('');
     }
   }
@@ -53,15 +53,15 @@ class CarRace {
     let winnerName = [];
     let maxDistance = -1;
 
-    this.carArray.map((car) => {
+    this.#carArray.map((car) => {
       const distance = car.getNumOfGo();
 
       if (distance > maxDistance) {
         winnerName.splice(0);
-        winnerName.push(car.name);
+        winnerName.push(car.getName());
         maxDistance = distance;
       } else if (distance == maxDistance) {
-        winnerName.push(car.name);
+        winnerName.push(car.getName());
       }
     });
 
