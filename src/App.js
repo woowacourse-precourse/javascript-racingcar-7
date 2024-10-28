@@ -6,6 +6,7 @@ import {
   getTryCount,
   isPositiveInteger,
   startRace,
+  printWinners,
 } from "./utils/index.js";
 import Car from "./Car.js";
 
@@ -21,6 +22,7 @@ class App {
 
       const cars = carNames.map((name) => new Car(name));
       startRace(cars, tryCount);
+      printWinners(cars);
     } catch (error) {
       console.error(error.message);
     }

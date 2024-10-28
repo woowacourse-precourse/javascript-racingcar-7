@@ -18,3 +18,12 @@ export function printRaceStatus(cars) {
   });
   console.log("");
 }
+
+export function printWinners(cars) {
+  const maxPosition = Math.max(...cars.map((car) => car.position));
+  const winners = cars
+    .filter((car) => car.position === maxPosition)
+    .map((car) => car.name);
+
+  console.log(`최종 우승자 : ${winners.join(", ")}`);
+}
