@@ -11,7 +11,7 @@ function moveCarRandomly(car) {
 
 function viewProgressBar(car) {
   const carName = car.name;
-  const progressBar = car.getProgressBar;
+  const progressBar = car.getProgressBar();
 
   Console.print(`${carName} : ${progressBar}`);
 }
