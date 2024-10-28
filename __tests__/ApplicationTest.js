@@ -165,7 +165,7 @@ describe("입력 값 테스트", () => {
 describe("출력 값 테스트", () => {
   test("전진하는 자동차를 출력할 때 자동차 이름을 같이 출력한다.", async () => {
     const inputs = ["a", "1"];
-    const logs = ["", "실행 결과", "a : -", ""];
+    const logs = ["a : -"];
     const logSpy = getLogSpy();
     const MOVING_FORWARD = 4;
     const STOP = 3;
@@ -178,6 +178,23 @@ describe("출력 값 테스트", () => {
 
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
+  test("우승자가 여러 명인 경우 쉼표로 구분하여 출력한다.", async () => {
+    const inputs = ["a,b", "1"];
+    const logs = ["최종 우승자 : a, b"];
+    const logSpy = getLogSpy();
+    const STOP = 3;
+
+    mockQuestions(inputs);
+    mockRandoms([STOP]);
+
+    const app = new App();
+    await app.run();
+
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(log);
     });
   });
 });

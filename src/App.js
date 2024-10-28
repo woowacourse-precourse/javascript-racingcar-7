@@ -74,6 +74,7 @@ class App {
   #printRaceResult() {
     output.raceResultTitle();
     output.carRaceResult(this.#carRace.result);
+    output.winner(this.#winner);
   }
 }
 
