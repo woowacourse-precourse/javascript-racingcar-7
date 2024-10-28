@@ -130,4 +130,20 @@ describe("자동차 경주 입력 관련 예외 테스트", () => {
     const app = new App();
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
+  test("이동 시도 횟수가 빈 입력값인 경우", async () => {
+    const inputs = ["자동차,car", ""];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("이동 시도 횟수가 빈 입력값인 경우", async () => {
+    const inputs = ["자동차,car", " "];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
 });
