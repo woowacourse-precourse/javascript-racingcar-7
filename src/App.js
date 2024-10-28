@@ -1,10 +1,12 @@
 import { Console } from '@woowacourse/mission-utils';
-import { inputCarNames } from './functions/inputCarNames.js';
-import { inputAttemptsNumber } from './functions/inputAttempsNumber.js';
-import { calculateCarRacing } from './functions/calculateCarRacing.js';
-import { printRacingResult } from './functions/printRacingResultFunctions/printRacingResult.js';
-import { calculateWinner } from './functions/calculateWinner.js';
-import { printWhoIsWinner } from './functions/printWhoIsWinner.js';
+import {
+  inputCarNames,
+  inputAttemptsNumber,
+  calculateCarRacing,
+  printRacingResult,
+  calculateWinner,
+  printWhoIsWinner,
+} from './functions/index.js';
 import { validateCarNames } from './errors/allErrorHandling.js';
 
 class App {
