@@ -1,6 +1,6 @@
 import RacingCars from './models/RacingCars.js';
 import RaceStatusDisplay from './RaceStatusDisplay.js';
-import { GAME_SETTINGS, SYMBOLS } from './constants/Symbol.js';
+import { GAME_SETTINGS } from './constants/Symbol.js';
 
 class RacingGame {
   #racingCars;
