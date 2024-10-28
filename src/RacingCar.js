@@ -1,4 +1,5 @@
 import { Console, Random } from '@woowacourse/mission-utils';
+import { INPUT, ERROR, REGEX } from './message';
 
 class RacingCar {
   #cars;
@@ -13,29 +14,46 @@ class RacingCar {
   }
 
   static handleCarsInputException(input) {
-    const regex = /^[^,]{1,5}(,[^,]{1,5})*$/;
-    if (!regex.test(input))
-      throw new Error(
-        '[ERROR] 경주할 자동차를 올바른 형식으로 입력해주세요. 이름은 쉼표(,)를 기준으로 구분하며 자동차 이름은 최대 5자입니다.',
-      );
+    const SeparatorRegex = REGEX.separator;
+    const nameRegex = REGEX.name;
+
+    // 구분자 예외 검사
+    if (!SeparatorRegex.test(input)) {
+      throw new Error(ERROR.separator_must_comma);
+    }
+
+    // 자동차 이름 길이 검사
+    const separateInput = input.split(',');
+
+    separateInput.forEach((name) => {
+      const trimmedName = name.trim();
+
+      if (!nameRegex.test(trimmedName)) {
+        throw new Error(ERROR.name_length_exceed_5);
+      }
+    });
+
+    // 자동차 이름 중복 검사
+    const uniqueNames = new Set(separateInput);
+    if (uniqueNames.size !== separateInput.length) {
+      throw new Error(ERROR.same_name);
+    }
   }
 
   static handleCountInputException(input) {
     const regex = /^[1-9]\d*$/;
-    if (!regex.test(input)) throw new Error('[ERROR] 시도할 횟수는 양수만 가능합니다.');
+    if (!regex.test(input)) throw new Error(ERROR.only_positive_number);
   }
 
   async receiveInput() {
-    const cars = await Console.readLineAsync(
-      '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
-    );
+    const cars = await Console.readLineAsync(INPUT.cars);
     RacingCar.handleCarsInputException(cars);
     cars.split(',').forEach((car) => {
       this.#cars.push(car.trim());
       this.#status.push('');
     });
 
-    const count = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+    const count = await Console.readLineAsync(INPUT.count);
     RacingCar.handleCountInputException(count);
     this.#count = count;
   }
