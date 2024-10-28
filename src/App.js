@@ -5,6 +5,8 @@ class App {
     const names = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
     const count = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n")
     
+    this.exceptionHandler(names, count);
+
     const nameMap = this.separateNameHandler(names);
 
     Console.print("실행 결과");
@@ -63,6 +65,12 @@ class App {
     }
 
     Console.print(`최종 우승자 : ${winners.join(', ')}`)
+  }
+
+  exceptionHandler(names, count){
+    if(count==undefined||count==''||count==null){
+      throw new Error("[ERROR] count 값을 입력해주세요.")
+    }
   }
 }
 
