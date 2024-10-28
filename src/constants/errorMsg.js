@@ -6,4 +6,4 @@ export const ERROR_MESSAGES = {
   DUPLICATED_CAR_NAME: `${ERROR_PREFIX} 중복된 이름이 존재합니다.`,
   INVALID_RACE_NUMBER: `${ERROR_PREFIX} 양의 정수만 입력 가능합니다.`,
   NO_INPUT_RACE_NUMBER: `${ERROR_PREFIX} 횟수를 입력해주세요.`,
-}
+};

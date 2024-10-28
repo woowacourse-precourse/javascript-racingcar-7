@@ -1,9 +1,9 @@
-import { Console } from "@woowacourse/mission-utils";
-import moveCarEachTurn from "./utils/moveCarEachTurn.js";
-import showRaceState from "./utils/showRaceState.js";
+import { Console } from '@woowacourse/mission-utils';
+import moveCarEachTurn from './utils/moveCarEachTurn.js';
+import showRaceState from './utils/showRaceState.js';
 
 const processCarMovements = async (cars, raceNum) => {
-  Console.print("\n실행 결과\n");
+  Console.print('\n실행 결과\n');
 
   let carMovements = Array.from({ length: cars.length }, () => 0);
 

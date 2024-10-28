@@ -1,6 +1,6 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console } from '@woowacourse/mission-utils';
 
-const RACE_PROGRESS_BAR_SYMBOL = "-";
+const RACE_PROGRESS_BAR_SYMBOL = '-';
 
 const showRaceState = (cars, carMovements) => {
   const raceState = cars.map((car, index) => {
@@ -8,7 +8,7 @@ const showRaceState = (cars, carMovements) => {
     return `${car} : ${progressBar}`;
   });
 
-  Console.print(raceState.join("\n") + "\n");
+  Console.print(raceState.join('\n') + '\n');
 };
 
 export default showRaceState;

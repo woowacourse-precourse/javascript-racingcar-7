@@ -1,4 +1,4 @@
-import shouldCarMove from "./shouldCarMove.js";
+import shouldCarMove from './shouldCarMove.js';
 
 const moveCarEachTurn = async (cars, carMovements) => {
   cars.forEach((_, index) => {

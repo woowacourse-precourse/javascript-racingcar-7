@@ -1,6 +1,6 @@
-import input from "./input.js";
-import processCarMovements from "./processCarMovements.js";
-import calculateWinner from "./calculateWinner.js";
+import input from './input.js';
+import processCarMovements from './processCarMovements.js';
+import calculateWinner from './calculateWinner.js';
 
 class App {
   async run() {

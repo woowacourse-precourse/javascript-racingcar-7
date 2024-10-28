@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console } from '@woowacourse/mission-utils';
 
 const calculateWinner = (car, carMovements) => {
   const maxMovement = Math.max(...carMovements);
@@ -9,7 +9,7 @@ const calculateWinner = (car, carMovements) => {
     return acc;
   }, []);
 
-  const winner = maxIndex.map((index) => car[index]).join(", ");
+  const winner = maxIndex.map((index) => car[index]).join(', ');
   Console.print(`최종 우승자 : ${winner}`);
 };
 
