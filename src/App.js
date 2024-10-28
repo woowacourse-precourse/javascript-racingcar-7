@@ -34,7 +34,9 @@ class App {
 
     async getTryCount() {
         const input = await this.promptTryCount();
-        return this.parseTryCount(input);
+        const tryCount = this.parseTryCount(input);
+        this.validateTryCount(tryCount);
+        return tryCount;
     }
 
     async promptTryCount() {
@@ -43,6 +45,12 @@ class App {
 
     parseTryCount(input) {
         return parseInt(input, 10);
+    }
+
+    validateTryCount(tryCount) {
+        if (isNaN(tryCount) || tryCount <= 0) {
+            throw new Error("[ERROR] 시도 횟수는 양의 정수여야 합니다.");
+        }
     }
 }
 
