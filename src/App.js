@@ -78,9 +78,10 @@ class App {
   }
 
   printRaceStatus(results) {
-    results.forEach((car) => {
-      Console.print(`${car.name}: ${"-".repeat(car.position)}`);
-    });
+    const raceStatus = results
+      .map((car) => `${car.name}: ${"-".repeat(car.position)}`)
+      .join("\n");
+    Console.print(raceStatus);
     Console.print("");
   }
 
