@@ -34,6 +34,13 @@ class App {
         winner.push(carList[index]);
       }
     });
+
+    let winnerPrint = "최종 우승자 : ";
+    let winnerCar = winner[0];
+    for (let i = 1; i < winner.length; i++) {
+      winnerCar += ", " + winner[i];
+    }
+    MissionUtils.Console.print(winnerPrint + winnerCar);
   }
 
   checkMoveForward() {
