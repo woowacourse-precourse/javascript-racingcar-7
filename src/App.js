@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 
 class App {
   async run() {
@@ -7,7 +7,7 @@ class App {
     Console.print(
       `자동차 이름: ${carNames.join(", ")} | 시도 횟수: ${attemptCount}`
     );
-    // 이후 로직 추가
+    this.startRace(carNames, attemptCount);
   }
 
   getCarNames() {
@@ -57,6 +57,34 @@ class App {
       throw new Error("시도 횟수는 1 이상의 숫자여야 합니다.");
     }
     return attemptCount;
+  }
+
+  startRace(carNames, attemptCount) {
+    const results = carNames.map((name) => ({ name, position: 0 }));
+    for (let i = 0; i < attemptCount; i++) {
+      results.forEach((car) => {
+        if (Random.pickNumberInRange(0, 9) >= 4) {
+          car.position++;
+        }
+      });
+      this.printRaceStatus(results);
+    }
+    this.printWinners(results);
+  }
+
+  printRaceStatus(results) {
+    results.forEach((car) => {
+      Console.print(`${car.name}: ${"-".repeat(car.position)}`);
+    });
+    Console.print("");
+  }
+
+  printWinners(results) {
+    const maxPosition = Math.max(...results.map((car) => car.position));
+    const winners = results
+      .filter((car) => car.position === maxPosition)
+      .map((car) => car.name);
+    Console.print(`최종 우승자: ${winners.join(", ")}`);
   }
 }
 
