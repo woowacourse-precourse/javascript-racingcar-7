@@ -17,7 +17,9 @@ class App {
   async checkCarNameInput() {
     const carsInput = await Console.readLineAsync(
       `경주할 자동차 이름을 입력하세요.
-      (이름은 쉼표(,) 기준으로 구분 / 자동차는 최소 두대 이상이어야 합니다) : `
+      (이름은 쉼표(,) 기준으로 구분 / 
+      자동차는 최소 두대 이상이어야 합니다 / 
+      이름은 5자 이하만 가능합니다) : `
     );
 
     if (!carsInput.includes(",")) {
@@ -26,8 +28,18 @@ class App {
 
     const carsInputArray = carsInput.split(",");
 
-    if (carsInputArray.length < 2) {
-      return PrintFunc.printError("최소 두대 이상의 자동차를 참가 시켜주세요");
+    switch (true) {
+      case carsInputArray.some((input) => !input.trim()):
+        return PrintFunc.printError("자동차 이름을 다시 확인해 주세요");
+
+      case carsInputArray.length < 2:
+        return PrintFunc.printError("최소 두대 이상의 자동차를 참가 시켜주세요");
+
+      case carsInputArray.some((name) => name.length > 5):
+        return PrintFunc.printError("이름은 5글자 이하여야 합니다");
+
+      default:
+        break;
     }
 
     return carsInputArray;
