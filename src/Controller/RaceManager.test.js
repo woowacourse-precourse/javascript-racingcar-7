@@ -2,30 +2,29 @@ import { Console, MissionUtils } from '@woowacourse/mission-utils';
 import { RaceManager } from './RaceManager';
 import { Car } from '../Model/Car';
 
-describe('자동차 경주 차 생성', () => {
-  let raceManager;
+let raceManager;
+beforeEach(() => (raceManager = new RaceManager()));
 
-  beforeEach(() => (raceManager = new RaceManager()));
-
-  test('makeCar 에러 반환 ', () => {
+describe('자동차 경주 시작', () => {
+  test('5글자 이상인 이름 에러 반환하는지 테스트', () => {
     expect(() => raceManager.makeCar('pobibibi')).toThrow();
   });
 
-  test('car 생성', () => {
-    raceManager.makeCar('kim');
-    raceManager.makeCar('pobi');
-    expect(raceManager.carArray).toEqual([
-      { name: 'kim', distance: 0 },
-      { name: 'pobi', distance: 0 },
-    ]);
-  });
+  test.each([['kim'], ['pobi'], ['pone'], ['jake']])(
+    '%s 이름의 자동차 객체 생성 되어 저장되었는지 확인',
+    (first) => {
+      raceManager.makeCar(first);
+
+      expect(raceManager.carArray[raceManager.carArray.length - 1]).toEqual({
+        name: first,
+        distance: 0,
+      });
+    },
+  );
 });
 
 describe('자동차 경주 진행', () => {
-  let raceManager;
-
   beforeEach(() => {
-    raceManager = new RaceManager();
     raceManager.makeCar = jest.fn();
     raceManager.makeCar.mockImplementation(
       () => (raceManager.carArray = [new Car('kim'), new Car('pobi')]),
@@ -33,24 +32,20 @@ describe('자동차 경주 진행', () => {
     raceManager.makeCar();
   });
 
-  test('4 이상일 때 1칸 이동 ', () => {
-    const spyFn = jest.spyOn(MissionUtils.Random, 'pickNumberInRange');
-    spyFn.mockReturnValue(5);
-    raceManager.runRaceStep();
-    expect(raceManager.carArray[0].distance).toBe(1);
-  });
+  test.each([
+    [5, 1],
+    [3, 0],
+  ])('랜덤 숫자가 %s 일때 %s 칸 이동', (first, second) => {
+    jest.spyOn(MissionUtils.Random, 'pickNumberInRange').mockReturnValue(first);
 
-  test('4 미만일 때 이동하지 않음 ', () => {
-    jest.spyOn(MissionUtils.Random, 'pickNumberInRange').mockReturnValue(3);
-    expect(raceManager.carArray[0].distance).toBe(0);
+    raceManager.runRaceStep();
+
+    expect(raceManager.carArray[0].distance).toBe(second);
   });
 });
 
-describe('경주 단계 출력', () => {
-  let raceManager;
-
+describe('자동차 경주 결과', () => {
   beforeEach(() => {
-    raceManager = new RaceManager();
     raceManager.makeCar = jest.fn();
     raceManager.makeCar.mockImplementation(
       () =>
@@ -62,27 +57,13 @@ describe('경주 단계 출력', () => {
     raceManager.makeCar();
   });
 
-  test('경주 단계 출력', () => {
+  test('경주 한 단계 결과 출력', () => {
     const spyFn = jest.spyOn(Console, 'print');
+
     raceManager.showRaceStep();
 
     expect(spyFn).toHaveBeenNthCalledWith(1, 'kim : ----');
     expect(spyFn).toHaveBeenNthCalledWith(2, 'pobi : ---');
-  });
-});
-
-describe('경주 결과 산출', () => {
-  const raceManager = new RaceManager();
-  beforeEach(() => {
-    raceManager.makeCar = jest.fn();
-    raceManager.makeCar.mockImplementation(
-      () =>
-        (raceManager.carArray = [
-          { name: 'kim', distance: 4 },
-          { name: 'pobi', distance: 3 },
-        ]),
-    );
-    raceManager.makeCar();
   });
 
   test('최장 이동거리는 4칸', () => {
@@ -95,6 +76,7 @@ describe('경주 결과 산출', () => {
 
   test('우승자 이름은 kim', () => {
     const spyFn = jest.spyOn(Console, 'print');
+
     raceManager.announceWinner([{ name: 'kim', distance: 4 }]);
 
     expect(spyFn).toBeCalledWith('최종 우승자 : kim');
