@@ -1,4 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
+import findWinners  from "../logic/findWinners.js";
 import runRace  from "../logic/runRace.js";
 
 export default function printRaceResults(attemptCount, cars) {
@@ -15,4 +16,6 @@ export default function printRaceResults(attemptCount, cars) {
     Console.print("");
   });
 
+  const winners = findWinners(cars);
+  Console.print(`최종 우승자 : ${winners.join(", ")}`);
 }
