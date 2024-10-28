@@ -17,9 +17,13 @@ export class RacingModel {
   /** @type {number} */
   #round;
 
+  /** @type {Array<string>} */
+  #winners;
+
   constructor() {
     this.#rule = new RuleModel(new Validator());
     this.#round = 0;
+    this.#winners = [];
   }
 
   /**
@@ -84,5 +88,67 @@ export class RacingModel {
    */
   isRacing() {
     return this.#round !== this.#trialNumber;
+  }
+
+  /**
+   *
+   * @returns {Array<number>}
+   */
+  #getTravelDistances() {
+    return this.getCarDetails().map(({ travelDistance }) => travelDistance);
+  }
+
+  /**
+   *
+   * @param {Array<number>} distances
+   * @returns {number}
+   */
+  #calculateWinnerDistance(distances) {
+    return Math.max(...distances);
+  }
+
+  /**
+   *
+   * @param {number} travelDistance
+   * @returns {boolean}
+   */
+  #isWinner(travelDistance) {
+    return travelDistance === this.#calculateWinnerDistance(this.#getTravelDistances());
+  }
+
+  /**
+   *
+   * @param {string} name
+   * @param {number} travelDistance
+   */
+  #setWinner(name, travelDistance) {
+    if (this.#isWinner(travelDistance)) {
+      this.#winners.push(name);
+    }
+  }
+
+  /**
+   *
+   * @param {Array<string>} winners
+   * @returns {string}
+   */
+  #parseWinners(winners) {
+    if (winners.length === 1) {
+      return winners[0];
+    }
+
+    return winners.join(', ');
+  }
+
+  /**
+   *
+   * @returns {string}
+   */
+  getWinners() {
+    this.getCarDetails().forEach(({ name, travelDistance }) =>
+      this.#setWinner(name, travelDistance),
+    );
+
+    return this.#parseWinners(this.#winners);
   }
 }

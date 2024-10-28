@@ -38,17 +38,20 @@ class Module {
     this.#Controllers = controllers;
   }
 
-  init() {
+  async init() {
     const instantiatedModels = Module.generate(this.#Models);
     const instantiatedViews = Module.generate(this.#Views);
 
-    this.#Controllers.forEach((Controller) => {
-      // eslint-disable-next-line no-new
-      new Controller({
+    const promises = this.#Controllers.map(async (Controller) => {
+      const controller = new Controller({
         models: instantiatedModels,
         views: instantiatedViews,
       });
+
+      await controller.init();
     });
+
+    await Promise.all(promises);
   }
 }
 

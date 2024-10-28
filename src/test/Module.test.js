@@ -41,11 +41,9 @@ describe('Module', () => {
         this.#model = testModels;
         this.#model2 = testModels2;
         this.#view = testViews;
-
-        this.run();
       }
 
-      run() {
+      init() {
         // eslint-disable-next-line no-console
         console.log(this.#view.output(this.#model.getData() + this.#model2.getData()));
       }
@@ -75,10 +73,10 @@ describe('Module', () => {
   });
 
   describe('init', () => {
-    it('init 실행 시 controller가 실행되어야 한다', () => {
+    it('init 실행 시 controller가 실행되어야 한다', async () => {
       const consoleSpy = jest.spyOn(console, 'log');
 
-      module.init();
+      await module.init();
 
       expect(consoleSpy).toHaveBeenCalledWith('datadata2');
     });

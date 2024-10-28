@@ -9,6 +9,7 @@ export class RacingView {
 
   static MESSAGE = Object.freeze({
     GAME_START: '실행 결과',
+    GAME_END: (winners) => `최종 우승자 : ${winners}`,
   });
 
   /**
@@ -47,5 +48,13 @@ export class RacingView {
    */
   printRacing(cars) {
     cars.forEach((car) => output(`${car.name} : ${'-'.repeat(car.travelDistance)}`));
+  }
+
+  /**
+   *
+   * @param {string} winners
+   */
+  printGameEnd(winners) {
+    output(RacingView.MESSAGE.GAME_END(winners));
   }
 }

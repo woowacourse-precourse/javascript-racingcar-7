@@ -19,8 +19,6 @@ export class RacingController {
 
     this.#racingModel = racingModel;
     this.#racingView = racingView;
-
-    this.#init();
   }
 
   async #input() {
@@ -45,12 +43,17 @@ export class RacingController {
     }
   }
 
+  #raceEnd() {
+    this.#racingView.printGameEnd(this.#racingModel.getWinners());
+  }
+
   #race() {
     this.#raceStart();
     this.#raceAllRound();
+    this.#raceEnd();
   }
 
-  async #init() {
+  async init() {
     await this.#input();
 
     this.#race();
