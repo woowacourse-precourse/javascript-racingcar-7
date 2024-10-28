@@ -23,6 +23,9 @@ class App {
       
     }
 
+    this.#race.Winner();
+    this.#race.showWinner();
+    
   }
 }
 

@@ -34,6 +34,25 @@ class Race {
     Console.print('');
   }
 
+  Winner() {
+    let max = 0;
+    this.#cars.forEach(car => {
+      let forwardCount = car.getForwardCount();
+      if (max < forwardCount) {
+        max = forwardCount;
+      }
+    })
+
+    this.#cars.forEach(car => {
+      if (car.getForwardCount() == max){
+        this.#winners.push(car.getName());
+      }
+    })
+  }
+
+  showWinner() {
+    Console.print('최종 우승자 : ' + this.#winners.join(','));
+  }
 
 }
 
