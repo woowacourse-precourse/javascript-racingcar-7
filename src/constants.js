@@ -1,5 +1,7 @@
 const ERROR_PREFIX="[ERROR] ";
 const MIN_CAR_NAME_LENGTH=5;
+const MIN_RANDOM_VALUE=4;
+const RESULT_MESSAGE="최종 우승자 : ";
 
 const INPUT_MESSAGES={
     CAR_NAME_MESSAGE:"경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n",
@@ -11,4 +13,4 @@ const ERROR_MESSAGES={
     INVALID_ATTEMPT_COUNT: "시도 횟수는 양의 정수여야 합니다.",
 }
 
-export {MIN_CAR_NAME_LENGTH, INPUT_MESSAGES, ERROR_MESSAGES}
+export {MIN_CAR_NAME_LENGTH, INPUT_MESSAGES, ERROR_MESSAGES, RESULT_MESSAGE, MIN_RANDOM_VALUE}
