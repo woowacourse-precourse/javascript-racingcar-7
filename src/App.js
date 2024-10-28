@@ -39,11 +39,19 @@ class App {
   // 자동차 객체 생성하기
   createCars(input) {
     const CAR_NAMES = input.split(",");
+    const USED_NAMES = new Set(); // 이름 중복 검사용
+
     return CAR_NAMES.map((name) => {
       name = name.trim();
       if (name.length > 5) {
         throw new Error("[ERROR] 자동차 이름은 5자 이하로 작성해주세요.");
       }
+
+      if (USED_NAMES.has(name)) {
+        throw new Error(`[ERROR] 중복된 자동차 이름이 있습니다. : ${name}`);
+      }
+      USED_NAMES.add(name);
+
       return { name: name, position: 0 }; // 각 자동차의 초기 위치는 0으로 설정
     });
   }
