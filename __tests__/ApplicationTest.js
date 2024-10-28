@@ -124,4 +124,16 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR] 시도 횟수는 숫자를 입력해야 합니다.");
   });
+
+  test("시도 횟수를 음수로 값을 입력했을 경우 예외 테스트", async () => {
+    // given
+    const invalidInput = ["pobi,woni", -2]; // 시도 횟수로 유효하지 않은 값
+    mockQuestions(invalidInput);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR] 시도 횟수는 음수 값을 허용하지 않습니다.");
+  });
 });
