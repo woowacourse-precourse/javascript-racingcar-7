@@ -3,6 +3,7 @@ import App from "../src/App.js";
 import Input from "../src/view/Input.js";
 import Output from "../src/view/Output.js";
 import RacingGame from "../src/model/RacingGame.js";
+import { OUTPUT_PRINT_MESSAGES } from "../src/constants/printMessage.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -39,7 +40,7 @@ describe("자동차 경주", () => {
     const MOVING_FORWARD = 4;
     const STOP = 3;
     const inputs = ["pobi,woni", "1"];
-    const logs = ["\n실행 결과", "pobi : -", "woni : ", "최종 우승자 : pobi"];
+    const logs = [OUTPUT_PRINT_MESSAGES.resultTitle, "pobi : -", "woni : ", OUTPUT_PRINT_MESSAGES.winners("pobi")];
     const logSpy = getLogSpy();
 
     mockQuestions(inputs);

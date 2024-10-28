@@ -1,5 +1,6 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import Output from "../src/view/Output";
+import { OUTPUT_PRINT_MESSAGES } from "../src/constants/printMessage.js";
 
 const getLogSpy = () => {
   const logSpy = jest.spyOn(MissionUtils.Console, "print");
@@ -18,7 +19,7 @@ describe("출력", () => {
       Output.printWinners(cars);
 
       // then
-      expect(logSpy).toHaveBeenCalledWith("최종 우승자 : ham");
+      expect(logSpy).toHaveBeenCalledWith(OUTPUT_PRINT_MESSAGES.winners("ham"));
     });
 
     test("우승자 배열에 자동차 두개가 있을 때, 우승자를 출력하면, 공동 우승자 안내 문구를 출력한다.", () => {
@@ -30,7 +31,7 @@ describe("출력", () => {
       Output.printWinners(cars);
 
       // then
-      expect(logSpy).toHaveBeenCalledWith("최종 우승자 : ham, pobi");
+      expect(logSpy).toHaveBeenCalledWith(OUTPUT_PRINT_MESSAGES.winners("ham, pobi"));
     });
   });
 
@@ -41,7 +42,7 @@ describe("출력", () => {
         [{ name: "pobi", dist: 1 }, { name: "ham", dist: 0 }],
         [{ name: "pobi", dist: 2 }, { name: "ham", dist: 1 }],
       ];
-      const logs = ["\n실행 결과", "pobi : -", "ham : ", "pobi : --", "ham : -"];
+      const logs = [OUTPUT_PRINT_MESSAGES.resultTitle, "pobi : -", "ham : ", "pobi : --", "ham : -"];
       const logSpy = getLogSpy();
 
       // when
