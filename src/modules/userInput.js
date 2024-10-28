@@ -1,5 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
-import { carNameArrayValidate } from "./inputValidator";
+import { carNameArrayValidate, countValidate } from "./inputValidator";
 import Car from "../models/car";
 
 export async function getValidatedCars() {
@@ -14,4 +14,12 @@ export async function getValidatedCars() {
   const cars = carNameArray.map((name) => new Car(name));
 
   return cars;
+}
+
+export async function getValidatedCount() {
+  const count = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+
+  countValidate(count);
+
+  return count;
 }
