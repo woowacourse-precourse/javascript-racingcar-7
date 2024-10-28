@@ -1,11 +1,12 @@
 import view from './view.js';
 import validator from './utils/validator.js';
 import { STRINGS } from './constants/values.js';
-import Car from './Car.js';
+import Game from './Game.js';
 
 class Controller {
+  #game;
+
   async play() {
-    Car.clearInstances();
     await this.#readCars();
     await this.#readTrialCount();
   }
@@ -14,7 +15,7 @@ class Controller {
     const carNameAnswer = await view.readCars();
     const carNames = carNameAnswer.split(STRINGS.inputNameDelimiter);
     validator.validateCarNames(carNames);
-    Car.addCarInstances(carNames);
+    this.#game = new Game(carNames);
   }
 
   async #readTrialCount() {
@@ -24,7 +25,7 @@ class Controller {
   }
 
   #executeOnce() {
-    const totalCarProgress = Car.executeAllCars();
+    const totalCarProgress = this.#game.moveAndGetResultOfAllCars();
     totalCarProgress.forEach(({ name, progress }) => {
       view.printProgress(name, progress);
     });
@@ -40,7 +41,7 @@ class Controller {
   }
 
   #printWinner() {
-    const winners = Car.getWinner();
+    const winners = this.#game.getWinner();
     view.printWinner(winners);
   }
 }
