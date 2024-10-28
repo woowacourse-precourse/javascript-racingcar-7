@@ -1,4 +1,5 @@
 import {MissionUtils} from "@woowacourse/mission-utils";
+import Utils from "./Utils.js";
 
 class View {
   static async readLineCarNames() {
@@ -27,6 +28,20 @@ class View {
 
   static printNewLine() {
     MissionUtils.Console.print('');
+  }
+
+  static printRoundScore(tryCount, racingRoundResult) {
+    this.printNewLine();
+    MissionUtils.Console.print(`실행 결과`);
+
+    Utils.range(tryCount).forEach((_, index) => {
+      racingRoundResult.forEach((count) => {
+        const recordsRound = count.records.slice(0, index + 1).filter(Boolean).length;
+        const scoreChangeToDash = Utils.range(recordsRound).map(() => '-').join('');
+        MissionUtils.Console.print(`${count.name} : ${scoreChangeToDash}`);
+      });
+      this.printNewLine();
+    });
   }
 
   static printFinalWinner(winners) {
