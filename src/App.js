@@ -2,25 +2,31 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 
 class App {
   async run() {
-    const input = await MissionUtils.Console.readLineAsync(
-      "경주할 자동차 이름을 쉼표로 구분하여 입력해주세요. \n"
-    );
-    const count = await MissionUtils.Console.readLineAsync(
-      "시도할 횟수는 몇 회인가요? \n"
-    );
-
     try {
+      const input = await MissionUtils.Console.readLineAsync(
+        "경주할 자동차 이름을 쉼표로 구분하여 입력해주세요. \n"
+      );
+      const count = await MissionUtils.Console.readLineAsync(
+        "시도할 횟수는 몇 회인가요? \n"
+      );
+
       const { resultList, parsed } = this.racing(input, count);
-      resultList.forEach((item) => {
-        for (const key in item) {
-          MissionUtils.Console.print(`${key} : ${item[key]}`);
-        }
-        MissionUtils.Console.print("");
-      });
+
+      // run 메서드의 indent depth를 낮추기 위해 forEach문을 map 함수 사용으로 변경
+      MissionUtils.Console.print(
+        resultList
+          .map((item) => {
+            return Object.entries(item)
+              .map(([key, value]) => `${key} : ${value}`)
+              .join("\n");
+          })
+          .join("\n\n")
+      );
+
+      MissionUtils.Console.print("");
       MissionUtils.Console.print(parsed);
     } catch (error) {
       MissionUtils.Console.print(error.message);
-
       throw error;
     }
   }
