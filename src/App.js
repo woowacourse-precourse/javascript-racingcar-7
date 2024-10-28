@@ -102,10 +102,14 @@ class App {
         winners.push(arr[index]);
       }
     });
-    // //join은 배열 요소를 쉼표와 띄어쓰기로 연결해 하나의 문자열로 만들어준다.
-    const parsed = "최종 우승자 : " + winners.join(", ");
-
-    return parsed;
+    if (max === 0) {
+      const parsed = "아무도 득점하지 못했습니다.";
+      return parsed;
+    } else {
+      const parsed = "최종 우승자 : " + winners.join(", ");
+      return parsed;
+    }
+    // return parsed;
   }
 }
 
