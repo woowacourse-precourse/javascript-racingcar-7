@@ -1,11 +1,12 @@
-import {Console, Random} from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 
 class App {
   async run() {
     const carNames = await this.getCarNames();
     const times = await this.getTimes();
     const scores = this.setScores(carNames);
-    await this.playGame(times, carNames, scores)
+    this.playGame(times, carNames, scores);
+    const winners = this.getWinners(carNames, scores);
   }
 
   async getCarNames() {
@@ -61,7 +62,7 @@ class App {
 
   isMovingForward() {
     const n = Random.pickNumberInRange(0, 9);
-    return n >= 4
+    return n >= 4;
   }
 
   playRound(carNames, scores) {
@@ -69,13 +70,15 @@ class App {
       if (this.isMovingForward()) {
         scores[carName]++;
       }
-    })
+    });
 
-    this.showRoundResult(carNames, scores)
+    this.showRoundResult(carNames, scores);
   }
 
   showRoundResult(carNames, scores) {
-    carNames.forEach((carName) => Console.print(`${carName} : ${"-".repeat(scores[carName])}`));
+    carNames.forEach((carName) =>
+      Console.print(`${carName} : ${"-".repeat(scores[carName])}`),
+    );
     Console.print(" ");
   }
 
@@ -84,6 +87,20 @@ class App {
     for (let i = 0; i < times; i++) {
       this.playRound(carNames, scores);
     }
+  }
+
+  getWinners(carNames, scores) {
+    let highestScore = 0;
+    let winners = [];
+    carNames.forEach((carName) => {
+      if (scores[carName] > highestScore) {
+        highestScore = scores[carName];
+        winners = [carName];
+      } else if (scores[carName] === highestScore) {
+        winners.push(carName);
+      }
+    });
+    return winners;
   }
 }
 
