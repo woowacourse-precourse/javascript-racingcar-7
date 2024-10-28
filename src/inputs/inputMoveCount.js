@@ -15,7 +15,19 @@ export async function inputMoveCount() {
 }
 
 function validateInputCount(count) {
+  validateBlank(count);
+  validateNumber(count);
+  validatePositive(count);
+}
+
+function validateBlank(count) {
   if (count == "") throwError(ERROR_BLANK);
+}
+
+function validateNumber(count) {
   if (isNaN(count)) throwError(ERROR_INVALID_INPUT_TYPE);
+}
+
+function validatePositive(count) {
   if (count <= 0) throwError(ERROR_INVALID_MOVE_COUNT);
 }
