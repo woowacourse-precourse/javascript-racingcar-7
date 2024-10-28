@@ -30,6 +30,7 @@ describe("기능 검사", () => {
 
   test("moveCar 함수 테스트", () => {
     const racingCarsPos = { pobi: "---", woni: "--", jason: "--" };
+    mockRandoms([5]);
     app.moveCar(racingCarsPos, "pobi");
     expect(racingCarsPos["pobi"]).toBe("----");
   });
