@@ -46,9 +46,69 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트", async () => {
+  test("예외 테스트 (자동차 이름 - 빈 문자열)", async () => {
+    // given
+    const inputs = ["pobi, ,"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 (자동차 이름 - 5글자 이상)", async () => {
     // given
     const inputs = ["pobi,javaji"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 (자동차 이름 - 특수문자 포함)", async () => {
+    // given
+    const inputs = ["pobi,!, jun"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 (자동차 이름 - 2개 미만)", async () => {
+    // given
+    const inputs = ["pobi"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 (게임 시행 횟수 - 음수)", async () => {
+    // given
+    const inputs = ["pobi, woni", "-1"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 (게임 시행 횟수 - 문자)", async () => {
+    // given
+    const inputs = ["pobi, woni", "o"];
     mockQuestions(inputs);
 
     // when
