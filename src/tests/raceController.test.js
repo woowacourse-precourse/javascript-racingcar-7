@@ -17,4 +17,11 @@ describe('raceController Test', () => {
   test('inputAttemps 입력값이 올바르게 생성된다.', () => {
     expect(controller.attemps).toBe(5);
   });
+
+  test('maxPosition 값이 올바르게 반환되는 지 확인한다.', () => {
+    controller.cars[0].position = 2;
+    controller.cars[1].position = 3;
+    controller.cars[2].position = 4;
+    expect(controller.getMaxPosition()).toBe(4);
+  });
 });
