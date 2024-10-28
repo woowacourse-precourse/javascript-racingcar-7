@@ -36,6 +36,8 @@
 
 `ZeroRoundError` : “[ERROR] 진행할 횟수는 1 이상 이어야 합니다.”
 
+`NegativeRoundError` : "[ERROR] 횟수는 양수여야 합니다."
+
 `InvalidRoundError` : “[ERROR] 횟수 입력이 잘못되었습니다.”
 
 `NoWinnerError` : “[ERROR] 경주의 우승자가 존재하지 않습니다.”

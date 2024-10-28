@@ -3,6 +3,11 @@ import { ERROR_MESSAGES } from "../errorMessages.js";
 
 export function printWinner(carDistances, carNames) {
   const maxValue = Math.max(...carDistances);
+
+  if (maxValue === 0) {
+    throw new Error(ERROR_MESSAGES.NO_WINNER_EXIST_ERROR);
+  }
+
   const winners = carNames.filter(
     (_, index) => carDistances[index] === maxValue
   );

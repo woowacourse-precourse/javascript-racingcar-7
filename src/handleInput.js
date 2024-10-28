@@ -25,8 +25,12 @@ function validateRound(round) {
     throw new Error(ERROR_MESSAGES.INVALID_ROUND_ERROR);
   }
 
-  if (roundNumber <= 0) {
+  if (roundNumber === 0) {
     throw new Error(ERROR_MESSAGES.ZERO_ROUND_ERROR);
+  }
+
+  if (roundNumber < 0) {
+    throw new Error(ERROR_MESSAGES.NEGATIVE_ROUND_ERROR);
   }
 
   return roundNumber;
