@@ -18,19 +18,24 @@ class App {
       return count;
     };
 
+    const updateScore = (str, result) => {
+      if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) {
+        result[str] += 1;
+      }
+      MissionUtils.Console.print(`${str} : ${"-".repeat(result[str])}`);
+    };
+
     const tryRace = async (input, count) => {
       MissionUtils.Console.print("실행 결과");
-      const result = {};
-      input.forEach((str) => {
-        result[str] = 0;
-      });
+
+      const result = input.reduce((acc, str) => {
+        acc[str] = 0;
+        return acc;
+      }, {});
 
       for (let i = 0; i < count; i++) {
         input.forEach((str) => {
-          if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) {
-            result[str] += 1;
-          }
-          MissionUtils.Console.print(`${str} : ${"-".repeat(result[str])}`);
+          updateScore(str, result);
         });
         MissionUtils.Console.print("");
       }
