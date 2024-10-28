@@ -3,7 +3,7 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 //[x]  2.  이름이 5자 이하인 자동차 구분하기 (3.)
 //[x]  3.  잘못된 값 입력시 ERROR 발생시키기 (8.)
 //[x]  4.  랜덤한 전진 조건 정해서 출력하기 (5. 1. 2.)
-//[] 5.  시도횟수만큼 전진 조건에 맞게 출력하기 (2.)
+//[x] 5.  시도횟수만큼 전진 조건에 맞게 출력하기 (2.)
 //[] 6.  마지막 출력의 -을 비교하여 최대 값의 자동차 이름들 출력하기 (6. 7.)
 
 class App {
@@ -38,9 +38,15 @@ class App {
   onGetGOorNot(carList) {
     return carList.map((car) => {
       const Random = this.onGetRandomGo();
-      const Go = Random >= 4 ? '-' : '';
-      return `${car} : ${Go}`;
+      return Random >= 4 ? '-' : '';
     });
+  }
+  // 자동차별 결과 출력 함수
+  printResult(carList, results) {
+    results.forEach((result, index) => {
+      MissionUtils.Console.print(`${carList[index]} : ${result}`);
+    });
+    MissionUtils.Console.print('');
   }
   async run() {
     try {
@@ -57,11 +63,18 @@ class App {
       MissionUtils.Console.print(`차: ${carList}`);
       MissionUtils.Console.print(`횟수: ${tryNumber}`);
 
-      // 랜덤한 전진 결과
-      const outputs = this.onGetGOorNot(carList);
-      outputs.forEach((output) => {
-        MissionUtils.Console.print(output);
-      });
+      // 자동차별 결과 배열
+      const results = Array(carList.length).fill('');
+
+      // tryNumber 만큼 랜덤한 전진 결과
+      for (let i = 0; i < tryNumber; i++) {
+        const outputs = this.onGetGOorNot(carList);
+        outputs.forEach((output, index) => {
+          results[index] += output;
+        });
+
+        this.printResult(carList, results);
+      }
     } catch (error) {
       // reject 되는 경우
       MissionUtils.Console.print('[ERROR]');
