@@ -57,4 +57,69 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
+
+});
+
+describe('테이스 케이스 추가', () => {
+  test.each([
+    {
+      name: '세 명의 참가자가 모두 우승하는 경우',
+      randoms: [4, 4, 4],
+      inputs: ['pobi,woni,jun', '1'],
+      logs: ['pobi : -', 'woni : -', 'jun : -', '최종 우승자 : pobi, woni, jun'],
+    },
+
+  ])('테스트 케이스 : $name', async ({ randoms, inputs, logs }) => {
+    mockQuestions(inputs);
+    mockRandoms(randoms);
+    const logSpy = getLogSpy();
+
+    const app = new App();
+    await app.run();
+
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(log);
+    });
+  });
+  test.each([
+    {
+      name: '자동차 개수가 1개인 경우 ',
+      inputs: ['pobi', '1'],
+    },
+    {
+      name: '자동차 이름이 빈 문자열인 경우',
+      inputs: ['', '1'],
+    },
+    {
+      name: '자동차 이름의 길이가 5 초과인 경우',
+      inputs: ['pobi,woni,aaaaaaaaa', '1'],
+    },
+    {
+      name: '시도 횟수가 빈 문자열인 경우',
+      inputs: ['pobi,woni', ''],
+    },
+    {
+      name: '시도 횟수가 문자열인 경우',
+      inputs: ['pobi,woni', 'asd'],
+    },
+    {
+      name: '시도 횟수가 음수인 경우',
+      inputs: ['pobi,woni', '-1'],
+    },
+    {
+      name: '시도 횟수가 0인 경우',
+      inputs: ['pobi,woni', '0'],
+    },
+    {
+      name: '시도 횟수가 실수인 경우',
+      inputs: ['pobi,woni', '1.5'],
+    },
+  ])('예외 테스트: $name', async ({ inputs }) => {
+    mockQuestions(inputs);
+    
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
 });
