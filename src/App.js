@@ -1,4 +1,4 @@
-import IOProcessor from "./InputProcessor.js";
+import IOProcessor from "./IOProcessor.js";
 import StringParser from "./StringParser.js";
 import RacingController from "./RacingController.js";
 

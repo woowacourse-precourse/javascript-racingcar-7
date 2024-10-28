@@ -1,5 +1,5 @@
 import Accelerator from './Accelearator.js';
-import IOProcessor from './InputProcessor.js';
+import IOProcessor from './IOProcessor.js';
 
 /**
  *
