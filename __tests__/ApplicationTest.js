@@ -95,18 +95,27 @@ describe("자동차 경주", () => {
   });
 
   test("시도 횟수가 0일 때 예외 테스트", async () => {
-    const inputs = ["pobi,woni", 0];
+    const inputs = ["pobi,ho", 0];
     mockQuestions(inputs);
     const app = new App();
     await expect(app.run()).rejects.toThrow(ERROR_MESSAGES.ZERO_ATTEMPT_COUNT);
   });
 
   test("시도 횟수가 음수일 때 예외 테스트", async () => {
-    const inputs = ["pobi,woni", -1];
+    const inputs = ["pobi,ho", -1];
     mockQuestions(inputs);
     const app = new App();
     await expect(app.run()).rejects.toThrow(
       ERROR_MESSAGES.NEGATIVE_ATTEMPT_COUNT
+    );
+  });
+
+  test("시도 횟수가 정수가 아닐 때 예외 테스트", async () => {
+    const inputs = ["pobi,ho", 0.1];
+    mockQuestions(inputs);
+    const app = new App();
+    await expect(app.run()).rejects.toThrow(
+      ERROR_MESSAGES.NON_INTEGER_ATTEMPT_COUNT
     );
   });
 });
