@@ -1,7 +1,7 @@
 import carsInputValidate from '../src/utils/CarsInputValidator.js';
 import { CarInputErrorMessage } from '../src/errorMessages.js';
 
-describe("검증 함수 테스트", () => {
+describe("자동차 입력 검증 함수 테스트", () => {
     test("자동차 입력 검증(성공)", () => {
         expect(carsInputValidate("pobi,woni,jun")).toBeUndefined();
     });
