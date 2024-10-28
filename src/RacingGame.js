@@ -28,6 +28,15 @@ class RacingGame {
   }
 
   setCount(count) {
+    const isInteger = Number.isInteger(count);
+    if (!isInteger) {
+      throw new Error('시도할 횟수는 정수로만 입력이 가능합니다.');
+    }
+
+    if (count <= 0) {
+      throw new Error('시도할 횟수는 양수로만 입력이 가능합니다.');
+    }
+
     this.count = count;
   }
 

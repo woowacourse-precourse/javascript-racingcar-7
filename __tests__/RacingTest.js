@@ -24,3 +24,18 @@ describe('자동차 이름 입력 테스트', () => {
     expect(() => racingGame.setRacingCars('p bi,woni,jun')).toThrow();
   });
 });
+
+describe('시도할 횟수 입력 테스트', () => {
+  const racingGame = new RacingGame();
+  test('시도할 횟수에 정수가 아닌 값 입력 시 예외가 발생합니다.', () => {
+    expect(() => racingGame.setCount(0.4)).toThrow();
+  });
+
+  test('시도할 횟수에 음수 입력 시 예외가 발생합니다.', () => {
+    expect(() => racingGame.setCount(-1)).toThrow();
+  });
+
+  test('시도할 횟수에 0 입력 시 예외가 발생합니다.', () => {
+    expect(() => racingGame.setCount(0)).toThrow();
+  });
+});
