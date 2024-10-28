@@ -57,4 +57,47 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
+  test("자동차 이름이 빈 문자열일 경우 예외가 발생해야 합니다.", async () => {
+    // given
+    const inputs = [",,"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow(
+      "[ERROR] 자동차 이름은 1자 이상 5자 이하여야 합니다."
+    );
+  });
+
+  test("시도 횟수가 0 이하일 경우 예외가 발생해야 합니다.", async () => {
+    // given
+    const inputs = ["pobi,woni", "0"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow(
+      "[ERROR] 시도 횟수는 1 이상의 숫자여야 합니다."
+    );
+  });
+
+  test("시도 횟수가 숫자가 아닌 경우 예외가 발생해야 합니다.", async () => {
+    // given
+    const inputs = ["pobi,woni", "five"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow(
+      "[ERROR] 시도 횟수는 1 이상의 숫자여야 합니다."
+    );
+  });
+
 });
