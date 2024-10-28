@@ -1,9 +1,9 @@
-import CarRace from "./controller/CarRace.js";
+import CarRacing from "./controller/CarRacing.js";
 
 class App {
   async run() {
-    const carRace = new CarRace();
-    carRace.init();
+    const carRacing = new CarRacing();
+    carRacing.init();
   }
 }
 

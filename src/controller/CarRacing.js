@@ -1,10 +1,9 @@
 import InputView from "../view/InputView.js";
 import Validator from "./Validator.js";
 import RacingCars from "../model/RacingCars.js";
-import { getRandomDigit } from "../utils/random.js";
 import OutputView from "../view/OutputView.js";
 
-class CarRace {
+class CarRacing {
   constructor() {}
 
   async init() {
@@ -66,4 +65,4 @@ class CarRace {
   }
 }
 
-export default CarRace;
+export default CarRacing;

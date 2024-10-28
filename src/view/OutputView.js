@@ -1,6 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
 import { OUTPUT_MESSAGE } from "../constants/messages.js";
-import RacingCars from "../model/RacingCars.js";
 
 class OutputView {
   static executionResult() {
