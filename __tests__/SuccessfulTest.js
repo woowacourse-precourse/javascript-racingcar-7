@@ -9,6 +9,29 @@ import {
 // Successful Test cases
 const validTestCases = [
   {
+    description: '과제 페이지 실행 결과 예시',
+    inputs: ['pobi,woni,jun', '5'],
+    randoms: [5, 3, 5, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8],
+    expectedLogs: [
+      'pobi : -',
+      'woni : ',
+      'jun : -',
+      'pobi : --',
+      'woni : -',
+      'jun : --',
+      'pobi : ---',
+      'woni : --',
+      'jun : ---',
+      'pobi : ----',
+      'woni : ---',
+      'jun : ----',
+      'pobi : -----',
+      'woni : ----',
+      'jun : -----',
+      '최종 우승자 : pobi, jun',
+    ],
+  },
+  {
     description: '우승자가 여러 명일 때 테스트',
     inputs: ['pobi,woni,honux', '3'],
     randoms: [8, 8, 8, 8, 8, 8, 8, 8, 8],
@@ -71,6 +94,7 @@ const validTestCases = [
       '최종 우승자 : 😀😀😀😀😀',
     ],
   },
+
   {
     description: '이름이 하나인 경우 성공 테스트',
     inputs: ['pobi', '3'],
