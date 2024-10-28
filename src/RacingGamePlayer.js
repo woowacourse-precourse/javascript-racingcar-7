@@ -14,6 +14,7 @@ class RacingGamePlayer {
   }
 
   moveCars() {
+    MissionUtils.Console.print(messages.newLine + messages.showRoundResults);
     for (let i = 0; i < this.roundNumber; i++) {
       this.cars.forEach((car) => car.move());
       this.printRoundResults();
@@ -45,7 +46,6 @@ class RacingGamePlayer {
   }
 
   play() {
-    MissionUtils.Console.print(messages.newLine + messages.showRoundResults);
     this.moveCars();
     this.winner = this.findWinner();
     this.announceWinner();
