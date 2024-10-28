@@ -1,4 +1,4 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 
 class RacingCar {
   #cars;
@@ -10,6 +10,13 @@ class RacingCar {
   constructor() {
     this.#cars = [];
     this.#status = [];
+  }
+
+  moveForward() {
+    this.#cars.forEach((car, index) => {
+      const number = Random.pickNumberInRange(0, 9);
+      if (number >= 4) this.#status[index] += '-';
+    });
   }
 
   async receiveInput() {
