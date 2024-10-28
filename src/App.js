@@ -6,6 +6,11 @@ class App {
     const TIMES = await this.getTime();
     const NAMES_COUNT = NAMES.length;
     let gameInfo = Array.from({ length: NAMES.length }, () => 0);
+    Console.print("\n실행 결과");
+    for (let i = 0; i < TIMES; i++) {
+      gameInfo = await this.makeRandomNum(gameInfo, NAMES_COUNT)
+      await this.printGame(gameInfo, NAMES, NAMES_COUNT);
+    }
   }
 
   async getNames() {
@@ -57,6 +62,7 @@ class App {
     for (let i = 0; i < NAMES_COUNT; i++) {
       Console.print(NAMES[i] + ' : ' + '-'.repeat(gameInfo[i]));
     }
+    Console.print('');
   }
 }
 
