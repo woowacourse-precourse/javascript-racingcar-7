@@ -4,19 +4,19 @@ const throwValidationError = (message) => {
   throw new Error(`${ERROR_PREFIX} ${message}`);
 };
 
-const validateInputExists = (input, message) => {
+const checkInputExists = (input, message) => {
   if (!input) {
     throwValidationError(message);
   }
 };
 
-const validateDelimiter = (input) => {
+const checkDelimiter = (input) => {
   if (REGEX.isInvalidDelimiter.test(input)) {
     throwValidationError(ERROR_MESSAGES.invalidDelimiter);
   }
 };
 
-const validateDuplication = (input) => {
+const checkDuplication = (input) => {
   const carNames = input.split(',');
   const uniqueCarNames = new Set(carNames);
 
@@ -25,26 +25,26 @@ const validateDuplication = (input) => {
   }
 };
 
-const validateNameInputFormat = (input) => {
+const checkNameInputFormat = (input) => {
   if (!REGEX.isValidCarNameFormat.test(input)) {
     throwValidationError(ERROR_MESSAGES.invalidCarNameFormat);
   }
 };
 
-const validateRoundCountFormat = (input) => {
+const checkRoundCountFormat = (input) => {
   if (!REGEX.isValidRoundCountFormat.test(input)) {
     throwValidationError(ERROR_MESSAGES.invalidRoundCountFormat);
   }
 };
 
 export const validateCarNames = (input) => {
-  validateInputExists(input, ERROR_MESSAGES.emptyCarName);
-  validateDelimiter(input);
-  validateDuplication(input);
-  validateNameInputFormat(input);
+  checkInputExists(input, ERROR_MESSAGES.emptyCarName);
+  checkDelimiter(input);
+  checkDuplication(input);
+  checkNameInputFormat(input);
 };
 
 export const validateRoundCount = (input) => {
-  validateInputExists(input, ERROR_MESSAGES.emptyRoundCount);
-  validateRoundCountFormat(input);
+  checkInputExists(input, ERROR_MESSAGES.emptyRoundCount);
+  checkRoundCountFormat(input);
 };
