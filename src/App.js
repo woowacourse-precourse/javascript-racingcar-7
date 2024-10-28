@@ -7,9 +7,15 @@ class App {
       const input = await MissionUtils.Console.readLineAsync("");
       return input.split(",");
     };
+    const getCount = async () => {
+      MissionUtils.Console.print("시도할 횟수를 입력해 주세요");
+      return parseInt(await MissionUtils.Console.readLineAsync(""), 10);
+    };
 
     const input = await getInput();
-    MissionUtils.Console.print(input);
+    const count = await getCount();
+
+    MissionUtils.Console.print(count);
   }
 }
 
