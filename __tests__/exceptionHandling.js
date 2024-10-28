@@ -10,7 +10,20 @@ const mockQuestions = (inputs) => {
   });
 };
 
-describe("예외 처리 테스트", () => {
+const mockRandoms = (numbers) => {
+  MissionUtils.Random.pickNumberInRange = jest.fn();
+
+  numbers.reduce((acc, number) => {
+    return acc.mockReturnValueOnce(number);
+  }, MissionUtils.Random.pickNumberInRange);
+};
+
+const getLogSpy = () => {
+  const logSpy = jest.spyOn(MissionUtils.Console, "print");
+  logSpy.mockClear();
+  return logSpy;
+};
+describe("자동차 경주 테스트", () => {
   test.each([
     ["자동차 이름이 5자를 초과했을 경우", ["minimanimu,mi"]],
     ["자동차 이름에 중복되는 이름이 있을 경우", ["mi,ni,mi"]],
@@ -23,5 +36,23 @@ describe("예외 처리 테스트", () => {
     mockQuestions(inputs);
     const app = new App();
     await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("기능 테스트 - 여러명의 우승자가 발생할 수 있다.", async () => {
+    const MOVING_FORWARD = 5;
+    const STOP = 2;
+    const inputs = ["min,ji,jea", "1"];
+    const logs = ["min : ", "ji : -", "jea : -", "최종 우승자 : ji,jea"];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([STOP, MOVING_FORWARD, MOVING_FORWARD]);
+
+    const app = new App();
+    await app.run();
+
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
   });
 });
