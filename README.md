@@ -6,6 +6,10 @@
 
 MVC 패턴을 통한 기능 구현을 목표했습니다.
 
+
+## 📦 폴더 구조
+![image](https://github.com/user-attachments/assets/3d975afb-d8ff-46d7-a268-f9bad46df9d8)
+
 ## 📋 구현할 기능 목록
 
 ### 🗂 Model
@@ -123,3 +127,6 @@ MVC 패턴을 통한 기능 구현을 목표했습니다.
 - constants.js에서 불필요한 상수 제거 및 TEST_DESCRIPTIONS를 test.each 사용에 적합하게 사용
 - ApplicationTest.js에서 테스트 설명을 상수들을 활용
 - ApplicationTest.js에서자동차 이름 검증과 시도 횟수 검증을 test.each를 활용해서 코드 가독성 향상
+
+## 💭 회고
+🔗 [프리코스 2주차 회고](https://quickchabun.tistory.com/146)
