@@ -1,5 +1,3 @@
-import { MissionUtils } from '@woowacourse/mission-utils';
-
 export default class RaceGame {
   constructor(participants, gameAttempts) {
     this.participants = participants;

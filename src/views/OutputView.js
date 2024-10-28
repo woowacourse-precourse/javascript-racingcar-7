@@ -1,4 +1,4 @@
-import { Console, MissionUtils } from '@woowacourse/mission-utils';
+import { Console } from '@woowacourse/mission-utils';
 
 export class OutputView {
   static printResult(result) {

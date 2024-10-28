@@ -1,12 +1,12 @@
-import { InputView, OutputView } from '../src/views/index.js';
-import { Console } from '@woowacourse/mission-utils';
-
 jest.mock('@woowacourse/mission-utils', () => ({
   Console: {
     readLineAsync: jest.fn(),
     print: jest.fn(),
   },
 }));
+
+import { InputView, OutputView } from '../src/views/index.js';
+import { Console } from '@woowacourse/mission-utils';
 
 describe('Views', () => {
   afterEach(() => {
