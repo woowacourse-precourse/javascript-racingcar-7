@@ -8,3 +8,11 @@ const validateCarName = (name) => {
         throw new Error("[ERROR] 자동차 이름은 영어 알파벳으로만 구성되어야 합니다.");
     }
 };
+const validateMoveCount = (count) => {
+    if (isNaN(count)) {
+        throw new Error(`[ERROR] 이동 횟수는 숫자여야 합니다.`);
+    }
+    if (count < 1) {
+        throw new Error(`[ERROR] 이동 횟수는 1 이상의 양수여야 합니다.`);
+    }
+};
