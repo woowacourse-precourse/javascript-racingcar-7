@@ -32,17 +32,67 @@ const getLogSpy = () => {
   return logSpy;
 };
 
-describe("자동차 경주", () => {
-  test("기능 테스트", () => {
+describe("자동차 경주 추가 테스트", () => {
+  test("이동 횟수가 유효하지 않은 경우 예외 처리", () => {
     // given
-    const MOVING_FORWARD = 4;
-    const STOP = 3;
-    const inputs = ["pobi,woni", "1"];
-    const logs = ["1 차시:", "pobi : -", "woni : ", "최종 우승자 : pobi"];
+    const inputs = ["pobi,woni,jun", "0"]; // 0회 입력은 유효하지 않음
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    expect(() => app.run()).toThrow(
+      "[ERROR] 이동 횟수는 1 이상의 정수여야 합니다."
+    );
+  });
+
+  test("자동차 이름이 공백이거나 너무 긴 경우 예외 처리", () => {
+    // given
+    const inputs = ["pobi,,jun", "3"]; // 빈 이름이 포함된 경우
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    expect(() => app.run()).toThrow(
+      "[ERROR] 각 자동차 이름은 1자 이상 5자 이하이어야 합니다."
+    );
+  });
+
+  test("자동차 이름이 5대 이상 입력된 경우 예외 처리", () => {
+    // given
+    const inputs = ["pobi,woni,jun,woo,kakao,naver", "3"]; // 5대 이상
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    expect(() => app.run()).toThrow(
+      "[ERROR] 자동차는 최대 5대까지 입력 가능합니다."
+    );
+  });
+
+  test("동일한 점수로 여러 우승자가 있는 경우", () => {
+    // given
+    const inputs = ["pobi,woni,jun", "2"];
+    const logs = [
+      "1 차시:",
+      "pobi : -",
+      "woni : -",
+      "jun : -",
+      "2 차시:",
+      "pobi : --",
+      "woni : --",
+      "jun : --",
+      "최종 우승자 : pobi, woni, jun",
+    ];
     const logSpy = getLogSpy();
 
     mockQuestions(inputs);
-    mockRandoms([MOVING_FORWARD, STOP]);
+    mockRandoms([4, 4, 4, 4, 4, 4]); // 모두 전진하도록 설정
 
     // when
     const app = new App();
@@ -54,15 +104,15 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트", () => {
+  test("자동차 이름에 중복된 이름이 있는 경우 예외 처리", () => {
     // given
-    const inputs = ["pobi,javaji"];
+    const inputs = ["pobi,pobi,jun", "3"]; // 중복된 이름 입력
     mockQuestions(inputs);
 
     // when
     const app = new App();
 
     // then
-    expect(() => app.run()).toThrow("[ERROR] 입력값에 문제가 있습니다");
+    expect(() => app.run()).toThrow("[ERROR] 자동차 이름에 중복이 있습니다.");
   });
 });
