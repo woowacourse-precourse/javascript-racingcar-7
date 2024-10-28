@@ -26,6 +26,13 @@ function setPlayer(INPUT) {
 }
 
 function printRace(INPUT2, PLAYERS, GOING) {
+  if (isNaN(Number(INPUT2))) {
+    throw new Error("숫자가 아닙니다.");
+  } else if (Number(INPUT2) < 0) {
+    throw new Error("숫자가 음수입니다.");
+  } else if (!Number.isInteger(INPUT2)) {
+    throw new Error("숫자가 정수가 아닙니다.");
+  }
   MissionUtils.Console.print("실행 결과\n");
   for (let i = 0; i < INPUT2; i++) {
     setGoing(GOING);
@@ -54,7 +61,6 @@ function setWinner(PLAYERS, GOING) {
     } else if (count === GOING[i].length) {
       winner.push(PLAYERS[i])
     }
-    console.log(count, winner)
   }
   let theWinner = winner.join(', ')
   MissionUtils.Console.print("최종 우승자 : " + theWinner);
