@@ -26,19 +26,40 @@ class App {
     return Random.pickNumberInRange(0, 9) >= 4;
   }
 
+  compareWinner(maxLength, idx) {
+    if (this.answer_candidate[idx].length === maxLength) {
+      this.winner.push(this.carsName[idx]);
+    }
+  }
+
   getWinner() {
     const maxLength = Math.max(...this.answer_candidate.map((el) => el.length));
     for (let i = 0; i < this.answer_candidate.length; i++) {
-      if (this.answer_candidate[i].length === maxLength) {
-        this.winner.push(this.carsName[i]);
-      }
+      this.compareWinner(maxLength, i);
+    }
+  }
+
+  moveCar(idx) {
+    if (this.getStartCondition()) {
+      this.answer_candidate[idx].push("-");
+    }
+  }
+
+  async moveCars(carsName) {
+    for (let j = 0; j < carsName.length; j++) {
+      this.moveCar(j);
+      await this.showInput(
+        `${carsName[j]} : ${this.answer_candidate[j].join("")}`
+      );
     }
   }
 
   validateCarName(name) {
     if (name.length < 1 || name.length > 5) {
       throw new Error("[ERROR] 자동차 이름은 1자 이상 5자 이하만 가능합니다.");
-    } else if (/[^a-zA-Zㄱ-ㅎ각-핳,]/.test(name)) {
+    } else if (/[^a-zA-Zㄱ-힣,]/g.test(name)) {
+      console.log(name, /[^a-zA-Zㄱ-힣,]/g.test(name));
+
       throw new Error(
         "[ERROR] 자동차 이름은 영어 혹은 한글만 가능하며, 자동차간 구분자는 ,(컴마)로만 가능합니다."
       );
@@ -57,18 +78,10 @@ class App {
     if (!carsName) throw new Error("[ERROR] 자동차 이름을 입력해주세요.");
 
     this.initialize(carsName.length);
-
     await this.showInput("\n실행 결과");
 
     for (let i = 0; i < tryCount; i++) {
-      for (let j = 0; j < carsName.length; j++) {
-        if (this.getStartCondition()) {
-          this.answer_candidate[j].push("-");
-        }
-        await this.showInput(
-          `${carsName[j]} : ${this.answer_candidate[j].join("")}`
-        );
-      }
+      await this.moveCars(carsName);
       await this.showInput("");
     }
 
