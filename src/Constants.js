@@ -10,14 +10,12 @@ export const nameLimitTest = (name) => {
   }
 };
 
-export const attempsNegativeTest = (attepms) => {
-  if (parseInt(attepms) <= 0) {
-    throw new Error('[ERROR] 양수만 입력할 수 있습니다.');
-  }
-};
-
-export const attempsNumberTest = (attemps) => {
-  if (isNaN(Number(attemps))) {
+export const attempsTest = (attemps) => {
+  const numberAttemps = Number(attemps);
+  if (isNaN(numberAttemps)) {
     throw new Error('[ERROR] 숫자만 입력할 수 있습니다.');
+  }
+  if (numberAttemps <= 0) {
+    throw new Error('[ERROR] 양수만 입력할 수 있습니다.');
   }
 };
