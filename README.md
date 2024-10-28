@@ -268,6 +268,6 @@
 
 ## 개인 학습
 
-[package-lock.json](https://github.com/thumbthing/javascript-racingcar-7/blob/thumbthing/study/package-lock.json.md)
-[jest](https://github.com/thumbthing/javascript-racingcar-7/blob/thumbthing/study/jest.md)
-[javascript](https://github.com/thumbthing/javascript-racingcar-7/blob/thumbthing/study/javascript.md)
+[package-lock.json](https://github.com/thumbthing/javascript-racingcar-7/blob/thumbthing/study/package-lock.json.md)  
+[jest](https://github.com/thumbthing/javascript-racingcar-7/blob/thumbthing/study/jest.md)  
+[JavaScript](https://github.com/thumbthing/javascript-racingcar-7/blob/thumbthing/study/javascript.md)  
