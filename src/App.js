@@ -1,10 +1,18 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 
 // 자동차 클래스 정의
 class Car {
   constructor(name) {
     this.name = name;
-    this.position = 0; // 초기 위치는 0
+    this.position = 0;
+  }
+
+  // 전진 : 난수가 4 이상일 경우 위치를 1 증가시킴
+  forwardMove() {
+    const randomValue = Random.pickNumberInRange(0, 9);
+    if (randomValue >= 4) {
+      this.position += 1;
+    }
   }
 }
 
@@ -48,20 +56,30 @@ class App {
       `시도할 횟수는 몇 회인가요?\n`
     );
 
-    // 이동 횟수 유효성 검사 (숫자 외 입력 또는 0 이하의 값 입력 시 예외 발생)
+    // 이동 횟수 유효성 검사
     if (!this.isValidNumber(moveCount)) {
       throw new Error("[ERROR] 이동 횟수를 정확히 입력해주세요");
     }
 
-    // 테스트 코드: 유효한 경우 자동차 객체와 이동 횟수 출력
-    Console.print(`자동차 목록: ${JSON.stringify(cars, null, 2)}`);
-    Console.print(`이동 횟수: ${moveCount}`);
+    // 이동 횟수만큼 각 자동차의 전진 시도 및 결과 출력
+    for (let i = 0; i < Number(moveCount); i++) {
+      this.moveCarsAndPrint(cars);
+    }
   }
 
   // 유효성 검사 함수
   isValidNumber(input) {
     const number = Number(input);
     return Number.isInteger(number) && number > 0;
+  }
+
+  // 각 이동 단계마다 전진 시도 후 결과 출력
+  moveCarsAndPrint(cars) {
+    cars.forEach((car) => {
+      car.forwardMove();
+      Console.print(`${car.name} : ${"-".repeat(car.position)}`);
+    });
+    Console.print("");
   }
 }
 
