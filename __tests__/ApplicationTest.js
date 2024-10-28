@@ -28,6 +28,21 @@ const getLogSpy = () => {
 describe('자동차 경주', () => {
   const MOVING_FORWARD = 4;
   const STOP = 3;
+  test('기능 테스트', async () => {
+    const inputs = ['pobi,woni', '1'];
+    const logs = ['pobi : -', 'woni : ', '최종 우승자 : pobi'];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([MOVING_FORWARD, STOP]);
+
+    const app = new App();
+    await app.run();
+
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
 
   test.each([
     {
@@ -118,8 +133,6 @@ describe('자동차 경주', () => {
   ])(
     '기능 테스트[$test]: ($carNames,$gameCount)',
     async ({ carNames, gameCount, logs: expected, moves }) => {
-      // given
-
       const inputs = [carNames, gameCount];
       const logs = expected;
       const logSpy = getLogSpy();
@@ -127,27 +140,21 @@ describe('자동차 경주', () => {
       mockQuestions(inputs);
       mockRandoms(moves);
 
-      // when
       const app = new App();
       await app.run();
 
-      // then
       logs.forEach((log, index) => {
         expect(logSpy).toHaveBeenNthCalledWith(index + 1, log);
-        // expect(logSpy).toHaveBeenNthCalledWith(expect.stringMatching(log));
       });
     },
   );
 
   test('예외 테스트', async () => {
-    // given
     const inputs = ['pobi,javaji'];
     mockQuestions(inputs);
 
-    // when
     const app = new App();
 
-    // then
     await expect(app.run()).rejects.toThrow('[ERROR]');
   });
 
