@@ -41,15 +41,13 @@ describe('Game 클래스 테스트', () => {
   describe.each(testCases)(
     '$description',
     ({ carNames, randomValues, expectedResult, expectedWinner }) => {
-      let game;
-
       beforeEach(() => {
         mockRandoms(randomValues);
-        game = new Game(carNames);
       });
 
       test('자동차의 이동 결과를 가져오는 테스트', () => {
         // when
+        const game = new Game(carNames);
         const result = game.moveAndGetResultOfAllCars();
 
         // then
@@ -58,6 +56,7 @@ describe('Game 클래스 테스트', () => {
 
       test('우승한 자동차를 가져오는 테스트', () => {
         // when
+        const game = new Game(carNames);
         const trialCount = randomValues.length / carNames.length;
         for (let i = 0; i < trialCount; i += 1) {
           game.moveAndGetResultOfAllCars();
