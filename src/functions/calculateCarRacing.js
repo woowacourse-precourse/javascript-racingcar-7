@@ -13,7 +13,7 @@ export function calculateCarRacing(carNames, attempts) {
 
         carNames.forEach((car) => {
             const randomValue = Random.pickNumberInRange(0, 9);
-            currentResult[car] = randomValue >= 4 ? "-" : "";
+            currentResult[car] = randomValue >= 4 ? '-' : '';
         });
 
         resultsPerAttempt.push(currentResult); // 현재 시도의 결과 저장

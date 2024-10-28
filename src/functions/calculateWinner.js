@@ -6,7 +6,8 @@ export function calculateWinner(racingResults) {
     const maxDistance = Math.max(...Object.values(racingResults).map(result => result.length));
 
     // 가장 긴 전진 거리를 가진 자동차를 배열로 반환 (공동 우승자가 가능하므로 복수개의 자동차가 가능하도록)
-    const winners = Object.keys(racingResults).filter(car => racingResults[car].length === maxDistance);
+    const winners = Object.keys(racingResults)
+        .filter(car => racingResults[car].length === maxDistance);
 
     return winners;
 }
