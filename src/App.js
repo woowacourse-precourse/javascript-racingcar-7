@@ -31,9 +31,11 @@ class App {
     const scoreArray = arr.map(() => 0);
 
     //depth가 깊어진다. 후에 메서드를 분리해줘야 한다.
+    console.log("");
+    console.log("실행결과");
     for (let i = 0; i < count; i++) {
       console.log("");
-      console.log(i + 1 + "번째 경기");
+      // console.log(i + 1 + "번째 경기");
       for (let j = 0; j < arr.length; j++) {
         const num = MissionUtils.Random.pickNumberInRange(0, 9);
 
@@ -62,7 +64,19 @@ class App {
     const max = Math.max(...scoreArray);
 
     console.log("");
-    console.log("최대 득점수 : ", max);
+    // console.log("최대 득점수 : ", max);
+
+    //최종 우승자를 담을 배열 winners
+    const winners = [];
+
+    scoreArray.forEach((value, index) => {
+      //최댓값을 가진 우승자들을 arr에서 찾아내서 winners로 push한다.
+      if (value === max) {
+        winners.push(arr[index]);
+      }
+    });
+    //join은 배열 요소를 쉼표와 띄어쓰기로 연결해 하나의 문자열로 만들어준다.
+    console.log("최종 우승자 : " + winners.join(", "));
   }
 }
 
