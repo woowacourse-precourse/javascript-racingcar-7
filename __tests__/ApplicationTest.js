@@ -57,4 +57,49 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+  
+  test("자동차 이름에 공백이 포함된 경우", async () => {
+    const inputs = ["pobi, ,woni"];
+    mockQuestions(inputs);
+  
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR] 이름에 공백이 포함될 수 없습니다.");
+  });
+  
+  test("자동차 이름이 5자 이상인 경우", async () => {
+    const inputs = ["pobi,javaji"];
+    mockQuestions(inputs);
+  
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR] 이름은 5자 이하여야 합니다.");
+  });
+  
+  test("자동차 이름이 중복된 경우", async () => {
+    const inputs = ["pobi,woni,pobi"];
+    mockQuestions(inputs);
+  
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR] 중복된 이름이 존재합니다.");
+  });
+  
+  test("이동 횟수가 숫자가 아닌 경우", async () => {
+    const inputs = ["pobi,woni", "abc"];
+    mockQuestions(inputs);
+  
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR] 시도 횟수는 숫자여야 합니다.");
+  });
+  
+  test("이동 횟수가 0 이하인 경우", async () => {
+    const inputsZero = ["pobi,woni", "0"];
+    const inputsNegative = ["pobi,woni", "-1"];
+    
+    mockQuestions(inputsZero);
+    const app1 = new App();
+    await expect(app1.run()).rejects.toThrow("[ERROR] 시도 횟수는 1 이상의 숫자로 입력해야 합니다.");
+  
+    mockQuestions(inputsNegative);
+    const app2 = new App();
+    await expect(app2.run()).rejects.toThrow("[ERROR] 시도 횟수는 1 이상의 숫자로 입력해야 합니다.");
+  });
 });
