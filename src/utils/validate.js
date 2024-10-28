@@ -18,7 +18,7 @@ class Validate{
   minimumNumber(input) {
     const carList = input.split(',');
     if(carList.length === 1){
-      throw new Error("[ERROR] 최소 두 개 이상의 차를 입력하세요");
+      throw new Error(ERROR.INPUT_MINIMUM_NUMBER);
     }
   }
   hasDuplicateName(input) {
@@ -27,7 +27,7 @@ class Validate{
     const cars = new Set();
     for (const carName of carList){
       if(cars.has(carName)) {
-        throw new Error("[ERROR] 이름은 중복되지 않고 공백 없이 입력하세요");
+        throw new Error(ERROR.INPUT_DUPLICATE);
       }
       cars.add(carName);
     }
