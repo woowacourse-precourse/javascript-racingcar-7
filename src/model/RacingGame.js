@@ -25,7 +25,7 @@ export default class RacingGame {
   start() {
     for (let i = 0; i < this.#repeatCount; i += 1) {
       this.play();
-      this.#raceLogs.push(this.#cars.map((car) => ({ ...car })));
+      this.#raceLogs.push(this.#cars.map((car) => ({ name: car.getName(), dist: car.getDist() })));
     }
   }
 
@@ -40,8 +40,10 @@ export default class RacingGame {
   }
 
   getWinners() {
-    const maxDist = Math.max(...this.#cars.map((car) => car.dist));
-    return this.#cars.reduce((winners, car) => {
+    const finalRaceLog = this.#raceLogs[this.#repeatCount - 1];
+
+    const maxDist = Math.max(...finalRaceLog.map((car) => car.dist));
+    return finalRaceLog.reduce((winners, car) => {
       if (car.dist === maxDist) winners.push(car.name);
       return winners;
     }, []);

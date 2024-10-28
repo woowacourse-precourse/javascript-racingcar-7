@@ -22,7 +22,7 @@ describe("자동차", () => {
         car.move();
 
         // then
-        expect(car.dist).toEqual(1);
+        expect(car.getDist()).toEqual(1);
       },
     );
 
@@ -38,7 +38,7 @@ describe("자동차", () => {
         car.move();
 
         // then
-        expect(car.dist).toEqual(0);
+        expect(car.getDist()).toEqual(0);
       },
     );
   });
