@@ -77,8 +77,8 @@ class App {
     let winners = [];
     cars.forEach((car) => {
       let distanceLength = car.distance.length;
-      this.updateWinners(distanceLength, maxDistanceLength, winners, car);
       maxDistanceLength = Math.max(maxDistanceLength, distanceLength);
+      this.updateWinners(distanceLength, maxDistanceLength, winners, car);
     });
     return this.printWinners(winners);
   }
@@ -86,9 +86,7 @@ class App {
   updateWinners(distanceLength, maxDistanceLength, winners, car) {
     if (distanceLength >= maxDistanceLength) {
       winners.push(car.name);
-    } else if (distanceLength === maxDistanceLength) {
-      winners.push(car.name);
-    }
+    } 
   }
 
   printWinners(winners) {
