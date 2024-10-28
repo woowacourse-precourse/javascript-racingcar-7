@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { MissionUtils } from "@woowacourse/mission-utils";
 import CarNameValidator from "./validators/carNameValidator.js";
 import TryCountValidator from "./validators/TryCountValidator.js";
 import RacingGame from "./RacingGame.js";
@@ -17,7 +17,7 @@ class App {
 
   async getCarNames() {
     try {
-      const userInputCarName = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
+      const userInputCarName = await MissionUtils.Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
       const carNames = userInputCarName.split(",");
       this.validateCarName(carNames);
       return carNames;
@@ -28,7 +28,7 @@ class App {
 
   async setTryCount() {
     try {
-      const userInputTryCount = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+      const userInputTryCount = await MissionUtils.Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
       const tryCount = Number(userInputTryCount);
       this.validateTryCount(tryCount);
       return tryCount;

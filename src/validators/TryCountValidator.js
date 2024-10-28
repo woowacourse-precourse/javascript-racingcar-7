@@ -11,6 +11,8 @@ class TryCountValidator {
     if (tryCount > 100) {
       throw new Error("[ERROR]이동횟수는 100이하로 입력해주세요");
     }
+
+    return true;
   }
 }
 
