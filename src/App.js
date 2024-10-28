@@ -16,18 +16,22 @@ class App {
   }
 
   async getCarNames() {
-    const carName = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
-    return this.validateAndSeparateNames(carName);
+    const carNameInput = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
+    const carNames = this.separateCarNames(carNameInput); // 이름 분리
+    this.validateCarNameLength(carNames); // 길이 검증
+    return carNames;
   }
 
-  validateAndSeparateNames(carName) {
-    const carNames = carName.split(",");
+  separateCarNames(carNameInput) {
+    return carNameInput.split(",").map(name => name.trim());
+  }
+
+  validateCarNameLength(carNames) {
     carNames.forEach(name => {
       if (name.length > 5) {
         throw new Error("[ERROR] 자동차 이름은 5자 이하만 가능합니다.");
       }
     });
-    return carNames;
   }
 
   async getForwardTime() {
@@ -69,7 +73,7 @@ class App {
     carNames.forEach(name => {
       Console.print(`${name} : ${"-".repeat(carPositions[name])}`);
     });
-    Console.print("");
+    Console.print(""); // 라운드 구분용 공백 출력
   }
 
   displayWinners(carNames, carPositions) {
