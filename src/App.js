@@ -62,6 +62,11 @@ class App {
     // 2. 게임을 몇번 시도할 건지 횟수 입력 받기(횟수를 라운드로 표현)
     const number_input = await Console.readLineAsync("시도할 횟수는 몇 회인가요?");
     const rounds = Number(number_input);
+    
+    // 7. 예외 처리 3 : 입력한 횟수가 0일 경우
+    if (isNaN(rounds) || rounds === 0) {
+      throw new Error("[ERROR]");
+    }
   }
 }
 
