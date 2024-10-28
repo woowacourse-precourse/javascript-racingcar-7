@@ -2,7 +2,7 @@ import { Console } from '@woowacourse/mission-utils';
 
 class OutputView {
   static printStart() {
-    Console.print('실행 결과');
+    Console.print('\n실행 결과');
   }
 
   static printRoundResult(cars) {
@@ -14,6 +14,10 @@ class OutputView {
 
   static printWinners(winners) {
     Console.print(`최종 우승자 : ${winners.join(', ')}`);
+  }
+
+  static printError(message, name) {
+    Console.print(`${message} (${name})\n`);
   }
 }
 

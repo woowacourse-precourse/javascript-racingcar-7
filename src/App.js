@@ -2,6 +2,7 @@ import initializeRace from './controllers/initializeRace.js';
 import createRace from './controllers/createRace.js';
 import executeRaceRounds from './controllers/executeRaceRounds.js';
 import displayResult from './controllers/displayResult.js';
+import OutputView from './views/OutputView.js';
 
 class App {
   async run() {
@@ -12,7 +13,8 @@ class App {
       executeRaceRounds(race);
       displayResult(race);
     } catch (error) {
-      console.error(error);
+      OutputView.printError(error.message, error.name);
+      throw error;
     }
   }
 }

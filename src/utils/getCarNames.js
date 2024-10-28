@@ -1,5 +1,5 @@
 import InputView from '../views/InputView.js';
-import validateCarNameLength from './validateCarNameLength.js';
+import validateCarNames from './validateCarNames.js';
 
 const getCarNames = async () => {
   const carInput = await InputView.readInput(
@@ -8,8 +8,7 @@ const getCarNames = async () => {
 
   const carNames = carInput.split(',').map((name) => name.trim());
 
-  validateCarNameLength(carNames);
-
+  validateCarNames(carNames);
   return carNames;
 };
 
