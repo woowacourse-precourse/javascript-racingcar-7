@@ -21,9 +21,17 @@ class InputParser {
   }
 
   validateTryCnt() {
-    if (this.tryCnt === 0 || !Number.isInteger(this.tryCnt)) {
+    if (this.isNegative(this.tryCnt) || this.isNotInteger(this.tryCnt)) {
       this.printError(ERROR_MESSAGES.TRY_CNT_MUST_BE_POSITIVE_INTEGER);
     }
+  }
+
+  isNegative(value) {
+    return value < 0;
+  }
+
+  isNotInteger(value) {
+    return !Number.isInteger(value);
   }
 
   validateCarNames() {
@@ -33,9 +41,13 @@ class InputParser {
   }
 
   validateCarName(carName) {
-    if (carName.length > 5) {
+    if (this.isLengthExceeding(carName, 5)) {
       this.printError(ERROR_MESSAGES.CAR_NAME_MUST_BE_UNDER_FIVE_CHARACTERS);
     }
+  }
+
+  isLengthExceeding(value, maxLength) {
+    return value.length > maxLength;
   }
 
   printError(message) {
