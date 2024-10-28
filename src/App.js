@@ -3,8 +3,8 @@ import { Console, Random } from '@woowacourse/mission-utils';
 class App {
   async run() {
 
-    const carsName = this.getCars();
-    const attemptCnt = this.getAttemptCount();
+    const carsName = await this.getCars();
+    const attemptCnt = await this.getAttemptCount();
 
     Console.print("");
     Console.print("실행 결과");
