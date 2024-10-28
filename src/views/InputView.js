@@ -12,6 +12,7 @@ import {
   ERROR_INVALID_CAR_NAME,
   ERROR_INVALID_NUMBER_OF_ATTEMPTS,
 } from "../constants/ErrorMessages.js";
+import RaceController from "../controllers/RaceController.js";
 
 export default class InputView {
   static async inputCarName() {
@@ -24,7 +25,12 @@ export default class InputView {
       this.isValidCarNameLength(carName);
     });
 
-    this.getAttemptCount();
+    const attemptCount = await Console.readLineAsync(
+      `시도할 횟수를 입력하세요 : `
+    );
+    this.isValidAttemptCount(attemptCount);
+
+    RaceController.startRace(carNames, attemptCount);
   }
 
   static isValidCarNameLength(carName) {
@@ -41,13 +47,6 @@ export default class InputView {
     if (!VALID_CAR_NAME_REGEXP.test(carName)) {
       throw new Error(`[ERROR] ${ERROR_INVALID_CAR_NAME}`);
     }
-  }
-
-  static async getAttemptCount() {
-    const attemptCount = await Console.readLineAsync(
-      `시도할 횟수를 입력하세요 : `
-    );
-    this.isValidAttemptCount(attemptCount);
   }
 
   static isValidAttemptCount(attemptCount) {
