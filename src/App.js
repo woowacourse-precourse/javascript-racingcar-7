@@ -10,7 +10,7 @@ class App {
     console.log("\n실행 결과")
     for (let i = 0; i < inputCount; i++) {
       this.tryRacing(carsList);
-      console.log("\n");
+      console.log("");
     }
 
     this.printFinalResult(carsList);
