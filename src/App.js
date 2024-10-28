@@ -57,6 +57,10 @@ class App {
 
       case Number(racingTimeInput) <= 0:
         return PrintFunc.printError("횟수는 양수 값이여야 합니다.");
+
+      case !Number.isInteger(Number(racingTimeInput)):
+        return PrintFunc.printError("횟수가 소수이면 안됩니다")
+
       default:
         break;
     }
