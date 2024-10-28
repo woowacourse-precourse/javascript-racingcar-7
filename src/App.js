@@ -12,7 +12,6 @@ class App {
     // 유효성 검사 하기 6자 이상이면 Error
     const cars = race_car.split(",").map((car) => car.trim()); //[ 'so', 'sun' ], 앞뒤 공백 제거
     let record = Array(cars.length).fill("");
-    Console.print(record);
 
     Console.print("실행 결과");
 
@@ -28,6 +27,20 @@ class App {
       }
       Console.print("\n");
     }
+
+    // 최종 우승자
+    let winners = [];
+
+    let record_length = record.map((x) => x.length);
+    let winner_record = Math.max(...record_length);
+
+    for (let i = 0; i < record.length; i++) {
+      if (record_length[i] === winner_record) {
+        winners.push(cars[i]);
+      }
+    }
+
+    Console.print(`최종 우승자 : ${winners.join(", ")}`);
 
     // 잘못된 입력값은
     // 1. race_car 입력이 6자 이상일 때
