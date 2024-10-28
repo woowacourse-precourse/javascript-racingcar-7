@@ -57,4 +57,41 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
+  test("사용자가 아무 값도 입력하지 않은 경우", async () => {
+    const inputs = [""];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("자동차 이름 중 5글자 이상이 있는 경우", async () => {
+    const inputs = ["aaa,apple,banana,hiii"];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("경주할 자동차를 2대 미만으로 입력한 경우", async () => {
+    const inputs = ["pobi"];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("사용자가 입력한 자동차 이름에 쉼표가 아닌 특수문자나 숫자가 있는 경우", async () => {
+    const inputs = ["lucky7,nn,3^"];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
 });
