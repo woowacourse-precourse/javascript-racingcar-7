@@ -19,8 +19,11 @@ class CarRacing {
       throw new Error('[ERROR]');
     }
 
+    let duplicationCheckArr = [];
     processedStr.forEach((element) => {
-      if(processedStr.includes(element)) {
+      if(!duplicationCheckArr.includes(element)) {
+        duplicationCheckArr.push(element);
+      } else {
         throw new Error('[ERROR]');
       }
     });
