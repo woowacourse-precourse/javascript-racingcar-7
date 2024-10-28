@@ -2,7 +2,7 @@ import {
 	validateMaxCount,
 	validateMinCount,
 	validateString,
-} from "../src/validate.js";
+} from "../src/utils/validate.js";
 
 describe("시도 횟수 입력", () => {
 	test("시도 횟수 최소 입력", async () => {

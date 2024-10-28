@@ -1,4 +1,4 @@
-import Car from "../src/Car.js";
+import CarRacing from "../src/CarRacing.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 const mockQuestions = (inputs) => {
@@ -37,8 +37,8 @@ describe("결과 출력", () => {
 		const logSpy = getLogSpy();
 
 		// when
-		const car = new Car();
-		await car.runRacing();
+		const carRacing = new CarRacing();
+		await carRacing.runRacing();
 
 		// then
 		logs.forEach((log) => {
@@ -57,8 +57,8 @@ describe("결과 출력", () => {
 		const logSpy = getLogSpy();
 
 		// when
-		const car = new Car();
-		await car.runRacing();
+		const carRacing = new CarRacing();
+		await carRacing.runRacing();
 
 		// then
 		logs.forEach((log) => {
@@ -77,8 +77,8 @@ describe("결과 출력", () => {
 		const logSpy = getLogSpy();
 
 		// when
-		const car = new Car();
-		await car.runRacing();
+		const carRacing = new CarRacing();
+		await carRacing.runRacing();
 
 		// then
 		logs.forEach((log) => {
