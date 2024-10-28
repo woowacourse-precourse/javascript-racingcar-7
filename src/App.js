@@ -12,6 +12,7 @@ class App {
     for (let i = 0; i < attemptCount; i++) {
       simulator.simulate();
     }
+    simulator.printWinner();
   }
 }
 

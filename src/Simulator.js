@@ -27,6 +27,14 @@ class Simulator {
     });
     printOutput('');
   }
+
+  printWinner() {
+    const maxCount = Math.max(...this.#state.map((car) => car.count));
+    const winner = this.#state
+      .filter((car) => car.count === maxCount)
+      .map((car) => car.name);
+    printOutput(`${MESSAGE.FINAL_OUTPUT} : ${winner.join(', ')}`);
+  }
 }
 
 export default Simulator;
