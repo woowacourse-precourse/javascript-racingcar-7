@@ -101,9 +101,9 @@ describe('자동차 경주', () => {
       errorMessage: '[ERROR]',
     },
     {
-      description: '시도 횟수가 소수점이지만 정수로 변환 가능할 때',
+      description: '시도 횟수가 소수점이지만 정수로 변환이 가능할 때',
       inputs: ['pobi,javi', '2.0'],
-      errorMessage: null,
+      errorMessage: '[ERROR]',
     },
   ])('$description', async ({ inputs, errorMessage }) => {
     mockQuestions(inputs);
