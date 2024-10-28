@@ -86,7 +86,7 @@ describe("시도 횟수 입력 예외", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
-  
+
   test("잘못된 시도 횟수 입력", async () => {
     // given
     const inputs = ["1o"];
@@ -113,7 +113,7 @@ describe("시도 횟수 입력 예외", () => {
 });
 
 describe("자동차 경주", () => {
-  test("기능 테스트", async () => {
+  test("시도 횟수 1번", async () => {
     // given
     const MOVING_FORWARD = 4;
     const STOP = 3;
@@ -123,6 +123,30 @@ describe("자동차 경주", () => {
 
     mockQuestions(inputs);
     mockRandoms([MOVING_FORWARD, STOP]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
+  test("동일한 시도 결과가 나올 때 우승자 결정 테스트", async () => {
+    // given
+    const MOVING_FORWARD = 10;
+    const inputs = ["pobi,woni,jun", "2"];
+    const logs = [
+      "pobi : -", "woni : -", "jun : ",
+      "pobi : --", "woni : --", "jun : -",
+      "최종 우승자 : pobi, woni"
+    ];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD]);
 
     // when
     const app = new App();
