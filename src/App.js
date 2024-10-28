@@ -13,8 +13,6 @@ async function InputValue() {
 
   if (Number.isNaN(times)) throw new Error("[ERROR] 잘못된 입력입니다.");
 
-  
-
   return [car_name, input_times];
 }
 
@@ -39,22 +37,24 @@ function DrawForward(car, cnt) {  // 중간 출력 형식 맞추기
 }
 
 function WinnerDecision(cnt_array) {
-  let max_value = Math.max.apply(null, cnt_array);  // 최대값
+  let max_value = 0;
+  max_value = Math.max.apply(null, cnt_array);  // 최대값 구하기
+
   let result = []
   let i = 0;
-  cnt_array.forEach(value => {  // 최대값
+  cnt_array.forEach(value => {  // 최대값 인덱스 구하기
     if (value === max_value) result.push(i);
     i++;
   });
-
+  
   return result;
 }
 
 function WinnerPrint(carArr, win) {  // 우승자 출력
   let result = []
-    win.forEach(i => {
-      result.push(carArr[i]);
-    })
+  win.forEach(i => {
+    result.push(carArr[i]);
+  })
 
   const tmp = result.join(', ');
   return tmp;
@@ -64,8 +64,8 @@ class App {
   async run() {
 
     let [car_name, input_times] = await InputValue();
-    let forward_cnt = Array.from({ length: input_times }, () => 0);
-
+    let forward_cnt = Array.from({ length: car_name.length }, () => 0);
+    Console.print('forward : '+ forward_cnt);
     Console.print("\n실행 결과");
     for (let i=0; i<input_times; i++) {
       for (let j=0; j<car_name.length; j++) {
