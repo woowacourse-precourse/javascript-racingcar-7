@@ -77,7 +77,7 @@ class Validator {
   }
 
   static #checkEmptyInput(attempts) {
-    if (attempts === Validator.#EMPTY_STRING) {
+    if (!attempts || attempts.trim() === Validator.#EMPTY_STRING) {
       throw new Error(ERROR_MESSAGE.EMPTY_INPUT_NOT_ALLOWED);
     }
   }
