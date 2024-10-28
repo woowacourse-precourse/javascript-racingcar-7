@@ -33,4 +33,28 @@ describe('자동차 이름 입력 받기', () => {
 
     await expect(app.run()).rejects.toThrow('[ERROR]');
   });
+
+  test('자동차 이름 입력 값이 문자가 아닐시 에러를 던진다. (이름에 문자표 포함)', async () => {
+    const carNamesInput = ['pobi, @jinny'];
+    mockQuestions(carNamesInput);
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('자동차 이름 입력 값이 문자가 아닐시 에러를 던진다. (문자표만)', async () => {
+    const carNamesInput = ['pobi, @'];
+    mockQuestions(carNamesInput);
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('자동차 이름 입력 값이 문자가 아닐시 에러를 던진다. (숫자)', async () => {
+    const carNamesInput = ['pobi, 123'];
+    mockQuestions(carNamesInput);
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
 });
