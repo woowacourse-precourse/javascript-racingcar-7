@@ -31,6 +31,11 @@ class App {
     const raceRounds = await MissionUtils.Console.readLineAsync(
       '시도할 횟수는 몇 회인가요?\n'
     );
+    if (!raceRounds || raceRounds < 0) {
+      throw new Error(
+        '[ERROR] 시도할 횟수가 공백이거나 음수입니다. 다시 확인해주세요.'
+      );
+    }
 
     await MissionUtils.Console.print('\n실행 결과');
 
