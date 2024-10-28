@@ -20,7 +20,7 @@ class App {
 
     function validateTryCount(tryCount) {
       if (isNaN(tryCount) || tryCount.trim() === "") {
-        throw new Error('[ERROR] 올바른 값을 입력해주세요.');
+        throw new Error('[ERROR]');
       }
       return parseInt(tryCount);
     }
@@ -43,9 +43,9 @@ class App {
       const CAR_NAMES_ARRAY = await getCarNames();
       const TRY_COUNT = await getTryCount();
 
-      const positions = {};
+      const POSITIONS = {};
       CAR_NAMES_ARRAY.forEach(name => {
-        positions[name] = "";
+        POSITIONS[name] = "";
       });
 
       MissionUtils.Console.print("\n실행 결과");
@@ -54,17 +54,17 @@ class App {
         CAR_NAMES_ARRAY.forEach((name) => {
           const ADVANCE_RANDOM = MissionUtils.Random.pickNumberInRange(0, 9);
           if (ADVANCE_RANDOM >= 4) {
-            positions[name] += "-";
+            POSITIONS[name] += "-";
           }
-          MissionUtils.Console.print(`${name} : ${positions[name]}`);
+          MissionUtils.Console.print(`${name} : ${POSITIONS[name]}`);
         });
         MissionUtils.Console.print("");
       }
 
       // 최종 우승자 결정 및 출력
-      const maxDistance = Math.max(...Object.values(positions).map(pos => pos.length));
-      const winners = CAR_NAMES_ARRAY.filter(name => positions[name].length === maxDistance);
-      MissionUtils.Console.print(`\n최종 우승자 : ${winners.join(", ")}`);
+      const MAX_DISTANCE = Math.max(...Object.values(POSITIONS).map(pos => pos.length));
+      const WINNERS = CAR_NAMES_ARRAY.filter(name => POSITIONS[name].length === MAX_DISTANCE);
+      MissionUtils.Console.print(`\n최종 우승자 : ${WINNERS.join(", ")}`);
 
     } catch (error) {
       MissionUtils.Console.print(`[ERROR] ${error.message}`);
