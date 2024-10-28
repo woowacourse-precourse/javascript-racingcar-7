@@ -16,8 +16,14 @@ class CarRacing {
     const processedStr = input.split(',');
     const isSatisfyLength = processedStr.every((element) => element.length > 0 && element.length < 6);
     if(!isSatisfyLength) {
-      throw new Error('[Error]');
+      throw new Error('[ERROR]');
     }
+
+    processedStr.forEach((element) => {
+      if(processedStr.includes(element)) {
+        throw new Error('[ERROR]');
+      }
+    });
     return processedStr;
   }
 
@@ -36,7 +42,7 @@ class CarRacing {
   #validationAttemptNumber(number) {
     const isSatisfyCondition = !Number.isNaN(number) && number % 1 === 0 && number > 0;
     if(!isSatisfyCondition) {
-      throw new Error('[Error]');
+      throw new Error('[ERROR]');
     }
     return number;
   }
