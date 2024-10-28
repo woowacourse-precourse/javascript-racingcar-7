@@ -19,7 +19,7 @@ class App {
   async #processCarNames() {
     const input = await InputProcessor.get('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분) \n');
     this.#carNames = input.split(',');
-    Validator.carName(this.#carNames);
+    Validator.carNames(this.#carNames);
   }
 
   async #processTotalRounds() {

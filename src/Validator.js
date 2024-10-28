@@ -50,11 +50,11 @@ class Validator {
     this.isInteger(value);
   }
 
-  static carName(carNames) {
-    this.isEmptyOrNull(carNames);
-    this.length(carNames);
-    this.arraySize(carNames);
-    this.duplicates(carNames);
+  static carNames(value) {
+    this.isEmptyOrNull(value);
+    this.length(value);
+    this.arraySize(value);
+    this.duplicates(value);
   }
 }
 
