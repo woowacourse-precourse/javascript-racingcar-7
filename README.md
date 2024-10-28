@@ -64,3 +64,61 @@
 - 빈 문자열인 경우
 - 숫자가 아닌 값으로 입력될 경우
 - 양수가 아닌 경우
+
+## 자주 사용한 메서드 정리
+
+### Number.isSafeInteger()
+
+숫자가 안전한 정수(safe integer)인지 판별하는 메서드.
+
+#### 특징
+
+- 안전한 정수 범위: -(2^53 - 1)부터 2^53 - 1 사이의 정수
+- 정수가 아니거나 범위를 벗어나면 false 반환
+
+#### 사용 예시
+
+```javascript
+Number.isSafeInteger(3); // true
+Number.isSafeInteger(Math.pow(2, 53)); // false
+Number.isSafeInteger(3.1); // false
+Number.isSafeInteger("3"); // false
+```
+
+### forEach()
+
+배열의 각 요소에 대해 주어진 함수를 실행하는 메서드.
+
+### 특징
+
+- 배열의 모든 요소를 순회
+- 반환값이 없음 (undefined)
+- 중간에 반복을 중단할 수 없음
+
+### 사용 예시
+
+```javascript
+const numbers = [1, 2, 3];
+numbers.forEach((number) => console.log(number));
+// 1
+// 2
+// 3
+```
+
+### filter()
+
+주어진 조건을 만족하는 요소들만 모아 새로운 배열로 반환하는 메서드.
+
+### 특징
+
+- 원본 배열은 변경되지 않음
+- 조건을 만족하는 요소로 구성된 새로운 배열 반환
+- 조건을 만족하는 요소가 없으면 빈 배열 반환
+
+### 사용 예시
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+const evenNumbers = numbers.filter((number) => number % 2 === 0);
+console.log(evenNumbers); // [2, 4]
+```
