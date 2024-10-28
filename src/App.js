@@ -51,6 +51,23 @@ class App {
 
     return attemptCount;
   }
+
+  startRace(carNames, attemptCount) {
+    const results = Array.from({ length: attemptCount }, () => ({
+      names: carNames,
+      distances: Array(carNames.length).fill(0),
+    }));
+
+    for (let i = 0; i < attemptCount; i++) {
+      for (let j = 0; j < carNames.length; j++) {
+        const randomNumber = Random.pickNumberInRange(0, 9);
+        if (randomNumber >= 4) {
+          results[i].distances[j] += 1;
+        }
+      }
+    }
+    return results;
+  }
 }
 
 export default App;
