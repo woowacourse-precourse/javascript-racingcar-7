@@ -1,5 +1,5 @@
-import CarValidator from './CarValidator.js';
-import CountValidator from './CountValidator.js';
+import CarValidator from './Validator/CarValidator.js';
+import CountValidator from './Validator/CountValidator.js';
 import CarRacing from './CarRacing.js';
 import { getUserInput } from './utils/inputOutput.js';
 import INPUT_OUTPUT_MESSAGES from './constants/inputOutputMessages.js';

@@ -1,5 +1,5 @@
-import ERROR_MESSAGES from './constants/errorMessages.js';
-import handleError from './utils/handleError.js';
+import ERROR_MESSAGES from '../constants/errorMessages.js';
+import handleError from '../utils/handleError.js';
 
 class CountValidator {
   static #isEmptyCount(count) {
