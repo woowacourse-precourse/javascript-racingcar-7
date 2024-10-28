@@ -44,6 +44,12 @@ class App {
       Console.print(`${car} : ${progress}`);
     }
 
+    // 경주 시작
+    function TryRace() {
+      carArr.forEach(updateCarPosition);
+      carArr.forEach(displayCarProgress);
+    }
+
 }
 
 export default App;
