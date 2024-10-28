@@ -9,6 +9,7 @@ class App {
 
       const carPositions = this.moveCarsByRounds(carNames, forwardTime);
       this.displayWinners(carNames, carPositions);
+      this.validateForwardTime(forwardTime); // 횟수 검증
     } catch (error) {
       Console.print(error.message);
       throw error;
@@ -19,7 +20,8 @@ class App {
     const carNameInput = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
     const carNames = this.separateCarNames(carNameInput); // 이름 분리
     this.validateCarNameLength(carNames); // 길이 검증
-    this.nameBlank(carNames);
+    this.nameBlank(carNames); // 이름 공백
+    this.DuplicateNames(carNames) // 이름 중복
     return carNames;
   }
 
@@ -42,7 +44,20 @@ class App {
       }
     });
   }
+  
+  validateForwardTime(forwardTime) {
+    if (!Number.isInteger(forwardTime) || forwardTime < 1) {
+      throw new Error("[ERROR] 시도할 횟수는 1 이상의 정수여야 합니다.");
+    }
+  }
 
+  DuplicateNames(carNames) {
+    const uniqueNames = new Set(carNames);
+    if (uniqueNames.size !== carNames.length) {
+      throw new Error("[ERROR] 자동차 이름은 중복될 수 없습니다.");
+    }
+  }
+  
   async getForwardTime() {
     const forwardTime = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
     return Number(forwardTime);
