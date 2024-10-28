@@ -1,5 +1,6 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import CarsInputValidator from '../utils/CarsInputValidator.js';
+import moveCountInputValidator from '../utils/MoveCountInputValidation.js';
 
 // 자동차 입력
 const getCarsInput = async () => {
@@ -15,4 +16,18 @@ const getCarsInput = async () => {
     }
 }
 
-export { getCarsInput };
+// 이동 횟수 입력
+const getMoveCountInput = async () => {
+    const inputMessage = "시도할 횟수는 몇 회인가요?";
+
+    try {
+        const input = await MissionUtils.Console.readLineAsync(inputMessage);
+
+        moveCountInputValidator(input);
+
+        return +input;
+    } catch (err) {
+        throw err;
+    }
+}
+export { getCarsInput, getMoveCountInput };
