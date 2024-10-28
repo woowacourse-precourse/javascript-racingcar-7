@@ -1,7 +1,7 @@
 export default class InputValidator {
 
   static carValidatior(cars) {
-    if (cars.length === 0) {
+    if (cars.includes("")) {
       throw new Error("[ERROR] 올바른 자동차 이름을 입력해주세요.");
     }
 
