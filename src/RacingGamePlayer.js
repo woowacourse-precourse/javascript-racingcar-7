@@ -9,7 +9,16 @@ class RacingGamePlayer {
   createCars(carNames) {
     return carNames.map((carName) => new Car(carName));
   }
-  play() {}
+
+  moveCars() {
+    for (let i = 0; i < this.roundNumber; i++) {
+      this.cars.forEach((car) => car.move());
+    }
+  }
+
+  play() {
+    this.moveCars();
+  }
 }
 
 export default RacingGamePlayer;
