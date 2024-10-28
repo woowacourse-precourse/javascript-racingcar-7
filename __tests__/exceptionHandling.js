@@ -32,6 +32,7 @@ describe("자동차 경주 테스트", () => {
     ["실행 횟수가 공백일 경우", ["mi,ni", ""]],
     ["실행 횟수가 0일 경우", ["mi,ni", "0"]],
     ["실행 횟수가 음수일 경우", ["mi,ni", "-12"]],
+    ["실행 횟수가 정수가 아닐 경우", ["mi,ni", "2.4"]],
   ])("%s", async (tests, inputs) => {
     mockQuestions(inputs);
     const app = new App();
