@@ -6,17 +6,23 @@ import Car from "../model/Car.js";
 class Controller {
     #inputView;
     #outputView;
-    #car
+    car
 
     constructor() {
         this.#inputView = new InputView();
         this.#outputView = new OutputView();
-        this.#car = [];
+        this.car = [];
     }
 
     settingCar(nameArray) {
       for (const carName of nameArray) {
-        this.#car.push(new Car(carName));
+        this.car.push(new Car(carName));
+      }
+    }
+
+    moveCar() {
+      for (let car of this.car) {
+        car.move();
       }
     }
 
@@ -26,7 +32,12 @@ class Controller {
 
       this.settingCar(carNameArray);
 
-      this.#outputView.printResult();
+      this.#outputView.printResultPrefix();
+
+      for (let attempts = 0; attempts < numberOfAttemptsData; attempts++) {
+        this.moveCar();
+        this.#outputView.printResult(this.car);
+      }
     }
 }
 

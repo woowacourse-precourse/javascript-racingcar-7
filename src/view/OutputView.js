@@ -8,8 +8,15 @@ class OutputView {
         this.#print = Console.print;
     }
 
-    printResult() {
+    printResultPrefix() {
         this.#print(OUTPUT_MESSAGE.executionResult);
+    }
+
+    printResult(carArray) {
+        for (let car of carArray) {
+            this.#print(car.getName() + " : " + "-".repeat(car.getPosition()));
+        }
+        this.#print("");
     }
 
     printWinner(winner) {
