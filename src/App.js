@@ -47,6 +47,12 @@ class App {
     }
   }
 
+  updateCarPosition(car, carObject) {
+    if (this.goForward()) {
+      carObject[car] += "-";
+    }
+  }
+
   async run() {
     try {
       const carsName = await this.inputCars();
