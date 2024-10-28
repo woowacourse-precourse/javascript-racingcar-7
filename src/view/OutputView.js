@@ -2,10 +2,15 @@ import { Console } from "@woowacourse/mission-utils";
 import { OUTPUT_MESSAGE } from "../constants/messages.js";
 
 class OutputView {
+  static #DASH = "-";
+
   static printExecutionResult() {
     return OutputView.printMessage(OUTPUT_MESSAGE.EXECUTION_RESULT);
   }
-  static #DASH = "-";
+
+  static printBlankLine() {
+    OutputView.printMessage(OUTPUT_MESSAGE.BLANK_LINE);
+  }
 
   static printRaceProgress(racingCarArray) {
     racingCarArray.forEach((car) => {
@@ -20,10 +25,6 @@ class OutputView {
     return OutputView.printMessage(
       `${OUTPUT_MESSAGE.FINAL_WINNER} ${winnerString}`
     );
-  }
-
-  static printBlankLine() {
-    OutputView.printMessage(OUTPUT_MESSAGE.BLANK_LINE);
   }
 
   static printMessage(outPut) {
