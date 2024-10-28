@@ -10,15 +10,13 @@ jest.mock('../../src/common/utils.js', () => ({
   printMessage: jest.fn(),
 }));
 
-let raceController;
-
 beforeEach(() => {
-  raceController = new RaceController();
   jest.clearAllMocks();
 });
 
 describe("setCarName() 테스트", () => {
   test("자동차 이름마다 Car 객체가 생성되어야 한다", async () => {
+    const raceController = new RaceController();
     await raceController.setCarName();
 
     expect(raceController.race.cars).toHaveLength(3);
@@ -31,6 +29,7 @@ describe("setCarName() 테스트", () => {
 
 describe("printRaceStatus() 테스트", () => {
   test("자동차 이동 상태가 올바르게 출력되어야 한다", async () => {
+    const raceController = new RaceController();
     await raceController.setCarName();
     raceController.race.cars[0].move(1);
     raceController.race.cars[1].move(0);
@@ -45,6 +44,7 @@ describe("printRaceStatus() 테스트", () => {
   });
 
   test("시도 횟수만큼 자동차 이동 상태가 출력되어야 한다", async () => {
+    const raceController = new RaceController();
     await raceController.setCarName();
     await raceController.setAttemptCount();
 
@@ -57,6 +57,7 @@ describe("printRaceStatus() 테스트", () => {
 
 describe("printWinners() 테스트", () => {
   test("최종 우승자를 출력해야 한다", async () => {
+    const raceController = new RaceController();
     await raceController.setCarName();
     raceController.race.cars[0].move(6);
     raceController.race.cars[1].move(4);
