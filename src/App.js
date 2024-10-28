@@ -3,57 +3,82 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 
 class App {
   async run() {
+
+    const car = await this.Car();
+    const tryCount = await this.TryCount();
+      
+    const carCount = new Array(car.length).fill(0);
+
+    Console.print('\n실행 결과');
+    this.startRace(car, carCount, tryCount);
+
+    const winner = this.Winner(car, carCount);
+    Console.print(`최종 우승자 : ${winner.join(", ")}`);
+  }
+
+  async Car() {
     Console.print('경주할 자동차 이름을 입력하세요.');
     const input = await Console.readLineAsync('');
-    let car = input.split(",").map(e => e.trim());
+    const car = input.split(",").map(name => name.trim());
 
-    // 에러 5글자 이상이거나 이름에 공백이 있을 경우
-    if(car.some(car => car.length > 5)){
-      throw new Error("[ERROR] 이름은 5자 이하여야 합니다.")
+    this.validCar(input, car);
+    return car;
+  }
+
+  validCar(input, car) {
+    // 이름 길이 검사
+    if (car.some(e => e.length > 5)) {
+      throw new Error("[ERROR] 이름은 5자 이하여야 합니다.");
     }
-    // 에러 이름에 공백이 있을 경우 
-    if (car.some(name => name === "")) {
+    // 이름 공백 검사
+    if (car.some(e => e === "")) {
       throw new Error("[ERROR] 이름에 공백이 포함될 수 없습니다.");
     }
-    // 에러 이름이 ,로 시작하거나 ,로 끝나는 경우
+    // 쉼표로 시작/끝 검사
     if (input.startsWith(",") || input.endsWith(",")) {
       throw new Error("[ERROR] 이름이 쉼표로 시작하거나 끝날 수 없습니다.");
     }
-    // 에러 이름이 중복될 경우
-    const uniqueCar = new Set(car);
-    if (uniqueCar.size !== car.length) {
+    // 중복 검사
+    if (new Set(car).size !== car.length) {
       throw new Error("[ERROR] 중복된 이름이 존재합니다.");
     }
+  }
 
+  async TryCount() {
     Console.print('시도할 횟수는 몇 회인가요?');
     const tryCount = await Console.readLineAsync('');
-    // 에러 숫자가 아닌 값을 입력했을 경우
+
+    this.validTryCount(tryCount);
+    return parseInt(tryCount);
+  }
+
+  validTryCount(tryCount) {
+    // 숫자 여부
     if (isNaN(tryCount) || parseInt(tryCount) != tryCount) {
       throw new Error("[ERROR] 시도 횟수는 숫자여야 합니다.");
     }
-    // 에러 0을 입력했을 경우
+    // 1 이상 여부
     if (tryCount <= 0) {
       throw new Error("[ERROR] 시도 횟수는 1 이상의 숫자로 입력해야 합니다.");
     }
+  }
 
-    let carDistances = new Array(car.length).fill(0);
-    
-    Console.print('\n실행 결과');
+  startRace(car, carCount, tryCount) {
     for (let i = 0; i < tryCount; i++) {
       for (let j = 0; j < car.length; j++) {
-        let carCount = MissionUtils.Random.pickNumberInRange(0, 9);
-        if(carCount >= 4){
-          carDistances[j]++;
+        const randomNum = MissionUtils.Random.pickNumberInRange(0, 9);
+        if (randomNum >= 4) {
+          carCount[j]++;
         }
-        Console.print(`${car[j]} : ${'-'.repeat(carDistances[j])}`);
+        Console.print(`${car[j]} : ${'-'.repeat(carCount[j])}`);
       }
-      Console.print('\n'); 
+      Console.print('\n');
     }
+  }
 
-    let WinnerIndex = Math.max(...carDistances)
-    let Winner = car.filter((_, index) => carDistances[index] === WinnerIndex);
-
-    Console.print(`최종 우승자 : ${Winner.join(", ")}`);
+  Winner(car, carCount) {
+    const WinnerIndex = Math.max(...carCount);
+    return car.filter((_, index) => carCount[index] === WinnerIndex);
   }
 }
 
