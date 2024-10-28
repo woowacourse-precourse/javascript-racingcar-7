@@ -32,6 +32,10 @@ class Car {
       throw new Error(ERROR_MESSAGE.INVALID_NAME_LENGTH);
     }
 
+    if (name.match(/[^a-zA-Z0-9]/)) {
+      throw new Error(ERROR_MESSAGE.INVALID_NAME_SPECIAL_CHARACTER);
+    }
+
     this.#name = name;
   }
 

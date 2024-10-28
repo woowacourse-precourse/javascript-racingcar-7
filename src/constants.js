@@ -23,6 +23,9 @@ const ERROR_TAG = '[ERROR] ';
 const ERROR_MESSAGE = Object.freeze({
   INVALID_NAME_LENGTH: ERROR_TAG.concat('이름은 5자 이하로 입력해주세요.'),
   INVALID_NAME_NULL: ERROR_TAG.concat('이름을 입력해주세요.'),
+  INVALID_NAME_SPECIAL_CHARACTER: ERROR_TAG.concat(
+    '이름에 알파벳과 숫자만 입력해주세요.'
+  ),
 });
 
 export {
