@@ -1,25 +1,26 @@
+// __tests__/ApplicationTest.js
 import App from "../src/App.js";
-import { MissionUtils } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 
 const mockQuestions = (inputs) => {
-  MissionUtils.Console.readLineAsync = jest.fn();
+  Console.readLineAsync = jest.fn();
 
-  MissionUtils.Console.readLineAsync.mockImplementation(() => {
+  Console.readLineAsync.mockImplementation(() => {
     const input = inputs.shift();
     return Promise.resolve(input);
   });
 };
 
 const mockRandoms = (numbers) => {
-  MissionUtils.Random.pickNumberInRange = jest.fn();
+  Random.pickNumberInRange = jest.fn();
 
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, MissionUtils.Random.pickNumberInRange);
+  numbers.forEach((number) => {
+    Random.pickNumberInRange.mockReturnValueOnce(number);
+  });
 };
 
 const getLogSpy = () => {
-  const logSpy = jest.spyOn(MissionUtils.Console, "print");
+  const logSpy = jest.spyOn(Console, "print");
   logSpy.mockClear();
   return logSpy;
 };
@@ -30,7 +31,12 @@ describe("자동차 경주", () => {
     const MOVING_FORWARD = 4;
     const STOP = 3;
     const inputs = ["pobi,woni", "1"];
-    const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
+    const logs = [
+      "참가자 명단: pobi, woni",
+      "pobi : -",
+      "woni : ",
+      "최종 우승자 : pobi"
+    ];
     const logSpy = getLogSpy();
 
     mockQuestions(inputs);
@@ -46,15 +52,51 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트", async () => {
+  test("예외 테스트 - 자동차 이름이 5자를 초과", async () => {
     // given
-    const inputs = ["pobi,javaji"];
+    const inputs = ["pobi,javaji", "1"]; // 'javaji'는 6자
     mockQuestions(inputs);
 
     // when
     const app = new App();
 
     // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
+    await expect(app.run()).rejects.toThrow("[ERROR] 이름은 5자를 초과할 수 없습니다.");
+  });
+
+  test("예외 테스트 - 시도 횟수가 0", async () => {
+    // given
+    const inputs = ["pobi,woni", "0"]; // 시도 횟수가 0
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR] 시도 횟수는 양의 정수여야 합니다.");
+  });
+
+  test("예외 테스트 - 시도 횟수가 숫자가 아님", async () => {
+    // given
+    const inputs = ["pobi,woni", "abc"]; // 시도 횟수가 숫자가 아님
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR] 시도 횟수는 양의 정수여야 합니다.");
+  });
+
+  test("예외 테스트 - 자동차 이름이 비어있음", async () => {
+    // given
+    const inputs = ["", "1"]; // 자동차 이름이 비어있음
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR] 최소 하나의 이름이 필요합니다.");
   });
 });
