@@ -16,9 +16,7 @@ export default class Car {
    * @throws {Error} 자동차 이름이 문자열이 아닌 경우 오류를 발생시킵니다.
    */
   constructor(carName) {
-    if (typeof carName !== 'string') {
-      throwError(ERROR_MESSAGES.INVALID_NAME);
-    }
+    if (typeof carName !== 'string') throwError(ERROR_MESSAGES.INVALID_NAME);
     this.#carName = carName;
     this.#position = 0;
   }
@@ -65,9 +63,7 @@ export default class Car {
    * 자동차가 이동할 수 있는 경우, 위치를 1 증가시킵니다.
    */
   tryMove() {
-    if (this.#shouldMove()) {
-      this.#moveForward();
-    }
+    if (this.#shouldMove()) this.#moveForward();
   }
 
   /**
