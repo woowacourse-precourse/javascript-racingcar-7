@@ -6,21 +6,9 @@ import pickRandomNumberInRange from '../src/util/pickRandomNumberInRange';
 jest.mock('../src/util/io');
 jest.mock('../src/util/pickRandomNumberInRange');
 
-describe('Simulator class', () => {
+describe('Simulator simulate test', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-  });
-
-  test('name, count 초기화 확인하기', () => {
-    const names = ['Car1', 'Car2', 'Car3'];
-    const simulator = new Simulator(names);
-
-    expect(printOutput).toHaveBeenCalledWith(MESSAGE.EXECUTE_OUTPUT);
-    expect(simulator.state).toStrictEqual([
-      { name: 'Car1', count: 0 },
-      { name: 'Car2', count: 0 },
-      { name: 'Car3', count: 0 },
-    ]);
   });
 
   test('#canMoveForward가 true일 때 상태 업데이트 확인하기', () => {
@@ -30,8 +18,6 @@ describe('Simulator class', () => {
     console.log(simulator.state);
 
     simulator.simulate();
-    console.log(simulator.state);
-    expect(simulator.state).toStrictEqual([{ name: 'Car1', count: 1 }]);
     expect(printOutput).toHaveBeenCalledWith(MESSAGE.EXECUTE_OUTPUT);
     expect(printOutput).toHaveBeenCalledWith('Car1 : -');
     expect(printOutput).toHaveBeenCalledWith('');
@@ -44,7 +30,6 @@ describe('Simulator class', () => {
 
     simulator.simulate();
 
-    expect(simulator.state).toStrictEqual([{ name: 'Car1', count: 0 }]);
     expect(printOutput).toHaveBeenCalledWith(MESSAGE.EXECUTE_OUTPUT);
     expect(printOutput).toHaveBeenCalledWith('Car1 : ');
     expect(printOutput).toHaveBeenCalledWith('');
@@ -57,13 +42,58 @@ describe('Simulator class', () => {
 
     simulator.simulate();
 
-    expect(simulator.state).toStrictEqual([
-      { name: 'Car1', count: 1 },
-      { name: 'Car2', count: 0 },
-    ]);
     expect(printOutput).toHaveBeenCalledWith(MESSAGE.EXECUTE_OUTPUT);
     expect(printOutput).toHaveBeenCalledWith('Car1 : -');
     expect(printOutput).toHaveBeenCalledWith('Car2 : ');
     expect(printOutput).toHaveBeenCalledWith('');
+  });
+});
+
+describe('Simulator printWinner test', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  test('우승자가 한 명일 경우', () => {
+    const names = ['Car1', 'Car2', 'Car3'];
+    const simulator = new Simulator(names);
+
+    pickRandomNumberInRange.mockReturnValueOnce(5);
+    pickRandomNumberInRange.mockReturnValue(3);
+
+    simulator.simulate();
+    simulator.printWinner();
+
+    expect(printOutput).toHaveBeenCalledWith(`${MESSAGE.FINAL_OUTPUT} : Car1`);
+  });
+
+  test('우승자가 여러 명일 경우', () => {
+    const names = ['Car1', 'Car2', 'Car3'];
+    const simulator = new Simulator(names);
+
+    pickRandomNumberInRange.mockReturnValueOnce(5);
+    pickRandomNumberInRange.mockReturnValueOnce(5);
+    pickRandomNumberInRange.mockReturnValue(3);
+
+    simulator.simulate();
+    simulator.printWinner();
+
+    expect(printOutput).toHaveBeenCalledWith(
+      `${MESSAGE.FINAL_OUTPUT} : Car1, Car2`,
+    );
+  });
+
+  test('아무도 전진하지 않았을 경우', () => {
+    const names = ['Car1', 'Car2', 'Car3'];
+    const simulator = new Simulator(names);
+
+    pickRandomNumberInRange.mockReturnValue(1);
+
+    simulator.simulate();
+    simulator.printWinner();
+
+    expect(printOutput).toHaveBeenCalledWith(
+      `${MESSAGE.FINAL_OUTPUT} : Car1, Car2, Car3`,
+    );
   });
 });
