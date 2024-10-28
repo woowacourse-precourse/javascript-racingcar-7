@@ -1,3 +1,5 @@
+import pickRandomNumberInRange from './util/pickRandomNumberInRange';
+
 class Simulator {
   constructor(names) {
     this.names = names;
@@ -5,6 +7,11 @@ class Simulator {
       arr.push({ [name]: 0 });
       return arr;
     }, []);
+  }
+
+  #canMoveForward() {
+    if (pickRandomNumberInRange(0, 9) >= 4) return true;
+    return false;
   }
 }
 
