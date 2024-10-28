@@ -29,8 +29,6 @@ describe('자동차 클래스 테스트', () => {
     getRandomNumber.mockReturnValue(CONFIG.CAR_MOVING_CONDITION - 1);
 
     car.tryToMoveForward();
-
-    console.log(`Position after trying to move forward: ${car.getPosition()}`);
     expect(car.getPosition()).toBe(0);
   });
 });
