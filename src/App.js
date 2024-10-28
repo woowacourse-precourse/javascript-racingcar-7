@@ -1,7 +1,8 @@
 import { Console } from '@woowacourse/mission-utils';
 import RandomUtil from './utils/Random.js';
 import RacingCar from './Models/RacingCar.js';
-import { ERROR_PREFIX, SERVICE_CONSTSANSTS } from './assets/constants.js';
+import { SERVICE_CONSTSANSTS } from './assets/constants.js';
+import { Validator } from './utils/Validator.js';
 
 class App {
   async run() {
@@ -11,35 +12,17 @@ class App {
         `경주할 자동차 이름을 입력하세요.(이름은 쉼표(${SERVICE_CONSTSANSTS.DELIMITER}) 기준으로 구분)\n`,
       );
 
-      if (userInput == '')
-        throw new Error(`${ERROR_PREFIX} 자동차 이름이 입력되지 않았습니다.`);
+      Validator.isEmptyString(userInput);
 
       // 자동차 이름 분리
       const carNameArr = userInput.split(SERVICE_CONSTSANSTS.DELIMITER);
 
-      if (new Set(carNameArr).size != carNameArr.length)
-        throw new Error(
-          `${ERROR_PREFIX} 같은 이름을 가진 자동차가 존재합니다.`,
-        );
-
-      if (carNameArr.length < SERVICE_CONSTSANSTS.MINIMAL_CAR_COUNT)
-        throw new Error(
-          `${ERROR_PREFIX} 경주를 위해 ${SERVICE_CONSTSANSTS.MINIMAL_CAR_COUNT}대 이상의 자동차가 필요합니다.`,
-        );
+      Validator.hasDuplicatedName(carNameArr);
+      Validator.isOverMinmalNumberOfCar(carNameArr);
+      Validator.isSatisfiedCarNameLength(carNameArr);
 
       // 자동차 인스턴스 생성
-      const carInstanceArr = carNameArr.map((name) => {
-        if (
-          name.length > SERVICE_CONSTSANSTS.MAXIMAL_CAR_NAME_LENGTH ||
-          name.length < SERVICE_CONSTSANSTS.MINIMAL_CAR_NAME_LENGTH
-        ) {
-          throw new Error(
-            `${ERROR_PREFIX} 자동차의 이름은 ${SERVICE_CONSTSANSTS.MINIMAL_CAR_NAME_LENGTH}~${SERVICE_CONSTSANSTS.MAXIMAL_CAR_NAME_LENGTH}글자로 작성되어야 합니다.`,
-          );
-        } else {
-          return new RacingCar(name);
-        }
-      });
+      const carInstanceArr = carNameArr.map((name) => new RacingCar(name));
 
       // 시도 횟수 받기
       let tryCount =
@@ -48,11 +31,8 @@ class App {
       tryCount = Number(tryCount);
 
       // 시도 횟수에 대한 예외 케이스
-      if (isNaN(tryCount))
-        throw new Error(`${ERROR_PREFIX} 숫자만 입력해주세요.`);
-
-      if (tryCount < 0)
-        throw new Error(`${ERROR_PREFIX} 0보다 큰 수를 입력해주세요.`);
+      Validator.isNumber(tryCount);
+      Validator.isPositiveInteger(tryCount);
 
       // 줄 구분용 빈칸
       Console.print('');
