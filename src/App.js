@@ -14,6 +14,11 @@ export function checkNameUnique(cars) {
   return uniqueCars.size === cars.length;
 }
 
+export function checkNameValid(cars) {
+  const NAME_PATTERN = /^[A-Za-z0-9]{1,5}$/;
+  return cars.every(name => NAME_PATTERN.test(name));
+}
+
 class App {
   async run() {}
 }

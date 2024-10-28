@@ -1,5 +1,10 @@
 import App from "../src/App.js";
-import { inputCarsNameWithDelimeter, splitCarsName, checkNameUnique } from "../src/App.js";
+import { 
+  inputCarsNameWithDelimeter, 
+  splitCarsName, 
+  checkNameUnique, 
+  checkNameValid 
+} from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 const mockQuestions = (inputs) => {
@@ -60,6 +65,42 @@ describe("자동차 경주", () => {
 
     // when
     const result = checkNameUnique(carsWithDuplicates);
+
+    // then
+    expect(result).toBe(false);
+  });
+});
+
+// checkNameValid 함수 테스트 코드
+describe("자동차 경주", () => {
+  test("checkNameValid - 모든 이름이 유효할 때 true 반환", () => {
+    // given
+    const validCars = ["car1", "race", "win"];
+
+    // when
+    const result = checkNameValid(validCars);
+
+    // then
+    expect(result).toBe(true);
+  });
+
+  test("checkNameValid - 이름에 5자 초과가 포함될 때 false 반환", () => {
+    // given
+    const invalidCars = ["longname", "win", "speedster"];
+
+    // when
+    const result = checkNameValid(invalidCars);
+
+    // then
+    expect(result).toBe(false);
+  });
+
+  test("checkNameValid - 이름에 특수문자나 공백이 포함될 때 false 반환", () => {
+    // given
+    const invalidCarsWithSpecialChars = ["car!", "win ", "speed"];
+
+    // when
+    const result = checkNameValid(invalidCarsWithSpecialChars);
 
     // then
     expect(result).toBe(false);
