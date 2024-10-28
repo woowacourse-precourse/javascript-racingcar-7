@@ -1,7 +1,7 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 //[x]  1. 자동차,시도횟수 형식에 입력받기 (4.)
 //[x]  2.  이름이 5자 이하인 자동차 구분하기 (3.)
-//[]  3.  잘못된 값 입력시 ERROR 발생시키기 (8.)
+//[x]  3.  잘못된 값 입력시 ERROR 발생시키기 (8.)
 //[]  4. 랜덤한 전진 조건 정하기 (5. 1.)
 //[]  5. 전진 조건에 맞게 출력하기 (2.)
 //[]  6. 시도횟수만큼 출력후 마지막 출력의 -을 비교하기 (6.)
@@ -12,11 +12,25 @@ class App {
   onCheckName5(carList) {
     for (let name of carList) {
       if (name.length > 5) {
-        throw Error('Error');
+        throw new Error('Error');
       }
     }
   }
-
+  // 구분 에러 확인 함수
+  onCheckCarList(carList) {
+    for (let name of carList) {
+      if (name == '') {
+        throw new Error('ERROR');
+      }
+    }
+  }
+  // 횟수 에러 확인 함수
+  onCheckTryNumber(tryNumber) {
+    const checkNumber = Number(tryNumber);
+    if (isNaN(checkNumber) || checkNumber <= 0) {
+      throw new Error('Error');
+    }
+  }
   async run() {
     try {
       const carInput = await MissionUtils.Console.readLineAsync(
@@ -24,12 +38,14 @@ class App {
       );
       const carList = carInput.split(',').map((name) => name.trim());
       this.onCheckName5(carList);
+      this.onCheckCarList(carList);
 
-      const tyyNumber =
+      const tryNumber =
         await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?');
+      this.onCheckTryNumber(tryNumber);
 
       MissionUtils.Console.print(`차: ${carList}`);
-      MissionUtils.Console.print(`횟수: ${tyyNumber}`);
+      MissionUtils.Console.print(`횟수: ${tryNumber}`);
     } catch (error) {
       // reject 되는 경우
       MissionUtils.Console.print('[ERROR]');
