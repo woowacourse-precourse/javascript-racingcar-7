@@ -68,6 +68,9 @@ class App {
       throw new Error("[ERROR]");
     }
     
+    // 9. 게임 실행
+    this.game(rounds);
+    
     // 8. 예외 처리 4 : 모든 자동차의 모든 라운드 결과가 0일 경우
     if (this.game_results.every((result) => result === 0)) {
       throw new Error("[ERROR]");
