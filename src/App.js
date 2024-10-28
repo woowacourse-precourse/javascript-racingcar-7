@@ -73,12 +73,24 @@ const race = async (cars, attempts) => {
   return cars;
 };
 
+const findWinners = (cars) => {
+  const maxPosition = Math.max(...cars.map(car => car.position));
+  return cars.filter(car => car.position === maxPosition);
+};
+
+const announceWinners = (winners) => {
+  const winnerNames = winners.map(car => car.name).join(", ");
+  Console.print(`최종 우승자 : ${winnerNames}`);
+};
+
 class App {
   async run() {
     try {
       const cars = await getCarNames();
       const attempts = await getAttempts();
       const raceResult = await race(cars, attempts);
+      const winners = findWinners(raceResult);
+      announceWinners(winners);
     } catch (error) {
       Console.print(`[ERROR] ${error.message}`);
     }
