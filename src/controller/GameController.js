@@ -22,6 +22,10 @@ export class GameController {
 
       for (let r = 0; r < +round; r++) {
         game.playRound();
+        output.printRound(cars);
+
+        const winners = game.getWinners();
+        output.printWinners(winners);
       }
     } catch (error) {
       errorView.printError(error.message);
