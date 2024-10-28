@@ -20,7 +20,7 @@ Model
         * distance
     - Method
         * move(): distance + 1
-            
+    
 View
 - [x] 사용자 입력 받는 함수
     - args: message
@@ -55,6 +55,8 @@ Validate
 Util
 - [x] 0 ~ 9 Random 값 반환하는 함수
     - return: random 숫자 값
+
+Test
 
 ## 기능 요구 사항
 초간단 자동차 경주 게임을 구현한다.
