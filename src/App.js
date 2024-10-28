@@ -5,6 +5,9 @@ class App {
     const input = await MissionUtils.Console.readLineAsync(
       "경주할 자동차 이름을 쉼표로 구분하여 입력해주세요. \n"
     );
+    const count = await MissionUtils.Console.readLineAsync(
+      "시도할 횟수는 몇 회인가요? \n"
+    );
 
     try {
       const result = this.racing(input);
