@@ -6,7 +6,9 @@ const Constants = {
   ERROR_MESSAGES: {
     CAR_NAME_LENGTH: "[ERROR] 자동차 이름은 1자 이상 5자 이하이어야 합니다.",
     EMPTY_CAR_NAME: "[ERROR] 자동차 이름이 입력되지 않았습니다.",
-    INVALID_ATTEMPT_COUNT: "[ERROR] 시도 횟수는 양의 정수여야 합니다."
+    INVALID_ATTEMPT_COUNT: "[ERROR] 시도 횟수는 양의 정수여야 합니다.",
+    CAR_NAME_ERROR: "[ERROR] 자동차 이름의 입력이 잘못되었습니다.",
+    NUMBER_ERROR: "[ERROR] 횟수의 입력이 잘못되었습니다."
   },
 };
 

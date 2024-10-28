@@ -1,7 +1,7 @@
 import Race from '../models/Race.js';
 import InputView from '../views/InputView.js';
 import OutputView from '../views/OutputView.js';
-
+import Validator from '../utils/Validator.js';
 export default class RaceController {
   constructor() {
     this.race = null;
@@ -9,7 +9,8 @@ export default class RaceController {
 
   async run() {
     try {
-      const carNames = await InputView.readCarNames();
+      const names = await InputView.readCarNames();
+      const carNames = Validator.validateCarNames(names.split(',').map((name) => name.trim()));
       this.initRace(carNames);
     } catch (error) {
       throw new Error("[ERROR]");
@@ -18,7 +19,8 @@ export default class RaceController {
 
   async initRace(carNames) {
     this.race = new Race(carNames);
-    const attempts = await InputView.readAttemptCount();
+    const attemptsInput = await InputView.readAttemptCount();
+    const attempts = Validator.validateAttemptCount(parseInt(attemptsInput, 10));
     this.startRace(attempts);
   }
 
