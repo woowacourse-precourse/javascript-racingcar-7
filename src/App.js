@@ -13,7 +13,8 @@ class App {
       const carData = carNames.map((name) => ({ name, position: 0 }));
       
       // 게임 진행
-      
+      this.playGame(carData, attemptCount);
+
       // 최종 우승자 발표
       
     } catch (error) {
@@ -41,6 +42,35 @@ class App {
     }
     return attemptCount;
   }
+
+  // 게임을 진행하는 함수
+  playGame(carData, attemptCount) {
+    for (let i = 0; i < attemptCount; i++) {
+      this.playRound(carData);
+      this.printRoundResults(carData);
+    }
+  }
+
+  // 라운드를 진행하는 함수
+  playRound(carData) {
+    carData.forEach((car) => this.updateCarPosition(car));
+  }
+
+  // 자동차 전진 여부 결정 후 업데이트 함수
+  updateCarPosition(car) {
+    if (Random.pickNumberInRange(0, 9) >= 4) {
+      car.position++;
+    }
+  }
+
+  // 라운드별 결과를 출력하는 함수
+  printRoundResults(carData) {
+    carData.forEach((car) => {
+      Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
+    });
+    Console.print('');
+  }
+  
 }
 
 export default App;
