@@ -6,18 +6,18 @@ class App {
       "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
     );
 
+    const racingCars = inputString.split(",");
+
+    if (racingCars.some((car) => car.length > 5)) {
+      throw new Error("[ERROR] 자동차의 이름이 5자보다 깁니다.");
+    }
+
     const gameCount = Number(
       await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n")
     );
 
     if (!Number.isInteger(gameCount))
       throw new Error("[ERROR] 시도할 횟수가 정수가 아닙니다");
-
-    const racingCars = inputString.split(",");
-
-    if (racingCars.some((car) => car.length > 5)) {
-      throw new Error("[ERROR] 자동차의 이름이 5자보다 깁니다.");
-    }
 
     const racingCarsPos = {};
     racingCars.forEach((car) => {
