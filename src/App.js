@@ -19,10 +19,7 @@ class App {
     } catch (error) {
 
       Console.print(error.message);
-
-    } finally {
-
-      return;
+      throw error;
 
     }
 
@@ -31,10 +28,10 @@ class App {
   async getCarNames() {
     const input = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,)로 구분)\n");
     const names = input.split(",").map((name) => name.trim());
-
+    Console.print(names)
     // 이름이 범위 내 길이를 갖지 않는 경우 예외 처리
     if (names.some((name) => name.length > 5 || !name)) {
-      throw new Error("[ERROR] 자동차 이름은 1자 이상 5자 이하여야 합니다.");
+      throw new Error("[ERROR]");
     }
 
     return names;
