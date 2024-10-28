@@ -15,7 +15,7 @@ export function inputNameValidation(name){
     if (name.length > LIMIT_CAR_NAME_LEN){
         throw new Error("[ERROR] 자동차 이름의 제한 글자 수 5자를 초과하였습니다.");
     }
-    if (name.length === 0){
+    if (name.length === 0 || name === " "){
         throw new Error("[ERROR] 자동차 이름을 입력해야 합니다.");
     }
 }
