@@ -32,3 +32,11 @@ function allCarPrint(carNames, moveResults) {
     }
     Console.print(' ');
 }
+
+export function runAllTrials(trialCount, carNames, moveResults) {
+    for (let i = 0; i < trialCount; i++) {
+        moveResults = allCarMove(moveResults);
+        allCarPrint(carNames, moveResults);
+    }
+    return moveResults;
+}
