@@ -12,9 +12,8 @@ class App {
     const carsUserInput = await getInputAsync(MESSAGES.INPUT_CAR_NAMES);
     const carsModel = new CarsModel(carsUserInput);
 
-    const { isCarValid, errCarMessage } = isCarNamesValid(
-      carsModel.getCarNames(),
-    );
+    const carNames = carsModel.getCarNames();
+    const { isCarValid, errCarMessage } = isCarNamesValid(carNames);
     if (!isCarValid) throw new Error(ERROR_MESSAGES.PREFIX + errCarMessage);
 
     const trialCountUserInput = await getInputAsync(MESSAGES.INPUT_TRIAL_COUNT);
