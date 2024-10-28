@@ -13,4 +13,13 @@ class App {
     this.Exception(namesInput === "", "[ERROR]");
     return namesInput;
   }
+
+  async getRounds() {
+    Console.print("시도할 횟수는 몇 회인가요?");
+    const roundsInput = await Console.readLineAsync("");
+
+    const rounds = parseInt(roundsInput, 10);
+    this.Exception(!Number.isInteger(rounds) || rounds <= 0, "[ERROR]");
+    return rounds;
+  }
 }
