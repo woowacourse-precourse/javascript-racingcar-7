@@ -1,4 +1,4 @@
-import { Random } from "@woowacourse/mission-utils";
+import { Random, Console } from "@woowacourse/mission-utils";
 
 class RacingCar {
     constructor(carNames) {
@@ -8,6 +8,7 @@ class RacingCar {
     startRace(tryCount) {
         for (let i = 0; i < tryCount; i++) {
             this.runRound();
+            this.printRoundStatus();
         }
     }
 
@@ -26,6 +27,13 @@ class RacingCar {
 
     shouldMove(randomNumber) {
         return randomNumber >= 4;
+    }
+
+    printRoundStatus() {
+        this.cars.forEach((car) => {
+            this.printCarStatus(car);
+        });
+        Console.print("");
     }
 }
 
