@@ -127,6 +127,12 @@ export class RacingModel {
     }
   }
 
+  #setWinners() {
+    this.getCarDetails().forEach(({ name, travelDistance }) =>
+      this.#setWinner(name, travelDistance),
+    );
+  }
+
   /**
    *
    * @param {Array<string>} winners
@@ -145,9 +151,7 @@ export class RacingModel {
    * @returns {string}
    */
   getWinners() {
-    this.getCarDetails().forEach(({ name, travelDistance }) =>
-      this.#setWinner(name, travelDistance),
-    );
+    this.#setWinners();
 
     return this.#parseWinners(this.#winners);
   }
