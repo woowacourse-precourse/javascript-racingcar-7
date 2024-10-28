@@ -47,11 +47,9 @@ class Race{
   // 우승자 발표 메서드
   printWinners(){
     const maxPosition = Math.max(...this.cars.map(car => car.position)); // 스프레드 연산자로 가장 높은 위치 찾기
-        const winners = this.cars
-            .filter(car => car.position === maxPosition)
-            .map(car => car.name);
+    const winners = this.cars.filter(car => car.position === maxPosition).map(car => car.name);
 
-        Console.print(`최종 우승자 : ${winners.join(', ')}`);
+    Console.print(`최종 우승자 : ${winners.join(', ')}`);
     }
   }
 
@@ -85,7 +83,11 @@ class App {
 
   // 입력값의 유효성을 검사하고 에러 처리하는 메서드
   validateInput(carNames, attempts){
+    this.validateCarNames(carNames);
+    this.validateAttempts(attempts);
+  }
 
+  validateCarNames(carNames){
     // 자동차 이름이 비어있는 경우
     if (!carNames || carNames.length === 0) {
       throw new Error('[ERROR] 자동차 이름을 입력해야 합니다.');
@@ -106,7 +108,9 @@ class App {
         throw new Error('[ERROR] 자동차 이름은 알파벳만 포함해야 합니다.');
       }
     });
+  }
 
+  validateAttempts(attempts){
     // 이동 횟수 유효성 검사
     if (isNaN(attempts) || attempts <= 0) {
       throw new Error('[ERROR] 유효한 이동 횟수를 입력해야 합니다.');
