@@ -9,8 +9,8 @@ class Validator {
   static #MAX_CAR_LIST_SIZE = 100;
   static #EMPTY_STRING = "";
   static #POSITIVE_NUMBER_REGEX = /^\d+$/;
-  static #MIN_NUMBER_SIZE = 1;
-  static #MAX_NUMBER_SIZE = 100;
+  static #MIN_MOVE_ATTEMPTS_SIZE = 1;
+  static #MAX_MOVE_ATTEMPTS_SIZE = 1000;
 
   static checkName(carName) {
     Validator.#checkNameLength(carName);
@@ -85,14 +85,14 @@ class Validator {
   static #checkPositiveNumber(attempts) {
     if (
       !Validator.#POSITIVE_NUMBER_REGEX.test(attempts) ||
-      attempts < Validator.#MIN_NUMBER_SIZE
+      attempts < Validator.#MIN_MOVE_ATTEMPTS_SIZE
     ) {
       throw new Error(ERROR_MESSAGE.ONLY_POSITIVE_NUMBER_ALLOWED);
     }
   }
 
   static #checkNumberSize(attempts) {
-    if (attempts > Validator.#MAX_NUMBER_SIZE) {
+    if (attempts > Validator.#MAX_MOVE_ATTEMPTS_SIZE) {
       throw new Error(ERROR_MESSAGE.MOVE_ATTEMPTS_TOO_BIG);
     }
   }
