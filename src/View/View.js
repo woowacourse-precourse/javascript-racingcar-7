@@ -13,13 +13,7 @@ export function printCarPositions(cars) {
 }
 
 export function printWinners(winners) {
-  let winnerMessage;
-
-  if (winners.length === 1) {
-    winnerMessage = `최종 우승자 : ${winners[0]}`;
-  } else {
-    winnerMessage = `최종 우승자 : ${winners.join(', ')}`;
-  }
+  const winnerMessage = `최종 우승자 : ${winners.join(', ')}`;
 
   printMessage(winnerMessage); // printMessage 재사용
 }
