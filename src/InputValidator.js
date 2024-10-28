@@ -10,6 +10,14 @@ class InputValidator {
         });
         return names;
     }
+
+    static validateRaceAttempts(attempts) {
+        const attemptNumber = parseInt(attempts, 10);
+        if (isNaN(attemptNumber) || attemptNumber <= 0) {
+            throw new Error(ERROR_MESSAGES.INVALID_RACE_ATTEMPTS);
+        }
+        return attemptNumber;
+    }
 }
 
 export default InputValidator;
