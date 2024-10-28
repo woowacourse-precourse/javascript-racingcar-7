@@ -35,13 +35,17 @@ export function moveCarForward(car) {
   }
 }
 
+function processCarPosition(carList) {
+  carList.forEach((car) => {
+    moveCarForward(car);
+    printCarPosition(car.name, car.position);
+  });
+}
+
 export function raceCars(carList, number) {
   MissionUtils.Console.print(GREETING_RESULT_PROMPT);
   for (let i = 0; i < number; i++) {
-    carList.forEach((car) => {
-      moveCarForward(car);
-      printCarPosition(car.name, car.position);
-    });
+    processCarPosition(carList);
     MissionUtils.Console.print('\n');
   }
 }
