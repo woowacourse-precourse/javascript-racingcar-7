@@ -170,4 +170,24 @@ describe("자동차 경주 입력 관련 예외 테스트", () => {
     const app = new App();
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
+  test("자동차 대수가 상한선인 100을 넘는 경우", async () => {
+    const carNames = Array(101)
+      .fill("car")
+      .map((name, index) => `${name}${index}`)
+      .join(",");
+    const inputs = [carNames, "1"];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("이동 시도 횟수가 상한선인 1000을 넘는 경우", async () => {
+    const inputs = ["자동차,car", "1001"];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
 });
