@@ -5,10 +5,8 @@ import {
   ERROR_MESSAGE_NOT_POSITIVE_POSITIVE,
 } from './constants.js';
 
-export const readLineAsync = async message => {
-  const response = MissionUtils.Console.readLineAsync(message);
-  return response;
-};
+export const readLineAsync = async message =>
+  MissionUtils.Console.readLineAsync(message);
 
 export const print = message => {
   MissionUtils.Console.print(message);
