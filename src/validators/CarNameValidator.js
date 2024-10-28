@@ -1,14 +1,6 @@
-import { MESSAGE, NUMBER } from "./constants";
+import { MESSAGE, NUMBER } from "../constants.js";
 
-class InputValidator {
-  static checkPositive(number) {
-    if (!Number.isInteger(number) || number < NUMBER.MIN_TRYCOUNT) {
-      throw new Error(MESSAGE.ERROR.TYPE);
-    }
-
-    return true;
-  }
-
+class CarNameValidator {
   static checkBlank(carNames) {
     const hasBlankName = carNames.some((carName) => !carName.trim().length);
 
@@ -31,7 +23,7 @@ class InputValidator {
 
   static checkMultiple(carNames) {
     if (carNames.length < NUMBER.MIN_NAME_COUNT) {
-      throw new Error(MESSAGE.ERROR.NUMBER_OF_INPUT);
+      throw new Error(MESSAGE.ERROR.NUMBER_OF_NAME);
     }
 
     return true;
@@ -48,4 +40,4 @@ class InputValidator {
   }
 }
 
-export default InputValidator;
+export default CarNameValidator;

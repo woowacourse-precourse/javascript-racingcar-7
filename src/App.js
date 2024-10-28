@@ -1,8 +1,9 @@
 import { Console } from "@woowacourse/mission-utils";
-import InputValidator from "./InputValidator.js";
+import CarNameValidator from "./validators/carNameValidator.js";
+import TryCountValidator from "./validators/TryCountValidator.js";
 import RacingGame from "./RacingGame.js";
 import Printer from "./Printer.js";
-import MESSAGE from "./constant/string.js";
+import { MESSAGE } from "./constants.js";
 
 class App {
   async run() {
@@ -38,14 +39,14 @@ class App {
   }
 
   validateCarName(carNames) {
-    InputValidator.checkBlank(carNames);
-    InputValidator.checkDuplication(carNames);
-    InputValidator.checkMultiple(carNames);
-    InputValidator.checkNameLength(carNames);
+    CarNameValidator.checkBlank(carNames);
+    CarNameValidator.checkDuplication(carNames);
+    CarNameValidator.checkMultiple(carNames);
+    CarNameValidator.checkNameLength(carNames);
   }
 
   validateTryCount(tryCount) {
-    InputValidator.checkPositive(tryCount);
+    TryCountValidator.checkPositive(tryCount);
   }
 }
 

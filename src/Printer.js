@@ -1,5 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
-import MESSAGE from "./constant/string";
+import { MESSAGE, PREFIX } from "./constants.js";
 
 class Printer {
   static printResult(racingGame) {
@@ -18,7 +18,8 @@ class Printer {
   static printFinal(winners) {
     const winnerNames = winners.map((winner) => winner.getName());
 
-    Console.print(`최종 우승자 : ${winnerNames.join(", ")}`);
+    Console.print(`${PREFIX.WINNER} : ${winnerNames.join(", ")}`);
   }
 }
+
 export default Printer;

@@ -1,6 +1,5 @@
 class Car {
   static DECISION_POINT_NUMBER = 4;
-
   #carName;
   #movingDistance = 0;
   #distanceLog = [];
@@ -10,7 +9,7 @@ class Car {
   }
 
   move(randomNumber) {
-    if (randomNumber < this.#DECISION_POINT_NUMBER) {
+    if (randomNumber < Car.DECISION_POINT_NUMBER) {
       return;
     }
 
