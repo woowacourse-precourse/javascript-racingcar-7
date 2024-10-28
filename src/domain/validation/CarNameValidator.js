@@ -9,4 +9,11 @@ export default class CarNameValidator {
       throw new Error(ERROR.CAR_NAME_LENGTH);
     }
   }
+
+  static validateCarNamesDuplication (carNames) {
+    if (new Set(carNames).size !== carNames.length) {
+      throw new Error(ERROR.CAR_NAME_DUPLICATE);
+    }
+  }
+
 }
