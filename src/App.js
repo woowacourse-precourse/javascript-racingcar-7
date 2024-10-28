@@ -55,6 +55,7 @@ class App {
       throw new Error("[ERROR]");
     }
   }
+
   validateCarNameLength(cars) {
     if (cars.some((car) => car.length >= 6)) {
       MissionUtils.Console.print(
@@ -71,26 +72,35 @@ class App {
       throw new Error("[ERROR]");
     }
   }
-
   validateCount(count) {
-    //count가 숫자가 아닌 경우
+    this.validateCountIsNumber(count);
+    this.validateCountIsPositive(count);
+    this.validateCountIsInteger(count);
+    return;
+  }
+
+  // count가 숫자가 아닐 경우
+  validateCountIsNumber(count) {
     if (isNaN(count)) {
       MissionUtils.Console.print("[ERROR] 경주 횟수는 숫자여야 합니다.");
       throw new Error("[ERROR]");
     }
-    // count가 0또는 음수일 경우
+  }
+
+  // count가 0또는 음수일 경우
+  validateCountIsPositive(count) {
     if (count <= 0) {
       MissionUtils.Console.print("[ERROR] 경주 횟수는 1회 이상이어야 합니다.");
       throw new Error("[ERROR]");
     }
-    //count가 양수이지만 정수가 아닌 소수일 경우
-    //Number.inInteger로 확인하자
+  }
+
+  //count가 양수이지만 정수가 아닌 소수일 경우
+  validateCountIsInteger(count) {
     if (!Number.isInteger(Number(count))) {
       MissionUtils.Console.print("[ERROR] 경주 횟수는 정수여야 합니다.");
       throw new Error("[ERROR]");
     }
-
-    return;
   }
 
   racing(input, count) {
