@@ -1,5 +1,4 @@
 import App from "../src/App.js";
-import { mockQuestions } from "./ApplicationTest.js";
 
 describe("입력값 유효성 검사", () => {
   const app = new App();
