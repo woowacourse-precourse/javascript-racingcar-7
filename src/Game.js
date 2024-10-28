@@ -18,14 +18,18 @@ class Game {
     return carNames.map((carName) => new Car(carName));
   }
 
+  #setValidatedValues(roundCount, inputCarNames) {
+    this.#round = roundCount;
+    this.cars = this.#createCars(inputCarNames);
+  }
+
   async start() {
     const inputCarNames = await InputView.readCarNames();
     validateCarName(inputCarNames);
     const roundCount = await InputView.readRoundCount();
     validateRoundCount(roundCount);
 
-    this.#round = roundCount;
-    this.cars = this.#createCars(inputCarNames);
+    this.#setValidatedValues(roundCount, inputCarNames);
 
     OutputView.printEmptyLine();
     this.#progress();
