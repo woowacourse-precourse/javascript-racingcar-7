@@ -1,17 +1,22 @@
 import Car from './Car.js';
-import Validation from './Validation.js';
 
 class RacingManager {
-  static register(nameInput) {
+  #validation;
+
+  constructor(validation) {
+    this.#validation = validation;
+  }
+
+  register(nameInput) {
     const nameList = this.normalizeCarNames(nameInput);
     const registeredCars = nameList.map((name) => new Car(name));
     return registeredCars;
   }
 
-  static normalizeCarNames(nameInput) {
+  normalizeCarNames(nameInput) {
     const MAX_NAME_LENGTH = 5;
-    const parsedNames = this.parseCarNames(nameInput);
-    const validCarNames = Validation.checkCarNames(
+    const parsedNames = RacingManager.parseCarNames(nameInput);
+    const validCarNames = this.#validation.checkCarNames(
       parsedNames,
       MAX_NAME_LENGTH,
     );
@@ -25,9 +30,10 @@ class RacingManager {
     return trimmedNames;
   }
 
-  static normalizeTotalRounds(totalRounds) {
-    const parsedTotalRounds = this.parseTotalRounds(totalRounds);
-    const validTotalRounds = Validation.checkTotalRounds(parsedTotalRounds);
+  normalizeTotalRounds(totalRounds) {
+    const parsedTotalRounds = RacingManager.parseTotalRounds(totalRounds);
+    const validTotalRounds =
+      this.#validation.checkTotalRounds(parsedTotalRounds);
     return validTotalRounds;
   }
 

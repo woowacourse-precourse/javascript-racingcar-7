@@ -1,14 +1,18 @@
 import { Console } from '@woowacourse/mission-utils';
 import Racing from './Racing.js';
 import RacingManager from './RacingManager.js';
+import Validation from './Validation.js';
 
 class App {
   async run() {
+    const validationClass = Validation;
+    const racingManager = new RacingManager(validationClass);
+
     const carNames = await App.askCarNames();
-    const cars = RacingManager.register(carNames);
+    const cars = racingManager.register(carNames);
 
     const totalRounds = await App.askTotalRounds();
-    const validTotalRounds = RacingManager.normalizeTotalRounds(totalRounds);
+    const validTotalRounds = racingManager.normalizeTotalRounds(totalRounds);
 
     const racing = new Racing(validTotalRounds, cars);
     racing.play();
