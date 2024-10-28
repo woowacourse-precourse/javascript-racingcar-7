@@ -36,5 +36,28 @@ class App {
       position: 0,
     }));
   }
+
+  // 7. 자동차 경주 - 전진 혹은 전진안함 
+  racing_play(racing_start) {
+    return racing_start.map(car => {
+      if (this.random_car()) {
+        car.position += 1;
+      }
+      return car;
+    });
+  }
+
+  
+  // 8. 자동차경주 - 결과
+  racing_result(racing_start) {
+    for (let i = 0; i <racing_start.length;i++) {
+      const car = racing_start[i];
+      Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
+
+    }
+  }
+
+
+
 }
 export default App;
