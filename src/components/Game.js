@@ -35,7 +35,7 @@ class Game {
 
   startRound() {
     this.#CARS_LIST.forEach((car) => {
-      if (!Game.canMoveForward()) return;
+      if (!this.canMoveForward()) return;
       car.moveForward();
     });
   }
@@ -51,7 +51,7 @@ class Game {
     Console.print(''); // Round 별 구분을 위한 공백
   }
 
-  static canMoveForward() {
+  canMoveForward() {
     if (
       Random.pickNumberInRange(Rules.MIN_NUMBER, Rules.MAX_NUMBER) >=
       Rules.THRESHOLD_NUMBER
