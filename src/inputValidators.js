@@ -1,7 +1,7 @@
 import ERROR_MESSAGE from './constants.js';
 
 const DELIMITER_VALIDATOR = input => {
-  if (input.length > 5 && /![,]/.test(input)) {
+  if (input.length > 5 && !/,/.test(input)) {
     throw new Error(ERROR_MESSAGE.DELIMITER_VALIDATION);
   }
 };
