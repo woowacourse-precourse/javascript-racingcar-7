@@ -10,6 +10,7 @@ export class RacingView {
   static MESSAGE = Object.freeze({
     GAME_START: '실행 결과',
     GAME_END: (winners) => `최종 우승자 : ${winners}`,
+    RACING: (car) => `${car.name} : ${'-'.repeat(car.travelDistance)}`,
   });
 
   /**
@@ -47,7 +48,7 @@ export class RacingView {
    * @param {Array<{ name: string, travelDistance: number }>} cars
    */
   printRacing(cars) {
-    cars.forEach((car) => output(`${car.name} : ${'-'.repeat(car.travelDistance)}`));
+    cars.forEach((car) => output(RacingView.MESSAGE.RACING(car)));
   }
 
   /**
