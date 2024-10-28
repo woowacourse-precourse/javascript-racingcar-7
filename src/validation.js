@@ -25,11 +25,11 @@ export function isValidName(nameList) {
   isOver5(nameList);
 }
 
-export function isValidNumber(num) {
-  if (parseInt(num) < 1)
+export function isValidNumber(tryTime) {
+  if (parseInt(tryTime) < 1)
     throw Error(`[ERROR] 1 미만의 수는 입력할 수 없습니다. 양수를 입력해주세요.`);
-  if (Number.isNaN(parseInt(num)))
+  if (Number.isNaN(parseInt(tryTime)))
     throw Error(`[ERROR] 숫자를 입력해주세요.`);
-  if (num.includes('.'))
+  if (tryTime.includes('.'))
     throw Error(`[ERROR] 소수는 입력할 수 없습니다. 정수를 입력해주세요.`);
 }

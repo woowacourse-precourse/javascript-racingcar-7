@@ -7,10 +7,10 @@ export default class Car {
     this.movement = 0;
   }
 
-  static makeCarList(str) {
-    let carList = str.split(',').map(element => element.trim())
-    isValidName(carList);
-    carList = carList.map(car => new Car(car));
+  static makeCarList(carName) {
+    const nameList = carName.split(',').map(element => element.trim())
+    isValidName(nameList);
+    const carList = nameList.map(car => new Car(car));
     return carList;
   }
 
