@@ -7,3 +7,10 @@ export const RACE_MESSAGES = Object.freeze({
   resultTitle: '\n실행 결과',
   finalWinner: '최종 우승자 : ',
 });
+
+export const ERROR_PREFIX = '[ERROR]';
+
+export const ERROR_MESSAGES = Object.freeze({
+  emptyCarName: '자동차 이름을 입력해주세요.',
+  emptyRoundCount: '시도 횟수를 입력해주세요.',
+});
