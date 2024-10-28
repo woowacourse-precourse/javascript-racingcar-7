@@ -7,10 +7,17 @@ class App {
       const input = await MissionUtils.Console.readLineAsync("");
       return input.split(",");
     };
+
     const getCount = async () => {
+      var count;
       MissionUtils.Console.print("시도할 횟수를 입력해 주세요");
-      return parseInt(await MissionUtils.Console.readLineAsync(""), 10);
+      count = parseInt(await MissionUtils.Console.readLineAsync(""), 10);
+      if (!(count > 0)) {
+        throw new Error("[ERROR] 유효하지 않은 숫자가 입력되었습니다: ");
+      }
+      return count;
     };
+
     const tryRace = async (input, count) => {
       MissionUtils.Console.print("실행 결과");
       const result = {};
@@ -30,6 +37,7 @@ class App {
 
       return result;
     };
+
     const getWinner = async (result) => {
       const maxScore = Math.max(...Object.values(result));
       const winners = Object.keys(result).filter(
