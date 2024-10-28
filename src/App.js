@@ -9,6 +9,7 @@ class App {
   async run() {
     await this.initGame();
     this.playRounds();
+    this.printWinners();
   }
 
   // 1. 사용자 입력받기
@@ -63,6 +64,15 @@ class App {
       console.log(`${car.name} : ${"-".repeat(car.position)}`);
     });
     console.log("");
+  }
+
+  // 4. 최종 우승자 출력하기
+  printWinners() {
+    const MAX_POSITION = Math.max(...this.cars.map((car) => car.position));
+    const WINNERS = this.cars
+      .filter((car) => car.position === MAX_POSITION)
+      .map((car) => car.name);
+    console.log(`최종 우승자 : ${WINNERS.join(", ")}`);
   }
 }
 
