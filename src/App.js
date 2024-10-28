@@ -16,6 +16,10 @@ class App {
         .split(',')
         .map((name) => name.trim());
 
+      const set = new Set(validateInputCarNames);
+      if (validateInputCarNames.length !== set.size)
+        throw new Error('[ERROR] 입력하신 이름에 중복이 존재합니다.');
+
       for (const carName of validateInputCarNames) {
         if (carName.length > 5) {
           throw new Error('[ERROR] 이름은 5자 이하만 가능합니다.');
