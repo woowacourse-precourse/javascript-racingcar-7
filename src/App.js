@@ -7,6 +7,8 @@ async function InputValue() {
   car_name.forEach(index => {
     if (index.length > 5) throw new Error("[ERROR] 잘못된 입력입니다.");
   })
+  // 되냐 이거 ??
+  if (car_name[car_name.length - 1] == '') throw new Error("[ERROR] 잘못된 입력입니다.");
 
   let input_times = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
   let times = Number(input_times);  // 숫자가 아닌 무언가가 들어가면 NaN 반환
