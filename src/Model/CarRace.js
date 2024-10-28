@@ -34,5 +34,9 @@ export default class CarRace {
         this.#cars[index].move();
       }
     });
+
+    this.#raceCount -= 1;
+
+    return this.#cars;
   }
 }

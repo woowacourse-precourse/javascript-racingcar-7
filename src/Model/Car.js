@@ -1,7 +1,7 @@
 export default class Car {
   #name;
 
-  #moveCount;
+  #moveCount = 0;
 
   constructor(name) {
     if (name.length > 5) {
