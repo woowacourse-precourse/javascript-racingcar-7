@@ -14,4 +14,6 @@ export default {
   NEGATIVE_NUMBER_INPUT: `${ERROR_PREFIX} 시도 횟수는 음수가 입력될 수 없습니다. 1 이상의 정수로 입력해주세요.`,
   DECIMAL_NUMBER_INPUT: `${ERROR_PREFIX} 시도 횟수는 소수점을 포함한 수가 입력될 수 없습니다. 1 이상의 정수로 입력해주세요.`,
   UNKNOWN_INVALID_NUMBER: `${ERROR_PREFIX} 알 수 없는 에러입니다. 시도 횟수 입력 내용을 확인해주세요.`,
+
+  OVER_VALID_TIMECOMPLEXITY: `${ERROR_PREFIX} 너무 많은 이름과 반복 횟수를 입력하였어요. 이름의 수를 줄이거나 반복 횟수를 줄여서 입력해주세요.`,
 };

@@ -6,4 +6,6 @@ export default {
 
   INITIAL_DISTANCE: 0,
   MOVE_LENGTH: 1,
+
+  VALID_TIMECOMPLEXITY: 1e7,
 };
