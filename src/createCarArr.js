@@ -8,7 +8,7 @@ export const createCarArr = (NAME_STR) => {
         let carName = nameStr.slice(0, separatorIndex).trim()
 
         if (carName.length > 5) {
-            throw new Error("차 이름이 5자 초과입니다.")
+            throw new Error("[ERROR] 차 이름이 5자 초과입니다.")
         }
 
         carArr[i] = carName
