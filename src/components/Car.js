@@ -9,5 +9,12 @@ class Car {
   moveForward() {
     this.currentDistance += Rules.MOVE_LENGTH;
   }
+
+  getStatus() {
+    return {
+      name: this.name,
+      distance: this.currentDistance,
+    };
+  }
 }
 export default Car;

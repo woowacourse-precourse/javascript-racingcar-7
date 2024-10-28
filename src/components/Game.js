@@ -2,6 +2,7 @@ import { Console, Random } from '@woowacourse/mission-utils';
 import Car from './Car.js';
 import { OutputView } from '../resources/Constants.js';
 import Rules from '../resources/Rules.js';
+import Output from '../utils/io/Output.js';
 
 class Game {
   #CARS_LIST = [];
@@ -25,7 +26,7 @@ class Game {
     let currentRepeat = 0;
     while (currentRepeat !== this.repetitionNumber) {
       this.startRound();
-      this.printRoundResults();
+      Output.printRoundResults(this.getCarsStatuses());
       currentRepeat += 1;
     }
 
@@ -40,15 +41,8 @@ class Game {
     });
   }
 
-  printRoundResults() {
-    this.#CARS_LIST.forEach((car) => {
-      const distanceString = OutputView.DISTANCE_DRAWING.repeat(
-        car.currentDistance,
-      );
-      Console.print(`${car.name} : ${distanceString}`);
-    });
-
-    Console.print(''); // Round 별 구분을 위한 공백
+  getCarsStatuses() {
+    return this.#CARS_LIST.map((car) => car.getStatus());
   }
 
   canMoveForward() {
