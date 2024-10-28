@@ -1,5 +1,10 @@
+import { GameController } from "./controller/GameController.js";
+
 class App {
-  async run() {}
+  async run() {
+    const gameController = new GameController();
+    await gameController.playGame();
+  }
 }
 
 export default App;
