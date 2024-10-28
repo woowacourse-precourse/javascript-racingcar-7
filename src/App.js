@@ -1,6 +1,7 @@
 import Car from './model/Car.js';
 import InputView from './view/InputView.js';
 import OutputView from './view/OutputView.js';
+import { validateCarNamesInput, validateTurnCount } from './util/validation.js';
 
 class App {
   constructor() {
@@ -10,7 +11,10 @@ class App {
 
   async run() {
     const carNames = await InputView.readCarName();
+    validateCarNamesInput(carNames);
+
     const turnCount = await InputView.readTurnCount();
+    validateTurnCount(turnCount);
 
     this.createCars(carNames);
     this.tryToMoveCars(turnCount);
