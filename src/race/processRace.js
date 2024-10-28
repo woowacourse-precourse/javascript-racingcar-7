@@ -1,8 +1,8 @@
-import { MissionUtils } from "@woowacourse/mission-utils";
+import { Console, MissionUtils } from "@woowacourse/mission-utils";
 
 export function processRace(names, tries) {
   const carNames = initializeCars(names); // initialize cars with empty arrays
-  console.log("\n실행 결과");
+  Console.print("\n실행 결과");
   performRace(carNames, tries);
   announceWinner(carNames);
 }
@@ -58,18 +58,17 @@ function updateCarTotalDistance(carNames, carName, moveCount) {
 function displayRoundResult(moves) {
   Object.keys(moves).forEach(carName => {
     const moveDisplay = "-".repeat(moves[carName]);
-    console.log(`${carName} : ${moveDisplay}`);
+    Console.print(`${carName} : ${moveDisplay}`);
   })
-  console.log("");
+  Console.print("");
 }
 
 function announceWinner(carNames) {
-
   const maxDistance = Math.max(...Object.values(carNames));
 
   const winners = Object.keys(carNames).filter(
     carName => carNames[carName] === maxDistance
   );
 
-  console.log(`최종 우승자 : ${winners.join(", ")}`);
+  Console.print(`최종 우승자 : ${winners.join(", ")}`);
 }

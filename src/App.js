@@ -10,7 +10,7 @@ class App {
     const names = validateNames(inputtedNames);
     const inputtedTries = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
     const tries = validateTries(inputtedTries);
-    const proceed = processRace(names, tries);
+    processRace(names, tries);
   }
 }
 
