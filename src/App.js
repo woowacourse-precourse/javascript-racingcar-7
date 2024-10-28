@@ -44,7 +44,7 @@ class App {
     this.numberOfAttempts = Number(games);
   }
   validateNumberOfAttempts(num) {
-    if (Number.isNaN(Number(num)) || !Number.isInteger(Number(num)) || Number(num)<0)
+    if (Number.isNaN(Number(num)) || !Number.isInteger(Number(num)) || Number(num)<=0)
       throw new Error('[ERROR] 0보다 큰 정수를 입력해주세요.');
   }
   race() {
