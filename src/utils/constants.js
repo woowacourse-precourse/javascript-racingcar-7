@@ -80,3 +80,74 @@ export const GAME_ROUNDS_TEST_CASES = {
     expected: 5,
   },
 };
+
+export const TEST_DESCRIPTIONS = {
+  MAIN: '자동차 경주',
+  BASE: {
+    FEATURE: '기능 테스트',
+    EXCEPTION: '예외 테스트',
+  },
+  CAR_NAME: {
+    GROUP: '자동차 이름 검증',
+    CASES: [
+      {
+        key: 'EMPTY_NAME',
+        description: '자동차 이름이 빈 문자열인 경우 에러 발생',
+      },
+      {
+        key: 'EMPTY_NAME_WITH_SPACE',
+        description: '자동차 이름이 공백인 경우 에러 발생',
+      },
+      {
+        key: 'NAME_TOO_LONG',
+        description: '자동차 이름이 5자를 초과하는 경우 에러 발생',
+      },
+      {
+        key: 'DUPLICATE_NAME',
+        description: '중복된 자동차 이름이 있는 경우 에러 발생',
+      },
+      {
+        key: 'VALID_NAMES',
+        description: '유효한 자동차 이름들이 입력된 경우 정상적으로 처리',
+      },
+    ],
+  },
+  GAME_ROUNDS: {
+    GROUP: '시도 횟수 검증',
+    CASES: [
+      {
+        key: 'EMPTY_ROUNDS',
+        description: '시도 횟수가 빈 값이나 공백이 입력된 경우 에러 발생',
+      },
+      {
+        key: 'EMPTY_ROUNDS_WITH_SPACE',
+        description: '시도 횟수가 공백인 경우 에러 발생',
+      },
+      {
+        key: 'NOT_A_NUMBER',
+        description: '시도 횟수가 숫자가 아닌 값이 입력된 경우 에러 발생',
+      },
+      {
+        key: 'NEGATIVE_NUMBER',
+        description: '시도 횟수가 음수가 입력된 경우 에러 발생',
+      },
+      {
+        key: 'ZERO_ROUNDS',
+        description: '시도 횟수가 0이 입력된 경우 에러 발생',
+      },
+      {
+        key: 'NOT_INTEGER',
+        description: '시도 횟수가 소수가 입력된 경우 에러 발생',
+      },
+      {
+        key: 'OVERFLOW',
+        description:
+          '시도 횟수가 오버플로우를 발생시키는 값이 입력된 경우 에러 발생',
+      },
+      {
+        key: 'VALID_NUMBER',
+        description: '유효한 시도 횟수가 입력된 경우 정상적으로 처리',
+      },
+    ],
+  },
+};
