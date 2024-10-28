@@ -4,7 +4,7 @@ import getString from './inputHandlers/getString';
 import splitByComma from './utils/splitByComma';
 import carGame from './games/carGame';
 import printResult from './outputHandlers/printResult';
-import { hasLongString } from './errorHandling';
+import { hasLongString, isNumber, isPositive } from './errorHandling';
 
 class App {
   async run() {
@@ -17,6 +17,12 @@ class App {
     }
     const carList = splitByComma(inputCarString);
     const tryNumber = await getNumber();
+    if(!isNumber(tryNumber)){
+      throw new Error("[ERROR] 시도하는 횟수는 숫자이여야합니다. 어플리케이션이 종료됩니다. ");
+    }
+    if(!isPositive(tryNumber)){
+      throw new Error("[ERROR] 시도하는 횟수는 양수이여야합니다. 어플리케이션이 종료됩니다. ");
+    }
     const carDistance= arrayToObject(carList);
     const winnersCar = carGame(carDistance,tryNumber);
     printResult(winnersCar);

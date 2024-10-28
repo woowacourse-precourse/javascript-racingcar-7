@@ -13,3 +13,7 @@ export const hasLongString = (array) => {
 export const isNumber = (string) => {
     return ONLY_NUMBER.test(string);
 };
+
+export const isPositive = (value) => {
+    return Number(value) > 0; 
+};
