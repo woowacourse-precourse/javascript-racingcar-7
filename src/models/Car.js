@@ -40,6 +40,10 @@ class Car {
     const dash = '-'.repeat(this.#position);
     return `${this.#carName} : ${dash}`;
   }
+
+  getPosition() {
+    return this.#position;
+  }
 }
 
 export default Car;

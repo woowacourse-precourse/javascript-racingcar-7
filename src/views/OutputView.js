@@ -9,6 +9,10 @@ const OutputView = {
   printCarStatus(carStatus) {
     Console.print(carStatus);
   },
+
+  printWinners(winners) {
+    Console.print(`최종 우승자 : ${winners.join(', ')}`);
+  },
 };
 
 export default OutputView;

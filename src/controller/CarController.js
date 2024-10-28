@@ -12,6 +12,7 @@ class CarController {
     const inputCount = await this.getAttemptCount();
     const attemptCount = new AttemptCount(inputCount);
     this.#playGames(attemptCount, cars);
+    this.#printWinners(cars);
   }
 
   async getCarNames() {
@@ -54,6 +55,19 @@ class CarController {
 
   #decrementAttempt(attemptCount) {
     attemptCount.decreaseAttempts();
+  }
+
+  #getWinners(cars) {
+    const maxPosition = Math.max(...cars.map((car) => car.getPosition()));
+    const winners = cars
+      .filter((car) => car.getPosition() === maxPosition)
+      .map((car) => car.getCarName());
+    return winners;
+  }
+
+  #printWinners(cars) {
+    const winners = this.#getWinners(cars);
+    OutputView.printWinners(winners);
   }
 }
 
