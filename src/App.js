@@ -29,6 +29,12 @@ class App {
         await MissionUtils.Console.print(`${carName} : ${map.get(carName)}`);
       }
     }
+    const scores = [...map.entries()];
+    const maxLength = Math.max(...scores.map(([_, dash]) => dash.length));
+    const winners = scores
+      .filter(([_, dash]) => dash.length === maxLength)
+      .map(([name]) => name);
+    await MissionUtils.Console.print(`\n최종 우승자 : ${winners.join(', ')}`);
   }
 }
 
