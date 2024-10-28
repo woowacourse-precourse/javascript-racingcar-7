@@ -55,4 +55,43 @@ describe("자동차 경주 테스트", () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
+
+  test("기능 테스트 - 시행횟수가 여러번일 경우에도 정상출력되는지 확인", async () => {
+    const MOVING_FORWARD = 5;
+    const STOP = 2;
+    const inputs = ["moon,star,sun", "3"];
+    const logs = [
+      "moon : -",
+      "star : ",
+      "sun : -",
+      "moon : --",
+      "star : -",
+      "sun : --",
+      "moon : ---",
+      "star : --",
+      "sun : ---",
+      "최종 우승자 : moon,sun",
+    ];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([
+      MOVING_FORWARD,
+      STOP,
+      MOVING_FORWARD,
+      MOVING_FORWARD,
+      MOVING_FORWARD,
+      MOVING_FORWARD,
+      MOVING_FORWARD,
+      MOVING_FORWARD,
+      MOVING_FORWARD,
+    ]);
+
+    const app = new App();
+    await app.run();
+
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
 });
