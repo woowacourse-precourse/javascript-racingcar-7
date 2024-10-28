@@ -1,5 +1,11 @@
+import AppController from "./AppController.js";
+
 class App {
-  async run() {}
+  async run() {
+
+    const appController = new AppController();
+    await appController.control();
+  }
 }
 
 export default App;
