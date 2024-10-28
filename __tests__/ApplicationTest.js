@@ -68,7 +68,6 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR] 자동차 이름은 5글자 이하로 입력해주세요.");
   });
 
-
   test("예외테스트 : 쉼표(,) 이외에 다른 구분자를 사용하는 경우", async () => {
     const inputs = ["abc.abc:def"];
     mockQuestions(inputs);
@@ -78,14 +77,49 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR] 이름은 쉼표(,)로 구분 가능합니다.");
   });
 
-
-  test("예외테스트 : 공백 혹은 입력하지 않은 경우", async () => {
-    const inputs = [" ", ""];
+  test("예외테스트 : 공백을 입력한 경우", async () => {
+    const inputs = [" "];
     mockQuestions(inputs);
 
     const app = new App();
 
     await expect(app.run()).rejects.toThrow("[ERROR] 경주할 자동차 이름을 입력하세요");
+  });
+
+  test("예외테스트 : 아무것도 입력하지 않은 경우", async () => {
+    const inputs = [""];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR] 경주할 자동차 이름을 입력하세요");
+  });
+
+  test("예외테스트 : 시도할 횟수가 0회인 경우 ERROR", async () => {
+    const inputs = ["abc,de", "0"];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR] 시도할 횟수가 0보다 커야 경기가 시작됩니다.");
+  });
+
+  test("예외테스트 : 시도할 횟수가 공백인 경우", async () => {
+    const inputs = ["abc,de", ""];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR] 시도할 횟수를 입력해주세요.");
+  });
+
+  test("예외테스트 : 시도할 횟수를 입력하지 않은 경우", async () => {
+    const inputs = ["abc,de", " "];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR] 시도할 횟수를 입력해주세요.");
   });
 
 });
