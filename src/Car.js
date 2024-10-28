@@ -1,14 +1,19 @@
 class Car {
   #forwadCount=0;
+  #name;
 
   constructor(name) {
-    const name = name;
+    this.#name = name;
   }
 
   forward(random) {
     if (random >= 4 ){
       this.#forwadCount++;
     }
+  }
+
+  getName() {
+    return this.#name;
   }
 
   getForwardCount() {
