@@ -16,10 +16,7 @@ class App {
 
     this.validateGameCount(gameCount);
 
-    const racingCarsPos = {};
-    racingCars.forEach((car) => {
-      racingCarsPos[car] = "";
-    });
+    const racingCarsPos = this.initRacingCarsPos(racingCars);
 
     for (let i = 0; i < gameCount; i++) {
       this.playTurn(racingCars, racingCarsPos);
@@ -28,6 +25,14 @@ class App {
     const winners = this.pickWinner(racingCarsPos);
 
     Console.print(`최종 우승자 : ${winners.join(", ")}`);
+  }
+
+  initRacingCarsPos(racingCars) {
+    const racingCarsPos = {};
+    racingCars.forEach((car) => {
+      racingCarsPos[car] = "";
+    });
+    return racingCarsPos;
   }
 
   validateGameCount(gameCount) {
