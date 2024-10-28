@@ -6,6 +6,7 @@ export const ERROR_MESSAGES = {
   INVALID_CAR_NAME_LENGTH: "[ERROR]: 이름은 5자 이하만 가능합니다.",
   INVALID_ATTEMPT_COUNT: "[ERROR]: 숫자만 입력 가능합니다.",
   ZERO_ATTEMPT_COUNT: "[ERROR]: 0은 입력할 수 없습니다.",
+  NEGATIVE_ATTEMPT_COUNT: "[ERROR]: 음수는 입력할 수 없습니다.",
 };
 class App {
   async run() {
@@ -107,6 +108,9 @@ class App {
     }
     if (inputNum == 0) {
       throw new Error(ERROR_MESSAGES.ZERO_ATTEMPT_COUNT);
+    }
+    if (inputNum < 0) {
+      throw new Error(ERROR_MESSAGES.NEGATIVE_ATTEMPT_COUNT);
     }
   }
 }
