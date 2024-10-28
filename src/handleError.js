@@ -4,7 +4,11 @@ export function validateNameLength(carNames) {
     }
 }
 
-export function isCarNameEmpty(carNames) {}
+export function isCarNameEmpty(carNames) {
+    if (carNames.every((carName) => carName === '')) {
+        throw new Error('[ERROR] 자동차 이름은 비어있을 수 없습니다.');
+    }
+}
 
 export function hasDuplicateNames() {}
 
