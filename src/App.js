@@ -8,7 +8,23 @@ class App {
     // 전체 입력을 쉼표 기준으로 파싱하고, 이름이 입력 형식에 맞는지 체크
     const inputCheckedNames = carNameInput.split(",").map((name) => this.inputCheckName(name));
     const duplicateCheckedNames = this.duplicateCheckName(inputCheckedNames);
-    Console.print(duplicateCheckedNames);
+    // 경주 횟수 입력
+    const playCount = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+    const racingCars = duplicateCheckedNames.map((name) => {name: 0});
+    // 경주 단계별로 실행 후 출력
+    Console.print("\n실행 결과");
+    for (let i = 0; i < playCount; i++) {
+      racingCars.map((car) => {
+        this.randomForward(car);
+        this.printRacingCarForward(car);
+      });
+      Console.print("\n");
+    }
+
+    const winnerList = this.getWinnerList(racingCars);
+    Console.print(
+      `최종 우승자 : ${winnerList.map((car) => car.name).join(", ")}`
+    );
   }
 
   inputCheckName(name) {
@@ -27,6 +43,7 @@ class App {
     }
     return names;
   }
+
 }
 
 export default App;
