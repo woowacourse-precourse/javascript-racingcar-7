@@ -19,7 +19,12 @@ class App {
       this.announceWinners(carData);
     } catch (error) {
       // 오류 발생 시 오류 메시지 출력
-      Console.print(`[ERROR] ${error.message}`);
+      Console.print(`${error.message}`);
+      
+      // 테스트에서 예외를 감지할 수 있도록 예외를 다시 던짐.
+      if (process.env.NODE_ENV === "test") {
+        throw error;
+      }
     }
   }
 
@@ -28,7 +33,7 @@ class App {
     const input = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
     const carNames = input.split(',').map((name) => name.trim());
     if (carNames.some((name) => name.length > 5 || name.length === 0)) {
-      throw new Error('자동차 이름은 1자 이상 5자 이하로 입력해주세요.');
+      throw new Error('[ERROR]자동차 이름은 1자 이상 5자 이하로 입력해주세요.');
     }
     return carNames;
   }
@@ -38,7 +43,7 @@ class App {
     const input = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
     const attemptCount = Number(input);
     if (isNaN(attemptCount) || attemptCount <= 0) {
-      throw new Error('횟수는 1 이상의 숫자로 입력해주세요.');
+      throw new Error('[ERROR] 횟수는 1 이상의 숫자로 입력해주세요.');
     }
     return attemptCount;
   }
