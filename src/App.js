@@ -30,16 +30,25 @@ class App {
 		return count;
 	}
 
-	async startRace(cars, tryCount) {
+	startRace(cars, tryCount) {
 		for (let i = 0; i < tryCount; i++) {
 			cars.forEach((car) => {
 				if (Random.pickNumberInRange(0, 9) >= 4) {
 					car.position += 1;
 				}
 
-				Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
+				this.printRaceStatus(cars);
 			});
 		}
+	}
+
+	printRaceStatus(cars) {
+		cars.forEach((car, idx) => {
+			if (idx === cars.length - 1) {
+				Console.print(`${car.name} : ${'-'.repeat(car.position)}\n`);
+			}
+			Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
+		});
 	}
 
 	async run() {
