@@ -1,4 +1,3 @@
-// todo 이름 추출 부분 입력 오류시 예외처리 구현
 import { Console } from '@woowacourse/mission-utils';
 
 async function getCarsname() {
@@ -8,7 +7,7 @@ async function getCarsname() {
   const splitedNames = splitNames(carsName);
 
   splitedNames.forEach((name) => {
-    if (name.length > 6) {
+    if (name.length > 6 || name === '') {
       throw new Error();
     }
   });
