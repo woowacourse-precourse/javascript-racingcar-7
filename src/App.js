@@ -1,33 +1,6 @@
-import { Console, MissionUtils } from "@woowacourse/mission-utils";
+import { Console } from "@woowacourse/mission-utils";
 import { validateCarsInput } from "./utils/validateInput";
-
-function printCarAdvance(advanceValue) {
-  return "-".repeat(advanceValue);
-}
-
-function generateRandomAdvance(cars, result) {
-  const n = cars.length;
-  for (let i = 0; i < n; i++) {
-    const randomValue = MissionUtils.Random.pickNumberInRange(0, 9);
-    if (randomValue >= 4) result[i] += 1;
-  }
-}
-
-function printCurrentStatus(cars, result) {
-  cars.forEach((car, index) => {
-    Console.print(`${car} : ${printCarAdvance(result[index])}`);
-  });
-  Console.print("");
-}
-
-function runRaceRounds(cars, count) {
-  const result = new Array(cars.length).fill(0);
-  for (let round = 0; round < count; round++) {
-    generateRandomAdvance(cars, result);
-    printCurrentStatus(cars, result);
-  }
-  return result;
-}
+import { runRaceRounds } from "./utils/race";
 
 function checkWinner(cars, result) {
   const maxResult = Math.max(...result);
