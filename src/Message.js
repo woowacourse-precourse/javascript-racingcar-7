@@ -6,3 +6,10 @@ export const INPUT_MESSAGE = {
 export const OUTPUT_MESSAGE = {
   winner: '최종 우승자 : ',
 };
+
+export const NUMBER = {
+    startPosition: 0,
+    pickNumberMin: 0,
+    pickNumberMax: 9,
+    fowardCondition: 4,
+  };
