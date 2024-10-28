@@ -7,11 +7,7 @@ class App {
 
     Console.print("\n실행 결과");
 
-    for (let i = 0; i < attemptCount; i++) {
-      this.race(raceCars);
-      this.printRoundResult(raceCars);
-    }
-
+    this.startRace(raceCars, attemptCount);
     this.printFinalResult(raceCars);
   }
 
@@ -56,6 +52,14 @@ class App {
     }
     return inputNum;
   }
+
+  startRace(raceCars, attemptCount) {
+    for (let i = 0; i < attemptCount; i++) {
+      this.race(raceCars);
+      this.printRoundResult(raceCars);
+    }
+  }
+
   race(raceCars) {
     raceCars.forEach((raceCar) => {
       if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) {
