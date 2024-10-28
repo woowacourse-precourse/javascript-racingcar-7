@@ -46,9 +46,7 @@ class App {
   
   async run() {
     // 1. 자동차 입력 받기 : 쉼표(,)로 구분하여 저장
-    const car_input = await Console.readLineAsync(
-      "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)"
-    );
+    const car_input = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
     
     // 5. 예외 처리 1 : 자동차 이름은 각각 5자 이하만 가능하게 확인하는 함수 호출
     if (car_input.includes(",")) {
@@ -68,6 +66,10 @@ class App {
       throw new Error("[ERROR]");
     }
     
+    // 10. 우승자 계산 및 출력
+    Console.print("\n실행 결과");
+    this.game_results = Array(this.car_names.length).fill(0);
+    
     // 9. 게임 실행
     this.game(rounds);
     
@@ -75,6 +77,11 @@ class App {
     if (this.game_results.every((result) => result === 0)) {
       throw new Error("[ERROR]");
     }
+    
+    // 10. 우승자 계산 및 출력
+    const max_score = Math.max(...this.game_results);
+    const winners = this.car_names.filter((_, index) => this.game_results[index] === max_score);
+    Console.print(`최종 우승자 : ${winners.join(", ")}`);
   }
 }
 
