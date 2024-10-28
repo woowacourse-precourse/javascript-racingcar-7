@@ -30,11 +30,20 @@ class App {
 
       return result;
     };
+    const getWinner = async (result) => {
+      const maxScore = Math.max(...Object.values(result));
+      const winners = Object.keys(result).filter(
+        (str) => result[str] === maxScore
+      );
+
+      MissionUtils.Console.print(`최종 우승자 : ${winners.join(", ")}`);
+    };
 
     const input = await getInput();
     const count = await getCount();
 
-    await tryRace(input, count);
+    const result = await tryRace(input, count);
+    await getWinner(result);
   }
 }
 
