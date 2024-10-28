@@ -1,5 +1,5 @@
-import App from "../src/App.js";
-import { MissionUtils } from "@woowacourse/mission-utils";
+import App from '../src/App.js';
+import { MissionUtils } from '@woowacourse/mission-utils';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -19,18 +19,18 @@ const mockRandoms = (numbers) => {
 };
 
 const getLogSpy = () => {
-  const logSpy = jest.spyOn(MissionUtils.Console, "print");
+  const logSpy = jest.spyOn(MissionUtils.Console, 'print');
   logSpy.mockClear();
   return logSpy;
 };
 
-describe("자동차 경주", () => {
-  test("기능 테스트", async () => {
+describe('자동차 경주', () => {
+  test('기능 테스트', async () => {
     // given
     const MOVING_FORWARD = 4;
     const STOP = 3;
-    const inputs = ["pobi,woni", "1"];
-    const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
+    const inputs = ['pobi,woni', '1'];
+    const logs = ['pobi : -', 'woni : ', '최종 우승자 : pobi'];
     const logSpy = getLogSpy();
 
     mockQuestions(inputs);
@@ -46,15 +46,63 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트", async () => {
+  test('자동차 이름 길이 예외 테스트', async () => {
     // given
-    const inputs = ["pobi,javaji"];
+    const inputs = ['pobi,javaji'];
     mockQuestions(inputs);
 
     // when
     const app = new App();
 
     // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('자동차 이름 빈 문자열 예외 테스트', async () => {
+    mockQuestions(['', '1']);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('시도할 횟수 빈 문자열 예외 테스트', async () => {
+    mockQuestions(['pobi,woni', '']);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('자동차 이름에 잘못된 문자 포함 예외테스트', async () => {
+    mockQuestions(['pobi,woni@#', '1']);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('자동차 이름 중복 예외 테스트', async () => {
+    mockQuestions(['pobi,pobi', '1']);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('시도할 횟수 숫자가 아닐 경우 예외 테스트', async () => {
+    mockQuestions(['pobi,woni', 'abc']);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('시도할 횟수 음수 예외테스트', async () => {
+    mockQuestions(['pobi,woni', '-1']);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR]');
   });
 });
