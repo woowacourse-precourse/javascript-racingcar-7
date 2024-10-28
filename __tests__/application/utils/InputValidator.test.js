@@ -1,4 +1,5 @@
 import Validator from '../../../src/application/utils/InputValidator.js';
+import ERROR from '../../../src/constants/Error.js';
 
 describe('InputValidator class 테스트', () => {
   describe('validateInputIsNull 메소드 테스트', () => {
@@ -8,7 +9,7 @@ describe('InputValidator class 테스트', () => {
 
       inputs.forEach((input) => {
         // when & then
-        expect(() => Validator.validateInputIsNull(input)).toThrow('[ERROR]');
+        expect(() => Validator.validateInputIsNull(input)).toThrow(ERROR.INPUT_IS_NULL);
       });
     });
 

@@ -1,4 +1,5 @@
 import CarNameValidator from '../../../src/domain/validation/CarNameValidator.js';
+import ERROR from '../../../src/constants/Error.js';
 
 describe('CarNameValidator 테스트', () => {
   describe('validateCarNameLength 메서드 테스트', () => {
@@ -9,7 +10,7 @@ describe('CarNameValidator 테스트', () => {
       // when & then
       invalidNames.forEach((name) => {
         expect(() => CarNameValidator.validateCarNameLength(name))
-          .toThrow('[ERROR] 자동차 이름은 1자 이상 5자 이하여야 합니다.');
+          .toThrow(ERROR.CAR_NAME_LENGTH);
       });
     });
 
@@ -19,7 +20,7 @@ describe('CarNameValidator 테스트', () => {
 
       // when & then
       expect(() => CarNameValidator.validateCarNameLength(emptyName))
-        .toThrow('[ERROR] 자동차 이름은 1자 이상 5자 이하여야 합니다.');
+        .toThrow(ERROR.CAR_NAME_LENGTH);
     });
 
     test('1자 이상 5자 이하의 정상적인 이름에 대한 에러 발생 여부 확인', () => {
@@ -41,7 +42,7 @@ describe('CarNameValidator 테스트', () => {
 
       // when & then
       expect(() => CarNameValidator.validateCarNamesDuplication(duplicateNames))
-        .toThrow('[ERROR] 자동차 이름은 중복될 수 없습니다.');
+        .toThrow(ERROR.CAR_NAME_DUPLICATE);
     });
 
     test('중복된 이름이 없는 경우 검증을 통과한다', () => {
