@@ -1,5 +1,9 @@
+import CarGameController from "./CarGameController.js";
+
 class App {
-  async run() {}
+    async run() {
+        await new CarGameController().play();
+    }
 }
 
 export default App;
