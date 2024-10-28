@@ -3,7 +3,8 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 export function processRace(names, tries) {
   const carNames = initializeCars(names); // initialize cars with empty arrays
   console.log("\n실행 결과");
-  performRace(carNames, tries);
+  const totalDistance = performRace(carNames, tries);
+  console.log('total distance:', totalDistance);
 }
 
 function generateRandomNumbers() {
@@ -20,23 +21,26 @@ function initializeCars(names) {
 
 function performRace(carNames, tries) {
   for (let i = 0; i < tries; i++) {
-    updateCarNamesForTries(carNames);
-    displayRoundResult(carNames);
-  }
+    const moves = updateCarNamesForTries(carNames);
+    displayRoundResult(moves);
+  };
+  return carNames;
 }
 
 function updateCarNamesForTries(carNames) {
+  const moves = {};
   Object.keys(carNames).forEach(carName => {
     const randomNumber = generateRandomNumbers();
-    const moves = randomNumber > 4 ? randomNumber - 4 : 0;
-    carNames[carName].push("-".repeat(moves));
+    const moveCount = randomNumber > 4 ? randomNumber - 4 : 0;
+    moves[carName] = moveCount;
   });
+  return moves;
 }
 
-function displayRoundResult(carNames) {
-  Object.keys(carNames).forEach(carName => {
-    const moves = carNames[carName].join("");
-    console.log(`${carName} : ${moves}`);
-  });
-  console.log(""); // separate lines for every round
+function displayRoundResult(moves) {
+  Object.keys(moves).forEach(carName => {
+    const moveDisplay = "-".repeat(moves[carName]);
+    console.log(`${carName} : ${moveDisplay}`);
+  })
+  console.log("");
 }
