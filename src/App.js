@@ -5,6 +5,7 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 //[] 4.  랜덤한 전진 조건 정해서 출력하기 (5. 1. 2.)-> 함수에서 바로 return출력가능
 //[] 5.  시도횟수만큼 출력후 마지막 출력의 -을 비교하기 (6.)
 //[] 6.  최대 값의 자동차 이름들 출력하기 (6. 7.)
+
 class App {
   // 자동차 이름 5자 이하 확인 함수
   onCheckName5(carList) {
@@ -29,6 +30,18 @@ class App {
       throw new Error('Error');
     }
   }
+  // 랜덤한 전진 값 구하는 함수
+  onGetRandomGo() {
+    return MissionUtils.Random.pickNumberInRange(0, 9);
+  }
+  //랜덤한 전진 함수
+  onGetGOorNot(carList) {
+    return carList.map((car) => {
+      const Random = this.onGetRandomGo();
+      const Go = Random >= 4 ? '-' : '';
+      return `${car} : ${Go}`;
+    });
+  }
   async run() {
     try {
       const carInput = await MissionUtils.Console.readLineAsync(
@@ -41,9 +54,14 @@ class App {
       const tryNumber =
         await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?');
       this.onCheckTryNumber(tryNumber);
-
       MissionUtils.Console.print(`차: ${carList}`);
       MissionUtils.Console.print(`횟수: ${tryNumber}`);
+
+      // 랜덤한 전진 결과
+      const outputs = this.onGetGOorNot(carList);
+      outputs.forEach((output) => {
+        MissionUtils.Console.print(output);
+      });
     } catch (error) {
       // reject 되는 경우
       MissionUtils.Console.print('[ERROR]');
