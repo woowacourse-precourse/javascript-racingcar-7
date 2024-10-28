@@ -23,11 +23,13 @@ export function validateAttemptsNumber(input) {
         throw new Error('[ERROR] 필수 입력 항목입니다.');
     }
 
-    if (!/^[1-9]\d*$/.test(input)) {  // 1 이상의 숫자만 허용
-        if (/[^\d]/.test(input)) {
-            throw new Error('숫자만 입력해주세요.');
-        } else {
-            throw new Error('[ERROR] 1 이상의 숫자만 입력이 가능합니다.');
-        }
+    if (isNaN(input)) {
+        throw new Error('[ERROR] 숫자만 입력해주세요.');
+    }
+
+    const number = parseInt(input, 10);
+
+    if (number <= 0) {
+        throw new Error('[ERROR] 1 이상의 숫자만 입력이 가능합니다.');
     }
 }
