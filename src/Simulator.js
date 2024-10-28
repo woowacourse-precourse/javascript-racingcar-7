@@ -8,10 +8,7 @@ class Simulator {
 
   constructor(names) {
     printOutput(MESSAGE.EXECUTE_OUTPUT);
-    this.#state = names.reduce((arr, name) => {
-      arr.push({ name, count: 0 });
-      return arr;
-    }, []);
+    this.#state = names.map((name) => ({ name, count: 0 }));
   }
 
   #canMoveForward() {
