@@ -17,3 +17,9 @@ export const ERROR_MESSAGE = {
   EMPTY_TRYCOUNT: `${MESSAGE.ERROR} 시도횟수가 입력되지 않았습니다.`,
   NOT_NUMBER_TRYCOUNT: `${MESSAGE.ERROR} 시도횟수가 숫자가 아닙니다.`,
 };
+
+export const NUMBER = {
+  START_NUMBER: 1,
+  LAST_NUMBER: 9,
+  LIMIT_NUMBER: 4,
+};

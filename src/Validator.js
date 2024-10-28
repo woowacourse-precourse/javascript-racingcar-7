@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from "./constants";
+import { ERROR_MESSAGE } from "./constants.js";
 
 class Validator {
   static validateTryCountInput(tryCount) {
