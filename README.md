@@ -24,11 +24,11 @@
 ### 4. 우승자 출력
 
 - [x] 자동차의 거리를 계산하여, 최댓값을 가지는 자동차를 winner로 출력한다.
-- [ ] 우승자가 없는 경우(난수가 0인 경우) 에는 Error 반환
+- [x] 우승자가 없는 경우(난수가 0인 경우) 에는 Error 반환
 
 ## Error check
 
-`InvalidNameError` : “[ERROR] 유효하지 않은 자동차 이름입니다.”
+`InvalidNameError` : “[ERROR] 자동차 이름은 5글자 이하입니다.”
 
 `EmptyNameError` : “[ERRPR] 자동차 이름은 공백일 수 없습니다.”
 
