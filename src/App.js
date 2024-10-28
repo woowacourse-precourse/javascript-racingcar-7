@@ -11,6 +11,9 @@ class App {
     const carNames = parseCarNames(carNamesInput);
     const attemptCountInput = await getInput(INPUT.ATTEMPT_COUNT_PROMPT);
     const attemptCount = attemptValidator(attemptCountInput);
+
+    getOutput("\n" + EXECUTION_RESULT);
+    const { raceStates, winners } = simulateRace(carNames, attemptCount);
   }
 }
 
