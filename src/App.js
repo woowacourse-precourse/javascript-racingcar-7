@@ -10,7 +10,7 @@ class App {
       .map((carName) => this.validateName(carName));
 
     let playNum = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
-    playNum = this.isNumber(playNum);
+    playNum = this.isPositiveNumber(playNum);
 
     const racingCars = carNames.map((carName) => {
       return { name: carName, score: 0 };
@@ -69,7 +69,7 @@ class App {
     return name;
   }
 
-  isNumber(num) {
+  isPositiveNumber(num) {
     if (isNaN(num)) {
       throw new Error("[ERROR] 시도 횟수를 올바른 숫자로 입력해 주세요");
     } else if (num <= 0) {
