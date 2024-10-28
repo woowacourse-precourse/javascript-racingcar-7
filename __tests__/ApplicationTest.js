@@ -45,6 +45,24 @@ describe("자동차 경주", () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
+  test("이동 횟수가 음수일 경우에 대한 예외 테스트", async () => {
+    // given
+    const inputs = ["pobi,woni", "-3"];
+    mockQuestions(inputs);
+    // when
+    const app = new App();
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+  test("이동 횟수가 문자열일 경우에 대한 예외 테스트", async () => {
+    // given
+    const inputs = ["pobi,woni,taeyoung", "test"];
+    mockQuestions(inputs);
+    // when
+    const app = new App();
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
 
   test("예외 테스트", async () => {
     // given
