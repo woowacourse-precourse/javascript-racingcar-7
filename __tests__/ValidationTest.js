@@ -1,4 +1,4 @@
-import Car from "../src/models/Car.js"
+import Car from "../src/models/Car.js";
 import { isValidNumber } from "../src/utils/validation.js";
 import { ERROR_MESSAGE } from "../src/utils/constants.js";
 
