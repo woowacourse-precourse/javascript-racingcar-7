@@ -1,3 +1,5 @@
+import { MissionUtils } from "@woowacourse/mission-utils";
+
 class App {
   inputCars() {
     return MissionUtils.Console.readLineAsync(
