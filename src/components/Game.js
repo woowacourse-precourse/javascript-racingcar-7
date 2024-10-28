@@ -3,22 +3,15 @@ import Car from './Car.js';
 import { OutputView } from '../resources/Constants.js';
 import Rules from '../resources/Rules.js';
 import Output from '../utils/io/Output.js';
+import CarAllocator from './CarAllocator.js';
 
 class Game {
   #CARS_LIST = [];
 
   constructor(names, repetitionNumber) {
-    this.nameList = Game.parseNames(names);
-    this.#CARS_LIST = Game.allocateCars(this.nameList);
+    this.nameList = CarAllocator.parseNames(names);
+    this.#CARS_LIST = CarAllocator.allocateCars(this.nameList);
     this.repetitionNumber = repetitionNumber;
-  }
-
-  static parseNames(names) {
-    return names.split(Rules.DELIMITER);
-  }
-
-  static allocateCars(nameList) {
-    return nameList.map((name) => new Car(name));
   }
 
   play() {
