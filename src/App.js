@@ -12,7 +12,11 @@ import {
   getCarPositionsRepresentation,
   findWinners,
 } from './models/Model.js';
-import { validateCarNames } from './models/ErrorHandler.js';
+import {
+  validateCarNames,
+  validateNotEmpty,
+  validateRaceCountIsPositiveInteger,
+} from './models/ErrorHandler.js';
 
 class App {
   async run() {
@@ -21,7 +25,10 @@ class App {
       const carNames = divisionCarName(userInputCar.toString());
 
       validateCarNames(carNames);
-      const userInputRacingNum = parseInt(await getUserRacingNum(), 10);
+      validateNotEmpty(carNames);
+      const userInputRacingNum = await getUserRacingNum();
+      validateRaceCountIsPositiveInteger(userInputRacingNum);
+
       const initialCarData = createCarObject(carNames);
 
       MissionUtils.Console.print(`\n실행 결과`);
