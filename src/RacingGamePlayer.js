@@ -6,6 +6,7 @@ class RacingGamePlayer {
   constructor(carNames, tryNumber) {
     this.cars = this.createCars(carNames);
     this.roundNumber = tryNumber;
+    this.winner = [];
   }
 
   createCars(carNames) {
@@ -30,9 +31,17 @@ class RacingGamePlayer {
     return Math.max(...this.cars.map((car) => car.dist));
   }
 
+  findWinner() {
+    const maxMovingDistance = this.findMaxMovingDistance();
+    return this.cars
+      .filter((car) => car.dist == maxMovingDistance)
+      .map((car) => car.name);
+  }
+
   play() {
     MissionUtils.Console.print(messages.newLine + messages.showRoundResults);
     this.moveCars();
+    this.winner = this.findWinner();
   }
 }
 
