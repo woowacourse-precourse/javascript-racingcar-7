@@ -1,11 +1,12 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
+import { Constants } from '../utils/Constants.js'
 class InputView {
   static readCarNames(callback) {
-    MissionUtils.Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)")
+    MissionUtils.Console.readLineAsync(Constants.INPUT_MESSAGES.CAR_NAME_QUESTION)
   }
 
   static readAttemptCount(callback) {
-    MissionUtils.Console.readLineAsync("시도할 횟수는 몇 회인가요?")
+    MissionUtils.Console.readLineAsync(Constants.INPUT_MESSAGES.NUMBER_QUESTION)
   }
 }
 
