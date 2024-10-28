@@ -1,9 +1,11 @@
 import { Console } from "@woowacourse/mission-utils";
+import { Random } from "@woowacourse/mission-utils/src";
 
 class App {
   async run() {
     const carNames = await this.getCarNames();
     const times = await this.getTimes();
+    const scores = this.setScores(carNames);
   }
 
   async getCarNames() {
@@ -49,6 +51,12 @@ class App {
     if (times <= 0) {
       throw new Error("[ERROR] 양수만 입력하실 수 있습니다.");
     }
+  }
+
+  setScores(carNames) {
+    let scores = {};
+    carNames.forEach((car) => (scores[car] = 0));
+    return scores;
   }
 }
 
