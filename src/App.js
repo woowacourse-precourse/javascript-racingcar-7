@@ -1,12 +1,12 @@
 import { Console, MissionUtils } from '@woowacourse/mission-utils';
 class App {
-  throwNewError(notice) {
+  throwError(notice) {
     throw new Error(`[ERROR] ${notice}`);
   }
-  async askUser(text) {
+  async consoleUserInput(text) {
     const question = await Console.readLineAsync(text);
     if (question === '' || question === null || question === undefined) {
-      this.throwNewError('값이 입력되지 않았습니다.');
+      this.throwError('값이 입력되지 않았습니다.');
     }
     return question;
   }
@@ -24,7 +24,7 @@ class App {
 
     return true;
   }
-  createObjectCars(inputString) {
+  createCarObject(inputString) {
     const nameArray = this.extractCarName(inputString);
     return nameArray.reduce((accumulator, name) => {
       let trimmedName = name.trim();
@@ -46,7 +46,7 @@ class App {
       Console.print(car + ' : ' + cars[car]);
     }
   }
-  roundGames(cars, gameRounds) {
+  startGame(cars, gameRounds) {
     Console.print('실행 결과');
     for (let i = 0; i < gameRounds; i++) {
       this.recordGameRound(cars);
@@ -86,11 +86,12 @@ class App {
     return winners;
   }
   printWinner(winnerArray) {
+    const WINNER_IS = '최종 우승자 : ';
     if (winnerArray.length === 1) {
-      Console.print(`최종 우승자 : ${winnerArray[0]} `);
+      Console.print(`${WINNER_IS}${winnerArray[0]}`);
     } else {
       let winners = winnerArray.join(',');
-      Console.print(`공동 우승자 : ${winners}`);
+      Console.print(`${WINNER_IS}${winners}`);
     }
   }
   async run() {
@@ -101,18 +102,18 @@ class App {
     };
 
     // 이름 입력
-    const namedCars = await this.askUser(CONSOLE_TEXT.CARS_NAMES);
-    const isValidateNamedCars = this.validateCarName(namedCars);
-    if (!isValidateNamedCars) {
-      this.throwNewError('이름은 5글자 이하로 입력해 주세요');
+    const carNames = await this.consoleUserInput(CONSOLE_TEXT.CARS_NAMES);
+    const isValidateCarNames = this.validateCarName(carNames);
+    if (!isValidateCarNames) {
+      this.throwError('이름은 5글자 이하로 입력해 주세요');
     }
     // 게임 시도 횟수 입력
-    const gameRounds = await this.askUser(CONSOLE_TEXT.GAME_ROUNDS);
+    const gameRounds = await this.consoleUserInput(CONSOLE_TEXT.GAME_ROUNDS);
 
     // 문자열을 object로 만듦
-    let cars = this.createObjectCars(namedCars);
+    let cars = this.createCarObject(carNames);
     // 게임을 받은 숫자 만큼 진행
-    this.roundGames(cars, gameRounds);
+    this.startGame(cars, gameRounds);
 
     // 결과물을 내림차순으로 분류
     const sortedGameResult = this.sortGameResult(cars);
