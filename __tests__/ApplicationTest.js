@@ -46,9 +46,21 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트", async () => {
+  test("예외 테스트1 : 경기횟수 누락", async () => {
     // given
     const inputs = ["pobi,javaji"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트2 : 사용자 입력 모두 누락", async () => {
+    // given
+    const inputs = [];
     mockQuestions(inputs);
 
     // when
