@@ -14,13 +14,8 @@ class App {
 
     const rounds = await this.promptRounds();
     this.setRounds(rounds);
-  }
 
-  // 시도할 횟수 입력 받기
-  async promptRounds() {
-    return new Promise((resolve) => {
-      Console.readLineAsync('시도할 횟수는 몇 회인가요?\n').then(resolve);
-    });
+    this.runRace();
   }
 
   setCars(input) {
@@ -28,16 +23,33 @@ class App {
     if (this.validateNames(names)) {
       this.cars = names.map((name) => new Car(name));
     } else {
-      throw new Error('[ERROR]');
+      throw new Error('[ERROR] 자동차 이름은 5자 이하여야 합니다.');
     }
+  }
+
+  async promptCarNames() {
+    return new Promise((resolve) => {
+      Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n').then(resolve);
+    });
+  }
+
+  async promptRounds() {
+    return new Promise((resolve) => {
+      Console.readLineAsync('시도할 횟수는 몇 회인가요?\n').then(resolve);
+    });
   }
 
   setRounds(input) {
     const rounds = parseInt(input, 10);
     if (isNaN(rounds) || rounds <= 0) {
-      throw new Error('[ERROR]');
+      throw new Error('[ERROR] 시도할 횟수는 양수여야 합니다.');
     }
     this.rounds = rounds;
+  }
+
+  runRace() {
+    const race = new Race(this.cars, this.rounds);
+    race.start();
   }
 }
 
