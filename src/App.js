@@ -13,7 +13,7 @@ class App {
       }
 
       if (car in raceCars) {
-        throwError(ERROR_MESSAGES.CAR_ALREADY_EXISTS(car));
+        throwError(ERROR_MESSAGES.CAR_ALREADY_EXISTS);
       }
     }
 
@@ -27,7 +27,6 @@ class App {
       const userInput = await Console.readLineAsync(
         '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분, 최대 5글자, 공백 제외)\n'
       );
-
       const cars = splitUserInput(userInput);
       let raceCars = {};
 
@@ -37,7 +36,7 @@ class App {
     
     const ERROR_MESSAGES = {
       CAR_NAME_TOO_LONG: "자동차 이름은 최대 5글자여야 합니다.", 
-      CAR_ALREADY_EXISTS: (car) => `중복된 참가자가 있습니다: "${car}"`,
+      CAR_ALREADY_EXISTS:  "중복된 참가자가 있습니다.",
       INPUT_NOT_A_NUMBER: "입력값은 숫자여야 합니다.",
     };
 
@@ -52,26 +51,27 @@ class App {
     }
 
     function validateNumber(attemptCount){
-      if(isNaN(attemptCount)){throwError(ERROR_MESSAGES.INPUT_NOT_A_NUMBER)}
-      else if(!isNaN(attemptCount)){return 'number'}
+      const numberValue = Number(attemptCount);
+      if(isNaN(numberValue)){throwError(ERROR_MESSAGES.INPUT_NOT_A_NUMBER)}
+      return numberValue
     }
     
     async function getAttemptCount(raceCars) {
       const attemptCount = await Console.readLineAsync(
         '원하는 이동 횟수를 입력하세요.(움직이는 칸 수와 무관)\n'
       );
-      const attemptCountNum=Number(attemptCount)
-      const numberStatus = validateNumber(attemptCountNum)
-      if(numberStatus==='number'){
-        Console.print('실행결과\n') 
-        moveCar(attemptCountNum,raceCars)}
+
+      const validatedAttemptCount=validateNumber(attemptCount)
+
+      Console.print('실행결과\n') 
+      moveCar(validatedAttemptCount,raceCars)
     }
 
     function moveCar(attemptCountNum, raceCars) {
       const carKeys = Object.keys(raceCars);
       for (let i = 0; i < attemptCountNum; i++) {
         carKeys.forEach(key => {
-          if (Random.pickNumberInRange(0, 9) > 4) raceCars[key] += '-';
+          if (Random.pickNumberInRange(0, 9) >= 4) raceCars[key] += '-';
         });
         const statusOutput = carKeys.map(key => `${key} : ${raceCars[key]}\n`).join('');
         Console.print(`${statusOutput}`);
