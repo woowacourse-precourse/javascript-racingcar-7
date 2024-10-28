@@ -33,7 +33,7 @@ class App {
     const input = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
     const carNames = input.split(',').map((name) => name.trim());
     if (carNames.some((name) => name.length > 5 || name.length === 0)) {
-      throw new Error('[ERROR]자동차 이름은 1자 이상 5자 이하로 입력해주세요.');
+      throw new Error('[ERROR] 자동차 이름은 1자 이상 5자 이하로 입력해주세요.');
     }
     return carNames;
   }
