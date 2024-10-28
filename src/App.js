@@ -7,6 +7,7 @@ class App {
     
     const nameMap = this.separateNameHandler(names);
 
+    Console.print("실행 결과");
     const raceResultMap = this.raceHanlder(nameMap, count);
     Console.print(raceResultMap);
   }
@@ -30,9 +31,20 @@ class App {
           nameMap.set(name, nameMap.get(name)+1);
         }
       }
+      this.displayRaceResultHandler(nameMap);
     }
 
     return nameMap;
+  }
+
+  // 각 레이스마다의 실행 결과 출력 함수
+  displayRaceResultHandler(nameMap){
+    for(let name of nameMap.keys()){
+      const count = nameMap.get(name);
+      Console.print(`${name} : ${'-'.repeat(count)}`)
+    }
+
+    Console.print('');
   }
 }
 
