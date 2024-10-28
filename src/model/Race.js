@@ -12,11 +12,14 @@ class Race {
 
   /**@param {number} attempts  */
   race(attempts) {
+    if (attempts <= 0) return;
+
     const cars = this.getCars();
-    for (let i = 0; i < attempts; i++) {
-      this.moveForward();
-      outputView.printRaceStatus(cars);
-    }
+
+    this.moveForward();
+    outputView.printRaceStatus(cars);
+
+    this.race(attempts - 1);
   }
 
   moveForward() {
