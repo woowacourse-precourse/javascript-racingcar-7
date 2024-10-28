@@ -6,10 +6,12 @@ class App {
             // 입력
             Console.print('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)');
             const racingCars = await Console.readLineAsync('');
+            // 입력 예외 처리
+            if (racingCars.startsWith(',')) this.throwError(',로 시작하는 문자열');
+
             const carArray = racingCars.split(',');
-            if (!chkCarName(carArray)) {
-                this.throwError('자동차 이름이 5글자를 초과');
-            }
+            const carNameError = chkCarName(carArray);
+            if (carNameError) this.throwError(carNameError);
 
             Console.print('시도할 횟수는 몇 회인가요?');
             const tryNum = parseInt(await Console.readLineAsync(''));
@@ -46,10 +48,16 @@ class App {
 export default App;
 
 function chkCarName(cars) {
+    let message = null;
     for (let i = 0; i < cars.length; i++) {
-        if (cars[i].length > 5) return false;
+        if (cars[i].length > 5) {
+            message = '자동차 이름이 5글자를 초과';
+        } else if (cars[i] === '') {
+            message = '빈 문자열이 자동차 이름으로 설정 되어 있음';
+        }
+        if (message) return message;
     }
-    return true;
+    return false;
 }
 
 function chkTryNum(num) {
