@@ -7,11 +7,7 @@ class CarRace {
   carArray = [];
   numOfAttempt;
 
-  constructor() {
-    this.init();
-  }
-
-  async init() {
+  async raceStart() {
     await this.getCarArray();
     await this.getNumOfAttempt();
     this.startRace();
