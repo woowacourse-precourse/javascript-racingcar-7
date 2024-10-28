@@ -39,6 +39,18 @@ class App {
       nameSet.add(name);
     }
   }
+
+  async getAttemptCount() {
+    Console.print("시도할 횟수는 몇 회인가요?");
+    const input = await Console.readLineAsync();
+    const attemptCount = Number(input);
+
+    if (isNaN(attemptCount) || attemptCount < 1 || attemptCount > 9) {
+      throw "[ERROR] 1~9 사이의 숫자를 입력해야 합니다.";
+    }
+
+    return attemptCount;
+  }
 }
 
 export default App;
