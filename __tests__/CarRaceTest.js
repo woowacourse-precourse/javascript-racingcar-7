@@ -37,4 +37,18 @@ describe('CarRace 클래스 테스트', () => {
       expect(moveDecisions).toEqual([true, false, true, false]);
     });
   });
+
+  describe('race 메서드 테스트', () => {
+    test('자동차들의 이동 결과를 반환', () => {
+      mockRandoms([4, 3, 5, 2]);
+
+      const carRace = new CarRace('car1,car2,car3,car4', 1);
+      const cars = carRace.race();
+
+      expect(cars[0].getMoveCount()).toBe(1);
+      expect(cars[1].getMoveCount()).toBe(0);
+      expect(cars[2].getMoveCount()).toBe(1);
+      expect(cars[3].getMoveCount()).toBe(0);
+    });
+  });
 });
