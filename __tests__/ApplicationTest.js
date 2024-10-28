@@ -8,6 +8,7 @@ import {
   isNumberValid,
   printCurrentResult,
   shouldMoveForward,
+  updateCarPosition,
 } from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
@@ -194,6 +195,41 @@ describe("shouldMoveForward 함수 - 여러 번 호출 시", () => {
     expect(shouldMoveForward()).toBe(false); // 3
     expect(shouldMoveForward()).toBe(true);  // 5
     expect(shouldMoveForward()).toBe(false); // 2
+
+    MissionUtils.Random.pickNumberInRange.mockRestore(); // 모킹 복원
+  });
+});
+
+// updateCarPosition 함수 테스트 코드
+describe("updateCarPosition 함수", () => {
+  test("shouldMoveForward가 true일 때 position이 1 증가한다", () => {
+    // given
+    const carInfo = { name: "car1", position: 2 };
+
+    // shouldMoveForward를 true로 모킹
+    jest.spyOn(MissionUtils.Random, "pickNumberInRange").mockReturnValue(9);
+
+    // when
+    updateCarPosition(carInfo);
+
+    // then
+    expect(carInfo.position).toBe(3);
+
+    MissionUtils.Random.pickNumberInRange.mockRestore(); // 모킹 복원
+  });
+
+  test("shouldMoveForward가 false일 때 position이 증가하지 않는다", () => {
+    // given
+    const carInfo = { name: "car1", position: 1 };
+
+    // shouldMoveForward를 false로 모킹
+    jest.spyOn(MissionUtils.Random, "pickNumberInRange").mockReturnValue(1);
+
+    // when
+    updateCarPosition(carInfo);
+
+    // then
+    expect(carInfo.position).toBe(1);
 
     MissionUtils.Random.pickNumberInRange.mockRestore(); // 모킹 복원
   });

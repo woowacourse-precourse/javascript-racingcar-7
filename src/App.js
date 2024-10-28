@@ -48,6 +48,12 @@ export function shouldMoveForward() {
   return randomNumber >= 4;
 }
 
+export function updateCarPosition(carInfo) {
+  if (shouldMoveForward()) {
+    carInfo.position += 1;
+  }
+}
+
 class App {
   async run() {}
 }
