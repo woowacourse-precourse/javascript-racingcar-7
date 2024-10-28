@@ -56,7 +56,7 @@ describe('자동차 경주', () => {
     const app = new App();
 
     // then
-    await expect(app.run()).rejects.toThrow('[ERROR]');
+    await expect(app.run()).rejects.toThrow('[ERROR] 자동차 이름은 1자 이상 5자 이하여야 합니다.');
   });
   
   test('예외 테스트: 이름이 공백일 때', async () => {
@@ -68,7 +68,7 @@ describe('자동차 경주', () => {
     const app = new App();
 
     //then
-    await expect(app.run()).rejects.toThrow('[ERROR]');
+    await expect(app.run()).rejects.toThrow('[ERROR] 자동차 이름은 1자 이상 5자 이하여야 합니다.');
   });
 
   test('예외 테스트: 쉼표가 없을 때', async () => {
@@ -80,7 +80,19 @@ describe('자동차 경주', () => {
     const app = new App();
 
     //then
-    await expect(app.run()).rejects.toThrow('[ERROR]');
+    await expect(app.run()).rejects.toThrow('[ERROR] 입력 형식에 맞지 않습니다. 두 개 이상의 이름을 입력하세요.');
+  });
+
+  test('예외 테스트: 중복된 이름이 있을 때', async () => {
+    //given
+    const inputs = ['pobi,pobi'];
+    mockQuestions(inputs);
+
+    //when
+    const app = new App();
+
+    //then
+    await expect(app.run()).rejects.toThrow('[ERROR] 중복된 이름이 있습니다.');
   });
 
   test('예외 테스트: 경주 횟수가 숫자가 아닐 때', async () => {
@@ -92,7 +104,7 @@ describe('자동차 경주', () => {
     const app = new App();
 
     //then
-    await expect(app.run()).rejects.toThrow('[ERROR]');
+    await expect(app.run()).rejects.toThrow('[ERROR] 0보다 큰 정수를 입력해주세요.');
   });
 
   test('예외 테스트: 경주 횟수가 양의 정수가 아닐 때', async () => {
@@ -104,7 +116,7 @@ describe('자동차 경주', () => {
     const app = new App();
 
     //then
-    await expect(app.run()).rejects.toThrow('[ERROR]');
+    await expect(app.run()).rejects.toThrow('[ERROR] 0보다 큰 정수를 입력해주세요.');
   });
 
 });
