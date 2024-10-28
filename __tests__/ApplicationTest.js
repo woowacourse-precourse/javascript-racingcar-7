@@ -57,4 +57,50 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+  test("자동차 이름 2개 이하 테스트", async () => {
+    // given
+    const inputs = ["pobi"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+  test.each([
+    [["hype,soo,lim"]],
+    [["hype ,  soo, lim"]]
+  ])("입력 양식에 맞춰 자동차 이름 배열 저장", async (inputs) => {
+
+    const input = ["hype,soo,lim"];
+
+    //given
+    mockQuestions(inputs);
+
+    //when
+    const app = new App();
+    const result = await app.getNames();
+
+    //then
+    expect(result).toEqual(["hype", "soo", "lim"])
+  });
+
+  test("출력 형식 확인", async () => {
+    const NAMES = ["pobi", "woni", "jun"]
+    const GAME_INFO = [4, 1, 3]
+    const logSpy = getLogSpy();
+    const app = new App();
+    await app.printGame(GAME_INFO,NAMES,3)
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining("pobi : ----"));
+  });
+
+  test("결과 출력 형식 확인", async () => {
+    const NAMES = ["pobi", "woni", "jun"]
+    const GAME_INFO = [4, 1, 4]
+    const logSpy = getLogSpy();
+    const app = new App();
+    await app.printWinner(GAME_INFO, 3, NAMES);
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining("최종 우승자 : pobi, jun"));
+  });
 });
