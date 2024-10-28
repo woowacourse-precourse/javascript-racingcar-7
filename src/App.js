@@ -8,6 +8,7 @@ class App {
   async run() {
     const cars = await View.readCarNames();
     const attemptCount = await View.readAttemptCount();
+
     Console.print("\n실행 결과");
     Race.excute(cars, attemptCount);
     const result = calculateResult(cars);

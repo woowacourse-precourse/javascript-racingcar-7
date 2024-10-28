@@ -8,6 +8,7 @@ class Race {
       View.printProgress(cars);
     }
   }
+
   static excuteAttempt(cars) {
     cars.forEach((car) => {
       const randomNuber = Random.pickNumberInRange(0, 9);

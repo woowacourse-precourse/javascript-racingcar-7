@@ -16,6 +16,7 @@ class Validator {
       }
     });
   }
+
   static validateAttemptCountInput(input) {
     if (isNaN(input) || input < 0 || !Number.isInteger(input)) {
       throw new Error(this.MESSAGE.NOT_A_POSITIVE_INTEGER);
