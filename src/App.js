@@ -22,4 +22,15 @@ class App {
     this.Exception(!Number.isInteger(rounds) || rounds <= 0, "[ERROR]");
     return rounds;
   }
+
+  createCars(namesInput) {
+    const names = namesInput.split(",").map((name) => name.trim());
+    const uniqueNames = new Set(names);
+    this.Exception(uniqueNames.size !== names.length, "[ERROR]");
+
+    return names.map((name) => {
+      this.Exception(name.length > 5, "[ERROR]");
+      return { name, distance: 0 };
+    });
+  }
 }
