@@ -1,4 +1,4 @@
-import ErrorMessages from "../constants/ErrorMessages";
+import ErrorMessages from "../constants/ErrorMessages.js";
 
 // 자동차 이름 입력 검증 함수
 export function validateCars(cars) {
