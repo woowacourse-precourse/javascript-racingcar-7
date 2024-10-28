@@ -51,6 +51,14 @@ class App {
       if (move >= 4) car.position += 1; // 전진 조건 확인 후 이동
     });
   }
+
+  // 4. 우승자 판별
+  findWinners(cars) {
+    const maxPosition = Math.max(...cars.map((car) => car.position)); // 가장 먼 위치 확인
+    return cars
+      .filter((car) => car.position === maxPosition) // 우승자 필터링
+      .map((car) => car.name);
+  }
 }
 
 export default App;
