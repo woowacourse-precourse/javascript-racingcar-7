@@ -1,7 +1,8 @@
 # javascript-racingcar-precourse
 ## 프리코스 2주 차 미션 - 자동차 경주
-
-demo gif 추가 예정
+<p align='center'>
+<img src="./docs/car_demo.gif", width = '240px'>
+</p>
 
 ## 스스로 정한 규칙
 - 입력된 이름은 두 개 이상이어야 한다.
