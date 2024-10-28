@@ -18,14 +18,11 @@ class App {
     await this.playGame(ATTEMPTS, SCORE, CARS_COUNT, CARS);
 
     // 우승자 찾기
-    const MAX_SCORE =  await this.getMaxScore(SCORE);
+    const MAX_SCORE = await this.getMaxScore(SCORE);
     const WINNERS = await this.getWinners(MAX_SCORE, SCORE, CARS);
-    
+
     // 우승자 출력
     this.printWinners(WINNERS);
-
-
-    
   }
 
   async getCarsInput() {
@@ -35,8 +32,6 @@ class App {
 
     return CARS_INPUT;
   }
-
-
 
   // , 기준 분리
   splitCars(CARS_INPUT) {
@@ -77,8 +72,6 @@ class App {
 
     return true;
   }
-
-
 
   // 시도 횟수 입력
   async getAttempts() {
@@ -142,7 +135,7 @@ class App {
   }
 
   // 차수별 실행 결과 출력
-  printScore(CARS, SCORE, CARS_COUNT){
+  printScore(CARS, SCORE, CARS_COUNT) {
     for (let i = 0; i < CARS_COUNT; i++) {
       const MY_SCORE = this.getScore(SCORE[i]);
       Console.print(CARS[i] + ' : ' + MY_SCORE);
@@ -152,7 +145,7 @@ class App {
   }
 
   // 각 차의 결과 구하기
-  getScore(RESULT){
+  getScore(RESULT) {
     let MY_SCORE = '';
 
     for (let s = 0; s < RESULT; s++) {
@@ -162,25 +155,25 @@ class App {
     return MY_SCORE;
   }
 
-  async getMaxScore(SCORE){
+  async getMaxScore(SCORE) {
     let MAX_SCORE = Math.max(...SCORE);
     return MAX_SCORE;
   }
 
-  async getWinners(MAX_SCORE, SCORE, CARS){
+  async getWinners(MAX_SCORE, SCORE, CARS) {
     const WINNERS = [];
-    SCORE.map((score, index)=>{
-      if(score == MAX_SCORE){
+    SCORE.map((score, index) => {
+      if (score == MAX_SCORE) {
         WINNERS.push(CARS[index]);
       }
-    })
-    
+    });
+
     return WINNERS;
   }
 
-  printWinners(WINNERS){
+  printWinners(WINNERS) {
     let RESULT = '최종 우승자 : ';
-    RESULT += WINNERS.map((winner)=>winner).join(', ');
+    RESULT += WINNERS.map((winner) => winner).join(', ');
     Console.print(RESULT);
   }
 }
