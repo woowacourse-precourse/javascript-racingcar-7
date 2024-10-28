@@ -8,7 +8,7 @@ export default class Car {
   }
 
   static makeCarList(carName) {
-    const nameList = carName.split(',').map(element => element.trim())
+    const nameList = carName.split(',').map(element => element.trim());
     isValidName(nameList);
     const carList = nameList.map(car => new Car(car));
     return carList;
@@ -41,7 +41,7 @@ export default class Car {
     const winnerName = carList
       .filter(player => player.movement === maxMovement)
       .map(player => player.name)
-      .join(', ');
+      .join(', ')
 
     MissionUtils.Console.print(`최종 우승자 : ${winnerName}`);
   }
