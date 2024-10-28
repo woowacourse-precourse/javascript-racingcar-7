@@ -40,13 +40,13 @@ class Race {
 
   #runOneRound() {
     this.#carArray.forEach(car => {
-      const newPosition = Race.#moveCarForward(this.#carTraceMap.get(car));
+      const newPosition = Race.#getNewPosition(this.#carTraceMap.get(car));
       this.#carTraceMap.set(car, newPosition);
       Race.#printCarPosition(car, newPosition);
     });
   }
 
-  static #moveCarForward(currentPosition) {
+  static #getNewPosition(currentPosition) {
     const randomNum = pickNumberInRange(Race.#MIN_RANDOM, Race.#MAX_RANDOM);
     const isMoveForward = Race.#getIsMoveForward(randomNum);
 
