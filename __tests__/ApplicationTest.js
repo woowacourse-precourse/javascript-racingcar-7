@@ -95,4 +95,16 @@ describe('자동차 경주', () => {
     await expect(app.run()).rejects.toThrow('[ERROR]');
   });
 
+  test('예외 테스트: 경주 횟수가 양의 정수가 아닐 때', async () => {
+    //given
+    const inputs = ['pobi,woni', '0'];
+    mockQuestions(inputs);
+
+    //when
+    const app = new App();
+
+    //then
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
 });
