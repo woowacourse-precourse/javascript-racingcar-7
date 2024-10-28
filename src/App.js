@@ -29,6 +29,15 @@ class App {
     tryCnt = parseInt(tryCnt) + 1;
 
     Console.print("실행 결과");
+
+    // 자동차 위치 랜덤값에 맞게 업데이트
+    function updateCarPosition(car) {
+      const randomNum = MissionUtils.Random.pickNumberInRange(0, 9);
+      if (randomNum >= 4) {
+        carObj[car] += 1;
+      }
+    }
+
 }
 
 export default App;
