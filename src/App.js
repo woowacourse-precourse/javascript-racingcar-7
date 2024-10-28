@@ -3,7 +3,7 @@ import InputView from './view/InputView.js';
 import OutputView from './view/OutputView.js';
 import { CONFIG } from './constant/config.js';
 import { INPUT_MESSAGE } from './constant/message.js';
-import { getRandomNumber } from './util/Random.js';
+import { getRandomNumber } from './util/random.js';
 import { validateCarNamesInput, validateTurnCount } from './util/validation.js';
 
 class App {

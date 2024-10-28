@@ -1,5 +1,4 @@
 import { CONFIG } from '../constant/config.js';
-import { getRandomNumber } from '../util/Random.js';
 
 class Car {
   #name;
