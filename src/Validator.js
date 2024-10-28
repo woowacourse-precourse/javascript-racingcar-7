@@ -41,6 +41,12 @@ class Validator {
       throw new Error('[ERROR] 횟수는 정수만 입력 가능합니다.');
     }
   }
+
+  #checkIfZero(attempt) {
+    if (attempt === 0) {
+      throw new Error('[ERROR] 횟수는 1회 이상부터 가능합니다.');
+    }
+  }
 }
 
 export default Validator;
