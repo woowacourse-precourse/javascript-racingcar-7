@@ -33,14 +33,26 @@ class Race{
       this.cars.forEach(car => car.move()); // 각 자동차 이동
       this.printPositions();
     }
+    this.printWinners();
   
   }
   // 자동차 이름과 위치 출력 메서드
   printPositions(){
     this.cars.forEach(car => {
-      Console.print(`${car.name} : ${car.getPosition()}`); // 자동차 이름과 현재 위치 출력
+      Console.print(`${car.name} : ${car.getPosition()}`); // 각 자동차 이름과 현재 위치 출력
     });
     Console.print('');
+  }
+
+  // 우승자 발표 메서드
+  printWinners(){
+    const maxPosition = Math.max(...this.cars.map(car => car.position)); // 스프레드 연산자로 가장 높은 위치 찾기
+        const winners = this.cars
+            .filter(car => car.position === maxPosition)
+            .map(car => car.name);
+
+        Console.print(`최종 우승자 : ${winners.join(', ')}`);
+    }
   }
 
 class App {
