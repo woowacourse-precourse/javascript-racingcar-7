@@ -52,7 +52,16 @@ class App {
       Console.print("");
     };
 
-    async function racingGame() {
+    /** 우승자 출력 */
+    const printWinners = (cars) => {
+      const max = Math.max(...cars.map((car) => car.position));
+      const win = cars
+        .filter((car) => car.position === max)
+        .map((car) => car.name);
+      Console.print(`최종 우승자 : ${win.join(", ")}`);
+    };
+
+    const racingGame = async () => {
       try {
         const carNames = await getCarNames();
         const tryCount = await getTryCount();
@@ -64,11 +73,14 @@ class App {
           moveCars(cars);
           printCars(cars);
         }
+
+        // 우승자 출력
+        printWinners(cars);
       } catch (error) {
         Console.print(error.message);
         throw error;
       }
-    }
+    };
 
     await racingGame();
   }
