@@ -14,10 +14,15 @@ class App {
     Validator.validateTryCountInput(tryCount);
     const tryNumber = Number(tryCount);
 
+    Console.print(MESSAGE.PRINT_RESULT);
     for (let i = 0; i < tryNumber; i++) {
       this.randomMove(cars);
       this.printResult(cars);
+      Console.print("");
     }
+
+    const winners = this.getWinners(cars);
+    Console.print(`${MESSAGE.PRINT_WINNERS}${winners.join(", ")}`);
   }
 
   getRandomNumber() {
@@ -40,6 +45,13 @@ class App {
     cars.forEach((car) => {
       Console.print(`${car.getName()} : ${"-".repeat(car.getPosition())}`);
     });
+  }
+
+  getWinners(cars) {
+    const maxPosition = Math.max(...cars.map((car) => car.getPosition()));
+    return cars
+      .filter((car) => car.getPosition() === maxPosition)
+      .map((car) => car.getName());
   }
 }
 
