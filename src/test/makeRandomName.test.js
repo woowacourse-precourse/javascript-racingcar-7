@@ -16,7 +16,7 @@ describe('랜덤 이름 생성기 테스트', () => {
   const count = 100;
 
   test.each(Array.from({ length: count }))(
-    'makeOddChar 홀수 문자열 자음 반환 테스트 #%#',
+    'makeOddChar 홀수 문자열 자음 반환 테스트 ',
     () => {
       const char = makeOddChar();
       expect(char).toMatch(/^[a-z]$/); // 소문자 확인
@@ -25,22 +25,18 @@ describe('랜덤 이름 생성기 테스트', () => {
   );
 
   test.each(Array.from({ length: count }))(
-    'makeEvenChar 짝수 문자열 모음 반환 테스트 #%#',
+    'makeEvenChar 짝수 문자열 모음 반환 테스트',
     () => {
       const char = makeEvenChar();
       expect(Object.keys(VOWEL)).toContain(char); // 모음인지 확인
     },
   );
 
-  test.each([
-    { name: '랜덤이름', length: 5 },
-    { name: '다른이름', length: 5 },
-  ])(
-    '랜덤함수가 실제로 %i글자를 반환하고 짝수=모음, 홀수=자음 테스트 %#',
-    ({ name, length }) => {
+  test.each([{ length: 5 }, { length: 5 }])(
+    '랜덤함수가 실제로 %i글자를 반환하고 짝수=모음, 홀수=자음 테스트',
+    ({ length }) => {
       const randomName = makeRandomName();
       expect(randomName).toHaveLength(length);
-
       for (let i = 0; i < randomName.length; i++) {
         if (i % 2 === 0) {
           expect(Object.values(VOWEL)).not.toContain(randomName.charCodeAt(i));
