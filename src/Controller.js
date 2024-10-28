@@ -33,10 +33,10 @@ export default class Controller {
   }
 
   findWinner(cars) {
-    const max = Math.max(...cars.map((car) => car.step));
+    const max = Math.max(...cars.map((car) => car.getStep()));
 
-    const MaxCars = cars.filter((car) => car.step === max);
-    const winners = MaxCars.map((car) => car.name);
+    const MaxCars = cars.filter((car) => car.getStep() === max);
+    const winners = MaxCars.map((car) => car.getName());
 
     this.outputView.printWinner(winners);
   }
@@ -46,7 +46,7 @@ export default class Controller {
       car.move();
     }
 
-    this.outputView.printStep(car.name, car.step);
+    this.outputView.printStep(car.getName(), car.getStep());
   }
 
   createCars(names) {
