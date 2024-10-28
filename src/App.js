@@ -1,5 +1,9 @@
+import RacingModule from './racing/racing.module.js';
+
 class App {
-  async run() {}
+  async run() {
+    await RacingModule.init();
+  }
 }
 
 export default App;
