@@ -70,13 +70,12 @@ class App {
     if (nth === 0) {
       Console.print("");
       Console.print("실행 결과");
-    } else {
-      for (const name of this.carNames) {
-        const text = "-".repeat(this.moveForwardCount[name]);
-        Console.print(`${name} : ${text}`);
-      }
-      Console.print("");
     }
+    for (const name of this.carNames) {
+      const text = "-".repeat(this.moveForwardCount[name]);
+      Console.print(`${name} : ${text}`);
+    }
+    Console.print("");
   }
 
   moveForward() {
