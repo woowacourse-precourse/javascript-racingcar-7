@@ -25,7 +25,7 @@ export default class Controller {
       this.startRace();
       this.showResult();
     } catch (error) {
-      OutputView.printError(`[ERROR] ${error.message}`);
+      throw new Error(`[ERROR] ${error.message}`);
     }
   }
 
