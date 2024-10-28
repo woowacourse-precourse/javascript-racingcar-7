@@ -15,9 +15,7 @@ class Simulator {
   }
 
   #canMoveForward() {
-    if (pickRandomNumberInRange(RANGE.START, RANGE.END) >= RANGE.VALID)
-      return true;
-    return false;
+    return pickRandomNumberInRange(RANGE.START, RANGE.END) >= RANGE.VALID;
   }
 
   simulate(attemptCount) {
