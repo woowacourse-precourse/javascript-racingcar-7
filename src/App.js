@@ -8,9 +8,7 @@ class App {
 
     const racingCars = inputString.split(",");
 
-    if (racingCars.some((car) => car.length > 5)) {
-      throw new Error("[ERROR] 자동차의 이름이 5자보다 깁니다.");
-    }
+    this.validateCarName(racingCars);
 
     const gameCount = Number(
       await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n")
@@ -18,6 +16,8 @@ class App {
 
     if (!Number.isInteger(gameCount))
       throw new Error("[ERROR] 시도할 횟수가 정수가 아닙니다");
+
+    if (gameCount < 0) throw new Error("[ERROR] 시도할 횟수가 음수입니다");
 
     const racingCarsPos = {};
     racingCars.forEach((car) => {
@@ -31,6 +31,20 @@ class App {
     const winners = this.pickWinner(racingCarsPos);
 
     Console.print(`최종 우승자 : ${winners.join(", ")}`);
+  }
+
+  validateCarName(racingCars) {
+    if (racingCars.some((car) => car.length > 5)) {
+      throw new Error("[ERROR] 자동차의 이름이 5자보다 깁니다.");
+    }
+
+    if (racingCars.some((car) => !car.trim())) {
+      throw new Error("[ERROR] 자동차 이름은 비어있을 수 없습니다.");
+    }
+
+    if (new Set(racingCars).size !== racingCars.length) {
+      throw new Error("[ERROR] 자동차 이름은 중복될 수 없습니다.");
+    }
   }
 
   pickWinner(racingCarsPos) {
