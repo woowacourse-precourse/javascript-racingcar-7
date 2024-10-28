@@ -4,8 +4,8 @@ export const INPUT_MESSAGE = {
 };
 
 export const OUTPUT_MESSAGE = {
-  executionResult : "\n실행 결과\n" ,
-  finalWinner : "\n최종 우승자 : " ,
+  executionResult : "\n실행 결과" ,
+  finalWinner : "최종 우승자 : " ,
 };
 
 export const MOVE_CONDITION = {

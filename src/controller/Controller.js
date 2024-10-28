@@ -38,6 +38,8 @@ class Controller {
         this.moveCar();
         this.#outputView.printResult(this.car);
       }
+
+      this.#outputView.printWinner();
     }
 }
 
