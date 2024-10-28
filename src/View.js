@@ -30,12 +30,16 @@ class View {
     MissionUtils.Console.print(`실행 결과`);
 
     RacingGameUtils.range(tryCount).forEach((_, index) => {
-      scoreBoard.forEach((count) => {
-        const recordsRound = count.records.slice(0, index + 1).filter(Boolean).length;
-        const scoreChangeToDash = RacingGameUtils.range(recordsRound).map(() => '-').join('');
-        MissionUtils.Console.print(`${count.name} : ${scoreChangeToDash}`);
-      });
+      this.printRoundScoreToDash(scoreBoard, index);
       this.printNewLine();
+    });
+  }
+
+  static printRoundScoreToDash(scoreBoard, index) {
+    scoreBoard.forEach((count) => {
+      const recordsRound = count.records.slice(0, index + 1).filter(Boolean).length;
+      const scoreChangeToDash = RacingGameUtils.range(recordsRound).map(() => '-').join('');
+      MissionUtils.Console.print(`${count.name} : ${scoreChangeToDash}`);
     });
   }
 
