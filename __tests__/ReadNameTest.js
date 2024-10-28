@@ -17,8 +17,8 @@ describe('ReadName Class 테스트', () => {
     expect(input).rejects.toThrow(INPUT_ERROR_MESSAGE);
   })
 
-  test('이름 입력에 문자열 구분자(,)가 포함 되어있지 않으면 에러를 던진다.', () => {
-    const inValidInput = 'name1';
+  const inValidInputs = ['name1', 'a b', 'a_b']
+  test.each(inValidInputs)('이름 입력에 문자열 구분자(,)가 포함 되어있지 않으면 에러를 던진다.', (inValidInput) => {
     mockReadLineAsync(inValidInput);
     const input = new ReadName().read();
     expect(input).rejects.toThrow(SEPARATOR_ERROR_MESSAGE);
