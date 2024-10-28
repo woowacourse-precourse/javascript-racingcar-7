@@ -1,6 +1,6 @@
 import Car from "./Car.js";
 import { Console } from "@woowacourse/mission-utils";
-import { Random } from "@woowacourse/mission-utils";
+import { MissionUtils } from "@woowacourse/mission-utils";
 
 class RacingGame {
   constructor(carNames, tryNumber) {
@@ -13,7 +13,7 @@ class RacingGame {
     Console.print('실행 결과');
     for (let i = 0; i < this.tryNumber; i++) {
       this.cars.forEach(car => {
-        if (Random.pickNumberInRange(0, 9) >= 4) {
+        if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) {
           car.move();
         }
       });

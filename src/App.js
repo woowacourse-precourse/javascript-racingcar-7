@@ -16,7 +16,7 @@ class App {
       game.start();
     }
     catch (error) {
-      Console.print(error.message);
+      // Console.print(error.message);
       throw(error);
     }
   }
