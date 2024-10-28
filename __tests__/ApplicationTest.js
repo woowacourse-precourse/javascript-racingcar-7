@@ -29,8 +29,8 @@ describe("자동차 경주", () => {
     // given
     const MOVING_FORWARD = 4;
     const STOP = 3;
-    const inputs = ["pobi,woni", "1"];
-    const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
+    const inputs = ['pobi,woni', '1']; 
+    const logs = ['pobi : -', 'woni : ', '최종 우승자: pobi'];
     const logSpy = getLogSpy();
 
     mockQuestions(inputs);
@@ -45,16 +45,44 @@ describe("자동차 경주", () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
-
+  
   test("예외 테스트", async () => {
-    // given
-    const inputs = ["pobi,javaji"];
+    //given
+    const inputs = ['pobi,woni,pobi', '5'];
     mockQuestions(inputs);
 
-    // when
+     // when
     const app = new App();
 
     // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
-  });
+    await expect(app.run()).rejects.toThrow("[ERROR] 중복된 참가자가 있습니다.");
+
+  })
+
+  test("예외 테스트", async () => {
+    //given
+    const inputs = ['pobi,woni,kye', 'three'];
+    mockQuestions(inputs);
+
+     // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR] 입력값은 숫자여야 합니다.");
+
+  })
+
+  
+  test("예외 테스트", async () => {
+    //given
+    const inputs = ['pobi,woni,pobi', '5'];
+    mockQuestions(inputs);
+
+     // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR] 중복된 참가자가 있습니다.");
+
+  })
 });
