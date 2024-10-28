@@ -21,6 +21,7 @@ class RacingGame {
       this.printWinners();
     } catch (error) {
       MissionUtils.Console.print(error.message);
+      throw error; // 에러를 다시 던져 Promise가 reject 되도록 함
     }
   }
 

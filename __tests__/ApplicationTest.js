@@ -57,4 +57,60 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
+  test("예외 테스트 - 시도 횟수가 0인 경우", async () => {
+    // given
+    const inputs = ["pobi,woni,jun", "0"];
+    const logSpy = getLogSpy();
+    mockQuestions(inputs);
+  
+    // when
+    const app = new App();
+  
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+    expect(logSpy).toHaveBeenCalledWith("[ERROR] 시도 횟수는 1 이상의 숫자여야 합니다.");
+  });
+
+  test("예외 테스트 - 시도 횟수가 음수인 경우", async () => {
+    // given
+    const inputs = ["pobi,woni,jun", "-3"];
+    const logSpy = getLogSpy();
+    mockQuestions(inputs);
+  
+    // when
+    const app = new App();
+  
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+    expect(logSpy).toHaveBeenCalledWith("[ERROR] 시도 횟수는 1 이상의 숫자여야 합니다.");
+  });
+
+  test("예외 테스트 - 시도 횟수가 숫자가 아닌 경우", async () => {
+    // given
+    const inputs = ["pobi,woni,jun", "five"];
+    const logSpy = getLogSpy();
+    mockQuestions(inputs);
+  
+    // when
+    const app = new App();
+  
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+    expect(logSpy).toHaveBeenCalledWith("[ERROR] 시도 횟수는 1 이상의 숫자여야 합니다.");
+  });
+
+  test("예외 테스트 - 자동차 이름에 빈 문자열 포함", async () => {
+    // given
+    const inputs = ["pobi,,jun", "3"];
+    const logSpy = getLogSpy();
+    mockQuestions(inputs);
+  
+    // when
+    const app = new App();
+  
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+    expect(logSpy).toHaveBeenCalledWith("[ERROR] 자동차 이름은 1자 이상 5자 이하만 가능합니다.");
+  });
 });
