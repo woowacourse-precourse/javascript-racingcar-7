@@ -37,13 +37,24 @@ class App {
       let score = 0;
       for (let j = 0; j < arr.length; j++) {
         const num = MissionUtils.Random.pickNumberInRange(0, 9);
-        console.log(num);
 
         if (num >= 4) {
           scoreArray[j] = scoreArray[j] + 1;
-          console.log(arr[j] + " " + scoreArray[j]);
+
+          process.stdout.write(arr[j] + " : ");
+          for (let k = 0; k < scoreArray[j]; k++) {
+            process.stdout.write("-");
+          }
+          console.log("");
+
+          // console.log(arr[j] + " : " + scoreArray[j]);
         } else {
-          console.log(arr[j] + " " + scoreArray[j]);
+          // console.log(arr[j] + " : " + scoreArray[j]);
+          process.stdout.write(arr[j] + " : ");
+          for (let k = 0; k < scoreArray[j]; k++) {
+            process.stdout.write("-");
+          }
+          console.log("");
         }
       }
     }
