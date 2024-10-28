@@ -86,7 +86,16 @@ function processRacing (obj, attempt){
   return obj
 }
 
+function getWinner (obj){
+  var winners = []
+  var highest = Math.max(...Object.values(obj))
+  winners = Object.keys(obj).filter(key => obj[key] === highest)
+  return winners
+}
 
+function printWinner(arr){
+  Console.print(`최종 우승자 : ${arr.join(', ')}`)
+}
 
 class App {
 
@@ -103,7 +112,11 @@ class App {
     //3.경주
     var carObject = initCarObject(CAR_ARRAY)
     carObject = processRacing(carObject,INPUT_ATTEMPT)
-    
+
+    //4.우승자 판별
+    const WINNER_ARRAY = getWinner(carObject)
+    printWinner(WINNER_ARRAY)
+
   }
 }
 
