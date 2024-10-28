@@ -9,7 +9,7 @@ export async function carRacingProceed() {
 
   await creatCarList(carList);
   await runCarRacing(carList);
-  announcementWinner(carList);
+  announceWinner(carList);
 }
 
 async function creatCarList(carList) {
@@ -34,7 +34,7 @@ async function runCarRacing(carList) {
   }
 }
 
-function announcementWinner(carList) {
+function announceWinner(carList) {
   const maxMoveNum = Math.max(...carList.map((car) => car.number));
   printWinner(carList, maxMoveNum);
 }
