@@ -6,11 +6,11 @@
 
 # **✅ 과제 진행 요구 사항 체크리스트**
 
-- [ ] 미션은 [자동차 경주](https://github.com/woowacourse-precourse/javascript-racingcar-7) 저장소를 포크하고 클론하는 것으로 시작한다.
-- [ ] **기능을 구현하기 전 `README.md`에 구현할 기능 목록을 정리**해 추가한다.
-- [ ] Git의 커밋 단위는 앞 단계에서 `README.md`에 정리한 기능 목록 단위로 추가한다.
-  - [ ] [AngularJS Git Commit Message Conventions](https://gist.github.com/stephenparish/9941e89d80e2bc58a153)을 참고해 커밋 메시지를 작성한다.
-- [ ] 자세한 과제 진행 방법은 프리코스 진행 가이드 문서를 참고한다.
+- [O] 미션은 [자동차 경주](https://github.com/woowacourse-precourse/javascript-racingcar-7) 저장소를 포크하고 클론하는 것으로 시작한다.
+- [O] **기능을 구현하기 전 `README.md`에 구현할 기능 목록을 정리**해 추가한다.
+- [O] Git의 커밋 단위는 앞 단계에서 `README.md`에 정리한 기능 목록 단위로 추가한다.
+  - [O] [AngularJS Git Commit Message Conventions](https://gist.github.com/stephenparish/9941e89d80e2bc58a153)을 참고해 커밋 메시지를 작성한다.
+- [O] 자세한 과제 진행 방법은 프리코스 진행 가이드 문서를 참고한다.
 
 <br/>
 
