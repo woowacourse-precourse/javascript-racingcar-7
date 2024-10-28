@@ -40,3 +40,11 @@ export function runAllTrials(trialCount, carNames, moveResults) {
     }
     return moveResults;
 }
+
+export function displayWinners(carNames, moveResults) {
+    const MAX_MOVES = Math.max(...moveResults);
+    const WINNER = carNames.filter(
+        (_, index) => MAX_MOVES === moveResults[index]
+    );
+    Console.print(`최종 우승자 : ${WINNER.join(', ')}`);
+}
