@@ -25,3 +25,20 @@ function getWinners(cars) {
 
   return winners;
 }
+
+export default function startRace(cars, count) {
+  Console.print("\n실행 결과");
+
+  for (let cycle = 0; cycle < count; cycle++) {
+    cars.forEach((car) => {
+      moveCarRandomly(car);
+      viewProgressBar(car);
+    });
+
+    Console.print("");
+  }
+
+  const winners = getWinners(cars);
+
+  Console.print(`최종 우승자 : ${winners.join(", ")}`);
+}
