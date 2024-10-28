@@ -23,6 +23,8 @@ export default class InputView {
     carNames.forEach((carName) => {
       this.isValidCarNameLength(carName);
     });
+
+    this.getAttemptCount();
   }
 
   static isValidCarNameLength(carName) {
@@ -38,6 +40,19 @@ export default class InputView {
   static isValidCarName(carName) {
     if (!VALID_CAR_NAME_REGEXP.test(carName)) {
       throw new Error(`[ERROR] ${ERROR_INVALID_CAR_NAME}`);
+    }
+  }
+
+  static async getAttemptCount() {
+    const attemptCount = await Console.readLineAsync(
+      `시도할 횟수를 입력하세요 : `
+    );
+    this.isValidAttemptCount(attemptCount);
+  }
+
+  static isValidAttemptCount(attemptCount) {
+    if (MIN_ATTEMPT_COUNT > attemptCount || attemptCount > MAX_ATTEMPT_COUNT) {
+      throw new Error(`[ERROR] ${ERROR_INVALID_NUMBER_OF_ATTEMPTS}`);
     }
   }
 }
