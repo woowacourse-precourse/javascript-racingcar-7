@@ -13,13 +13,12 @@ class InputManager {
 
   static parseCarNames(input) {
     const names = input.split(",").map((name) => name.trim());
-    names.forEach((name) => Validator.validateName(name));
-    Validator.validateCarCount(names);
+    validateCars(names);
     return names;
   }
 
   static parseTries(input) {
-    Validator.validateTries(input);
+    validteTries(input);
     return Number(input);
   }
 }
