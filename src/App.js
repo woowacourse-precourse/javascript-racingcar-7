@@ -6,6 +6,7 @@ class App {
       const cars = await this.readCarName();
       const attemp = await this.readAttemps();
       const raceResult = await this.startRace(cars, attemp);
+      this.printRaceResult(raceResult);
     }catch{
 
     }
@@ -55,6 +56,12 @@ class App {
       Console.print('${car.name} : ${"-".repeat(car.position)}');
     });
     Console.print(""); // 출력 형식 유지를 위한 공백 추가
+  }
+
+  printRaceResult(cars){
+    const maxPosition = Math.max(...cars.map((car) => car.position));
+    const winners = cars.filter((car) => car.position === maxPosition).map((car) => car.name);
+    Console.print('최종 우승자 : ${winners.join(", ")}');
   }
 }
 
