@@ -31,7 +31,11 @@ class CarManager {
   getWinner() {
     let winners = [];
     const maxCar = this.carNameArr.reduce((prev, el) => {
-      return prev.getDistance() >= el.getDistance() ? prev : el;
+      if (prev.getDistance() >= el.getDistance()) {
+        return prev;
+      } else {
+        return el;
+      }
     });
     this.carNameArr.forEach((car) => {
       if (car.getDistance() === maxCar.getDistance()) {
