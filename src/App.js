@@ -10,6 +10,7 @@ class App {
       const game = new Race(carNames);
       MissionUtils.Console.print('\n실행 결과');
       await game.race(attempts);
+      this.printWinners(game.getWinners());
     } catch (error) {
       MissionUtils.Console.print(error.message);
       throw error;
@@ -26,6 +27,10 @@ class App {
     return await MissionUtils.Console.readLineAsync(
       '시도할 횟수는 몇 회인가요?\n'
     );
+  }
+
+  printWinners(winners) {
+    MissionUtils.Console.print(`최종 우승자 : ${winners}`);
   }
 }
 
