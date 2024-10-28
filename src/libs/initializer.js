@@ -1,5 +1,4 @@
 import { validateRacerAmount, validateRounds } from "./validate.js";
-
 import Car from "../models/Car.js";
 import Race from "../models/Race.js";
 import { CARS_NAME_REGEXP } from "./constants.js";
