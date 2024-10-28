@@ -9,6 +9,7 @@ class RacingGame{
     async newRacingGame(){
         await this.userInput.initialize(); 
         const race = new Race(this.userInput);
+        await race.doRace();
     }
 }
 
