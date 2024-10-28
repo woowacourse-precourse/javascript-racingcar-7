@@ -71,13 +71,13 @@ class App {
 
   // 자동차 이름을 입력받는 메서드
   async getCarNames(){
-    const carNamesInput = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)');
+    const carNamesInput = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
     return carNamesInput.split(',').map(name => name.trim()).filter(name => name.length > 0 && name.length <= 5);
   }
 
   // 이동 횟수를 입력받는 메서드
   async getAttempts(){
-    const attemptsInput = await Console.readLineAsync('시도할 횟수는 몇 회인가요?');
+    const attemptsInput = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
     return Number(attemptsInput);
   }
 
