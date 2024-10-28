@@ -32,8 +32,15 @@ export function validateRaceCount(value) {
   }
 }
 
-// --- 예외처리 통합 ---
-export function validateCarInputs(carNames, racingNum) {
-  validateCarNames(carNames);
-  validateRaceCount(racingNum);
+export function validateRaceCountRange(value, maxCount = 100) {
+  if (parseInt(value, 10) > maxCount) {
+    throw new Error(
+      `[ERROR] 최대 ${maxCount} 이하의 숫자만 입력할 수 있습니다.`,
+    );
+  }
+}
+
+export function validateRaceCountInput(value, maxCount = 100) {
+  validateRaceCount(value);
+  validateRaceCountRange(value, maxCount);
 }
