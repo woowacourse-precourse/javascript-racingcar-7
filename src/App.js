@@ -9,6 +9,8 @@ class App {
 
       const num = await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?');
       this.validateNum(num);
+
+      this.start(names,num);
       
     } catch (error) {
       MissionUtils.Console.print(`${error.message}`);
@@ -37,6 +39,9 @@ class App {
       if (uniqueNames.has(name)) {
         throw new Error(`[ERROR] 중복된 이름이 있습니다: ${name}`);
       }
+      if (name === "") {
+        throw new Error('[ERROR] 이름은 공백일 수 없습니다.');
+      }
       uniqueNames.add(name);
     });
   }
@@ -53,6 +58,28 @@ class App {
     if (parsedNum <= 0) {
       throw new Error('[ERROR] 시도 횟수는 1 이상의 양수여야 합니다.');
     }
+  }
+
+  start(names, attempts) {
+    const results = names.map(() => "");
+
+    for (let i = 0; i < attempts; i++) {
+      names.forEach((name, index) => {
+        const randomNum = MissionUtils.Random.pickNumberInRange(0, 9);
+        if (randomNum >= 4) {
+          results[index] += "-";
+        }
+      });
+
+      this.displayProgress(names, results);
+    }
+  }
+
+  displayProgress(names, results) {
+    names.forEach((name, index) => {
+      MissionUtils.Console.print(`${name} : ${results[index]}`);
+    });
+    MissionUtils.Console.print('');
   }
 
 }
