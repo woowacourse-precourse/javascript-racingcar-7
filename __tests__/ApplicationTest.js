@@ -1,4 +1,4 @@
-import App from "../src/App.js";
+import App from '../src/App.js';
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 const mockQuestions = (inputs) => {
@@ -55,6 +55,6 @@ describe("자동차 경주", () => {
     const app = new App();
 
     // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
+    await expect(app.run()).rejects.toThrow("[ERROR] 자동차 이름은 5글자 이하만 가능합니다.");
   });
 });
