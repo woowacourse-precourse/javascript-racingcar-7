@@ -5,18 +5,18 @@ export class Car {
   constructor(name) {
     nameLimitTest(name);
     this.name = name;
-    this.location = 0;
+    this.position = 0;
   }
 
   move() {
     const randomNumber = getRandomNumber(0, 9);
     if (randomNumber >= 4) {
-      this.location++;
+      this.position++;
     }
   }
 
-  getLocation() {
-    return this.location;
+  getPosition() {
+    return this.position;
   }
 
   getName() {
