@@ -3,9 +3,9 @@ import Main from "./controllers/Main.js";
 class App {
   async run() {
     try {
-      Main();
-    } catch {
-      throw new Error("[ERROR]");
+      await Main();
+    } catch (error) {
+      throw error;
     }
   }
 }
