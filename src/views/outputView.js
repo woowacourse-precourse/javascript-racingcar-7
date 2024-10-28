@@ -4,24 +4,24 @@ import { Console } from "@woowacourse/mission-utils";
 import { OUTPUT_MESSAGES } from "../utils/message.js";
 
 const OutputView = {
-  printGameStart() {
-    Console.print(OUTPUT_MESSAGES.RUN_RESULT);
+  async printGameStart() {
+    await Console.print(OUTPUT_MESSAGES.RUN_RESULT);
   },
 
-  printErrorMessage(message) {
-    Console.print(`${OUTPUT_MESSAGES.ERROR_MESSAGE_PREFIX} ${message}`);
+  async printErrorMessage(message) {
+    await Console.print(`${OUTPUT_MESSAGES.ERROR_MESSAGE_PREFIX} ${message}`);
   },
 
-  printRoundStatus(carsStatus) {
-    carsStatus.forEach((car) => {
+  async printRoundStatus(carsStatus) {
+    for (const car of carsStatus) {
       const positionDisplay = "-".repeat(car.position);
-      Console.print(`${car.name} : ${positionDisplay}`);
-    });
-    Console.print("");
+      await Console.print(`${car.name} : ${positionDisplay}`);
+    }
+    await Console.print("");
   },
 
-  printWinners(winners) {
-    Console.print(
+  async printWinners(winners) {
+    await Console.print(
       `${OUTPUT_MESSAGES.FINAL_WINNER_PREFIX} ${winners.join(", ")}`
     );
   },

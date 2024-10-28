@@ -7,35 +7,39 @@ import RacingGame from "../models/racingGame.js";
 
 export default class GameController {
   async start() {
-    const carNamesInput = await InputView.readCarNames();
-    const validCarNames = Verify.verifyCarNames(carNamesInput);
-    if (!validCarNames) return;
+    try {
+      const carNamesInput = await InputView.readCarNames();
+      const validCarNames = Verify.verifyCarNames(carNamesInput);
+      if (!validCarNames) return;
 
-    const roundCountInput = await InputView.readTryCount();
-    const validRoundCount = Verify.verifyTryCount(roundCountInput);
-    if (!validRoundCount) return;
+      const roundCountInput = await InputView.readTryCount();
+      const validRoundCount = Verify.verifyTryCount(roundCountInput);
+      if (!validRoundCount) return;
 
-    this.initializeGame(validCarNames, validRoundCount);
-    this.executeGameRounds(validRoundCount);
+      await this.initializeGame(validCarNames, validRoundCount);
+      await this.executeGameRounds(validRoundCount);
 
-    this.winnerAnnouncement();
-  }
-
-  initializeGame(carNames, rounds) {
-    RacingGame.init(carNames);
-    OutputView.printGameStart();
-  }
-
-  executeGameRounds(rounds) {
-    for (let i = 0; i < rounds; i++) {
-      RacingGame.playOneRound();
-      const currentStatus = RacingGame.getCarsStatus();
-      OutputView.printRoundStatus(currentStatus);
+      await this.winnerAnnouncement();
+    } catch (e) {
+      await OutputView.printErrorMessage(e.message);
     }
   }
 
-  winnerAnnouncement() {
+  async initializeGame(carNames) {
+    RacingGame.init(carNames);
+    await OutputView.printGameStart();
+  }
+
+  async executeGameRounds(rounds) {
+    for (let i = 0; i < rounds; i++) {
+      RacingGame.playOneRound();
+      const currentStatus = RacingGame.getCarsStatus();
+      await OutputView.printRoundStatus(currentStatus);
+    }
+  }
+
+  async winnerAnnouncement() {
     const winners = RacingGame.findWinners();
-    OutputView.printWinners(winners);
+    await OutputView.printWinners(winners);
   }
 }

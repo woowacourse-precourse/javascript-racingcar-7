@@ -3,21 +3,16 @@
 import { Console } from "@woowacourse/mission-utils";
 import { INPUT_MESSAGES } from "../utils/message.js";
 
-const inputView = {
-  readCarNames() {
-    return new Promise((resolve) => {
-      Console.readLine(INPUT_MESSAGES.CAR_NAMES, (input) => {
-        resolve(input);
-      });
-    });
+const InputView = {
+  async readCarNames() {
+    const input = await Console.readLineAsync(INPUT_MESSAGES.CAR_NAMES);
+    return input;
   },
-  readTryCount() {
-    return new Promise((resolve) => {
-      Console.readLine(INPUT_MESSAGES.TRY_COUNT, (input) => {
-        resolve(input);
-      });
-    });
+
+  async readTryCount() {
+    const input = await Console.readLineAsync(INPUT_MESSAGES.TRY_COUNT);
+    return input;
   },
 };
 
-export default inputView;
+export default InputView;
