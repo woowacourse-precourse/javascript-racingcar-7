@@ -5,7 +5,7 @@ class OutputView {
   static #DASH = "-";
 
   static printExecutionResult() {
-    return OutputView.#printMessage(OUTPUT_MESSAGE.EXECUTION_RESULT);
+    OutputView.#printMessage(OUTPUT_MESSAGE.EXECUTION_RESULT);
   }
 
   static printBlankLine() {
@@ -18,7 +18,7 @@ class OutputView {
       const distance = OutputView.#DASH.repeat(car.position);
       OutputView.#printMessage(`${carName} : ${distance}`);
     });
-    return OutputView.printBlankLine();
+    OutputView.printBlankLine();
   }
 
   static printFinalWinner(winnerString) {
@@ -28,7 +28,7 @@ class OutputView {
   }
 
   static #printMessage(outPut) {
-    return Console.print(outPut);
+    Console.print(outPut);
   }
 }
 
