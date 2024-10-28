@@ -49,13 +49,12 @@
 
 ## 🧪 테스트 목록
 
-리팩토링 이전에 전체적인 기능을 테스트하는 케이스를 작성했습니다.
+리팩토링 이전에 전체적인 기능을 테스트하는 케이스를 작성했습니다. 테스트는 기능 테스트와 에러 테스트로 나누어 작성했으며 `test.each()`를 통해 파라미터화 했습니다.
 
 ### [기능 테스트](https://github.com/rosielsh/javascript-racingcar-7/blob/rosielsh/__tests__/FunctionTest.js)
 
 -   [✅] 한 명이 우승하는 경우
 -   [✅] 공동 우승하는 경우
--   [✅] 3명이 경주하는 경우
 
 ### [에러 테스트](https://github.com/rosielsh/javascript-racingcar-7/blob/rosielsh/__tests__/ExceptionTest.js)
 
@@ -63,7 +62,16 @@
 -   [✅] 자동차 이름이 빈 문자열인 경우
 -   [✅] 시도 횟수가 숫자가 아닌 경우
 -   [✅] 시도 횟수가 음수나 0인 경우
--   [✅] 입력값이 없이 엔터를 누른 경우
+
+<br/>
+
+### 테스트 결과
+
+`npm run test`로 로컬 환경에서 모두 `passed` 한 것을 확인했습니다.
+
+![alt text](images/test1.png)
+
+![alt text](images/test2.png)
 
 <br/>
 
@@ -81,10 +89,36 @@
 
 | 클래스명            | 역할                               |
 | ------------------- | ---------------------------------- |
-| `App` | 가장 최상단에서 프로그램을 실행            |
+| `App`               | 가장 최상단에서 프로그램을 실행    |
+| `Car`               | 자동차                             |
 | `CarGameController` | 자동차 경주 게임 진행자            |
 | `GarGame`           | 자동차 게임의 실질적인 동작을 수행 |
 | `InputHandler`      | 입력 처리기                        |
 | `Printer`           | 출력 처리기                        |
 | `Validator`         | 예외 처리기                        |
 
+<br/>
+
+## 디렉터리 구조
+
+```
+📂
+├── README.md
+├── 📂 __tests__
+│   ├── ApplicationTest.js
+│   ├── ExceptionTest.js // 예외 처리 테스트
+│   └── FunctionTest.js // 통합 테스트
+└── 📂 src
+    ├── App.js // 프로그램 실행
+    ├── Car.js // 자동차
+    ├── CarGame.js // 자동차 게임 로직
+    ├── CarGameController.js // 게임 진행
+    ├── InputHandler.js // 입력
+    ├── Printer.js // 출력
+    ├── Utils.js // 유틸 함수
+    ├── Validator.js // 유효성 검증
+    ├── 📂 constants
+    │   ├── Message.js
+    │   └── Setting.js
+    └── index.js
+```
