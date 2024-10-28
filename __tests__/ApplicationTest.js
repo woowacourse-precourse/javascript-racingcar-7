@@ -202,4 +202,16 @@ describe('자동차 경주', () => {
       '[ERROR] 올바른 숫자를 입력해주세요!',
     );
   });
+
+  test('예외 테스트 시도 횟수가 양수지만 정수가 아닐 경우', async () => {
+    // given
+    const inputs = ['a,b,c', '4.3'];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
 });
