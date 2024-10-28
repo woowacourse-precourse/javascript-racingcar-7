@@ -1,8 +1,8 @@
 import Car from '../src/model/Car.js';
 import { CONFIG } from '../src/constant/config.js';
-import { getRandomNumber } from '../src/util/Random.js';
+import { getRandomNumber } from '../src/utils/random.js';
 
-jest.mock('../src/util/Random.js');
+jest.mock('../src/utils/random.js');
 
 beforeEach(() => {
   jest.clearAllMocks();
