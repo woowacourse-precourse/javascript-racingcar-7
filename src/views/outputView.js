@@ -1,14 +1,24 @@
-// 사용자에게 출력을 담당하는 클래스
+// 사용자에게 출력을 담당하는 객체
 
 import { Console } from "@woowacourse/mission-utils";
 import { OUTPUT_MESSAGES } from "../utils/message.js";
 
-export default class OutputView {
-  static printGameStart() {
-    Console.print(OUTPUT_MESSAGES.START_GAME_NOTICE);
-  }
+const OutputView = {
+  printGameStart() {
+    Console.print(OUTPUT_MESSAGES.RUN_RESULT);
+  },
 
-  static printErrorMessage(message) {
+  printErrorMessage(message) {
     Console.print(`${OUTPUT_MESSAGES.ERROR_MESSAGE_PREFIX} ${message}`);
-  }
-}
+  },
+
+  printRoundStatus(carsStatus) {
+    carsStatus.forEach((car) => {
+      const positionDisplay = "-".repeat(car.position);
+      Console.print(`${car.name} : ${positionDisplay}`);
+    });
+    Console.print("");
+  },
+};
+
+export default OutputView;

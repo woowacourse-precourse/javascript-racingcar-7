@@ -22,7 +22,7 @@ class Verify {
       return false;
     }
 
-    return carNames; // 유효한 자동차 이름 배열 반환
+    return carNames;
   }
 
   verifyTryCount(tryCountInput) {
@@ -33,7 +33,7 @@ class Verify {
       return false;
     }
 
-    return tryCount; // 유효한 시도 횟수 반환
+    return tryCount;
   }
 }
 
