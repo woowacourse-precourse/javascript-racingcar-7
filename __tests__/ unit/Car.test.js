@@ -15,6 +15,7 @@ describe('Car 유닛 테스트', () => {
   });
 
   test('Car는 움직일 수 있다.', () => {
-    expect(car.move()).toStrictEqual({name:'chan',move: 1});
+    car.move();
+    expect(car.getStatus()).toStrictEqual({name:'chan',move: 1});
   });
 });
