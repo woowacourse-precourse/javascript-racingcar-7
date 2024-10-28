@@ -11,21 +11,26 @@ class Game {
   #game;
 
   async start() {
+    // 자동차 이름 입력
     const cars = await InputViews.carNameInput();
     Validation.isValidCarName(cars);
 
+    // 시도할 횟수 입력
     const totalRound = await InputViews.tryCountInput();
     Validation.isValidTotalRound(totalRound);
 
+    // 게임 시작
     const carNameArr = cars.split(",").map((car) => new Car(car));
     this.#game = new Race(+totalRound, carNameArr);
 
+    // 게임 진행
     OutputViews.printExecutionResult();
     for (let i = 0; i < this.#game.getTotalRound(); i++) {
       Game.updateNumberOfAdvance(carNameArr);
       OutputViews.printEachRoundResult(carNameArr);
     }
 
+    // 최종 우승자 출력
     const winners = Game.calculateWinners(carNameArr);
     OutputViews.printFinalWinners(winners);
   }
@@ -48,7 +53,7 @@ class Game {
   static updateNumberOfAdvance(racingCars) {
     racingCars.forEach((racingCar) => {
       const randomNumber = Game.selectRandomNumber();
-      racingCar.Advance(Game.canCarAdvance(randomNumber));
+      racingCar.advance(Game.canCarAdvance(randomNumber));
     });
   }
 

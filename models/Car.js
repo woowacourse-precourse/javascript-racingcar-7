@@ -15,7 +15,7 @@ class Car {
     return this.#numberOfAdvance;
   }
 
-  Advance(canAdvance) {
+  advance(canAdvance) {
     if (canAdvance) {
       this.#numberOfAdvance += 1;
     }
