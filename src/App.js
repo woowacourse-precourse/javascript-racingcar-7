@@ -1,5 +1,13 @@
 import { Console } from "@woowacourse/mission-utils";
 
+// 자동차 클래스 정의
+class Car {
+  constructor(name) {
+    this.name = name;
+    this.position = 0; // 초기 위치는 0
+  }
+}
+
 class App {
   async run() {
     // 자동차 문자열 입력
@@ -32,6 +40,9 @@ class App {
       throw new Error("[ERROR] 중복된 자동차 이름은 입력할 수 없습니다.");
     }
 
+    // 자동차 객체 배열 생성
+    const cars = carNamesArray.map((name) => new Car(name));
+
     // 이동 횟수 입력
     const moveCount = await Console.readLineAsync(
       `시도할 횟수는 몇 회인가요?\n`
@@ -42,12 +53,12 @@ class App {
       throw new Error("[ERROR] 이동 횟수를 정확히 입력해주세요");
     }
 
-    // 테스트 코드: 유효한 경우 자동차 이름 배열 출력
-    Console.print(carNamesArray);
-    Console.print(moveCount);
+    // 테스트 코드: 유효한 경우 자동차 객체와 이동 횟수 출력
+    Console.print(`자동차 목록: ${JSON.stringify(cars, null, 2)}`);
+    Console.print(`이동 횟수: ${moveCount}`);
   }
 
-  // 양의 정수 유효성 검사 함수
+  // 유효성 검사 함수
   isValidNumber(input) {
     const number = Number(input);
     return Number.isInteger(number) && number > 0;
