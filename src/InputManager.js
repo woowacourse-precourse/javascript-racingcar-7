@@ -1,4 +1,6 @@
-class InputManager {
+import { Console } from "@woowacourse/mission-utils";
+import { Validator } from "./Validator.js";
+export class InputManager {
   static async readCarNames() {
     const input = await Console.readLineAsync(
       "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
@@ -13,12 +15,12 @@ class InputManager {
 
   static parseCarNames(input) {
     const names = input.split(",").map((name) => name.trim());
-    validateCars(names);
+    Validator.validateCars(names);
     return names;
   }
 
   static parseTries(input) {
-    validteTries(input);
+    Validator.validteTries(input);
     return Number(input);
   }
 }
