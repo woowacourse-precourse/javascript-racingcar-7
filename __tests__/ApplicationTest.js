@@ -72,6 +72,15 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 
+  test("예외 테스트 - 자동차의 이름을 중복으로 입력한 경우", async () => {
+    const inputs = ["pobi,pobi"];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
   test("예외 테스트 - 경주할 자동차에 ''만 입력한 경우", async () => {
     const inputs = [""];
     mockQuestions(inputs);
@@ -80,6 +89,7 @@ describe("자동차 경주", () => {
 
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
 
   test("예외 테스트 - 경주할 자동차에 쉼표를 구분자로 입력하지 않은 경우", async () => {
     const inputs = ["pobi; javaji"];
