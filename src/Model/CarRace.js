@@ -1,9 +1,14 @@
+import { Random } from '@woowacourse/mission-utils';
 import Car from './Car.js';
 
 export default class CarRace {
   #cars;
 
   #raceCount;
+
+  static isValidRaceCount(raceCount) {
+    return Number.isInteger(Number(raceCount)) && Number(raceCount) > 0;
+  }
 
   constructor(carNames, raceCount) {
     this.#cars = carNames.split(',').map((carName) => new Car(carName));
@@ -15,7 +20,10 @@ export default class CarRace {
     this.#raceCount = Number(raceCount);
   }
 
-  static isValidRaceCount(raceCount) {
-    return Number.isInteger(Number(raceCount)) && Number(raceCount) > 0;
+  #getMoveDecisions() {
+    return Array.from(
+      { length: this.#cars.length },
+      () => Random.pickNumberInRange(0, 9) >= 4,
+    );
   }
 }
