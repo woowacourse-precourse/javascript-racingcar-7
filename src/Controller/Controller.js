@@ -19,6 +19,7 @@ class Controller {
     const roundsInput = await getInput(SYSTEM_MESSAGES.ASK_ROUNDS);
     const validatedRounds = validateRounds(roundsInput);
 
+    /** @type {Car[]} */
     const cars = validatedCarNames.map((carName) => new Car(carName));
     const validatedCars = validateCars(cars);
 
