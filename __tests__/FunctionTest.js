@@ -25,51 +25,82 @@ const getLogSpy = () => {
 };
 
 describe("자동차 경주 기능 테스트", () => {
-    test("한 명이 우승하는 경우", async () => {
-        const inputs = ["pobi,woni", "3"];
-        const logs = ["pobi : ---", "woni : -", "최종 우승자 : pobi"];
-        const logSpy = getLogSpy();
+    test.each([
+        {
+            inputs: ["티볼리,셀토스", "3"],
+            randoms: [4, 4, 4, 4, 4, 4],
+            expectedLogs: ["티볼리 : ---", "셀토스 : ---"],
+            winner: "최종 우승자 : 티볼리, 셀토스",
+        },
+        {
+            inputs: ["티볼리,셀토스", "2"],
+            randoms: [3, 3, 3, 3],
+            expectedLogs: ["티볼리 : ", "셀토스 : "],
+            winner: "최종 우승자 : 티볼리, 셀토스",
+        },
+        {
+            inputs: ["티볼리,싼타페,제네시스", "2"],
+            randoms: [6, 6, 6, 6, 6, 6],
+            expectedLogs: ["티볼리 : --", "싼타페 : --", "제네시스 : --"],
+            winner: "최종 우승자 : 티볼리, 싼타페, 제네시스",
+        },
+    ])(
+        "공동 우승하는 경우 ($inputs, $randoms) => $winner",
+        async ({ inputs, randoms, expectedLogs, winner }) => {
+            const logSpy = getLogSpy();
 
-        mockQuestions(inputs);
-        mockRandoms([4, 4, 4, 3, 4, 3]); // pobi 3칸, woni 1칸
+            mockQuestions(inputs);
+            mockRandoms(randoms);
 
-        const app = new App();
-        await app.run();
+            const app = new App();
+            await app.run();
 
-        logs.forEach((log) => {
-            expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-        });
-    });
+            const calls = logSpy.mock.calls;
 
-    test("공동 우승하는 경우", async () => {
-        const inputs = ["pobi,woni", "3"];
-        const logs = ["pobi : ---", "woni : ---", "최종 우승자 : pobi, woni"];
-        const logSpy = getLogSpy();
+            expectedLogs.forEach((log) => {
+                expect(calls[1][0]).toContain(log);
+            });
 
-        mockQuestions(inputs);
-        mockRandoms([4, 4, 4, 4, 4, 4]); // pobi 3칸, woni 3칸
+            expect(calls[2][0]).toContain(winner);
+        }
+    );
 
-        const app = new App();
-        await app.run();
+    test.each([
+        {
+            inputs: ["티볼리,셀토스", "3"],
+            randoms: [4, 3, 4, 3, 4, 4],
+            expectedLogs: ["티볼리 : ---", "셀토스 : -"],
+            winner: "최종 우승자 : 티볼리",
+        },
+        {
+            inputs: ["티볼리,셀토스", "2"],
+            randoms: [0, 6, 0, 6],
+            expectedLogs: ["티볼리 : ", "셀토스 : --"],
+            winner: "최종 우승자 : 셀토스",
+        },
+        {
+            inputs: ["티볼리,싼타페,제네시스", "2"],
+            randoms: [0, 6, 2, 4, 8, 1],
+            expectedLogs: ["티볼리 : -", "싼타페 : --", "제네시스 : "],
+            winner: "최종 우승자 : 싼타페",
+        },
+    ])(
+        "한 명이 우승하는 경우 ($inputs, $randoms) => $winner",
+        async ({ inputs, randoms, expectedLogs, winner }) => {
+            const logSpy = getLogSpy();
+            mockQuestions(inputs);
+            mockRandoms(randoms);
 
-        logs.forEach((log) => {
-            expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-        });
-    });
+            const app = new App();
+            await app.run();
 
-    test("3명이서 경주하는 경우", async () => {
-        const inputs = ["pobi,woni,jun", "2"];
-        const logs = ["pobi : --", "woni : ", "jun : -", "최종 우승자 : pobi"];
-        const logSpy = getLogSpy();
+            const calls = logSpy.mock.calls;
 
-        mockQuestions(inputs);
-        mockRandoms([4, 1, 1, 4, 2, 4]); // pobi 2칸, woni 0칸, jun 1칸
+            expectedLogs.forEach((log) => {
+                expect(calls[1][0]).toContain(log);
+            });
 
-        const app = new App();
-        await app.run();
-
-        logs.forEach((log) => {
-            expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-        });
-    });
+            expect(calls[2][0]).toContain(winner);
+        }
+    );
 });
