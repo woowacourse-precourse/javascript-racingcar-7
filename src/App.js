@@ -32,7 +32,7 @@ class App {
           carStepList[index] += step;
           console.log(`${carName}: ${'-'.repeat(carStepList[index])}`);
         });
-        console.log('\n');
+        console.log('');
       }
 
       // 우승자 출력
@@ -76,7 +76,7 @@ class App {
     const maxDistance = Math.max(...carStepList);
     const winners = carNameList
       .filter((_, index) => carStepList[index] === maxDistance);
-    console.log(`우승자: ${winners.join(', ')}`);
+    console.log(`최종 우승자 : ${winners.join(', ')}`);
   }
 
 }
