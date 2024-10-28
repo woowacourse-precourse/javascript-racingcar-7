@@ -33,6 +33,20 @@ class App {
     return carsObject;
   }
 
+  makeRandom() {
+    return MissionUtils.Random.pickNumberInRange(0, 9);
+  }
+
+  goForward() {
+    const randomNum = this.makeRandom();
+
+    if (randomNum >= 4) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   async run() {
     try {
       const carsName = await this.inputCars();
@@ -42,6 +56,7 @@ class App {
 
       const attempt = await this.inputAttempts();
       const carsObject = this.initializeCarsObject(carsList);
+      MissionUtils.Console.print("\n실행 결과");
     } catch (error) {
       throw new Error("[ERROR]");
     }
