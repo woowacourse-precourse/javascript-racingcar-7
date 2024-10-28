@@ -1,12 +1,19 @@
 import { Console, Random } from "@woowacourse/mission-utils";
 
+const ERROR_MESSAGES = {
+  VEHICLE_NAME_LENGTH: "[ERROR] 자동차 이름은 5자 이하이어야 합니다.",
+  VEHICLE_NAME_EMPTY: "[ERROR] 자동차 이름은 비어 있을 수 없습니다.",
+  DUPLICATE_VEHICLE_NAME: "[ERROR] 자동차 이름이 중복되었습니다.",
+  INVALID_ATTEMPT_COUNT: "[ERROR] 이동 횟수는 1 이상의 정수여야 합니다."
+};
+
 class Vehicle {
   constructor(vehicleName) {
     if (vehicleName.length > 5) {
-      throw new Error("[ERROR] 자동차 이름은 5자 이하이어야 합니다.");
+      throw new Error(ERROR_MESSAGES.VEHICLE_NAME_LENGTH);
     }
     if (!vehicleName || vehicleName.trim() === "") {
-      throw new Error("[ERROR] 자동차 이름은 비어 있을 수 없습니다.");
+      throw new Error(ERROR_MESSAGES.VEHICLE_NAME_EMPTY);
     }
     this.name = vehicleName;
     this.position = 0;
@@ -32,7 +39,7 @@ class Race {
     const uniqueNames = new Set();
     names.forEach(name => {
       if (uniqueNames.has(name)) {
-        throw new Error(`[ERROR] 자동차 이름이 중복되었습니다.`);
+        throw new Error(ERROR_MESSAGES.DUPLICATE_VEHICLE_NAME);
       }
       uniqueNames.add(name);
     });
@@ -42,9 +49,9 @@ class Race {
   startRace(rounds) {
     const attemptCount = Number(rounds);
     if (isNaN(attemptCount) || attemptCount <= 0) {
-      throw new Error("[ERROR] 이동 횟수는 1 이상의 정수여야 합니다.");
+      throw new Error(ERROR_MESSAGES.INVALID_ATTEMPT_COUNT);
     }
-    
+
     for (let i = 0; i < attemptCount; i++) {
       this.moveAllVehicles();
       this.displayCurrentPositions();
