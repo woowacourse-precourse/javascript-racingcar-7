@@ -2,7 +2,7 @@ import { NameError, RoundError } from './CustomError.js';
 
 class ErrorHandler {
   static validateCarNames(carNames) {
-    if (!carNames || carNames.length === 0) {
+    if (!carNames || (carNames.length === 1 && carNames[0] === '')) {
       throw new NameError('경주할 자동차 이름을 입력하세요.');
     }
     const uniqueNames = new Set();
@@ -18,8 +18,14 @@ class ErrorHandler {
   }
 
   static validateRound(round) {
+    if (!round) {
+      throw new RoundError('시도할 횟수를 입력해주세요');
+    }
     if (round < 1) {
-      throw new RoundError('시도할 회수는 1 이상이어야 합니다.');
+      throw new RoundError('시도할 횟수는 1 이상이어야 합니다.');
+    }
+    if (isNaN(round)) {
+      throw new RoundError('시도할 횟수는 숫자만 입력해주세요');
     }
   }
 }
