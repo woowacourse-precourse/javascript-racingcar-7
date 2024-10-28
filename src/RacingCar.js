@@ -35,6 +35,10 @@ class RacingCar {
         });
         Console.print("");
     }
+
+    printCarStatus(car) {
+        Console.print(`${car.name} : ${"-".repeat(car.position)}`);
+    }
 }
 
 export default RacingCar;
