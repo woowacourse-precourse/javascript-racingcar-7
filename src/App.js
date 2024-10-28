@@ -4,7 +4,8 @@ class App {
   async run() {
     try{
       const cars = await this.readCarName();
-      const attemps = await this.readAttemps();
+      const attemp = await this.readAttemps();
+      const raceResult = await this.startRace(cars, attemp);
     }catch{
 
     }
@@ -35,6 +36,25 @@ class App {
     }
 
     return attemps;
+  }
+
+  async startRace(cars, attemp){
+    for(let i = 0; i < attemps; i++){
+      cars.forEach((car) => {
+        // 무작위 값이 4 이상인 차만 전진
+        if(Random.pickNumberInRange(0,9) >= 4){
+          cars.position += 1;
+        } 
+      });
+      this.printCurrentStatus(cars);
+    }
+  }
+
+  printCurrentStatus(cars){
+    cars.forEach((car) => {
+      Console.print('${car.name} : ${"-".repeat(car.position)}');
+    });
+    Console.print(""); // 출력 형식 유지를 위한 공백 추가
   }
 }
 
