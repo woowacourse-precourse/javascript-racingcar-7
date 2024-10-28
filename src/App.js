@@ -23,6 +23,12 @@ class App {
     this.racing_winner(racing_start);
   }
 
+  // 5. 무작위 랜덤 숫자 추출
+  random_car() {
+    const random = Random.pickNumberInRange(0, 9);
+    return random >= 4;
+  }
+
 }
 
 export default App;
