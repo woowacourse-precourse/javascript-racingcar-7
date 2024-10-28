@@ -23,23 +23,23 @@ class App {
       )
       this.validTryCount(inputTryCount);
 
-      console.log('');
-      console.log("실행 결과")
+      Console.print('');
+      Console.print("실행 결과")
       // 자동차들 움직이는 상태
       for(let i = 0; inputTryCount > i; i++) {
         carNameList.forEach((carName, index) => {
           const step = this.goCount();
           carStepList[index] += step;
-          console.log(`${carName}: ${'-'.repeat(carStepList[index])}`);
+          Console.print(`${carName} : ${'-'.repeat(carStepList[index])}`);
         });
-        console.log('');
+        Console.print('');
       }
 
       // 우승자 출력
       this.printWinners(carNameList, carStepList);
 
     } catch (error) {
-      Console.print(`[ERROR] ${error.message}`);
+      throw new Error(`[ERROR] ${error.message}`);
     }
   }
 
@@ -76,7 +76,7 @@ class App {
     const maxDistance = Math.max(...carStepList);
     const winners = carNameList
       .filter((_, index) => carStepList[index] === maxDistance);
-    console.log(`최종 우승자 : ${winners.join(', ')}`);
+    Console.print(`최종 우승자 : ${winners.join(', ')}`);
   }
 
 }
