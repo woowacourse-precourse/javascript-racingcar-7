@@ -11,5 +11,7 @@ export default {
   INVALID_NUMBER_INPUT: `${ERROR_PREFIX} 시도 횟수는 숫자만 입력해주세요.`,
   GREATER_THAN_ZERO: `${ERROR_PREFIX} 시도 횟수는 1 이상의 정수로 입력해주세요.`,
   STARTSWITH_ZERO_FORMAT: `${ERROR_PREFIX} 시도 횟수의 첫째 자리수는 1 이상으로 입력해주세요.`,
+  NEGATIVE_NUMBER_INPUT: `${ERROR_PREFIX} 시도 횟수는 음수가 입력될 수 없습니다. 1 이상의 정수로 입력해주세요.`,
+  DECIMAL_NUMBER_INPUT: `${ERROR_PREFIX} 시도 횟수는 소수점을 포함한 수가 입력될 수 없습니다. 1 이상의 정수로 입력해주세요.`,
   UNKNOWN_INVALID_NUMBER: `${ERROR_PREFIX} 알 수 없는 에러입니다. 시도 횟수 입력 내용을 확인해주세요.`,
 };

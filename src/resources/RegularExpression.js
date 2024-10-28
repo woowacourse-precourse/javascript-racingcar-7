@@ -6,4 +6,6 @@ export default {
   REGEX_NOT_NUMBER: /[^0-9]+/,
   REGEX_ONLY_ZERO: /^[0]$/,
   REGEX_VALID_NUMBER_FORMAT: /^[1-9](\d+)*$/,
+  REGEX_NEGATIVE_NUMBER: /^-\d+$/,
+  REGEX_DECIMAL_NUMBER: /^\d+\.\d+$/,
 };

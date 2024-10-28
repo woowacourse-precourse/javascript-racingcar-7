@@ -16,12 +16,24 @@ function validateZeroStarting(repetitionString) {
     throw new Error(ErrorMessage.STARTSWITH_ZERO_FORMAT);
 }
 
+function validateNegativeNumber(repetitionString) {
+  if (repetitionString.match(RegularExpression.REGEX_NEGATIVE_NUMBER))
+    throw new Error(ErrorMessage.NEGATIVE_NUMBER_INPUT);
+}
+
+function validateDecimalNumber(repetitionString) {
+  if (repetitionString.match(RegularExpression.REGEX_DECIMAL_NUMBER))
+    throw new Error(ErrorMessage.DECIMAL_NUMBER_INPUT);
+}
+
 export default function validateRepetitionString(repetitionString) {
-  if (!repetitionString) throw new Error(ErrorMessage.EMPTY_NAMES_NOT_ALLOW);
+  if (!repetitionString) throw new Error(ErrorMessage.EMPTY_NUMBER_NOT_ALLOW);
   if (!repetitionString.match(RegularExpression.REGEX_VALID_NUMBER_FORMAT)) {
-    validateNotNumber(repetitionString);
+    validateNegativeNumber(repetitionString);
+    validateDecimalNumber(repetitionString);
     validateZeroNumber(repetitionString);
     validateZeroStarting(repetitionString);
-    throw new Error(ErrorMessage.UNKNOWN_INVALID_NUMBERs);
+    validateNotNumber(repetitionString);
+    throw new Error(ErrorMessage.UNKNOWN_INVALID_NUMBER);
   }
 }
