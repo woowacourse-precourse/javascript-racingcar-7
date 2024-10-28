@@ -1,6 +1,8 @@
 const CAR = {
   DEFAULT_POSITION: 0,
   MOVE_DISTANCE: 1,
+  NAME_MAX_LENGTH: 5,
+  NAME_MIN_LENGTH: 1,
 };
 
 export default CAR;

@@ -3,6 +3,8 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 import Car from "../src/domains/car.js";
 import CarRace from "../src/domains/carRace.js";
 import CAR_RACE from "../src/constants/carRace.js";
+import CAR from "../src/constants/car.js";
+import { DEFAULT_ERROR, ERROR_MESSAGES } from "../src/constants/messages.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -115,5 +117,27 @@ describe("자동차 경주 테스트", () => {
     singleCarRace.totalUnitRound(8);
 
     expect(singleCarRace.result.length).toEqual(inputTryCount);
+  });
+});
+
+describe("입력 값 테스트", () => {
+  test(`자동차 이름은 ${CAR.NAME_MAX_LENGTH}자 이하만 입력 가능하다.`, async () => {
+    const inputs = ["a".repeat(CAR.NAME_MAX_LENGTH + 1)];
+
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(ERROR_MESSAGES.CAR_NAME_LENGTH);
+  });
+
+  test(`자동차 이름은 ${CAR.NAME_MIN_LENGTH}자 이상만 입력 가능하다.`, async () => {
+    const inputs = [" "];
+
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(ERROR_MESSAGES.CAR_NAME_LENGTH);
   });
 });

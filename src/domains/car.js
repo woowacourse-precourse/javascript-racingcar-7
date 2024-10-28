@@ -1,4 +1,4 @@
-import CAR from "../constants/car";
+import CAR from "../constants/car.js";
 
 export default class Car {
   #name;

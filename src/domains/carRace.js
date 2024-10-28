@@ -1,5 +1,5 @@
 import { Random } from "@woowacourse/mission-utils";
-import CAR_RACE from "../constants/carRace";
+import CAR_RACE from "../constants/carRace.js";
 
 export default class CarRace {
   #cars;
@@ -38,7 +38,7 @@ export default class CarRace {
 
   #gameRound() {
     this.#cars.map((car) => {
-      const randomDigitFrom0to9 = Random.pickNumberInRange();
+      const randomDigitFrom0to9 = Random.pickNumberInRange(0, 9);
       this.moveCar(car.name, randomDigitFrom0to9);
     });
   }
