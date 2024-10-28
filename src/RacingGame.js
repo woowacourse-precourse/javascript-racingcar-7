@@ -1,6 +1,7 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import RacingCar from './RacingCar.js';
 
+const SPACE_PATTERN = /\s/;
 class RacingGame {
   constructor() {
     this.carList = [];
@@ -8,7 +9,17 @@ class RacingGame {
   }
 
   setRacingCars(carNames) {
-    this.carList = carNames.split(',').map((carName) => {
+    const hasSpace = SPACE_PATTERN.test(carNames);
+    if (hasSpace) {
+      throw new Error('문자열에 공백이 있습니다. 공백 없이 작성해주세요.');
+    }
+
+    const carNameList = carNames.split(',');
+    if (carNameList.length !== new Set(carNameList).size) {
+      throw new Error('중복된 자동차 이름이 있습니다. 중복 없이 작성해주세요.');
+    }
+
+    this.carList = carNameList.map((carName) => {
       if (carName.length > 5) {
         throw new Error('자동차 이름은 5자 이하만 가능합니다.');
       }
