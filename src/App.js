@@ -12,7 +12,7 @@ class App {
     maxAttempts = Validate.attemptsValidate(maxAttempts, '시도 횟수'); // 유효성 체크 및 숫자로 타입 변경
 
     //, 기준으로 이름 분리와 함께 CAR(이름, 위치) 오브젝트 생성.
-    const CAR_NAME_ARRAY = CAR_NAME.split(',');
+    const CAR_NAME_ARRAY = CAR_NAME.split(',').map(value => value.trim());
     const CAR_POSITION_ARRAY = CAR_NAME_ARRAY.map(n => 0);
     const CAR = {
       name: CAR_NAME_ARRAY,
