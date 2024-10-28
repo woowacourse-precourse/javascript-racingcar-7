@@ -17,7 +17,7 @@ class App {
 
     for (let i = 0; i < rounds; i++) {
       cars.forEach((car) => {
-        car.moveForward();
+        car.attemptMove();
         printResult(`${car.name} : ${car.position}`);
       });
     }
