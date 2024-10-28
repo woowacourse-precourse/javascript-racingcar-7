@@ -11,7 +11,7 @@ class App {
       gameInfo = await this.makeRandomNum(gameInfo, NAMES_COUNT)
       await this.printGame(gameInfo, NAMES, NAMES_COUNT);
     }
-    const WINNER = await this.findWinner(gameInfo);
+    await this.printWinner(gameInfo, NAMES_COUNT, NAMES);
   }
 
   async getNames() {
@@ -47,6 +47,9 @@ class App {
         throw new Error("[ERROR] 자동차 이름이 5글자 초과입니다.");
       }
     }
+    if (NAMES.length < 2) {
+      throw new Error("[ERROR] 자동차의 개수가 2개 미만 입니다.");
+    }
   }
 
   async makeRandomNum(gameInfo, NAMES_LENGTH) {
@@ -76,8 +79,18 @@ class App {
       winners.push(winnerIndex);
       winnerIndex = gameInfo.indexOf(WINNER_VALUE);
     }
-
     return winners;
+  }
+
+  async printWinner(gameInfo, NAMES_COUNT, NAMES) {
+    let winners = await this.findWinner(gameInfo);
+    let resultSentence = "최종 우승자 : "
+    if (winners.length === 1) {
+      resultSentence = resultSentence + NAMES[winners[0]]
+    } else if (winners.length > 1) {
+      resultSentence = resultSentence + winners.map((winner) => NAMES[winner]).join(', ');
+    }
+    Console.print(resultSentence);
   }
 }
 
