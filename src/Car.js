@@ -1,3 +1,5 @@
+import { getRandomNumber } from './utils/getRandomNumber.js';
+
 class Car {
   #name;
   #position;
@@ -5,6 +7,13 @@ class Car {
   constructor(name) {
     this.#name = name;
     this.#position = 0;
+  }
+
+  move() {
+    const randomNumber = getRandomNumber();
+    if (randomNumber < 4) return;
+
+    this.#position += 1;
   }
 
   get name() {
