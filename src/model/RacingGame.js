@@ -1,16 +1,16 @@
 import Car from "./Car.js";
 
 export default class RacingGame {
-  repeatCount;
+  #repeatCount;
 
-  cars;
+  #cars;
 
-  raceLogs;
+  #raceLogs;
 
   constructor() {
-    this.cars = [];
-    this.repeatCount = 0;
-    this.raceLogs = [];
+    this.#cars = [];
+    this.#repeatCount = 0;
+    this.#raceLogs = [];
   }
 
   static formatNamesToCars(carNames) {
@@ -18,30 +18,30 @@ export default class RacingGame {
   }
 
   setGame(carNames, repeatCount) {
-    this.cars = RacingGame.formatNamesToCars(carNames);
-    this.repeatCount = repeatCount;
+    this.#cars = RacingGame.formatNamesToCars(carNames);
+    this.#repeatCount = repeatCount;
   }
 
   start() {
-    for (let i = 0; i < this.repeatCount; i += 1) {
+    for (let i = 0; i < this.#repeatCount; i += 1) {
       this.play();
-      this.raceLogs.push(this.cars.map((car) => ({ ...car })));
+      this.#raceLogs.push(this.#cars.map((car) => ({ ...car })));
     }
   }
 
   play() {
-    this.cars.forEach((car) => {
+    this.#cars.forEach((car) => {
       car.move();
     });
   }
 
   getRaceLogs() {
-    return this.raceLogs;
+    return this.#raceLogs;
   }
 
   getWinners() {
-    const maxDist = Math.max(...this.cars.map((car) => car.dist));
-    return this.cars.reduce((winners, car) => {
+    const maxDist = Math.max(...this.#cars.map((car) => car.dist));
+    return this.#cars.reduce((winners, car) => {
       if (car.dist === maxDist) winners.push(car.name);
       return winners;
     }, []);
