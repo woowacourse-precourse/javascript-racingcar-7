@@ -4,8 +4,8 @@ class App {
   async run() {
     const NAMES = await this.getNames();
     const TIMES = await this.getTime();
-    let GAME_INFO = Array.from({ length: NAMES }, () => 0);
-
+    const NAMES_COUNT = NAMES.length;
+    let gameInfo = Array.from({ length: NAMES.length }, () => 0);
   }
 
   async getNames() {
@@ -43,14 +43,20 @@ class App {
     }
   }
 
-  async makeRandomNum(GAME_INFO) {
-    for (let i = 0; i < GAME_INFO; i++) {
+  async makeRandomNum(gameInfo, NAMES_LENGTH) {
+    for (let i = 0; i < NAMES_LENGTH; i++) {
       let random = Random.pickNumberInRange(0, 9);
       if (random >= 4) {
-        GAME_INFO[i] += 1;
+        gameInfo[i] += 1;
       }
     }
-    return GAME_INFO;
+    return gameInfo;
+  }
+
+  async printGame(gameInfo, NAMES, NAMES_COUNT) {
+    for (let i = 0; i < NAMES_COUNT; i++) {
+      Console.print(NAMES[i] + ' : ' + '-'.repeat(gameInfo[i]));
+    }
   }
 }
 
