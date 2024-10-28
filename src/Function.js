@@ -1,7 +1,8 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
+import { COMMA, DASH, SPACE, EMPTY, COLON, WINNER_CAR } from "./Constant.js";
 
 export const separateCarList = (carName) => {
-  const car_list = carName.split(",");
+  const car_list = carName.split(COMMA);
   return car_list;
 };
 
@@ -18,12 +19,11 @@ export const printWinner = (carList, carDistance) => {
     }
   });
 
-  let winnerPrint = "최종 우승자 : ";
   let winnerCar = winner[0];
   for (let i = 1; i < winner.length; i++) {
-    winnerCar += ", " + winner[i];
+    winnerCar += COMMA + SPACE + winner[i];
   }
-  MissionUtils.Console.print(winnerPrint + winnerCar);
+  MissionUtils.Console.print(WINNER_CAR + winnerCar);
 };
 
 const checkMoveForward = () => {
@@ -44,16 +44,16 @@ const makeMoveCarList = (carList) => {
 };
 
 export const playGame = (carList, tryNumber) => {
-  const carDistance = new Array(carList.length).fill("");
+  const carDistance = new Array(carList.length).fill(EMPTY);
   for (let j = 0; j < tryNumber; j++) {
     const moveCarList = makeMoveCarList(carList);
     for (let i = 0; i < carList.length; i++) {
       if (moveCarList[i] == true) {
-        carDistance[i] += "-";
+        carDistance[i] += DASH;
       }
-      MissionUtils.Console.print(`${carList[i]} : ${carDistance[i]}`);
+      MissionUtils.Console.print(`${carList[i]} ${COLON} ${carDistance[i]}`);
     }
-    MissionUtils.Console.print(" ");
+    MissionUtils.Console.print(SPACE);
   }
   return carDistance;
 };
