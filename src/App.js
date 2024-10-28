@@ -37,6 +37,11 @@ class App {
         throw new Error("[ERROR] 자동차 이름 1자 이상 작성해주세요.");
       }
     }
+    // 중복 검사 : set 활용해서 중복제거되었는지
+    const uniqueNames = new Set(cars);
+    if (uniqueNames.size !== cars.length) {
+      throw new Error("[ERROR] 자동차 이름은 중복될 수 없습니다.");
+    }
   }
   // 자동차 경주 : 랜덤 수 뽑고 저장
   race(carNames, attempts) {
