@@ -1,3 +1,4 @@
+import { Console } from '@woowacourse/mission-utils';
 import {
   CONSOLE_MESSAGE,
   ERROR_MESSAGE,
@@ -6,7 +7,7 @@ import {
 } from './constant.js';
 import {
   errorString,
-  getUserInput,
+  isInputEmpty,
   isIntegerNumber,
   isNumber,
   isPositiveNumber,
@@ -15,7 +16,9 @@ import {
 class UserInputHandler {
   async getCarNames() {
     try {
-      const carInput = await getUserInput(CONSOLE_MESSAGE.CAR_INPUT_MESSAGE);
+      const carInput = await this.#getUserInput(
+        CONSOLE_MESSAGE.CAR_INPUT_MESSAGE,
+      );
       this.#validateCarInput(carInput);
 
       return carInput.split(',').map((carName) => carName.trim());
@@ -26,7 +29,7 @@ class UserInputHandler {
 
   async getTryCount() {
     try {
-      const tryCountInput = await getUserInput(
+      const tryCountInput = await this.#getUserInput(
         CONSOLE_MESSAGE.TRY_COUNT_INPUT_MESSAGE,
       );
       this.#validateTryCountInput(tryCountInput);
@@ -36,6 +39,15 @@ class UserInputHandler {
       throw new Error(error.message);
     }
   }
+
+  #getUserInput = async (message) => {
+    const input = await Console.readLineAsync(message);
+    if (!input || isInputEmpty(input)) {
+      throw new Error(errorString(ERROR_MESSAGE.EMPTY_INPUT));
+    }
+
+    return input;
+  };
 
   #validateCarInput(input) {
     if (!input.includes(',')) {
