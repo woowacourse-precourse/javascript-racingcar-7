@@ -1,0 +1,2 @@
+export const MINIMUM_RANDOMNUMBER_TO_MOVE = 4;
+export const MAX_CAR_NAME_LENGTH = 5;
