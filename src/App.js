@@ -16,6 +16,7 @@ class App {
     this.checkCarValidation();
 
     const rounds = await Console.readLineAsync("시도할 회수는 몇 회인가요?\n");
+    this.checkRoundValidation(rounds);
 
     this.distances = Array(this.cars.length).fill(0);
 
@@ -66,6 +67,17 @@ class App {
       if (new Set(this.cars).size !== this.cars.length) {
         throw new Error("[ERROR] 중복된 자동차 이름이 있습니다.");
       }
+    }
+  }
+
+  checkRoundValidation(rounds) {
+    const roundParse = parseInt(rounds);
+    if (isNaN(roundParse)) {
+      throw new Error("[ERROR] 시도 횟수는 숫자여야 합니다.");
+    } else if (roundParse < 1) {
+      throw new Error("[ERROR] 시도 횟수는 1 이상이어야 합니다.");
+    } else if (roundParse % 1 !== 0) {
+      throw new Error("[ERROR] 시도 횟수는 정수여야 합니다.");
     }
   }
 }
