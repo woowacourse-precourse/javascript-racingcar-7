@@ -34,7 +34,6 @@ class App {
     for (let i = 0; i < count; i++) {
       console.log("");
       console.log(i + 1 + "번째 경기");
-      let score = 0;
       for (let j = 0; j < arr.length; j++) {
         const num = MissionUtils.Random.pickNumberInRange(0, 9);
 
@@ -58,6 +57,12 @@ class App {
         }
       }
     }
+    //우승자 판별 로직 추가
+    //scoreArr에서 최댓값을 찾고 그와 index가 같은 우승자를 arr에서 가져오자
+    const max = Math.max(...scoreArray);
+
+    console.log("");
+    console.log("최대 득점수 : ", max);
   }
 }
 
