@@ -2,7 +2,7 @@ import {
   CAR_NAME_ERROR_MESSAGE,
   CAR_VALIDATION_ERROR_MESSAGE,
   ATTEMPT_COUNT_ERROR_MESSAGE,
-} from "./Message.js";
+} from "./message.js";
 
 const MAX_NAME_LENGTH = 5;
 
