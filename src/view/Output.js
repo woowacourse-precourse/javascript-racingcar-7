@@ -1,14 +1,12 @@
 import { Console } from '@woowacourse/mission-utils';
+import { OUTPUT_TITLE, TRACK_LINE } from './Output.constant';
 
 class Output {
-  static OUTPUT_TITLE = '실행 결과';
-  static TRACK_LINE = '-';
-
   /**
    * @returns {void}
    */
   static printTitle() {
-    Console.print('\n' + this.OUTPUT_TITLE);
+    Console.print('\n' + OUTPUT_TITLE);
   }
 
   /**
@@ -17,7 +15,7 @@ class Output {
    * @returns {string}
    */
   static getRacingTrack(name, track) {
-    return `${name} : ${this.TRACK_LINE.repeat(track)}`;
+    return `${name} : ${TRACK_LINE.repeat(track)}`;
   }
 
   /**

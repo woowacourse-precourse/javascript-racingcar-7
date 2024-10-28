@@ -1,9 +1,7 @@
 import { Random } from '@woowacourse/mission-utils';
+import { RANDOM_RANGE, FORWARD_CRITERIA } from './Car.constant.js';
 
 class Car {
-  RANDOM_RANGE = [0, 9];
-  FORWARD_CRITERIA = 4;
-
   /** @type {number[]} */
   road = [];
   name = '';
@@ -82,9 +80,9 @@ class Car {
    */
   drive(round) {
     /** @type {number} */
-    const randomNumber = Random.pickNumberInRange(...this.RANDOM_RANGE);
+    const randomNumber = Random.pickNumberInRange(...RANDOM_RANGE);
 
-    if (randomNumber >= this.FORWARD_CRITERIA) {
+    if (randomNumber >= FORWARD_CRITERIA) {
       this.forward(round);
       return;
     }
