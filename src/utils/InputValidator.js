@@ -1,4 +1,4 @@
-import ERROR_MESSAGES from '../constants/Messages';
+import ERROR_MESSAGES from '../constants/Messages.js';
 
 class InputValidator {
   static validateCarNames(carNames) { // 자동차 이름 검증
@@ -15,7 +15,7 @@ class InputValidator {
   }
 
   static validateAttempts(input) { // 시도 횟수 검증
-    const attempts = parseInt(input, 10);
+    const attempts = Number(input);
     if (Number.isNaN(attempts) || attempts <= 0) {
       throw new Error(ERROR_MESSAGES.INVALID_ATTEMPTS);
     }

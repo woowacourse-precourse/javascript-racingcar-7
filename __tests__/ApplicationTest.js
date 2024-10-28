@@ -84,7 +84,7 @@ describe('자동차 경주', () => {
     await expect(app.run()).rejects.toThrow('[ERROR] 시도 횟수는 1 이상의 정수여야 합니다.');
   });
 
-  test('예외 테스트', async () => {
+  test('예외 테스트: 시도 횟수가 없을 때', async () => {
     const inputs = ['pobi,javaji'];
     mockQuestions(inputs);
 

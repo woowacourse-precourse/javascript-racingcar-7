@@ -1,7 +1,7 @@
-import InputHandler from './utils/InputHandler';
-import OutputHandler from './utils/OutputHandler';
-import InputValidator from './utils/InputValidator';
-import RacingGame from './racingcar/RacingGame';
+import InputHandler from './utils/InputHandler.js';
+import OutputHandler from './utils/OutputHandler.js';
+import InputValidator from './utils/InputValidator.js';
+import RacingGame from './racingcar/RacingGame.js';
 
 // Q. App.js 에 어디까지 구현해도 되는 걸까요?
 
@@ -17,7 +17,7 @@ class App {
       const racingGame = new RacingGame(carNames);
       racingGame.start(attempts);
     } catch (error) {
-      OutputHandler.printMessage(error.message);
+      await OutputHandler.printMessage(error.message);
       throw error;
     }
   }

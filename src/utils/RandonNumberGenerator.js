@@ -1,5 +1,5 @@
 import { Random } from '@woowacourse/mission-utils';
-import { RANDOM_NUMBER_SETTINGS } from '../constants/Settings';
+import { RANDOM_NUMBER_SETTINGS } from '../constants/Settings.js';
 
 class RandomNumberGenerator {
   static pickNumberInRange() {

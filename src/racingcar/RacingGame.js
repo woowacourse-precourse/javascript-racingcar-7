@@ -1,5 +1,5 @@
-import PlayingCar from './PlayingCar';
-import OutputHandler from '../utils/OutputHandler';
+import PlayingCar from './PlayingCar.js';
+import OutputHandler from '../utils/OutputHandler.js';
 
 // 자동차 이동과 경주 결과 출력
 
