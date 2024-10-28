@@ -35,7 +35,7 @@ class Race {
     for (let round = 0; round < this.#tryCount; round += 1) {
       this.#runOneRound();
     }
-    return this.#winnerCarArray;
+    return this.#getWinnerCarArray;
   }
 
   #runOneRound() {
@@ -67,13 +67,13 @@ class Race {
     print(`${car} : ${repeatedTraceChracter}`);
   }
 
-  get #winnerCarArray() {
+  get #getWinnerCarArray() {
     const maxTrace = getMaxValueInMap(this.#carTraceMap);
-    const winnerCarArray = getKeyArrayHasTargetValueInMap(
+    const getWinnerCarArray = getKeyArrayHasTargetValueInMap(
       this.#carTraceMap,
       maxTrace,
     );
-    return winnerCarArray;
+    return getWinnerCarArray;
   }
 }
 
