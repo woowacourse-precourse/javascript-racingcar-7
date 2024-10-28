@@ -1,16 +1,14 @@
 import { getCarName, getRound } from "./handleInput.js";
-import { startRacing } from "./gameController.js";
-import { printRacing } from "./printRacing.js";
-import { Console } from "@woowacourse/mission-utils";
+import { startRacing } from "./game/startRacing.js";
+import { initRacing } from "./game/initRacing.js";
 
 class App {
   async run() {
     const carNames = await getCarName();
     const round = await getRound();
-    const carCount = carNames.length;
 
-    let carDistances = Array(carCount).fill(0);
-    carDistances = startRacing(round, carDistances, carCount, carNames);
+    const initRace = initRacing(round, carNames);
+    startRacing(initRace);
   }
 }
 

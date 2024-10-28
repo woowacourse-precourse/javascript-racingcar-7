@@ -1,5 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
-import { ERROR_MESSAGES } from "./errorMessages.js";
+import { ERROR_MESSAGES } from "../errorMessages.js";
 
 export function printWinner(carDistances, carNames) {
   const maxValue = Math.max(...carDistances);
