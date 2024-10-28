@@ -1,5 +1,4 @@
 import { Console } from '@woowacourse/mission-utils';
-import Validator from '../utils/Validator.js';
 import Constants from '../utils/constants.js';
 
 class InputView {

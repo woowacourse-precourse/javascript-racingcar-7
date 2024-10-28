@@ -1,4 +1,4 @@
-import Constants from './constants';
+import Constants from './Constants.js';
 export default class Validator {
   static validateCarNames(carNames) {
     if (!carNames || carNames.length === 0) {
