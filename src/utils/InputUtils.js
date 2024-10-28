@@ -14,7 +14,9 @@ export async function getCarName() {
 }
 
 export function splitCarName(names) {
-  return names.split(',').filter((name) => name !== '');
+  return names.split(',')
+    .filter((name) => name.trim() !== '')
+    .map((name) => name.trim());
 }
 
 export async function getAttemptCount() {
