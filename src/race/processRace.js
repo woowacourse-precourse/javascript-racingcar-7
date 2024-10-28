@@ -31,7 +31,11 @@ function updateCarNamesForTries(carNames) {
   const moves = {};
   Object.keys(carNames).forEach(carName => {
     const randomNumber = generateRandomNumbers();
-    const moveCount = randomNumber >= 4 ? randomNumber - 3 : 0;
+    let moveCount = 0;
+    if (randomNumber >= 4) {
+      moveCount = randomNumber - 3;
+    }
+
     moves[carName] = moveCount;
     carNames[carName] += moveCount;
   });
