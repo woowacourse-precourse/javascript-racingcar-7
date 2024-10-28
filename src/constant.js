@@ -10,5 +10,5 @@ export const errorMessages = Object.freeze({
 export const regex = Object.freeze({
   validInputName: /^[가-힣a-zA-Z]+(?:,[가-힣a-zA-Z]+)*$/,
   invalidCarInputDelimiter: /^[가-힣a-zA-Z]+(?:[^,][가-힣a-zA-Z]+)*$/,
-  invalidCountInput: /[^1-9]/,
+  invalidCountInput: /[^0-9]/,
 });
