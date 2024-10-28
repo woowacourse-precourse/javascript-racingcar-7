@@ -1,6 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 
-export function checkCarNum(carNames) {
+export function validateCarNames(carNames) {
   const setCarNames = new Set(carNames);
 
   if (setCarNames.size <= 1) {
@@ -9,7 +9,7 @@ export function checkCarNum(carNames) {
     );
   } else if (!carNames.every((name) => name.length <= 5)) {
     throw new Error('각 자동차 이름은 5글자 이하로 입력해주세요.');
-  }
+  } else return [...setCarNames];
 }
 
 export function checkAttemptCount(attemptCount) {
@@ -17,5 +17,5 @@ export function checkAttemptCount(attemptCount) {
     throw new Error(
       '자동차 경주를 위해서 시도 횟수를 최소 1 이상의 숫자 값으로 입력해주세요.'
     );
-  }
+  } else return attemptCount;
 }
