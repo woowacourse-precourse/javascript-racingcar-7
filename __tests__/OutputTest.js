@@ -5,7 +5,7 @@ import {
 	showRaceStatus,
 	showRaceWinner,
 	showResultMessage,
-} from '../src/utils/view/viewOut.js';
+} from '../src/utils/view/output.js';
 
 jest.mock('@woowacourse/mission-utils', () => ({
 	Console: {

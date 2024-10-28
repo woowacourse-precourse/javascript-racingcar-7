@@ -6,13 +6,13 @@ import { validateCars } from './utils/validator/car.js';
 import { validateCount } from './utils/validator/count.js';
 import { THRESHOLD } from './constants/threshold.js';
 import { Random } from '@woowacourse/mission-utils';
-import { getCars, getCount } from './utils/view/viewIn.js';
+import { getCars, getCount } from './utils/view/input.js';
 import {
 	showEmpty,
 	showRaceStatus,
 	showRaceWinner,
 	showResultMessage,
-} from './utils/view/viewOut.js';
+} from './utils/view/output.js';
 
 export default class Race {
 	#cars;
