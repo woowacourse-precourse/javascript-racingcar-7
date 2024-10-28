@@ -4,6 +4,7 @@ class App {
     this.carNames = [];
     this.total = 0;
     this.moveForwardCount = {};
+    this.winnerOutput = "";
   }
   checkCarNames(inputString) {
     const carNames = inputString.split(",");
@@ -88,12 +89,27 @@ class App {
       this.printStateStepByStep(i);
     }
   }
+  decideWinner() {
+    const winner = [];
+    const maxCount = Math.max(...Object.values(this.moveForwardCount));
+    for (const name of this.carNames) {
+      if (this.moveForwardCount[name] === maxCount) {
+        winner.push(name);
+      }
+    }
+    this.winnerOutput = winner.join(", ");
+  }
+  printWinner() {
+    Console.print(`최종 우승자 : ${this.winnerOutput}`);
+  }
   async run() {
     try {
       await this.inputCarNames();
       await this.inputMoveCount();
 
       this.moveForward();
+      this.decideWinner();
+      this.printWinner();
     } catch (error) {
       Console.print(error.message);
       throw error;
