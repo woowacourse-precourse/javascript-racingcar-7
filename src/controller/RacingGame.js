@@ -9,7 +9,7 @@ class RacingGame {
   }
 
   start() {
-    Console.print('\n');
+    Console.print('');
     Console.print('실행 결과');
     for (let i = 0; i < this.tryNumber; i++) {
       this.cars.forEach(car => {
@@ -23,7 +23,7 @@ class RacingGame {
   }
 
   printNowRacing() {
-    Console.print('\n');
+    Console.print('');
     this.cars.forEach(car => {
       Console.print(`${car.getName()} : ${'-'.repeat(car.getPosition())}`);
     });
@@ -32,7 +32,7 @@ class RacingGame {
   printWinners() {
     const maxPosition = Math.max(...this.cars.map(car => car.getPosition()));
     const winners = this.cars.filter(car => car.getPosition() === maxPosition).map(car => car.getName());
-    Console.print('\n');
+    Console.print('');
     Console.print("최종 우승자 : " + winners.join(", "));
   }
 }
