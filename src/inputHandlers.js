@@ -11,6 +11,6 @@ export async function getCarNames() {
 
 export async function getAttempts() {
   const attemps = await Console.readLineAsync(MESSAGES.ATTEMPTS_INPUT);
-  validateAttempts(attemps);
-  return attemps;
+  const validateAttemps = validateAttempts(attemps);
+  return validateAttemps;
 }
