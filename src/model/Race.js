@@ -23,7 +23,11 @@ class Race {
   }
 
   moveForward() {
-    this.cars.forEach((car) => car.move(random.generateNumber()));
+    this.cars.forEach((car) => {
+      const randomNumber = random.generateNumber();
+      const enabledMove = randomNumber >= 4 && randomNumber <= 9;
+      car.move(enabledMove);
+    });
   }
 
   determineWinners() {
