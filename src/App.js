@@ -85,11 +85,36 @@ class App {
 
   // 입력값의 유효성을 검사하고 에러 처리하는 메서드
   validateInput(carNames, attempts){
-    if (!carNames || carNames.length === 0 || attempts <= 0) {
-      throw new Error('[ERROR] 유효하지 않은 입력입니다.');
+
+    // 자동차 이름이 비어있는 경우
+    if (!carNames || carNames.length === 0) {
+      throw new Error('[ERROR] 자동차 이름을 입력해야 합니다.');
+    }
+
+    // 자동차 이름이 중복인 경우
+    const uniqueCarNames = new Set(carNames);
+    if (uniqueCarNames.size !== carNames.length) {
+      throw new Error('[ERROR] 자동차 이름은 중복될 수 없습니다.');
+    }
+
+    // 자동차 이름 유효성 검사
+    carNames.forEach(name => {
+      if (name.length > 5) {
+        throw new Error('[ERROR] 자동차 이름은 5자 이하이어야 합니다.');
+      }
+      if (!/^[a-zA-Z]+$/.test(name)) {
+        throw new Error('[ERROR] 자동차 이름은 알파벳만 포함해야 합니다.');
+      }
+    });
+
+    // 이동 횟수 유효성 검사
+    if (isNaN(attempts) || attempts <= 0) {
+      throw new Error('[ERROR] 유효한 이동 횟수를 입력해야 합니다.');
     }
   }
 }
 
-
 export default App;
+
+const app = new App();
+app.run();
