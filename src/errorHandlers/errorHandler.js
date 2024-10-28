@@ -22,3 +22,12 @@ const validateCarNamesUniqueness = (names) => {
         throw new Error(`[ERROR] 자동차 이름은 중복될 수 없습니다.`);
     }
 };
+const validateInput = (input, type) => {
+    if (!input || input.trim() === '') {
+        if (type === 'carNames') {
+            throw new Error(`[ERROR] 자동차 이름을 올바르게 입력해 주세요.`);
+        } else {
+            throw new Error(`[ERROR] 이동 횟수를 입력해 주세요.`);
+        }
+    }
+};
