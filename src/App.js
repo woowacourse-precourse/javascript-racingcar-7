@@ -4,7 +4,7 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 //[x]  3.  잘못된 값 입력시 ERROR 발생시키기 (8.)
 //[x]  4.  랜덤한 전진 조건 정해서 출력하기 (5. 1. 2.)
 //[x] 5.  시도횟수만큼 전진 조건에 맞게 출력하기 (2.)
-//[] 6.  마지막 출력의 -을 비교하여 최대 값의 자동차 이름들 출력하기 (6. 7.)
+//[x] 6.  마지막 출력의 -을 비교하여 최대 값의 자동차 이름들 출력하기 (6. 7.)
 
 class App {
   // 자동차 이름 5자 이하 확인 함수
@@ -75,6 +75,13 @@ class App {
 
         this.printResult(carList, results);
       }
+
+      // 우승차 출력
+      const maxLength = Math.max(...results.map((car) => car.length));
+      const winner = carList.filter(
+        (_, index) => results[index].length === maxLength,
+      );
+      MissionUtils.Console.print(`최종 우승자 : ${winner.join(', ')}`);
     } catch (error) {
       // reject 되는 경우
       MissionUtils.Console.print('[ERROR]');
