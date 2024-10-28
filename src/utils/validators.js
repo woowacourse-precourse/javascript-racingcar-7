@@ -17,7 +17,7 @@ const validateCarNames = (carNames) => {
         throw new Error("[ERROR] 자동차 이름은 중복될 수 없습니다.");
     }
 
-    if (carNames.some(name => /\s|[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(name))) {
+    if (carNames.some(name => /\s|[ㄱ-ㅎㅏ-ㅣ가-힣]/.test(name))) {
         throw new Error("[ERROR] 자동차 이름에는 공백이나 한글을 포함할 수 없습니다.");
     }
 };
