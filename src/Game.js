@@ -17,7 +17,7 @@ class Game {
   }
 
   start() {
-    Console.print('\n실행 결과\n');
+    Console.print('\n실행 결과');
     for (let i = 0; i < this.#totalRounds; i++) {
       this.#playRound();
       this.#printRoundResult();
