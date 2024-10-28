@@ -1,5 +1,5 @@
-import { CONDITIONS } from "../constants/Constants.js";
-import { ERRORS } from "../constants/Errors.js";
+import CONDITIONS from "../constants/Conditions.js";
+import ERRORS from "../constants/Errors.js";
 
 class Validation {
   static isValidCarName(carNames) {

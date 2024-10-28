@@ -5,13 +5,17 @@ import ERRORS from "../constants/Errors.js";
 import Race from "../models/Race.js";
 import Car from "../models/Car.js";
 import CONDITIONS from "../constants/Conditions.js";
+import Validation from "../validations/Validations.js";
 
 class Game {
   #game;
 
   async start() {
     const cars = await InputViews.carNameInput();
+    Validation.isValidCarName(cars);
+
     const totalRound = await InputViews.tryCountInput();
+    Validation.isValidTotalRound(totalRound);
 
     const carNameArr = cars.split(",").map((car) => new Car(car));
     this.#game = new Race(+totalRound, carNameArr);
