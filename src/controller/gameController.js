@@ -15,18 +15,20 @@ export default class GameController {
     const validRoundCount = Verify.verifyTryCount(roundCountInput);
     if (!validRoundCount) return;
 
-    this.initializeGame(validCarNames);
-    this.executeGameRounds();
+    this.initializeGame(validCarNames, validRoundCount);
+    this.executeGameRounds(validRoundCount);
   }
 
-  initializeGame(carNames) {
+  initializeGame(carNames, rounds) {
     RacingGame.init(carNames);
     OutputView.printGameStart();
   }
 
-  executeGameRounds() {
-    RacingGame.playOneRound();
-    const currentStatus = RacingGame.getCarsStatus();
-    OutputView.printRoundStatus(currentStatus);
+  executeGameRounds(rounds) {
+    for (let i = 0; i < rounds; i++) {
+      RacingGame.playOneRound();
+      const currentStatus = RacingGame.getCarsStatus();
+      OutputView.printRoundStatus(currentStatus);
+    }
   }
 }
