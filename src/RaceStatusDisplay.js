@@ -13,7 +13,7 @@ class RaceStatusDisplay {
         `${car.getName()} : ${SYMBOLS.RACE_PROGRESS.repeat(car.getPosition())}`,
       );
     });
-    printMessage('');
+    printMessage(SYMBOLS.LINE_BREAK);
   }
 
   static printWinners(winners) {

@@ -11,6 +11,7 @@ export const GAME_SETTINGS = Object.freeze({
 
 export const SYMBOLS = Object.freeze({
   EMPTY: '',
+  LINE_BREAK: '',
   SPACE: ' ',
   CAR_DELIMITER: ',',
   WINER_DELIMITER: ', ',
