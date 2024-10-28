@@ -20,7 +20,6 @@ class RacingGameValidator {
   static validateTryCountIsPositiveNumber(tryCount) {
     if (tryCount < 0) throw Error('[ERROR] 음수는 입력할 수 없습니다.');
   }
-
 }
 
 export default RacingGameValidator;

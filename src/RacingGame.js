@@ -1,4 +1,4 @@
-import {MissionUtils} from "@woowacourse/mission-utils";
+import { MissionUtils } from "@woowacourse/mission-utils";
 import RacingGameUtils from "./RacingGameUtils.js";
 
 class RacingGame {
@@ -11,7 +11,7 @@ class RacingGame {
   }
 
   getInitialBoard(carNames) {
-    this.scoreBoard = carNames.map((car) => ({name: car, records: []}));
+    this.scoreBoard = carNames.map((car) => ({ name: car, records: [] }));
   }
 
   generateMove() {

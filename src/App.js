@@ -4,7 +4,7 @@ import View from "./View.js";
 class App {
   async run() {
     try {
-      const {carNames, tryCount} = await this.readLineGameInputs();
+      const { carNames, tryCount } = await this.readLineGameInputs();
 
       const game = new RacingGame();
 
@@ -25,7 +25,7 @@ class App {
   async readLineGameInputs() {
     const carNames = await View.readLineCarNames();
     const tryCount = await View.readLineTryCount();
-    return {carNames, tryCount}
+    return { carNames, tryCount }
   }
 }
 

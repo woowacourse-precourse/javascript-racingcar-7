@@ -1,4 +1,4 @@
-import {MissionUtils} from "@woowacourse/mission-utils";
+import { MissionUtils } from "@woowacourse/mission-utils";
 import RacingGameValidator from "./RacingGameValidator.js";
 import RacingGameUtils from "./RacingGameUtils.js";
 
