@@ -5,8 +5,6 @@ class App {
     const raceCars = await this.getRaceCars();
     const attemptCount = await this.getAttemptCount();
 
-    Console.print("\n실행 결과");
-
     this.startRace(raceCars, attemptCount);
     this.printFinalResult(raceCars);
   }
@@ -41,6 +39,8 @@ class App {
   }
 
   startRace(raceCars, attemptCount) {
+    Console.print("\n실행 결과");
+
     for (let i = 0; i < attemptCount; i++) {
       this.race(raceCars);
       this.printRoundResult(raceCars);
