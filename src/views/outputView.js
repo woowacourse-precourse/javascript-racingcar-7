@@ -22,7 +22,7 @@ const OutputView = {
 
   async printWinners(winners) {
     await Console.print(
-      `${OUTPUT_MESSAGES.FINAL_WINNER_PREFIX} ${winners.join(", ")}`
+      `${OUTPUT_MESSAGES.FINAL_WINNER_PREFIX}${winners.join(", ")}`
     );
   },
 };
