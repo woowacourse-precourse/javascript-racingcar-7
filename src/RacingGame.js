@@ -53,7 +53,7 @@ class RacingGame {
       this.carList.forEach((car) => {
         const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
         car.tryMove(randomNumber);
-        MissionUtils.Console.print(car.getPosition());
+        MissionUtils.Console.print(car.getLocation());
       });
       MissionUtils.Console.print('');
     }

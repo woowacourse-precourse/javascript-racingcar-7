@@ -10,7 +10,7 @@ class RacingCar {
     }
   }
 
-  getPosition() {
+  getLocation() {
     return `${this.name} : ${'-'.repeat(this.position)}`;
   }
 }
