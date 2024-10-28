@@ -1,4 +1,7 @@
 # javascript-racingcar-precourse
+## 자동차 경주 플로우 차트
+<img src="https://github.com/user-attachments/assets/5568c9d8-d2e9-43e7-87ac-f6903c78b330" alt="자동차경주_플로우차트" width="300"/>
+
 
 ## 기능 구현 목록
 
@@ -30,3 +33,5 @@
     - [x] 우승 자동차를 필터링하는 함수
     - [x] 자동차의 이름을 가져오는 함수
     - [x] 최종 우승자 출력
+
+
