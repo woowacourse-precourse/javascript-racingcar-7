@@ -4,7 +4,7 @@ import CarRacingController from "../src/controller/CarRacingController.js";
 import { Console, Random } from "@woowacourse/mission-utils";
 
 const getLogSpy = () => {
-  const logSpy = jest.spyOn(console, "log").mockImplementation(() => {});
+  const logSpy = jest.spyOn(Console, "print").mockImplementation(() => {});
   return logSpy;
 };
 
@@ -17,11 +17,11 @@ describe("CarRacingController", () => {
     const controller = new CarRacingController();
     const logSpy = getLogSpy();
 
-    // 입력값을 모킹하여 테스트
+    // 입력값을 모킹하여 Promise를 반환하도록 수정
     jest
       .spyOn(Console, "readLineAsync")
-      .mockImplementationOnce((_, callback) => callback("pobi,jun,woni")) // 첫 호출: 자동차 이름 입력
-      .mockImplementationOnce((_, callback) => callback("1")); // 두 번째 호출: 시도 횟수 입력
+      .mockResolvedValueOnce("pobi,jun,woni") // 첫 호출: 자동차 이름 입력
+      .mockResolvedValueOnce("1"); // 두 번째 호출: 시도 횟수 입력
 
     // 랜덤값을 모킹하여 자동차 움직임 조작
     jest
@@ -44,8 +44,8 @@ describe("CarRacingController", () => {
     // 입력값 모킹
     jest
       .spyOn(Console, "readLineAsync")
-      .mockImplementationOnce((_, callback) => callback("pobi,jun,woni")) // 첫 호출: 자동차 이름 입력
-      .mockImplementationOnce((_, callback) => callback("1")); // 두 번째 호출: 시도 횟수 입력
+      .mockResolvedValueOnce("pobi,jun,woni") // 첫 호출: 자동차 이름 입력
+      .mockResolvedValueOnce("1"); // 두 번째 호출: 시도 횟수 입력
 
     // 랜덤값 모킹
     jest
