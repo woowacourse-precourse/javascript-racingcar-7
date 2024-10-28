@@ -1,5 +1,7 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 
-export const getRandomNumber = async () => {
-  return MissionUtils.Random.pickNumberInRange(0, 9);
+export const getRandomNumber = () => {
+  const random = MissionUtils.Random.pickNumberInRange(0, 9);
+
+  return random;
 };
