@@ -25,3 +25,5 @@ dist-ssr
 
 # launch.json 
 .vscode/launch.json
+
+.prettierrc
