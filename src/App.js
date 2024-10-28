@@ -7,7 +7,7 @@ class App {
       const carNames = await this.getCarNames();
       
       // 사용자로부터 시도 횟수 입력 받기
-      
+      const attemptCount = await this.getAttemptCount();
       // 자동차 데이터를 초기화 (각 자동차의 이름과 위치)
       
       // 게임 진행
@@ -28,6 +28,16 @@ class App {
       throw new Error('자동차 이름은 1자 이상 5자 이하로 입력해주세요.');
     }
     return carNames;
+  }
+    
+  // 사용자로부터 시도 횟수를 입력받는 함수
+  async getAttemptCount() {
+    const input = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+    const attemptCount = Number(input);
+    if (isNaN(attemptCount) || attemptCount <= 0) {
+      throw new Error('횟수는 1 이상의 숫자로 입력해주세요.');
+    }
+    return attemptCount;
   }
 }
 
