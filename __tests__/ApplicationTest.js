@@ -57,4 +57,60 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
+  test("car inputs이 빈 문자열인 경우", async () => {
+    const inputs = [""];
+    mockQuestions(inputs);
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("car inputs의 앞에 ,가 올 경우", async () => {
+    const inputs = [",pobi"];
+    mockQuestions(inputs);
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("car inputs의 뒤에 ,가 올 경우", async () => {
+    const inputs = ["pobi,"];
+    mockQuestions(inputs);
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("attempt inputs이 빈 문자열인 경우", async () => {
+    const inputs = ["pobi,woni", ""];
+    mockQuestions(inputs);
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("attempt inputs이 음수인 경우", async () => {
+    const inputs = ["pobi,woni", "-3"];
+    mockQuestions(inputs);
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("attempt inputs이 0인 경우", async () => {
+    const inputs = ["pobi,woni", "0"];
+    mockQuestions(inputs);
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("attempt inputs이 소수인 경우", async () => {
+    const inputs = ["pobi,woni", "3.5"];
+    mockQuestions(inputs);
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("attempt inputs이 문자인 경우", async () => {
+    const inputs = ["pobi,woni", "a"];
+    mockQuestions(inputs);
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
 });
