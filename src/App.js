@@ -23,7 +23,10 @@ class App {
       printResult("\n");
     }
     const maxPosition = Math.max(...cars.map((racer) => racer.position));
-    const finalWinner = cars.filter((car) => car.position === maxPosition).map((car) => car.name);
+    const finalWinner = cars
+      .filter((car) => car.position === maxPosition)
+      .map((car) => car.name)
+      .join(",");
     printResult(INFO_MESSAGE.ANSWER_FINAL_WINNER + finalWinner);
   }
 }
