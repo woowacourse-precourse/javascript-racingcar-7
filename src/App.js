@@ -1,5 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import { inputCarNames } from './functions/inputCarNames.js';
+import { inputAttemptsNumber } from './functions/inputAttempsNumber.js';
 import { validateCarNames } from './errors/allErrorHandling.js';
 
 class App {
@@ -7,7 +8,8 @@ class App {
     try {
       const carNames = await inputCarNames();
       validateCarNames(carNames);
-      this.printCarNames(carNames); // (작동 확인 용도) 임시 함수
+      const attempts = await inputAttemptsNumber();
+      Console.print(`입력된 시도 횟수: ${attempts}`); // 작동 확인 용도 임시 함수
     } catch (error) {
       Console.print(error.message);
     }
