@@ -77,3 +77,9 @@ docs: 기능 목록 및 설명이 포함된 README.md 추가
 
 14. **README.md오타 수정**:
 docs: README.md오타 수정
+
+15. **단위 테스트 추가**:
+test: RacingCar 단위 테스트 추가
+
+16. **README.md 수정**:
+docs: README.md 커밋 단위 내용 추가
