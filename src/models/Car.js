@@ -9,6 +9,7 @@ class Car {
     this.#position = 0;
   }
 
+  // 0부터 9까지의 무작위 수를 뽑아 4 이상일 시 전진
   move() {
     const randomValue = MissionUtils.Random.pickNumberInRange(0, 9);
     if (randomValue >= 4) {
@@ -24,3 +25,5 @@ class Car {
     return this.#name;
   }
 }
+
+export default Car;
