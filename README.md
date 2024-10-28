@@ -54,7 +54,6 @@ await MissionUtils.Console.readLineAsync()
 7. 매시도마다 결과값 dashe 형태로 Console.print 출력.
 
 
-
 &nbsp;
 
 &nbsp;
@@ -65,5 +64,8 @@ await MissionUtils.Console.readLineAsync()
 4. 최종 우승자 Console.print 출력.
 
 
+&nbsp;
 
+&nbsp;
+### [7] Jest 코딩하기
 

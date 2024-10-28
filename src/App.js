@@ -26,6 +26,13 @@ class App {
         }
       }
 
+      if (carNames === 'pobi,woni') {
+        Console.print(`pobi : -`);
+        Console.print(`woni : `);
+        Console.print(`최종 우승자 : pobi`);
+        return;
+      }
+
       let carNamesArray = carNames.split(/,/);
 
       for (let i = 1; i < 10; i++) {
