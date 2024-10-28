@@ -1,7 +1,7 @@
 import { getValidatedNumberInput, getValidatedStringInput, printResult } from "./libs/utils.js";
 import { INFO_MESSAGE } from "./libs/constants.js";
 import { initialRace } from "./libs/initializer.js";
-import { printCurrentStatus } from "./view/raceView.js";
+import { printCurrentStatus, printFinalWinner } from "./view/raceView.js";
 
 class App {
   async run() {
@@ -15,7 +15,7 @@ class App {
       printCurrentStatus(status);
     }
     const finalWinner = race.getFinalWinner();
-    printResult(INFO_MESSAGE.ANSWER_FINAL_WINNER + finalWinner);
+    printFinalWinner(finalWinner);
   }
 }
 

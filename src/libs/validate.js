@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from "./constants.js";
+import { CONFIG, ERROR_MESSAGE } from "./constants.js";
 import { RaceError } from "./customError.js";
 
 export function validateStringType(input) {
@@ -17,7 +17,7 @@ export function validateNumberType(input) {
 }
 
 export function validateEmptyInput(input) {
-  if (!input || input.length === 0 || input.trim().length === 0) {
+  if (!input || input.length === CONFIG.EMPTY_LENGTH || input.trim().length === CONFIG.EMPTY_LENGTH) {
     throw new RaceError(ERROR_MESSAGE.EMPTY_INPUT);
   }
 }
@@ -29,13 +29,13 @@ export function validateRacerAmount(racerAmount) {
 }
 
 export function validateCarNameLength(name) {
-  if (name.length < 1 || name.length > 5) {
+  if (name.length < CONFIG.MIN_CAR_NAME_LENGTH || name.length > CONFIG.MAX_CAR_NAME_LENGTH) {
     throw new RaceError(ERROR_MESSAGE.INVALID_NAME_LENGTH);
   }
 }
 
 export function validateRounds(rounds) {
-  if (isNaN(rounds) || rounds < 1) {
+  if (isNaN(rounds) || rounds < CONFIG.MIN_ROUNDS) {
     throw new RaceError(ERROR_MESSAGE.INVALID_ROUND);
   }
 }

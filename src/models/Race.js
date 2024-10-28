@@ -1,3 +1,4 @@
+import { CAR_NAME_DELIMITER } from "../libs/constants.js";
 import { validateRacerAmount, validateRounds } from "../libs/validate.js";
 import Car from "./Car.js";
 
@@ -33,6 +34,6 @@ export default class Race {
     return this.#racers
       .filter((racer) => racer.getPosition() === maxPosition)
       .map((racer) => racer.getName())
-      .join(",");
+      .join(CAR_NAME_DELIMITER);
   }
 }

@@ -1,5 +1,6 @@
 import { validateCarNameLength } from "../libs/validate.js";
 import { isMoveForward } from "../libs/helpers.js";
+import { CONFIG } from "../libs/constants.js";
 
 export default class Car {
   #name;
@@ -11,17 +12,17 @@ export default class Car {
   constructor(name) {
     validateCarNameLength(name);
     this.#name = name;
-    this.#position = 0;
+    this.#position = CONFIG.CAR_DEFAULT_POSITION;
   }
 
   attemptMove() {
     if (isMoveForward()) {
-      this.moveForward();
+      this.#moveForward();
     }
   }
 
-  moveForward() {
-    this.#position += 1;
+  #moveForward() {
+    this.#position += CONFIG.CAR_DEFAULT_MOVE_POSITION_VALUE;
   }
 
   getName() {
