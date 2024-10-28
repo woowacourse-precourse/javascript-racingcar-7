@@ -21,12 +21,18 @@ class App {
     }
   }
 
+  inputAttempts() {
+    return MissionUtils.Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+  }
+
   async run() {
     try {
       const carsName = await this.inputCars();
       const carsList = await this.splitCars(carsName);
 
       this.validateCarNames(carsList);
+
+      const attempt = await this.inputAttempts();
     } catch (error) {
       throw new Error("[ERROR]");
     }
