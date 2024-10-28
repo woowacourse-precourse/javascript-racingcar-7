@@ -15,14 +15,14 @@ $ npm run start
 
 [fork된 Repository 링크](https://github.com/mun-kyeong/javascript-racingcar-7.git)
 
-[미션 PR]()
+[미션 PR](https://github.com/woowacourse-precourse/javascript-racingcar-7/pull/59)
 
 <br/>
 <br/>
 
 # 1. Overview (개요)
 
-- 이름: javascript-calculator-7
+- 이름: javascript-racingcar-7
 - 프로젝트 설명: 우아한테크코스 - 프리코스 2주차 기능 목록 소개 README
 - 작성자 : [mun-kyeong](https://github.com/mun-kyeong)
 
@@ -149,29 +149,32 @@ $ npm run start
 javascript-calculator-7/
 ├── __tests__/
 │   ├── ApplicationTest.js/
+│   ├── CarsInputValidationTest.js/
+│   ├── RepeatNumValidationTest.js/
 ├── src/
-│   ├── Validator/
-│   │   └── validator.js  # 유효성 검사 진행
 │   ├── Constants/
-│   │   └── constant.js  # 상수 값 저장
+│   │   └── constant.js         # 상수 값 저장
 │   ├── Error/
-│   │   └── handleError.js  # 에러 핸들링
-│   ├── App.js/
-│   ├── Components/
-│   |   └── Input/
-│   │       └── InputCarList.js  # 자동차 리스트 입력받기
-│   │       └── InputRepeatNum.js  # 반복 횟수 입력받기
-│   |   └── Output/
-│   │       └── PrintGideMessage.js  # 가이드 메시지 출력
-│   │       └── PrintWinnigCar.js  # 우승한 차 리스트 출력
-│   │       └── PrintCurrStateGame.js  # 현재 게임 현황 출력
-│   |   └── RaceCar/
-│   │       └── RaceCar.js  # 가이드 메시지 출력
+│   │   └── handleError.js      # 에러 핸들링
+│   ├── Input/
+│   │   └── Input.js            # input class
+│   ├── Output/
+│   │   └── Output.js           # Output class
+│   ├── RaceCar/
+│   │   └── raceCar.js          # 자동자 경주 기능 수행 함수
 │   ├── Utils/
-│       └── randomGenerator.js  # 랜덤 숫자 출력하기
-|       └── parser.js  # 문자열 구분 진행
-└── package.json          # 프로젝트 설정 파일
-└── README.md             # 프로젝트 소개 및 기능 정의 파일
+|   |   └── parserCarList.js    # 문자열 구분 진행
+│   |   └── randomGenerator.js  # 랜덤 숫자 출력하기
+│   ├── Validator/
+│   │   └── InputValidator.js       # 유효성 검사 class
+│   │   └── isEmptyInput.js         # 빈문자열인지 확인
+│   │   └── isValidNamesList.js     # 숫자 유효성 검사
+│   │   └── isValidNumber.js        # 문자 유효성 검사
+│   │   └── isWhitespacePresent.js  # 공백이 존재하는지 확인
+│   ├── App.js/
+│   └── index.js/
+└── package.json                # 프로젝트 설정 파일
+└── README.md                   # 프로젝트 소개 및 기능 정의 파일
 
 ```
 
@@ -232,14 +235,15 @@ chore (maintain) - 잡일(기타..)
 ## 커밋 예시
 
 ```md
-[FEAT] (Controller, Model) : 기본 구분자로 문자열 구분
+[FEAT] (vaildator) : 자동차 이름 유효성 검사
 
-- Controller에서 Model로 input값 전달
-- Model에선 parseInt()을 통해 문자열 구분
-- parseInt()는 현재 기본 구분자만 구분 가능
+- 각 자동차의 이름이 5글자 이하인지
+- 빈 문자열(자동차 이름)이 존재하는지
+  (여기서는 "," 기준으로 분리되어 들어온 문자열 list들이므로
+  빈 문자열은 "a,a,,b" 이런식으로 ","가 2번 이상 연속된 경우 예외처리)
+- 동일한 자동차 이름이 존재하는지
 
-기본 구분자 기준으로 문자열을 파씽할 수 있도록 작성했습니다.
-추후 기능 추가가 필요한 부분은 @todo를 통해 확인할 수 있습니다.
+문자열을 분리한 후 각각의 이름에 대한 유효성 검사를 진행합니다.
 ```
 
 <br/>
