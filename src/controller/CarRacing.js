@@ -9,19 +9,23 @@ class CarRacing {
   async init() {
     const racingCars = new RacingCars();
     await this.registerRacingCars(racingCars);
-    this.startRace(racingCars);
+    await this.startRace(racingCars);
+    this.announceWinner(racingCars);
   }
 
   async startRace(racingCars) {
     const raceRound = await this.setRaceRound();
     OutputView.printBlankLine();
     OutputView.printExecutionResult();
+    this.moveCarsAndPrintProgress(racingCars, raceRound);
+  }
+
+  moveCarsAndPrintProgress(racingCars, raceRound) {
     const racingCarList = racingCars.getAllCars();
     for (let i = 0; i < raceRound; i++) {
       racingCars.moveAllCars();
       OutputView.printRaceProgress(racingCarList);
     }
-    this.printWinner(racingCars);
   }
 
   getFinalWinner(racingCars) {
@@ -33,7 +37,7 @@ class CarRacing {
     return winnerList;
   }
 
-  printWinner(racingCars) {
+  announceWinner(racingCars) {
     const winnerList = this.getFinalWinner(racingCars);
     OutputView.printFinalWinner(winnerList.join(", "));
   }
