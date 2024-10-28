@@ -1,11 +1,12 @@
-import InputValidator from "../src/InputValidator";
+import CarNameValidator from "../src/validators/carNameValidator.js";
+import TryCountValidator from "../src/validators/TryCountValidator.js";
 
 describe("사용자 입력 자동차 이름 검증 테스트", () => {
   test("입력값이 양의 정수라면 true를 리턴할 수 있다.", () => {
     const inputs = [1, 5, 10];
 
     inputs.forEach((input) => {
-      expect(() => InputValidator.checkPositive(input)).toBeTruthy();
+      expect(() => TryCountValidator.checkPositive(input)).toBeTruthy();
     });
   });
 
@@ -13,7 +14,7 @@ describe("사용자 입력 자동차 이름 검증 테스트", () => {
     const inputs = [-1, 0, NaN];
 
     inputs.forEach((input) => {
-      expect(() => InputValidator.checkPositive(input)).toThrow("[ERROR]");
+      expect(() => TryCountValidator.checkPositive(input)).toThrow("[ERROR]");
     });
   });
 
@@ -24,7 +25,7 @@ describe("사용자 입력 자동차 이름 검증 테스트", () => {
     ];
 
     inputs.forEach((input) => {
-      expect(() => InputValidator.checkDuplication(input)).toThrow("[ERROR]");
+      expect(() => CarNameValidator.checkDuplication(input)).toThrow("[ERROR]");
     });
   });
 
@@ -35,7 +36,7 @@ describe("사용자 입력 자동차 이름 검증 테스트", () => {
     ];
 
     inputs.forEach((input) => {
-      expect(() => InputValidator.checkDuplication(input)).toBeTruthy();
+      expect(() => CarNameValidator.checkDuplication(input)).toBeTruthy();
     });
   });
 
@@ -46,7 +47,7 @@ describe("사용자 입력 자동차 이름 검증 테스트", () => {
     ];
 
     inputs.forEach((input) => {
-      expect(() => InputValidator.checkNameLength(input)).toThrow("[ERROR]");
+      expect(() => CarNameValidator.checkNameLength(input)).toThrow("[ERROR]");
     });
   });
 
@@ -57,7 +58,7 @@ describe("사용자 입력 자동차 이름 검증 테스트", () => {
     ];
 
     inputs.forEach((input) => {
-      expect(() => InputValidator.checkNameLength(input)).toBeTruthy();
+      expect(() => CarNameValidator.checkNameLength(input)).toBeTruthy();
     });
   });
 
@@ -65,7 +66,7 @@ describe("사용자 입력 자동차 이름 검증 테스트", () => {
     const inputs = [["kim"], ["son"]];
 
     inputs.forEach((input) => {
-      expect(() => InputValidator.checkMultiple(input)).toThrow("[ERROR]");
+      expect(() => CarNameValidator.checkMultiple(input)).toThrow("[ERROR]");
     });
   });
 
@@ -76,7 +77,7 @@ describe("사용자 입력 자동차 이름 검증 테스트", () => {
     ];
 
     inputs.forEach((input) => {
-      expect(() => InputValidator.checkMultiple(input)).toBeTruthy();
+      expect(() => CarNameValidator.checkMultiple(input)).toBeTruthy();
     });
   });
 
@@ -84,7 +85,7 @@ describe("사용자 입력 자동차 이름 검증 테스트", () => {
     const inputs = [[""], [" "], ["  "]];
 
     inputs.forEach((input) => {
-      expect(() => InputValidator.checkBlank(input)).toThrow("[ERROR]");
+      expect(() => CarNameValidator.checkBlank(input)).toThrow("[ERROR]");
     });
   });
 
@@ -95,7 +96,7 @@ describe("사용자 입력 자동차 이름 검증 테스트", () => {
     ];
 
     inputs.forEach((input) => {
-      expect(() => InputValidator.checkBlank(input)).toBeTruthy();
+      expect(() => CarNameValidator.checkBlank(input)).toBeTruthy();
     });
   });
 });
