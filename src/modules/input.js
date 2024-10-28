@@ -18,4 +18,17 @@ export const getCarNames = async () => {
     return getValidCarNames(input); // 유효한 자동차 이름 리스트 반환
 };
 
+const getValidMoveCount = (input) => {
+    validateInput(input, 'moveCount'); // 입력 유효성 검사
+
+    const moveCount = parseInt(input, 10);
+    validateMoveCount(moveCount); // 이동 횟수 유효성 검사
+
+    return moveCount; // 유효한 이동 횟수 반환
+};
+
+export const getMoveCount = async () => {
+    const input = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+    return getValidMoveCount(input); // 유효한 이동 횟수 반환
+};
 
