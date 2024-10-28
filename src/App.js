@@ -7,18 +7,24 @@ class App {
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n'
     );
 
+    
     // 사용자 입력 유효검사에 따른 에러처리
-    try {
-      this.validCarName(inputCarName);
 
       const carNameList = inputCarName.split(",");
       const carStepList = Array(carNameList.length).fill(0);
+
+      try {
+        carNameList.forEach((carName) => {
+          this.validCarName(carName);
+        })
 
       const inputTryCount = await Console.readLineAsync(
         '시도할 횟수는 몇 회 인가요?\n'
       )
       this.validTryCount(inputTryCount);
 
+      console.log('');
+      console.log("실행 결과")
       // 자동차들 움직이는 상태
       for(let i = 0; inputTryCount > i; i++) {
         carNameList.forEach((carName, index) => {
@@ -38,11 +44,11 @@ class App {
   }
 
   // 입력받은 자동차 이름 유효검사
-  validCarName(inputCarName) {
-    if(!inputCarName){
+  validCarName(carNameList) {
+    if(!carNameList){
       throw new Error('자동차 이름을 입력해주세요');
     }
-    if(inputCarName.length > 5){
+    if(carNameList.length > 5){
       throw new Error('5자 이하로 작성해주세요')
     }
   }
