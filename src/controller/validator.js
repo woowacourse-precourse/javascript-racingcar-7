@@ -67,7 +67,7 @@ class Validator {
   }
 
   static #checkPositiveNumber(attempts) {
-    if (!/^\d+$/.test(attempts)) {
+    if (!/^\d+$/.test(attempts) || attempts < 1) {
       throw new Error(ERROR_MESSAGE.ONLY_POSITIVE_NUMBER_ALLOWED);
     }
   }
