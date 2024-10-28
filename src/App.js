@@ -83,7 +83,27 @@ export function printWinners(winners) {
 }
 
 class App {
-  async run() {}
+  async run() {
+    try {
+      const inputString = await inputCarsNameWithDelimeter();
+      const cars = splitCarsName(inputString);
+  
+      if (!checkNameUnique(cars) || !checkNameValid(cars)) {
+        throw new Error("[ERROR]");
+      }
+  
+      const trialNumber = await inputTrialNumber();
+  
+      const gameResult = playGame(trialNumber, cars);
+  
+      const winners = findWinners(gameResult);
+  
+      printWinners(winners);
+    }
+    catch (error) {
+      throw(error);
+    }
+  }
 }
 
 export default App;
