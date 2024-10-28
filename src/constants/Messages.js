@@ -8,6 +8,6 @@ const errorPrefix = '[ERROR]';
 export const INPUT_ERROR_MESSAGE = `${errorPrefix} 공백 입력은 불가합니다.`;
 export const NAN_ERROR_MESSAGE = `${errorPrefix} 시도 횟수는 숫자입니다.`;
 export const ATTEMPT_COUNT_ERROR_MESSAGE = `${errorPrefix} 시도 횟수를 ${MIN_ATTEMPT_COUNT}이상 숫자로 입력해주세요.`;
-export const INVALID_CAR_ERROR_MESSAGE = `${errorPrefix} 자동차가 존재하지 않습니다.`;
 export const SEPARATOR_ERROR_MESSAGE = `${errorPrefix} 이름은 쉼표(,) 기준으로 구분해야 합니다.`;
 export const OVER_NAME_LENGTH_ERROR_MESSAGE = `${errorPrefix} 이름은 ${MAX_NAME_LENGTH}자 이하만 가능합니다.`;
+export const INVALID_CAR_ERROR_MESSAGE = `${errorPrefix} 자동차가 존재하지 않습니다.`;

@@ -1,7 +1,7 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import { PrintRoundResult } from "../src/handler/PrintRoundResult.js";
-import { DISTANCE_CHAR } from "../src/constants/Constants.js";
 import { PrintWinners } from "../src/handler/PrintWinners.js";
+import { DISTANCE_CHAR } from "../src/constants/Constants.js";
 import { PRINT_WINNER_MESSAGE } from "../src/constants/Messages.js";
 
 const getLogSpy = () => {
@@ -39,7 +39,6 @@ describe('PrintWinners Class 테스트', () => {
     const actualOutput = logSpy.mock.calls[0][0];
     expect(actualOutput).toBe(expectedOutput);
   })
-
 
   const winners = ['a,b', 'd;dd,s', 'c c c,k'];
   test.each(winners)('우승자가 여러명인 경우 쉼표(,)로 구분하여 출력한다.', (winner) => {

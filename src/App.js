@@ -1,7 +1,7 @@
 import { ReadName } from "./handler/ReadName.js";
 import { ReadAttemptCount } from "./handler/ReadAttemptCount.js";
-import { PrintWinners } from "./handler/PrintWinners.js";
 import { Game } from "./Game.js";
+import { PrintWinners } from "./handler/PrintWinners.js";
 import { Car } from "./Car.js";
 
 class App {
