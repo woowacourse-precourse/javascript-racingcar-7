@@ -1,5 +1,5 @@
-import {Car} from "./Car.js";
-import {MissionUtils} from "@woowacourse/mission-utils/src";
+import Car from './Car.js';
+import { MissionUtils } from '@woowacourse/mission-utils';
 
 class RacingGame {
     constructor(carNames) {
@@ -22,9 +22,9 @@ class RacingGame {
         }));
     }
 
-    getWinners(){
+    getWinners() {
         const maxPosition = Math.max(...this.cars.map((car) => car.getPosition()));
-        return this.cars.filter((car) => cat.getPosition() === maxPosition)
+        return this.cars.filter((car) => car.getPosition() === maxPosition)
             .map((car) => car.name);
     }
 }
