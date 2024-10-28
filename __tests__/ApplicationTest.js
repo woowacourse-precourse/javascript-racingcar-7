@@ -46,32 +46,27 @@ describe("자동차 경주", () => {
     });
   });
 
-  const exceptionTestCases = [
-    { name: "예외 테스트", inputs: ["pobi,javaji"] },
-    { name: "자동차 이름 공백 포함 예외 테스트", inputs: ["pobi, woni"] },
-    { name: "자동차 이름 중복 예외 테스트", inputs: ["pobi,pobi"] },
+  // Parameterized Test
+  test.each([
     {
-      name: "자동차 이름 길이 초과 예외 테스트",
+      name: "자동차 이름 다섯 글자 초과일 경우",
       inputs: ["pobi,javada"],
     },
-    { name: "시도 횟수 문자열 예외 테스트", inputs: ["pobi,woni", "abc"] },
-    { name: "시도 횟수 음수 예외 테스트", inputs: ["pobi,woni", "-1"] },
-    { name: "시도 횟수 소수 예외 테스트", inputs: ["pobi,woni", "1.5"] },
-  ];
+    { name: "자동차 이름 공백이 포함될 경우", inputs: ["pobi, woni"] },
+    { name: "자동차 이름 중복일 경우", inputs: ["pobi,pobi"] },
+    { name: "시도 횟수 숫자 아닐 경우", inputs: ["pobi,woni", "abc"] },
+    { name: "시도 횟수 음수일 경우", inputs: ["pobi,woni", "-1"] },
+    { name: "시도 횟수 소수일 경우", inputs: ["pobi,woni", "1.5"] },
+    { name: "자동차 이름의 입력 값이 없는 경우", inputs: ["", "1"] },
+    { name: "시도 횟수의 입력 값이 없는 경우", inputs: ["pobi,woni", ""] },
+  ])("$name", async ({ inputs }) => {
+    // given
+    mockQuestions(inputs);
 
-  exceptionTestCases.forEach(({ name, inputs }) => {
-    test(name, async () => {
-      // given
-      mockQuestions(inputs);
+    // when
+    const app = new App();
 
-      // when
-      const app = new App();
-
-      // then
-      await expect(app.run()).rejects.toThrow("[ERROR]");
-    });
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 });
-
-
-test.each()();
