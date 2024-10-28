@@ -43,4 +43,26 @@ describe('사용자 입력 테스트', () => {
       expect(carNames).toEqual(expectedInput);
     });
   });
+
+  describe('이동 시도 횟수 입력 테스트', () => {
+    test('사용자에게 경주 시 이동할 시도 횟수를 입력 받을 때 올바른 프롬프트를 나타낸다.', async () => {
+      const expectedPrompt = '시도할 횟수는 몇 회인가요?';
+
+      mockQuestions();
+      await InputView.readRoundCount();
+
+      expect(Console.readLineAsync).toHaveBeenCalledWith(expectedPrompt);
+    });
+
+    test('사용자에게 경주 시 이동할 시도 횟수를 입력받는다.', async () => {
+      const input = [3];
+      const expectedInput = 3;
+
+      mockQuestions(input);
+
+      const roundCount = await InputView.readRoundCount();
+
+      expect(roundCount).toEqual(expectedInput);
+    });
+  });
 });
