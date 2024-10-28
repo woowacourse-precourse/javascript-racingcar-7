@@ -31,6 +31,11 @@ class App {
     for (let i = 0; i < maxCount; i++) {
       cargame.runRace(userNames, userCounts);
     }
+
+    // 최댓값 찾기
+    let winnerNumber = Math.max(...userCounts);
+    let winners = cargame.findWinners(userNames, userCounts, winnerNumber);
+    Console.print(`최종 우승자 : ${winners}`);
   }
 }
 

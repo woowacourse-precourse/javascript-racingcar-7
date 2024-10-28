@@ -17,6 +17,16 @@ class Cargame {
     }
     Console.print("");
   }
+
+  findWinners(userNames, userCounts, winnerNumber) {
+    let winners = "";
+    for (let i = 0; i < userCounts.length; i++) {
+      if (userCounts[i] === winnerNumber) {
+        winners += `${userNames[i]}, `;
+      }
+    }
+    return winners.slice(0, -2);
+  }
 }
 
 export default Cargame;
