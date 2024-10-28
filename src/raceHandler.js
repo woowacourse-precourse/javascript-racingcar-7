@@ -34,3 +34,8 @@ export function race(cars, moveAttempts) {
 
   return results;
 }
+
+export function getWinner(cars, results) {
+  const maxDistance = Math.max(...results.map((result) => result.length));
+  return cars.filter((_, index) => results[index].length === maxDistance);
+}
