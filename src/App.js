@@ -42,17 +42,7 @@ class App {
       View.printNewLine();
     });
 
-    const getWinner = (array) => {
-      const carRecordValue = array.map((round) => round.records.filter(Boolean).length);
-
-      const winnerScore = Math.max(...carRecordValue);
-
-      return array.filter((round) => (round.records.filter(Boolean).length === winnerScore))
-        .map((round) => round.name)
-        .join(', ');
-    }
-
-    const finalWinner = getWinner(racingRoundResult);
+    const finalWinner = game.getWinner(racingRoundResult);
     View.printFinalWinner(finalWinner);
   }
 
