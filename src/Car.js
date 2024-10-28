@@ -1,5 +1,3 @@
-import { NUMBER } from "./constants";
-
 class Car {
   #carName;
   #movingDistance = 0;
@@ -10,7 +8,7 @@ class Car {
   }
 
   move(randomNumber) {
-    if (randomNumber < NUMBER.DECISION_POINT) {
+    if (randomNumber < 4) {
       return;
     }
 

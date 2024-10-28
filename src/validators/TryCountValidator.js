@@ -1,17 +1,15 @@
-import { MESSAGE, NUMBER } from "../constants.js";
-
 class TryCountValidator {
   static checkPositive(tryCount) {
-    if (!Number.isInteger(tryCount) || tryCount < NUMBER.MIN_TRYCOUNT) {
-      throw new Error(MESSAGE.ERROR.TYPE);
+    if (!Number.isInteger(tryCount) || tryCount < 1) {
+      throw new Error("[ERROR]이동횟수는 양의 정수로 입력해주세요.");
     }
 
     return true;
   }
 
   static checkOverMax(tryCount) {
-    if (tryCount > NUMBER.MAX_TRYCOUNT) {
-      throw new Error(MESSAGE.ERROR.MAX);
+    if (tryCount > 100) {
+      throw new Error("[ERROR]이동횟수는 100이하로 입력해주세요");
     }
   }
 }
