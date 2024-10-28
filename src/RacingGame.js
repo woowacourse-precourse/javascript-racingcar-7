@@ -16,9 +16,23 @@ class RacingGame {
 
   async initializeGame() {
     const carNames = await this.getCarNames();
-    const count = await this.getCount();
+    this.validateCarNames(carNames);
     const cars = carNames.map((name) => new Car(name));
+    const count = await this.getCount();
     Console.print(cars);
+  }
+
+  validateCarNames(carNames) {
+    const nameSet = new Set(carNames);
+    if (carNames.some((name) => !name || name.trim().length === 0)) {
+      throw new Error('[ERROR] 자동차 이름은 빈 값일 수 없습니다.');
+    }
+    if (carNames.some((name) => name.length > 5)) {
+      throw new Error('[ERROR] 자동차 이름은 5자를 초과할 수 없습니다.');
+    }
+    if (nameSet.size !== carNames.length) {
+      throw new Error('[ERROR] 중복된 이름이 있습니다.');
+    }
   }
 
   async getCarNames() {
