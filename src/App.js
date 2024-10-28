@@ -1,13 +1,20 @@
+// @woowacourse/mission-utils Console API 사용
 import { Console, Random } from "@woowacourse/mission-utils";
 
 class App {
   async run() {
-    const carNames = await this.getCarNames();
-    const attemptCount = await this.getAttemptCount();
-    Console.print(
-      `자동차 이름: ${carNames.join(", ")} | 시도 횟수: ${attemptCount}`
-    );
-    this.startRace(carNames, attemptCount);
+    try {
+      const carNames = await this.getCarNames();
+      const attemptCount = await this.getAttemptCount();
+      Console.print(
+        `자동차 이름: ${carNames.join(", ")} | 시도 횟수: ${attemptCount}`
+      );
+      this.startRace(carNames, attemptCount);
+    } catch (error) {
+      Console.print(`[ERROR] ${error.message}`);
+    } finally {
+      Console.close();
+    }
   }
 
   getCarNames() {
