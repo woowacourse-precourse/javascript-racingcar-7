@@ -10,8 +10,8 @@ const userInputCarNames = async () => {
   );
 };
 
-const getUserInputTryCount = async () => {
+const userInputTryCount = async () => {
   return await getUserInput('시도할 횟수는 몇 회인가요?\n');
 };
 
-export { getUserInput, userInputCarNames, getUserInputTryCount };
+export { getUserInput, userInputCarNames, userInputTryCount };
