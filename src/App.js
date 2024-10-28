@@ -13,6 +13,12 @@ class App {
 
       if (cars.some(car => car.length > 5))
         throw new Error("[ERROR]");
+
+      while (tryNum) {  // 입력 받은 값만큼 시도
+        for (let i = 0; i < cars.length; i++) 
+        
+        tryNum--;
+      }
     } catch(error) {
       throw new Error(`[ERROR]`);
     }
