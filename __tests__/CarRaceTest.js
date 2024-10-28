@@ -1,11 +1,14 @@
-import { Random } from '@woowacourse/mission-utils';
+import { MissionUtils } from '@woowacourse/mission-utils';
 import CarRace from '../src/Model/CarRace.js';
 
-jest.mock('@woowacourse/mission-utils', () => ({
-  Random: {
-    pickNumberInRange: jest.fn(),
-  },
-}));
+const mockRandoms = (numbers) => {
+  MissionUtils.Random.pickNumberInRange = jest.fn();
+
+  numbers.reduce(
+    (acc, number) => acc.mockReturnValueOnce(number),
+    MissionUtils.Random.pickNumberInRange,
+  );
+};
 
 describe('CarRace 클래스 테스트', () => {
   describe('isValidRaceCount 메서드 테스트', () => {
@@ -25,15 +28,13 @@ describe('CarRace 클래스 테스트', () => {
   });
 
   describe('getMoveDecisions 메서드 테스트', () => {
-    Random.pickNumberInRange
-      .mockReturnValueOnce(4)
-      .mockReturnValueOnce(3)
-      .mockReturnValueOnce(5)
-      .mockReturnValueOnce(2);
+    test('4보다 큰 정수에 대하여 true 반환', () => {
+      mockRandoms([4, 3, 5, 2]);
 
-    const carRace = new CarRace('car1,car2,car3,car4', 1);
-    const moveDecisions = carRace.getMoveDecisions();
+      const carRace = new CarRace('car1,car2,car3,car4', 1);
 
-    expect(moveDecisions).toEqual([true, false, true, false]);
+      const moveDecisions = carRace.getMoveDecisions();
+      expect(moveDecisions).toEqual([true, false, true, false]);
+    });
   });
 });
