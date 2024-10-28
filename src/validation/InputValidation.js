@@ -4,7 +4,7 @@ class InputValidation{
 
   static carNameValidate(carNameArray) {
     if (carNameArray.some(carName => carName.length > 5)) {
-      throw new Error(ERROR_MESSAGE.invalidNameError);
+      throw new Error(ERROR_MESSAGE.invalidNameRangeError);
     }
 
     if (carNameArray.some(carName => carName.length === 0)) {

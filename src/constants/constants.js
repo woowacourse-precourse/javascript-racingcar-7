@@ -18,6 +18,7 @@ export const MOVE_CONDITION = {
 const ERROR_PREFIX = "[ERROR]";
 
 export const ERROR_MESSAGE = {
-  invalidNameError : `${ERROR_PREFIX} 자동차 이름은 5자 이하만 가능합니다.`,
+  invalidNameRangeError : `${ERROR_PREFIX} 자동차 이름은 5자 이하만 가능합니다.`,
+  invalidNameError : `${ERROR_PREFIX} 유효한 자동차 이름이 아닙니다.`,
   invalidAttemptsError : `${ERROR_PREFIX} 유효한 시도값이 아닙니다.`,
 };
