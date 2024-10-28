@@ -7,7 +7,8 @@ export async function inputNames(){
 }
 
 export function splitName(names){
-    return names.split(',').map(name => name.trim());
+    const spaceDeleteNames = names.split(' ').join('');
+    return spaceDeleteNames.split(',').map(name => name.trim());
 }
 
 export function inputNameValidation(name){

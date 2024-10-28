@@ -1,6 +1,6 @@
 import Car from "./Car.js";
 import Board from "./Board.js";
-import { inputNames, splitName, inputNameValidation, inputTryCount } from "./InputValue.js";
+import { inputNames, splitName, inputNameValidation, inputTryCount } from "./inputValue/InputValue.js";
 import { raceStart } from "./Move.js";
 
 class App {
