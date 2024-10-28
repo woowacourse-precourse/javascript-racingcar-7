@@ -10,7 +10,11 @@ class GetInput {
   }
 
   static async getTryCount() {
-    return await Console.readLineAsync('시도할 횟수는 몇 회인가요? \n');
+    const tryCount = await Console.readLineAsync('시도할 횟수는 몇 회인가요? \n');
+    if(isNaN(tryCount)){
+      throw new Error('[ERROR] : 숫자를 입력해주세요.');
+    }
+    return Number(tryCount);
   }
 }
 
