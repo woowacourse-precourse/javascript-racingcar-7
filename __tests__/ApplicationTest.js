@@ -57,4 +57,35 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
+
+  test("예외테스트 : 입력받은 이름이 5글자 초과일 경우", async () => {
+    const inputs = ["abc,abcdef"];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR] 자동차 이름은 5글자 이하로 입력해주세요.");
+  });
+
+
+  test("예외테스트 : 쉼표(,) 이외에 다른 구분자를 사용하는 경우", async () => {
+    const inputs = ["abc.abc:def"];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR] 이름은 쉼표(,)로 구분 가능합니다.");
+  });
+
+
+  test("예외테스트 : 공백 혹은 입력하지 않은 경우", async () => {
+    const inputs = [" ", ""];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR] 경주할 자동차 이름을 입력하세요");
+  });
+
 });
