@@ -6,7 +6,7 @@ import {
   validateLogs,
 } from '../src/Test/Test.js';
 
-// Successful Test cases
+// 가독성을 위해 일부러 depth 3 이상 허용.
 const validTestCases = [
   {
     description: '과제 페이지 실행 결과 예시',
@@ -148,21 +148,25 @@ const validTestCases = [
   },
 ];
 
-describe('SuccessfulTestcase', () => {
-  test.each(validTestCases)(
-    '$description',
-    async ({ inputs, randoms, expectedLogs }) => {
-      // given
-      const logSpy = getLogSpy();
-      mockQuestions(inputs);
-      mockRandoms(randoms);
+const runSuccessfulTest = async ({
+  description,
+  inputs,
+  randoms,
+  expectedLogs,
+}) => {
+  test(description, async () => {
+    // given
+    const logSpy = getLogSpy();
+    mockQuestions(inputs);
+    mockRandoms(randoms);
 
-      // when
-      const app = new App();
-      await app.run();
+    // when
+    const app = new App();
+    await app.run();
 
-      // then
-      validateLogs(logSpy, expectedLogs);
-    },
-  );
-});
+    // then
+    validateLogs(logSpy, expectedLogs);
+  });
+};
+
+validTestCases.forEach(runSuccessfulTest);

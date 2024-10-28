@@ -135,18 +135,12 @@ const exceptionTestCases = [
   },
 ];
 
-describe('자동차 경주 추가 테스트', () => {
-  test.each(exceptionTestCases)(
-    '$description',
-    async ({ inputs, expectedError }) => {
-      // given
-      mockQuestions(inputs);
+const runExceptionTest = async ({ description, inputs, expectedError }) => {
+  test(description, async () => {
+    mockQuestions(inputs);
+    const app = new App();
+    await expect(app.run()).rejects.toThrow(expectedError);
+  });
+};
 
-      // when
-      const app = new App();
-
-      // then
-      await expect(app.run()).rejects.toThrow(expectedError);
-    },
-  );
-});
+exceptionTestCases.forEach(runExceptionTest);
