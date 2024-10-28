@@ -39,4 +39,18 @@ export default class CarRace {
 
     return this.#cars;
   }
+
+  getRaceWinners() {
+    if (this.#raceCount > 0) {
+      throw new Error('[ERROR] 경주를 완료해야 최종 우승자를 알 수 있습니다.');
+    }
+
+    const maxMoveCount = Math.max(
+      ...this.#cars.map((car) => car.getMoveCount()),
+    );
+
+    return this.#cars
+      .filter((car) => car.getMoveCount() === maxMoveCount)
+      .map((car) => car.getName());
+  }
 }
