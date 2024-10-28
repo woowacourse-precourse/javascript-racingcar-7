@@ -43,6 +43,20 @@ class Race {
     }
   }
 
+  #getMaxDistance() {
+    let maxDistance = 0;
+
+    for (let car of this.#carInstance) {
+      const distance = car.getDistance();
+
+      if (distance > maxDistance) {
+        maxDistance = distance;
+      }
+    }
+
+    return maxDistance;
+  }
+
   #validateAttempt(attempt) {
     const validator = new Validator();
     return validator.validateAttempt(attempt);
