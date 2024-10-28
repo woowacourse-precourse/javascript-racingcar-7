@@ -23,8 +23,7 @@ class CarsModel {
       RULES.RANDOM_MAX,
     );
 
-    if (randomNum >= RULES.MOVE_THRESHOLD) return true;
-    return false;
+    return randomNum >= RULES.MOVE_THRESHOLD;
   }
 
   moveCars() {
