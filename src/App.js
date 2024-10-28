@@ -11,11 +11,35 @@ class App {
   async run() {
     const cars = await this.inputCars();
     const attemptCount = await this.inputAttemptCount();
+    this.runRaceRounds(cars, attemptCount);
+  }
+
+  runRaceRounds(cars, attemptCount) {
+    Console.print('\n실행 결과');
+    for (let i = 0; i < attemptCount; i += 1) {
+      this.moveCar(cars);
+      this.printCarProgress(cars);
+    }
+  }
+
+  printCarProgress(cars) {
+    cars.forEach(car => Console.print(`${car.name} : ${'-'.repeat(car.move)}`));
+    Console.print('');
   }
 
   isCarMovable() {
     const randomNumber = Random.pickNumberInRange(0, 9);
     return randomNumber >= 4;
+  }
+
+  attemptMove(car) {
+    if (this.isCarMovable()) {
+      car.move += 1;
+    }
+  }
+
+  moveCar(cars) {
+    cars.forEach(car => this.attemptMove(car));
   }
 
   async input(msg) {
