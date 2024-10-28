@@ -18,7 +18,12 @@ class App {
   
   moveCar(carNames, forwardTime) {
     const carPosition = Object.fromEntries(carNames.map(name => [name, 0]));
-  
+    
+    carNames.forEach(name => {
+      carPosition[name] = this.calculatePosition(forwardTime);
+      Console.print(`${name} : ${"-".repeat(carPosition[name])}`);
+    });
+    
     return carPosition;
   }
   
