@@ -7,6 +7,9 @@ class App {
       const names = this.NameStorage(input);
       this.validateNames(names);
 
+      const num = await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?');
+      this.validateNum(num);
+      
     } catch (error) {
       MissionUtils.Console.print(`${error.message}`);
       throw error;
@@ -18,6 +21,10 @@ class App {
   }
 
   validateNames(names) {
+    if (names.length < 2) {
+      throw new Error('[ERROR] 이름은 최소 2개 이상 입력해야 합니다.');
+    }
+
     const uniqueNames = new Set();
 
     names.forEach(name => {
@@ -33,6 +40,21 @@ class App {
       uniqueNames.add(name);
     });
   }
+
+  validateNum(num) {
+    const parsedNum = Number(num);
+
+    if (isNaN(parsedNum)) {
+      throw new Error('[ERROR] 시도 횟수는 숫자여야 합니다.');
+    }
+    if (!Number.isInteger(parsedNum)) {
+      throw new Error('[ERROR] 시도 횟수는 정수여야 합니다.');
+    }
+    if (parsedNum <= 0) {
+      throw new Error('[ERROR] 시도 횟수는 1 이상의 양수여야 합니다.');
+    }
+  }
+
 }
 
 export default App;
