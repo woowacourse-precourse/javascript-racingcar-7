@@ -78,8 +78,6 @@
 
 ## 📄 기능 구현 상세
 
-<br/>
-
 ### 🪜 Layered Architecture
   * 프레젠테이션, 어플리케이션, 도메인 계층 등으로 구분하는 구조. 
   * 각 계층은 바로 아래 계층에만 의존하므로 한 계층의 변경이 다른 계층에 미치는 영향이 적음.
@@ -123,7 +121,7 @@ graph TD
 <br/>
 <br/>
 
-### 👓 Observer pattern
+### 😎 Observer pattern
 
 Subject(관찰 대상)의 상태 변화가 발생할 때마다 Observer(관찰자)들에게 자동으로 알려주는 디자인 패턴.  
 
