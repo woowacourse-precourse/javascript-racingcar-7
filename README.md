@@ -276,3 +276,9 @@ class WinnerDeterminer {
 
 -   객체 지향 프로그래밍
 -   Jest 테스트 코드
+
+---
+
+## 학습 정리
+
+-   [이전에 정리해두었던 객체 지향 프로그래밍 관련 정리](https://angry-whale-416.notion.site/DAY06-8eb498b354f44826b7d3aff1bf097f22)
