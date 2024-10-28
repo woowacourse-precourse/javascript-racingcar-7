@@ -59,6 +59,11 @@ class App {
       .filter((car) => car.position === maxPosition) // 우승자 필터링
       .map((car) => car.name);
   }
+
+  // 5. 최종 우승자 출력
+  printFinalWinners(winners) {
+    Console.print(`최종 우승자 : ${winners.join(", ")}`); // 우승자를 쉼표로 구분하여 출력
+  }
 }
 
 export default App;
