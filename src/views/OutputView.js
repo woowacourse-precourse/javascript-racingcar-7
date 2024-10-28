@@ -5,6 +5,7 @@ class OutputView {
         results.forEach(result => {
             Console.print(`${result.name} : ${"-".repeat(result.position)}`);
         });
+        Console.print('\n');
     }
 
     displayWinners(winners) {
