@@ -1,4 +1,5 @@
 import App from '../src/App.js';
+import Car from '../src/model/Car.js';
 import { MissionUtils } from '@woowacourse/mission-utils';
 
 const mockQuestions = (inputs) => {
@@ -26,11 +27,11 @@ const getLogSpy = () => {
 
 describe('자동차 경주', () => {
   const ERROR_PREFIX = '[ERROR]';
+  const MOVING_FORWARD = 4;
+  const STOP = 3;
 
   test('기능 통합 테스트', async () => {
     // given
-    const MOVING_FORWARD = 4;
-    const STOP = 3;
     const inputs = ['pobi,woni', '1'];
     const logs = ['pobi : -', 'woni : ', '최종 우승자 : pobi'];
     const logSpy = getLogSpy();
@@ -75,5 +76,23 @@ describe('자동차 경주', () => {
       // then
       await expect(app.run()).rejects.toThrow(ERROR_PREFIX);
     }
+  });
+
+  test('자동차 클래스 동작 테스트', async () => {
+    // given
+    const NEW_CAR_NAME = 'java';
+    const racingResult = [1, 2, 2];
+    mockRandoms([MOVING_FORWARD, MOVING_FORWARD, STOP]);
+
+    // when
+    const car = new Car('pobi');
+    car.setName(NEW_CAR_NAME);
+    racingResult.forEach((_, round) => car.drive(round));
+
+    // then
+    expect(car.getName()).toBe(NEW_CAR_NAME);
+    racingResult.forEach((result, round) => {
+      expect(car.getTrack(round)).toBe(result);
+    });
   });
 });
