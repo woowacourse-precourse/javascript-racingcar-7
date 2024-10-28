@@ -1,6 +1,6 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import messages from './printMessages.js';
-import { inputValidator } from './validateInput.js';
+import { inputValidator } from './inputValidator.js';
 
 export const inputHandler = {
   async getCarNamesInput() {
