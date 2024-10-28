@@ -12,6 +12,9 @@ class App {
       // 자동차 객체 초기화
       const cars = carNames.map((name) => new Car(name));
 
+      // 경기 진행
+      this.startRace(cars, attempts);
+
     } catch (error) {
 
       Console.print(error.message);
@@ -46,6 +49,20 @@ class App {
     }
 
     return attempts;
+  }
+
+  startRace(cars, attempts) {
+    Console.print("\n실행결과");
+    for (let i = 0; i < attempts; i++) {
+      cars.forEach((car) => {
+        const randomNumber = Random.pickNumberInRange(0, 9);
+        if (randomNumber >= 4) {
+          car.move();
+        }
+        Console.print(`${car.name} : ${"-".repeat(car.position)}`);
+      });
+      Console.print(""); // 회차 구분을 위해 빈 줄 출력
+    }
   }
 }
 
