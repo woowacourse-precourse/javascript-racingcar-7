@@ -40,30 +40,30 @@ const validateCarNamesInput = (carNamesInput) => {
   });
 };
 
-const isNumber = (attemptCount) => {
-  if (isNaN(attemptCount)) {
+const isNumber = (tryCount) => {
+  if (isNaN(tryCount)) {
     throw new Error(ERROR_MESSAGE.NOT_A_NUMBER);
   }
 };
 
-const isDecimal = (attemptCount) => {
-  if (attemptCount % 1 !== 0) {
+const isDecimal = (tryCount) => {
+  if (tryCount % 1 !== 0) {
     throw new Error(ERROR_MESSAGE.NOT_AN_INTEGER);
   }
 };
 
-const isInRange = (attemptCount) => {
-  if (attemptCount < 1 || attemptCount > 10) {
+const isInRange = (tryCount) => {
+  if (tryCount < 1 || tryCount > 10) {
     throw new Error(ERROR_MESSAGE.NOT_IN_RANGE);
   }
 };
 
-const validateTryCount = (attemptCount) => {
-  const attemptNumber = Number(attemptCount);
+const validateTryCount = (tryCount) => {
+  const tryCountNumber = Number(tryCount);
 
-  isNumber(attemptNumber);
-  isDecimal(attemptNumber);
-  isInRange(attemptNumber);
+  isNumber(tryCountNumber);
+  isDecimal(tryCountNumber);
+  isInRange(tryCountNumber);
 };
 
 export { validateCarNamesInput, validateTryCount };

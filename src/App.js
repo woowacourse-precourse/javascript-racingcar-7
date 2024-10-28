@@ -25,9 +25,7 @@ class App {
   }
 
   async getTryCountInput() {
-    const input = await Console.readLineAsync(
-      PRINT_MESSAGE.INPUT_MOVE_ATTEMPT_COUNT,
-    );
+    const input = await Console.readLineAsync(PRINT_MESSAGE.INPUT_TRY_COUNT);
 
     return input.replace(/ /g, '');
   }
