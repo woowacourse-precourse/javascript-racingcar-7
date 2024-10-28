@@ -28,3 +28,11 @@ test("지정한 잘못된 입력을 받을 시 오류를 반환한다.", () => {
    expect(() => inputNameValidation(' '))
        .toThrow("[ERROR] 자동차 이름을 입력해야 합니다.")
 });
+
+test("지정한 시도 횟수를 제대로 입력받아야 한다.", async () => {
+    Console.readLineAsync.mockResolvedValue("5");
+
+    const countData = await inputTryCount();
+
+    expect(countData).toBe("5");
+});
