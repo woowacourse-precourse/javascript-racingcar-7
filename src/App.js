@@ -24,7 +24,8 @@ class App {
       startRace(cars, tryCount);
       printWinners(cars);
     } catch (error) {
-      console.error(error.message);
+      Console.print(error.message);
+      throw error;
     }
   }
 }
