@@ -78,5 +78,19 @@ describe('사용자 입력 테스트', () => {
 
       expect(roundCount).toEqual(expectedInput);
     });
+
+    describe('이동 시도 횟수 입력 예외 테스트', () => {
+      test('이동 시도 횟수가 숫자 형태가 아닌 값일 때 에러를 발생한다.', () => {
+        const input = 'one';
+
+        expect(() => validateRoundCount(input)).toThrow('[ERROR]');
+      });
+
+      test('이동 시도 횟수에 숫자 형태가 아닌 값이 포함될 때 에러를 발생한다.', () => {
+        const input = '3!';
+
+        expect(() => validateRoundCount(input)).toThrow('[ERROR]');
+      });
+    });
   });
 });
