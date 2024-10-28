@@ -1,4 +1,4 @@
-import raceCar from "./Components/RaceCar/raceCar.js";
+import raceCar from "./RaceCar/raceCar.js";
 import Input from "./Input/Input.js";
 import Output from "./Output/Output.js";
 

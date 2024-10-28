@@ -1,6 +1,6 @@
-import { GIDE_MESSAGE } from "../../Constants/constant.js";
-import Output from "../../Output/Output.js";
-import randomGenerator from "../../Utils/randomGenerator.js";
+import { GIDE_MESSAGE } from "../Constants/constant.js";
+import Output from "../Output/Output.js";
+import randomGenerator from "../Utils/randomGenerator.js";
 
 /**
  * @param {{ name: string, position: number }} car
