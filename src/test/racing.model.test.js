@@ -8,6 +8,7 @@ describe('RacingModel', () => {
   beforeEach(() => {
     racingModel = new RacingModel();
   });
+
   describe('setCarNames', () => {
     it('주어진 자동차의 이름들을 ,로 구분하여 각 자동차 이름이 5자 이하인 경우 에러는 발생하지 않아야 한다', () => {
       const carNames = 'pobi, pobi, pobi';

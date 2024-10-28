@@ -10,6 +10,7 @@ describe('RuleModel', () => {
   beforeEach(() => {
     ruleModel = new RuleModel(new Validator());
   });
+
   describe('parseCarNames', () => {
     it("자동차 이름 문자열을 받는 경우 ','로 구분하여 자동차 이름 배열을 반환해야한다", () => {
       const value = 'pobi, woo, jun';
