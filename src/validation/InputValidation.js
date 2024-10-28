@@ -13,7 +13,13 @@ class InputValidation{
   }
 
   static attemptsValidate(attemptsData) {
-  
+    const numericAttemptsData = Number(attemptsData);
+
+    if (isNaN(numericAttemptsData) || 
+        !Number.isInteger(numericAttemptsData) || 
+        numericAttemptsData <= 0) {
+        throw new Error(ERROR_MESSAGE.invalidAttemptsError);
+    }
   }
 }
 
