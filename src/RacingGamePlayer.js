@@ -21,7 +21,7 @@ class RacingGamePlayer {
 
   printRoundResults() {
     this.cars.forEach((car) => {
-      MissionUtils.Console.print(`${car.name}: ${'-'.repeat(car.dist)}`);
+      MissionUtils.Console.print(`${car.name} : ${'-'.repeat(car.dist)}`);
     });
     MissionUtils.Console.print(''); //라운드 간 개행
   }
