@@ -46,9 +46,33 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트", async () => {
+  test("자동차 이름이 5자를 초과할 경우 예외 테스트", async () => {
     // given
     const inputs = ["pobi,javaji"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("자동차 이름이 빈 문자열일 경우 예외 테스트", async () => {
+    // given
+    const inputs = ["pobi,"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("자동차 이름에 공백이 있는 경우 예외 테스트", async () => {
+    // given
+    const inputs = ["pobi, woni"];
     mockQuestions(inputs);
 
     // when
