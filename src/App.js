@@ -3,7 +3,7 @@ import { Console } from '@woowacourse/mission-utils';
 class App {
   async run() {
     
-    const cars = this.getCars();
+    const carsName = this.getCars();
     const attemptCnt = this.getAttemptCount();
 
     Console.print("");
