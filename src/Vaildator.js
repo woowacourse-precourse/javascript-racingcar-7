@@ -6,6 +6,7 @@ class Vaildator {
     checkCarCount(carsObj) {
         for (let car in carsObj) {
             if (car.length > 5) throw new Error("[ERROR] 자동차 입력 에러(이름 길이)");
+            if (car === '') throw new Error("[ERROR] 자동차 입력 에러(공백)");
         }
         if (Object.keys(carsObj).length <= 1) throw new Error("[ERROR] 자동차 입력 에러(갯수, 구분자)");
     }

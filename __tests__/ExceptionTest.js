@@ -30,8 +30,17 @@ describe("자동차 경주 예외 테스트", () => {
         await expect(app.run()).rejects.toThrow("[ERROR]");
     });
 
+    test("자동차 이름이 공백일 경우", async () => {
+        const inputs = ["pobi,,woni", 2];
+        mockQuestions(inputs);
+
+        const app = new App();
+
+        await expect(app.run()).rejects.toThrow("[ERROR]");
+    });
+
     test("경주할 자동차가 1대인 경우", async () => {
-        const inputs = ["pobi"];
+        const inputs = ["pobi", 2];
         mockQuestions(inputs);
 
         const app = new App();
