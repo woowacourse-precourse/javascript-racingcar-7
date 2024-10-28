@@ -3,12 +3,12 @@ import RegularExpression from '../../resources/RegularExpression.js';
 
 function validateNotNumber(repetitionString) {
   if (repetitionString.match(RegularExpression.REGEX_NOT_NUMBER))
-    throw new Error(ErrorMessage.INVALID_NUMBER_INPUT);
+    throw new Error(ErrorMessage.INPUT_CONTAIN_CHARACTER);
 }
 
 function validateZeroNumber(repetitionString) {
   if (repetitionString.match(RegularExpression.REGEX_ONLY_ZERO))
-    throw new Error(ErrorMessage.GREATER_THAN_ZERO);
+    throw new Error(ErrorMessage.ZERO_NUMBER_INPUT);
 }
 
 function validateZeroStarting(repetitionString) {

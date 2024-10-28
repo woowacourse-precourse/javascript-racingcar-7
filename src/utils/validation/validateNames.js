@@ -12,7 +12,7 @@ function validateLongName(names) {
 }
 
 function validateCommaEnding(names) {
-  if (names.endsWith(',')) throw new Error(ErrorMessage.INVALID_NAME_FORMAT);
+  if (names.endsWith(',')) throw new Error(ErrorMessage.COMMA_ENDING_NAMES);
 }
 
 export default function validateNames(names) {
