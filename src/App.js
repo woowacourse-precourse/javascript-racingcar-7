@@ -44,6 +44,14 @@ class App {
       });
     };
 
+    /** 자동차 상태 출력 */
+    const printCars = (cars) => {
+      cars.forEach((car) => {
+        Console.print(`${car.name} : ${"-".repeat(car.position)}`);
+      });
+      Console.print("");
+    };
+
     async function racingGame() {
       try {
         const carNames = await getCarNames();
@@ -54,6 +62,7 @@ class App {
 
         for (let i = 0; i < tryCount; i++) {
           moveCars(cars);
+          printCars(cars);
         }
       } catch (error) {
         Console.print(error.message);
