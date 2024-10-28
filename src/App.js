@@ -11,7 +11,8 @@ function checkCarName(carNames){
 
 function moveJudge(carNames, carRacing){
     carNames.map((car, index)=>{
-        if(true){
+        const judge = Random.pickNumberInRange(0,9);
+        if(judge >= 4){
             carRacing[index] += "-";
         }
     })
