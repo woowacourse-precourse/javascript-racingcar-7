@@ -13,4 +13,8 @@ describe('raceController Test', () => {
     expect(controller.cars[1].getName()).toBe('jun');
     expect(controller.cars[2].getName()).toBe('woni');
   });
+
+  test('inputAttemps 입력값이 올바르게 생성된다.', () => {
+    expect(controller.attemps).toBe(5);
+  });
 });
