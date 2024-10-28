@@ -45,7 +45,7 @@
 
   * [ ] ```Round claas``` 구현
 
-  * [ ] 시도할 횟수(Target Round)에 대한 유효성을 확인하는 기능 (validation)
+  * [x] 시도할 횟수(Target Round)에 대한 유효성을 확인하는 기능 (validation)
     - 시도할 횟수는 양의 정수여야 한다.
     - 이를 만족하지 못한 경우, '[ERROR]'로 시작하는 에러 메세지를 출력하며 프로그램을 종료한다.
 
