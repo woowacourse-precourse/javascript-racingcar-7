@@ -11,11 +11,8 @@ class App {
 
   async run() {
     const {cars, count} = await this.ioProcessor.processInput();
-    const carsArray = this.stringParser.parseString(cars);
-    
-    this.racingController.setCars(carsArray);
-    this.racingController.setCount(count);
-    this.racingController.run();
+    const carsString = this.stringParser.parseString(cars);
+    this.racingController.run(carsString, count);
   }
 }
 

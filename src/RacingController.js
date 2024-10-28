@@ -12,6 +12,21 @@ class RacingController {
   /**
    *
    */
+  run(carsString, count) {
+    this.setCars(carsString);
+    this.setCount(count);
+
+    this.ioProcessor.processOutput('');
+    this.ioProcessor.processOutput(OUTPUT_MESSAGE.RESULT);
+    this.race();
+
+    const winners = this.calculateWinners();
+    this.printWinners(winners);
+  }
+
+  /**
+   *
+   */
   setCars(cars) {
     this.ioProcessor = new IOProcessor();
     this.#cars = cars.map((car) => new Car(car));
@@ -27,16 +42,12 @@ class RacingController {
   /**
    *
    */
-  run() {
-    this.ioProcessor.processOutput(OUTPUT_MESSAGE.RESULT);
-
+  race() {
     for (let i = 0; i < this.#count; i++) {
       this.#cars.forEach((car) => car.accelerate());
       this.#cars.forEach((car) => car.printStatus());
       this.ioProcessor.processOutput('');
     }
-
-    this.printWinners();
   }
 
   /**
@@ -50,11 +61,11 @@ class RacingController {
   /**
    *
    */
-  printWinners() {
-    const winners = this.calculateWinners();
+  printWinners(winners) {
     const winnerNames = winners
       .map((winner) => winner.getName())
       .join(DELEMETER.concat(' '));
+
     this.ioProcessor.processOutput(OUTPUT_MESSAGE.WINNER.concat(winnerNames));
   }
 }
