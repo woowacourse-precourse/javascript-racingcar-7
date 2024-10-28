@@ -69,6 +69,14 @@ class App {
     Console.print('최종 우승자 : ' + winners.join(', '));
   }
 
+// 10. 에러검사 - 자동차이름 유효성
+check_name(cars) {
+  for (let i = 0; i < cars.length; i++) {
+    if (cars[i].length > 5) {
+      throw new Error('[ERROR] 자동차 이름은 5자 이하여야 합니다.');
+    }
+  }
+}
 }
 
 export default App;
