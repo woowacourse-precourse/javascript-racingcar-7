@@ -7,6 +7,7 @@ import {
   COLON,
   WINNER_CAR,
   ERROR_NAME,
+  ERROR_NAME_LENGTH,
   ERROR_NUMBER,
   ERROR_PLUS_NUMBER,
 } from "./Constant.js";
@@ -81,8 +82,11 @@ export const startGame = (carList, tryNumber) => {
 
 export const checkNameError = (carList) => {
   for (let i = 0; i < carList.length; i++) {
-    if (carList[i].length > 5) {
+    if (carList[i] === "") {
       throw new Error(ERROR_NAME);
+    }
+    if (carList[i].length > 5) {
+      throw new Error(ERROR_NAME_LENGTH);
     }
   }
 };
