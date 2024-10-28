@@ -1,4 +1,4 @@
-import { MESSAGE } from './constant';
+import { MESSAGE, RANGE } from './constant';
 import { printOutput } from './util/io';
 import pickRandomNumberInRange from './util/pickRandomNumberInRange';
 import printSimulate from './util/printSimulate';
@@ -15,7 +15,8 @@ class Simulator {
   }
 
   #canMoveForward() {
-    if (pickRandomNumberInRange(0, 9) >= 4) return true;
+    if (pickRandomNumberInRange(RANGE.START, RANGE.END) >= RANGE.VALID)
+      return true;
     return false;
   }
 

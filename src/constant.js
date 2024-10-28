@@ -12,3 +12,9 @@ export const ERROR_MESSAGE = Object.freeze({
   DUPLICATE_NAME: '[Error] 자동차 이름은 중복될 수 없습니다.',
   INVALID_TRY_COUNT: '[Error] 시도 횟수는 양수여야 합니다.',
 });
+
+export const RANGE = Object.freeze({
+  START: 0,
+  END: 9,
+  VALID: 4,
+});
