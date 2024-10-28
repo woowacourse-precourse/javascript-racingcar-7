@@ -9,7 +9,6 @@ class App {
 
       const carPositions = this.moveCarsByRounds(carNames, forwardTime);
       this.displayWinners(carNames, carPositions);
-      this.validateForwardTime(forwardTime); // 횟수 검증
     } catch (error) {
       Console.print(error.message);
       throw error;
@@ -59,9 +58,10 @@ class App {
   }
   
   async getForwardTime() {
-    const forwardTime = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
-    return Number(forwardTime);
-  }
+    const forwardTime = Number(await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n"));
+    this.validateForwardTime(forwardTime);  // 횟수 검증
+    return forwardTime;
+}
 
   moveCarsByRounds(carNames, forwardTime) {
     const carPositions = this.initializePositions(carNames);
