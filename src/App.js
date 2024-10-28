@@ -26,6 +26,8 @@ class App {
 
     const winners = getWinnerNames(carArray, maxDistance);
 
+    const winnersString = winners.join();
+    Console.print(`최종 우승자 : ${winnersString}`);
   }
 }
 
