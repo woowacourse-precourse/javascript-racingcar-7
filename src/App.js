@@ -14,10 +14,7 @@ class App {
       await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n")
     );
 
-    if (!Number.isInteger(gameCount))
-      throw new Error("[ERROR] 시도할 횟수가 정수가 아닙니다");
-
-    if (gameCount < 0) throw new Error("[ERROR] 시도할 횟수가 음수입니다");
+    this.validateGameCount(gameCount);
 
     const racingCarsPos = {};
     racingCars.forEach((car) => {
@@ -31,6 +28,13 @@ class App {
     const winners = this.pickWinner(racingCarsPos);
 
     Console.print(`최종 우승자 : ${winners.join(", ")}`);
+  }
+
+  validateGameCount(gameCount) {
+    if (!Number.isInteger(gameCount))
+      throw new Error("[ERROR] 시도할 횟수가 정수가 아닙니다");
+
+    if (gameCount < 0) throw new Error("[ERROR] 시도할 횟수가 음수입니다");
   }
 
   validateCarName(racingCars) {
