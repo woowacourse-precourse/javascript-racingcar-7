@@ -1,3 +1,5 @@
+import { printOutput } from "../handlers/IOHandler.js";
+
 export default class Game {
     constructor(cars, moveCount) {
         this.cars = cars;
@@ -6,7 +8,7 @@ export default class Game {
     }
 
     run() {
-        console.log("\n실행 결과");
+        printOutput("\n실행 결과");
         while (this.winners.length === 0) {
             this.cars.forEach(car => {
                 car.tryMove();
@@ -16,11 +18,9 @@ export default class Game {
                 }
             });
 
-            const print = this.cars.reduce((print, car) => print + car.getState() + "\n", "");
-
-            console.log(print + "\n");
+            printOutput(this.cars.reduce((str, car) => str + car.getState() + "\n", ""));
         }
-
-        console.log("\n최종 우승자 : " + this.winners.join(", "));
+        
+        printOutput("최종 우승자 : " + this.winners.join(", "));
     }
 }

@@ -30,4 +30,9 @@ const getMoveCountInput = async () => {
         throw err;
     }
 }
-export { getCarsInput, getMoveCountInput };
+
+// 출력
+const printOutput = (output) => {
+    MissionUtils.Console.print(output);
+}
+export { getCarsInput, getMoveCountInput, printOutput };
