@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import Car from '../models/Car';
+import Car from '../models/Car.js';
 
 export function startRace(carNames, tryCount) {
   const cars = carNames.map((name) => new Car(name));
