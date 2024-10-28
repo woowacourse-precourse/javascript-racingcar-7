@@ -74,3 +74,179 @@
 
 - [x] 우승자를 안내 문구 형식에 맞춰 출력하는 기능
   + 우승자가 여러 명일 경우 쉼표(,)를 이용하여 구분한다.
+
+
+## 📄 기능 구현 상세
+
+<br/>
+
+### 🪜 Layered Architecture
+  * 프레젠테이션, 어플리케이션, 도메인 계층 등으로 구분하는 구조. 
+  * 각 계층은 바로 아래 계층에만 의존하므로 한 계층의 변경이 다른 계층에 미치는 영향이 적음.
+  * **각각의 계층으로 이루어져 있기 때문에 구조상 사용하지 않는 계층(데이터베이스 계층)들을 배제하기 쉬워 선택.**
+
+<br/>
+
+**레이어드 아키텍처 각각의 계층에 대해 살펴보자면 다음과 같다.**
+
+- **Presentation Layer** : 사용자와의 상호작용을 담당하는 인터페이스 계층
+- **Application Layer** : 애플리케이션의 흐름을 제어하고 도메인 로직을 조정하는 계층
+- **Domain Layer** : 비즈니스 규칙과 로직이 구현된 핵심 계층
+- Persistence Layer : 데이터의 저장과 조회를 추상화하는 계층
+- Database Layer : 실제 데이터를 저장하고 관리하는 인프라 계층
+
+<br/>
+
+<div style="text-align: center; width:75% margin: auto;">
+
+```mermaid
+graph TD
+    A[Presentation Layer<br>UI/User Interface] --> B
+    B[Application Layer<br>Business Logic/Service] --> C
+    C[Domain Layer<br>Business Entities/Rules] --> D
+    D[Persistence Layer<br>Data Access/Repository] --> E
+    E[Database Layer<br>Database/External Systems]
+    
+    style A fill:#98FB98,stroke:none,color:#555555,font-weight:bold
+    style B fill:#B0E0FF,stroke:none,color:#555555,font-weight:bold
+    style C fill:#FFE4B5,stroke:none,color:#555555,font-weight:bold
+    style D fill:#FFB6C1,stroke:none,color:#555555,font-weight:bold
+    style E fill:#E6E6FA,stroke:none,color:#555555,font-weight:bold
+```
+
+<br/>
+
+#### 본 과제에서 사용된 계층은 **Presentation Layer**, **Application Layer**, **Domain Layer**
+
+</div>
+
+<br/>
+<br/>
+
+### 👓 Observer pattern
+
+Subject(관찰 대상)의 상태 변화가 발생할 때마다 Observer(관찰자)들에게 자동으로 알려주는 디자인 패턴.  
+
+#### 이 과제에서는 RacingProcessor가 Observer로써 Racing의 상태 변화(자동차들의 이동)를 감시하다가 변화가 발생하면 결과를 출력하는 형태로 사용하였음.
+
+<br/>
+<br/>
+
+
+### 🗄️ UML DIAGRAM
+
+<div style="text-align: center; margin: auto;">
+
+```mermaid
+classDiagram
+    direction LR
+    
+    class InputPort {
+        +readCarNames()
+        +readTargetRound()
+    }
+
+    class ConsoleInput
+
+    class InputProcessor {
+        -inputPort
+        +processInput()
+        +extractCarNames()
+        +extractTargetRound()
+    }
+
+    class Racing {
+        -inputProcessor
+        -racingProcessor
+        +execute()
+    }
+
+    class RacingProcessor {
+        -outputPort
+        -racing
+        -round
+        +processRacing()
+    }
+
+    class Round {
+        -target
+        -current
+        +isFinished()
+        +nextRound()
+    }
+
+    class Racing {
+        -cars[]
+        +validateCarNames()
+        +validateRoundCount()
+        +startNewRound()
+        +isFinished()
+    }
+
+    class Car {
+        -carName
+        -moveCount
+        +moveCar()
+    }
+
+    class OutputPort {
+        +displayRaceHeader()
+        +displayCarState()
+        +displayCarsState()
+        +displayWinners()
+    }
+
+    class ConsoleOutput
+
+    ConsoleInput ..|> InputPort
+    InputProcessor --> InputPort
+    RacingGame --> InputProcessor
+    RacingGame --> RacingProcessor
+    RacingProcessor --> OutputPort
+    RacingProcessor --> Racing: observes 
+    RacingProcessor --> Round
+    ConsoleOutput ..|> OutputPort
+    Racing --> Car
+```
+
+</div>
+
+###  🗂️ 파일 트리
+
+
+```
+📂 RacingCar
+├─ 📂 src
+│  ├─ index.js
+│  ├─ App.js
+│  ├─ 📂 application
+│  │  ├─ 📂 utils
+│  |  |  ├─ parse.js
+│  │  │  └─ InputValidator.js
+│  │  ├─ RacingInputProcessor.js
+│  │  ├─ RacingProgressor.js
+│  │  └─ RacingService.js
+│  ├─ 📂 constant
+│  │  ├─ Error.js
+│  │  ├─ Prompt.js
+│  │  └─ Rule.js
+│  ├─ 📂 domain
+│  │  ├─ 📂 validation
+│  │  │  ├─ CarNameValidator.js
+│  │  │  └─ TargetRoundValidator.js
+│  │  ├─ Car.js
+│  │  ├─ Round.js
+│  │  ├─ RacingCars.js
+│  │  └─ Racing.js
+│  ├─ 📂 port
+│  │  ├─ InputPort.js
+│  │  └─ OutputPort.js
+│  └─ 📂 presentation
+│     ├─ 📂 format
+│     |  └─ Format.js
+|     ├─ ConsoleInput.js 
+│     └─ ConsoleOutput.js
+├─ 📂 __tests__
+└─ README.MD
+```
+
