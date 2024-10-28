@@ -1,56 +1,65 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 
 class App {
   async run() {
-    
+
     const carsName = this.getCars();
     const attemptCnt = this.getAttemptCount();
 
     Console.print("");
     Console.print("실행 결과");
 
-    const carsState = Array.from({length: cars.length}, ()=>'');
+    const carsState = Array.from({ length: cars.length }, () => '');
 
-    for(let i=0;i<attemptCnt; i++){
-      startRound();
+    for (let i = 0; i < attemptCnt; i++) {
+      startRound(carsName, carsState);
     }
 
   }
 
-  startRound(){
-    //1라운드 씩 진행
+  startRound(carsName, carsState) {
+
+    for (let i = 0; i < carsName.length; i++) {
+      let randomNumber = Random.pickNumberInRange(0, 9);
+      if (randomNumber >= 4) {
+        carsState[i] += '-';
+      }
+      Console.print(`${carsName[i]} : ${carsState[i]}`);
+    }
+    Console.print("");
+
   }
 
-  async getCars(){
+  async getCars() {
     Console.print("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
     const input = await Console.readLineAsync("");
 
     const cars = input.split(",");
 
     let carsSet = new Set();
-    cars.forEach((car)=>{
-      if(cars.length <= 0 || cars.length > 5)
+    cars.forEach((car) => {
+      if (cars.length <= 0 || cars.length > 5)
         throw new Error("[ERROR] 자동차 이름의 길이는 1~5자 사이이어야 합니다.");
 
-      if(carsSet.has(car))
+      if (carsSet.has(car))
         throw new Error("[ERROR] 중복된 자동차 이름이 있습니다.");
     })
 
     return cars;
   }
 
-  async getAttemptCount(){
+  async getAttemptCount() {
     Console.print("시도할 횟수는 몇 회인가요?");
     let attemptCnt = await Console.readLineAsync("").trim();
-    
+
     attemptCnt = +attemptCnt;
-    if(isNaN(attemptCnt) || attemptCnt <= 0)
+    if (isNaN(attemptCnt) || attemptCnt <= 0)
       throw new Error("[ERROR] 시도 횟수는 자연수이어야 합니다.")
 
     return attemptCnt;
   }
 
-  
+
 
 }
 
