@@ -24,3 +24,8 @@ export const startRace = (carNames, moveCount) => {
         cars.forEach(car => car.move());
         printRaceResults(cars); // 자동차 상태 출력
     }
+
+    // 우승자 결정
+    const winners = determineWinners(cars);
+    Console.print(`\n최종 우승자: ${winners.join(', ')}`);
+};
