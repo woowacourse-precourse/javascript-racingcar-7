@@ -12,8 +12,8 @@ describe('Car 클래스 테스트', () => {
   });
 
   test('입력된 자동차 이름을 가진 자동차 인스턴스 여러 개를 생성할 수 있다.', () => {
-    const input = 'minji,minhyuk';
-    const expectedCarNames = ['minji', 'minhyuk'];
+    const input = 'minji,hyuk';
+    const expectedCarNames = ['minji', 'hyuk'];
 
     const cars = input.split(',').map((carName) => new Car(carName));
     const carNames = cars.map((car) => car.name);

@@ -33,8 +33,8 @@ describe('사용자 입력 테스트', () => {
     });
 
     test('사용자에게 경주할 자동차 여러 개의 이름을 입력받는다.', async () => {
-      const inputs = ['minji,minhyuk'];
-      const expectedInput = 'minji,minhyuk';
+      const inputs = ['minji,hyuk'];
+      const expectedInput = 'minji,hyuk';
 
       mockQuestions(inputs);
 
