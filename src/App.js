@@ -10,24 +10,24 @@ class App {
   // 자동차 이름 5자 이하 확인 함수
   onCheckName5(carList) {
     for (let name of carList) {
-      if (name.length > 5) {
-        throw new Error('Error');
+      if (name.length > 5 || name.length < 1) {
+        throw new Error('[ERROR]');
       }
     }
   }
   // 구분 에러 확인 함수
+  // 값이 없거나 빈 문자일때
   onCheckCarList(carList) {
-    for (let name of carList) {
-      if (name == '') {
-        throw new Error('ERROR');
-      }
+    if (carList.some((name) => name.trim() === '')) {
+      throw new Error('[ERROR]');
     }
+    this.onCheckName5(carList);
   }
   // 횟수 에러 확인 함수
   onCheckTryNumber(tryNumber) {
     const checkNumber = Number(tryNumber);
     if (isNaN(checkNumber) || checkNumber <= 0) {
-      throw new Error('Error');
+      throw new Error('[ERROR]');
     }
   }
   // 랜덤한 전진 값 구하는 함수
@@ -54,14 +54,12 @@ class App {
         '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)',
       );
       const carList = carInput.split(',').map((name) => name.trim());
-      this.onCheckName5(carList);
+
       this.onCheckCarList(carList);
 
       const tryNumber =
         await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?');
       this.onCheckTryNumber(tryNumber);
-      MissionUtils.Console.print(`차: ${carList}`);
-      MissionUtils.Console.print(`횟수: ${tryNumber}`);
 
       // 자동차별 결과 배열
       const results = Array(carList.length).fill('');
@@ -84,7 +82,7 @@ class App {
       MissionUtils.Console.print(`최종 우승자 : ${winner.join(', ')}`);
     } catch (error) {
       // reject 되는 경우
-      MissionUtils.Console.print('[ERROR]');
+      throw new Error('[ERROR]');
     }
   }
 }
