@@ -48,7 +48,6 @@ export const isValidGameAttempts = (input) => {
 
 export const isValidParticipantAmount = (input) => {
   const participantsNumber = input.split(',').length;
-  console.log(participantsNumber, input);
   if (
     PARTICIPANT_COUNT_RANGE.MIN > participantsNumber ||
     PARTICIPANT_COUNT_RANGE.MAX < participantsNumber
