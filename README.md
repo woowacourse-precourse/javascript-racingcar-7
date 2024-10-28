@@ -37,3 +37,4 @@ AngularJS Git Commit Message Conventions을 참고해 커밋 메시지를 작성
 ## 에러 처리
 * 이름이 5자 초과일 경우
 * 이동 횟수에 숫자가 아닌 다른 값이 들어왔을 경우
+* 입력의 끝이 구분자로 끝났을 경우
