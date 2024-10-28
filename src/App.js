@@ -47,6 +47,7 @@ class App {
       });
       this.displayRaceProgress(cars);
     }
+    this.displayWinners(cars);
   }
 
   displayRaceProgress(cars) {
@@ -54,6 +55,15 @@ class App {
       MissionUtils.Console.print(`${car.name} : ${'-'.repeat(car.go)}`);
     });
     MissionUtils.Console.print('');
+  }
+
+  displayWinners(cars) {
+    const maxGo = Math.max(...cars.map((car) => car.go));
+    const winners = cars
+      .filter((car) => car.go === maxGo)
+      .map((car) => car.name);
+
+    MissionUtils.Console.print(`최종 우승자 : ${winners.join(', ')}`);
   }
 }
 
