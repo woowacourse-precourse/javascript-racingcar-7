@@ -25,6 +25,14 @@ class App {
     return MissionUtils.Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
   }
 
+  initializeCarsObject(cars) {
+    const carsObject = {};
+    for (let car of cars) {
+      carsObject[car] = "";
+    }
+    return carsObject;
+  }
+
   async run() {
     try {
       const carsName = await this.inputCars();
@@ -33,6 +41,7 @@ class App {
       this.validateCarNames(carsList);
 
       const attempt = await this.inputAttempts();
+      const carsObject = this.initializeCarsObject(carsList);
     } catch (error) {
       throw new Error("[ERROR]");
     }
