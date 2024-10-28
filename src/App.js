@@ -20,7 +20,7 @@ function printCurrentStatus(cars, result) {
   Console.print("");
 }
 
-function randomAdvanceCars(cars, count) {
+function runRaceRounds(cars, count) {
   const result = new Array(cars.length).fill(0);
   for (let round = 0; round < count; round++) {
     generateRandomAdvance(cars, result);
@@ -46,7 +46,7 @@ class App {
     const count = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
 
     Console.print(`\n실행 결과`);
-    const result = randomAdvanceCars(cars, count);
+    const result = runRaceRounds(cars, count);
     checkWinner(cars, result);
   }
 }
