@@ -10,6 +10,10 @@ class Car {
     return MissionUtils.Random.pickNumberInRange(0, 9);
   }
 
+  canMove(number) {
+    return number >= 4;
+  }
+
   move() {
     const randomNumber = this.getRandomNumber();
   }
