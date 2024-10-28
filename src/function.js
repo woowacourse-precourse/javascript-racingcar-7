@@ -28,7 +28,5 @@ export function showCarRace(carArray, count) {
 }
 
 export function showWinnerCar(winnerCarArr) {
-    if (winnerCarArr.length > 1) {
-        Console.print('최종 우승자 : ' + winnerCarArr.join(', '));
-    } else Console.print(`최종 우승자 : ${winnerCarArr[0]}`);
+    Console.print(`최종 우승자 : ${winnerCarArr.join(', ')}`);
 }
