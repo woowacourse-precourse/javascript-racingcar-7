@@ -18,7 +18,7 @@ const ERROR_MESSAGE = {
     "[ERROR] 자동차 이름은 공백으로만 구성될 수 없습니다.",
   EMPTY_INPUT_NOT_ALLOWED: "[ERROR] 입력 내용이 없습니다.",
   ONLY_POSITIVE_NUMBER_ALLOWED:
-    "[ERROR] 이동 시도 횟수는 최소 1회이상 가능합니다.",
+    "[ERROR] 이동 시도 횟수는 양의 정수만 입력 가능합니다.",
   MOVE_ATTEMPTS_TOO_BIG: "[ERROR] 이동 시도 횟수는 최대 100회까지 가능합니다.",
 };
 
