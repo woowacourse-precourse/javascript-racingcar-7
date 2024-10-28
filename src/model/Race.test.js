@@ -54,7 +54,7 @@ describe('Race 클래스', () => {
     }
   });
 
-  test('모든 자도차가 같은 위치에 있을 때 모두를 우승자로 반환한다', () => {
+  test('모든 자동차가 같은 위치에 있을 때 모두를 우승자로 반환한다', () => {
     race.cars = [
       { name: 'car1', position: 3 },
       { name: 'car2', position: 3 },
