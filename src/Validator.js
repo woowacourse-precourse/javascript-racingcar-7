@@ -33,6 +33,14 @@ class Validator {
       throw new Error('[ERROR] 횟수는 숫자만 입력 가능합니다.');
     }
   }
+
+  #checkInteger(attempt) {
+    const isInteger = Number.isInteger(attempt);
+
+    if (!isInteger) {
+      throw new Error('[ERROR] 횟수는 정수만 입력 가능합니다.');
+    }
+  }
 }
 
 export default Validator;
