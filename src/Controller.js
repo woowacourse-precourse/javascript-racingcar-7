@@ -1,6 +1,6 @@
 import OutputView from './View/OutputView.js';
 import InputView from './View/InputView.js';
-import CarModel from './CarModel.js';
+import CarModel from './Model/CarModel.js';
 import { validateName, validateTryCount } from './validation.js';
 import { getRandomNumber } from './utils/getRandomNumber.js';
 
