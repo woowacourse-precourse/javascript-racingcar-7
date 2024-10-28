@@ -24,4 +24,12 @@ describe('raceController Test', () => {
     controller.cars[2].position = 4;
     expect(controller.getMaxPosition()).toBe(4);
   });
+
+  test('maxPosition의 값을 가진 자동차 이름이 올바르게 출력되는 지 확인한다', () => {
+    controller.cars[0].position = 2;
+    controller.cars[1].position = 4;
+    controller.cars[2].position = 4;
+    const maxPosition = controller.getMaxPosition();
+    expect(controller.getWinners(maxPosition)).toEqual(['jun', 'woni']);
+  });
 });
