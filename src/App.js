@@ -9,7 +9,7 @@ class App {
     const rounds = await getValidatedNumberInput(INFO_MESSAGE.QUESTION_TRAIL);
     const race = initialRace(carsName, rounds);
 
-    for (let i = 0; i < race.rounds; i++) {
+    for (let i = 0; i < race.getRounds(); i++) {
       race.startRound();
       const status = race.getCurrentStatus();
       printCurrentStatus(status);

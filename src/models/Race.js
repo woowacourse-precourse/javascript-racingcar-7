@@ -2,6 +2,8 @@ import { validateRacerAmount, validateRounds } from "../libs/validate.js";
 import Car from "./Car.js";
 
 export default class Race {
+  #racers;
+  #rounds;
   /**
    *
    * @param {number} rounds
@@ -10,25 +12,27 @@ export default class Race {
   constructor(racers, rounds) {
     validateRacerAmount(racers.length);
     validateRounds(rounds);
-    this.racers = racers;
-    this.rounds = rounds;
-    this.winner = [];
+    this.#racers = racers;
+    this.#rounds = rounds;
   }
+
   getRounds() {
-    return this.rounds;
+    return this.#rounds;
   }
+
   startRound() {
-    this.racers.forEach((racer) => racer.attemptMove());
+    this.#racers.forEach((racer) => racer.attemptMove());
   }
+
   getCurrentStatus() {
-    return this.racers.map((racer) => ({ name: racer.name, position: racer.position }));
+    return this.#racers.map((racer) => ({ name: racer.getName(), position: racer.getPosition() }));
   }
 
   getFinalWinner() {
-    const maxPosition = Math.max(...this.racers.map((racer) => racer.position));
-    return this.racers
-      .filter((racer) => racer.position === maxPosition)
-      .map((racer) => racer.name)
+    const maxPosition = Math.max(...this.#racers.map((racer) => racer.getPosition()));
+    return this.#racers
+      .filter((racer) => racer.getPosition() === maxPosition)
+      .map((racer) => racer.getName())
       .join(",");
   }
 }
