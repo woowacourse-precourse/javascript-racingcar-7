@@ -7,6 +7,7 @@ export const GAME_SETTINGS = Object.freeze({
   MINIMUM_ATTEMPT: 1,
   MAX_NAME_LENGTH: 5,
   MINIMUM_CARS: 2,
+  RACING_START_POINT: 0,
 });
 
 export const SYMBOLS = Object.freeze({
@@ -15,6 +16,5 @@ export const SYMBOLS = Object.freeze({
   SPACE: ' ',
   CAR_DELIMITER: ',',
   WINER_DELIMITER: ', ',
-  START_POINT: 0,
   RACE_PROGRESS: '-',
 });

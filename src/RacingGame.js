@@ -14,7 +14,11 @@ class RacingGame {
   startRace() {
     RaceStatusDisplay.printRaceStartMessage();
 
-    for (let Racing = SYMBOLS.START_POINT; Racing < this.#attempt; Racing++) {
+    for (
+      let Racing = GAME_SETTINGS.RACING_START_POINT;
+      Racing < this.#attempt;
+      Racing++
+    ) {
       this.#racingCars.moveCarsInRound();
       RaceStatusDisplay.printRoundStatus(this.#racingCars.getCars());
     }
