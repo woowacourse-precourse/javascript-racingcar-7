@@ -9,7 +9,7 @@ class App {
     Console.print("");
     Console.print("실행 결과");
 
-    const carsState = Array.from({ length: cars.length }, () => '');
+    const carsState = Array.from({ length: carsName.length }, () => '');
 
     for (let i = 0; i < attemptCnt; i++) {
       startRound(carsName, carsState);
