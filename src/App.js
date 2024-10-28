@@ -21,6 +21,7 @@ class App {
       const attemptCount = Number(attemptInput);
       checkAttemptCount(attemptCount);
 
+      
       let random = MissionUtils.Random.pickNumberInRange(0, 9);
       console.log(random);
     } catch (error) {
