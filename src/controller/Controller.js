@@ -1,5 +1,5 @@
-import InputView from "../view/inputView";
-import OutputView from "../view/OutputView";
+import InputView from "../view/inputView.js";
+import OutputView from "../view/OutputView.js";
 
 class Controller {
     #inputView;
