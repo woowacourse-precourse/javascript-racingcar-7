@@ -1,12 +1,18 @@
 import Car from './Car.js';
-import ViewIn from './view/ViewIn.js';
-import ViewOut from './view/ViewOut.js';
+
 import { parseCars } from './utils/parser.js';
 import { sortScore } from './utils/sort.js';
 import { validateCars } from './utils/validator/car.js';
 import { validateCount } from './utils/validator/count.js';
 import { THRESHOLD } from './constants/threshold.js';
 import { Random } from '@woowacourse/mission-utils';
+import { getCars, getCount } from './utils/view/viewIn.js';
+import {
+	showEmpty,
+	showRaceStatus,
+	showRaceWinner,
+	showResultMessage,
+} from './utils/view/viewOut.js';
 
 export default class Race {
 	#cars;
@@ -14,8 +20,8 @@ export default class Race {
 	#winner;
 
 	async init() {
-		const cars = await ViewIn.cars();
-		const count = await ViewIn.count();
+		const cars = await getCars();
+		const count = await getCount();
 
 		const carsArray = parseCars(cars);
 
@@ -27,17 +33,17 @@ export default class Race {
 	}
 
 	start() {
-		ViewOut.empty();
-		ViewOut.resultMessage();
+		showEmpty();
+		showResultMessage();
 		this.#round();
 		this.#selectWinner();
-		ViewOut.raceWinner(this.#winner);
+		showRaceWinner(this.#winner);
 	}
 
 	#round() {
 		for (let i = 0; i < this.#count; i++) {
 			this.#race();
-			ViewOut.raceStatus(this.#cars);
+			showRaceStatus(this.#cars);
 		}
 	}
 

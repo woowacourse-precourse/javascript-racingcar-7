@@ -1,7 +1,11 @@
 import Car from '../src/Car.js';
-import ViewOut from '../src/view/ViewOut.js';
 import { Console } from '@woowacourse/mission-utils';
 import { OUTPUT } from '../src/constants/message.js';
+import {
+	showRaceStatus,
+	showRaceWinner,
+	showResultMessage,
+} from '../src/utils/view/viewOut.js';
 
 jest.mock('@woowacourse/mission-utils', () => ({
 	Console: {
@@ -9,7 +13,7 @@ jest.mock('@woowacourse/mission-utils', () => ({
 	},
 }));
 
-describe('ViewOut 결과 출력 테스트', () => {
+describe('결과 출력 테스트', () => {
 	beforeEach(() => {
 		Console.print.mockClear();
 	});
@@ -20,19 +24,19 @@ describe('ViewOut 결과 출력 테스트', () => {
 		// 첫 번째 라운드
 		cars[0].move(5);
 		cars[1].move(3);
-		ViewOut.raceStatus(cars);
+		showRaceStatus(cars);
 
 		// 두 번째 라운드
 		cars[0].move(6);
 		cars[1].move(5);
-		ViewOut.raceStatus(cars);
+		showRaceStatus(cars);
 
 		// 세 번째 라운드
 		cars[0].move(1);
 		cars[1].move(5);
-		ViewOut.raceStatus(cars);
+		showRaceStatus(cars);
 
-		ViewOut.resultMessage();
+		showResultMessage();
 
 		const expectedRaceLogs = [
 			'Ray1 : -',
@@ -56,7 +60,7 @@ describe('ViewOut 결과 출력 테스트', () => {
 	test('테스트 - 우승자가 올바르게 출력되는가', () => {
 		const winnerCars = [new Car('Ray1'), new Car('Ray2')];
 
-		ViewOut.raceWinner(winnerCars);
+		showRaceWinner(winnerCars);
 
 		expect(Console.print).toHaveBeenCalledWith(`${OUTPUT.WINNER} : Ray1, Ray2`);
 	});
