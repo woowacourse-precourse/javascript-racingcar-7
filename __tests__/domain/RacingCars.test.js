@@ -25,20 +25,31 @@ describe('RacingCars 테스트', () => {
       expect(() => RacingCars.create(duplicateNames)).toThrow('[ERROR]');
     });
   });
-
   describe('moveCars 메서드 테스트', () => {
     test('모든 자동차가 이동하는지 확인', () => {
+      const mockMoveCar = jest.fn().mockReturnValue(1);
       // given
-      const racingCars = RacingCars.create(['pobi', 'woni']);
+      const mockCar1 = {
+        moveCar: mockMoveCar,
+        getCarName: () => 'car1',
+        getMoveCount: () => 1,
+      };
+      const mockCar2 = {
+        moveCar: mockMoveCar,
+        getCarName: () => 'car2',
+        getMoveCount: () => 1,
+      };
+      const racingCars = new RacingCars([mockCar1, mockCar2]);
 
       // when
       racingCars.moveCars();
 
       // then
-      const carsState = racingCars.getCarsState();
-      expect(carsState).toEqual([
-        { name: 'pobi', moveCount: 1 },
-        { name: 'woni', moveCount: 1 },
+      expect(mockMoveCar).toHaveBeenCalledTimes(2);
+
+      expect(racingCars.getCarsState()).toEqual([
+        { name: 'car1', moveCount: 1 },
+        { name: 'car2', moveCount: 1 },
       ]);
     });
   });
