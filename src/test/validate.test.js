@@ -1,4 +1,4 @@
-import { validateInput } from '../parsers/Validate.js'; // default export를 중괄호 없이 가져오기
+import { validateInput } from '../parsers/validate.js'; // default export를 중괄호 없이 가져오기
 import { ERROR_MESSAGE } from '../const/index.js';
 
 describe('validate test', () => {
