@@ -16,8 +16,10 @@ class App {
             const count = Array(carArray.length).fill(0);
 
             // 경주 게임
+            Console.print('\n실행 결과');
             for (let i = 0; i < tryNum; i++) {
                 moveCar(carArray, count);
+                showCarRace(carArray, count); // 경주 게임 출력
             }
 
             // 우승한 자동차
@@ -61,4 +63,12 @@ function winnerCar(carArray, count, max) {
         }
     }
     return winnerArray;
+}
+
+function showCarRace(carArray, count) {
+    for (let i = 0; i < carArray.length; i++) {
+        const numOfcount = '-'.repeat(count[i]);
+        Console.print(`${carArray[i]} : ${numOfcount}`);
+    }
+    Console.print('');
 }
