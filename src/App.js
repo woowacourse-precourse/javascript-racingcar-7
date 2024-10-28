@@ -2,14 +2,18 @@ import { Console, MissionUtils } from '@woowacourse/mission-utils';
 
 async function InputValue() {
   let input_name = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
-  if (input_name.length > 5) throw new Error("[ERROR] 잘못된 입력입니다.");
+  let car_name = input_name.split(',');
+
+  car_name.forEach(index => {
+    if (index.length > 5) throw new Error("[ERROR] 잘못된 입력입니다.");
+  })
 
   let input_times = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
   let times = Number(input_times);  // 숫자가 아닌 무언가가 들어가면 NaN 반환
-  // Console.print(typeof times);
+
   if (Number.isNaN(times)) throw new Error("[ERROR] 잘못된 입력입니다.");
 
-  let car_name = input_name.split(',');
+  
 
   return [car_name, input_times];
 }
