@@ -1,4 +1,7 @@
-import { INPUT_ERROR_MESSAGE, NAME_LENGTH_ERROR_MESSAGE } from "./constants/Messages.js";
+import {
+  INPUT_ERROR_MESSAGE,
+  OVER_NAME_LENGTH_ERROR_MESSAGE,
+} from "./constants/Messages.js";
 import { MAX_NAME_LENGTH } from "./constants/Constants.js";
 
 export class Car {
@@ -17,7 +20,7 @@ export class Car {
   }
 
   #checkLength(name) {
-    if (name.length > MAX_NAME_LENGTH) throw new Error(NAME_LENGTH_ERROR_MESSAGE);
+    if (name.length > MAX_NAME_LENGTH) throw new Error(OVER_NAME_LENGTH_ERROR_MESSAGE);
   }
 
   #checkEmpty(name) {
