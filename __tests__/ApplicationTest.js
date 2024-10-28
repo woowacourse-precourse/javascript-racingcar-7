@@ -40,6 +40,8 @@ describe("자동차 경주", () => {
     const app = new App();
     await app.run();
 
+
+    
     // then
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
