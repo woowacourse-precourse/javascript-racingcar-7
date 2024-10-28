@@ -1,5 +1,5 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
-import { MOVE_CONDITION } from "../constants/constants";
+import { MOVE_CONDITION } from "../constants/constants.js";
 
 function movingCondition(carPosition) {
   const random = MissionUtils.Random.pickNumberInRange;
