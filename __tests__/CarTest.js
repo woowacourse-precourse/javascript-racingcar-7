@@ -1,7 +1,10 @@
-import { Random } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 import Car from '../src/models/Car';
 
 jest.mock('@woowacourse/mission-utils', () => ({
+  Console: {
+    print: jest.fn(),
+  },
   Random: {
     pickNumberInRange: jest.fn(),
   },
@@ -28,5 +31,17 @@ describe('Car 클래스 테스트', () => {
     Random.pickNumberInRange.mockReturnValueOnce(1);
     car.tryMove();
     expect(car.getDistance()).toBe(1);
+  });
+
+  test('printStatus가 Console.print를 올바르게 호출해야 함', () => {
+    const car = new Car('pobi');
+
+    car.printStatus();
+    expect(Console.print).toHaveBeenCalledWith('pobi : ');
+
+    Random.pickNumberInRange.mockReturnValueOnce(5);
+    car.tryMove();
+    car.printStatus();
+    expect(Console.print).toHaveBeenCalledWith('pobi : -');
   });
 });
