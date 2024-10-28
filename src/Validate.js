@@ -22,6 +22,11 @@ class Validate {
 
         attempts = Validate.isNumber(attempts);
 
+        if (!Number.isInteger(attempts)) {
+            const errMessage = `[ERROR] 시도 횟수는 정수를 입력해주세요(Not Integer: ${attempts})`;
+            throw new Error(errMessage);
+        }
+
         return attempts;
     }
 
