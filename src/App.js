@@ -65,7 +65,11 @@ class App {
   }
 
   printWinner(cars) {
-    const MAX_POSITION = cars.reduce((maxValue, car) => maxValue,0)
+    const MAX_POSITION = cars.reduce((maxValue, car) => maxValue > car.position ? maxValue : car.position, 0);
+    const WINNERS = cars.filter(car => car.position === MAX_POSITION);
+    const WINNER_LIST =  WINNERS.map(car => car.name).join(', ');
+
+    MissionUtils.Console.print(`최종 우승자 : ${WINNER_LIST}`);
   }
 
   async run() {
@@ -83,7 +87,7 @@ class App {
         this.printRoundState(CARS);
       }
       
-
+      this.printWinner(CARS);
     } catch (error) {
       throw error;
     }
