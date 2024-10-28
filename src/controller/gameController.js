@@ -11,7 +11,7 @@ class GameController {
     if (!carNames) return;
     this.carNames = carNames;
 
-    const tryCountInput = await InputView.readGameRounds();
+    const tryCountInput = await InputView.readTryCount();
     const tryCount = Verify.verifyTryCount(tryCountInput);
     if (!tryCount) return;
     this.tryCount = tryCount;
