@@ -59,11 +59,18 @@ class App {
     }
   }
 
+  calculateResult(cars) {
+    const sortedCars = [...cars].sort(
+      (prev, next) => next.distance - prev.distance
+    );
+  }
+
   async run() {
     const cars = [];
     await this.readCarNames(cars);
     const attemptCount = await this.readAttemptCount();
     this.runRace(cars, attemptCount);
+    this.calculateResult(cars);
     Console.print(cars[0].Name);
     Console.print(attemptCount);
   }
