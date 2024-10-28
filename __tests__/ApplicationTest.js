@@ -8,6 +8,7 @@ import {
   findWinners,
 } from '../src/models/Model.js';
 import App from '../src/App.js';
+import { validateCarNames } from '../src/models/ErrorHandler.js';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -83,12 +84,27 @@ const testCar = (description, fn, input, expectedOutput) => {
 };
 
 describe('Custom Test', () => {
-  test('사용자 입력 확인', async () => {
+  test.each([
+    [CAR_NAMES_STRING, CAR_NAMES_STRING], // 정상적인 입력
+    ['happy,helloo', '[ERROR] 자동차 이름은 5자 이하로 입력해야 합니다.'], // 에러 발생 입력
+  ])('사용자 입력 확인', async (inputData, expectedOutput) => {
     const consoleSpy = jest
       .spyOn(MissionUtils.Console, 'readLineAsync')
-      .mockImplementation(() => Promise.resolve(CAR_NAMES_STRING));
-    const input = await getUserInput();
-    expect(input).toBe(CAR_NAMES_STRING);
+      .mockImplementation(() => Promise.resolve(inputData));
+
+    if (expectedOutput.startsWith('[ERROR]')) {
+      // 에러가 예상되는 경우
+      await expect(async () => {
+        const input = await getUserInput();
+        // 입력 값을 유효성 검사 함수에 전달하여 에러를 발생시킴
+        validateCarNames(input.split(','));
+      }).rejects.toThrow(expectedOutput);
+    } else {
+      // 정상적인 경우
+      const input = await getUserInput();
+      expect(input).toBe(expectedOutput);
+    }
+
     consoleSpy.mockRestore();
   });
 
