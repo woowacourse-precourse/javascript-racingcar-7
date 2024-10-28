@@ -6,11 +6,11 @@ class App {
       "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
     );
 
-    if (carname === "") {
+    const removedWhitespace = carname.replace(/ /g, "");
+    if (removedWhitespace === "") {
       throw new Error("[ERROR] 이름은 필수 입력해야 해요.");
     }
 
-    const removedWhitespace = carname.replace(/ /g, "");
     const cars = removedWhitespace.split(",");
 
     cars.forEach((car) => {
