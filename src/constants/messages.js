@@ -14,6 +14,8 @@ const ERROR_MESSAGE = {
   DUPLICATE_NAME_NOT_ALLOWED: "[ERROR] 자동차 이름은 중복이 불가능합니다.",
   CAR_LIST_TOO_SMALL: "[ERROR] 자동차 개수는 2대 이상이어야 합니다.",
   CAR_LIST_TOO_BIG: "[ERROR] 자동차 개수는 최대 100대까지 가능합니다.",
+  WHITESPACE_ONLY_NAME_NOT_ALLOWED:
+    "[ERROR] 자동차 이름은 공백으로만 구성될 수 없습니다.",
   EMPTY_INPUT_NOT_ALLOWED: "[ERROR] 입력 내용이 없습니다.",
   ONLY_POSITIVE_NUMBER_ALLOWED:
     "[ERROR] 이동 시도 횟수는 최소 1회이상 가능합니다.",

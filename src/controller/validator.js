@@ -16,6 +16,7 @@ class Validator {
     Validator.#checkNameLength(carName);
     Validator.#checkSpecialCharacters(carName);
     Validator.#checkNameLanguage(carName);
+    Validator.#checkWhiteSpaceName(carName);
   }
 
   static checkCarList(carList) {
@@ -42,6 +43,12 @@ class Validator {
   static #checkNameLanguage(carName) {
     if (!Validator.#NAME_LANGUAGE_REGEX.test(carName)) {
       throw new Error(ERROR_MESSAGE.ONLY_ENGLISH_AND_KOREAN_ALLOWED);
+    }
+  }
+
+  static #checkWhiteSpaceName(carName) {
+    if (!carName.trim()) {
+      throw new Error(ERROR_MESSAGE.WHITESPACE_ONLY_NAME_NOT_ALLOWED);
     }
   }
 
