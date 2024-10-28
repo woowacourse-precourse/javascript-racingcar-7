@@ -42,5 +42,9 @@ export const validateUserAttempts = (attempts) => {
     throw new Error(ATTEMPT_COUNT_ERROR_MESSAGE.attemptCountNegative);
   }
 
+  if (Number.isInteger(FORMAT_ATTEMPT) === false) {
+    throw new Error(ATTEMPT_COUNT_ERROR_MESSAGE.attemptCountNotInteger);
+  }
+
   return FORMAT_ATTEMPT;
 };
