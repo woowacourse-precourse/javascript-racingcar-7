@@ -7,8 +7,10 @@ const InputValidator = {
     }
   },
 
-  isLength: (input) => {
-    if ([...input].length <= 5) {
+  isNameLength: (inputArray) => {
+    const tooLongName = inputArray.some((item) => [...item].length > 5);
+
+    if (tooLongName) {
       throw new Error(MESSAGES.ERROR.MAX_NAME_LENGTH);
     }
   },

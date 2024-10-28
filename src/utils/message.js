@@ -9,6 +9,7 @@ const MESSAGES = {
     EMPTY_INPUT: "[ERROR] 입력값이 비었습니다.",
     NOT_INTEGER: "[ERROR] 정수만 입력해주세요.",
     MAX_TRY: "[ERROR] 시도할 횟수는 10000번 이하여야합니다.",
+    MAX_NAME_LENGTH: "[ERROR] 이름이 너무 깁니다.(5글자 이내)",
   },
   RESULT: {
     WINNER: "최종 우승자 : ",

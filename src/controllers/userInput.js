@@ -6,7 +6,6 @@ export const userInput = async () => {
   try {
     const carNames = await InputCarName();
     InputValidator.isEmpty(carNames);
-    InputValidator.isLength(carNames);
 
     const tryNumber = await InputTryNumber();
     const parseTryNumber = Number(tryNumber);
