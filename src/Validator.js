@@ -19,11 +19,9 @@ class Validator {
   }
 
   #validateMaxLength() {
-    this.#value.forEach((value) => {
-      if (value.length > MAX_INPUT_LENGTH) {
-        throw new Error(ERROR_MESSAGE.NAME_TOO_LONG);
-      }
-    });
+    if (this.#value.some((value) => value.length > MAX_INPUT_LENGTH)) {
+      throw new Error(ERROR_MESSAGE.NAME_TOO_LONG);
+    }
   }
 
   #validateNoDuplicates() {
