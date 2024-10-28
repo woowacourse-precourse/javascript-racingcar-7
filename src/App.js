@@ -7,6 +7,7 @@ class App {
     const scores = this.setScores(carNames);
     this.playGame(times, carNames, scores);
     const winners = this.getWinners(carNames, scores);
+    this.showWinners(winners);
   }
 
   async getCarNames() {
@@ -101,6 +102,10 @@ class App {
       }
     });
     return winners;
+  }
+
+  showWinners(winners = []) {
+    Console.print(`최종 우승자 : ${winners.join(", ")}`);
   }
 }
 
