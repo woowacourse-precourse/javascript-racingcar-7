@@ -1,5 +1,5 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
-import { Constants } from '../utils/constants.js'
+import Constants from '../utils/constants.js'
 class InputView {
   static readCarNames(callback) {
     MissionUtils.Console.readLineAsync(Constants.INPUT_MESSAGES.CAR_NAME_QUESTION)
