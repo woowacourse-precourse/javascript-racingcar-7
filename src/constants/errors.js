@@ -7,7 +7,7 @@ const ERROR = {
   },
   INVALID_CAR_NAMES: {
     name: 'InvalidCarNamesError',
-    message: `${ERROR_TAG} 자동차 이름은 1자 이상 5자 이하의 문자열이어야 합니다.`,
+    message: `${ERROR_TAG} 자동차 이름은 5자 이하의 문자열이어야 합니다.`,
   },
 
   EMPTY_ROUND_COUNT: {
