@@ -21,22 +21,22 @@ class App {
   }
 
   validateSplitCarNames(splitCarNames) {
-    const UNIQUE_NAME = new Set();
+    let unique_name = new Set();
   
     splitCarNames.forEach(name => {
       if (name.length > 5) {
         throw new Error('[ERROR] 이름은 5글자를 넘을 수 없습니다!');
       }
-      if (UNIQUE_NAME.has(name)) {
+      if (unique_name.has(name)) {
         throw new Error('[ERROR] 이름은 중복으로 설정할 수 없습니다!');
       }
-      if (UNIQUE_NAME.has('')) {
+      if (unique_name.has('')) {
         throw new Error('[ERROR] 이름은 공백으로 설정할 수 없습니다!');
       }
-      UNIQUE_NAME.add(name);
+      unique_name.add(name);
     });
 
-    return Array.from(UNIQUE_NAME);
+    return Array.from(unique_name);
   }
 
   createCars(validSplitCarName) {
@@ -44,7 +44,7 @@ class App {
   }
 
   validateRoundNumber(roundNumber) {
-    const NUMBER = parseInt(roundNumber)
+    const NUMBER = parseInt(roundNumber);
 
     if(isNaN(NUMBER)){
       throw new Error('[ERROR] 숫자를 입력해야 합니다!');
@@ -65,8 +65,8 @@ class App {
   }
 
   printWinner(cars) {
-    const MAX_POSITION = cars.reduce((maxValue, car) => maxValue > car.position ? maxValue : car.position, 0);
-    const WINNERS = cars.filter(car => car.position === MAX_POSITION);
+    let max_position = cars.reduce((maxValue, car) => maxValue > car.position ? maxValue : car.position, 0);
+    const WINNERS = cars.filter(car => car.position === max_position);
     const WINNER_LIST =  WINNERS.map(car => car.name).join(', ');
 
     MissionUtils.Console.print(`최종 우승자 : ${WINNER_LIST}`);
