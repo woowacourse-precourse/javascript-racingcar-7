@@ -1,24 +1,24 @@
-import { Random } from "@woowacourse/mission-utils";
+import { Random } from '@woowacourse/mission-utils';
 
 class Car {
-    name;
-    go = '';
+  name;
+  go = '';
 
-    constructor(name) {
-        this.name = name;
+  constructor(name) {
+    this.name = name;
+  }
+
+  tryToGo() {
+    if (Random.pickNumberInRange(0, 9) >= 4) {
+      this.go += '-';
     }
 
-    tryToGo() {
-        if(Random.pickNumberInRange(0, 9) >= 4) {
-            this.go += '-';
-        }
+    return this.go;
+  }
 
-        return this.go;
-    }
-
-    getNumOfGo() {
-        return this.go.length;
-    }
+  getNumOfGo() {
+    return this.go.length;
+  }
 }
 
 export default Car;
