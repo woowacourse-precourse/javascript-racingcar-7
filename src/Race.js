@@ -1,13 +1,15 @@
 import { Random } from '@woowacourse/mission-utils';
-import { Console } from '@woowacourse/mission-utils';
+import { printEmptyLine, printHeader, printRaceResult, printWinner } from './functions/print-output.js';
 
 class Race {
 
     raceCar(tryNumber, carList, positionList){
-        Console.print("\n실행 결과");
+        printHeader();
         for(let i = 0; i < tryNumber; i++){
             this.getRaceResult(carList, positionList);
         }
+        const winner = this.findWinner(carList, positionList);
+        printWinner(winner);
     }
 
     getRaceResult(carList, positionList){
@@ -15,11 +17,9 @@ class Race {
             if(this.moveForward()){
                 positionList[idx] += 1;
             }
-
-            const positionDisplay = '-'.repeat(positionList[idx]);
-            Console.print(`${car} : ${positionDisplay}`);
+            printRaceResult(car, positionList[idx]);
         });
-        Console.print('');
+        printEmptyLine();
     }
 
     moveForward(){

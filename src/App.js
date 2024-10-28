@@ -1,5 +1,5 @@
 import { getCarName, getTryNumber } from "./functions/get-input.js";
-import Race from './Car.js';
+import Race from './Race.js';
 
 class App {
   async run() {
