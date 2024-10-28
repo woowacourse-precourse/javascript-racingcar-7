@@ -16,8 +16,17 @@ class App {
 
   async getTime() {
     let times = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
-    times = Number(times);
-    return times;
+    await this.checkTime(times)
+    return Number(times);
+  }
+
+  async checkTime(times) {
+    if (Number.isInteger(Number(times)) === false) {
+      throw new Error("[ERROR] 잘못된 입력 형식입니다.");
+    }
+    if (Number(times) <= 0) {
+      throw new Error("[ERROR] 0이하 수가 입력 되었습니다.");
+    }
   }
 
   async checkName(NAMES) {
