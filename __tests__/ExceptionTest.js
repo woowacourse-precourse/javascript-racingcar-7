@@ -11,43 +11,55 @@ const mockQuestions = (inputs) => {
 };
 
 describe("자동차 경주 예외 처리 테스트", () => {
-    test("자동차 이름이 5자를 초과하는 경우", async () => {
-        const inputs = ["pobi,javaji", "2"];
-        mockQuestions(inputs);
+    test.each([
+        { carNames: "티볼리,제네시스G80", tryCnt: "3", expected: "[ERROR]" },
+        { carNames: "트레일블레이저", tryCnt: "3", expected: "[ERROR]" },
+        { carNames: "아반떼,셀토스,트레일블레이저", tryCnt: "2", expected: "[ERROR]" },
+    ])(
+        "5자를 초과하는 자동차 이름이 있는 경우 예외 발생 ($carNames, $tryCnt) => $expected",
+        async ({ carNames, tryCnt, expected }) => {
+            mockQuestions([carNames, tryCnt]);
+            const app = new App();
+            await expect(app.run()).rejects.toThrow(expected);
+        }
+    );
 
-        const app = new App();
-        await expect(app.run()).rejects.toThrow("[ERROR]");
-    });
+    test.each([
+        { carNames: "티볼리,,셀토스", tryCnt: "2", expected: "[ERROR]" },
+        { carNames: ",,", tryCnt: "3", expected: "[ERROR]" },
+        { carNames: "", tryCnt: "2", expected: "[ERROR]" },
+    ])(
+        "이름이 없는 자동차가 있는 경우 예외 발생 ($carNames, $tryCnt) => $expected",
+        async ({ carNames, tryCnt, expected }) => {
+            mockQuestions([carNames, tryCnt]);
+            const app = new App();
+            await expect(app.run()).rejects.toThrow(expected);
+        }
+    );
 
-    test("자동차 이름이 빈 문자열인 경우", async () => {
-        const inputs = ["pobi,,woni", "3"];
-        mockQuestions(inputs);
+    test.each([
+        { carNames: "티볼리,셀토스", tryCnt: "2번", expected: "[ERROR]" },
+        { carNames: "티볼리,셀토스", tryCnt: "3%", expected: "[ERROR]" },
+        { carNames: "티볼리,셀토스", tryCnt: "", expected: "[ERROR]" },
+    ])(
+        "시도 횟수가 숫자가 아닌 경우 예외 발생 ($carNames, $tryCnt) => $expected",
+        async ({ carNames, tryCnt, expected }) => {
+            mockQuestions([carNames, tryCnt]);
+            const app = new App();
+            await expect(app.run()).rejects.toThrow(expected);
+        }
+    );
 
-        const app = new App();
-        await expect(app.run()).rejects.toThrow("[ERROR]");
-    });
-
-    test("시도 횟수가 숫자가 아닌 경우", async () => {
-        const inputs = ["pobi,woni", "test"];
-        mockQuestions(inputs);
-
-        const app = new App();
-        await expect(app.run()).rejects.toThrow("[ERROR]");
-    });
-
-    test("시도 횟수가 음수나 0인 경우", async () => {
-        const inputs = ["pobi,woni", "-1"];
-        mockQuestions(inputs);
-
-        const app = new App();
-        await expect(app.run()).rejects.toThrow("[ERROR]");
-    });
-
-    test("입력값이 없이 엔터를 누른 경우", async () => {
-        const inputs = [""];
-        mockQuestions(inputs);
-
-        const app = new App();
-        await expect(app.run()).rejects.toThrow("[ERROR]");
-    });
+    test.each([
+        { carNames: "티볼리,셀토스", tryCnt: "0", expected: "[ERROR]" },
+        { carNames: "티볼리,셀토스", tryCnt: "-3", expected: "[ERROR]" },
+        { carNames: "티볼리,셀토스", tryCnt: "-1000000", expected: "[ERROR]" },
+    ])(
+        "시도 횟수가 숫자가 음수나 0인 경우 예외 발생 ($carNames, $tryCnt) => $expected",
+        async ({ carNames, tryCnt, expected }) => {
+            mockQuestions([carNames, tryCnt]);
+            const app = new App();
+            await expect(app.run()).rejects.toThrow(expected);
+        }
+    );
 });
