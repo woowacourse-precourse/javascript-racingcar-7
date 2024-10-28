@@ -26,4 +26,13 @@ export default class CarRace {
       () => Random.pickNumberInRange(0, 9) >= 4,
     );
   }
+
+  race() {
+    const moveDecisions = this.getMoveDecisions();
+    moveDecisions.forEach((decision, index) => {
+      if (decision) {
+        this.#cars[index].move();
+      }
+    });
+  }
 }
