@@ -17,7 +17,8 @@ class RacingGame {
     try {
       await this.getCarNames();
       await this.getCount();
-      
+      this.runRacing();
+      this.printWinners();
     } catch (error) {
       MissionUtils.Console.print(error.message);
     }
@@ -63,6 +64,27 @@ class RacingGame {
 
     this.count = count;
   }
+    /**
+     * 레이싱을 시도 횟수만큼 진행하고 결과를 출력
+     */
+    runRacing() {
+        MissionUtils.Console.print('실행 결과');
+        for (let i = 0; i < this.count; i += 1) {
+        this.moveCars();
+        this.printCars();
+        MissionUtils.Console.print('');
+        }
+    }
+
+    /**
+     * 모든 자동차를 이동
+     */
+    moveCars() {
+        this.cars.forEach((car) => {
+        car.move();
+        });
+    }
+
 
   /**
    * 모든 자동차의 현재 위치를 출력
@@ -73,6 +95,17 @@ class RacingGame {
     });
   }
 
+  /**
+   * 우승자를 결정하고 출력
+   */
+  printWinners() {
+    const maxPosition = Math.max(...this.cars.map((car) => car.position));
+    const winners = this.cars
+      .filter((car) => car.position === maxPosition)
+      .map((car) => car.name);
+    MissionUtils.Console.print(`최종 우승자 : ${winners.join(', ')}`);
+  }
 }
+
 
 export default RacingGame;
