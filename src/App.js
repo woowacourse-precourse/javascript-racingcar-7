@@ -5,6 +5,10 @@ export async function inputCarsNameWithDelimeter() {
   return inputString;
 }
 
+export function splitCarsName(inputString) {
+  return inputString.split(',')
+}
+
 class App {
   async run() {}
 }
