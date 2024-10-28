@@ -27,11 +27,11 @@
 
 ### 그 외 요구 사항
 
-- [ ] AngularJS Git Commit Message Conventions에 맞춰 커밋 메시지 작성
-- [ ] JavaScript Style Guide 컨벤션을 지키며 코드 작성
-- [ ] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현하기
-- [ ] 3항 연산자를 쓰지 않기
-- [ ] 코드를 깔끔하게 리팩토링
+- [x] AngularJS Git Commit Message Conventions에 맞춰 커밋 메시지 작성
+- [x] JavaScript Style Guide 컨벤션을 지키며 코드 작성
+- [x] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현하기
+- [x] 3항 연산자를 쓰지 않기
+- [x] 코드를 깔끔하게 리팩토링
 
 ## 클래스 역할
 
