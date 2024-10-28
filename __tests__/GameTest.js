@@ -1,3 +1,6 @@
+import Game from '../src/Game.js';
+import Car from '../src/Car.js';
+
 describe('Game 클래스 테스트', () => {
   test('전진 횟수가 가장 많은 자동차(우승자)를 구할 수 있다.', () => {
     const carNames = ['zzi', 'hyuk', 'kki'];
