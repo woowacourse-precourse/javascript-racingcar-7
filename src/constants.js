@@ -5,12 +5,14 @@ export const INPUT_PROMPT = {
 
 export const REGEX = {
   carName: /^.{1,5}$/g,
+  roundCount: /[^0-9]/g,
 };
 
 export const BEFORE_ERROR_MESSAGE = '[ERROR]';
 
 export const ERROR_MESSAGE = {
   carNameCharacterCountError: `${BEFORE_ERROR_MESSAGE} 경주에 참여 가능한 자동차 이름은 최소 1자 이상, 최대 5자 이하입니다.`,
+  roundCountFormat: `${BEFORE_ERROR_MESSAGE} 이동 시도 횟수는 숫자로만 입력해야 합니다.`,
 };
 
 export const FORWARD_SYMBOL = '-';
