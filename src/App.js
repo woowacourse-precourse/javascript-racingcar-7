@@ -3,24 +3,34 @@ import { Console, Random } from "@woowacourse/mission-utils";
 class App {
   async run() {
     try {
-      const carsNames = await Console.readLineAsync(
-        "경주할 자동차 이름(이름은 쉼표(,) 기준으로 구분)\n"
-      );
-
-      const nameList = this.validCarNames(
-        carsNames.split(",").map((car) => car.trim())
-      );
-
-      const playNum = Number(
-        await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n")
-      );
-      this.validMoveCount(playNum);
+      const nameList = await this.carNames();
+      const playNum = await this.getMoveCount();
 
       const movingCars = this.goToCars(nameList, playNum);
       this.winnerCar(nameList, movingCars);
     } catch (error) {
       Console.print(`[ERROR] ${error.message}`);
     }
+  }
+
+  async carNames() {
+    const carName = await Console.readLineAsync(
+      "경주할 자동차 이름을 입력하세요. (이름은 쉼표(,) 기준으로 구분) \n"
+    );
+
+    const cars = carName.split(",").map((car) => car.trim());
+    this.validCarNames(cars);
+
+    return cars;
+  }
+  async getMoveCount() {
+    const count = Number(
+      await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n")
+    );
+
+    this.validMoveCount(count);
+
+    return count;
   }
 
   validCarNames(nameList) {
