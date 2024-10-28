@@ -41,6 +41,11 @@ class App {
         '[ERROR] 시도할 횟수가 숫자가 아닙니다. 다시 확인해주세요.'
       );
     }
+    if (!Number.isInteger(raceRounds)) {
+      throw new Error(
+        '[ERROR] 시도할 횟수에 소수점이 포함되어 있습니다. 다시 확인해주세요.'
+      );
+    }
 
     await MissionUtils.Console.print('\n실행 결과');
 
