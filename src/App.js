@@ -34,6 +34,10 @@ class App {
       car.score += 1;
     }
   }
+
+  printRacingcarInfo(car) {
+    Console.print(`${car.name} : ${"-".repeat(car.score)}`);
+  }
 }
 
 export default App;
