@@ -36,7 +36,5 @@ class App {
       position: 0,
     }));
   }
-
 }
-
 export default App;
