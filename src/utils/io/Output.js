@@ -16,4 +16,8 @@ export default class Output {
     });
     Console.print(''); // Round 별 구분을 위한 공백
   }
+
+  static print(contents) {
+    Console.print(contents);
+  }
 }

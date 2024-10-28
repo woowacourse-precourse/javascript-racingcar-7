@@ -1,4 +1,4 @@
-import { Console, Random } from '@woowacourse/mission-utils';
+import { Random } from '@woowacourse/mission-utils';
 import Car from './Car.js';
 import { OutputView } from '../resources/Constants.js';
 import Rules from '../resources/Rules.js';
@@ -22,7 +22,7 @@ class Game {
   }
 
   play() {
-    Console.print(OutputView.RESULT_PRINT_BEGINNING);
+    Output.print(OutputView.RESULT_PRINT_BEGINNING);
     let currentRepeat = 0;
     while (currentRepeat !== this.repetitionNumber) {
       this.startRound();
