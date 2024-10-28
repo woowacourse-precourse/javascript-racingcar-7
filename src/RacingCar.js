@@ -52,6 +52,24 @@ class RacingCar {
       this.#count -= 1;
     }
   }
+
+  printWinner() {
+    let winner = [];
+    let maxStatus = 0;
+
+    this.#cars.forEach((car, index) => {
+      const statusLength = this.#status[index].length;
+
+      if (statusLength > maxStatus) {
+        winner = [car];
+        maxStatus = statusLength;
+      } else if (statusLength === maxStatus) {
+        winner.push(car);
+      }
+    });
+
+    Console.print(`최종 우승자 : ${winner.join(', ')}`);
+  }
 }
 
 export default RacingCar;
