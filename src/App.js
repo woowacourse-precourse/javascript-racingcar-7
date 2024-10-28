@@ -14,6 +14,10 @@ class Car{
         this.position += 1;
       }
   }
+  //현재 위치 메서드 구현
+  getPosition(){
+    return '-'.repeat(this.position);
+  }
 }
 
 
