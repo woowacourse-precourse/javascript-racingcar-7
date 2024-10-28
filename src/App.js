@@ -1,4 +1,4 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console, MissionUtils } from '@woowacourse/mission-utils';
 
 class App {
     async run() {
@@ -13,6 +13,12 @@ class App {
 
             Console.print('시도할 횟수는 몇 회인가요?');
             const tryNum = await Console.readLineAsync('');
+            const count = Array(carArray.length).fill(0);
+
+            // 경주 게임
+            for (let i = 0; i < tryNum; i++) {
+                moveCar(carArray, count);
+            }
         } catch (error) {
             Console.print(error.message);
             throw error;
@@ -31,4 +37,14 @@ function chkCarName(cars) {
         if (cars[i].length > 5) return false;
     }
     return true;
+}
+
+function moveCar(cars, count) {
+    for (let i = 0; i < cars.length; i++) {
+        var randomNum = MissionUtils.Random.pickNumberInRange(0, 9);
+        if (randomNum >= 4) {
+            count[i]++;
+        }
+    }
+    return cars, count;
 }
