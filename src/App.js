@@ -33,7 +33,7 @@ class App {
     this.race.attempt(parsedAttempts);
 
     const winners = this.race.getWinners();
-    Console.print(`최종 우승자: ${winners.join(", ")}`);
+    Console.print(`최종 우승자 : ${winners.join(", ")}`);
   }
 }
 
