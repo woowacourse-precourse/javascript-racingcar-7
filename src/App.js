@@ -26,7 +26,6 @@ class App {
 
     const WINNER_ARRAY = Winner.findWinner(CAR);
     Winner.printWinner(WINNER_ARRAY);
-
   }
 }
 

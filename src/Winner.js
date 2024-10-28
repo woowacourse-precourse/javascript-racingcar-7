@@ -1,7 +1,7 @@
 import { Console } from "@woowacourse/mission-utils";
 
 class Winner {
-    constructor() {}
+    constructor() { }
 
     static findWinner(myObject) {
         const WINNER_POSITION = Math.max(...myObject.position);
@@ -13,11 +13,11 @@ class Winner {
         let fromIdx = 0;
         const WINNER_ARRAY = []
 
-        while (true){
+        while (true) {
             let winnerIdx = myObject.position.indexOf(element, fromIdx);
-            
-            if (winnerIdx == -1){
-              break;
+
+            if (winnerIdx == -1) {
+                break;
             }
 
             WINNER_ARRAY.push(myObject.name[winnerIdx]);

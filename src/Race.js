@@ -1,27 +1,27 @@
 import { Console, Random } from "@woowacourse/mission-utils";
 
 class Race {
-    constructor() {}
+    constructor() { }
 
     static roundProgress(attempts, myObject) {
-        for (let i = attempts; i > 0; i--){
+        for (let i = attempts; i > 0; i--) {
             Race.carProgress(myObject);
             Console.print("");
         }
     }
 
     static carProgress(myObject) {
-        for (let i = 0; i < myObject.name.length; i++){
+        for (let i = 0; i < myObject.name.length; i++) {
             let randomNum = Random.pickNumberInRange(0, 9);
-    
+
             myObject.position[i] += Race.carMovement(randomNum);
-    
+
             Race.printProgress(myObject.name[i], myObject.position[i]);
         }
     }
 
     static carMovement(number) {
-        if (number >= 4){
+        if (number >= 4) {
             // 전진
             return 1;
         }

@@ -1,5 +1,5 @@
 class Validate {
-    constructor() {}
+    constructor() { }
 
     static inputValidate(input, type) {
         if (!input) {
@@ -9,7 +9,7 @@ class Validate {
     }
 
     static isNumber(value) {
-        if(isNaN(value)){
+        if (isNaN(value)) {
             const ERROR_MESSAGE = `[ERROR] 시도 횟수는 숫자를 입력해주세요(Not Number: ${value})`;
             throw new Error(ERROR_MESSAGE);
         }
@@ -41,9 +41,6 @@ class Validate {
             throw new Error(ERROR_MESSAGE);
         }
     }
-
-
-
 }
 
 export default Validate;
