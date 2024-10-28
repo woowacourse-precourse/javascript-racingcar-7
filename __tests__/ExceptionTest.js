@@ -2,61 +2,51 @@ import App from '../src/App.js';
 import { mockQuestions } from './ApplicationTest.js';
 import { ERROR_MSG } from '../Util/Validator.js';
 
-const invalidInputErrorMsg = `[ERROR] ${ERROR_MSG.INVALID_INPUT_DATA}`;
-const whitSpaceErrorMsg = `[ERROR] ${ERROR_MSG.EXSIT_WHITE_SPACE}`;
-const maxCarNameErrorMsg = `[ERROR] ${ERROR_MSG.EXCEED_CAR_NAME_LENGTH}`;
-const duplicateErrorMsg = `[ERROR] ${ERROR_MSG.DUPLICATE_CAR_NAME}`;
-
-const negativeCountErrorMsg = `[ERROR] ${ERROR_MSG.NEGATIVE_GAME_COUNT}`;
-const zeroCountErrorMsg = `[ERROR] ${ERROR_MSG.ZERO_GAME_COUNT}`;
-const exceedMaxCountErrorMsg = `[ERROR] ${ERROR_MSG.EXCEED_GAME_COUNT}`;
-const charCountErrorMsg = `[ERROR] ${ERROR_MSG.CAHR_GAME_COUNT}`;
-
 describe('UserInput Exception Test', () => {
   test.each([
     // Exception1
-    [[], invalidInputErrorMsg],
-    [[null], invalidInputErrorMsg],
-    [['null'], invalidInputErrorMsg],
-    [[undefined], invalidInputErrorMsg],
-    [['undefined'], invalidInputErrorMsg],
-    [[''], invalidInputErrorMsg],
+    [[], ERROR_MSG.INVALID_INPUT_DATA],
+    [[null], ERROR_MSG.INVALID_INPUT_DATA],
+    [['null'], ERROR_MSG.INVALID_INPUT_DATA],
+    [[undefined], ERROR_MSG.INVALID_INPUT_DATA],
+    [['undefined'], ERROR_MSG.INVALID_INPUT_DATA],
+    [[''], ERROR_MSG.INVALID_INPUT_DATA],
     // Exception2
-    [['ca r1'], whitSpaceErrorMsg],
-    [['car1, car2'], whitSpaceErrorMsg],
+    [['ca r1'], ERROR_MSG.EXSIT_WHITE_SPACE],
+    [['car1, car2'], ERROR_MSG.EXSIT_WHITE_SPACE],
     // Exception5
-    [['naaaaame', '1'], maxCarNameErrorMsg],
+    [['naaaaame', '1'], ERROR_MSG.EXCEED_CAR_NAME_LENGTH],
     // Exception6
-    [['name,name,name', '1'], duplicateErrorMsg],
-    [['name,name1,name', '1'], duplicateErrorMsg],
-    [['name,naaaaame1,name', '1'], duplicateErrorMsg],
+    [['name,name,name', '1'], ERROR_MSG.DUPLICATE_CAR_NAME],
+    [['name,name1,name', '1'], ERROR_MSG.DUPLICATE_CAR_NAME],
+    [['name,naaaaame1,name', '1'], ERROR_MSG.DUPLICATE_CAR_NAME],
     // Exception7
-    [['car1'], invalidInputErrorMsg],
-    [['car1', null], invalidInputErrorMsg],
-    [['car1', 'null'], invalidInputErrorMsg],
-    [['car1', undefined], invalidInputErrorMsg],
-    [['car1', 'undefined'], invalidInputErrorMsg],
-    [['car1', ''], invalidInputErrorMsg],
+    [['car1'], ERROR_MSG.INVALID_INPUT_DATA],
+    [['car1', null], ERROR_MSG.INVALID_INPUT_DATA],
+    [['car1', 'null'], ERROR_MSG.INVALID_INPUT_DATA],
+    [['car1', undefined], ERROR_MSG.INVALID_INPUT_DATA],
+    [['car1', 'undefined'], ERROR_MSG.INVALID_INPUT_DATA],
+    [['car1', ''], ERROR_MSG.INVALID_INPUT_DATA],
     // Exception8
-    [['car1', '3 2'], whitSpaceErrorMsg],
-    [['car1', '32 '], whitSpaceErrorMsg],
-    [['car1', ' 32'], whitSpaceErrorMsg],
-    [['car1', ' '], whitSpaceErrorMsg],
+    [['car1', '3 2'], ERROR_MSG.EXSIT_WHITE_SPACE],
+    [['car1', '32 '], ERROR_MSG.EXSIT_WHITE_SPACE],
+    [['car1', ' 32'], ERROR_MSG.EXSIT_WHITE_SPACE],
+    [['car1', ' '], ERROR_MSG.EXSIT_WHITE_SPACE],
     // Exception9 ~ 12
-    [['car1,car2,car3', '-1'], negativeCountErrorMsg],
-    [['car1,car2,car3', '0'], zeroCountErrorMsg],
+    [['car1,car2,car3', '-1'], ERROR_MSG.NEGATIVE_GAME_COUNT],
+    [['car1,car2,car3', '0'], ERROR_MSG.ZERO_GAME_COUNT],
     [
       ['car1,car2,car3', '999999999999999999999999999999999'],
-      exceedMaxCountErrorMsg,
+      ERROR_MSG.EXCEED_GAME_COUNT,
     ],
-    [['car1,car2,car3', 'one'], charCountErrorMsg],
-  ])('areAnagrams(%s) returns %s', async (first) => {
+    [['car1,car2,car3', 'one'], ERROR_MSG.CAHR_GAME_COUNT],
+  ])('areAnagrams(%s) returns %s', async (first, second) => {
     // given
     mockQuestions(first);
 
     // when
     const app = new App();
 
-    await expect(app.run()).rejects.toThrow('[ERROR]');
+    await expect(app.run()).rejects.toThrow(second);
   });
 });
