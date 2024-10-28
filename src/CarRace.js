@@ -1,6 +1,7 @@
 import { Console } from '@woowacourse/mission-utils';
 import Car from './Car.js';
-import carHandler from './carHandler.js';
+import carHandler from './handler/carHandler.js';
+import attemptHandler from './handler/attemptHandler.js';
 
 class CarRace {
   carArray = [];
@@ -34,15 +35,11 @@ class CarRace {
     const dataOfAttempt = await Console.readLineAsync(
       '시도할 횟수는 몇 회인가요?\n'
     );
-    this.checkIsNum(dataOfAttempt);
+    attemptHandler(dataOfAttempt);
     this.numOfAttempt = Number(dataOfAttempt);
   }
 
-  checkIsNum(num) {
-    if (isNaN(num)) {
-      throw new Error('[ERROR] 시도 횟수는 숫자만 입력 가능합니다');
-    }
-  }
+
 
   startRace() {
     Console.print('\n실행결과');
