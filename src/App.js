@@ -5,7 +5,10 @@ class App {
     const carNames = await Console.readLineAsync(
       "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
     );
-    const carNameArr = carNames.split(",").map((name) => name.trim());
+    const carNameArr = carNames
+      .split(",")
+      .map((name) => name.trim())
+      .filter((name) => name.length > 0);
     if (carNameArr.length == 0) {
       throw new Error("[ERROR] 자동차 이름은 1개 이상이어야 합니다.");
     }
