@@ -32,3 +32,17 @@
 - [ ] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현하기
 - [ ] 3항 연산자를 쓰지 않기
 - [ ] 코드를 깔끔하게 리팩토링
+
+## 클래스 역할
+
+### RacingCar 
+- 멤버변수  
+  - #name : 경주하는 자동차 이름 저장
+  - #dist : 자동차가 이동한 거리 저장
+- 메서드
+  - #validateName(name) : 생성자에 들어온 자동차 이름에 대한 유효성 검사
+  - getDistance() : #dist를 리턴
+  - getName() : #name을 리턴
+  - move() : `Random.pickNumberInRange`의 결과가 임계값 이상이면 #dist에 1을 더함
+  - result() : 현재 자동차의 결과 출력
+  
