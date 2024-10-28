@@ -3,8 +3,11 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 class App {
   async run() {
     const userCars = await this.getCarName();
-    const tryRaceNum = await this.getTryRaceNum();
+    this.checkEmpty(userCars);
     const userCarObj = this.creatCarObject(userCars.split(","));
+    this.checkCarName(userCarObj);
+    const tryRaceNum = await this.getTryRaceNum();
+    this.checkPositiveInger(parseInt(tryRaceNum));
     MissionUtils.Console.print("\n실행 결과");
     for (let i = 0; i < tryRaceNum; i++) {
       this.carMove(userCarObj);
@@ -31,6 +34,7 @@ class App {
       const carname = await MissionUtils.Console.readLineAsync(
         "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
       );
+
       return carname;
     } catch (error) {}
   }
@@ -72,10 +76,29 @@ class App {
     const maxValue = Math.max(...moveCarValue);
     const winner = car.filter((car) => car.movecar === maxValue);
 
-    if (maxValue === 0) {
-    }
-
     return winner;
+  }
+
+  checkEmpty(carAarray) {
+    if (carAarray.length === 0) {
+      throw new Error("[ERROR] 이름을 입력하세요.");
+    }
+  }
+
+  checkPositiveInger(tryRaceNum) {
+    if (!Number.isInteger(tryRaceNum) || tryRaceNum <= 0) {
+      throw new Error("[ERROR] 횟수를 양의 정수로 입력해 주세요.");
+    }
+  }
+
+  checkCarName(car) {
+    car.forEach((car) => {
+      if (car.carname.length > 5 || car.carname === "") {
+        throw new Error(
+          "[ERROR] 자동차 이름은 공백이 불가하며 5자 이하만 가능합니다."
+        );
+      }
+    });
   }
 }
 
