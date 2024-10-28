@@ -25,36 +25,88 @@ const getLogSpy = () => {
 };
 
 describe("자동차 경주", () => {
-  test("기능 테스트", async () => {
-    // given
-    const MOVING_FORWARD = 4;
-    const STOP = 3;
-    const inputs = ["pobi,woni", "1"];
-    const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
-    const logSpy = getLogSpy();
+  test.each([
+    {
+      title: "기능 테스트",
+      inputs: ["pobi,woni", "1"],
+      MOVING_FORWARD: 4,
+      STOP: 3,
+      logs: ["pobi : -", "woni : ", "최종 우승자 : pobi"],
+      throwError: false,
+    },
+    {
+      title: "예외 테스트 - 이름이 5글자 이상",
+      inputs: ["pobi,javaji"],
+      MOVING_FORWARD: 4,
+      STOP: 3,
+      logs: [],
+      throwError: true,
+    },
+    {
+      title: "예외 테스트 - 같은 이름",
+      inputs: ["pobi,pobi,pororo"],
+      MOVING_FORWARD: 4,
+      STOP: 3,
+      logs: [],
+      throwError: true,
+    },
+    {
+      title: "예외 테스트 - 이름 없음",
+      inputs: ["pobi,,woni,abc"],
+      MOVING_FORWARD: 4,
+      STOP: 3,
+      logs: [],
+      throwError: true,
+    },
+    {
+      title: "예외 테스트 - 라운드 0회",
+      inputs: ["pobi,woni", "0"],
+      MOVING_FORWARD: 4,
+      STOP: 3,
+      logs: [],
+      throwError: true,
+    },
+    {
+      title: "예외 테스트 - 라운드가 문자인 경우",
+      inputs: ["pobi,woni", "absdfe"],
+      MOVING_FORWARD: 4,
+      STOP: 3,
+      logs: [],
+      throwError: true,
+    },
+    {
+      title: "예외 테스트 - 라운드가 문자열인 경우",
+      inputs: ["pobi,woni", "absdfe"],
+      MOVING_FORWARD: 4,
+      STOP: 3,
+      logs: [],
+      throwError: true,
+    },
+    {
+      title: "예외 테스트 - 라운드가 음수인 경우",
+      inputs: ["pobi,woni", "-10"],
+      MOVING_FORWARD: 4,
+      STOP: 3,
+      logs: [],
+      throwError: true,
+    },
+  ])(
+    "$description",
+    async ({ inputs, MOVING_FORWARD, STOP, logs, throwError }) => {
+      const logSpy = getLogSpy();
+      mockQuestions(inputs);
+      mockRandoms([MOVING_FORWARD, STOP]);
 
-    mockQuestions(inputs);
-    mockRandoms([MOVING_FORWARD, STOP]);
+      const app = new App();
 
-    // when
-    const app = new App();
-    await app.run();
-
-    // then
-    logs.forEach((log) => {
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-    });
-  });
-
-  test("예외 테스트", async () => {
-    // given
-    const inputs = ["pobi,javaji"];
-    mockQuestions(inputs);
-
-    // when
-    const app = new App();
-
-    // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
-  });
+      if (throwError) {
+        await expect(app.run()).rejects.toThrow("[ERROR]");
+      } else {
+        await app.run();
+        logs.forEach((log) => {
+          expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+        });
+      }
+    }
+  );
 });
