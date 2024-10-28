@@ -1,5 +1,9 @@
+import InputView from "./views/InputView.js";
+
 class App {
-  async run() {}
+  async run() {
+    await InputView.inputCarName();
+  }
 }
 
 export default App;
