@@ -4,7 +4,6 @@ import Game from "./Game.js";
 
 class App {
   constructor() {
-    this.cars = [];
     this.IOHandler = new IOHandler();
     this.Game = new Game();
   }
