@@ -50,5 +50,22 @@ describe('CarRace 클래스 테스트', () => {
       expect(cars[2].getMoveCount()).toBe(1);
       expect(cars[3].getMoveCount()).toBe(0);
     });
+
+    describe('getRaceWinners 메서드 테스트', () => {
+      test('경주가 완료되지 않았을 때 예외를 발생시키는지 테스트', () => {
+        const carRace = new CarRace('car1,car2,car3,car4', 1);
+        expect(() => carRace.getRaceWinners()).toThrow('[ERROR]');
+      });
+
+      test('경주가 완료된 후 올바른 우승자를 반환하는지 테스트', () => {
+        mockRandoms([4, 3, 5, 2]);
+
+        const carRace = new CarRace('car1,car2,car3,car4', 1);
+        carRace.race();
+
+        const winners = carRace.getRaceWinners();
+        expect(winners).toEqual(['car1', 'car3']);
+      });
+    });
   });
 });
