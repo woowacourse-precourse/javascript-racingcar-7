@@ -2,7 +2,7 @@ import { Console, MissionUtils } from "@woowacourse/mission-utils";
 import Car from "../model/car.js";
 import {
   validateCarName,
-  countValidate,
+  validateCount,
   resetCarSet,
 } from "../utils/validation.js";
 import RacingGameView from "../view/racingGameView.js";
@@ -23,7 +23,7 @@ class RacingGameController {
       const names = userInputNames.split(",");
       this.checkCarName(names);
       const userInputCounts = await this.view.inputAttemptCounts();
-      countValidate(userInputCounts);
+      this.checkCount(userInputCounts);
       this.counts = userInputCounts;
     } catch (error) {
       this.handleInitError(error);
@@ -41,6 +41,10 @@ class RacingGameController {
       validateCarName(name);
       this.cars.push(new Car(name));
     });
+  }
+
+  checkCount(count) {
+    validateCount(count);
   }
 
   getScores() {

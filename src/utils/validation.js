@@ -21,9 +21,9 @@ export const validateCarName = (name) => {
   checkNameDuplicate(name);
   checkNameLength(name);
 };
-export const countValidate = (input) => {
-  const count = parseInt(input, 10);
-  if (count < 1 || Number.isNaN(count)) {
+export const validateCount = (count) => {
+  const parsedCount = parseInt(count, 10);
+  if (parsedCount < 1 || Number.isNaN(parsedCount)) {
     throw new Error(ERROR_EXECUTE_COUNT);
   }
 };
