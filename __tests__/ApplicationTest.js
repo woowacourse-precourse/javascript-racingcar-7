@@ -1,16 +1,16 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
-import { getUserCarName, printRacingState } from '../src/views/View.js';
+import { getUserCarName, displayRaceState } from '../src/views/View.js';
 import {
-  divisionCarName,
-  createCarObject,
-  shouldMoveForward,
-  getCarPositionsRepresentation,
-  findWinners,
+  splitCarNamesByDelimiter,
+  createCarDataArray,
+  updateCarDataPositions,
+  formatAllCarPositions,
+  findCarWinners,
 } from '../src/models/Model.js';
 import App from '../src/App.js';
 import {
   validateCarNames,
-  validateRaceCount,
+  validateRaceCountInput,
 } from '../src/models/ErrorHandler.js';
 
 const mockQuestions = (inputs) => {
@@ -88,38 +88,43 @@ const testCar = (description, fn, input, expectedOutput) => {
 
 describe('Custom Test', () => {
   test.each([
-    [CAR_NAMES_STRING, CAR_NAMES_STRING, getUserCarName], // 정상적인 입력
+    [CAR_NAMES_STRING, CAR_NAMES_STRING, getUserCarName],
     [
       'happy,helloo',
       '[ERROR] 자동차 이름은 5자 이하로 입력해야 합니다.',
       validateCarNames,
     ],
-    ['', '[ERROR] 정확한 이름을 입력해주세요.', validateCarNames], // 에러 발생 입력
+    ['', '[ERROR] 정확한 이름을 입력해주세요.', validateCarNames],
     [' ,happy', '[ERROR] 정확한 이름을 입력해주세요.', validateCarNames],
     [
       'c',
       '[ERROR] 경주 횟수는 양의 정수로 입력해야 합니다. (0, 음수, 문자, 띄어쓰기 입력 불가)',
-      validateRaceCount,
+      validateRaceCountInput,
     ],
     [
       '-1',
       '[ERROR] 경주 횟수는 양의 정수로 입력해야 합니다. (0, 음수, 문자, 띄어쓰기 입력 불가)',
-      validateRaceCount,
+      validateRaceCountInput,
     ],
     [
       '0',
       '[ERROR] 경주 횟수는 양의 정수로 입력해야 합니다. (0, 음수, 문자, 띄어쓰기 입력 불가)',
-      validateRaceCount,
+      validateRaceCountInput,
     ],
     [
       '1 0',
       '[ERROR] 경주 횟수는 양의 정수로 입력해야 합니다. (0, 음수, 문자, 띄어쓰기 입력 불가)',
-      validateRaceCount,
+      validateRaceCountInput,
     ],
     [
       '',
       '[ERROR] 경주 횟수는 양의 정수로 입력해야 합니다. (0, 음수, 문자, 띄어쓰기 입력 불가)',
-      validateRaceCount,
+      validateRaceCountInput,
+    ],
+    [
+      '101',
+      '[ERROR] 최대 100 이하의 숫자만 입력할 수 있습니다.',
+      validateRaceCountInput,
     ],
   ])('사용자 입력 확인', async (inputData, expectedOutput, fn) => {
     const consoleSpy = jest
@@ -127,14 +132,11 @@ describe('Custom Test', () => {
       .mockImplementation(() => Promise.resolve(inputData));
 
     if (expectedOutput.startsWith('[ERROR]')) {
-      // 에러가 예상되는 경우
       await expect(async () => {
         const input = await getUserCarName();
-        // 입력 값을 유효성 검사 함수에 전달하여 에러를 발생시킴
         fn(input.split(','));
       }).rejects.toThrow(expectedOutput);
     } else {
-      // 정상적인 경우
       const input = await fn();
 
       expect(input).toBe(expectedOutput);
@@ -145,37 +147,32 @@ describe('Custom Test', () => {
 
   testCar(
     '사용자가 입력한 차 쉼표로 구분',
-    divisionCarName,
+    splitCarNamesByDelimiter,
     CAR_NAMES_STRING,
     CAR_NAMES_ARRAY,
   );
 
-  // createCarObject 테스트
-  testCar('자동차 객체 생성', createCarObject, CAR_NAMES_ARRAY, CAR_OBJECTS);
+  testCar('자동차 객체 생성', createCarDataArray, CAR_NAMES_ARRAY, CAR_OBJECTS);
 
   test('랜덤 값을 이용해 자동차의 전진 수를 올바르게 업데이트하는지 확인', () => {
     const randomSpy = jest.spyOn(MissionUtils.Random, 'pickNumberInRange');
     randomSpy.mockImplementationOnce(() => 4).mockImplementationOnce(() => 3);
-    expect(shouldMoveForward(CAR_OBJECTS)).toEqual(CAR_MOVES);
+    expect(updateCarDataPositions(CAR_OBJECTS)).toEqual(CAR_MOVES);
 
     randomSpy.mockRestore();
   });
 
-  // -로 전진 표시 테스트
   test('move 수 만큼 -로 변환', () => {
     const expectedOutput = ['happy : -', 'car : '];
-    expect(getCarPositionsRepresentation(CAR_MOVES)).toEqual(expectedOutput);
+    expect(formatAllCarPositions(CAR_MOVES)).toEqual(expectedOutput);
   });
 
   test('현재 게임 상태 출력', () => {
     const carData = ['car1 : --', 'car2 : ---'];
     const logSpy = getLogSpy();
-    printRacingState(carData);
-    // 첫 번째 라인 출력 검증
+    displayRaceState(carData);
     expect(logSpy).toHaveBeenCalledWith('car1 : --');
-    // 두 번째 라인 출력 검증
     expect(logSpy).toHaveBeenCalledWith('car2 : ---');
-    // 빈 줄 출력 검증
     expect(logSpy).toHaveBeenCalledWith('');
   });
 
@@ -191,6 +188,6 @@ describe('Custom Test', () => {
       ['one', 'two', 'three'],
     ],
   ])('우승자 찾기', (carData, expectedWinners) => {
-    expect(findWinners(carData)).toEqual(expectedWinners);
+    expect(findCarWinners(carData)).toEqual(expectedWinners);
   });
 });
