@@ -1,5 +1,4 @@
 export const ERROR_MESSAGES = {
-  NO_CARS: '자동차가 최소 1대 이상 있어야 합니다.',
   EMPTY_NAME: '자동차 이름은 빈 문자열이나 공백일 수 없습니다.',
   NAME_TOO_LONG: '자동차 이름은 5자 이하만 가능합니다.',
   DUPLICATE_NAME: '자동차 이름은 중복될 수 없습니다.',
@@ -90,64 +89,25 @@ export const TEST_DESCRIPTIONS = {
   CAR_NAME: {
     GROUP: '자동차 이름 검증',
     CASES: [
-      {
-        key: 'EMPTY_NAME',
-        description: '자동차 이름이 빈 문자열인 경우 에러 발생',
-      },
-      {
-        key: 'EMPTY_NAME_WITH_SPACE',
-        description: '자동차 이름이 공백인 경우 에러 발생',
-      },
-      {
-        key: 'NAME_TOO_LONG',
-        description: '자동차 이름이 5자를 초과하는 경우 에러 발생',
-      },
-      {
-        key: 'DUPLICATE_NAME',
-        description: '중복된 자동차 이름이 있는 경우 에러 발생',
-      },
-      {
-        key: 'VALID_NAMES',
-        description: '유효한 자동차 이름들이 입력된 경우 정상적으로 처리',
-      },
+      ['자동차 이름이 빈 문자열인 경우 에러 발생', 'EMPTY_NAME'],
+      ['자동차 이름이 공백인 경우 에러 발생', 'EMPTY_NAME_WITH_SPACE'],
+      ['자동차 이름이 5자를 초과하는 경우 에러 발생', 'NAME_TOO_LONG'],
+      ['중복된 자동차 이름이 있는 경우 에러 발생', 'DUPLICATE_NAME'],
     ],
   },
   GAME_ROUNDS: {
     GROUP: '시도 횟수 검증',
     CASES: [
-      {
-        key: 'EMPTY_ROUNDS',
-        description: '시도 횟수가 빈 값이나 공백이 입력된 경우 에러 발생',
-      },
-      {
-        key: 'EMPTY_ROUNDS_WITH_SPACE',
-        description: '시도 횟수가 공백인 경우 에러 발생',
-      },
-      {
-        key: 'NOT_A_NUMBER',
-        description: '시도 횟수가 숫자가 아닌 값이 입력된 경우 에러 발생',
-      },
-      {
-        key: 'NEGATIVE_NUMBER',
-        description: '시도 횟수가 음수가 입력된 경우 에러 발생',
-      },
-      {
-        key: 'ZERO_ROUNDS',
-        description: '시도 횟수가 0이 입력된 경우 에러 발생',
-      },
-      {
-        key: 'NOT_INTEGER',
-        description: '시도 횟수가 소수가 입력된 경우 에러 발생',
-      },
-      {
-        key: 'OVERFLOW',
-        description:
-          '시도 횟수가 오버플로우를 발생시키는 값이 입력된 경우 에러 발생',
-      },
-      {
-        key: 'VALID_NUMBER',
-        description: '유효한 시도 횟수가 입력된 경우 정상적으로 처리',
-      },
+      ['시도 횟수가 빈 값이 입력된 경우 에러 발생', 'EMPTY_ROUNDS'],
+      ['시도 횟수가 공백인 경우 에러 발생', 'EMPTY_ROUNDS_WITH_SPACE'],
+      ['시도 횟수가 숫자가 아닌 값이 입력된 경우 에러 발생', 'NOT_A_NUMBER'],
+      ['시도 횟수가 음수가 입력된 경우 에러 발생', 'NEGATIVE_NUMBER'],
+      ['시도 횟수가 0이 입력된 경우 에러 발생', 'ZERO_ROUNDS'],
+      ['시도 횟수가 소수가 입력된 경우 에러 발생', 'NOT_INTEGER'],
+      [
+        '시도 횟수가 오버플로우를 발생시키는 값이 입력된 경우 에러 발생',
+        'OVERFLOW',
+      ],
     ],
   },
 };
