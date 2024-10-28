@@ -8,16 +8,16 @@ class App {
     const nameInput = await Console.readLineAsync(MESSAGE.CARNAME_INPUT);
     Validator.validateNameInput(nameInput);
 
-    const carNames = nameInput.split(",").map((name) => new Car(name));
+    const cars = nameInput.split(",").map((name) => new Car(name));
 
     const tryCount = await Console.readLineAsync(MESSAGE.TRYCOUNT_INPUT);
     Validator.validateTryCountInput(tryCount);
     const tryNumber = Number(tryCount);
 
     for (let i = 0; i < tryNumber; i++) {
-      this.randomMove(carNames);
+      this.randomMove(cars);
     }
-    Console.print(carNames);
+    Console.print(cars);
   }
 
   getRandomNumber() {
@@ -34,6 +34,8 @@ class App {
       }
     });
   }
+
+  printResult(cars) {}
 }
 
 export default App;
