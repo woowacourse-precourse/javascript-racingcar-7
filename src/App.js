@@ -1,5 +1,15 @@
+import Controller from "./controller/controller";
+
 class App {
-  async run() {}
+  #controller
+
+  constructor() {
+    this.#controller = new Controller();
+  }
+
+  async run() {
+    await this.#controller.playRacingCar();
+  }
 }
 
 export default App;
