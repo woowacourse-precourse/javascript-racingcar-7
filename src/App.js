@@ -64,6 +64,10 @@ class App {
       Console.print("");
     }
 
+    // 최종 우승자 출력
+    const winner = findWinner();
+    Console.print(`최종 우승자 : ${winner}`);
+  }
 }
 
 export default App;
