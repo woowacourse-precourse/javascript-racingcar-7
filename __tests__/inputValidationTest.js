@@ -1,6 +1,6 @@
 import { validateName, validateTryCount } from '../src/validation';
 
-describe('자동차 경주', () => {
+describe('자동차 경주 입출력 예외처리', () => {
   test.each([
     ['asdfgh,hjk', '[ERROR] 자동차 이름은 5자 이하만 가능합니다.'],
     ['asdf,', '[ERROR] 자동차 이름은 1자 이상이어야 합니다.'],
