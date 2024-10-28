@@ -19,6 +19,30 @@ class App {
       }
     }
     Console.print(`${INPUT_CARS} \n시도횟수: ${INPUT_ATTEMPTS}`);
+    const RESULTS = CAR_NAMES.map((name) => ({
+      name,
+      position: 0,
+      positionHistory: [],
+    }));
+    for (let i = 0; i < ATTEMPTS; i++) {
+      RESULTS.forEach((car) => {
+        const RANDOM_NUM = Random.pickNumberInRange(0, 9);
+        Console.print(RANDOM_NUM, car);
+        // 4이상이면, 전진시키기
+        if (RANDOM_NUM >= 4) {
+          car.position += 1;
+        }
+        Console.print(`결과 ${car.position}, ${car.positionHistory}`);
+        car.positionHistory.push(car.position);
+      });
+    }
+
+    for (let i = 0; i < ATTEMPTS; i++) {
+      RESULTS.forEach((car) => {
+        const CURRENT_POSITION = car.positionHistory[i] || 0;
+        Console.print(`${car.name} : ${"-".repeat(CURRENT_POSITION)}`);
+      });
+    }
   }
 }
 export default App;
