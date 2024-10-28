@@ -18,10 +18,6 @@ const ERROR = {
     name: 'NaNRoundCountError',
     message: `${ERROR_TAG} 시도 횟수는 숫자여야 합니다.`,
   },
-  NEGATIVE_ROUND_COUNT: {
-    name: 'NegativeRoundCountError',
-    message: `${ERROR_TAG} 시도 횟수는 음수가 아닌 1 이상의 정수여야 합니다.`,
-  },
   INVALID_ROUND_COUNT: {
     name: 'InvalidRoundCountError',
     message: `${ERROR_TAG} 시도 횟수는 1 이상의 정수여야 합니다.`,
