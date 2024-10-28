@@ -3,12 +3,24 @@ import Car from "./Car.js"
 
 class App {
   async run() {
-    // 사용자 입력 구현
-    const carNames = await this.getCarNames();
-    const attempts = await this.getAttempts();
-    
-    // 자동차 객체 초기화
-    const cars = carNames.map((name) => new Car(name));
+    try {
+
+      // 사용자 입력 구현
+      const carNames = await this.getCarNames();
+      const attempts = await this.getAttempts();
+      
+      // 자동차 객체 초기화
+      const cars = carNames.map((name) => new Car(name));
+
+    } catch (error) {
+
+      Console.print(error.message);
+
+    } finally {
+
+      return;
+
+    }
 
   }
 
@@ -16,12 +28,22 @@ class App {
     const input = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,)로 구분)\n");
     const names = input.split(",").map((name) => name.trim());
 
+    // 이름이 범위 내 길이를 갖지 않는 경우 예외 처리
+    if (names.some((name) => name.length > 5 || !name)) {
+      throw new Error("[ERROR] 자동차 이름은 1자 이상 5자 이하여야 합니다.");
+    }
+
     return names;
   }
 
   async getAttempts() {
     const input = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
     const attempts = Number(input);
+
+    // 시도 횟수가 숫자가 아니거나, 0 이하로 설정한 경우 예외 처리
+    if (isNaN(attempts) || attempts <= 0) {
+      throw new Error("[ERROR] 시도 횟수는 1 이상의 정수여야 합니다.");
+    }
 
     return attempts;
   }
