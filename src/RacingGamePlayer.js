@@ -42,6 +42,9 @@ class RacingGamePlayer {
     MissionUtils.Console.print(messages.newLine + messages.showRoundResults);
     this.moveCars();
     this.winner = this.findWinner();
+    MissionUtils.Console.print(
+      `${messages.announceWinner}${this.winner.join(', ')}`
+    );
   }
 }
 
