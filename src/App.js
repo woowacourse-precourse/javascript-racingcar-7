@@ -28,7 +28,6 @@ class App {
       throw new Error(`${ERRORMESAGE.NOT_POSITIVE_INTEGER}`);
 
     const tryNumArr = String(tryNum).split('');
-    console.log(tryNumArr);
     if (validation.hasSpace(tryNumArr))
       throw new Error(`${ERRORMESAGE.WRONG_NUMBER_FORM_SPACE}`);
 
