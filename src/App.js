@@ -1,4 +1,5 @@
 import { Console, Random } from '@woowacourse/mission-utils';
+import carRoundPosition from './carRace/carRoundPosition';
 
 class App {
   async getCarNames() {
@@ -34,16 +35,7 @@ class App {
     }));
 
     for (let i = 0; i < raceAttempts; i++) {
-      raceResults.forEach((car) => {
-        const randomNum = Random.pickNumberInRange(0, 9);
-        if (randomNum >= 4) {
-          car.position += 1;
-        }
-      });
-
-      raceResults.forEach((car) => {
-        Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
-      });
+      carRoundPosition(raceResults);
     }
 
     const maxPosition = Math.max(...raceResults.map((car) => car.position));
