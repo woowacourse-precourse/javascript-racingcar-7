@@ -2,7 +2,7 @@
 
 ## 파일 구조
 
-![img.png](img.png)
+![img](https://github.com/user-attachments/assets/ea8d9298-1850-4c8a-843d-74dff4590c63)
 
 ## 진행 순서도
 
