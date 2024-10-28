@@ -10,10 +10,10 @@ class App {
     const CHECK_START_COMMA_REGEX = /^\,/;
     const CHECK_END_COMMA_REGEX = /\,$/;
     
-    if (CHECK_END_COMMA_REGEX.carNames) {
+    if (CHECK_END_COMMA_REGEX.test(carNames)) {
       throw new Error('[ERROR] 문장 양식이 구분자로 끝날 수 없습니다!');
     }
-    if (CHECK_START_COMMA_REGEX.carNames) {
+    if (CHECK_START_COMMA_REGEX.test(carNames)) {
       throw new Error('[ERROR] 문장 양식이 구분자로 시작할 수 없습니다!');
     }
 
