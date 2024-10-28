@@ -16,7 +16,11 @@ describe('Simulator class', () => {
     const simulator = new Simulator(names);
 
     expect(printOutput).toHaveBeenCalledWith(MESSAGE.EXECUTE_OUTPUT);
-    expect(simulator.state).toEqual([{ Car1: 0 }, { Car2: 0 }, { Car3: 0 }]);
+    expect(simulator.state).toStrictEqual([
+      { Car1: 0 },
+      { Car2: 0 },
+      { Car3: 0 },
+    ]);
   });
 
   test('#canMoveForward가 true일 때 상태 업데이트 확인하기', () => {
@@ -26,7 +30,7 @@ describe('Simulator class', () => {
 
     simulator.simulate();
     console.log(simulator.state);
-    expect(simulator.state).toEqual([{ Car1: 1 }]);
+    expect(simulator.state).toStrictEqual([{ Car1: 1 }]);
     expect(printOutput).toHaveBeenCalledWith('Car1 : -\n');
   });
 
@@ -37,7 +41,7 @@ describe('Simulator class', () => {
 
     simulator.simulate();
 
-    expect(simulator.state).toEqual([{ Car1: 0 }]);
+    expect(simulator.state).toStrictEqual([{ Car1: 0 }]);
     expect(printOutput).toHaveBeenCalledWith('Car1 : \n');
   });
 
@@ -48,7 +52,7 @@ describe('Simulator class', () => {
 
     simulator.simulate();
 
-    expect(simulator.state).toEqual([{ Car1: 1 }, { Car2: 0 }]);
+    expect(simulator.state).toStrictEqual([{ Car1: 1 }, { Car2: 0 }]);
     expect(printOutput).toHaveBeenCalledWith('Car1 : -');
     expect(printOutput).toHaveBeenCalledWith('Car2 : ');
     expect(printOutput).toHaveBeenCalledWith('');
