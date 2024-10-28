@@ -32,12 +32,17 @@ class App {
 
   async readAttemptCount() {
     let userAttemptCount = 0;
-    while (Number(userAttemptCount) === 0) {
-      userAttemptCount = await Console.readLineAsync(
-        "시도할 횟수는 몇 회인가요?\n"
+    while (userAttemptCount === 0) {
+      userAttemptCount = Number(
+        await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n")
       );
     }
-    if (isNaN(userAttemptCount) || userAttemptCount < 0) {
+
+    if (
+      isNaN(userAttemptCount) ||
+      userAttemptCount < 0 ||
+      !Number.isInteger(userAttemptCount)
+    ) {
       throw new Error("[ERROR] 시도 횟수는 양의 정수로 입력해주세요");
     }
 
