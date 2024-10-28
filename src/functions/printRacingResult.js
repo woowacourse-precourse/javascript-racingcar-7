@@ -1,7 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 
 /**
- * 경주 결과를 출력
  * @param {Array} resultsPerAttempt - 각 시도별 경주 결과 배열
  * @param {Array} carNames - 자동차 이름 배열
  */

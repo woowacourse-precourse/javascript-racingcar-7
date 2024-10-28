@@ -1,11 +1,11 @@
 import { Console } from '@woowacourse/mission-utils';
 import { inputCarNames } from './functions/inputCarNames.js';
 import { inputAttemptsNumber } from './functions/inputAttempsNumber.js';
-import { validateCarNames } from './errors/allErrorHandling.js';
 import { calculateCarRacing } from './functions/calculateCarRacing.js';
 import { printRacingResult } from './functions/printRacingResult.js';
 import { calculateWinner } from './functions/calculateWinner.js';
 import { printWhoIsWinner } from './functions/printWhoIsWinner.js';
+import { validateCarNames } from './errors/allErrorHandling.js';
 
 class App {
   async run() {
@@ -22,6 +22,7 @@ class App {
       printWhoIsWinner(winner);
     } catch (error) {
       Console.print(error.message);
+      throw error; // 예외를 다시 던져 테스트가 감지할 수 있도록 함
     }
   }
 }

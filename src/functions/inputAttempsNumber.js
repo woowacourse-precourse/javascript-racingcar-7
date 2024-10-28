@@ -1,15 +1,11 @@
 import { Console } from '@woowacourse/mission-utils';
 import { validateAttemptsNumber } from '../errors/allErrorHandling.js';
 
+/**
+ * @returns {Promise<number>} - 입력받은 시도 횟수
+ */
 export async function inputAttemptsNumber() {
-    return new Promise((resolve, reject) => {
-        Console.readLine('시도할 횟수는 몇 회인가요?\n', (input) => {
-            try {
-                validateAttemptsNumber(input);
-                resolve(parseInt(input, 10));
-            } catch (error) {
-                reject(error);
-            }
-        });
-    });
+    const input = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+    validateAttemptsNumber(input);
+    return parseInt(input, 10);
 }
