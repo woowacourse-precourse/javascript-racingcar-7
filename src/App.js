@@ -27,27 +27,16 @@ class App {
       }
 
       let carNamesArray = carNames.split(/,/);
-      console.log(
-        `xxxxx(확인용 - 입력된 자동차 이름들 배열 : ${JSON.stringify(
-          carNamesArray
-        )})`
-      );
 
       for (let i = 1; i < 10; i++) {
         let inputTryString = await MissionUtils.Console.readLineAsync(
           "시도할 횟수는 몇 회인가요?\n => "
         );
         let inputTryNum = Number(inputTryString.trim());
-        console.log(
-          `xxxxx 확인용 - 시도할 횟수 확인 = ${inputTryNum} / type : ${typeof inputTryNum}`
-        );
 
         const isErrorTryNum = Validate.validateInputTryNum(inputTryNum);
 
         if (isErrorTryNum) {
-          console.log(
-            `xxxxx 확인용 - 아주 잘 입력함!!! = ${inputTryNum} / type : ${typeof inputTryNum}`
-          );
           tryNumber = inputTryNum;
           break;
         }
@@ -56,11 +45,53 @@ class App {
           throw Error("[ERROR] 입력값에 문제가 있습니다. 다시 실행해주세요.");
         }
       }
+
+      this.racingGame(carNamesArray, tryNumber);
     } catch (error) {
       Console.print(error.message);
       throw error;
     }
   }
+
+  racingGame(carNamesArray, tryNumber) {
+    const objectArray = this.readyRacingGame(carNamesArray);
+
+    this.startRacingGaming(objectArray, tryNumber);
+
+    this.whoIsWinner(objectArray);
+  }
+
+  readyRacingGame(carNamesArray) {
+    let carNamesObjectArray = carNamesArray.map((name) => {
+      return { carName: name, forwardNum: 0 };
+    });
+
+    return carNamesObjectArray;
+  }
+
+  startRacingGaming(carNamesObjectArray, tryNumber) {
+    for (let i = 1; i <= tryNumber; i++) {
+      const canYouForward = carNamesObjectArray.map((howForward) => {
+        const whatRandomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
+
+        if (whatRandomNumber > 4) {
+          howForward.forwardNum += 1;
+        }
+
+        return howForward;
+      });
+
+      carNamesObjectArray = canYouForward;
+
+      carNamesObjectArray.forEach((result) => {
+        let dashes = "-".repeat(result.forwardNum);
+        Console.print(`${result.carName} : ${dashes}`);
+      });
+      console.log("");
+    }
+  }
+
+  
 }
 
 export default App;
