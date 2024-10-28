@@ -36,9 +36,9 @@ class App {
   }
 
   racing(carNames, attempts) {
-    const cars = carNameArray.map((name) => ({ name, go: 0 }));
+    const cars = carNames.map((name) => ({ name, go: 0 }));
 
-    carNames.forEach((car) => {
+    cars.forEach((car) => {
       for (let i = 0; i < attempts; i++) {
         const randomNum = MissionUtils.Random.pickNumberInRange(0, 9);
         if (randomNum > 3) {
