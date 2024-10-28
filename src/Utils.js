@@ -5,7 +5,7 @@ class Utils {
   async getCarName() {
     const input = await Console.readLineAsync(LOG_MESSAGE.START_MESSAGE);
     const carInput = input.split(",");
-    this.carCountLimitCheck(carInput); //ttt
+    this.carCountLimitCheck(carInput);
     return this.carNameLimitCheck(carInput);
   }
 
@@ -34,7 +34,7 @@ class Utils {
         this.duplicateCheck(carInput[i], carName);
         carName[carInput[i]] = 0;
       } else {
-        throw new Error("[ERROR] 5자 이내로");
+        throw new Error(ERROR_MESSAGE.NAME_LIMIT);
       }
     }
     return carName;
