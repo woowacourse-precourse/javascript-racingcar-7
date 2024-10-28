@@ -1,7 +1,7 @@
 import { getUserInput } from './utils/Console.js';
 import { parseCarNames, parseAttempt } from './utils/Parser.js';
 import CarNameValidator from './validators/CarNameValidator.js';
-import AttemptValidator from './validators/AttemptValidator.js';
+import validateAttempt from './validators/AttemptValidator.js';
 import RacingGame from './RacingGame.js';
 import RaceStatusDisplay from './RaceStatusDisplay.js';
 import { GAME_MESSAGE } from './constants/Message.js';
@@ -16,7 +16,7 @@ class App {
     const userInputAttempt = await getUserInput(GAME_MESSAGE.INPUT_ATTEMPT);
 
     const roundAttempt = parseAttempt(userInputAttempt);
-    AttemptValidator.validate(roundAttempt);
+    validateAttempt(roundAttempt);
 
     const racingGame = new RacingGame(carNameList, roundAttempt);
     racingGame.startRace();
