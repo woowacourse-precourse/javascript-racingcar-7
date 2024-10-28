@@ -77,6 +77,11 @@ export function findWinners(gameResult) {
     .map(car => car.name);
 }
 
+export function printWinners(winners) {
+  const winnerNames = winners.join(", ");
+  Console.print(`최종 우승자 : ${winnerNames}`);
+}
+
 class App {
   async run() {}
 }

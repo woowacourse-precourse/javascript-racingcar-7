@@ -11,6 +11,7 @@ import {
   updateCarPosition,
   playGame,
   findWinners,
+  printWinners,
 } from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
@@ -265,6 +266,7 @@ describe("playGame 함수", () => {
   });
 });
 
+// findWinners 함수 테스트 코드
 describe("findWinners 함수", () => {
   test("가장 멀리 이동한 자동차가 우승자로 선택된다", () => {
     // given
@@ -294,6 +296,37 @@ describe("findWinners 함수", () => {
 
     // then
     expect(winners).toEqual(["car2"]);
+  });
+});
+
+// printWinners 함수 테스트 코드
+describe("printWinners 함수", () => {
+  test("우승자가 한 명일 때 올바르게 출력된다", () => {
+    // given
+    const winners = ["car1"];
+    const logSpy = getLogSpy();
+
+    // when
+    printWinners(winners);
+
+    // then
+    expect(logSpy).toHaveBeenCalledWith("최종 우승자 : car1");
+
+    logSpy.mockRestore(); // 모킹 복원
+  });
+
+  test("우승자가 여러 명일 때 올바르게 출력된다", () => {
+    // given
+    const winners = ["car1", "car3"];
+    const logSpy = getLogSpy();
+
+    // when
+    printWinners(winners);
+
+    // then
+    expect(logSpy).toHaveBeenCalledWith("최종 우승자 : car1, car3");
+
+    logSpy.mockRestore(); // 모킹 복원
   });
 });
 
