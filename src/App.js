@@ -54,6 +54,9 @@ class App {
     if (car_input.includes(",")) {
       this.car_names = car_input.split(",");
       this.car_name_length(this.car_names);
+    // 6. 예외 처리 2 : 자동차 입력 예외 상황 "[ERROR]"메세지 설정
+    } else {
+      throw new Error("[ERROR]");
     }
     
     // 2. 게임을 몇번 시도할 건지 횟수 입력 받기(횟수를 라운드로 표현)
