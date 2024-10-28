@@ -79,12 +79,15 @@ class App {
       const carInstanceArr = carNameArr.map((name) => new RacingCar(name));
 
       // 시도 횟수 받기
-      let tryCount = await IOManager.InputManager('', (value) => {
-        const num = Number(value);
-        Validator.isNumber(num);
-        Validator.isInteger(num);
-        Validator.isPositive(num);
-      });
+      let tryCount = await IOManager.InputManager(
+        '시도할 횟수는 몇 회인가요?\n',
+        (value) => {
+          const num = Number(value);
+          Validator.isNumber(num);
+          Validator.isInteger(num);
+          Validator.isPositive(num);
+        },
+      );
 
       tryCount = Number(tryCount);
 
