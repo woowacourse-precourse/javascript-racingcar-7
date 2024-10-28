@@ -146,4 +146,28 @@ describe("자동차 경주 입력 관련 예외 테스트", () => {
     const app = new App();
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
+  test("이동 시도 횟수가 양의 정수가 아닌 경우", async () => {
+    const inputs = ["자동차,car", "0"];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("이동 시도 횟수가 양의 정수가 아닌 경우", async () => {
+    const inputs = ["자동차,car", "-1"];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("이동 시도 횟수가 양의 정수가 아닌 경우", async () => {
+    const inputs = ["자동차,car", "1.2"];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
 });
