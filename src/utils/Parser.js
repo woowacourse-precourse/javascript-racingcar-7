@@ -1,5 +1,9 @@
+import { SYMBOLS } from '../constants/Symbol.js';
+
 export function parseCarNames(userInputCarNames) {
-  return userInputCarNames.split(',').map(carName => carName.trim());
+  return userInputCarNames
+    .split(SYMBOLS.CAR_DELIMITER)
+    .map(carName => carName.trim());
 }
 
 export function parseAttempt(userInputAttempt) {

@@ -1,5 +1,6 @@
 import RacingCars from './models/RacingCars.js';
 import RaceStatusDisplay from './RaceStatusDisplay.js';
+import { GAME_SETTINGS, SYMBOLS } from './constants/Symbol.js';
 
 class RacingGame {
   #racingCars;
@@ -13,7 +14,7 @@ class RacingGame {
   startRace() {
     RaceStatusDisplay.printRaceStartMessage();
 
-    for (let i = 0; i < this.#attempt; i++) {
+    for (let Racing = SYMBOLS.START_POINT; Racing < this.#attempt; Racing++) {
       this.#racingCars.moveCarsInRound();
       RaceStatusDisplay.printRoundStatus(this.#racingCars.getCars());
     }
@@ -23,7 +24,7 @@ class RacingGame {
     const currentCars = this.#racingCars.getCars();
     const maxPosition = Math.max(...currentCars.map(car => car.getPosition()));
 
-    if (maxPosition === 0) {
+    if (maxPosition === GAME_SETTINGS.INITIAL_POSITION) {
       return currentCars.map(car => car.getName());
     }
 

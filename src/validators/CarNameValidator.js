@@ -1,22 +1,23 @@
 import { ERROR_MESSAGE } from '../constants/Message.js';
+import { GAME_SETTINGS, SYMBOLS } from '../constants/Symbol.js';
 
 class CarNameValidator {
   static validate(carNameList) {
     carNameList.forEach(carName => {
-      if (carName === '') {
+      if (carName === SYMBOLS.EMPTY) {
         throw new Error(ERROR_MESSAGE.EMPTY_CAR_NAME);
       }
 
-      if (carName.includes(' ')) {
+      if (carName.includes(SYMBOLS.SPACE)) {
         throw new Error(ERROR_MESSAGE.SPACE_IN_CAR_NAME);
       }
 
-      if (carName.length > 5) {
+      if (carName.length > GAME_SETTINGS.MAX_NAME_LENGTH) {
         throw new Error(ERROR_MESSAGE.INVALID_CAR_NAME_LENGTH);
       }
     });
 
-    if (carNameList.length < 2) {
+    if (carNameList.length < GAME_SETTINGS.MINIMUM_CARS) {
       throw new Error(ERROR_MESSAGE.LESS_THAN_TWO_CARS);
     }
 

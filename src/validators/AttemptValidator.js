@@ -1,8 +1,9 @@
 import { ERROR_MESSAGE } from '../constants/Message.js';
+import { GAME_SETTINGS, SYMBOLS } from '../constants/Symbol.js';
 
 class AttemptValidator {
   static validate(roundAttempt) {
-    if (roundAttempt === '') {
+    if (roundAttempt === SYMBOLS.EMPTY) {
       throw new Error(ERROR_MESSAGE.EMPTY_ATTEMPT);
     }
 
@@ -14,7 +15,7 @@ class AttemptValidator {
       throw new Error(ERROR_MESSAGE.NOT_AN_INTEGER);
     }
 
-    if (roundAttempt < 1) {
+    if (roundAttempt < GAME_SETTINGS.MINIMUM_ATTEMPT) {
       throw new Error(ERROR_MESSAGE.LESS_THAN_ONE);
     }
   }

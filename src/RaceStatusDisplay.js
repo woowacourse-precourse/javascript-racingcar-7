@@ -1,5 +1,6 @@
 import { printMessage } from './utils/Console.js';
 import { GAME_MESSAGE } from './constants/Message.js';
+import { SYMBOLS } from './constants/Symbol.js';
 
 class RaceStatusDisplay {
   static printRaceStartMessage() {
@@ -8,13 +9,15 @@ class RaceStatusDisplay {
 
   static printRoundStatus(cars) {
     cars.forEach(car => {
-      printMessage(`${car.getName()} : ${'-'.repeat(car.getPosition())}`);
+      printMessage(
+        `${car.getName()} : ${SYMBOLS.RACE_PROGRESS.repeat(car.getPosition())}`,
+      );
     });
     printMessage('');
   }
 
   static printWinners(winners) {
-    const finalWinners = `${GAME_MESSAGE.WINNERS}${winners.join(', ')}`;
+    const finalWinners = `${GAME_MESSAGE.WINNERS}${winners.join(SYMBOLS.WINER_DELIMITER)}`;
     printMessage(finalWinners);
   }
 }
