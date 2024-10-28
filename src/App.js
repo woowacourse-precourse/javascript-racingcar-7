@@ -23,7 +23,7 @@ class App {
     if (this.validateNames(names)) {
       this.cars = names.map((name) => new Car(name));
     } else {
-      throw new Error('[ERROR] 자동차 이름은 5자 이하여야 합니다.');
+      throw new Error('[ERROR]');
     }
   }
 
@@ -42,7 +42,7 @@ class App {
   setRounds(input) {
     const rounds = parseInt(input, 10);
     if (isNaN(rounds) || rounds <= 0) {
-      throw new Error('[ERROR] 시도할 횟수는 양수여야 합니다.');
+      throw new Error('[ERROR]');
     }
     this.rounds = rounds;
   }
