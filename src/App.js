@@ -15,6 +15,21 @@ class App {
       startRound(carsName, carsState);
     }
 
+    Console.print(`최종 우승자 : ${this.getFinalWinner(carsName, carsState)}`)
+
+  }
+
+  getFinalWinner(carsName, carsState) {
+
+    let maxLength = Math.max(...(carsState.map((v) => v.length)));
+    const winnerCars = [];
+
+    for (let i = 0; i < carsName.length; i++) {
+      if (carsState[i].length === maxLength)
+        winnerCars.push(carsName[i]);
+    }
+
+    return winnerCars.join(", ");
   }
 
   startRound(carsName, carsState) {
