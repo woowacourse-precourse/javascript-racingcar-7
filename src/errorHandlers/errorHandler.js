@@ -16,3 +16,9 @@ const validateMoveCount = (count) => {
         throw new Error(`[ERROR] 이동 횟수는 1 이상의 양수여야 합니다.`);
     }
 };
+const validateCarNamesUniqueness = (names) => {
+    const uniqueNames = new Set(names);
+    if (uniqueNames.size !== names.length) {
+        throw new Error(`[ERROR] 자동차 이름은 중복될 수 없습니다.`);
+    }
+};
