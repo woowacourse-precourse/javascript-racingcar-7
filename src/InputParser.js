@@ -21,13 +21,13 @@ class InputParser {
   }
 
   validateTryCnt() {
-    if (this.isNegative(this.tryCnt) || this.isNotInteger(this.tryCnt)) {
+    if (this.isNegativeOrZero(this.tryCnt) || this.isNotInteger(this.tryCnt)) {
       this.printError(ERROR_MESSAGES.TRY_CNT_MUST_BE_POSITIVE_INTEGER);
     }
   }
 
-  isNegative(value) {
-    return value < 0;
+  isNegativeOrZero(value) {
+    return value <= 0;
   }
 
   isNotInteger(value) {
