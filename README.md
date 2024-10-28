@@ -69,7 +69,7 @@
 
 **메서드**:
 
-- attempt(): 시도 횟수만큼 자동차를 전진
+- attempt(Number): 시도 횟수만큼 자동차를 전진
 - printRoundResult(): 자동차들의 위치를 출력
 - getWinners(): 최종 우승자 반환
 
@@ -120,15 +120,15 @@
 
 3. Race 클래스 구현 - 자동차 생성
 
-- Car클래스를 통해 만들어진 car를 Race 클래스에서 배열로 구현
-- 생성자에서 자동차 이름 배열을 받아 Car 인스턴스 배열로 초기화
+- [O] Car클래스를 통해 만들어진 car를 Race 클래스에서 배열로 구현
+- [O] 생성자에서 자동차 이름 배열을 받아 Car 인스턴스 배열로 초기화
   - Console.print()로 자동차 배열이 잘 생성되었는지 확인
 
 4. Race 클래스 구현 - attempt() 메서드
 
-- 시도 횟수만큼 자동차 이동
-- attempt() - 반복문을 사용해 각 시도에서 모든 자동차의 move() 메서드 호출
-  - printRoundResult() - Console.print()로 각 시도마다 자동차의 위치 상태 출력
+- [O] 시도 횟수만큼 자동차 이동
+- [O] attempt() - 반복문을 사용해 각 시도에+서 모든 자동차의 move() 메서드 호출
+  - [O] printRoundResult() - Console.print()로 각 시도마다 자동차의 위치 상태 출력
 
 5. Race 클래스 구현 - getWinners() 메서드
 
