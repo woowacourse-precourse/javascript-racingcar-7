@@ -11,13 +11,14 @@ const checkForEmptyInput = (attemptCount) => {
   if (!attemptCount) throwError(ERROR_MESSAGES.EMPTY_INPUT);
   return attemptCount;
 };
+
 const checkValidNumber = (attemptCount) => {
   if (Number.isNaN(attemptCount)) throwError(ERROR_MESSAGES.INVALID_INPUT);
   return attemptCount;
 };
 
 const checkMinusNumber = (attemptCount) => {
-  if (attemptCount <= 0) throwError(ERROR_MESSAGES.INVALID_INPUT);
+  if (attemptCount <= 0) throwError(ERROR_MESSAGES.MINUS_INPUT);
   return attemptCount;
 };
 
