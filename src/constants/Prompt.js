@@ -5,7 +5,7 @@ const PROMPT = Object.freeze({
   RESULT_DELIMITER: ':',
   POSITION_MARKER: '-',
   WINNER_PROMPT: '최종 우승자 : ',
-  WINNER_DELIMITER: ',',
+  WINNER_DELIMITER: ', ',
 });
 
 export default PROMPT;

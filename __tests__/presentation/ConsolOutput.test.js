@@ -1,6 +1,6 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import ConsoleOutput from '../../src/presentation/ConsoleOutput.js';
-import PROMPT from '../src/constants/Prompt.js';
+import PROMPT from '../../src/constants/Prompt.js';
 
 describe('ConsoleOutput 테스트', () => {
   let printSpy;
