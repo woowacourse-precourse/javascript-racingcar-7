@@ -28,4 +28,4 @@ const MESSAGE = {
   },
 };
 
-export { MESSAGE, NUMBER, PREFIX };
+export { PREFIX, NUMBER, MESSAGE };
