@@ -5,29 +5,29 @@ class OutputView {
   static #DASH = "-";
 
   static printExecutionResult() {
-    return OutputView.printMessage(OUTPUT_MESSAGE.EXECUTION_RESULT);
+    return OutputView.#printMessage(OUTPUT_MESSAGE.EXECUTION_RESULT);
   }
 
   static printBlankLine() {
-    OutputView.printMessage(OUTPUT_MESSAGE.BLANK_LINE);
+    OutputView.#printMessage(OUTPUT_MESSAGE.BLANK_LINE);
   }
 
   static printRaceProgress(racingCarArray) {
     racingCarArray.forEach((car) => {
       const carName = car.name;
       const distance = OutputView.#DASH.repeat(car.position);
-      OutputView.printMessage(`${carName} : ${distance}`);
+      OutputView.#printMessage(`${carName} : ${distance}`);
     });
-    return OutputView.printMessage("\n");
+    return OutputView.#printMessage("\n");
   }
 
   static printFinalWinner(winnerString) {
-    return OutputView.printMessage(
+    return OutputView.#printMessage(
       `${OUTPUT_MESSAGE.FINAL_WINNER} ${winnerString}`
     );
   }
 
-  static printMessage(outPut) {
+  static #printMessage(outPut) {
     return Console.print(outPut);
   }
 }

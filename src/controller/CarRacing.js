@@ -10,22 +10,22 @@ class CarRacing {
 
   async init() {
     const racingCars = new RacingCars();
-    await this.registerRacingCars(racingCars);
-    await this.startRace(racingCars);
-    this.announceWinner(racingCars);
+    await this.#registerRacingCars(racingCars);
+    await this.#startRace(racingCars);
+    this.#announceWinner(racingCars);
   }
 
-  async getCarNamesFromUserInput() {
+  async #getCarNamesFromUserInput() {
     const input = await InputView.readCarNames();
-    return this.parseCarNames(input);
+    return this.#parseCarNames(input);
   }
 
-  parseCarNames(input) {
+  #parseCarNames(input) {
     return input.split(",");
   }
 
-  async registerRacingCars(racingCars) {
-    const carList = await this.getCarNamesFromUserInput();
+  async #registerRacingCars(racingCars) {
+    const carList = await this.#getCarNamesFromUserInput();
     Validator.checkCarList(carList);
     carList.forEach((carName) => {
       Validator.checkName(carName);
@@ -33,20 +33,20 @@ class CarRacing {
     });
   }
 
-  async getMoveAttemptsFromUserInput() {
+  async #getMoveAttemptsFromUserInput() {
     const attempts = await InputView.readMoveAttempts();
     Validator.checkMoveAttempts(attempts);
     return attempts;
   }
 
-  async startRace(racingCars) {
-    const raceRound = await this.setRaceRound();
+  async #startRace(racingCars) {
+    const raceRound = await this.#setRaceRound();
     OutputView.printBlankLine();
     OutputView.printExecutionResult();
-    this.moveCarsAndPrintProgress(racingCars, raceRound);
+    this.#moveCarsAndPrintProgress(racingCars, raceRound);
   }
 
-  moveCarsAndPrintProgress(racingCars, raceRound) {
+  #moveCarsAndPrintProgress(racingCars, raceRound) {
     const racingCarList = racingCars.getAllCars();
     for (let i = 0; i < raceRound; i++) {
       racingCars.moveAllCars();
@@ -54,7 +54,7 @@ class CarRacing {
     }
   }
 
-  getFinalWinner(racingCars) {
+  #getFinalWinner(racingCars) {
     const racingCarList = racingCars.getAllCars();
     const maxDistance = Math.max(...racingCarList.map((car) => car.position));
     const winnerList = racingCarList
@@ -63,15 +63,15 @@ class CarRacing {
     return winnerList;
   }
 
-  announceWinner(racingCars) {
-    const winnerList = this.getFinalWinner(racingCars);
+  #announceWinner(racingCars) {
+    const winnerList = this.#getFinalWinner(racingCars);
     OutputView.printFinalWinner(
       winnerList.join(CarRacing.#WINNER_LIST_DELIMITER)
     );
   }
 
-  async setRaceRound() {
-    return await this.getMoveAttemptsFromUserInput();
+  async #setRaceRound() {
+    return await this.#getMoveAttemptsFromUserInput();
   }
 }
 
