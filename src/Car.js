@@ -4,6 +4,10 @@ import {
   MOVEMENT_MINIMUM,
 } from "./constants.js";
 
+/**
+ * 문제에 주어진 자동차 Class정의
+ */
+
 class Car {
   constructor(name) {
     this.name = name;

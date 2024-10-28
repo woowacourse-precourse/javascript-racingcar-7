@@ -3,6 +3,10 @@ import { InputValidation, InputView } from "./InputView.js";
 import OutputView from "./OutputView.js";
 import { StringUtils } from "./Util.js";
 
+/**
+ * 자동차 경주 메인
+ */
+
 class App {
   async run() {
     const userCarNamesInput = await InputView.getCarNames();

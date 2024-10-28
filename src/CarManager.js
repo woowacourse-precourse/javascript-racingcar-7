@@ -1,6 +1,9 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import Car from "./Car.js";
 
+/**
+ * 자동차에 대한 처리를 담당하는 class
+ */
 class CarManager {
   constructor(carNameArr = []) {
     this.carNameArr = carNameArr.map((name) => new Car(name));

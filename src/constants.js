@@ -1,3 +1,7 @@
+/**
+ * 싱수
+ */
+
 export const ERROR_MESSAGE = Object.freeze({
   CAR_NAME_INPUT_ERROR: Object.freeze({
     RANGE_ERROR: "[ERROR] 각 자동차의 이름은 1 ~ 5자 이내로 입력해주세요.",

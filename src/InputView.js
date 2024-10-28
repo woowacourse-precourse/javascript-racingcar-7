@@ -8,6 +8,9 @@ import {
   TRY_MINIMUM_COUNT,
 } from "./constants.js";
 
+/**
+ * 유저로부터 입력 기능
+ */
 const InputView = {
   async getCarNames() {
     return Console.readLineAsync(INPUT_MESSAGE.CAR_NAME_INPUT_MESSAGE);
@@ -18,6 +21,10 @@ const InputView = {
   },
 };
 
+/**
+ * 1. 자동차의 길이를 보고 판단
+ * 2. 시도 횟수를 보고 판단
+ */
 const InputValidation = {
   validateCarNames(carNames = []) {
     carNames.forEach((carName) => {

@@ -1,6 +1,10 @@
 import { Console } from "@woowacourse/mission-utils";
 import { OUTPUT_MESSAGE } from "./constants.js";
 
+/**
+ * 출력 기능
+ */
+
 const OutputView = {
   printError(error) {
     Console.print(error.message);
