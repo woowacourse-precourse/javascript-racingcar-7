@@ -1,3 +1,8 @@
+import Car from './Car.js';
+import InputView from './InputView.js';
+import { splitCarNames } from './utils/splitCarNames.js';
+import { validateCarName, validateRoundCount } from './validate.js';
+
 class Game {
   #round;
 
@@ -6,8 +11,22 @@ class Game {
     this.#round = 0;
   }
 
-  start() {
-    // 입력 받기
+  #createCars(inputCarNames) {
+    const carNames = splitCarNames(inputCarNames);
+
+    return carNames.map((carName) => new Car(carName));
+  }
+
+  async start() {
+    const inputCarNames = await InputView.readCarNames();
+    validateCarName(inputCarNames);
+    const roundCount = await InputView.readRoundCount();
+    validateRoundCount(roundCount);
+
+    this.#round = roundCount;
+    this.cars = this.#createCars(inputCarNames);
+
+    this.progress();
   }
 
   progress() {
