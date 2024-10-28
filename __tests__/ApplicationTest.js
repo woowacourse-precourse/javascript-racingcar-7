@@ -56,5 +56,82 @@ describe("자동차 경주", () => {
 
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
+    test('공동 우승 테스트', async () => {
+    const MOVING_FORWARD = 4;
+    const inputs = ['pobi,woni', '1'];
+    const logs = ['pobi : -', 'woni : -', '최종 우승자 : pobi, woni'];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([MOVING_FORWARD, MOVING_FORWARD]);
+    const app = new App();
+    await app.run();
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
   });
+
+  test('시도 횟수가 숫자가 아닌 경우', async () => {
+    const inputs = ['pobi,woni', 'a'];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('시도 횟수가 음수인 경우', async () => {
+    const inputs = ['pobi,woni', '-1'];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('자동차 이름이 5자 초과인 경우', async () => {
+    const inputs = ['pobi,woni,poooobi', '1'];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+});
+
+test('공동 우승 테스트', async () => {
+  const MOVING_FORWARD = 4;
+  const inputs = ['pobi,woni', '1'];
+  const logs = ['pobi : -', 'woni : -', '최종 우승자 : pobi, woni'];
+  const logSpy = getLogSpy();
+
+  mockQuestions(inputs);
+  mockRandoms([MOVING_FORWARD, MOVING_FORWARD]);
+  const app = new App();
+  await app.run();
+  logs.forEach((log) => {
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+  });
+});
+
+test('시도 횟수가 숫자가 아닌 경우', async () => {
+  const inputs = ['pobi,woni', 'a'];
+  mockQuestions(inputs);
+
+  const app = new App();
+  await expect(app.run()).rejects.toThrow('[ERROR]');
+});
+
+test('시도 횟수가 음수인 경우', async () => {
+  const inputs = ['pobi,woni', '-1'];
+  mockQuestions(inputs);
+
+  const app = new App();
+  await expect(app.run()).rejects.toThrow('[ERROR]');
+});
+
+test('자동차 이름이 5자 초과인 경우', async () => {
+  const inputs = ['pobi,woni,poooobi', '1'];
+  mockQuestions(inputs);
+
+  const app = new App();
+  await expect(app.run()).rejects.toThrow('[ERROR]');
+});
 });
