@@ -10,6 +10,16 @@ class Car {
         throw new Error("[ERROR] 이름은 5자 이하, 1자 이상이어야 합니다.");
       }
     }
+
+    increaseDistance() {
+        this.distance += 1;
+    }
+    
+    goIfNumberOverFour(randomNumber) {
+        if (randomNumber >= 4) {
+          this.increaseDistance();
+        }
+      }
   }
   
   export default Car;
