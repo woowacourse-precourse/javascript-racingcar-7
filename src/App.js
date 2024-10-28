@@ -1,3 +1,4 @@
+import { Console } from '@woowacourse/mission-utils';
 import { Car } from './model/Car.js';
 import { Race } from './model/Race.js';
 import { View } from './view/view.js';
@@ -31,6 +32,12 @@ class App {
     }
     if (attempt <= 0) {
       throw new Error('[ERROR] 시도할 횟수는 양수이어야 합니다.');
+    }
+
+    Console.print('실행결과\n');
+    for (let i = 0; i < attempt; i++) {
+      race.play();
+      view.displayCurrentPosition(race.getCars());
     }
   }
 }
