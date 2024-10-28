@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 
 class App {
   async run() {
@@ -13,7 +13,7 @@ class App {
       const playNum = await Console.readLineAsync(
         "시도할 횟수는 몇 회인가요?\n"
       );
-      this.validateMoveCount(playNum);
+      this.validMoveCount(playNum);
     } catch (error) {
       Console.print(`[ERROR] ${error.message}`);
       throw error;
@@ -28,10 +28,39 @@ class App {
     });
   }
 
-  validateMoveCount(playNum) {
+  validMoveCount(playNum) {
     if (isNaN(playNum) || playNum <= 0) {
       throw new Error("[ERROR] 이동 횟수는 1 이상의 정수여야 합니다.");
     }
+  }
+
+  goToCars(nameList, playNum) {
+    let movingCars = new Array(nameList.length).fill(0);
+
+    for (let i = 0; i < playNum; i++) {
+      this.moveCars(nameList, movingCars);
+      this.nowCar(nameList, movingCars);
+      Console.print("\n");
+    }
+
+    return movingCars;
+  }
+
+  moveCars(nameList, movingCars) {
+    nameList.forEach((car, idx) => {
+      const randomNum = Random.pickNumberInRange(0, 9);
+      if (randomNum >= 4) {
+        movingCars[idx]++;
+      }
+    });
+  }
+
+  nowCar(cars, movingCars) {
+    movingCars.forEach((distance, idx) => {
+      const car = cars[idx];
+      const carPosition = "-".repeat(distance);
+      Console.print(`${car} : ${carPosition}`);
+    });
   }
 }
 
