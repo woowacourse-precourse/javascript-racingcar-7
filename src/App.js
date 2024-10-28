@@ -5,9 +5,10 @@ class App {
     const carNameString = await Console.readLineAsync(
       "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
     );
-    const carNames = carNameString
+    let carNames = carNameString
       .split(",")
       .map((carName) => this.validateName(carName));
+    carNames = this.validateDuplicateName(carNames);
 
     let playNum = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
     playNum = this.isPositiveNumber(playNum);
@@ -67,6 +68,16 @@ class App {
     }
 
     return name;
+  }
+
+  validateDuplicateName(names) {
+    const nameSet = new Set(names);
+
+    if (names.length !== nameSet.size) {
+      throw new Error("[ERROR] 중복되지 않는 이름을 입력해 주세요");
+    }
+
+    return names;
   }
 
   isPositiveNumber(num) {
