@@ -21,6 +21,13 @@ describe('시도할 횟수 테스트 - [Error] 발생 상황', () => {
       '[ERROR] 1 이상의 숫자를 입력하시면 안됩니다.',
     );
   });
+
+  test('시도할 횟수에 실수를 입력하면 에러가 발생합니다.', () => {
+    const roundAttempt = 2.2;
+    expect(() => AttemptValidator.validate(roundAttempt)).toThrow(
+      '[ERROR] 시도할 횟수에 실수를 입력하시면 안됩니다.',
+    );
+  });
 });
 
 describe('시도할 횟수 테스트 - 정상 작동', () => {
