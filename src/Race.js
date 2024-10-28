@@ -24,6 +24,9 @@ class Race {
       this.#executeRound();
       OutputView.printRountResult(this.#carInstance);
     }
+
+    const winners = this.#determineWinner();
+    OutputView.printWinner(winners);
   }
 
   #canMoveForward() {
