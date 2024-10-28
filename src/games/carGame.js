@@ -1,3 +1,4 @@
+import printRoundResults from '../outputHandlers/printRoundResults';
 import getRandomValue from './getRandomValue'
 import moveCarForward from './moveCarForward';
 
@@ -17,6 +18,7 @@ const updateCarPositions =(carObject)=>{
 const carGame=(carObject,tryNumber)=>{
     for(let i =0; i<tryNumber; i++){
         updateCarPositions(carObject);
+        printRoundResults(carObject);
     } 
 }
 
