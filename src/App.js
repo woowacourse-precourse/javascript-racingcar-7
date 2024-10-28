@@ -36,6 +36,12 @@ function randomAdvanceCars(cars, count) {
   return result;
 }
 
+function checkWinner(cars, result) {
+  const maxResult = Math.max(...result);
+  const winners = cars.filter((car, index) => result[index] === maxResult);
+  Console.print(`최종 우승자 : ${winners.join(", ")}`);
+}
+
 class App {
   async run() {
     let cars = await Console.readLineAsync(
@@ -48,6 +54,7 @@ class App {
 
     Console.print(`\n실행 결과`);
     const result = randomAdvanceCars(cars, count);
+    checkWinner(cars, result);
   }
 }
 
