@@ -1,10 +1,12 @@
 import { Console } from "@woowacourse/mission-utils";
 import InputHandler from "./InputHandler.js";
+import ErrorHandler from "./ErrorHandler.js";
 import Race from "./Race.js";
 
 class App {
   constructor() {
     this.inputHandler = new InputHandler();
+    this.errorHandler = new ErrorHandler();
     this.race = null;
   }
 
@@ -20,10 +22,16 @@ class App {
     const parsedCarNames = this.inputHandler.parseCarNames(carNames);
     const parsedAttempts = this.inputHandler.parseAttempts(attempts);
 
+    parsedCarNames.forEach((name) => {
+      this.errorHandler.checkCarName(name);
+      this.errorHandler.checkCarNull(name);
+    });
+
+    this.errorHandler.checkAttemptInt(parsedAttempts);
+
     this.race = new Race(parsedCarNames);
     this.race.attempt(parsedAttempts);
 
-    // 제대로 작동하는지 확인
     const winners = this.race.getWinners();
     Console.print(`최종 우승자: ${winners.join(", ")}`);
   }

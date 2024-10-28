@@ -7,7 +7,7 @@ class ErrorHandler {
    */
   checkCarName(name) {
     if (name.length > 5) {
-      throw new Error("[ERROR] 자동차 이름이 5자를 초과");
+      throw new Error("[ERROR] 자동차 이름이 5자 초과");
     }
   }
 
@@ -17,7 +17,7 @@ class ErrorHandler {
    */
   checkCarNull(name) {
     if (name.trim() === "") {
-      throw new Error("[ERROR] 자동차 이름이 비어 있습니다.");
+      throw new Error("[ERROR] 자동차 이름이 비어있음");
     }
   }
 
@@ -27,7 +27,7 @@ class ErrorHandler {
    */
   checkAttemptInt(attempt) {
     if (!Number.isInteger(attempt) || attempt <= 0) {
-      throw new Error("[ERROR] 시도 횟수가 1 이상의 자연수가 아닙니다.");
+      throw new Error("[ERROR] 시도 횟수가 자연수가 아님");
     }
   }
 }
