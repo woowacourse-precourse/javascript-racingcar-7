@@ -40,7 +40,7 @@ function validateCarNames(carNames) {
 /**
  * 라운드 입력값을 검증하여 양의 정수인지 확인합니다.
  * @param {string} input - 문자열로 표현된 라운드 입력값.
- * @returns {bigint} - 유효성이 검증된 라운드 값 (BigInt).
+ * @returns {BigInt} - 유효성이 검증된 라운드 값 (BigInt).
  * @throws 입력값이 정수가 아니거나, 양수가 아닐 때 오류를 발생시킵니다.
  */
 function validateRounds(input) {
