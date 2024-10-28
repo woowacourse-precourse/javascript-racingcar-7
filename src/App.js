@@ -1,18 +1,18 @@
 import { Console } from '@woowacourse/mission-utils';
-import { getCarNames, getCount } from "./IO.js";
-import { randomRacing } from "./racing.js";
-import { displayResults } from "./IO.js";
-import { MESSAGE } from "./message.js";
+import { getCarNames, getCount, displayResults } from "../src/IO.js";
+import { randomRacing } from "../src/racing.js";
+import { MESSAGE } from "../src/message.js";
 
 class App {
   async run() {
     try {
       const carNames = await getCarNames();
-      const chance = await getCount();
+      const count = await getCount();
       Console.print("\n"+MESSAGE.EXECUTION_RESULT);
-      const results = randomRacing(carNames, chance, displayResults);
-      } catch (error) {
+      const results = randomRacing(carNames, count, displayResults);
+       } catch (error) {
         Console.print(`오류가 발생했습니다: ${error.message}`);
+        throw error;
       }
     }
   }
