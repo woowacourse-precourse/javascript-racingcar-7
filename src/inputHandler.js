@@ -3,7 +3,7 @@ import { ERROR_MESSAGES } from "./constants.js";
 
 export async function getValidatedCarNames() {
   const CARS_INPUT = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
-  const carNames = CARS_INPUT.split(",");
+  const carNames = CARS_INPUT.split(",").map(carName => carName.trim());
 
   carNames.forEach((carName) => {
     if (carName.length > 5) {
