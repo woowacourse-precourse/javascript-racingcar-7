@@ -6,6 +6,9 @@ class App {
     // 사용자 입력 구현
     const carNames = await this.getCarNames();
     const attempts = await this.getAttempts();
+    
+    // 자동차 객체 초기화
+    const cars = carNames.map((name) => new Car(name));
 
   }
 
