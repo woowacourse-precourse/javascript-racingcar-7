@@ -12,7 +12,9 @@ class App {
 
     async getCarNames() {
         const input = await this.promptCarNames();
-        return this.parseCarNames(input);
+        const carNames = this.parseCarNames(input);
+        this.validateCarNames(carNames);
+        return carNames;
     }
 
     async promptCarNames() {
@@ -21,6 +23,12 @@ class App {
 
     parseCarNames(input) {
         return input.split(",").map((name) => name.trim());
+    }
+
+    validateCarNames(carNames) {
+        if (carNames.some((name) => name.length > 5) || carNames.length === 0) {
+            throw new Error("[ERROR] 자동차 이름은 1자 이상 5자 이하만 가능합니다.");
+        }
     }
 }
 
