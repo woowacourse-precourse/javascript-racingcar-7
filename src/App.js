@@ -31,7 +31,7 @@ class App {
     Console.print(names)
     // 이름이 범위 내 길이를 갖지 않는 경우 예외 처리
     if (names.some((name) => name.length > 5 || !name)) {
-      throw new Error("[ERROR]");
+      throw new Error("[ERROR] 자동차 이름은 1자 이상 5자 이하여야 합니다.");
     }
 
     return names;
