@@ -11,7 +11,8 @@ class App {
       const winners = this.findWinners(carScores);
       this.printWinners(winners);
     } catch (error) {
-      Console.print("[ERROR] " + error.message);
+      Console.print(error.message);
+      throw error;
     }
   }
 
@@ -31,14 +32,14 @@ class App {
 
   checkMinCars(carNames) {
     if (carNames.length < 2 || carNames.includes("")) {
-      throw new Error("자동차는 최소 2대 이상이어야 합니다.");
+      throw new Error("[ERROR] 자동차는 최소 2대 이상이어야 합니다.");
     }
   }
 
   checkDuplicateNames(carNames) {
     const uniqueNames = new Set(carNames);
     if (uniqueNames.size !== carNames.length) {
-      throw new Error("자동차 이름은 중복될 수 없습니다.");
+      throw new Error("[ERROR] 자동차 이름은 중복될 수 없습니다.");
     }
   }
   validCarNameLengthAndBlank(carNames) {
@@ -47,7 +48,9 @@ class App {
         (name) => name.length > 5 || name.length === 0 || name.includes(" ")
       )
     ) {
-      throw new Error("자동차 이름은 5자 이하만 가능하며, 공백이 불가합니다.");
+      throw new Error(
+        "[ERROR] 자동차 이름은 5자 이하만 가능하며, 공백이 불가합니다."
+      );
     }
   }
   async getUserTryNumbers() {
@@ -57,7 +60,7 @@ class App {
 
     if (isNaN(tryNumber) || tryNumber <= 0) {
       throw new Error(
-        "시도 횟수는 양수가 아닌 다른 입력값을 받아들일 수 없습니다."
+        "[ERROR] 시도 횟수는 양수가 아닌 다른 입력값을 받아들일 수 없습니다."
       );
     }
 
