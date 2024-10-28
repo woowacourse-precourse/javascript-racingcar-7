@@ -9,8 +9,10 @@ class App {
       let raceCount = parseInt(raceCountInput, 10);
 
       let carPositions = this.initializeCarPositions(carNames);
-
       this.runRace(carNames, carPositions, raceCount);
+
+      const winners = this.getWinners(carPositions);
+      Console.print(`\n최종 우승자: ${winners.join(", ")}`);
 
     } catch (error) {
       Console.print(`[ERROR] ${error.message}`);
@@ -65,9 +67,6 @@ class App {
   carMovingCheck(car, isMoving, carPositions) {
     if (isMoving) {
       carPositions[car] += 1;
-      Console.print(`${car} 전진`);
-    } else {
-      Console.print(`${car} 멈춤`);
     }
   }
 
@@ -111,6 +110,17 @@ class App {
     Console.print(`${car} : ${positionMark}`);
   }
 
+  /**
+   * @author CWDll
+   * @describe runRace 우승자 결정하는 함수
+   * @parameter {carPositions: Object}
+   * @returnValue {string[]} - 우승자 이름 배열
+   */
+  getWinners(carPositions) {
+    const maxPosition = Math.max(...Object.values(carPositions));
+    const winners = Object.keys(carPositions).filter(car => carPositions[car] === maxPosition);
+    return winners;
+  }
 }
 
 
