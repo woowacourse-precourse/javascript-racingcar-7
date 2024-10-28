@@ -11,8 +11,4 @@ export default class OutputView {
   static printErrorMessage(message) {
     Console.print(`${OUTPUT_MESSAGES.ERROR_MESSAGE_PREFIX} ${message}`);
   }
-
-  static printCarNames(carNames) {
-    Console.print(`자동차 이름 배열: ${carNames.join(", ")}`);
-  }
 }

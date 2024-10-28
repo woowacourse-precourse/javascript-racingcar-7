@@ -11,6 +11,13 @@ const inputView = {
       });
     });
   },
+  readTryCount() {
+    return new Promise((resolve) => {
+      Console.readLine(INPUT_MESSAGES.TRY_COUNT, (input) => {
+        resolve(input);
+      });
+    });
+  },
 };
 
 export default inputView;
