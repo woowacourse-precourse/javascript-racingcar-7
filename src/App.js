@@ -54,6 +54,21 @@ export function updateCarPosition(carInfo) {
   }
 }
 
+export function playGame(inputNumber, cars) {
+  // 초기 상태 설정. 각 자동차의 position을 0으로 초기화
+  const gameResult = cars.map(name => ({ name, position: 0 }));
+
+  // inputNumber 횟수 만큼 게인 진행
+  for (let i = 0; i < inputNumber; i++) {
+    // 자동차 위치 업데이트
+    gameResult.forEach(updateCarPosition);
+    // 매 라운드 결과 출력
+    printCurrentResult(gameResult);
+  }
+
+  return gameResult;
+}
+
 class App {
   async run() {}
 }

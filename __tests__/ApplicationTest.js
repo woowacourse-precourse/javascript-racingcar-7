@@ -9,6 +9,7 @@ import {
   printCurrentResult,
   shouldMoveForward,
   updateCarPosition,
+  playGame,
 } from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
@@ -232,6 +233,34 @@ describe("updateCarPosition 함수", () => {
     expect(carInfo.position).toBe(1);
 
     MissionUtils.Random.pickNumberInRange.mockRestore(); // 모킹 복원
+  });
+});
+
+// playGame 함수 테스트 코드
+describe("playGame 함수", () => {
+  test("inputNumber 횟수만큼 게임이 진행되고 결과가 출력된다", () => {
+    // given
+    const inputNumber = 3;
+    const cars = ["car1", "car2"];
+    const mockValues = [4, 3, 5, 4, 6, 2]; // 각 라운드마다 전진 여부 결정
+    mockRandoms(mockValues); // 랜덤 값 고정
+    const logSpy = getLogSpy();
+
+    // when
+    const result = playGame(inputNumber, cars);
+
+    // then
+    expect(result).toEqual([
+      { name: "car1", position: 3 },
+      { name: "car2", position: 1 }
+    ]);
+
+    expect(logSpy).toHaveBeenCalledWith("car1 : ---");
+    expect(logSpy).toHaveBeenCalledWith("car2 : -");
+
+    // 스파이 복원
+    MissionUtils.Random.pickNumberInRange.mockRestore();
+    logSpy.mockRestore();
   });
 });
 
