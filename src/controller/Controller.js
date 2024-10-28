@@ -1,4 +1,4 @@
-import InputView from "../view/inputView.js";
+import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
 
 class Controller {
