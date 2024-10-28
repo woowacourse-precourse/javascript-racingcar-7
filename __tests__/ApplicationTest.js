@@ -75,4 +75,13 @@ describe("자동차 경주", () => {
 
     await expect(app.run()).rejects.toThrow(ERROR_MESSAGES.DUPLICATE_CAR_NAME);
   });
+
+  test("자동차 이름 길이 초과 예외 테스트", async () => {
+    const inputs = ["ho0010,ho0"];
+    mockQuestions(inputs);
+    const app = new App();
+    await expect(app.run()).rejects.toThrow(
+      ERROR_MESSAGES.INVALID_CAR_NAME_LENGTH
+    );
+  });
 });
