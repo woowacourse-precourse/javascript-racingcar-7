@@ -6,16 +6,25 @@ class Validator {
     this.#value = value;
   }
 
-  #validatePositiveNumbers() {
+  #validatePositiveNumber() {
     if (this.#value <= 0) {
-      throw Error(ERROR_MESSAGE.INVALID_TRY_COUNT);
+      throw new Error(ERROR_MESSAGE.INVALID_TRY_COUNT);
+    }
+  }
+
+  #validateNoDuplicates() {
+    const hasDuplicates = new Set(value).size !== this.#value.length;
+    if (hasDuplicates) {
+      throw new Error(ERROR_MESSAGE.DUPLICATE_NAME);
     }
   }
 
   static validate(value) {
     const validator = new Validator(value);
     if (typeof validator.#value === 'number') {
-      validator.#validatePositiveNumbers();
+      validator.#validatePositiveNumber();
+    } else if (typeof validator.#value === 'object') {
+      validator.#validateNoDuplicates();
     }
   }
 }
