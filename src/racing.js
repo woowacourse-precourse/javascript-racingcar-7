@@ -1,4 +1,5 @@
 import { Random } from '@woowacourse/mission-utils';
+import { printResult } from './print.js';
 
 function startRacing(names, times) {
   const carsObject = arrayToObject(names);
@@ -10,7 +11,7 @@ function startRacing(names, times) {
         carsObject[key] += 1;
       }
     }
-    // printResult(carsObject);
+    printResult(carsObject);
   }
 
   const winner = getWinner(carsObject);
