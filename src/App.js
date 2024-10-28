@@ -1,15 +1,29 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 class App {
   INPUT_CAR_NAME =
     "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n";
   INPUT_TRY_COUNT = "시도할 회수는 몇회인가요?\n";
+  WINNER_MESSAGE = "최종 우승자 : ";
   carsName = [];
+  winner = [];
+  answer_candidate = [];
 
   async getUserInput(message) {
     return await Console.readLineAsync(message);
   }
   async showInput(message) {
     return await Console.print(message);
+  }
+
+  initialize(size) {
+    this.answer_candidate = new Array(size);
+    for (let i = 0; i < size; i++) {
+      this.answer_candidate[i] = new Array();
+    }
+  }
+
+  getStartCondition() {
+    return Random.pickNumberInRange(0, 9) >= 4;
   }
 
   validateCarName(name) {
@@ -30,6 +44,26 @@ class App {
     }
   }
 
+  async getAnswer(tryCount, carsName) {
+    if (!carsName) throw new Error("[ERROR] 자동차 이름을 입력해주세요.");
+
+    this.initialize(carsName.length);
+
+    await this.showInput("\n실행 결과");
+
+    for (let i = 0; i < tryCount; i++) {
+      for (let j = 0; j < carsName.length; j++) {
+        if (this.getStartCondition()) {
+          this.answer_candidate[j].push("-");
+        }
+        await this.showInput(
+          `${carsName[j]} : ${this.answer_candidate[j].join("")}`
+        );
+      }
+      await this.showInput("");
+    }
+  }
+
   async run() {
     const names = await this.getUserInput(this.INPUT_CAR_NAME);
     const tryCount = await this.getUserInput(this.INPUT_TRY_COUNT);
@@ -39,6 +73,9 @@ class App {
       .map((el) => this.validateCarName(el.trim()));
 
     this.validateTryCount(tryCount);
+
+    await this.getAnswer(Number(tryCount), this.carsName);
+    await this.showInput(`${this.WINNER_MESSAGE}${this.winner.join(", ")}`);
   }
 }
 
