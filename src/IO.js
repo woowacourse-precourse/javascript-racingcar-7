@@ -1,7 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
-import { validateCarNames } from "./error.js";
-import { validateCount } from "./error.js";
-import { MESSAGE } from "./message.js";
+import { validateCarNames, validateCount } from "../src/error.js";
+import { MESSAGE } from "../src/message.js";
 
 export async function getCarNames() {
   const input = await Console.readLineAsync(MESSAGE.ASK_CARNAMES+"\n");
@@ -23,6 +22,7 @@ export function displayResults(results) {
   });
   Console.print("");
 }
+
  
 export function displayWinner(results) {
   const maxAdvanceCount = Math.max(...results.map(car => car.advanceCount));
