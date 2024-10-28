@@ -6,6 +6,10 @@ class App {
       const input = await MissionUtils.Console.readLineAsync(
         "경주할 자동차 이름을 쉼표로 구분하여 입력해주세요. \n"
       );
+
+      //자동차 목록 입력 검증
+      this.validateInput(input);
+
       const count = await MissionUtils.Console.readLineAsync(
         "시도할 횟수는 몇 회인가요? \n"
       );
@@ -26,9 +30,25 @@ class App {
       MissionUtils.Console.print("");
       MissionUtils.Console.print(parsed);
     } catch (error) {
-      MissionUtils.Console.print(error.message);
+      // MissionUtils.Console.print(error.message);
       throw error;
     }
+  }
+
+  validateInput(input) {
+    const cars = input.split(",").map((item) => item.trim());
+    if (cars.length === 0 || cars.some((car) => car === "")) {
+      MissionUtils.Console.print("[ERROR] 자동차 이름을 입력해야 합니다.");
+      throw new Error("[ERROR]");
+    }
+
+    if (cars.some((car) => car.length >= 6)) {
+      MissionUtils.Console.print(
+        "[ERROR] 자동차 이름은 5자 이하만 가능합니다."
+      );
+      throw new Error("[ERROR]");
+    }
+    return;
   }
 
   racing(input, count) {
