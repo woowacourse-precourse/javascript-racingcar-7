@@ -1,10 +1,11 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, Random } from "@woowacourse/mission-utils";
 
 class App {
   async run() {
     try {
-      await this.getCarNames();
-      await this.getGameRound();
+      this.carList = await this.getCarNames();
+      const gameRound = await this.getGameRound();
+      await this.runRacingGame(this.carList, gameRound);
     } catch (error) {
       Console.print(`[ERROR] ${error.message}`);
     }
@@ -15,8 +16,7 @@ class App {
       const input = await Console.readLineAsync(
         '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n'
       );
-      const carList = input.split(',').map((carName) => this.isValidCarName(carName));
-      Console.print(carList);
+      return input.split(',').map((carName) => this.isValidCarName(carName));
     } catch (error) {
       throw error;
     }
@@ -27,12 +27,43 @@ class App {
       const input = await Console.readLineAsync(
         '시도할 횟수는 몇 회인가요?\n'
       );
-
-      const gameRound = this.isValidGameRound(input);
-      Console.print(gameRound);
+      return this.isValidGameRound(input);
     } catch (error) {
       throw error;
     }
+  }
+
+  async runRacingGame(carList, gameRound) {
+    this.gameRounds = Array(carList.length).fill(0);
+
+    Console.print('');
+    Console.print('실행 결과');
+
+    Array.from({ length: gameRound }).forEach(() => {
+      this.moveCars();
+      this.printGameRounds();
+    });
+  }
+
+  moveCars() {
+    this.carList = this.carList.map((car, index) => {
+      const randomValue = Random.pickNumberInRange(0, 9);
+      if (this.moveCar(car, randomValue)) {
+        this.gameRounds[index]++;
+      }
+      return car;
+    });
+  }
+
+  moveCar(car, randomValue) {
+    return randomValue >= 4;
+  }
+
+  printGameRounds() {
+    this.carList.forEach((car, index) => {
+      Console.print(`${car} : ${'-'.repeat(this.gameRounds[index])}`);
+    });
+    Console.print('');
   }
 
   isValidCarName(carName) {
