@@ -6,15 +6,15 @@ class Validator {
     this.#value = value;
   }
 
-  #validatePositiveNumber() {
-    if (this.#value <= 0) {
-      throw new Error(ERROR_MESSAGE.INVALID_TRY_COUNT);
+  #validateNotEmpty() {
+    if (this.#value !== 0 && !this.#value) {
+      throw new Error(ERROR_MESSAGE.EMPTY_INPUT);
     }
   }
 
-  #validateNotEmpty() {
-    if (!this.#value) {
-      throw new Error(ERROR_MESSAGE.EMPTY_INPUT);
+  #validatePositiveNumber() {
+    if (this.#value <= 0) {
+      throw new Error(ERROR_MESSAGE.INVALID_TRY_COUNT);
     }
   }
 
@@ -35,10 +35,10 @@ class Validator {
 
   static validate(value) {
     const validator = new Validator(value);
+    validator.#validateNotEmpty();
     if (typeof validator.#value === 'number') {
       validator.#validatePositiveNumber();
     } else if (typeof validator.#value === 'object') {
-      validator.#validateNotEmpty();
       validator.#validateMaxLength();
       validator.#validateNoDuplicates();
     }
