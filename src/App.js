@@ -25,6 +25,9 @@ class App {
             // 우승한 자동차
             const max = Math.max(...count);
             const winnerCarArr = winnerCar(carArray, count, max);
+
+            // 최종 결과(우승자) 출력
+            showWinnerCar(winnerCarArr);
         } catch (error) {
             Console.print(error.message);
             throw error;
@@ -71,4 +74,10 @@ function showCarRace(carArray, count) {
         Console.print(`${carArray[i]} : ${numOfcount}`);
     }
     Console.print('');
+}
+
+function showWinnerCar(winnerCarArr) {
+    if (winnerCarArr.length > 1) {
+        Console.print('최종 우승자 : ' + winnerCarArr.join(', '));
+    } else Console.print(`최종 우승자 : ${winnerCarArr[0]}`);
 }
