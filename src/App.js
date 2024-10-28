@@ -1,13 +1,20 @@
 import { Console } from "@woowacourse/mission-utils";
+import RacingCar from "./RacingCar.js";
 
 class App {
     async run() {
         try {
             const carNames = await this.getCarNames();
             const tryCount = await this.getTryCount();
-            Console.print(`시도 횟수: ${tryCount}`);
+            const racingCar = new RacingCar(carNames);
+
+            racingCar.startRace(tryCount);
+
+            const winners = racingCar.getWinners();
+            Console.print(`최종 우승자 : ${winners.join(", ")}`);
         } catch (error) {
             Console.print(error.message);
+            return Promise.reject(error);
         }
     }
 
