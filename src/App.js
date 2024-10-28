@@ -1,5 +1,5 @@
 import {
-  makeCars, repeat, getMaxPosition, findCarWithMaxPosition,
+  makeCars, repeat, getMaxPosition, findWinnerCars,
 } from './services/RacingGameService.js';
 
 import {
@@ -25,7 +25,7 @@ class App {
     repeat(this.carList, attemptCount);
 
     const maxPosition = getMaxPosition(this.carList);
-    const winnerNames = findCarWithMaxPosition(this.carList, maxPosition);
+    const winnerNames = findWinnerCars(this.carList, maxPosition);
     printWinnerCar(winnerNames);
   }
 

@@ -3,7 +3,7 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 import Car from '../src/models/Car.js';
 
 import {
-  isHighEnough, moveCarForward, makeCars, getMaxPosition, findCarWithMaxPosition,
+  isHighEnough, moveCarForward, makeCars, getMaxPosition, findWinnerCars,
 } from '../src/services/RacingGameService.js';
 
 describe('자동차 경주', () => {
@@ -51,7 +51,7 @@ describe('자동차 경주', () => {
     const WINNER = ['woni'];
     const MAX_POSITION = 9;
 
-    expect(findCarWithMaxPosition(CAR_LIST, MAX_POSITION)).toEqual(WINNER);
+    expect(findWinnerCars(CAR_LIST, MAX_POSITION)).toEqual(WINNER);
   });
 
   test('가장 큰 위치의 값을 가진 자동차는 1대 이상이다.', () => {
@@ -61,6 +61,6 @@ describe('자동차 경주', () => {
     const WINNER = ['woni', 'jun'];
     const MAX_POSITION = 9;
 
-    expect(findCarWithMaxPosition(CUSTOM_CAR_LIST, MAX_POSITION)).toEqual(WINNER);
+    expect(findWinnerCars(CUSTOM_CAR_LIST, MAX_POSITION)).toEqual(WINNER);
   });
 });

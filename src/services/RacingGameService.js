@@ -18,7 +18,7 @@ export function getMaxPosition(carList) {
   return Math.max(...carList.map((car) => car.position));
 }
 
-export function findCarWithMaxPosition(carList, maxPosition) {
+export function findWinnerCars(carList, maxPosition) {
   return carList
     .filter((car) => car.position === maxPosition)
     .map((car) => car.name);
