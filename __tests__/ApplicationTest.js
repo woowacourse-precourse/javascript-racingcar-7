@@ -1,5 +1,5 @@
-import App from "../src/App.js";
-import { MissionUtils } from "@woowacourse/mission-utils";
+import App from '../src/App.js';
+import { MissionUtils } from '@woowacourse/mission-utils';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -19,18 +19,18 @@ const mockRandoms = (numbers) => {
 };
 
 const getLogSpy = () => {
-  const logSpy = jest.spyOn(MissionUtils.Console, "print");
+  const logSpy = jest.spyOn(MissionUtils.Console, 'print');
   logSpy.mockClear();
   return logSpy;
 };
 
-describe("자동차 경주", () => {
-  test("기능 테스트", async () => {
+describe('자동차 경주', () => {
+  test('기능 테스트', async () => {
     // given
     const MOVING_FORWARD = 4;
     const STOP = 3;
-    const inputs = ["pobi,woni", "1"];
-    const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
+    const inputs = ['pobi,woni', '1'];
+    const logs = ['pobi : -', 'woni : ', '최종 우승자 : pobi'];
     const logSpy = getLogSpy();
 
     mockQuestions(inputs);
@@ -46,15 +46,88 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트", async () => {
+  test('공동 우승 테스트', async () => {
+    const MOVING_FORWARD = 4;
+    const inputs = ['pobi,woni', '1'];
+    const logs = ['pobi : -', 'woni : -', '최종 우승자 : pobi, woni'];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([MOVING_FORWARD, MOVING_FORWARD]);
+
+    const app = new App();
+    await app.run();
+
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
+  test('시도 횟수에 음수 입력', async () => {
+    const inputs = ['pobi', 'woni', '-1'];
+    mockQuestions(inputs);
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('시도 횟수에 소수점 입력', async () => {
+    const inputs = ['pobi', 'woni', '1.5'];
+    mockQuestions(inputs);
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('시도 횟수에 문자열 입력', async () => {
+    const inputs = ['pobi', 'woni', 'attempt!'];
+    mockQuestions(inputs);
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('시도 횟수에 0 입력', async () => {
+    const inputs = ['pobi', 'woni', '0'];
+    mockQuestions(inputs);
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('자동차 이름 공백인 경우', async () => {
+    const inputs = ['pobi,,woni'];
+    mockQuestions(inputs);
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('자동차 이름이 쉼표로 시작하는 경우', async () => {
+    const inputs = [',pobi,woni'];
+    mockQuestions(inputs);
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('자동차 이름이 쉼표로 끝나는 경우', async () => {
+    const inputs = ['pobi,woni,'];
+    mockQuestions(inputs);
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('예외 테스트', async () => {
     // given
-    const inputs = ["pobi,javaji"];
+    const inputs = ['pobi,javaji'];
     mockQuestions(inputs);
 
     // when
     const app = new App();
 
     // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
+    await expect(app.run()).rejects.toThrow('[ERROR]');
   });
 });
