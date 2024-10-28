@@ -1,4 +1,3 @@
-# javascript-racingcar-precourse
 # :school: 우아한테크코스 7기 프리코스 2주차 미션 - 자동차 경주
 
 ### 2주차 미션 진행시 학습 목표
@@ -124,6 +123,43 @@ members.map((member) => member).join(','); // pobi,jason
   - index.js
 ```
 
+### RacingCarController.js [자동차 경주의 메인이 되는 클래스]
+* racingCarProcess
+- 자동차 게임의 전체적인 프로세스를 담당하는 함수입니다.
+* getInputCarNames
+- 사용자에게 '자동차 이름'을 입력받아 this.#cars에 할당합니다.
+* getInputAttemptCount
+- 사용자에게 '시도 횟수'을 입력받아 this.#attemptCount에 할당합니다.
+* getExecutionResult
+- #cars, #attemptCount 데이터를 통해 자동차 게임의 실행 상태, 실행 결과, 우승자를 this.#racingGame, this.#racingStatus, this.#winners 각각 할당합니다.
+* printExecutionResult
+- 사용자에게 자동차 게임 실행 결과를 출력합니다.
+* printRacingCarWinners
+- 사용자에게 자동차 게임 우승자를 출력합니다.
+
+### AttemptCounter.js [시도 횟수 값을 담당하는 클래스]
+* getAttemptCount
+- '시도 횟수'를 #attemptCount에 할당하고 유효성 검사를 실행한 뒤 #attemptCount을 리턴합니다.
+* validate
+- 입력받은 '시도 횟수'에 대한 각각의 유효성 검사를 실행합니다.
+
+### Cars.js [자동차 이름 값을 담당하는 클래스]
+* getRacingCarNames
+- '자동차 이름'을 쉼표(',')를 기준으로 분리한 후 #cars에 할당하고 유효성 검사를 실행한 뒤 #cars을 리턴합니다.
+* validate
+- 입력받은 '자동차 이름'에 대한 각각의 유효성 검사를 실행합니다.
+
+### RacingGame.js [실행결과, 우승자 값을 담당하는 클래스]
+* getRacingStatus
+- 입력받은 자동차 이름 목록(cars)을 기반으로, 각 자동차의 이름을 key로, 초기 위치를 value로 하는 객체(Object)를 생성하여 this.#racingStatus에 할당합니다.
+* getExecutionResults
+- '시도 횟수' 만큼 반복문을 통해 실행 결과를 가지고 옵니다.
+* runRound
+- 입력받은 자동차 이름 목록(cars)을 기반으로, Random API를 통해 전진 여부를 파악하여 value 값을 증가시킵니다.
+* getRacingWinners
+- this.#racingStatus 값을 통해 가장 많이 전진한 높은 값을 기준으로 우승자를 판별하여 리턴합니다.
+
+
 ## :computer: 커밋 메세지 컨벤션
 ```
 - Allowed <type>
@@ -135,6 +171,12 @@ members.map((member) => member).join(','); // pobi,jason
 - test (when adding missing tests)
 - chore (maintain)
 ```
+
+## 테스트 결과
+<div style="display: flex; flex-direction: row;">
+    <img src="https://github.com/user-attachments/assets/2ce05581-3735-4bde-95fc-61facd4641e9" style="width: 50%;">
+    <img src="https://github.com/user-attachments/assets/54298823-27b0-42d3-a558-d11ac77cab1a" style="width: 50%;">
+</div>
 
 ## :high_brightness: 기능 및 프로그래밍 요구 사항
 
