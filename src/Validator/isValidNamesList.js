@@ -23,6 +23,11 @@ const isSameNames = (namesList) => {
   return false;
 };
 
+/**
+ *
+ * @param {string[]} carListArr
+ * @summary 입력받은 자동차 이름이 1글자 이상 5글자 이하인지, 중복되지 않는지 확인한다.
+ */
 const isValidNamesList = (carListArr) => {
   carListArr.forEach((car) => {
     if (isInvalidWordLength(car)) {

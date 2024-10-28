@@ -2,10 +2,6 @@ import { GIDE_MESSAGE } from "../Constants/constant.js";
 import Output from "../Output/Output.js";
 import randomGenerator from "../Utils/randomGenerator.js";
 
-/**
- * @param {{ name: string, position: number }} car
- * @summary Random 숫자를 발생시키고 4이상일 경우 자동차를 이동시킨다.
- */
 const moveRaceCar = (car) => {
   const randomNum = randomGenerator();
   if (randomNum >= 4) {

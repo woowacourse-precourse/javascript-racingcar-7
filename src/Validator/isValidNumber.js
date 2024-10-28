@@ -17,6 +17,10 @@ const isNotZero = (tryNumber) => {
   return tryNumber === 0;
 };
 
+/**
+ * @param {string} tryNumber
+ * @summary 입력받은 값이 숫자인지, 정수인지, 양수인지, 0이 아닌지 확인한다.
+ */
 const isValidNumber = (tryNumber) => {
   if (!isNumber(tryNumber)) {
     errorHandler(ERROR_MESSAGE.notANumber);
