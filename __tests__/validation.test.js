@@ -22,6 +22,12 @@ describe('사용자 입력 검증', () => {
       );
     });
 
+    test('자동차 이름은 중복될 수 없다', () => {
+      expect(() => validateCarNames('car1,car1')).toThrow(
+        ERROR_MESSAGES.duplicateCarName
+      );
+    });
+
     test('자동차 이름이 1~5자 이하의 문자로 구성되지 않은 경우 에러를 던져야 한다', () => {
       expect(() => validateCarNames('car1,car2,carLongName')).toThrow(
         ERROR_MESSAGES.invalidCarNameFormat
