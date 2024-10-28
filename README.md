@@ -53,6 +53,10 @@ function printCurrentResult(gameResult) {}
 ```javascript
 // 랜덤 숫자에 따라 전진해야 하는 경우 true를 반환합니다.
 function shouldMoveForward() {}
+
+// INPUT: 현재 자동차 진행 정보
+// OUTPUT: 갱신된 자동차 진행 정보 (carInfo)
+function updateCarPosition(carInfo) {}
 ```
 ## 우승자 출력
 - 최종 우승자 명단을 쉼표(,)로 구분하여 출력합니다.
