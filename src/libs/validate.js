@@ -1,12 +1,13 @@
 import { ERROR_MESSAGE } from "./constants.js";
+import { RaceError } from "./customError.js";
 
 export function validateRacerAmount(racerAmount) {
   if (racerAmount <= 1) {
-    throw new Error(ERROR_MESSAGE.INVALID_CAR_AMOUNT);
+    throw new RaceError(ERROR_MESSAGE.INVALID_CAR_AMOUNT);
   }
 }
 export function validateCarNameLength(name) {
   if (name.length < 1 || name.length > 5) {
-    throw new Error(ERROR_MESSAGE.INVALID_NAME_LENGTH);
+    throw new RaceError(ERROR_MESSAGE.INVALID_NAME_LENGTH);
   }
 }
