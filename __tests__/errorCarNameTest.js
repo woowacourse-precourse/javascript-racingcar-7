@@ -23,7 +23,7 @@ describe('Validator', () => {
 
 describe('Validator', () => {
     test('숫자가 0일 경우 에러 테스트', () => {
-        const inputTime = '0';
+        const inputTime = '00';
         expect(() => {
             Validator.checkInputTime(inputTime);
         }).toThrow(new Error(errorMessage.isZeroErrorMessage));
