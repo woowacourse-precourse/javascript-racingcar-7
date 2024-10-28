@@ -1,11 +1,11 @@
 import { Console } from '@woowacourse/mission-utils';
 
 class OutputHandler {
-  static printMessage(message) {
+  static async printMessage(message) {
     Console.print(message);
   }
 
-  static printRaceStatus(cars) {
+  static async printRaceStatus(cars) {
     cars.forEach((car) => {
       const position = '-'.repeat(car.getPosition());
       Console.print(`${car.getName()} : ${position}`);
@@ -13,7 +13,7 @@ class OutputHandler {
     Console.print('');
   }
 
-  static printWinners(winners) {
+  static async printWinners(winners) {
     Console.print(`최종 우승자 : ${winners.join(', ')}`);
   }
 }
