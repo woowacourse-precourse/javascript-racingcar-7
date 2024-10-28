@@ -23,6 +23,15 @@ class AttemptCount {
     this.#attemptCount = attemptCount;
   }
 
+  hasAttemptsRemaining() {
+    return this.#attemptCount > 0;
+  }
+
+  decreaseAttempts() {
+    if (this.#attemptCount > 0) {
+      this.#attemptCount -= 1;
+    }
+  }
 }
 
 export default AttemptCount;

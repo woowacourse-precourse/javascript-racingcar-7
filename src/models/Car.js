@@ -1,7 +1,12 @@
-import { CAR_NAME_LENGTH, ERROR_MESSAGE } from '../constants/constant';
+import {
+  CAR_NAME_LENGTH,
+  ERROR_MESSAGE,
+  RANDOM_NUMBER,
+} from '../constants/constant';
 
 class Car {
   #carName;
+  #position = 0;
 
   constructor(inputName) {
     this.#isCarNameValidLength(inputName);
@@ -23,6 +28,12 @@ class Car {
 
   getCarName() {
     return this.#carName;
+  }
+
+  movePosition(randomNumber) {
+    if (randomNumber >= RANDOM_NUMBER.minNumber) {
+      this.#position++;
+    }
   }
 }
 

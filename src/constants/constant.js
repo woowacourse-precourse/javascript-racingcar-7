@@ -13,4 +13,10 @@ const ERROR_MESSAGE = Object.freeze({
   numberError: '[ERROR] 숫자가 아닌 형식입니다. 다시 입력해주세요.',
 });
 
-export { INPUT_MESSAGE, CAR_NAME_LENGTH, ERROR_MESSAGE };
+const RANDOM_NUMBER = Object.freeze({
+  minRange: 0,
+  maxRange: 9,
+  minNumber: 4,
+});
+
+export { INPUT_MESSAGE, CAR_NAME_LENGTH, ERROR_MESSAGE, RANDOM_NUMBER };
