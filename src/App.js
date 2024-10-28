@@ -48,8 +48,17 @@ class App {
   async checkRacingInputRap() {
     const racingTimeInput = await Console.readLineAsync("시도할 횟수는 몇 회인가요? : ");
 
-    if (isNaN(Number(racingTimeInput))) {
-      return PrintFunc.printError("횟수는 숫자여야합니다");
+    switch (true) {
+      case isNaN(Number(racingTimeInput)):
+        return PrintFunc.printError("횟수는 숫자여야합니다");;
+
+      case !racingTimeInput.trim():
+        return PrintFunc.printError("횟수는 빈 값일 수 없습니다.");
+
+      case Number(racingTimeInput) <= 0:
+        return PrintFunc.printError("횟수는 양수 값이여야 합니다.");
+      default:
+        break;
     }
 
     return racingTimeInput;
