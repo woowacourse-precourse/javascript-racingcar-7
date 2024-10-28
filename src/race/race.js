@@ -17,7 +17,7 @@ class Race {
     Console.print(OUTPUT_MESSAGE.GAME_START);
   }
 
-  startRace() {
+  race() {
     for (let count = 1; count <= this.attemptCount; count += 1) {
       this.executeTurn();
       Console.print('\n');
@@ -49,7 +49,7 @@ class Race {
 
   play() {
     this.printStartMessage();
-    this.startRace();
+    this.race();
     const winners = this.getWinners();
     this.printWinners(winners);
   }
