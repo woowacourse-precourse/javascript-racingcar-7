@@ -47,6 +47,38 @@ class Racingcar {
       position: 0,
     }));
   }
+
+  setCars(carNames) {
+    return carNames.split(',').map((name) => ({
+      name: name.trim(),
+      position: 0,
+    }));
+  }
+
+  startRace() {
+    for (let i = 0; i < this.counts; i++) {
+      this.moveCars();
+      this.printRaceStatus();
+    }
+    this.printWinners();
+  }
+
+  moveCars() {
+    this.cars.forEach((car) => {
+      if (Random.pickNumberInRange(0, 9) >= 4) {
+        car.position += 1;
+      }
+    });
+  }
+
+  printRaceStatus() {
+    this.cars.forEach((car) => this.printCarStatus(car));
+    Console.print('');
+  }
+
+  printCarStatus(car) {
+    Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
+  }
 }
 
 export default Racingcar;
