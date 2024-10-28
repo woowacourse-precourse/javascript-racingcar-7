@@ -1,8 +1,9 @@
 import { Console } from "@woowacourse/mission-utils";
+import { OUTPUT_MESSAGE } from "../utils/constants.js";
 
 class OutputView {
   printGameStartMessage() {
-    Console.print("\n실행 결과");
+    Console.print(OUTPUT_MESSAGE.GAME_START);
   }
 
   printCarsStatus(carsStatus) {
@@ -13,7 +14,7 @@ class OutputView {
   }
 
   printWinners(winners) {
-    Console.print(`최종 우승자 : ${winners.join(", ")}`);
+    Console.print(OUTPUT_MESSAGE.WINNER(winners));
   }
 }
 

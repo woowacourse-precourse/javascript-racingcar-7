@@ -1,5 +1,6 @@
 import { Random } from "@woowacourse/mission-utils";
 import Car from "./Car.js";
+import { CONSTANTS } from "../utils/constants.js";
 
 class RacingGame {
   constructor() {
@@ -13,7 +14,10 @@ class RacingGame {
   // 모든 자동차들의 움직임을 결정하는 메서드
   moveAllCars() {
     this.cars.forEach((car) => {
-      const randomNumber = Random.pickNumberInRange(0, 9);
+      const randomNumber = Random.pickNumberInRange(
+        CONSTANTS.RANDOM_MIN_NUMBER,
+        CONSTANTS.RANDOM_MAX_NUMBER
+      );
       car.moveCar(randomNumber);
     });
   }

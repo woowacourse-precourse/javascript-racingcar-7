@@ -1,3 +1,5 @@
+import { CONSTANTS } from "../utils/constants.js";
+
 class Car {
   constructor(name) {
     this.name = name;
@@ -5,14 +7,16 @@ class Car {
   }
 
   moveCar(number) {
-    if (number >= 4) {
-      this.position += 1;
+    if (number >= CONSTANTS.MOVE_CONDITION) {
+      this.position += CONSTANTS.MOVE_FORWARD_COUNT;
     }
   }
 
   // 현재 자동차의 상태를 리턴하는 메서드
   getCurrentStatus() {
-    return `${this.name} : ${"-".repeat(this.position)}`;
+    return `${this.name} : ${CONSTANTS.MOVE_FORWARD_MARKER.repeat(
+      this.position
+    )}`;
   }
 }
 

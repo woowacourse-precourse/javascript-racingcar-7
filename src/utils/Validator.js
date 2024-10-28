@@ -1,3 +1,5 @@
+import { ERROR_MESSAGE } from "./constants.js";
+
 class Validator {
   static validateCarNames(names) {
     this.validateDuplicateCarName(names);
@@ -6,17 +8,17 @@ class Validator {
 
   static validateCarName(name) {
     if (name.length > 5) {
-      throw new Error("[ERROR] 자동차 이름은 5자를 초과할 수 없습니다.");
+      throw new Error(ERROR_MESSAGE.CAR_NAME_LENGTH);
     }
     if (!name || name.trim().length === 0) {
-      throw new Error("[ERROR] 자동차 이름은 공백일 수 없습니다.");
+      throw new Error(ERROR_MESSAGE.CAR_NAME_IS_EMPTY);
     }
   }
 
   static validateDuplicateCarName(names) {
     const uniqueNames = new Set(names); // Set은 중복 허용 x
     if (uniqueNames.size !== names.length) {
-      throw new Error("[ERROR] 중복된 이름이 있습니다.");
+      throw new Error(ERROR_MESSAGE.DUPLICATE_NAME);
     }
   }
 
@@ -24,11 +26,11 @@ class Validator {
     const count = Number(countInput);
 
     if (count <= 0) {
-      throw new Error("[ERROR] 시도 횟수는 1이상이어야 합니다.");
+      throw new Error(ERROR_MESSAGE.TRY_COUNT_NUMBER_POSITIVE);
     }
 
     if (Number.isNaN(count)) {
-      throw new Error("[ERROR] 시도 횟수는 숫자여야 합니다.");
+      throw new Error(ERROR_MESSAGE.TRY_COUNT_IS_NUMBER);
     }
 
     return count;

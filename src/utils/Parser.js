@@ -1,6 +1,10 @@
+import { CONSTANTS } from "./constants.js";
+
 class Parser {
   static parseCarNames(namesInput) {
-    return namesInput.split(",").map((name) => name.trim());
+    return namesInput
+      .split(CONSTANTS.NAME_SEPARATOR)
+      .map((name) => name.trim());
   }
 }
 
