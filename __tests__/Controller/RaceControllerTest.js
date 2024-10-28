@@ -6,6 +6,7 @@ import RaceService from '../../src/Service/RaceService';
 import InputView from '../../src/View/InputView';
 import OutputView from '../../src/View/OutputView';
 import { getLogSpy, mockQuestions, mockRandoms } from '../ApplicationTest';
+import RandomNumberGenerateService from '../../src/Service/RandomNumberGenerateService';
 
 describe('RaceController', () => {
   test('자동차 경주 게임의 전체 흐름을 검증한다', async () => {
@@ -27,7 +28,10 @@ describe('RaceController', () => {
     const inputView = new InputView();
     const outputView = new OutputView();
     const raceCarManagementService = new RaceCarManagementService();
-    const raceCarMovementService = new RaceCarMovementService();
+    const randomNumberGenerateService = new RandomNumberGenerateService();
+    const raceCarMovementService = new RaceCarMovementService(
+      randomNumberGenerateService
+    );
     const determineWinnerService = new DetermineWinnerService();
     const raceService = new RaceService(
       raceCarManagementService,

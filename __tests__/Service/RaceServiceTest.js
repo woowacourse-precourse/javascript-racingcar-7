@@ -3,6 +3,7 @@ import RaceCarMovementService from '../../src/Service/RaceCarMovementService';
 import DetermineWinnerService from '../../src/Service/DetermineWinnerService';
 import RaceService from '../../src/Service/RaceService';
 import { mockRandoms } from '../ApplicationTest';
+import RandomNumberGenerateService from '../../src/Service/RandomNumberGenerateService';
 
 describe('RaceService', () => {
   test('경기를 시작하고 끝나면 우승자를 반환한다', async () => {
@@ -22,7 +23,10 @@ describe('RaceService', () => {
     ]);
 
     const raceCarManagementService = new RaceCarManagementService();
-    const raceCarMovementService = new RaceCarMovementService();
+    const randomNumberGenerateService = new RandomNumberGenerateService();
+    const raceCarMovementService = new RaceCarMovementService(
+      randomNumberGenerateService
+    );
     const determineWinnerService = new DetermineWinnerService();
     const raceService = new RaceService(
       raceCarManagementService,
@@ -60,7 +64,10 @@ describe('RaceService', () => {
     ]);
 
     const raceCarManagementService = new RaceCarManagementService();
-    const raceCarMovementService = new RaceCarMovementService();
+    const randomNumberGenerateService = new RandomNumberGenerateService();
+    const raceCarMovementService = new RaceCarMovementService(
+      randomNumberGenerateService
+    );
     const determineWinnerService = new DetermineWinnerService();
     const raceService = new RaceService(
       raceCarManagementService,
