@@ -1,6 +1,6 @@
-import ViewIn from './InputView.js';
-import ViewOut from './OutView.js';
-import Model from './Model.js';
+import ViewIn from '../View/InputView.js';
+import ViewOut from '../View/OutView.js';
+import Model from '../Model/Model.js';
 
 class Controller {
   InputView;

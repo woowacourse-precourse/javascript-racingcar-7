@@ -1,7 +1,7 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import App from '../src/App.js';
 
-const mockQuestions = (inputs) => {
+export const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
 
   MissionUtils.Console.readLineAsync.mockImplementation(() => {
@@ -10,7 +10,7 @@ const mockQuestions = (inputs) => {
   });
 };
 
-const mockRandoms = (numbers) => {
+export const mockRandoms = (numbers) => {
   MissionUtils.Random.pickNumberInRange = jest.fn();
 
   numbers.reduce(
@@ -19,7 +19,7 @@ const mockRandoms = (numbers) => {
   );
 };
 
-const getLogSpy = () => {
+export const getLogSpy = () => {
   const logSpy = jest.spyOn(MissionUtils.Console, 'print');
   logSpy.mockClear();
   return logSpy;
@@ -58,49 +58,4 @@ describe('자동차 경주', () => {
     // then
     await expect(app.run()).rejects.toThrow('[ERROR]');
   });
-});
-
-test.each([
-  // Exception1
-  [[], '[ERROR]'],
-  [[null], '[ERROR]'],
-  [['null'], '[ERROR]'],
-  [[undefined], '[ERROR]'],
-  [['undefined'], '[ERROR]'],
-  [[''], '[ERROR]'],
-  // Exception2
-  [['ca r1'], '[ERROR]'],
-  [['car1, car2'], '[ERROR]'],
-  // Exception5
-  [['naaaaame', '1'], '[ERROR]'],
-  // Exception6
-  [['name,name,name', '1'], '[ERROR]'],
-  [['name,name1,name', '1'], '[ERROR]'],
-  // 우선순위 Check 필요
-  [['name,naaaaame1,name', '1'], '[ERROR]'],
-  // Exception7
-  [['car1'], '[ERROR]'],
-  [['car1', null], '[ERROR]'],
-  [['car1', 'null'], '[ERROR]'],
-  [['car1', undefined], '[ERROR]'],
-  [['car1', 'undefined'], '[ERROR]'],
-  [['car1', ''], '[ERROR]'],
-  // Exception8
-  [['car1', '3 2'], '[ERROR]'],
-  [['car1', '32 '], '[ERROR]'],
-  [['car1', ' 32'], '[ERROR]'],
-  [['car1', ' '], '[ERROR]'],
-  // Exception9 ~ 12
-  [['car1,car2,car3', '-1'], '[ERROR]'],
-  [['car1,car2,car3', '0'], '[ERROR]'],
-  [['car1,car2,car3', '999999999999999999999999999999999'], '[ERROR]'],
-  [['car1,car2,car3', 'one'], '[ERROR]'],
-])('areAnagrams(%s) returns %s', async (first) => {
-  // given
-  mockQuestions(first);
-
-  // when
-  const app = new App();
-
-  await expect(app.run()).rejects.toThrow('[ERROR]');
 });

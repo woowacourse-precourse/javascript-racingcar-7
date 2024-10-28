@@ -1,6 +1,6 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import Car from './Car.js';
-import { ERROR_MSG, REGEXP } from './Validator.js';
+import { ERROR_MSG, REGEXP } from '../../Util/Validator.js';
 
 export default class Model {
   carList = [];

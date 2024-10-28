@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { ERROR_MSG } from './Validator.js';
+import { ERROR_MSG } from '../../Util/Validator.js';
 
 class ViewIn {
   constructor() {
