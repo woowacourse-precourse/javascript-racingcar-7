@@ -22,7 +22,6 @@ class App {
     try {
       const carNames = await this.getValidatedCarNames();
       const raceAttempts = await this.getValidatedRaceAttempts();
-
       const initialCarData = createCarDataArray(carNames);
 
       MissionUtils.Console.print(`\n실행 결과`);
@@ -40,12 +39,14 @@ class App {
     const userInputCar = await getUserCarName();
     const carNames = splitCarNamesByDelimiter(userInputCar.toString());
     validateCarNames(carNames);
+
     return carNames;
   }
 
   async getValidatedRaceAttempts() {
     const userInputRacingNum = await getUserRaceAttempts();
     validateRaceCountInput(userInputRacingNum);
+
     return userInputRacingNum;
   }
 
@@ -53,7 +54,9 @@ class App {
     return Array.from({ length: raceAttempts }).reduce((acc) => {
       const updatedCarData = updateCarDataPositions(acc);
       const carPositionsRepresentation = formatAllCarPositions(updatedCarData);
+
       displayRaceState(carPositionsRepresentation);
+
       return updatedCarData;
     }, initialCarData);
   }

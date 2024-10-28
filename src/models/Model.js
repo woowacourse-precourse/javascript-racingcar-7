@@ -14,15 +14,18 @@ function initializeCarPositionsArray(length) {
 export function createCarDataArray(carNames) {
   const names = carNames.map((name) => name.trim());
   const positions = initializeCarPositionsArray(names.length);
+
   return { names, positions };
 }
 
 // -- 자동차 이동 ---
 function calculateUpdatedPosition(position) {
   const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
+
   if (randomNumber >= 4) {
     return position + 1;
   }
+
   return position;
 }
 
@@ -30,11 +33,13 @@ export function updateCarDataPositions(carData) {
   const updatedPositions = carData.positions.map((position) =>
     calculateUpdatedPosition(position),
   );
+
   return { ...carData, positions: updatedPositions };
 }
 
 function formatCarPositionString(carName, position) {
   const carPositionsRepresentation = '-'.repeat(position);
+
   return `${carName} : ${carPositionsRepresentation}`;
 }
 
@@ -51,6 +56,7 @@ function calculateMaxDistance(positions) {
 
 export function findCarWinners(carData) {
   const maxDistance = calculateMaxDistance(carData.positions);
+
   return carData.names.filter(
     (_, index) => carData.positions[index] === maxDistance,
   );

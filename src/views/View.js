@@ -14,6 +14,7 @@ export function displayRaceState(carData) {
   carData.forEach((line) => {
     MissionUtils.Console.print(line);
   });
+  
   MissionUtils.Console.print('');
 }
 
