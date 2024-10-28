@@ -4,7 +4,8 @@ import Car from "./Car.js"
 class App {
   async run() {
     try {
-      const carList = await inputCarName();
+      const carName = await inputCarName();
+      const carList = Car.makeCarList(carName);
       const tryTime = await inputTryTime();
       Car.race(carList, tryTime);
       Car.whoIsWinner(carList);
