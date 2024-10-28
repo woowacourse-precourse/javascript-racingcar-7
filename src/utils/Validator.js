@@ -3,7 +3,6 @@ import { errorMessage } from '../constants.js'
 
 export default class Validator {
 
-    // 글자 길이 체크
     static isFiveOrLess(carName) {
         if(carName.length == 0||carName.length > 5)
             CauseError.causeError(errorMessage.isFiveOrMoreErrorMessage);   
