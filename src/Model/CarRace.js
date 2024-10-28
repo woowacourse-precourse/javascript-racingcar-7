@@ -20,7 +20,7 @@ export default class CarRace {
     this.#raceCount = Number(raceCount);
   }
 
-  #getMoveDecisions() {
+  getMoveDecisions() {
     return Array.from(
       { length: this.#cars.length },
       () => Random.pickNumberInRange(0, 9) >= 4,

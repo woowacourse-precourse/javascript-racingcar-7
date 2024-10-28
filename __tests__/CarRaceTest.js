@@ -1,4 +1,11 @@
+import { Random } from '@woowacourse/mission-utils';
 import CarRace from '../src/Model/CarRace.js';
+
+jest.mock('@woowacourse/mission-utils', () => ({
+  Random: {
+    pickNumberInRange: jest.fn(),
+  },
+}));
 
 describe('CarRace 클래스 테스트', () => {
   describe('isValidRaceCount 메서드 테스트', () => {
@@ -15,5 +22,18 @@ describe('CarRace 클래스 테스트', () => {
       expect(CarRace.isValidRaceCount(undefined)).toBe(false);
       expect(CarRace.isValidRaceCount(1.5)).toBe(false);
     });
+  });
+
+  describe('getMoveDecisions 메서드 테스트', () => {
+    Random.pickNumberInRange
+      .mockReturnValueOnce(4)
+      .mockReturnValueOnce(3)
+      .mockReturnValueOnce(5)
+      .mockReturnValueOnce(2);
+
+    const carRace = new CarRace('car1,car2,car3,car4', 1);
+    const moveDecisions = carRace.getMoveDecisions();
+
+    expect(moveDecisions).toEqual([true, false, true, false]);
   });
 });
