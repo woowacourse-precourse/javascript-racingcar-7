@@ -22,8 +22,16 @@ class Game {
     if (isNaN(raceCount)) {
       throw new Error(ERROR_MESSAGES.INVALID_RACE_COUNT);
     }
-    return Number(raceCount);
+
+    const raceCountNumber = Number(raceCount);
+
+    if (raceCountNumber === 0) {
+      throw new Error(ERROR_MESSAGES.INVALID_RACE_COUNT_ZERO);
+    }
+
+    return raceCountNumber;
   }
+
 
   startRace() {
     for (let i = 0; i < this.raceCount; i++) {
