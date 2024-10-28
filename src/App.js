@@ -38,6 +38,11 @@ class App {
     }
     return raceCount;
   }
+
+  // 2. 전진 조건 생성
+  initializeCars(carNames) {
+    return carNames.map((name) => ({ name, position: 0 })); // 초기 위치 설정
+  }
 }
 
 export default App;
