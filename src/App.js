@@ -27,10 +27,39 @@ class App {
     return attempts;
   }
 
+  carRace(carNames, raceAttempts) {
+    const raceResults = carNames.map((name) => ({
+      name,
+      position: 0,
+    }));
+
+    for (let i = 0; i < raceAttempts; i++) {
+      raceResults.forEach((car) => {
+        const randomNum = Random.pickNumberInRange(0, 9);
+        if (randomNum >= 4) {
+          car.position += 1;
+        }
+      });
+
+      raceResults.forEach((car) => {
+        Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
+      });
+    }
+
+    const maxPosition = Math.max(...raceResults.map((car) => car.position));
+    const winners = raceResults
+      .filter((car) => car.position === maxPosition)
+      .map((car) => car.name);
+
+    Console.print(`최종 우승자 : ${winners.join(', ')}`);
+  }
+
   async run() {
     try {
       const carNames = await this.getCarNames();
       const raceAttempts = await this.getRaceAttempts();
+
+      this.carRace(carNames, raceAttempts);
     } catch (error) {
       throw new Error('[ERROR] ' + error.message);
     }
