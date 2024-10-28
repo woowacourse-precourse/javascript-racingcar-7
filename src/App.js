@@ -48,6 +48,7 @@ class App {
   }
 
   
+<<<<<<< HEAD
   // 8. 자동차경주 - 결과
   racing_result(racing_start) {
     for (let i = 0; i <racing_start.length;i++) {
@@ -59,5 +60,7 @@ class App {
 
 
 
+=======
+>>>>>>> eac8eae (feat:자동차전진)
 }
 export default App;
