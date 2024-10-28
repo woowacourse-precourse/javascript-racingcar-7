@@ -3,6 +3,8 @@ import { Random } from "@woowacourse/mission-utils";
 
 class App {
   async run() {
+    try {
+
     const carName = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
     const carNames = this.Separator(carName);
 
@@ -11,10 +13,19 @@ class App {
     const carPosition = this.moveCar(carNames, Number(forwardTime));
 
     this.victoryCar(carNames, carPosition);
+    } catch (error) {
+      Console.print(error.message);
+      throw error;
+    }
   }
   
   Separator(carName) {
     const carNames = carName.split(",");
+    carNames.forEach((name) => {
+      if (name.length > 5) {
+        throw new Error("[ERROR] 자동차 이름은 5자 이하만 가능합니다.");
+      }
+    });
     return carNames;
   }
   
@@ -43,7 +54,7 @@ class App {
     const randomNum = Random.pickNumberInRange(0, 9);
     return randomNum >= 4;
   }
-  
+
   victoryCar(carNames, carPosition) {
 
     const maxPosition = Math.max(...Object.values(carPosition));
