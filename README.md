@@ -50,3 +50,28 @@
 
 ### 연산 횟수
 - [x] 이름의 개수와 게임 시도 횟수를 곱한 값이 `1e7`을 초과하는 경우
+
+## 폴더 구조
+```
+src
+ ┣ components
+ ┃ ┣ Car.js // 자동차 객체 관리 컴포넌트
+ ┃ ┣ CarAllocator.js // 자동차 할당 및 분배 정보 처리 컴포넌트
+ ┃ ┣ Game.js // 게임 진행과 상태를 관리하는 컴포넌트
+ ┃ ┗ RoundManager.js // 게임 라우든 관리 및 진행 순서를 담당하는 컴포넌트
+ ┣ resources
+ ┃ ┣ Constants.js // App 전반에 사용되는 상수 정의한 파일
+ ┃ ┣ ErrorMessage.js // Error 발생 시 출력 메시지를 정의한 파일
+ ┃ ┣ RegularExpression.js // App에서 사용하는 정규표현식을 정의한 파일
+ ┃ ┗ Rules.js // 게임 관련 규칙을 정의한 파일
+ ┣ utils
+ ┃ ┣ io
+ ┃ ┃ ┣ Input.js // 사용자 입력을 처리하는 기능을 담은 유틸리티 파일
+ ┃ ┃ ┗ Output.js // 출력 처리 기능을 담은 유틸리티 파일
+ ┃ ┗ validation
+ ┃ ┃ ┣ validateNames.js // 자동차 이름 관련 입력 유효성 검사를 수행하는 유틸리티 파일
+ ┃ ┃ ┣ validateRepetitionString.js // 시도 횟수 입력 유효성 검사를 수행하는 유틸리티 파일
+ ┃ ┃ ┗ validateTimeComplexity.js // 사용자 입력의 시간 복잡도 검사를 수행하는 유틸리티 파일
+ ┣ App.js
+ ┗ index.js
+```
