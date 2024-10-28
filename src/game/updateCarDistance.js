@@ -7,9 +7,9 @@ function canForward(randomNum, carDistances, i) {
 }
 
 export function updateCarDistance(carDistances) {
-  for (let i = 0; i < carDistances.length; i++) {
-    let randomNum = Random.pickNumberInRange(0, 9);
+  carDistances.forEach((_, i) => {
+    const randomNum = Random.pickNumberInRange(0, 9);
     canForward(randomNum, carDistances, i);
-  }
+  });
   return carDistances;
 }
