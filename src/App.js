@@ -43,8 +43,11 @@ class App {
 
     return CAR_NAMES.map((name) => {
       name = name.trim();
-      if (name.length > 5) {
-        throw new Error("[ERROR] 자동차 이름은 5자 이하로 작성해주세요.");
+
+      if (name.length === 0 || name.length > 5) {
+        throw new Error(
+          "[ERROR] 자동차 이름은 1자 이상 5자 이하로 작성해주세요."
+        );
       }
 
       if (USED_NAMES.has(name)) {
