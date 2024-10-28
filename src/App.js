@@ -1,13 +1,13 @@
 import {Console, MissionUtils} from '@woowacourse/mission-utils'
 
 function inputNames(){
-  const INPUT_NAME = Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n")
-  return INPUT_NAME
+  const names = Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n")
+  return names
 }
 
 function splitNames(input){
-  const CAR_ARRAY = String(input).split(',')
-  return CAR_ARRAY
+  const carArray = String(input).split(',')
+  return carArray
 }
 
 function isLessFive (str,errorCount) {
@@ -18,7 +18,7 @@ function isLessFive (str,errorCount) {
     return errorCount+1;
   }
 }
-function isErrorNames(arr){
+function detectNameError(arr){
   var errorCount = 0
   arr.forEach(element => {
     errorCount = isLessFive(element,errorCount)
@@ -32,11 +32,11 @@ function isErrorNames(arr){
   
 }
 function inputAttempt(){
-  const INPUT_ATTEMPT = Console.readLineAsync('시도 할 횟수 : ')
-  return INPUT_ATTEMPT
+  const attempts = Console.readLineAsync('시도 할 횟수 : ')
+  return attempts
 }
 
-function isErrorAttempt(input){
+function detectAttemptError(input){
   const ATTEMPT_COUNT = parseInt(input)
   if(isNaN(ATTEMPT_COUNT)){
     throw Error('[ERROR] 시도할 횟수는 숫자만 입력 가능합니다.')
@@ -101,21 +101,21 @@ class App {
 
   async run() {
     //1. 차 이름 입력
-    const INPUT_NAME = await inputNames()
-    const CAR_ARRAY = splitNames(INPUT_NAME)
-    const ISERROR_NAME = isErrorNames(CAR_ARRAY)
+    const names = await inputNames()
+    const carArray = splitNames(names)
+    const isErrorNames = detectNameError(carArray)
 
     //2. 시도 횟수 입력
-    const INPUT_ATTEMPT = await inputAttempt()
-    const ISERROR_ATTEMPT = isErrorAttempt(INPUT_ATTEMPT)
+    const attempts = await inputAttempt()
+    const isErrorAttempt = detectAttemptError(attempts)
 
     //3.경주
-    var carObject = initCarObject(CAR_ARRAY)
-    carObject = processRacing(carObject,INPUT_ATTEMPT)
+    var carObject = initCarObject(carArray)
+    carObject = processRacing(carObject,attempts)
 
     //4.우승자 판별
-    const WINNER_ARRAY = getWinner(carObject)
-    printWinner(WINNER_ARRAY)
+    const winnerArray = getWinner(carObject)
+    printWinner(winnerArray)
 
   }
 }
