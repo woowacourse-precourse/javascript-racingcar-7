@@ -45,7 +45,7 @@ export function validateCarNames(names) {
 }
 
 export function validateAttemptCount(attemptCount) {
-  if (attemptCount < MIN_ATTEMPT_COUNT) {
+  if (isNaN(attemptCount) || attemptCount < MIN_ATTEMPT_COUNT) {
     throw new Error(ERROR_MESSAGE);
   }
 }

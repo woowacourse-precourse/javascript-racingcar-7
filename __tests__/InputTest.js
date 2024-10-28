@@ -22,5 +22,7 @@ describe('입력', () => {
 
   test('시도할 횟수는 양의 정수만 입력 가능하다', () => {
     expect(() => validateAttemptCount(0)).toThrow('[ERROR]');
+    expect(() => validateAttemptCount('')).toThrow('[ERROR]');
+    expect(() => validateAttemptCount('  ')).toThrow('[ERROR]');
   });
 });
