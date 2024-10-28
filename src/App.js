@@ -19,6 +19,7 @@ class App {
     const carNameInput = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
     const carNames = this.separateCarNames(carNameInput); // 이름 분리
     this.validateCarNameLength(carNames); // 길이 검증
+    this.nameBlank(carNames);
     return carNames;
   }
 
@@ -30,6 +31,14 @@ class App {
     carNames.forEach(name => {
       if (name.length > 5) {
         throw new Error("[ERROR] 자동차 이름은 5자 이하만 가능합니다.");
+      }
+    });
+  }
+
+  nameBlank(carNames) {
+    carNames.forEach(name => {
+      if (name === '') {
+        throw new Error("[ERROR] 자동차 이름은 공백으로 둘 수 없습니다.");
       }
     });
   }
@@ -58,13 +67,13 @@ class App {
 
   playRound(carNames, carPositions) {
     carNames.forEach(name => {
-      if (this.shouldMove()) {
+      if (this.moveForward()) {
         carPositions[name] += 1;
       }
     });
   }
 
-  shouldMove() {
+  moveForward() {
     const randomNum = Random.pickNumberInRange(0, 9);
     return randomNum >= 4;
   }
