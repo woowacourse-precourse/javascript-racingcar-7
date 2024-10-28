@@ -1,10 +1,10 @@
 import PrintFunc from "../print/printFunc.js";
 import Car from "./Car.js";
 
-export default function startGame(carNames, raceRap) {
+export default function startGame(carNames, raceLap) {
   PrintFunc.printParams("실행결과");
   const carClassArr = makeCarClassArr(carNames);
-  startRaceGame(carClassArr, raceRap);
+  startRaceGame(carClassArr, raceLap);
 }
 
 const makeCarClassArr = (names) => names.map((carName) => new Car(carName));
@@ -18,8 +18,8 @@ const getWinner = (resultArr) => {
     .map((winnerObj) => winnerObj.carName);
 };
 
-const startRaceGame = (carArray, rap) => {
-  for (let i = 0; i < rap; i++) {
+const startRaceGame = (carArray, lap) => {
+  for (let i = 0; i < lap; i++) {
     carArray.forEach((carObj) => {
       carObj.moveCar();
       PrintFunc.printParams(`${carObj.carName} : ${carObj.carMoveLength}`);

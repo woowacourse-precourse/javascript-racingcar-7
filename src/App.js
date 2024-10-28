@@ -9,9 +9,9 @@ class App {
 
   async gatherUserInputs() {
     const carNames = await this.checkCarNameInput();
-    const raceRap = await this.checkRacingInputRap();
+    const raceLap = await this.checkRacingInputLap();
 
-    startGame(carNames, raceRap);
+    startGame(carNames, raceLap);
   }
 
   async checkCarNameInput() {
@@ -45,7 +45,7 @@ class App {
     return carsInputArray;
   }
 
-  async checkRacingInputRap() {
+  async checkRacingInputLap() {
     const racingTimeInput = await Console.readLineAsync("시도할 횟수는 몇 회인가요? : ");
 
     switch (true) {
