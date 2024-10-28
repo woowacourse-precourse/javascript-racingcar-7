@@ -13,11 +13,11 @@ export const inputHandler = {
   },
 
   async getTryNumberInput() {
-    const tryNumber = await MissionUtils.Console.readLineAsync(
+    const userInputTryNumber = await MissionUtils.Console.readLineAsync(
       messages.askTryNumber + messages.newLine
     );
-    if (inputValidator.checkTryNumberValidate(tryNumber)) {
-      return Number(tryNumber);
+    if (inputValidator.checkTryNumberValidate(userInputTryNumber)) {
+      return Number(userInputTryNumber);
     }
   },
 };
