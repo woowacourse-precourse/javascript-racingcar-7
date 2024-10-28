@@ -38,7 +38,7 @@ class CarRaceGame {
     const maxPosition = this.#calculateMaxCarPosition();
     const winnersList = this.#getWinnersList(maxPosition);
 
-    MissionUtils.Console.print(`최종 우승자 : ${winnersList.join(DELIMITER)}`);
+    MissionUtils.Console.print(`최종 우승자 : ${winnersList.join(DELIMITER + ' ')}`);
   }
 
   printRaceStart() {
