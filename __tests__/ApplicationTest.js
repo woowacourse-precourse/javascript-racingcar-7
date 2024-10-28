@@ -150,6 +150,18 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 
+  test("자동차 이름을 1개만 입력한 경우", async () => {
+    // given
+    const inputs = ["치킨파티"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
   // 경주 횟수 입력 유효성 테스트
 
   test("경주 횟수가 숫자가 아닌 경우", async () => {
