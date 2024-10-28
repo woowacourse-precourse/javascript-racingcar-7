@@ -5,6 +5,10 @@ export default class Car {
         this.progress = 0;
     }
 
+    getName() {
+        return this.name;
+    }
+
     getProgress() {
         return this.progress;
     }
