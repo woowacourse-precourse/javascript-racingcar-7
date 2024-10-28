@@ -2,7 +2,7 @@ import { Random } from "@woowacourse/mission-utils";
 
 class RandomNumberGenerator {
   static generate() {
-    return Random.pickNumberInRange(0, 9)
+    return Random.pickNumberInRange(0, 9);
   }
 }
 

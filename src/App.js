@@ -1,13 +1,12 @@
-import { Console, Random } from "@woowacourse/mission-utils";
-import InputHandler from "./InputHandler.js";
+import InputUtils from "./Utils/InputUtils.js";
 import RacingGame from "./controller/racingGame.js";
 import InputValidator from "./validator/InputValidator.js"
 
 class App {
   async run() {
     try {
-      const cars = await InputHandler.getCarNames();
-      const tryNumber = await InputHandler.getTryNumber();
+      const cars = await InputUtils.getCarNames();
+      const tryNumber = await InputUtils.getTryNumber();
 
       const carList = InputValidator.validateCars(cars);
       const validatedTryNumber = InputValidator.validateTryNumber(tryNumber);

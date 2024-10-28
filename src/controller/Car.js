@@ -4,10 +4,8 @@ class Car {
       this.position = 0;
     }
   
-    move(number) {
-      if (number <= 4) {
-        this.position += 1;
-      }
+    move() {
+      this.position += 1;
     }
   
     getPosition() {
