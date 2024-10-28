@@ -1,5 +1,6 @@
 import App from '../src/App.js';
 import { MissionUtils } from '@woowacourse/mission-utils';
+import { ERROR_MESSAGES } from '../src/constants/messages.js';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -103,9 +104,6 @@ describe('자동차 경주', () => {
   });
 
   test('예외 테스트', async () => {
-    await exceptionTestCase(
-      ['pobi,javaji'],
-      '[ERROR] 자동차 이름은 5자 이하이어야 합니다.',
-    );
+    await exceptionTestCase(['pobi,javaji'], ERROR_MESSAGES.EXCEED_NAME_LENGTH);
   });
 });

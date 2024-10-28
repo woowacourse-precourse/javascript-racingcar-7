@@ -1,4 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
+import { SYSTEM_MESSAGES } from './constants/messages.js';
 
 class Race {
   constructor(cars, tryCount) {
@@ -7,7 +8,7 @@ class Race {
   }
 
   start() {
-    Console.print('\n실행 결과');
+    Console.print(SYSTEM_MESSAGES.PRINT_RACE_START);
     for (let i = 0; i < this.tryCount; i++) {
       this.cars.forEach((car) => {
         car.move();
