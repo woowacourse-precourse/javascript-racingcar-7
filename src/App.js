@@ -17,6 +17,9 @@ class App {
         .map((name) => name.trim());
 
       for (const carName of validateInputCarNames) {
+        if (carName.length > 5) {
+          throw new Error('[ERROR] 이름은 5자 이하만 가능합니다.');
+        }
         if (carName) map.set(carName, '');
       }
     }
