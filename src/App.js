@@ -5,7 +5,7 @@ class App {
   async run() {
     try {
       const carNames = await inputHandler.getCarNamesInput();
-      console.log(carNames);
+      const tryNumber = await inputHandler.getTryNumberInput();
     } catch (error) {
       MissionUtils.Console.print(error.message);
       throw error;
