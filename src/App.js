@@ -62,7 +62,7 @@ class App {
     const rounds = Number(number_input);
     
     // 7. 예외 처리 3 : 입력한 횟수가 0일 경우
-    if (isNaN(rounds) || rounds === 0) {
+    if (isNaN(rounds) || rounds <= 0) {  // 수정: rounds가 0보다 작거나 같을 때도 처리
       throw new Error("[ERROR]");
     }
     
@@ -82,6 +82,15 @@ class App {
     const max_score = Math.max(...this.game_results);
     const winners = this.car_names.filter((_, index) => this.game_results[index] === max_score);
     Console.print(`최종 우승자 : ${winners.join(", ")}`);
+  }
+
+  // 5. 자동차 이름 길이 확인 함수
+  car_name_length(car_names) {
+    car_names.forEach((name) => {
+      if (name.length > 5) {
+        throw new Error("[ERROR]");
+      }
+    });
   }
 }
 
