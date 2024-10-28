@@ -10,7 +10,14 @@ class App {
     );
 
     try {
-      const result = this.racing(input);
+      const result = this.racing(input, count);
+
+      //반복문이 여기 들어가야하나...?!
+      //각 자동차에 해당하는 배열을 만들고 거기에 승리한 횟수만큼 넣어줘야 하나?
+      // for (let i = 0; i < count; i++) {
+      // }
+
+      // MissionUtils.Console.print(` 실행 결과 : ${result} `);
     } catch (error) {
       MissionUtils.Console.print(error.message);
 
@@ -18,7 +25,17 @@ class App {
     }
   }
 
-  racing(input) {}
+  racing(input, count) {
+    const arr = input.split(",").map((item) => item.trim());
+    for (let i = 0; i < count; i++) {
+      console.log("");
+      console.log(i + 1 + "번째 경기");
+      for (let j = 0; j < arr.length; j++) {
+        const num = MissionUtils.Random.pickNumberInRange(0, 9);
+        console.log(arr[j] + num);
+      }
+    }
+  }
 }
 
 export default App;
