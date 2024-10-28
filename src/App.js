@@ -1,4 +1,6 @@
-import { Console, MissionUtils } from '@woowacourse/mission-utils';
+import { Console } from '@woowacourse/mission-utils';
+import { chkCarName, chkTryNum } from './validation.js'; // 예외처리 함수
+import { moveCar, winnerCar, showCarRace, showWinnerCar } from './function.js'; // 기능 함수
 
 class App {
     async run() {
@@ -46,53 +48,3 @@ class App {
 }
 
 export default App;
-
-function chkCarName(cars) {
-    let message = null;
-    for (let i = 0; i < cars.length; i++) {
-        if (cars[i].length > 5) {
-            message = '자동차 이름이 5글자를 초과';
-        } else if (cars[i] === '') {
-            message = '빈 문자열이 자동차 이름으로 설정 되어 있음';
-        }
-        if (message) return message;
-    }
-    return false;
-}
-
-function chkTryNum(num) {
-    return num > 0;
-}
-
-function moveCar(cars, count) {
-    for (let i = 0; i < cars.length; i++) {
-        var randomNum = MissionUtils.Random.pickNumberInRange(0, 9);
-        if (randomNum >= 4) {
-            count[i]++;
-        }
-    }
-}
-
-function winnerCar(carArray, count, max) {
-    const winnerArray = [];
-    for (let i = 0; i < count.length; i++) {
-        if (count[i] === max) {
-            winnerArray.push(carArray[i]);
-        }
-    }
-    return winnerArray;
-}
-
-function showCarRace(carArray, count) {
-    for (let i = 0; i < carArray.length; i++) {
-        const numOfcount = '-'.repeat(count[i]);
-        Console.print(`${carArray[i]} : ${numOfcount}`);
-    }
-    Console.print('');
-}
-
-function showWinnerCar(winnerCarArr) {
-    if (winnerCarArr.length > 1) {
-        Console.print('최종 우승자 : ' + winnerCarArr.join(', '));
-    } else Console.print(`최종 우승자 : ${winnerCarArr[0]}`);
-}
