@@ -15,6 +15,11 @@ function IncreaseCount(decision, cnt) {  // boolean 값으로 cnt 증가시킴
   return cnt
 }
 
+function DrawForward(car, cnt) {  // 출력 형식 맞추기
+  Console.print(car + ' : ' + '-'.repeat(cnt));
+  return 0;
+}
+
 class App {
   async run() {
     let input_name = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
@@ -31,7 +36,7 @@ class App {
       for (let j=0; j<car_name.length; j++) {
         let forward_decision = Forward_Judgment();
         forward_cnt[j] = await IncreaseCount(forward_decision, forward_cnt[j]);
-        Console.print(forward_cnt[j]);
+        let tmp = DrawForward(car_name[j], forward_cnt[j]);
       }
       Console.print('');
     }
