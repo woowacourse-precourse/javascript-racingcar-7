@@ -3,18 +3,23 @@ import View from "./View.js";
 
 class App {
   async run() {
-    const {carNames, tryCount} = await this.readLineGameInputs();
+    try {
+      const {carNames, tryCount} = await this.readLineGameInputs();
 
-    const game = new RacingGame();
+      const game = new RacingGame();
 
-    game.getInitialBoard(carNames);
-    game.getRacingResult(tryCount);
+      game.getInitialBoard(carNames);
+      game.getRacingResult(tryCount);
 
-    const scoreBoard = game.getScoreBoard();
-    View.printRoundScore(tryCount, scoreBoard);
+      const scoreBoard = game.getScoreBoard();
+      View.printRoundScore(tryCount, scoreBoard);
 
-    const finalWinner = game.getWinner(scoreBoard);
-    View.printFinalWinner(finalWinner);
+      const finalWinner = game.getWinner(scoreBoard);
+      View.printFinalWinner(finalWinner);
+    } catch (e) {
+      View.printErrorMessage(e.message);
+      throw e;
+    }
   }
 
   async readLineGameInputs() {
