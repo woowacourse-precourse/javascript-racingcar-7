@@ -13,7 +13,16 @@ class App {
     // 2. 자동차 초기 상태 설정
     let racing_start = this.car_result(cars);
 
+    // 3. 라운드 실행 및 결과 출력
+    for (let i = 0; i < tries; i++) {
+      racing_start = this.racing_play(racing_start);
+      this.racing_result(racing_start);
+    }
+
+    // 4. 최종 우승자 출력
+    this.racing_winner(racing_start);
   }
+
 }
 
 export default App;
