@@ -13,6 +13,8 @@ export const ERROR_PREFIX = '[ERROR]';
 export const ERROR_MESSAGES = Object.freeze({
   emptyCarName: '자동차 이름을 입력해주세요.',
   emptyRoundCount: '시도 횟수를 입력해주세요.',
+  invalidDelimiter:
+    '쉼표(,) 이외의 특수문자, 공백은 구분자로 사용할 수 없습니다.',
 });
 
 export const REGEX = Object.freeze({
