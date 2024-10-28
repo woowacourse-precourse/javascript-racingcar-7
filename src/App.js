@@ -6,6 +6,7 @@ class App {
     this.moveForwardCount = {};
     this.winnerOutput = "";
   }
+
   checkCarNames(inputString) {
     const carNames = inputString.split(",");
     for (const name of carNames) {
@@ -15,14 +16,17 @@ class App {
     }
     return true;
   }
+
   checkMoveCount(moveCountString) {
     return !isNaN(moveCountString);
   }
+
   includeSameNames(inputString) {
     const carNames = inputString.split(",");
     const setCarNames = new Set(carNames);
     return carNames.length !== setCarNames.size;
   }
+
   async inputCarNames() {
     try {
       const names = await Console.readLineAsync(
@@ -43,6 +47,7 @@ class App {
       throw error;
     }
   }
+
   async inputMoveCount() {
     try {
       const moveCount = await Console.readLineAsync(
@@ -58,6 +63,7 @@ class App {
       throw error;
     }
   }
+
   moveForwardStepByStep() {
     for (const name of this.carNames) {
       const number = Random.pickNumberInRange(0, 9);
@@ -89,6 +95,7 @@ class App {
       this.printStateStepByStep(i);
     }
   }
+
   decideWinner() {
     const winner = [];
     const maxCount = Math.max(...Object.values(this.moveForwardCount));
@@ -99,14 +106,15 @@ class App {
     }
     this.winnerOutput = winner.join(", ");
   }
+
   printWinner() {
     Console.print(`최종 우승자 : ${this.winnerOutput}`);
   }
+
   async run() {
     try {
       await this.inputCarNames();
       await this.inputMoveCount();
-
       this.moveForward();
       this.decideWinner();
       this.printWinner();
