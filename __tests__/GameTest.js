@@ -2,7 +2,7 @@ import { DISTANCE, MIN_ATTEMPT_COUNT, WINNING_NUMBER } from "../src/constants/Co
 import { Car } from "../src/Car.js";
 import { Game } from "../src/Game.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
-import { ATTEMPT_COUNT_ERROR_MESSAGE } from "../src/constants/Messages.js";
+import { ATTEMPT_COUNT_ERROR_MESSAGE, INVALID_CAR_ERROR_MESSAGE } from "../src/constants/Messages.js";
 
 const mockRandomNumbers = (numbers) => {
   MissionUtils.Random.pickNumberInRange = jest.fn().mockImplementation(() => numbers.shift());
@@ -29,5 +29,10 @@ describe('Game Test', () => {
     const cars = [new Car('Jelly'), new Car('Yummy')];
 
     expect(() => new Game().play(underMinAttemptCount, cars)).toThrow(ATTEMPT_COUNT_ERROR_MESSAGE);
+  })
+
+  test('Game 클래스의 매개변수로 Car가 전달되지 않으면 에러를 던진다.', () => {
+    const attemptCount = 1;
+    expect(() => new Game().play(attemptCount)).toThrow(INVALID_CAR_ERROR_MESSAGE);
   })
 })
