@@ -23,8 +23,8 @@ function permissionToGo() {
 
 function proceedOneCycle(permissionToGo, count, carsResults) {
   for (let i = 0; i < count; i++) {
-    const permission = permissionToGo();
-    moveCar(permission, carsResults, i);
+    const PERMISSION = permissionToGo();
+    moveCar(PERMISSION, carsResults, i);
     Console.print(`${carsResults[i].name} : ${carsResults[i].position}`);
   }
 }
@@ -43,11 +43,11 @@ function maxPositionUpdater(position, maxPosition) {
 }
 
 function findMaxPosition(carList) {
-  let MAX_POSITION = 0;
+  let maxPosition = 0;
   carList.map((car) => {
-    MAX_POSITION = maxPositionUpdater(car.position.length, MAX_POSITION);
+    maxPosition = maxPositionUpdater(car.position.length, maxPosition);
   });
-  return MAX_POSITION;
+  return maxPosition;
 }
 
 function selectWinners(position, maxPosition, winners) {
@@ -114,26 +114,26 @@ function handleDuplicationNameError(nameList, nameListSet) {
 
 class App {
   async run() {
-    const carNamesUserInput = await Console.readLineAsync(
+    const CARNAMES_USERINPUT = await Console.readLineAsync(
       '경주할 자동차 이름을 입력하세요.\n'
     );
-    const carNames = getCarNames(carNamesUserInput);
+    const CAR_NAMES = getCarNames(CARNAMES_USERINPUT);
 
-    let carsResults = carNames.map((carName) => ({
+    let carsResults = CAR_NAMES.map((carName) => ({
       name: carName.trim(),
       position: '',
     }));
-    checkDuplicationName(carNames);
-    const count = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
-    handleCountTypeError(count);
+    checkDuplicationName(CAR_NAMES);
+    const COUNT = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+    handleCountTypeError(COUNT);
 
     Console.print('실행 결과');
-    for (let i = 0; i < count; i++) {
-      proceedOneCycle(permissionToGo, carNames.length, carsResults);
+    for (let i = 0; i < COUNT; i++) {
+      proceedOneCycle(permissionToGo, CAR_NAMES.length, carsResults);
       Console.print('');
     }
-    const winners = returnWinners(carsResults, findMaxPosition(carsResults));
-    Console.print(`최종 우승자 : ${winners.join()}`);
+    const WINNERS = returnWinners(carsResults, findMaxPosition(carsResults));
+    Console.print(`최종 우승자 : ${WINNERS.join()}`);
   }
   return;
 }
