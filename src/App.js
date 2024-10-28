@@ -9,7 +9,8 @@ class App {
 
     const carNames = nameInput.split(",").map((name) => new Car(name));
 
-    Console.print(carNames);
+    const tryCount = await Console.readLineAsync(MESSAGE.TRYCOUNT_INPUT);
+    this.validateTryCountInput(tryCount);
   }
 
   validateNameInput(nameInput) {
@@ -29,6 +30,18 @@ class App {
     const nameFormat = /^[A-Za-z]+$/; // 영문자만 허용하는 정규 표현식
     if (nameInput.split(",").some((name) => !nameFormat.test(name))) {
       throw new Error(ERROR_MESSAGE.INVALID_CHAR_NAME); // 숫자나 특수 문자가 포함된 경우 에러 발생
+    }
+  }
+
+  validateTryCountInput(tryCount) {
+    if (tryCount === "") {
+      throw new Error(ERROR_MESSAGE.EMPTY_TRYCOUNT); // 시도 횟수에 빈 값이 있는지 확인
+    }
+    if (isNaN(tryCount)) {
+      throw new Error(ERROR_MESSAGE.NOT_NUMBER_TRYCOUNT); // 시도 횟수가 숫자인지 확인
+    }
+    if (Number(tryCount) <= 0) {
+      throw new Error(ERROR_MESSAGE.INVALID_TRYCOUNT); // 시도 횟수가 0보다 큰지 확인
     }
   }
 }
