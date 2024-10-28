@@ -120,6 +120,18 @@ describe('자동차 경주', () => {
         await expect(app.run()).rejects.toThrow('[ERROR]');
       });
 
+      test('시도 횟수가 실수로 들어오는 경우 에러를 발생한다.', async () => {
+        // given
+        const inputs = ['benz,audi', '1.1'];
+        mockQuestions(inputs);
+
+        // when
+        const app = new App();
+
+        // then
+        await expect(app.run()).rejects.toThrow('[ERROR]');
+      });
+
       test('시도 횟수가 음수로 들어오는 경우 에러를 발생시킨다.', async () => {
         // given
         const inputs = ['benz,audi', '-1'];
