@@ -1,6 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 
-export default class ViewOut {
+export default class OutputView {
   DISTANCE_CHAR = '-';
 
   renderCarInfos(carInfoList) {

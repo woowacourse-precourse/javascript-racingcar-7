@@ -1,7 +1,7 @@
 import { Console } from '@woowacourse/mission-utils';
-import { ERROR_MSG } from '../../Util/Validator.js';
+import { ERROR_MSG } from '../../Util/Util.js';
 
-class ViewIn {
+class InputView {
   constructor() {
     this.INPUT_CAR_MSG =
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n';
@@ -48,4 +48,4 @@ class ViewIn {
   }
 }
 
-export default ViewIn;
+export default InputView;

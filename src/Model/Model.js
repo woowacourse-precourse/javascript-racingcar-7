@@ -1,6 +1,6 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import Car from './Car.js';
-import { ERROR_MSG, REGEXP } from '../../Util/Validator.js';
+import { ERROR_MSG, REGEXP } from '../../Util/Util.js';
 
 export default class Model {
   carList = [];
@@ -9,7 +9,7 @@ export default class Model {
 
   FORWARD_CONDITION = 4;
 
-  MAX_GAME_COUNT = 10000;
+  MAX_GAME_COUNT = Number.MAX_SAFE_INTEGER;
 
   MAX_CAR_NAME_LENGTH = 5;
 
@@ -29,47 +29,6 @@ export default class Model {
   setGameInfo(gameCount) {
     this.validateGameCount(gameCount);
     this.gameCount = gameCount;
-  }
-
-  getGameCount() {
-    return this.gameCount;
-  }
-
-  getCarCount() {
-    return this.carList.length;
-  }
-
-  getCarInfo(carIndex) {
-    const carInfo = {
-      name: this.carList[carIndex].getName(), // sum 키에 첫 번째 반환값
-      distance: this.carList[carIndex].getDistance(), // product 키에 두 번째 반환값
-    };
-
-    return carInfo;
-  }
-
-  play(CarIndex) {
-    if (this.meetTheCondition()) {
-      this.carList[CarIndex].moveForward();
-    }
-  }
-
-  getWinner() {
-    const maxDistance = Math.max(
-      ...this.carList.map((car) => car.getDistance()),
-    );
-
-    const winners = this.carList
-      .filter((car) => car.getDistance() === maxDistance)
-      .map((car) => car.getName());
-
-    return winners;
-  }
-
-  meetTheCondition() {
-    return (
-      MissionUtils.Random.pickNumberInRange(0, 9) >= this.FORWARD_CONDITION
-    );
   }
 
   validateGameCount(gameCountString) {
@@ -102,5 +61,46 @@ export default class Model {
     });
 
     return carNameList;
+  }
+
+  getGameCount() {
+    return this.gameCount;
+  }
+
+  getCarCount() {
+    return this.carList.length;
+  }
+
+  getCarInfo(carIndex) {
+    const carInfo = {
+      name: this.carList[carIndex].getName(),
+      distance: this.carList[carIndex].getDistance(),
+    };
+
+    return carInfo;
+  }
+
+  play(CarIndex) {
+    if (this.meetTheCondition()) {
+      this.carList[CarIndex].moveForward();
+    }
+  }
+
+  meetTheCondition() {
+    return (
+      MissionUtils.Random.pickNumberInRange(0, 9) >= this.FORWARD_CONDITION
+    );
+  }
+
+  getWinner() {
+    const maxDistance = Math.max(
+      ...this.carList.map((car) => car.getDistance()),
+    );
+
+    const winners = this.carList
+      .filter((car) => car.getDistance() === maxDistance)
+      .map((car) => car.getName());
+
+    return winners;
   }
 }

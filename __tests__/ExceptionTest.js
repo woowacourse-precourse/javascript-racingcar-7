@@ -1,6 +1,6 @@
 import App from '../src/App.js';
 import { mockQuestions } from './ApplicationTest.js';
-import { ERROR_MSG } from '../Util/Validator.js';
+import { ERROR_MSG } from '../Util/Util.js';
 
 describe('UserInput Exception Test', () => {
   test.each([
@@ -35,10 +35,7 @@ describe('UserInput Exception Test', () => {
     // Exception9 ~ 12
     [['car1,car2,car3', '-1'], ERROR_MSG.NEGATIVE_GAME_COUNT],
     [['car1,car2,car3', '0'], ERROR_MSG.ZERO_GAME_COUNT],
-    [
-      ['car1,car2,car3', '999999999999999999999999999999999'],
-      ERROR_MSG.EXCEED_GAME_COUNT,
-    ],
+    [['car1,car2,car3', '90071992547409999'], ERROR_MSG.EXCEED_GAME_COUNT],
     [['car1,car2,car3', 'one'], ERROR_MSG.CAHR_GAME_COUNT],
   ])('areAnagrams(%s) returns %s', async (first, second) => {
     // given

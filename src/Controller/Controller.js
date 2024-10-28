@@ -1,5 +1,5 @@
-import ViewIn from '../View/InputView.js';
-import ViewOut from '../View/OutView.js';
+import InputView from '../View/InputView.js';
+import OutputView from '../View/OutView.js';
 import Model from '../Model/Model.js';
 
 class Controller {
@@ -10,8 +10,8 @@ class Controller {
   model;
 
   constructor() {
-    this.InputView = new ViewIn();
-    this.OutputView = new ViewOut();
+    this.InputView = new InputView();
+    this.OutputView = new OutputView();
     this.model = new Model();
   }
 
