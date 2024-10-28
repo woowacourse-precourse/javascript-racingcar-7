@@ -5,6 +5,7 @@ import { validateCarNames } from './errors/allErrorHandling.js';
 import { calculateCarRacing } from './functions/calculateCarRacing.js';
 import { printRacingResult } from './functions/printRacingResult.js';
 import { calculateWinner } from './functions/calculateWinner.js';
+import { printWhoIsWinner } from './functions/printWhoIsWinner.js';
 
 class App {
   async run() {
@@ -18,6 +19,7 @@ class App {
       printRacingResult(resultsPerAttempt, carNames);
 
       const winner = calculateWinner(resultsPerAttempt[resultsPerAttempt.length - 1]);
+      printWhoIsWinner(winner);
     } catch (error) {
       Console.print(error.message);
     }
