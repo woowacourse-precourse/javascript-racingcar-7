@@ -73,6 +73,8 @@ class App {
 
       this.displayProgress(names, results);
     }
+
+    this.displayWinner(names,results);
   }
 
   displayProgress(names, results) {
@@ -80,6 +82,12 @@ class App {
       MissionUtils.Console.print(`${name} : ${results[index]}`);
     });
     MissionUtils.Console.print('');
+  }
+
+  displayWinner(names, results) {
+    const maxDistance = Math.max(...results.map(result => result.length));
+    const winners = names.filter((name, index) => results[index].length === maxDistance);
+    MissionUtils.Console.print(`최종 우승자 : ${winners.join(', ')}`);
   }
 
 }
