@@ -32,6 +32,16 @@ function WinnerDecision(cnt_array) {
   return result;
 }
 
+function WinnerPrint(car, win) {
+  let result = []
+    win.forEach(i => {
+      result.push(car[i]);
+    })
+
+  const tmp = result.join(', ');
+  return tmp;
+}
+
 class App {
   async run() {
     let input_name = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
@@ -54,15 +64,9 @@ class App {
 
     const winner = WinnerDecision(forward_cnt);
 
-    Console.print(winner);
-
-    let result = []
-    winner.forEach(i => {
-      result.push(car_name[i]);
-    })
-
-    const tmp = result.join(', ');
-    Console.print('최종 우승자 : ' + tmp);  
+    let win_car = WinnerPrint(car_name, winner);
+    
+    Console.print('최종 우승자 : ' + win_car);  
   }
 }
 
