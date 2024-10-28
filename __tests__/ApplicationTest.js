@@ -93,3 +93,38 @@ describe('자동차 이름 에러 테스트', () => {
     );
   });
 });
+
+describe('시도할 횟수 에러 테스트', () => {
+  test('시도할 횟수가 숫자가 아닐 때 테스트', async () => {
+    const inputs = ['a,b', 'a'];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(
+      '[ERROR] 시도할 횟수는 숫자이어야 합니다.'
+    );
+  });
+
+  test('사도할 횟수가 0일 때 테스트', async () => {
+    const inputs = ['a,b', '0'];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(
+      '[ERROR] 시도할 횟수는 양수이어야 합니다.'
+    );
+  });
+
+  test('사도할 횟수가 음수일 때 테스트', async () => {
+    const inputs = ['a,b', '-1'];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(
+      '[ERROR] 시도할 횟수는 양수이어야 합니다.'
+    );
+  });
+});
