@@ -40,12 +40,12 @@ class App {
   async inputNumberOfAttempts() {
     Console.print('시도할 횟수는 몇 회 인가요?');
     const games = await Console.readLineAsync('');
-    this.validateNumberOfAttempts(games); //error: 숫자가 아닌 값을 입력 || 0입력
+    this.validateNumberOfAttempts(games); //error: 숫자가 아닌 값, 0,소수,음수
     this.numberOfAttempts = Number(games);
   }
   validateNumberOfAttempts(num) {
-    if (Number.isNaN(Number(num)) || !Number.isInteger(Number(num)>0))
-      throw new Error('[ERROR] 0보다 큰 숫자를 입력해주세요.');
+    if (Number.isNaN(Number(num)) || !Number.isInteger(Number(num)) || Number(num)<0)
+      throw new Error('[ERROR] 0보다 큰 정수를 입력해주세요.');
   }
   race() {
     Console.print('\n실행 결과');
