@@ -17,6 +17,7 @@ export const NAMESTRValid = (NAMESTR) => {
 }
 
 export const RUNTIMESValid = (RUNTIMES) => {
+
     if (RUNTIMES === '') {
         throw new Error("횟수를 입력해주세요")
     }
@@ -24,4 +25,5 @@ export const RUNTIMESValid = (RUNTIMES) => {
     if (isNaN(RUNTIMES)) {
         throw new Error("숫자를 입력해주세요")
     }
+
 }
