@@ -108,6 +108,10 @@ MVC 패턴을 통한 기능 구현을 목표했습니다.
 - [x] 시도 횟수가 소수가 입력된 경우 에러 발생("1.5")
 - [x] 시도 횟수가 오버플로우를 발생시키는 값이 입력된 경우 에러 발생 ("Number.MAX_SAFE_INTEGER + 1")
 
+### 테스트 결과
+![우테코 2주차 테스트 결과](https://github.com/user-attachments/assets/b46ae919-dfba-40a5-bfa3-7552c8958574)
+
+
 ## ♻️ 리팩토링 목록
 
 - outputView.js에서 printRoundStatus 메서드를 단일 책임 원칙에 따라 두 개의 메서드로 분리
