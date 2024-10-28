@@ -11,10 +11,11 @@ class Race {
    * @param {number} attempts 시도 횟수
    */
   attempt(attempts) {
+    Console.print(`\n실행 결과`);
     for (let i = 0; i < attempts; i++) {
-      Console.print(`\n${i + 1} 시도`);
       this.cars.forEach((car) => car.move());
       this.printRoundResult();
+      Console.print(``);
     }
   }
 

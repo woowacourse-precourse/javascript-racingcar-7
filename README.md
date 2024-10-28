@@ -138,8 +138,8 @@
 
 6. App 클래스 구현
 
-- InputHandler와 Race 클래스를 호출해 프로그램 제어
-- run(): 입력 받아 Race 초기화, 시도 횟수만큼 attempt()를 호출, 게임을 진행한 후 결과 출력
+- [O] InputHandler와 Race 클래스를 호출해 프로그램 제어
+- [O] run(): 입력 받아 Race 초기화, 시도 횟수만큼 attempt()를 호출, 게임을 진행한 후 결과 출력
 
 7. ErrorHandler 클래스 구현
 

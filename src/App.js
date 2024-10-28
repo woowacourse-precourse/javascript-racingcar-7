@@ -10,7 +10,7 @@ class App {
 
   async run() {
     const carNames = await Console.readLineAsync(
-      "경주할 자동차 이름을 입력하세요. (이름은 쉼표(,)로 구분)\n"
+      "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,)로 구분)\n"
     );
 
     const attempts = await Console.readLineAsync(
@@ -25,7 +25,7 @@ class App {
 
     // 제대로 작동하는지 확인
     const winners = this.race.getWinners();
-    Console.print(`\n최종 우승자: ${winners.join(", ")}`);
+    Console.print(`최종 우승자: ${winners.join(", ")}`);
   }
 }
 
