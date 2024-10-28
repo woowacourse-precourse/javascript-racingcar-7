@@ -35,8 +35,8 @@ export default class Controller {
   findWinner(cars) {
     const max = Math.max(...cars.map((car) => car.getStep()));
 
-    const MaxCars = cars.filter((car) => car.getStep() === max);
-    const winners = MaxCars.map((car) => car.getName());
+    const maxCars = cars.filter((car) => car.getStep() === max);
+    const winners = maxCars.map((car) => car.getName());
 
     this.outputView.printWinner(winners);
   }
