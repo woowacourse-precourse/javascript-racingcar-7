@@ -55,14 +55,24 @@ class RacingGameController {
     validateCount(count);
   }
 
-  getScores() {
+  updateCarScores() {
     this.cars.forEach((car) => {
       if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) {
         car.score += "-";
       }
+    });
+  }
+
+  showCarScores() {
+    this.cars.forEach((car) => {
       this.view.printCarStatus(car.name, car.score);
     });
     this.view.printEmptyLine();
+  }
+
+  getScores() {
+    this.updateCarScores();
+    this.showCarScores();
   }
 
   async startGame() {
