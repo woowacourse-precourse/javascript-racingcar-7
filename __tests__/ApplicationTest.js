@@ -73,14 +73,14 @@ describe('자동차 이름 문자열 입력', () => {
     const input = 'kia,hyun,gene,';
     const app = new App();
 
-    expect(() => app.validateCarNames(input).toThrow('[ERROR] 문장 양식이 구분자로 끝날 수 없습니다!'));
+    expect(() => app.validateCarNames(input)).toThrow('[ERROR] 문장 양식이 구분자로 끝날 수 없습니다!');
   });
 
   test('문장이 구분자로 시작할 수 없음', () => {
     const input = ',kia,hyun,gene';
     const app = new App();
 
-    expect(() => app.validateCarNames(input).toThrow('[ERROR] 문장 양식이 구분자로 시작할 수 없습니다!'));
+    expect(() => app.validateCarNames(input)).toThrow('[ERROR] 문장 양식이 구분자로 시작할 수 없습니다!');
   });
 });
 
@@ -98,21 +98,21 @@ describe('자동차 이름 문자열 분리', () => {
     const input = ['kia','','hyun'];
     const app = new App();
 
-    expect(() => app.validateSplitCarNames(input).toThrow('[ERROR] 이름은 공백으로 설정할 수 없습니다!'));
+    expect(() => app.validateSplitCarNames(input)).toThrow('[ERROR] 이름은 공백으로 설정할 수 없습니다!');
   });
 
   test('이름은 중복으로 사용할 수 없음', () => {
     const input = ['kia','kia','hyun'];
     const app = new App();
 
-    expect(() => app.validateSplitCarNames(input).toThrow('[ERROR] 이름은 중복으로 설정할 수 없습니다!'));
+    expect(() => app.validateSplitCarNames(input)).toThrow('[ERROR] 이름은 중복으로 설정할 수 없습니다!');
   });
   
   test('이름은 5글자를 넘을 수 없음', () => {
     const input = ['kia','hyundai','gene'];
     const app = new App();
 
-    expect(() => app.validateSplitCarNames(input).toThrow('[ERROR] 이름은 5글자를 넘을 수 없습니다!'));
+    expect(() => app.validateSplitCarNames(input)).toThrow('[ERROR] 이름은 5글자를 넘을 수 없습니다!');
   });
 });
 
@@ -122,7 +122,7 @@ describe('회차 입력', () => {
 
     const app = new App();
 
-    expect(() => app.validateRoundNumber(input).toThrow('[ERROR] 공백을 입력할 수 없습니다!'));
+    expect(() => app.validateRoundNumber(input)).toThrow('[ERROR] 공백을 입력할 수 없습니다!');
   });
 
   test('숫자가 아닌 값 입력', () => {
@@ -130,7 +130,7 @@ describe('회차 입력', () => {
 
     const app = new App();
 
-    expect(() => app.validateRoundNumber(input).toThrow('[ERROR] 숫자를 입력해야 합니다!'));
+    expect(() => app.validateRoundNumber(input)).toThrow('[ERROR] 숫자를 입력해야 합니다!');
   });
   
   test('소수점 입력', () => {
@@ -138,7 +138,7 @@ describe('회차 입력', () => {
 
     const app = new App();
 
-    expect(() => app.validateRoundNumber(input).toThrow('[ERROR] 소수는 입력할 수 없습니다.'));
+    expect(() => app.validateRoundNumber(input)).toThrow('[ERROR] 소수는 입력할 수 없습니다.');
   });
 
   test('0 입력', () => {
@@ -146,7 +146,7 @@ describe('회차 입력', () => {
 
     const app = new App();
 
-    expect(() => app.validateRoundNumber(input).toThrow('[ERROR] 0보다 적은 값은 입력할 수 없습니다.'));
+    expect(() => app.validateRoundNumber(input)).toThrow('[ERROR] 0보다 적은 값은 입력할 수 없습니다.');
   });
 });
 
