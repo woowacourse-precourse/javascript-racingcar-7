@@ -1,6 +1,7 @@
 import { Console, Random } from '@woowacourse/mission-utils';
-import carRoundPosition from './carRace/carRoundPosition';
-import printRacetWinner from './carRace/printRacetWinner';
+import carRoundPosition from './carRace/carRoundPosition.js';
+import printRacetWinner from './carRace/printRacetWinner.js';
+import { errorConstans } from './errorConstans.js';
 
 class App {
   async getCarNames() {
@@ -10,9 +11,9 @@ class App {
 
     const carNamesArr = carNames.split(',').map((name) => name.trim());
 
-    if (carNamesArr.length < 2) throw '자동차는 두 대 이상 작성해주세요.';
+    if (carNamesArr.length < 2) throw errorConstans.ERROR_CARNUM;
     if (carNamesArr.some((carName) => carName.length > 5))
-      throw '자동차 이름은 5글자 이하여야 합니다.';
+      throw errorConstans.ERROR_CARNAME_VALIDATION;
 
     return carNamesArr;
   }
@@ -24,7 +25,7 @@ class App {
     const attempts = parseInt(raceAttempts, 10);
 
     if (isNaN(attempts) || attempts <= 0)
-      throw '시도 횟수는 1 이상의 숫자여야 합니다.';
+      throw errorConstans.ERROR_MIN_RACE_ATTEMP;
 
     return attempts;
   }
@@ -48,7 +49,7 @@ class App {
 
       this.carRace(carNames, raceAttempts);
     } catch (error) {
-      throw new Error('[ERROR] ' + error.message);
+      throw new Error('[ERROR] ' + error);
     }
   }
 }
