@@ -9,6 +9,11 @@ export function splitCarsName(inputString) {
   return inputString.split(',')
 }
 
+export function checkNameUnique(cars) {
+  const uniqueCars = new Set(cars);
+  return uniqueCars.size === cars.length;
+}
+
 class App {
   async run() {}
 }

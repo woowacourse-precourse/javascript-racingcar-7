@@ -1,5 +1,5 @@
 import App from "../src/App.js";
-import { inputCarsNameWithDelimeter, splitCarsName } from "../src/App.js";
+import { inputCarsNameWithDelimeter, splitCarsName, checkNameUnique } from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 const mockQuestions = (inputs) => {
@@ -29,13 +29,40 @@ describe("자동차 경주", () => {
 // splitCarsName 함수 테스트 코드
 describe("자동차 경주", () => {
   test("splitCarsName - 쉼표로 구분된 자동차 이름을 배열로 반환", () => {
+    // given
     const inputString = "car1,car2,car3";
     const expectedOutput = ["car1", "car2", "car3"];
 
-    // splitCarsName 함수 호출 및 결과 확인
+    // when
     const result = splitCarsName(inputString);
 
+    // then
     expect(result).toEqual(expectedOutput);
+  });
+});
+
+// checkNameUnique 함수 테스트 코드
+describe("자동차 경주", () => {
+  test("checkNameUnique - 중복된 이름이 없으면 true 반환", () => {
+    // given
+    const cars = ["car1", "car2", "car3"];
+
+    // when
+    const result = checkNameUnique(cars);
+
+    // then
+    expect(result).toBe(true);
+  });
+
+  test("checkNameUnique - 중복된 이름이 있으면 false 반환", () => {
+    // given
+    const carsWithDuplicates = ["car1", "car2", "car1"];
+
+    // when
+    const result = checkNameUnique(carsWithDuplicates);
+
+    // then
+    expect(result).toBe(false);
   });
 });
 
