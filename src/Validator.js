@@ -3,6 +3,13 @@ import { errorMessage } from './constants.js'
 
 export default class Validator {
 
+    static isFiveOrLess(inputCarName) {
+        inputCarName.forEach(carName => {
+            if(carName.length == 0||carName.length > 5)
+                CauseError.causeError(errorMessage.isFiveOrMoreErrorMessage);   
+        });
+    }
+
     static isEmpty(input) {
         if(!input)
             CauseError.causeError(errorMessage.inputEmptyErrorMessage);
