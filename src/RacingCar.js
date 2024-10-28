@@ -11,6 +11,12 @@ class RacingCar {
         }
     }
 
+    runRound() {
+        this.cars.forEach((car) => {
+            this.moveCar(car);
+        });
+    }
+
     moveCar(car) {
         const randomNumber = Random.pickNumberInRange(0, 9);
         if (this.shouldMove(randomNumber)) {
