@@ -1,12 +1,7 @@
 import { Console } from "@woowacourse/mission-utils";
 import { validateCarsInput } from "./utils/validateInput";
 import { runRaceRounds } from "./utils/race";
-
-function checkWinner(cars, result) {
-  const maxResult = Math.max(...result);
-  const winners = cars.filter((car, index) => result[index] === maxResult);
-  Console.print(`최종 우승자 : ${winners.join(", ")}`);
-}
+import { checkWinner } from "./utils/checkWinner";
 
 class App {
   async run() {
