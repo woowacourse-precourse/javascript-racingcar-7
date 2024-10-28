@@ -14,7 +14,7 @@ export const getTryCount = async () => {
 
 export function printRaceStatus(cars) {
   cars.forEach((car) => {
-    console.log(`${car.name}: ${"-".repeat(car.position)}`);
+    console.log(`${car.name} : ${"-".repeat(car.position)}`);
   });
   console.log("");
 }
