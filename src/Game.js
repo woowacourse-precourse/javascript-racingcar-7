@@ -19,6 +19,7 @@ class Game {
       this.cars.forEach((car) => car.move());
       this.showRacingStatus();
     }
+    this.generateGameWinner();
   }
 
   showRacingStatus() {
