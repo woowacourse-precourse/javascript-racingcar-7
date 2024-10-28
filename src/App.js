@@ -1,5 +1,6 @@
 import { Console } from "@woowacourse/mission-utils";
 import CarList from "./Model/CarList.js";
+import Winners from "./Model/Winners.js";
 
 class App {
   async run() {
@@ -33,9 +34,10 @@ class App {
     }
 
     // 7. 최종 우승자 판정 및 출력
-    const winner = this.decideWinner(carList);
+    const winner = new Winners(carList);
+    const winnersNameList = winner.decideWinners();
 
-    Console.print("최종 우승자 : " + winner.join(", "));
+    Console.print("최종 우승자 : " + winnersNameList.join(", "));
   }
 
   validateCarName(carNameArray) {
@@ -80,20 +82,6 @@ class App {
     }
 
     return tryNumber;
-  }
-
-
-  decideWinner(carList) {
-    // 최대 거리 값 구하기
-    const finalCarList = carList.getCars();
-    const maxDistance = Math.max(...finalCarList.map((car) => car.getDistance()));
-
-    // 최대 거리를 가진 자동차들 찾기
-    const winners = finalCarList
-      .filter((car) => car.getDistance() === maxDistance)
-      .map((car) => car.name);
-
-    return winners;
   }
 }
 
