@@ -7,6 +7,11 @@ function forward(cnt) {
   return cnt;
 }
 
+function printResult(cars, cnt) {
+  for (let i = 0; i < cars.length; i++) 
+    Console.print(cars[i] + " : " + "-".repeat(cnt[i]))
+}
+
 class App {
   async run() {
     try {
@@ -27,6 +32,8 @@ class App {
         
         tryNum--;
       }
+      
+      printResult(cars, cnt);
     } catch(error) {
       throw new Error(`[ERROR]`);
     }
