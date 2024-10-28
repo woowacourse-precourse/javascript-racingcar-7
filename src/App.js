@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, MissionUtils } from "@woowacourse/mission-utils";
 
 function validateCarsInput(carsInput) {
   if (carsInput.length === 0)
@@ -11,6 +11,31 @@ function validateCarsInput(carsInput) {
   }
 }
 
+function printCarAdvance(advanceValue) {
+  return "-".repeat(advanceValue);
+}
+
+function randomAdvanceCars(cars, count) {
+  const n = cars.length;
+  const result = new Array(n).fill(0);
+
+  for (let round = 0; round < count; round++) {
+    const random_result = [];
+    for (let i = 0; i < n; i++) {
+      random_result[i] = MissionUtils.Random.pickNumberInRange(0, 9);
+      if (random_result[i] >= 4) {
+        result[i] += 1;
+      }
+    }
+
+    for (let i = 0; i < n; i++) {
+      Console.print(`${cars[i]} : ${printCarAdvance(result[i])}`);
+    }
+    Console.print("");
+  }
+  return result;
+}
+
 class App {
   async run() {
     let cars = await Console.readLineAsync(
@@ -20,6 +45,9 @@ class App {
     cars = cars.split(",").map((car) => car.trim());
 
     const count = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+
+    Console.print(`\n실행 결과`);
+    const result = randomAdvanceCars(cars, count);
   }
 }
 
