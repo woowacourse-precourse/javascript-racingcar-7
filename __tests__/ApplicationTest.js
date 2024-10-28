@@ -10,8 +10,7 @@ import {
 import App from '../src/App.js';
 import {
   validateCarNames,
-  validateNotEmpty,
-  validateRaceCountIsPositiveInteger,
+  validateRaceCount,
 } from '../src/models/ErrorHandler.js';
 
 const mockQuestions = (inputs) => {
@@ -95,32 +94,32 @@ describe('Custom Test', () => {
       '[ERROR] 자동차 이름은 5자 이하로 입력해야 합니다.',
       validateCarNames,
     ],
-    ['', '[ERROR] 정확한 이름을 입력해주세요.', validateNotEmpty], // 에러 발생 입력
-    [' ,happy', '[ERROR] 정확한 이름을 입력해주세요.', validateNotEmpty],
+    ['', '[ERROR] 정확한 이름을 입력해주세요.', validateCarNames], // 에러 발생 입력
+    [' ,happy', '[ERROR] 정확한 이름을 입력해주세요.', validateCarNames],
     [
       'c',
       '[ERROR] 경주 횟수는 양의 정수로 입력해야 합니다. (0, 음수, 문자, 띄어쓰기 입력 불가)',
-      validateRaceCountIsPositiveInteger,
+      validateRaceCount,
     ],
     [
       '-1',
       '[ERROR] 경주 횟수는 양의 정수로 입력해야 합니다. (0, 음수, 문자, 띄어쓰기 입력 불가)',
-      validateRaceCountIsPositiveInteger,
+      validateRaceCount,
     ],
     [
       '0',
       '[ERROR] 경주 횟수는 양의 정수로 입력해야 합니다. (0, 음수, 문자, 띄어쓰기 입력 불가)',
-      validateRaceCountIsPositiveInteger,
+      validateRaceCount,
     ],
     [
       '1 0',
       '[ERROR] 경주 횟수는 양의 정수로 입력해야 합니다. (0, 음수, 문자, 띄어쓰기 입력 불가)',
-      validateRaceCountIsPositiveInteger,
+      validateRaceCount,
     ],
     [
       '',
       '[ERROR] 경주 횟수는 양의 정수로 입력해야 합니다. (0, 음수, 문자, 띄어쓰기 입력 불가)',
-      validateRaceCountIsPositiveInteger,
+      validateRaceCount,
     ],
   ])('사용자 입력 확인', async (inputData, expectedOutput, fn) => {
     const consoleSpy = jest
