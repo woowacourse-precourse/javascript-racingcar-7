@@ -17,9 +17,22 @@ class RacingGame {
   async initializeGame() {
     const carNames = await this.getCarNames();
     this.validateCarNames(carNames);
-    const cars = carNames.map((name) => new Car(name));
     const count = await this.getCount();
+    this.validateCount(count);
+    const cars = carNames.map((name) => new Car(name));
     Console.print(cars);
+  }
+
+  async getCarNames() {
+    const line = await Console.readLineAsync(
+      '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n'
+    );
+    return line.split(',');
+  }
+
+  async getCount() {
+    const count = await Console.readLineAsync('시도할 회수는 몇회인가요?\n');
+    return Number(count);
   }
 
   validateCarNames(carNames) {
@@ -35,16 +48,10 @@ class RacingGame {
     }
   }
 
-  async getCarNames() {
-    const line = await Console.readLineAsync(
-      '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n'
-    );
-    return line.split(',');
-  }
-
-  async getCount() {
-    const count = await Console.readLineAsync('시도할 회수는 몇회인가요?\n');
-    return parseInt(count, 10);
+  validateCount(count) {
+    if (isNaN(count) || count <= 0 || !Number.isInteger(count)) {
+      throw new Error('[ERROR] 시도 횟수는 양의 정수여야 합니다.');
+    }
   }
 }
 
