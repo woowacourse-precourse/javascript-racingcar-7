@@ -19,7 +19,7 @@ class Input {
   }
 
   static async TryNum() {
-    const tryNum = Number(await this.inputGideMessage(GIDE_MESSAGE.tryNum));
+    const tryNum = await this.inputGideMessage(GIDE_MESSAGE.tryNum);
     InputValidator.validateTryNumber(tryNum);
     return tryNum;
   }

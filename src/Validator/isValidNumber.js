@@ -10,7 +10,7 @@ const isNotInteger = (tryNumber) => {
 };
 
 const isNotPositive = (tryNumber) => {
-  return tryNumber < 1;
+  return tryNumber < 0;
 };
 
 const isNotZero = (tryNumber) => {
@@ -21,13 +21,12 @@ const isValidNumber = (tryNumber) => {
   if (!isNumber(tryNumber)) {
     errorHandler(ERROR_MESSAGE.notANumber);
   }
+  tryNumber = Number(tryNumber);
   if (isNotInteger(tryNumber)) {
     errorHandler(ERROR_MESSAGE.notAnInteger);
-  }
-  if (isNotPositive(tryNumber)) {
+  } else if (isNotPositive(tryNumber)) {
     errorHandler(ERROR_MESSAGE.negativeNumber);
-  }
-  if (isNotZero(tryNumber)) {
+  } else if (isNotZero(tryNumber)) {
     errorHandler(ERROR_MESSAGE.zeroNotAllowed);
   }
   return true;

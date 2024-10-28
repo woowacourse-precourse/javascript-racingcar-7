@@ -13,6 +13,7 @@ class InputValidator {
   }
   static validateTryNumber(tryNumber) {
     isEmptyInput(tryNumber);
+    isWhitespacePresent(tryNumber);
     isValidNumber(tryNumber);
   }
 }
