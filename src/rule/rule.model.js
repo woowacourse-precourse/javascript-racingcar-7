@@ -71,8 +71,8 @@ export class RuleModel {
   parseCarNames(carNames) {
     return carNames
       .split(',')
-      .filter((carName) => carName !== '')
-      .map((carName) => carName.trim());
+      .map((carName) => carName.trim())
+      .filter((carName) => carName !== '');
   }
 
   /**
