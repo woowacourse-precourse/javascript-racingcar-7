@@ -2,25 +2,25 @@ import { Console } from '@woowacourse/mission-utils';
 
 import InputView from './views/InputView.js';
 import OutputView from './views/OutputView.js';
-
+import {
+  getValidChallengerNameList,
+  getValidAttemptValue,
+} from './utils/GetValidInput.js';
 import GameManager from './utils/GameManager.js';
 
 class App {
-
   async run() {
-    const input = await InputView.getNames();
-    const gameManager = new GameManager(input);
-    const attempts = await InputView.getAttempts();
+    const namesInput = await InputView.getNames();
+    const challengerNameList = getValidChallengerNameList(namesInput);
 
-    gameManager.repeatGameAttempts(attempts);
+    const attemptsInput = await InputView.getAttempts();
+    const attempts = getValidAttemptValue(attemptsInput);
+
+    const gameManager = new GameManager(challengerNameList, attempts);
+    gameManager.playGameAsAttemps();
 
     const winnerNameString = gameManager.getWinnerNameString();
-
-    if (winnerNameString.length > 0) {
-      OutputView.printWinner(winnerNameString);
-      return;
-    }
-    OutputView.printNoWinner();
+    OutputView.printGameResult(winnerNameString);
   }
 }
 export default App;

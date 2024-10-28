@@ -1,25 +1,23 @@
 import OutputView from '../views/OutputView.js';
-import ChallengerList from './ChallengerList.js';
+import Challenger from './Challenger.js';
 import { MissionUtils } from '@woowacourse/mission-utils';
+import HandleError from './Error.js';
 
 class GameManager {
-  constructor(input) {
-    this.challengerList = [];
-    this.initChallengerList(input);
+  constructor(challengerNameList, attempts) {
+    this.challengerList = this.convertToChallengerObjList(challengerNameList);
+    this.attempts = attempts;
   }
 
-  initChallengerList(input) {
-    const challengerList = new ChallengerList(input);
-
-    this.challengerList = challengerList.getChallengerList();
-
-    if (!this.challengerList) {
-      throw new Error('이름을 입력해주세요');
-    }
+  convertToChallengerObjList(challengerNameList) {
+    const challengerList = challengerNameList.map((name) => {
+      return new Challenger(name);
+    });
+    return challengerList;
   }
 
-  repeatGameAttempts(attempts) {
-    for (let i = 0; i < attempts; i++) {
+  playGameAsAttemps() {
+    for (let i = 0; i < this.attempts; i++) {
       this.playGame();
       this.showAllOfChallengersStatus();
     }
@@ -34,7 +32,7 @@ class GameManager {
 
   showAllOfChallengersStatus() {
     this.challengerList.forEach((challenger) =>
-      this.showChallengerStatus(challenger),
+      this.showChallengerStatus(challenger)
     );
   }
 
@@ -55,11 +53,11 @@ class GameManager {
   }
 
   getWinnerNameString() {
-    if (!this.challengerList) {
-      throw new Error('이름을 입력해주세요');
-    }
+    // if (!this.challengerList) {
+    //   Error.makeError(Error.NAME_INPUT_ERROR.IsBlank);
+    // }
     const distanceList = this.challengerList.map(
-      (challenger) => challenger.distance,
+      (challenger) => challenger.distance
     );
     const MAX = Math.max(...distanceList);
 
