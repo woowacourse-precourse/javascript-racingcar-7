@@ -26,6 +26,16 @@ class Validator {
     }
   }
 
+  // 횟수 검증 메서드
+  validateAttempt(attempt) {
+    const numericAttempt = Number(attempt);
+    this.#checkNumber(numericAttempt);
+    this.#checkInteger(numericAttempt);
+    this.#checkIfZero(numericAttempt);
+    this.#checkNegative(numericAttempt);
+    return numericAttempt;
+  }
+
   #checkNumber(attempt) {
     const isNumber = typeof attempt === 'number' && !isNaN(attempt);
 
