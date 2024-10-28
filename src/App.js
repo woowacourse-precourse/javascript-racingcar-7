@@ -1,5 +1,19 @@
 import { Console, MissionUtils } from '@woowacourse/mission-utils';
 
+async function InputValue() {
+  let input_name = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
+  if (input_name.length > 5) throw new Error("[ERROR] 잘못된 입력입니다.");
+
+  let input_times = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+  let times = Number(input_times);  // 숫자가 아닌 무언가가 들어가면 NaN 반환
+  // Console.print(typeof times);
+  if (Number.isNaN(times)) throw new Error("[ERROR] 잘못된 입력입니다.");
+
+  let car_name = input_name.split(',');
+
+  return [car_name, input_times];
+}
+
 function Forward_Judgment() {  // 랜덤 돌리고 결과값 boolean 값으로 반환
   let randNum = MissionUtils.Random.pickNumberInRange(0, 9);
   
@@ -15,7 +29,7 @@ function IncreaseCount(decision, cnt) {  // boolean 값으로 cnt 증가시킴
   return cnt
 }
 
-function DrawForward(car, cnt) {  // 출력 형식 맞추기
+function DrawForward(car, cnt) {  // 중간 출력 형식 맞추기
   Console.print(car + ' : ' + '-'.repeat(cnt));
   return 0;
 }
@@ -32,10 +46,10 @@ function WinnerDecision(cnt_array) {
   return result;
 }
 
-function WinnerPrint(car, win) {
+function WinnerPrint(carArr, win) {  // 우승자 출력
   let result = []
     win.forEach(i => {
-      result.push(car[i]);
+      result.push(carArr[i]);
     })
 
   const tmp = result.join(', ');
@@ -44,15 +58,11 @@ function WinnerPrint(car, win) {
 
 class App {
   async run() {
-    let input_name = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
-    let input_times = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
 
+    let [car_name, input_times] = await InputValue();
     let forward_cnt = Array.from({ length: input_times }, () => 0);
 
-    let car_name = input_name.split(',');
-
-    Console.print("실행 결과");
-
+    Console.print("\n실행 결과");
     for (let i=0; i<input_times; i++) {
       for (let j=0; j<car_name.length; j++) {
         let forward_decision = Forward_Judgment();
@@ -66,7 +76,7 @@ class App {
 
     let win_car = WinnerPrint(car_name, winner);
     
-    Console.print('최종 우승자 : ' + win_car);  
+    Console.print('최종 우승자 : ' + win_car);
   }
 }
 
