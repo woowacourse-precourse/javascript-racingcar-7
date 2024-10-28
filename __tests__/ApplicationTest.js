@@ -46,6 +46,26 @@ describe("자동차 경주", () => {
     });
   });
 
+  test("모든 자동차가 동일한 거리를 이동한 경우 공동 우승 테스트", async () => {
+    // given
+    const MOVING_FORWARD = 4;
+    const inputs = ["pobi,woni", "2"];
+    const logs = ["pobi : --", "woni : --", "최종 우승자 : pobi, woni"];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
   test("자동차 이름이 5자를 초과할 경우 예외 테스트", async () => {
     // given
     const inputs = ["pobi,javaji"];
