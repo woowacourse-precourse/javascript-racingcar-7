@@ -1,10 +1,6 @@
 import { Console, MissionUtils } from "@woowacourse/mission-utils";
 
 class App {
-  constructor(cars, rounds) {
-    this.cars = [];
-    this.rounds = 0;
-  }
   setCars(input) {
     const carList = input.split(",").map((name) => name.trim());
     if (carList.some((name) => name.length > 5 || name.length == 0)) {
@@ -19,7 +15,6 @@ class App {
       throw new Error("[ERROR] 시도 횟수는 1이상 이여야 합니다.");
     }
     this.rounds = rounds;
-    this.startRace();
   }
 
   moveCars() {
@@ -63,6 +58,7 @@ class App {
     Console.print("시도할 횟수는 몇 회인가요?");
     const rounds = await Console.readLineAsync("");
     this.setRound(rounds);
+    this.startRace();
   }
 }
 
