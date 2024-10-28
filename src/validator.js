@@ -16,4 +16,8 @@ export function validateCarNames(names) {
       throw new Error(ERROR_MESSAGES.CAR_NAME_LENGTH);
     }
   });
+
+  if (new Set(names).size !== names.length) {
+    throw new Error(ERROR_MESSAGES.SAME_CAR_NAME);
+  }
 }

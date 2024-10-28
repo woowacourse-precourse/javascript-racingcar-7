@@ -1,6 +1,6 @@
 import { getCarNames } from "../src/inputHandlers.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
-import { MESSAGES, ERROR_MESSAGES } from "../src/constants.js";
+import { ERROR_MESSAGES } from "../src/constants.js";
 
 const mockConsoleInput = (input) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -24,5 +24,11 @@ describe("자동차 이름 검사", () => {
     await expect(getCarNames()).rejects.toThrow(
       ERROR_MESSAGES.INVALID_SEPARATOR
     );
+  });
+
+  test("자동차 이름이 중복되지 않았는지 검사", async () => {
+    mockConsoleInput("test,test");
+
+    await expect(getCarNames()).rejects.toThrow(ERROR_MESSAGES.SAME_CAR_NAME);
   });
 });
