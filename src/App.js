@@ -12,6 +12,18 @@ class App {
     const cars = await this.inputCars();
     const attemptCount = await this.inputAttemptCount();
     this.runRaceRounds(cars, attemptCount);
+    this.printWinner(cars);
+  }
+
+  printWinner(cars) {
+    const winner = this.getRaceWinner(cars);
+    Console.print(`최종 우승자 : ${winner.map(car => car.name).join(', ')}`);
+  }
+
+  getRaceWinner(cars) {
+    const maxCount = Math.max(...cars.map(car => car.move));
+    const winner = cars.filter(car => car.move === maxCount);
+    return winner;
   }
 
   runRaceRounds(cars, attemptCount) {
