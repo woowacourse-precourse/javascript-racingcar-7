@@ -32,6 +32,14 @@ class GameModel {
 		const winnerCars = this.getCarsAtPosition(maxPosition);
 		return winnerCars.map((car) => car.getName());
 	}
+
+	isGameOver() {
+		return this.#rounds == this.#currentRound;
+	}
+
+	getCars() {
+		return this.#cars;
+	}
 }
 
 export default GameModel;

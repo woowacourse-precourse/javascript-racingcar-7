@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { ERROR_MESSAGES } from '../src/constatns/validation';
+import { ERROR_MESSAGES } from '../src/constants/validation';
 import { InputView } from '../src/view/InputView';
 import OutputView from '../src/view/OutputView';
 

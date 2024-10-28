@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { MESSAGES } from '../constatns/messages';
+import { MESSAGES } from '../constants/messages.js';
 
 class OutputView {
 	printRoundResult(cars) {

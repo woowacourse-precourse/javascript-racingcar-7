@@ -1,4 +1,4 @@
-import { MINIMUM_RANDOMNUMBER_TO_MOVE } from '../constatns/numbers';
+import { MINIMUM_RANDOMNUMBER_TO_MOVE } from '../constants/numbers.js';
 
 class CarModel {
 	#name;
