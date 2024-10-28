@@ -9,12 +9,10 @@ import { ERROR_PREFIX, GAME_MESSAGE } from '../constants/messages';
 
 describe('Game 클래스', () => {
   let user;
-  let raceModel;
   let game;
 
   let readUserInputSpy;
   let outputViewSpy;
-  let determineWinnersSpy;
   let raceSpy;
   let announceWinnerSpy;
 
@@ -24,19 +22,16 @@ describe('Game 클래스', () => {
   let printMessageSpy;
   beforeEach(() => {
     user = new User();
-    raceModel = new Race();
-    game = new Game(user, outputView, raceModel);
+    game = new Game(user, outputView, Race);
 
     readUserInputSpy = jest.spyOn(user, 'readUserInput');
     outputViewSpy = jest.spyOn(Console, 'print');
-    determineWinnersSpy = jest.spyOn(raceModel, 'determineWinners');
     validateCarNameSpy = jest.spyOn(validateCarNameModule, 'validateCarName');
     validateAttemptsSpy = jest.spyOn(
       validateAttemptsModule,
       'validateAttempts'
     );
     printMessageSpy = jest.spyOn(outputView, 'printMessage');
-    raceSpy = jest.spyOn(raceModel, 'race');
     announceWinnerSpy = jest.spyOn(outputView, 'announceWinner');
   });
 
@@ -44,25 +39,27 @@ describe('Game 클래스', () => {
     jest.resetAllMocks();
   });
 
-  test('process가 올바른 순서로 진행된다', async () => {
+  test('process가 올바른 결과를 반환한다', async () => {
     const carNames = 'car1,car2,car3,car4';
     const attempts = 4;
-    const winners = [{ name: 'car1' }];
+    const expectedWinners = [{ name: 'car1', position: 3 }];
 
     readUserInputSpy
       .mockResolvedValueOnce(carNames)
       .mockResolvedValueOnce(attempts);
-    determineWinnersSpy.mockReturnValue(winners);
+
+    jest.spyOn(Race.prototype, 'race').mockImplementation(() => {});
+    jest
+      .spyOn(Race.prototype, 'determineWinners')
+      .mockReturnValue(expectedWinners);
 
     await game.process();
 
-    expect(readUserInputSpy).toHaveBeenCalledTimes(2);
     expect(validateCarNameSpy).toHaveBeenCalledWith(carNames);
     expect(validateAttemptsSpy).toHaveBeenCalledWith(attempts);
-    expect(printMessageSpy).toHaveBeenCalledWith(`\n${GAME_MESSAGE.RESULT}`);
-    expect(raceSpy).toHaveBeenCalledTimes(1);
-    expect(determineWinnersSpy).toHaveBeenCalledTimes(1);
-    expect(announceWinnerSpy).toHaveBeenCalledWith(winners);
+    expect(Race.prototype.race).toHaveBeenCalledWith(Number(attempts));
+    expect(Race.prototype.determineWinners).toHaveBeenCalled();
+    expect(announceWinnerSpy).toHaveBeenCalledWith(expectedWinners);
   });
 
   test('자동차 이름 유효성 검사에서 예외가 발생하면 중단한다', async () => {
@@ -86,6 +83,8 @@ describe('Game 클래스', () => {
     validateAttemptsSpy.mockImplementation(() => {
       throw new Error(ERROR_PREFIX);
     });
+
+    const raceSpy = jest.spyOn(Race.prototype, 'race');
 
     await expect(game.process()).rejects.toThrow(ERROR_PREFIX);
     expect(raceSpy).not.toHaveBeenCalled();

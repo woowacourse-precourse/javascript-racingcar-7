@@ -14,12 +14,8 @@ describe('Race 클래스', () => {
   let user;
 
   beforeEach(() => {
-    mockCars = [
-      { name: 'car1', position: 0 },
-      { name: 'car2', position: 0 },
-      { name: 'car3', position: 0 },
-    ];
-    race = new Race();
+    mockCars = [new Car('car1'), new Car('car2'), new Car('car3')];
+    race = new Race(mockCars);
     moveForwardSpy = jest.spyOn(race, 'moveForward');
     getCarsSpy = jest.spyOn(race, 'getCars');
     printRaceStatusSpy = jest.spyOn(outputView, 'printRaceStatus');
@@ -29,11 +25,6 @@ describe('Race 클래스', () => {
 
   afterEach(() => {
     jest.clearAllMocks();
-  });
-
-  test('자동차를 초기화(배치)한다', () => {
-    race.initializeCars(mockCars);
-    expect(race.cars.length).toBe(3);
   });
 
   test('입력받은 시도횟수만큼 경주를 진행한다', () => {
