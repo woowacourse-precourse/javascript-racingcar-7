@@ -13,6 +13,9 @@
 
 ## New Features
 
+- refactor(controller): remove unneccesary try-catch blocks
+- refactor(car): extract movement condition to seperate method
+- refactor(test): move mock files to src/mock directory
 - test(exception): update edgy cases for exception test
 - refactor(utils): move utils into src
 - test(exception): move exception tests from ApplicationTest to ExceptionTest
