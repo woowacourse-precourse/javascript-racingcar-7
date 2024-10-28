@@ -1,5 +1,5 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
-import { getUserInput, printRacingState } from '../src/views/View.js';
+import { getUserCarName, printRacingState } from '../src/views/View.js';
 import {
   divisionCarName,
   createCarObject,
@@ -95,13 +95,13 @@ describe('Custom Test', () => {
     if (expectedOutput.startsWith('[ERROR]')) {
       // 에러가 예상되는 경우
       await expect(async () => {
-        const input = await getUserInput();
+        const input = await getUserCarName();
         // 입력 값을 유효성 검사 함수에 전달하여 에러를 발생시킴
         validateCarNames(input.split(','));
       }).rejects.toThrow(expectedOutput);
     } else {
       // 정상적인 경우
-      const input = await getUserInput();
+      const input = await getUserCarName();
       expect(input).toBe(expectedOutput);
     }
 
