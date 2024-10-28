@@ -50,7 +50,6 @@ describe("자동차 경주", () => {
     // given
     // const MOVING_FORWARD = 4;
     // const STOP = 3;
-    //이 3이 총 경주 횟수가 아니라 차량이 한 번 무작위값을 던지는 수였군...????
     const inputs = ["치킨,닭,다리", "9"];
     const logs = [
       "치킨 : ---",
@@ -77,10 +76,7 @@ describe("자동차 경주", () => {
     // given
     // const MOVING_FORWARD = 4;
     // const STOP = 3;
-    //이 3이 총 경주 횟수가 아니라 차량이 한 번 무작위값을 던지는 수였군...
-    // const inputs = ["소형차,중형차,대형차", "3"];
-    //아닌가? 3으로 해도 되고 9로 해도 되는데 뭐지
-    const inputs = ["소형차,중형차,대형차", "13"];
+    const inputs = ["소형차,중형차,대형차", "3"];
     const logs = [
       "소형차 : ",
       "중형차 : ",
@@ -102,9 +98,9 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트", async () => {
+  test("자동차 이름이 5자를 초과하는 경우", async () => {
     // given
-    const inputs = ["pobi,javaji"];
+    const inputs = ["우테코,우테콩콩,우테꽁꽁꽁꽁"];
     mockQuestions(inputs);
 
     // when
