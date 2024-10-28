@@ -22,16 +22,19 @@ class App {
     const parsedCarNames = this.inputHandler.parseCarNames(carNames);
     const parsedAttempts = this.inputHandler.parseAttempts(attempts);
 
+    // 각 자동차 이름의 길이와 공백 여부 유효성 검사
     parsedCarNames.forEach((name) => {
       this.errorHandler.checkCarName(name);
       this.errorHandler.checkCarNull(name);
     });
 
+    // 시도 횟수가 자연수인지 유효성 검사
     this.errorHandler.checkAttemptInt(parsedAttempts);
 
     this.race = new Race(parsedCarNames);
     this.race.attempt(parsedAttempts);
 
+    // 최종 우승자 이름 출력
     const winners = this.race.getWinners();
     Console.print(`최종 우승자 : ${winners.join(", ")}`);
   }

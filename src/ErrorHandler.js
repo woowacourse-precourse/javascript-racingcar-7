@@ -1,8 +1,10 @@
-import { Console } from "@woowacourse/mission-utils";
-
+/**
+ * @class ErrorHandler
+ * @description 입력값에 대한 유효성을 검사 및 에러 메시지 출력
+ */
 class ErrorHandler {
   /**
-   * 자동차 이름이 5자 이하인지 확인
+   * @description 자동차 이름이 5자 이하인지 확인
    * @param {string} name 자동차 이름
    */
   checkCarName(name) {
@@ -12,7 +14,7 @@ class ErrorHandler {
   }
 
   /**
-   * 자동차 이름이 공백인지 확인
+   * @description 자동차 이름이 공백인지 확인
    * @param {string} name 자동차 이름
    */
   checkCarNull(name) {
@@ -22,7 +24,7 @@ class ErrorHandler {
   }
 
   /**
-   * 시도 횟수가 자연수인지 확인
+   * @description 시도 횟수가 자연수인지 확인
    * @param {number} attempt 시도 횟수
    */
   checkAttemptInt(attempt) {
