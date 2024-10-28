@@ -3,16 +3,16 @@ import RandomUtil from './utils/Random.js';
 import RacingCar from './Models/RacingCar.js';
 import { SERVICE_CONSTSANSTS } from './assets/constants.js';
 import { Validator } from './utils/Validator.js';
+import { IOManager } from './utils/IOManager.js';
 
 class App {
   async run() {
     try {
       // 자동차 이름 받기
-      const userInput = await Console.readLineAsync(
+      const userInput = await IOManager.InputManager(
         `경주할 자동차 이름을 입력하세요.(이름은 쉼표(${SERVICE_CONSTSANSTS.DELIMITER}) 기준으로 구분)\n`,
+        Validator.isEmptyString,
       );
-
-      Validator.isEmptyString(userInput);
 
       // 자동차 이름 분리
       const carNameArr = userInput.split(SERVICE_CONSTSANSTS.DELIMITER);
@@ -25,15 +25,15 @@ class App {
       const carInstanceArr = carNameArr.map((name) => new RacingCar(name));
 
       // 시도 횟수 받기
-      let tryCount =
-        await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+
+      let tryCount = await IOManager.InputManager('', (value) => {
+        const num = Number(value);
+        Validator.isNumber(num);
+        Validator.isInteger(num);
+        Validator.isPositive(num);
+      });
 
       tryCount = Number(tryCount);
-
-      // 시도 횟수에 대한 예외 케이스
-      Validator.isNumber(tryCount);
-      Validator.isInteger(tryCount);
-      Validator.isPositive(tryCount);
 
       // 줄 구분용 빈칸
       Console.print('');
