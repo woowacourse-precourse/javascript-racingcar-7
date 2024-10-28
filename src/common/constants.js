@@ -12,7 +12,7 @@ const ERROR_MESSAGE = Object.freeze({
 });
 
 const TAG = Object.freeze({
-  ERROR_TAG: "[ERROR]",
+  ERROR: "[ERROR]",
 });
 
 const GAME_RULES = Object.freeze({

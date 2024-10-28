@@ -8,7 +8,7 @@ const getAttempt = () => { return Console.readLineAsync(LOG_MESSAGE.ATTEMPT_COUN
 const getRandomNumber = (min, max) => { return Random.pickNumberInRange(min, max); };
 
 const throwError = (message) => {
-  const errorMessage = `${TAG.ERROR_TAG} ${message}`;
+  const errorMessage = `${TAG.ERROR} ${message}`;
   throw new Error(errorMessage);
 };
 
