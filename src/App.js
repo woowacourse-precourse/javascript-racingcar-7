@@ -8,14 +8,14 @@ class App {
         MissionUtils.Console.readLine(
           "게임을 몇 번 진행하시겠습니까? ",
           (count) => {
-            try {
-              this.gameStart(input, parseInt(count));
-            } catch (error) {
-              MissionUtils.Console.print("[ERROR] " + error.message);
-              throw new Error("[ERROR] " + error.message); // 예외를 명시적으로 throw하여 테스트 통과
-            } finally {
-              MissionUtils.Console.close();
+            const parsedCount = parseInt(count);
+            if (isNaN(parsedCount) || parsedCount < 1) {
+              MissionUtils.Console.print(
+                "[ERROR] 이동 횟수는 1 이상의 정수여야 합니다."
+              );
+              throw new Error("[ERROR] 이동 횟수는 1 이상의 정수여야 합니다.");
             }
+            this.gameStart(input, parsedCount);
           }
         );
       }
@@ -63,16 +63,22 @@ class App {
   }
 
   CarNameException(input) {
-    const carName = input.split(",");
+    const carName = input.split(",").map((name) => name.trim());
     const uniqueNames = new Set(carName);
 
-    if (carName.length > 5 || uniqueNames.size !== carName.length) {
-      throw new Error("입력값에 문제가 있습니다");
+    if (carName.length > 5) {
+      throw new Error("[ERROR] 자동차는 최대 5대까지 입력 가능합니다.");
+    }
+
+    if (uniqueNames.size !== carName.length) {
+      throw new Error("[ERROR] 자동차 이름에 중복이 있습니다.");
     }
 
     carName.forEach((name) => {
       if (name.length === 0 || name.length > 5) {
-        throw new Error("입력값에 문제가 있습니다");
+        throw new Error(
+          "[ERROR] 각 자동차 이름은 1자 이상 5자 이하이어야 합니다."
+        );
       }
     });
     return true;
