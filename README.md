@@ -12,10 +12,10 @@
 ### 기능 목록
 - 사용자의 입력이 ERROR CASE에 해당하는지 확인
   ```js
-  NAMESTRValid = (NAMESTR) =>{
+  nameStrValid = (NAMESTR) =>{
     ...
   }
-  RUNTIMESValid = (RUNTIMES)=>{
+  runTimesValid = (RUNTIMES)=>{
     ...
   }
   ```
