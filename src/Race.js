@@ -38,9 +38,14 @@ class Race {
 
   async executeResult() {
     await printResult(RESULT_MESSAGE.EXECUTE);
+
     while (this.#tryNumber > 0) {
-      await this.#cars.forEach((car) => car.getMoveForwardResult());
-      await printResult('');
+      const distaceResult = await Promise.all(
+        this.#cars.map((car) => car.getMoveForwardResult())
+      );
+
+      await printResult(distaceResult.join(''));
+
       this.#tryNumber -= 1;
     }
   }

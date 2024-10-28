@@ -16,7 +16,8 @@ class Car {
     if (isOver4) {
       this.setDitance('-');
     }
-    await printResult(`${this.#name} : ${this.#distance}`);
+    const carStatusString = `${this.#name} : ${this.#distance}\n`;
+    return carStatusString;
   }
 
   setDitance(distance) {
