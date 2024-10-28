@@ -9,6 +9,14 @@ class Car {
     this.#carPostion = 0;
   }
 
+  getName() {
+    return this.#carName;
+  }
+  
+  getPosition() {
+    return this.#carPostion;
+  }
+
   move() {
     this.#carPostion = movingCondition(this.#carPostion);
   }
