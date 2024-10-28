@@ -14,6 +14,7 @@ class App {
 
       // 경기 진행
       this.startRace(cars, attempts);
+      this.printWinners(cars)
 
     } catch (error) {
 
@@ -64,6 +65,13 @@ class App {
       Console.print(""); // 회차 구분을 위해 빈 줄 출력
     }
   }
+
+  printWinners(cars) {
+    const maxPosition = Math.max(...cars.map((car) => car.position));
+    const winners = cars.filter((car) => car.position === maxPosition).map((car) => car.name);
+    Console.print(`최종 우승자 : ${winners.join(", ")}`);
+  }
+
 }
 
 export default App;
