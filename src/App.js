@@ -35,10 +35,11 @@ class App {
   createCars(input) {
     const CAR_NAMES = input.split(",");
     return CAR_NAMES.map((name) => {
+      name = name.trim();
       if (name.length > 5) {
         throw new Error("[ERROR] 자동차 이름은 5자 이하로 작성해주세요.");
       }
-      return { name: name.trim(), position: 0 }; // 각 자동차의 초기 위치는 0으로 설정
+      return { name: name, position: 0 }; // 각 자동차의 초기 위치는 0으로 설정
     });
   }
 
