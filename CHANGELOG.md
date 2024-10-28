@@ -1,0 +1,6 @@
+- Error 처리
+- 우승자 출력
+- 자동차, 경주 class 생성, 리드미 수정
+- README.md 수정, 자동차  생성 및 예외처리
+- Modify README.md
+- feat: setup project
