@@ -5,7 +5,10 @@ class App {
 
   async run() {
     const carNames = await this.#input_view.readCarNamesFromInput();
-    console.log(carNames);
+    const raceCount = await this.#input_view.readRaceCountFromInput();
+
+    console.log('carNames: ', carNames);
+    console.log('raceCount: ', raceCount);
   }
 }
 
