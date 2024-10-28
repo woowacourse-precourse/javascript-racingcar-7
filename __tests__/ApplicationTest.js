@@ -90,9 +90,57 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 
-  test("이름에 공백 입력 시 오류", async () => {
+  test("이름에 공백만 입력 시 오류", async () => {
     // given
     const inputs = [" "];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("횟수에 빈 문자열 입력 시 오류", async () => {
+    // given
+    const inputs = ["pobi,woni", ""];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("횟수에 공백 입력 시 오류", async () => {
+    // given
+    const inputs = ["pobi,woni", " "];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("횟수에 숫자 이외 문자 입력 시 오류", async () => {
+    // given
+    const inputs = ["pobi,woni", "9k"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("횟수에 0 입력 시 오류", async () => {
+    // given
+    const inputs = ["pobi,woni", "0"];
     mockQuestions(inputs);
 
     // when

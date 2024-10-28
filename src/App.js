@@ -12,7 +12,6 @@ class App {
     }
 
     const cars = removedWhitespace.split(",");
-
     cars.forEach((car) => {
       if (car.length > 5) {
         throw new Error("[ERROR] 이름은 5자 이하만 가능해요.");
@@ -22,6 +21,10 @@ class App {
     const tryCount = await MissionUtils.Console.readLineAsync(
       "시도할 횟수는 몇 회인가요?\n"
     );
+
+    if (Number(tryCount) === 0 || tryCount.match(/\D/g)) {
+      throw new Error("[ERROR] 횟수는 0보다 큰 숫자만 입력 가능해요.");
+    }
 
     MissionUtils.Console.print("\n실행 결과");
 
@@ -38,7 +41,6 @@ class App {
     }
 
     const carObjs = cars.map((name) => new Car(name));
-
     function printResult() {
       carObjs.forEach((car) => {
         car.go();
