@@ -80,7 +80,7 @@ describe('자동차 경주', () => {
     const app = new App();
 
     //then
-    await expect(app.run()).rejects.toThrow('[ERROR] 입력 형식에 맞지 않습니다. 두 개 이상의 이름을 입력하세요.');
+    await expect(app.run()).rejects.toThrow('[ERROR] 입력 형식에 맞지 않습니다.');
   });
 
   test('예외 테스트: 중복된 이름이 있을 때', async () => {

@@ -18,21 +18,21 @@ class App {
     const carNameInput = await Console.readLineAsync('');
     this.checkInput(carNameInput); //error: 쉼표가 없을 때 = 입력이 한 개 일때
     const carNames = carNameInput.split(',');
-    this.validateCarNames(carNames); // error: 5자초과, 공백 이름 존재(=쉼표 중복)
+    const trimmedCarNames = carNames.map(carNames => carNames.trim());
+    this.validateCarNames(trimmedCarNames); // error: 5자초과, 공백 이름 존재(=쉼표 중복)
 
-    this.cars = carNames.map((name) => ({ name, moving: 0 })); //{자동차이름: 전진값} 객체 생성
+    this.cars = trimmedCarNames.map((name) => ({ name, moving: 0 })); //{자동차이름: 전진값} 객체 생성
   }
   checkInput(input) {
     if (!input.includes(',')) {
       throw new Error(
-        '[ERROR] 입력 형식에 맞지 않습니다. 두 개 이상의 이름을 입력하세요.'
+        '[ERROR] 입력 형식에 맞지 않습니다.'
       );
     }
   }
   validateCarNames(names) {
     for (let name of names) {
-      const trimmedName = name.trim();
-      if (trimmedName.length > 5 || trimmedName.length < 1)
+      if (name.length > 5 || name.length < 1)
         throw new Error('[ERROR] 자동차 이름은 1자 이상 5자 이하여야 합니다.');
     }
   }
