@@ -43,11 +43,11 @@ class App {
     const getMaxDistance = (carArray) => {
       let carDistanceArray =[];
       carArray.map((car) => {
-        carDistanceArray.push(car.distance); // 자동차의 거리를 배열에 추가.
+        carDistanceArray.push(car.distance);
       })
       
-      const maxDistance = Math.max(...carDistanceArray); // 자동차 거리중, 최대 거리 찾기
-      return maxDistance; // 자동차 거리가 담긴 배열 저장
+      const maxDistance = Math.max(...carDistanceArray);
+      return maxDistance;
     
     }
 
