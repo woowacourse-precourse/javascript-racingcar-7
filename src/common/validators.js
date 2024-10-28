@@ -1,5 +1,5 @@
 import { throwError, splitByDelimiter } from './utils.js';
-import { ERROR_MESSAGE } from './constants.js'; 
+import { ERROR_MESSAGE, GAME_RULES } from './constants.js'; 
 
 export const isEmpty = (input) => !input;
 
@@ -17,7 +17,7 @@ const validateCarName = (input) => {
 
   const carNames = splitByDelimiter(input);
 
-  if (!carNames.every(name => isMaxLength(name, 5))) {
+  if (!carNames.every(name => isMaxLength(name, GAME_RULES.MAX_CAR_NAME_LENGTH))) {
     throwError(ERROR_MESSAGE.INVALID_INPUT);
   }
 

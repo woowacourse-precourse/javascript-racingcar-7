@@ -19,6 +19,7 @@ const GAME_RULES = Object.freeze({
   MOVE_THRESHOLD: 4,
   DISTANCE_SYMBOL: '-',
   DELIMITER: ',',
+  MAX_CAR_NAME_LENGTH: 5,
 });
 
 export {
