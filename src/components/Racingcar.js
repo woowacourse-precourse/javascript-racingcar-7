@@ -32,17 +32,11 @@ export default class Racingcar {
 
   rank(board) {
     let firstPlayer = [];
-    let max = 0;
+    const maxProgress = Math.max(
+      ...Object.values(board).map((hyphen) => hyphen.length),
+    );
     for (const [key, value] of Object.entries(board)) {
-      if (max < value.length) {
-        firstPlayer.splice(0);
-        firstPlayer.push(key);
-        max = value.length;
-        continue;
-      }
-      if (max === value.length) {
-        firstPlayer.push(key);
-      }
+      if (value.length === maxProgress) firstPlayer.push(key);
     }
     return firstPlayer;
   }
