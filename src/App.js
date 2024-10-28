@@ -31,6 +31,12 @@ class App {
     return MissionUtils.Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
   }
 
+  validateAttempts(input) {
+    if (input <= 0) {
+      throw new Error("[ERROR]");
+    }
+  }
+
   initializeCarsObject(cars) {
     const carsObject = {};
     for (let car of cars) {
@@ -105,8 +111,13 @@ class App {
       this.validateCarNames(carsList);
 
       const attempt = await this.inputAttempts();
+
+      this.validateAttempts(attempt);
+
       const carsObject = this.initializeCarsObject(carsList);
+
       MissionUtils.Console.print("\n실행 결과");
+
       const carsPosition = await this.playRace(carsList, attempt, carsObject);
       const winnerList = this.findWinner(carsList, carsPosition);
       this.printWinner(winnerList);
