@@ -1,5 +1,6 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
+import { ERROR_MESSAGES } from "../src/constant.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -48,18 +49,18 @@ describe("자동차 경주", () => {
 
   // Parameterized Test
   test.each([
+    { name: ERROR_MESSAGES.CAR_NAMES_EMPTY, inputs: ["", "1"] },
+    { name: ERROR_MESSAGES.CAR_NAME_CONTAINS_SPACE, inputs: ["pobi, woni"] },
     {
-      name: "자동차 이름 다섯 글자 초과일 경우",
+      name:ERROR_MESSAGES.CAR_NAME_TOO_LONG,
       inputs: ["pobi,javada"],
     },
-    { name: "자동차 이름 공백이 포함될 경우", inputs: ["pobi, woni"] },
-    { name: "자동차 이름 중복일 경우", inputs: ["pobi,pobi"] },
-    { name: "시도 횟수 숫자 아닐 경우", inputs: ["pobi,woni", "abc"] },
-    { name: "시도 횟수 음수일 경우", inputs: ["pobi,woni", "-1"] },
-    { name: "시도 횟수 소수일 경우", inputs: ["pobi,woni", "1.5"] },
-    { name: "자동차 이름의 입력 값이 없는 경우", inputs: ["", "1"] },
-    { name: "시도 횟수의 입력 값이 없는 경우", inputs: ["pobi,woni", ""] },
-  ])("$name", async ({ inputs }) => {
+    { name: ERROR_MESSAGES.CAR_NAME_DUPLICATE, inputs: ["pobi,pobi"] },
+    { name: ERROR_MESSAGES.ATTEMPTS_EMPTY, inputs: ["pobi,woni", ""] },
+    { name: ERROR_MESSAGES.ATTEMPTS_NOT_NUMBER, inputs: ["pobi,woni", "abc"] },
+    { name: ERROR_MESSAGES.ATTEMPTS_NOT_INTEGER, inputs: ["pobi,woni", "1.5"] },
+    { name: ERROR_MESSAGES.ATTEMPTS_NOT_POSITIVE, inputs: ["pobi,woni", "-1"] },
+  ])("$name", async ({ name, inputs }) => {
     // given
     mockQuestions(inputs);
 
@@ -67,6 +68,6 @@ describe("자동차 경주", () => {
     const app = new App();
 
     // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
+    await expect(app.run()).rejects.toThrow(`${name}`);
   });
 });
