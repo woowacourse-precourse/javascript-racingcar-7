@@ -19,7 +19,7 @@ const CAR_NAME_ERROR_MESSAGE = Object.freeze({
 const ATTEMPT_ERROR_MESSAGE = Object.freeze({
   NO_INPUT: '시도할 횟수를 입력해주세요.',
   NOT_A_NUMBER: '시도할 횟수는 숫자로 입력해주세요.',
-  OUT_OF_RANGE: '시도할 횟수는 0보다 크고 9보다 작아야 합니다.',
+  OUT_OF_RANGE: '시도할 횟수는 양수로 입력해주세요.',
 });
 
 export {
