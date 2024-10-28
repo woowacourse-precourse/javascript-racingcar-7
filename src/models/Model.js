@@ -1,45 +1,57 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 
-// 차 이름 구분
-export function divisionCarName(input) {
-  const delimiter = ',';
-  const carNames = input.split(delimiter); // 입력을 ,로 분리하여 배열로 변환
-  return carNames;
+const DELIMITER = ',';
+
+// -- 자동차 데이터 저장 ---
+export function splitCarNamesByDelimiter(input) {
+  return input.split(DELIMITER);
 }
 
-// 차 생성
-export function createCarObject(carNames) {
-  const names = carNames.map((name) => name.trim()); // 자동차 이름 배열
-  const positions = new Array(carNames.length).fill(0); // 전진 수 배열, 초기값은 0
+function initializeCarPositionsArray(length) {
+  return new Array(length).fill(0);
+}
+
+export function createCarDataArray(carNames) {
+  const names = carNames.map((name) => name.trim());
+  const positions = initializeCarPositionsArray(names.length);
   return { names, positions };
 }
 
-// 움직인 만큼  위치 추가
-export function shouldMoveForward(carData) {
-  const updatedPositions = carData.positions.map((position) => {
-    const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
-    if (randomNumber >= 4) {
-      return position + 1;
-    }
-    return position;
-  });
+// -- 자동차 이동 ---
+function calculateUpdatedPosition(position) {
+  const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
+  if (randomNumber >= 4) {
+    return position + 1;
+  }
+  return position;
+}
+
+export function updateCarDataPositions(carData) {
+  const updatedPositions = carData.positions.map((position) =>
+    calculateUpdatedPosition(position),
+  );
   return { ...carData, positions: updatedPositions };
 }
 
-// 차 전진 -로 표현
-export function getCarPositionsRepresentation(carData) {
-  return carData.positions.map((position, index) => {
-    const carName = carData.names[index];
-    const carPositionsRepresentation = '-'.repeat(position);
-    return `${carName} : ${carPositionsRepresentation}`;
-  });
+function formatCarPositionString(carName, position) {
+  const carPositionsRepresentation = '-'.repeat(position);
+  return `${carName} : ${carPositionsRepresentation}`;
 }
 
-// 우승자 출력
-export function findWinners(carData) {
-  const maxDistance = Math.max(...carData.positions);
-  const winnders = carData.names.filter(
-    (name, index) => carData.positions[index] === maxDistance,
+export function formatAllCarPositions(carData) {
+  return carData.positions.map((position, index) =>
+    formatCarPositionString(carData.names[index], position),
   );
-  return winnders;
+}
+
+// -- 우승자 계산 ---
+function calculateMaxDistance(positions) {
+  return Math.max(...positions);
+}
+
+export function findCarWinners(carData) {
+  const maxDistance = calculateMaxDistance(carData.positions);
+  return carData.names.filter(
+    (_, index) => carData.positions[index] === maxDistance,
+  );
 }
