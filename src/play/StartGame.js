@@ -14,7 +14,7 @@ class StartGame {
       });
       PrintResult.print(cars);
     }
-    
+
     PrintResult.printWinner(cars);
   }
 }

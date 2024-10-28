@@ -4,11 +4,12 @@ import { Console } from '@woowacourse/mission-utils';
 
 class App {
   async run() {
-    try{
+    try {
       const carNames = await GetInput.getCarNames();
-      const tryCount = await GetInput.sgetTryCount();
+      const tryCount = await GetInput.getTryCount();
       StartGame.start(carNames, tryCount);
-    } catch (error) {
+    }
+    catch (error) {
       Console.print(error.message);
     }
   }
