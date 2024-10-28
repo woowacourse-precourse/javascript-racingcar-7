@@ -8,6 +8,8 @@ class App {
     ATTEMPT_COUNT_MINIMUM_ERROR: '1이상의 숫자를 입력해주세요!',
   };
 
+  static MOVEABLE_NUMBER = 4;
+
   async run() {
     const cars = await this.inputCars();
     const attemptCount = await this.inputAttemptCount();
@@ -41,7 +43,7 @@ class App {
 
   isCarMovable() {
     const randomNumber = Random.pickNumberInRange(0, 9);
-    return randomNumber >= 4;
+    return randomNumber >= App.MOVEABLE_NUMBER;
   }
 
   attemptMove(car) {
