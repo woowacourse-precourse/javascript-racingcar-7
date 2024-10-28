@@ -1,6 +1,6 @@
-import { MOVE_FORWARD_MIN_VALUE } from "./constants";
+import { MOVE_FORWARD_MIN_VALUE } from "./constants.js";
 
-class Car {
+export class Car {
   constructor(name) {
     this.name = name;
     this.position = 0;
