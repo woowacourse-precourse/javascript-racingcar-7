@@ -20,19 +20,30 @@ function DrawForward(car, cnt) {  // 출력 형식 맞추기
   return 0;
 }
 
+function WinnerDecision(cnt_array) {
+  let max_value = Math.max.apply(null, cnt_array);  // 최대값
+  let result = []
+  let i = 0;
+  cnt_array.forEach(value => {  // 최대값
+    if (value === max_value) result.push(i);
+    i++;
+  });
+
+  return result;
+}
+
 class App {
   async run() {
     let input_name = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
     let input_times = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
 
     let forward_cnt = Array.from({ length: input_times }, () => 0);
-    
+
     let car_name = input_name.split(',');
 
     Console.print("실행 결과");
 
     for (let i=0; i<input_times; i++) {
-
       for (let j=0; j<car_name.length; j++) {
         let forward_decision = Forward_Judgment();
         forward_cnt[j] = await IncreaseCount(forward_decision, forward_cnt[j]);
@@ -40,6 +51,18 @@ class App {
       }
       Console.print('');
     }
+
+    const winner = WinnerDecision(forward_cnt);
+
+    Console.print(winner);
+
+    let result = []
+    winner.forEach(i => {
+      result.push(car_name[i]);
+    })
+
+    const tmp = result.join(', ');
+    Console.print('최종 우승자 : ' + tmp);  
   }
 }
 
