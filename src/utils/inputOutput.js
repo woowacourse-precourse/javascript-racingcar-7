@@ -8,4 +8,4 @@ const printMessage = (message) => {
   Console.print(message);
 };
 
-export default { getUserInput, printMessage };
+export { getUserInput, printMessage };
