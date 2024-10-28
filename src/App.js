@@ -1,6 +1,6 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
-import CarNameValidator from "./validators/carNameValidator.js";
-import TryCountValidator from "./validators/TryCountValidator.js";
+import CarNameValidator from "./CarNameValidator.js";
+import TryCountValidator from "./TryCountValidator.js";
 import RacingGame from "./RacingGame.js";
 import Printer from "./Printer.js";
 
