@@ -20,6 +20,7 @@ class App {
       const tryCount = await getTryCount();
       isPositiveInteger(tryCount);
 
+      Console.print("\n실행 결과");
       const cars = carNames.map((name) => new Car(name));
       startRace(cars, tryCount);
       printWinners(cars);
