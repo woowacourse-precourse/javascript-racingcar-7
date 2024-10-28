@@ -7,6 +7,7 @@ export const ERROR_MESSAGES = {
   INVALID_ATTEMPT_COUNT: "[ERROR]: 숫자만 입력 가능합니다.",
   ZERO_ATTEMPT_COUNT: "[ERROR]: 0은 입력할 수 없습니다.",
   NEGATIVE_ATTEMPT_COUNT: "[ERROR]: 음수는 입력할 수 없습니다.",
+  NON_INTEGER_ATTEMPT_COUNT: "[ERROR]: 정수가 아닌 수는 입력할 수 없습니다.",
 };
 class App {
   async run() {
@@ -111,6 +112,9 @@ class App {
     }
     if (inputNum < 0) {
       throw new Error(ERROR_MESSAGES.NEGATIVE_ATTEMPT_COUNT);
+    }
+    if (!Number.isInteger(Number(inputNum))) {
+      throw new Error(ERROR_MESSAGES.NON_INTEGER_ATTEMPT_COUNT);
     }
   }
 }
