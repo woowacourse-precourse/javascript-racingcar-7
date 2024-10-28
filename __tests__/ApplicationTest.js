@@ -1,5 +1,10 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
+import Car from "../src/domains/car.js";
+import CarRace from "../src/domains/carRace.js";
+import CAR_RACE from "../src/constants/carRace.js";
+import CAR from "../src/constants/car.js";
+import { ERROR_MESSAGES } from "../src/constants/messages.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -56,5 +61,140 @@ describe("자동차 경주", () => {
 
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+});
+
+describe("자동차 기능 테스트", () => {
+  test("자동차는 전진할 수 있다.", () => {
+    const car = new Car("Hellol77");
+
+    car.move();
+    car.move();
+
+    expect(car.position).toEqual(2);
+  });
+});
+
+describe("자동차 경주 테스트", () => {
+  let singleCar;
+  let singleCarRace;
+
+  beforeEach(() => {
+    singleCar = new Car("a");
+    singleCarRace = new CarRace([singleCar]);
+  });
+
+  test("우승자는 한 명 이상일 수 있다.", () => {
+    const carNames = ["a", "b", "c"];
+    const carInstance = carNames.map((carName) => new Car(carName));
+    carInstance.map((car) => car.move());
+    const carRace = new CarRace(carInstance);
+
+    const winner = carRace.getWinner();
+
+    expect(winner.length).toEqual(3);
+  });
+
+  test(`랜덤 값이  ${CAR_RACE.MOVE_THRESHOLD} 미만일 때는 전진하지 않는다.`, () => {
+    const randomNumber = CAR_RACE.MOVE_THRESHOLD - 1;
+
+    singleCarRace.moveCar("a", randomNumber);
+
+    expect(singleCar.position).toEqual(0);
+  });
+
+  test(`랜덤 값이 ${CAR_RACE.MOVE_THRESHOLD} 이상일 때 전진한다.`, () => {
+    const randomNumber = CAR_RACE.MOVE_THRESHOLD;
+
+    singleCarRace.moveCar("a", randomNumber);
+
+    expect(singleCar.position).toEqual(1);
+  });
+
+  test("사용자가 입력한 시도 횟수만큼 라운드가 진행된다.", () => {
+    const inputTryCount = 8;
+
+    singleCarRace.totalUnitRound(8);
+
+    expect(singleCarRace.result.length).toEqual(inputTryCount);
+  });
+});
+
+describe("입력 값 테스트", () => {
+  test(`자동차 이름은 ${CAR.NAME_MAX_LENGTH}자 이하만 입력 가능하다.`, async () => {
+    const inputs = ["a".repeat(CAR.NAME_MAX_LENGTH + 1)];
+
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(ERROR_MESSAGES.CAR_NAME_LENGTH);
+  });
+
+  test(`자동차 이름은 ${CAR.NAME_MIN_LENGTH}자 이상만 입력 가능하다.`, async () => {
+    const inputs = [" "];
+
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(ERROR_MESSAGES.CAR_NAME_LENGTH);
+  });
+
+  test("중복된 자동차 이름이 존재하면 안된다.", async () => {
+    const inputs = ["a,a"];
+
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(ERROR_MESSAGES.SAME_CAR_NAME);
+  });
+
+  test(`시도 횟수가 ${CAR_RACE.MIN_ROUND_COUNT}미만이면 에러 메시지를 띄운다.`, async () => {
+    const inputs = ["a,b", "0"];
+
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(ERROR_MESSAGES.TRY_COUNT_MIN);
+  });
+});
+
+describe("출력 값 테스트", () => {
+  test("전진하는 자동차를 출력할 때 자동차 이름을 같이 출력한다.", async () => {
+    const inputs = ["a", "1"];
+    const logs = ["a : -"];
+    const logSpy = getLogSpy();
+    const MOVING_FORWARD = 4;
+    const STOP = 3;
+
+    mockQuestions(inputs);
+    mockRandoms([MOVING_FORWARD, STOP]);
+
+    const app = new App();
+    await app.run();
+
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
+  test("우승자가 여러 명인 경우 쉼표로 구분하여 출력한다.", async () => {
+    const inputs = ["a,b", "1"];
+    const logs = ["최종 우승자 : a, b"];
+    const logSpy = getLogSpy();
+    const STOP = 3;
+
+    mockQuestions(inputs);
+    mockRandoms([STOP]);
+
+    const app = new App();
+    await app.run();
+
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(log);
+    });
   });
 });
