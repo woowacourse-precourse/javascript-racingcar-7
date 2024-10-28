@@ -46,9 +46,21 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트", async () => {
+  test("빈 문자열이 자동차 이름으로 입력된 경우 에러", async () => {
     // given
-    const inputs = ["pobi,javaji"];
+    const inputs = [", ", "1"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("이름은 5글자 이하여야 합니다", async () => {
+    // given
+    const inputs = ["pobi,javaji", "1"];
     mockQuestions(inputs);
 
     // when
