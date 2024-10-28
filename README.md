@@ -78,6 +78,6 @@
       결과: "[Error] 시도할 횟수는 양의 정수만 가능합니다."
 
 ### RacingCar
-- [ ] RacingCar 인스턴스가 정상 생성되는 경우
-- [ ] RacingCar 인스턴스가 정상 생성되지 않는 경우
-- [ ] RacingCar의 move() 메서드 동작 테스트
+- [x] RacingCar 인스턴스가 정상 생성되는 경우
+- [x] RacingCar 인스턴스가 정상 생성되지 않는 경우
+- [x] RacingCar의 move() 메서드 동작 테스트
