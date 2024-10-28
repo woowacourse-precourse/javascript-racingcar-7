@@ -6,3 +6,7 @@ export async function getInput(input) {
 export function printResult(result) {
   MissionUtils.Console.print(result);
 }
+
+export function getRandomNumberInRage(start, end) {
+  return MissionUtils.Random.pickNumberInRange(start, end);
+}

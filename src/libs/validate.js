@@ -11,3 +11,8 @@ export function validateCarNameLength(name) {
     throw new RaceError(ERROR_MESSAGE.INVALID_NAME_LENGTH);
   }
 }
+export function validateRounds(rounds) {
+  if (isNaN(rounds) || rounds < 1) {
+    throw new RaceError(ERROR_MESSAGE.INVALID_ROUND);
+  }
+}
