@@ -13,7 +13,7 @@ export function validateNameNotBlank(name) {
 }
 
 export function validateNameLength(name) {
-  if (name.length > NAME_MAX_LENGTH) {
+  if (name.length > 5) {
     throw new Error(ERROR_NAME_TOO_LONG);
   }
 }
