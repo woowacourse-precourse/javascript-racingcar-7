@@ -53,6 +53,24 @@ class Racingcar {
 
 
 
+  runRace() {
+    const racing = new Racing();
+    for (let round = 0; round < this.trialCount; round++) {
+      this.runSingleTrial(racing);
+      Console.print(""); 
+    }
+  }
+
+  runSingleTrial(racing) {
+    this.carNames.forEach((_, i) => {
+      if (racing.RacingrandomNumber()) {
+        this.raceResults[i] += "-";
+      }
+    });
+    this.printTrialResult();
+  }
+
+
 
   async function run() {
     const racingcar = new Racingcar();
