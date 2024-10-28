@@ -1,7 +1,8 @@
-import { Console, Random } from "@woowacourse/mission-utils";
+import { Console } from "@woowacourse/mission-utils";
 import InputValidator from "./InputValidator.js";
 import RacingGame from "./RacingGame.js";
 import Printer from "./Printer.js";
+import MESSAGE from "./constant/string.js";
 
 class App {
   async run() {
@@ -16,7 +17,7 @@ class App {
 
   async getCarNames() {
     try {
-      const userInputCarName = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
+      const userInputCarName = await Console.readLineAsync(MESSAGE.INPUT_NAME);
       const carNames = userInputCarName.split(",");
       this.validateCarName(carNames);
       return carNames;
@@ -27,7 +28,7 @@ class App {
 
   async setTryCount() {
     try {
-      const userInputTryCount = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+      const userInputTryCount = await Console.readLineAsync(MESSAGE.INPUT_TRYCOUNT);
       const tryCount = Number(userInputTryCount);
       this.validateTryCount(tryCount);
       return tryCount;

@@ -1,7 +1,9 @@
+import MESSAGE from "./constant/string";
+
 class InputValidator {
   static checkPositive(number) {
     if (!Number.isInteger(number) || number < 1) {
-      throw new Error("[ERROR]이동횟수는 양의 정수로 입력해주세요.");
+      throw new Error(MESSAGE.ERROR.TYPE);
     }
 
     return true;
@@ -11,7 +13,7 @@ class InputValidator {
     const hasBlankName = carNames.some((carName) => carName.trim().length === 0);
 
     if (hasBlankName) {
-      throw new Error("[ERROR]자동차 이름을 입력해주세요.");
+      throw new Error(MESSAGE.ERROR.BLANK);
     }
 
     return true;
@@ -21,7 +23,7 @@ class InputValidator {
     const differentNames = new Set(carNames);
 
     if (differentNames.size < carNames.length) {
-      throw new Error("[ERROR]서로 다른 이름을 입력해주세요.");
+      throw new Error(MESSAGE.ERROR.DUPLICATION);
     }
 
     return true;
@@ -29,7 +31,7 @@ class InputValidator {
 
   static checkMultiple(carNames) {
     if (carNames.length < 2) {
-      throw new Error("[ERROR]두 대 이상의 자동차를 콤마(,)로 구분해서 입력해주세요.");
+      throw new Error(MESSAGE.ERROR.NUMBER_OF_INPUT);
     }
 
     return true;
@@ -39,7 +41,7 @@ class InputValidator {
     const hasLongName = carNames.some((carName) => carName.length > 5);
 
     if (hasLongName) {
-      throw new Error("[ERROR]자동차 이름은 5자 이하로 입력해주세요.");
+      throw new Error(MESSAGE.ERROR.LENGTH);
     }
 
     return true;

@@ -1,8 +1,9 @@
 import { Console } from "@woowacourse/mission-utils";
+import MESSAGE from "./constant/string";
 
 class Printer {
   static printResult(racingGame) {
-    Console.print("실행 결과");
+    Console.print(MESSAGE.GAME_RESULT);
 
     for (let gameRound = 0; gameRound < racingGame.getTryCount(); gameRound++) {
       racingGame.getCars().forEach((car) => {
@@ -20,5 +21,4 @@ class Printer {
     Console.print(`최종 우승자 : ${winnerNames.join(", ")}`);
   }
 }
-
 export default Printer;
