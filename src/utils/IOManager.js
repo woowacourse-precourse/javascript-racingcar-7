@@ -8,4 +8,8 @@ export class IOManager {
 
     return userInput;
   }
+
+  static OutputManager(message) {
+    Console.print(message);
+  }
 }

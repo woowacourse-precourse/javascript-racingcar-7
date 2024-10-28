@@ -1,4 +1,3 @@
-import { Console } from '@woowacourse/mission-utils';
 import RandomUtil from './utils/Random.js';
 import RacingCar from './Models/RacingCar.js';
 import { SERVICE_CONSTSANSTS } from './assets/constants.js';
@@ -36,10 +35,10 @@ class App {
       tryCount = Number(tryCount);
 
       // 줄 구분용 빈칸
-      Console.print('');
+      IOManager.OutputManager('');
 
       // 실행 결과 출력
-      Console.print('실행 결과');
+      IOManager.OutputManager('실행 결과');
 
       for (let curCount = 0; curCount < tryCount; curCount++) {
         carInstanceArr.forEach((car) => {
@@ -54,11 +53,11 @@ class App {
           const distanceString = new Array(car.movedDistance)
             .fill(SERVICE_CONSTSANSTS.MOVING_INDICATOR)
             .join('');
-          Console.print(`${car.name} : ${distanceString}`);
+          IOManager.OutputManager(`${car.name} : ${distanceString}`);
         });
 
         // 줄 구분용 빈칸
-        Console.print('');
+        IOManager.OutputManager('');
       }
 
       // 우승자 계산
@@ -75,11 +74,11 @@ class App {
       }
 
       // 우승자 출력
-      Console.print(
+      IOManager.OutputManager(
         `최종 우승자 : ${winner.map((car) => car.name).join(`${SERVICE_CONSTSANSTS.DELIMITER} `)}`,
       );
     } catch (error) {
-      Console.print(error.message);
+      IOManager.OutputManager(error.message);
       throw error;
     }
   }
