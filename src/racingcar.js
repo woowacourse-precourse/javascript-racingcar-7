@@ -48,13 +48,6 @@ class Racingcar {
     }));
   }
 
-  setCars(carNames) {
-    return carNames.split(',').map((name) => ({
-      name: name.trim(),
-      position: 0,
-    }));
-  }
-
   startRace() {
     for (let i = 0; i < this.counts; i++) {
       this.moveCars();
@@ -78,6 +71,18 @@ class Racingcar {
 
   printCarStatus(car) {
     Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
+  }
+
+  findWinners() {
+    const maxPosition = Math.max(...this.cars.map((car) => car.position));
+    return this.cars
+      .filter((car) => car.position === maxPosition)
+      .map((car) => car.name);
+  }
+
+  printWinners() {
+    this.winners = this.findWinners();
+    Console.print(`최종 우승자 : ${this.winners.join(', ')}`);
   }
 }
 

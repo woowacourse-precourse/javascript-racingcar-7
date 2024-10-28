@@ -33,6 +33,11 @@ class App {
     return inputCount;
   }
 
+  carRaing(carNames, counts) {
+    this.racingcar.setCarsAndCounts(carNames, counts);
+    Console.print(`실행 결과`);
+    this.racingcar.startRace();
+  }
 }
 
 export default App;
