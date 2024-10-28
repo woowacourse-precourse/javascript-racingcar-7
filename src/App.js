@@ -11,6 +11,39 @@ class App {
     return MissionUtils.Random.pickNumberInRange(0, 9);
   }
   
+  // 4. 게임 함수 선언
+  game(rounds) {
+    for (let i = 0; i < rounds; i++) {
+      const random_numbers = this.car_names.map(() => this.random_number());
+      this.update_round_result(random_numbers);
+      this.print_round_result();
+      Console.print("\n");
+    }
+  }
+
+  // 4. 각 라운드별 결과 업데이트 함수
+  update_round_result(random_numbers) {
+    random_numbers.forEach((number, index) => {
+      if (this.game_results[index] === undefined) {
+        this.game_results[index] = 0;
+      }
+      if (number >= 4) {
+        this.game_results[index] += 1;
+      }
+    });
+  }
+
+  // 4. 각 라운드별 결과 프린트 함수
+  print_round_result() {
+    this.car_names.forEach((name, index) => {
+      let round_result = "";
+      if (this.game_results[index] !== undefined) {
+        round_result = "-".repeat(this.game_results[index]);
+      }
+      Console.print(`${name} : ${round_result}`);
+    });
+  }
+  
   async run() {
     // 1. 자동차 입력 받기 : 쉼표(,)로 구분하여 저장
     const car_input = await Console.readLineAsync(
