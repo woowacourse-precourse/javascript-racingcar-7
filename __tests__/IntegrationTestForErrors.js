@@ -25,4 +25,12 @@ describe('자동차 이름 입력 받기', () => {
 
     await expect(app.run()).rejects.toThrow('[ERROR]');
   });
+
+  test('자동차 이름 입력 값이 6자 이상이면 에러를 던진다.', async () => {
+    const carNamesInput = ['pobicar, jinny'];
+    mockQuestions(carNamesInput);
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
 });
