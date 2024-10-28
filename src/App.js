@@ -41,9 +41,12 @@ class App {
       throw new Error("자동차 이름은 중복될 수 없습니다.");
     }
   }
-
   validCarNameLengthAndBlank(carNames) {
-    if (carNames.some((name) => name.length > 5 || name.length === 0)) {
+    if (
+      carNames.some(
+        (name) => name.length > 5 || name.length === 0 || name.includes(" ")
+      )
+    ) {
       throw new Error("자동차 이름은 5자 이하만 가능하며, 공백이 불가합니다.");
     }
   }
