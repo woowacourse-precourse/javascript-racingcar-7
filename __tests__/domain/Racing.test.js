@@ -1,4 +1,4 @@
-import Racing from '../../src/domain/Racing';
+import Racing from '../../src/domain/Racing.js';
 
 describe('Racing 테스트', () => {
   describe('create 메서드 테스트', () => {

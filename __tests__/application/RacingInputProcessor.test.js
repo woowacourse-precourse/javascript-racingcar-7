@@ -1,4 +1,4 @@
-import RacingInputProcessor from '../../src/application/RacingInputProcessor';
+import RacingInputProcessor from '../../src/application/RacingInputProcessor.js';
 
 describe('RacingInputProcessor 테스트', () => {
   let racingInputProcessor;
