@@ -23,9 +23,6 @@ Task
 Task
 - 자동차의 canGo 값이 T일 경우 전진. score 값 올려주기
 
-Error
-- 값의 범위 벗어남
-
 5. 차수별 실행 결과 출력
 Task
 - score 만큼 '-' 출력하기
