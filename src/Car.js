@@ -9,7 +9,7 @@ export default class Car {
         return this.progress;
     }
 
-    updateProgress(progress) {
-        this.progress += progress;
+    updateProgress() {
+        this.progress ++;
     }
 }
