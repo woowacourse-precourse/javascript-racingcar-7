@@ -57,4 +57,67 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
+  test("예외 테스트 - 자동차 이름이 5자 초과인 경우", async () => {
+    const inputs = ["pobi,다섯자가넘는이름"];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 - 자동차 이름에 공백이 포함된 경우", async () => {
+    const inputs = ["pobi, "];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 - 자동차 이름 빈 값 입력", async () => {
+    const inputs = [","];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 - 경주 횟수가 숫자가 아닌 경우", async () => {
+    const inputs = ["pobi,woni", "two"];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 - 경주 횟수가 0보다 작은 경우", async () => {
+    const inputs = ["pobi,woni", "0"];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 - 자동차 이름이 잘못된 기호로 구분된 경우", async () => {
+    const inputs = ["a;v"];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 - 자동차 이름이 중복된 경우", async () => {
+    const inputs = ["pobi,pobi"];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
 });
