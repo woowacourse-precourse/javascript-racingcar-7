@@ -5,6 +5,18 @@ class App {
     if (condition) throw new Error(message);
   }
 
+  async run() {
+    const namesInput = await this.getNames();
+    const rounds = await this.getRounds();
+    const cars = this.createCars(namesInput);
+
+    Console.print("실행 결과");
+    for (let i = 0; i < rounds; i++) {
+      this.playRound(cars);
+    }
+    this.decideWinner(cars);
+  }
+
   async getNames() {
     Console.print(
       "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)"
@@ -53,3 +65,4 @@ class App {
     Console.print("최종 우승자 : " + winners.join(", "));
   }
 }
+export default App;
