@@ -17,6 +17,7 @@ class App {
       this.printFinalWinners(winners); // 최종 우승자 출력
     } catch (error) {
       Console.print(error.message); // 에러 메시지 출력
+      throw error; // 에러를 다시 던져 테스트에서 검출할 수 있도록 처리
     }
   }
   // 1. 입력 처리 및 유효성 검사
@@ -49,6 +50,12 @@ class App {
     cars.forEach((car) => {
       const move = Random.pickNumberInRange(0, 9); // 무작위 값 생성
       if (move >= 4) car.position += 1; // 전진 조건 확인 후 이동
+    });
+  }
+
+  printRaceResults(cars) {
+    cars.forEach((car) => {
+      Console.print(`${car.name} : ${"-".repeat(car.position)}`); // 현재 위치에 따른 '-' 출력
     });
   }
 
