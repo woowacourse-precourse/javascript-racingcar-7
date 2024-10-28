@@ -50,6 +50,13 @@ class App {
       carArr.forEach(displayCarProgress);
     }
 
+    // 우승자 찾기
+    function findWinner() {
+      const maxDistance = Math.max(...Object.values(carObj));
+      const winners = carArr.filter((car) => carObj[car] === maxDistance);
+      return winners.join(", ");
+    }
+
 }
 
 export default App;
