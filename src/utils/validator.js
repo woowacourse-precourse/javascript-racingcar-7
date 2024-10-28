@@ -12,10 +12,6 @@ const isValidLength = (carName) => {
 	return carName.length >= 1 && carName.length <= 5;
 };
 
-const isValidName = (carName) => {
-	return VALID_CHARACTER_REGEX.test(carName);
-};
-
 const isDuplicated = (carNames) => {
 	return carNames.some(
 		(name) => carNames.indexOf(name) !== carNames.lastIndexOf(name)
@@ -37,6 +33,9 @@ const isNegative = (round) => {
 
 export const InputValidator = {
 	validateNameInput: (carNames) => {
+		if (isDuplicated(carNames)) {
+			throw new Error(ERROR_MESSAGES.isDuplicates);
+		}
 		carNames.forEach((carName) => {
 			if (hasWhiteSpace(carName)) {
 				throw new Error(ERROR_MESSAGES.hasWhiteSpace);
@@ -47,17 +46,18 @@ export const InputValidator = {
 			if (!isValidLength(carName)) {
 				throw new Error(ERROR_MESSAGES.invalidNameLength);
 			}
-			if (!isValidName(carName)) {
-				throw new Error(ERROR_MESSAGES.invalidName);
-			}
 		});
-		if (isDuplicated(carNames)) {
-			throw new Error(ERROR_MESSAGES.isDuplicates);
-		}
+
 		return true;
 	},
 
 	validateRoundInput: (round) => {
+		if (hasWhiteSpace(round)) {
+			throw new Error(ERROR_MESSAGES.hasWhiteSpace);
+		}
+		if (hasNothing(round)) {
+			throw new Error(ERROR_MESSAGES.hasNothing);
+		}
 		if (!isInteger(round)) {
 			throw new Error(ERROR_MESSAGES.isRational);
 		}
@@ -67,12 +67,7 @@ export const InputValidator = {
 		if (isNegative(round)) {
 			throw new Error(ERROR_MESSAGES.isNegative);
 		}
-		if (hasWhiteSpace(round)) {
-			throw new Error(ERROR_MESSAGES.hasWhiteSpace);
-		}
-		if (hasNothing(round)) {
-			throw new Error(ERROR_MESSAGES.hasNothing);
-		}
+
 		return true;
 	},
 };
