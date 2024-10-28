@@ -2,7 +2,7 @@ import { Console } from '@woowacourse/mission-utils';
 import { INPUT_MESSAGE } from './constants.js';
 
 /**
- * 사용자로부터 입출력을 처리하는 클래스
+ *
  */
 class IOProcessor {
   /**
