@@ -13,14 +13,9 @@ class RacingController {
    *
    */
   run(carsString, count) {
-    try {
-      this.setCars(carsString);
-      this.validateDuplicateCarName();
-      this.setCount(count);
-    } catch (error) {
-      this.ioProcessor.processOutput(error.message);
-      return;
-    }
+    this.setCars(carsString);
+    this.validateDuplicateCarName();
+    this.setCount(count);
 
     this.ioProcessor.processOutput('');
     this.ioProcessor.processOutput(OUTPUT_MESSAGE.RESULT);
