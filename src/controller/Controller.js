@@ -1,7 +1,8 @@
+import Car from "../model/Car.js";
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
 import carNameSplit from "../utils/carNameSplit.js";
-import Car from "../model/Car.js";
+import winnerDetermine from "../utils/winnerDetermine.js";
 
 class Controller {
     #inputView;
@@ -39,7 +40,9 @@ class Controller {
         this.#outputView.printResult(this.car);
       }
 
-      this.#outputView.printWinner();
+      const winner = winnerDetermine(this.car);
+
+      this.#outputView.printWinner(winner);
     }
 }
 
