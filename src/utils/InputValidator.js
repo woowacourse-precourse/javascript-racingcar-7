@@ -15,7 +15,7 @@ class InputValidator {
   }
 
   static validateAttempts(input) { // 시도 횟수 검증
-    const attempts = Number(input);
+    const attempts = Number(input); // parseInt 대신 Number 사용!!
     if (Number.isNaN(attempts) || attempts <= 0 || !Number.isInteger(attempts)) {
       throw new Error(ERROR_MESSAGES.INVALID_ATTEMPTS);
     }
