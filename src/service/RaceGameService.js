@@ -1,5 +1,6 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import Car from '../model/Car.js';
+import GAME_STATUS from '../constants/gameStatus.js';
 
 class RaceGameService {
   #status;
@@ -10,7 +11,7 @@ class RaceGameService {
   #onBeforeStart;
 
   constructor () {
-    this.#status = 'created';
+    this.#status = GAME_STATUS.CREATED;
     this.#currentRound = 0;
   }
 
@@ -20,21 +21,20 @@ class RaceGameService {
       this.#currentRound += 1;
       this.playRound();
     }
-    this.#status = 'end';
+    this.#status = GAME_STATUS.END;
   }
 
   ready (carNames, maxRound, onEndRound, onBeforeStart) {
-    this.#status = 'ready';
+    this.#status = GAME_STATUS.READY;
     const cars = carNames.map((name) => new Car(name));
     this.#cars = cars;
     this.#maxRound = maxRound;
-    console.log(onBeforeStart.name);
     this.#onBeforeStart = onBeforeStart;
     this.#onEndRound = onEndRound;
   }
 
   playRound () {
-    this.#status = 'playing';
+    this.#status = GAME_STATUS.PLAYING;
     for (const car of this.#cars) {
       if (this.#canMove()) {
         car.move();
@@ -63,7 +63,7 @@ class RaceGameService {
   }
 
   #canMove () {
-    return (this.#status === 'playing'
+    return (this.#status === GAME_STATUS.PLAYING
       && MissionUtils.Random.pickNumberInRange(0, 9) >= 4);
   }
 }
