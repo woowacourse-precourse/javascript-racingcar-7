@@ -47,12 +47,38 @@ const getAttempts = async () => {
   return parseAttempts(input);
 };
 
+const moveCars = (cars) => {
+  return cars.map(car => {
+    const number = Random.pickNumberInRange(0, 9);
+    car.move(number);
+    return car;
+  });
+};
+
+const printRaceStatus = (cars) => {
+  cars.forEach(car => {
+    Console.print(`${car.name} : ${car.getProgress()}`);
+  });
+  Console.print("");
+};
+
+const race = async (cars, attempts) => {
+  Console.print("\n실행 결과");
+  
+  for (let i = 0; i < attempts; i++) {
+    moveCars(cars);
+    printRaceStatus(cars);
+  }
+  
+  return cars;
+};
+
 class App {
   async run() {
     try {
       const cars = await getCarNames();
       const attempts = await getAttempts();
-      // 향후 구현
+      const raceResult = await race(cars, attempts);
     } catch (error) {
       Console.print(`[ERROR] ${error.message}`);
     }
