@@ -1,5 +1,7 @@
 import { MissionUtils } from "@woowacourse/mission-utils"
 import { Console } from "@woowacourse/mission-utils";
+import { getWinner } from "./getWinner.js";
+
 
 export const carRun = (carArr, RUNTIMES) => {
     const racing = () => {
@@ -22,7 +24,7 @@ export const carRun = (carArr, RUNTIMES) => {
             const CARNAME = carArr[i]
             const CARMOVENODE = '-'.repeat(carArr[i + 1])
 
-            result += `${CARNAME} : ${CARMOVENODE}'\n'`
+            result += `${CARNAME} : ${CARMOVENODE}\n`
         }
 
         Console.print(result)
@@ -34,6 +36,8 @@ export const carRun = (carArr, RUNTIMES) => {
         racing()
         printRacing()
     }
+
+    Console.print(getWinner(carArr))
 
 }
 
