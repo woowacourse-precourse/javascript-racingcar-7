@@ -67,5 +67,23 @@ describe("예외 처리", () => {
     const app = new App();
 
     await expect(app.run()).rejects.toThrow("[ERROR]");
-  })
+  });
+
+  test("횟수 음수값이면 에러 발생", async () => {
+    const input = ["pobi","woni",-1];
+    mockQuestions(input);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("횟수 문자열이면 에러 발생", async () => {
+    const input = ["pobi","woni", "aa"];
+    mockQuestions(input);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
  })
