@@ -8,6 +8,7 @@ class App {
       await game.startRace();
     } catch (error) {
       ConsoleView.printError(error.message);
+      throw error;
     }
   }
 }
