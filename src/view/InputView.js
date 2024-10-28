@@ -6,4 +6,9 @@ class InputView {
 		const carNames = await Console.readLineAsync(MESSAGES.getCarNames);
 		return carNames.split(',');
 	}
+
+	async getRoundNumber() {
+		const rounds = await Console.readLineAsync(MESSAGES.getRoundNumber);
+		return Number(rounds);
+	}
 }
