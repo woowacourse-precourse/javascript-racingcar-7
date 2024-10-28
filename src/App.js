@@ -2,8 +2,12 @@ import RacingGame from './RacingGame.js';
 
 class App {
   async run() {
-    const racingGame = new RacingGame();
-    await racingGame.play();
+    try {
+      const racingGame = new RacingGame();
+      await racingGame.play();
+    } catch (error) {
+      throw error;
+    }
   }
 }
 

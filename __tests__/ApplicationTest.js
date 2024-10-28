@@ -57,4 +57,54 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
+  test("시도 횟수 예외 테스트 1", async () => {
+    // given
+    const inputs = ["pobi,java", "0"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("시도 횟수 예외 테스트 2", async () => {
+    // given
+    const inputs = ["pobi,java", "-1"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("시도 횟수 예외 테스트 3", async () => {
+    // given
+    const inputs = ["pobi,java", "1.1"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("이름 중복 테스트 1", async () => {
+    // given
+    const inputs = ["pobi,pobi", "1"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+
 });

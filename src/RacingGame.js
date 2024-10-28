@@ -13,7 +13,7 @@ class RacingGame {
       await this.race();
       this.announceWinners();
     } catch (error) {
-      Console.print(error.message);
+      throw error;
     }
   }
 
