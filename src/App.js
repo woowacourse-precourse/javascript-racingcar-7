@@ -1,9 +1,9 @@
-import Main from './controllers/Main.js';
+import MainTest from './controllers/MainTest.js';
 
 class App {
   async run() {
     try {
-      await Main();
+      await MainTest();
     } catch(error) {
       throw error;
     }
