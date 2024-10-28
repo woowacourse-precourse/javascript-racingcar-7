@@ -17,11 +17,21 @@ class App {
     const attemptCountInput = await Console.readLineAsync(
       "시도할 횟수는 몇 회인가요?\n"
     );
+    this.checkAttemptCount(attemptCountInput);
     this.attemptCount = Number(attemptCountInput);
-
     this.playRacing();
 
     this.racingResult();
+  }
+
+  checkAttemptCount(attemptCount) {
+    const regex = new RegExp("^[0-9]+$");
+    if (!regex.test(attemptCount)) {
+      throw new Error("[ERROR]");
+    }
+    if (Number(attemptCount) === 0) {
+      throw new Error("[ERROR]");
+    }
   }
 
   /**
