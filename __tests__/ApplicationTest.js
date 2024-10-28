@@ -196,9 +196,10 @@ function mockQuestions(inputs) {
 function mockRandoms(numbers) {
   MissionUtils.Random.pickNumberInRange = jest.fn();
 
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, MissionUtils.Random.pickNumberInRange);
+  numbers.reduce(
+    (acc, number) => acc.mockReturnValueOnce(number),
+    MissionUtils.Random.pickNumberInRange,
+  );
 }
 
 function getLogSpy() {

@@ -18,7 +18,7 @@ import {
 describe('유틸 함수', () => {
   describe('pickNumberInRange', () => {
     test('a와 b사이의 수를 반환한다.', () => {
-      for (let i = 0; i < 100; i++) {
+      for (let i = 0; i < 100; i += 1) {
         const num = pickNumberInRange(0, 9);
         expect(num).toBeGreaterThanOrEqual(0);
         expect(num).toBeLessThanOrEqual(9);
@@ -68,7 +68,7 @@ describe('유틸 함수', () => {
       expect(getIsNumeric({})).toBe(false);
       expect(getIsNumeric(undefined)).toBe(false);
       expect(getIsNumeric(null)).toBe(false);
-      expect(getIsNumeric(Symbol())).toBe(false);
+      expect(getIsNumeric(Symbol(0))).toBe(false);
       expect(getIsNumeric(NaN)).toBe(false);
     });
   });
