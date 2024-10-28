@@ -36,15 +36,15 @@ class RaceGameService {
     }
   }
 
-  getStatus() {
+  get status() {
     return {
       status: this.#status,
-      cars: this.#participants.map(participants => participants.getStatus())
+      cars: this.#participants.map(participants => participants.status)
     }
   }
 
   getResult(){
-    const { cars } = this.getStatus();
+    const { cars } = this.status;
     const winnersPosition = Math.max(...cars.map(car=> car.move));
     const winners = cars.filter(car=> car.move === winnersPosition).map(car => car.name);
     return {

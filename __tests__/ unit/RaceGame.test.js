@@ -18,7 +18,7 @@ describe("[🏁 RaceGameService 테스트]", () => {
     const carNames = ["chan", "wooni", "choi", "kofe"];
     const iteration = 5;
     raceService.ready(carNames, iteration);
-    expect(raceService.getStatus()).toStrictEqual({
+    expect(raceService.status).toStrictEqual({
       status: "ready",
       cars: [
         { name: "chan", move: 0 },
@@ -35,7 +35,7 @@ describe("[🏁 RaceGameService 테스트]", () => {
     raceService.ready(carNames, iteration);
     mockRandoms([8,0,0,0]);
     raceService.playRound();
-    expect(raceService.getStatus()).toStrictEqual({
+    expect(raceService.status).toStrictEqual({
       status: "playing",
       cars: [
         { name: "chan", move: 1 },
