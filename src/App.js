@@ -37,9 +37,9 @@ class App {
       `시도할 횟수는 몇 회인가요?\n`
     );
 
-    // 이동 횟수 유효성 검사 (숫자 외 입력 시 예외 발생)
+    // 이동 횟수 유효성 검사 (숫자 외 입력 또는 0 이하의 값 입력 시 예외 발생)
     if (!this.isValidNumber(moveCount)) {
-      throw new Error("[ERROR] 시도 횟수는 숫자만 입력해야 합니다.");
+      throw new Error("[ERROR] 이동 횟수를 정확히 입력해주세요");
     }
 
     // 테스트 코드: 유효한 경우 자동차 이름 배열 출력
@@ -47,9 +47,10 @@ class App {
     Console.print(moveCount);
   }
 
-  // 숫자 유효성 검사 함수
+  // 양의 정수 유효성 검사 함수
   isValidNumber(input) {
-    return !isNaN(input) && Number.isInteger(Number(input));
+    const number = Number(input);
+    return Number.isInteger(number) && number > 0;
   }
 }
 
