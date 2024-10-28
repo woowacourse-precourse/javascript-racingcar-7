@@ -20,15 +20,14 @@ class Car{
         }
     }
 }
-
 class Race{
     constructor(input){
         this.input = input;
-        this.run();
     }
 
-    async run(){
+    async doRace(){
         this.cars = await this.setCars();
+        // await this.input.viewAttemptResultMessage();
         await this.startRace();
         await this.judgeWinnerCar();
         await this.racingResult();
@@ -41,13 +40,15 @@ class Race{
         return carObjects;
     }
     async startRace(){
-        await this.input.viewAttemptResult(this.cars, this.input.attemptNum);
+        for(let nowAttempt = 0; nowAttempt < this.input.attemptNum; nowAttempt++){
+            await this.attemptResult();
+            await this.input.attemptResult(this.cars);
+        }
     }
-    async raceAttempt() {
+    async attemptResult() {
         for(let carIndex in this.cars){
             await this.cars[carIndex].goOrStop();
         }
-        await this.input.viewAttemptResult(this.cars);
     }
     async racingResult(){
         this.input.viewRacingResult(await this.judgeWinnerCar());

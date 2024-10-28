@@ -1,4 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
+import Car from './Race.js';
 import * as cs from './constants.js';
 class UserInput {
     constructor(){
@@ -10,6 +11,7 @@ class UserInput {
         this.carsNameString = await Console.readLineAsync('경주할 자동차 이름을 입력하세요. (이름은 쉼표(,) 기준으로 구분)\n');
         await this.separateCarsNameString();
         await this.checkCarNames();
+        
         this.attemptNum = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
     }
     async separateCarsNameString(){
@@ -32,15 +34,12 @@ class UserInput {
             throw new Error('[ERROR] 자동차 이름 에러. (특수문자 사용 불가)')
         }   
     }   
-    async viewAttemptResult(cars, attempt){
+    async viewAttemptResultMessage(){
         Console.print('실행 결과');
-        for(let nowAttempt = 0; nowAttempt < this.input.attemptNum; nowAttempt++){
-            await this.raceAttempt();
-        }
     }
     async attemptResult(cars){
         for(let car of cars){
-            let printString = car.name + ' : ' + await this.makeDistanceHyphen(car);
+            let printString = String(car.name + ' : ' + await this.makeDistanceHyphen(car));
             Console.print(printString);
         }
     }
