@@ -2,7 +2,7 @@ import { Console } from '@woowacourse/mission-utils';
 import { MESSAGES } from '../constatns/messages';
 import { InputValidator } from '../utils/validator';
 
-class InputView {
+export class InputView {
 	async getCarNames() {
 		const input = await Console.readLineAsync(MESSAGES.getCarNames);
 		const carNames = input.split(',');

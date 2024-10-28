@@ -1,8 +1,43 @@
 import { ERROR_MESSAGES, VALID_CHARACTER_REGEX } from '../constatns/validation';
 
+const hasWhiteSpace = (str) => {
+	return str.includes(' ');
+};
+
+const hasNothing = (str) => {
+	return str.length === 0;
+};
+
+const isValidLength = (carName) => {
+	return carName.length >= 1 && carName.length <= 5;
+};
+
+const isValidName = (carName) => {
+	return VALID_CHARACTER_REGEX.test(carName);
+};
+
+const isDuplicated = (carNames) => {
+	return carNames.some(
+		(name) => carNames.indexOf(name) !== carNames.lastIndexOf(name)
+	);
+};
+
+const isInteger = (round) => {
+	const number = Number(round);
+	return Number.isInteger(number);
+};
+
+const isNumber = (round) => {
+	return !isNaN(Number(round));
+};
+
+const isNegative = (round) => {
+	return Number(round) <= 0;
+};
+
 export const InputValidator = {
 	validateNameInput: (carNames) => {
-		carNames.forEach((carName, _) => {
+		carNames.forEach((carName) => {
 			if (hasWhiteSpace(carName)) {
 				throw new Error(ERROR_MESSAGES.hasWhiteSpace);
 			}
@@ -21,6 +56,7 @@ export const InputValidator = {
 		}
 		return true;
 	},
+
 	validateRoundInput: (round) => {
 		if (!isInteger(round)) {
 			throw new Error(ERROR_MESSAGES.isRational);
@@ -38,34 +74,5 @@ export const InputValidator = {
 			throw new Error(ERROR_MESSAGES.hasNothing);
 		}
 		return true;
-	},
-	hasWhiteSpace: (str) => {
-		return str.includes(' ');
-	},
-	hasNothing: (str) => {
-		return str.length == 0;
-	},
-	isValidLength: (carName) => {
-		return carName.length >= 1 || carName.length <= 5;
-	},
-	isValidName: (carName) => {
-		return carName.test(VALID_CHARACTER_REGEX);
-	},
-	isDuplicated: (carNames) => {
-		const carNamesArray = carNames.split(',');
-		const isDup = carNamesArray.some(
-			(name) => carNamesArray.indexOf(name) !== carNamesArray.lastIndexOf(name)
-		);
-		return isDup;
-	},
-	isInteger: (round) => {
-		const number = Number(round);
-		return Number.isInteger(number);
-	},
-	isNumber: (round) => {
-		return !isNaN(Number(round));
-	},
-	isNegative: (round) => {
-		return Number(round) <= 0;
 	},
 };
