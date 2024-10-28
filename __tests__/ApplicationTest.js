@@ -93,35 +93,38 @@ describe('입력 예외 테스트', () => {
     await expect(app.run()).rejects.toThrow('[ERROR]');
   };
 
-  test('6자 이상 이름 입력 시 오류', async () => {
-    await testInvalidInput(['pobi,javaji']);
-  });
+  describe('자동차 이름 입력 예외 테스트', () => {
+    test('6자 이상 이름 입력 시 오류', async () => {
+      await testInvalidInput(['pobi,javaji']);
+    });
 
-  test('숫자와 영어 외 문자 입력 시 오류', async () => {
-    await testInvalidInput(['pobi,*']);
-  });
+    test('숫자와 영어 외 문자 입력 시 오류', async () => {
+      await testInvalidInput(['pobi,*']);
+    });
 
-  test('공백 이름 입력 시 오류', async () => {
-    await testInvalidInput(['pobi, ']);
-  });
+    test('공백 이름 입력 시 오류', async () => {
+      await testInvalidInput(['pobi, ']);
+    });
 
-  test('중복된 자동차 이름 입력 시 오류', async () => {
-    await testInvalidInput(['pobi,pobi']);
-  });
+    test('중복된 자동차 이름 입력 시 오류', async () => {
+      await testInvalidInput(['pobi,pobi']);
+    });
 
-  test('자동차 이름이 하나만 입력됐을 때 오류', async () => {
-    await testInvalidInput(['pobi']);
+    test('자동차 이름이 하나만 입력됐을 때 오류', async () => {
+      await testInvalidInput(['pobi']);
+    });
   });
+  describe('실행 차수 입력 예외 테스트', () => {
+    test('음수 차수 입력 시 오류', async () => {
+      await testInvalidInput(['pobi,james', '-3']);
+    });
 
-  test('음수 차수 입력 시 오류', async () => {
-    await testInvalidInput(['pobi,james', '-3']);
-  });
+    test('0 또는 공백 입력 시 오류', async () => {
+      await testInvalidInput(['pobi,james', '0']);
+    });
 
-  test('0 또는 공백 입력 시 오류', async () => {
-    await testInvalidInput(['pobi,james', '0']);
-  });
-
-  test('숫자 외 문자를 차수에 입력 시 오류', async () => {
-    await testInvalidInput(['pobi,james', 'abc']);
+    test('숫자 외 문자를 차수에 입력 시 오류', async () => {
+      await testInvalidInput(['pobi,james', 'abc']);
+    });
   });
 });
