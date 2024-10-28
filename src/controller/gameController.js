@@ -16,30 +16,35 @@ export default class GameController {
       const validRoundCount = Verify.verifyTryCount(roundCountInput);
       if (!validRoundCount) return;
 
-      await this.initializeGame(validCarNames, validRoundCount);
-      await this.executeGameRounds(validRoundCount);
-
-      await this.winnerAnnouncement();
+      this.initializeGame(validCarNames, validRoundCount); // 수정된 변수 사용
+      this.executeGameRounds(validRoundCount);
+      this.winnerAnnouncement();
     } catch (e) {
-      await OutputView.printErrorMessage(e.message);
+      OutputView.throwErrorMessage(e);
+      return Promise.reject(e);
     }
   }
 
-  async initializeGame(carNames) {
-    RacingGame.init(carNames);
-    await OutputView.printGameStart();
+  initializeGame(carNames, rounds) {
+    if (!Array.isArray(carNames) || carNames.length === 0) {
+      throw new Error("Car names must be a valid array.");
+    }
+    this.racingGame = new RacingGame(carNames); // RacingGame 인스턴스 생성
+    OutputView.printGameStart();
   }
 
-  async executeGameRounds(rounds) {
-    for (let i = 0; i < rounds; i++) {
-      RacingGame.playOneRound();
-      const currentStatus = RacingGame.getCarsStatus();
-      await OutputView.printRoundStatus(currentStatus);
+  executeGameRounds(rounds) {
+    let currentRound = 0;
+    while (currentRound < rounds) {
+      this.racingGame.playOneRound();
+      const finalStatus = this.racingGame.getCarsStatus();
+      OutputView.printRoundStatus(finalStatus);
+      currentRound++;
     }
   }
 
-  async winnerAnnouncement() {
-    const winners = RacingGame.findWinners();
-    await OutputView.printWinners(winners);
+  winnerAnnouncement() {
+    const winners = this.racingGame.findWinners();
+    OutputView.printWinners(winners);
   }
 }

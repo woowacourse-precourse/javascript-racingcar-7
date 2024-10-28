@@ -13,28 +13,21 @@ class Verify {
     const hasDuplicateName = new Set(carNames).size !== carNames.length;
 
     if (hasInvalidName) {
-      OutputView.printErrorMessage(ERROR_MESSAGE.CAR_NAME_LENGTH);
-      throw new Error(
-        `${ERROR_MESSAGE.ERROR_MESSAGE_PREFIX} ${ERROR_MESSAGE.CAR_NAME_LENGTH}`
-      );
+      OutputView.throwErrorMessage(ERROR_MESSAGE.CAR_NAME_LENGTH);
     }
 
     if (hasDuplicateName) {
-      OutputView.printErrorMessage(ERROR_MESSAGE.DUPLICATE_NAME);
-      throw new Error(
-        `${ERROR_MESSAGE.ERROR_MESSAGE_PREFIX} ${ERROR_MESSAGE.DUPLICATE_NAME}`
-      );
+      OutputView.throwErrorMessage(ERROR_MESSAGE.CAR_NAME_DUPLICATE);
     }
 
-    return carNames;
+    return carNames; // 유효한 배열을 반환
   }
 
   verifyTryCount(tryCountInput) {
     const tryCount = Number(tryCountInput);
 
     if (isNaN(tryCount) || tryCount < 1) {
-      OutputView.printErrorMessage(ERROR_MESSAGE.TRY_COUNT);
-      return false;
+      OutputView.throwErrorMessage(ERROR_MESSAGE.TRY_COUNT_INVALID);
     }
 
     return tryCount;
