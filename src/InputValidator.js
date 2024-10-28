@@ -27,7 +27,7 @@ export default class InputValidator {
 
   validateLength() {
     this.carNameList.forEach((item) => {
-      if (item.length > 5) {
+      if (item.length > 5 || item.length === 0) {
         throw new Error('[ERROR] 잘못된 입력입니다.');
       }
     });
