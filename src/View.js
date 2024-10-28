@@ -8,6 +8,7 @@ class View {
     const carNames = input.toString().split(',');
 
     RacingGameValidator.validateCarNameLengthUnderSix(carNames);
+    RacingGameValidator.validateCarNumberOverOne(carNames);
 
     return carNames;
   }
