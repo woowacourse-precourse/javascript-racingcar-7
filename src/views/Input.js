@@ -8,7 +8,7 @@ export class Input {
 		return input.split(",");
 	}
 
-	static async getMoveCount() {
+	static async getRounds() {
 		Console.print("시도할 횟수는 몇 회인가요?");
 		const input = await Console.readLineAsync();
 		return parseInt(input, 10);

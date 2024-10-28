@@ -9,7 +9,7 @@ export class RaceController {
 			const carNames = await Input.getCarNames();
 			Validate.validateNames(carNames);
 
-			const rounds = await Input.getMoveCount();
+			const rounds = await Input.getRounds();
 			Validate.validateRounds(rounds);
 
 			const race = new Racing(carNames, rounds);
