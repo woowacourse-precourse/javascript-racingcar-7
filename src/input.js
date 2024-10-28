@@ -1,20 +1,19 @@
+// todo 이름 추출 부분 입력 오류시 예외처리 구현
 import { Console } from '@woowacourse/mission-utils';
 
 async function getCarsname() {
-  try {
-    const carsName = await Console.readLineAsync(
-      '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
-    );
-    const splitedNames = splitNames(carsName);
+  const carsName = await Console.readLineAsync(
+    '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
+  );
+  const splitedNames = splitNames(carsName);
 
-    splitNames.forEach((name) => {
-      if (name.length > 6) {
-        throw new Error();
-      }
-    });
+  splitedNames.forEach((name) => {
+    if (name.length > 6) {
+      throw new Error();
+    }
+  });
 
-    return splitedNames;
-  } catch (error) {}
+  return splitedNames;
 }
 
 function splitNames(names) {
@@ -27,7 +26,7 @@ async function getTimes() {
   const times = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
 
   if (isNaN(times) || times === '' || Number(times) <= 0) {
-    throw new Error('[ERROR]');
+    throw new Error('[ERROR] getTimes');
   }
 
   return times;
