@@ -53,7 +53,7 @@ class App {
 
     let carsSet = new Set();
     cars.forEach((car) => {
-      if (cars.length <= 0 || cars.length > 5)
+      if (car.length <= 0 || car.length > 5)
         throw new Error("[ERROR] 자동차 이름의 길이는 1~5자 사이이어야 합니다.");
 
       if (carsSet.has(car))
