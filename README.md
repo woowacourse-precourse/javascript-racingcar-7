@@ -41,3 +41,23 @@
 `NoWinnerError` : “[ERROR] 경주의 우승자가 존재하지 않습니다.”
 
 ## 디렉토리 구조
+
+src<br/>
+├── App.js<br/>
+├── errorMessages.js<br/>
+├── handleInput.js<br/>
+├── game<br/>
+│ 　　 ├── initRacing.js<br/>
+│ 　　 ├── startRacing.js<br/>
+│ 　　 └── updateCarDistance.js<br/>
+└── result<br/>
+　　　　 ├── printRacing.js<br/>
+　　　　 └── printWinner.js<br/>
+
+`errorMessages.js` : 모든 Error 문구를 상수화하여 저장<br/><br/>
+`handleInput.js` : 입력값에 대한 유효성 검사 수행 & error 반환<br/><br/>
+`initRacing.js` : round, carNames, carDistances를 세팅<br/><br/>
+`startRacing` : 주어진 라운드 만큼 racing 진행<br/><br/>
+`updateCarDistance.js` : 난수에 따라 각 자동차의 거리를 업데이트<br/><br/>
+`printRacing.js` : 라운드별 자동차 위치 출력<br/><br/>
+`printWinner.js` : 최종 우승자 출력<br/><br/>
