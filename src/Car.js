@@ -27,6 +27,20 @@ class Car {
   }
 
   /**
+   *
+   */
+  getName() {
+    return this.#name;
+  }
+
+  /**
+   *
+   */
+  getPosition() {
+    return this.#position;
+  }
+
+  /**
    * accelerator의 기준에 따라 자동차를 전진
    */
   accelerate() {
