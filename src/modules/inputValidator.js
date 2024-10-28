@@ -29,7 +29,7 @@ export function countValidate(count) {
     throwError("시도할 횟수를 입력해 주세요.");
   }
 
-  if (countNumber.isNaN()) {
+  if (Number.isNaN(countNumber)) {
     throwError("올바른 값을 입력해 주세요.");
   }
 
