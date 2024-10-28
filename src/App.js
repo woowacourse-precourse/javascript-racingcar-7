@@ -5,12 +5,11 @@ import Car from "./Car.js";
 class App {
   async run() {
 
-    // * 랜덤 값 얻기
+    // ! 자동차 경주 관련 함수 === //
     const getRandomValue = () => {
       return MissionUtils.Random.pickNumberInRange(0,9);
     }
 
-    // * 무작위 값이 4 이상인 경우, true
     const isValueMoreThanFour = (value) => {
       if (value >= 4){
         return true;
@@ -23,8 +22,6 @@ class App {
       car.distance += 1;
     }
 
-
-    // * 자동차 경주 한판 진행
     const oneRaceStart = (carArray) => {
       carArray.forEach((car) => {
         const randomValue = getRandomValue(); 
@@ -35,21 +32,20 @@ class App {
       })
     }
 
-    // * 자동차의 거리만큼 '-' 출력 //pobi : --
     const printCurrentCarDistanceResult = (car) => {
       Console.print(`${car.name} : ${"-".repeat(car.distance)}`); 
     }
 
+
+
     // ! 결과 함수 ===//
     // * 자동차 중 최대 거리 찾기.
     const getMaxDistance = (carArray) => {
-      // 자동차 거리 리스트로 뽑기
       let carDistanceArray =[];
       carArray.map((car) => {
         carDistanceArray.push(car.distance); // 자동차의 거리를 배열에 추가.
       })
       
-      // 최대 거리 찾기
       const maxDistance = Math.max(...carDistanceArray); // 자동차 거리중, 최대 거리 찾기
       return maxDistance; // 자동차 거리가 담긴 배열 저장
     
@@ -59,9 +55,8 @@ class App {
     const getWinnerCarNameArrayWithMaxValue = (carArray, maxDistance) => {
       const winnerCars= carArray.filter((car) => 
         car.distance === maxDistance
-      ); //distance가 max인것만 뻡는다.
+      ); 
 
-      // winnerCars의 names만 뽑는다.
       const winnerCarNameArray = winnerCars.map((car) => car.name);
 
       return winnerCarNameArray;
@@ -69,7 +64,6 @@ class App {
 
     // * 최종 우승자 출력하기 
     const printWinnerCars = (winnerCarNameArray) => {
-      // name 배열을 '/'로 join한다. 
       const CarNames = winnerCarNameArray.join(', '); 
 
       Console.print(`최종 우승자 : ${CarNames}`);
@@ -83,23 +77,20 @@ class App {
 
     // * == 자동차 입력 이름 처리 == // 
 
-    // * 이름이 5개 이상인가?
     const isCarNamesCharMoreThanFive = (carArray) =>{ 
-      let result = carArray.some((car)=> (car.name).length >5 ); // 하나라도 5개 이상이면 true 반환.
+      let result = carArray.some((car)=> (car.name).length >5 ); 
       return result;
     }
 
-    // * 이름에 쉼표(,)외의 다른 기호가 들어오는가?
-    const isCarsInputSymbolOtherThanComma = (carsInput) => { // str = cars
-      const pattern = /[^,ㄱ-ㅎㅏ-ㅣ가-힣\w\s]/g; // ,제외한 특수기호 모두 찾기.
-      const result = pattern.test(carsInput); // 나머지 특수기호가 있는 경우 true , 없으면 false
+    const isCarsInputSymbolOtherThanComma = (carsInput) => { 
+      const pattern = /[^,ㄱ-ㅎㅏ-ㅣ가-힣\w\s]/g; // ,제외한 특수기호 모두 검색
+      const result = pattern.test(carsInput);
       
       return result;
     }
 
-    //* 아무것도 입력을 받지 않은 경우, Falsy인 경우
     const isInputFalsy = (carsInput) => {
-      if (!carsInput) { //Falsy한 값인 경우, 
+      if (!carsInput) { 
         return true;
       }
 
@@ -110,7 +101,7 @@ class App {
       return false;
     }
 
-    // * 자동차 Input Error 체크
+
     const checkCarInputError = (carsInput,carArray) => {
 
       if (isInputFalsy(carsInput)){
@@ -151,13 +142,9 @@ class App {
 
     try{
       // ! 입력  ============///
-      
-      const carsInput = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n') || ""; // pobi,woni,jun
-      // *자동차는 (,) 쉼표를 기준으로 배열로 만들어준다.
-      const carInputNameArray = carsInput.split(',');// [pobi,woni,jun]
+      const carsInput = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n') || "";
+      const carInputNameArray = carsInput.split(',');
 
-
-      // * 자동차 객체 배열을 만든다. 
       const carArray = carInputNameArray.map( 
         (nameElement, index) => (new Car({name:nameElement}))
       );
@@ -171,10 +158,8 @@ class App {
 
 
       // ! 자동차 경주하기 ==== //
-      // todo : depth 가 2가 되도록 리팩토링 해야한다.
-      // * n번 경주한다.
       Console.print('\n실행 결과');
-      // * n번 경주를 반복한다.
+
       for (let i = 0; i < degreeInput ; i++){
         oneRaceStart(carArray);
 
@@ -190,13 +175,13 @@ class App {
       // ! =================== //
 
       // ! 경주 결과 ========= //
-      const maxDistance = getMaxDistance(carArray); // 최대 거리 찾기
-      const winnerCarNameArray = getWinnerCarNameArrayWithMaxValue(carArray, maxDistance); // 이긴 자동차 이름 배열 구하기
-      printWinnerCars(winnerCarNameArray); // 결과 출력.
+      const maxDistance = getMaxDistance(carArray);
+      const winnerCarNameArray = getWinnerCarNameArrayWithMaxValue(carArray, maxDistance);
+      printWinnerCars(winnerCarNameArray);
       // ! =================== //
 
     } catch(error) {
-      return Promise.reject(error); // 예외 던지기
+      return Promise.reject(error);
     }
   }
 }
