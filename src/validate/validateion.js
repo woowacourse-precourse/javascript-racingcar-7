@@ -14,7 +14,7 @@ const validateCarNameListLength = (carNames) => {
 };
 
 const validateCarNameLength = (carNames) => {
-  if (carNames.some((name) => name.length > 5)) {
+  if (carNames.some((name) => name.length < 1 || name.length > 5)) {
     throw new Error(INVALID_CAR_NAME_LENGTH);
   }
 };
