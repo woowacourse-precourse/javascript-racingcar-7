@@ -29,6 +29,14 @@ class App {
     return random >= 4;
   }
 
+  // 6. 자동차 경주 - 초기값설정
+  car_result(cars) {
+    return cars.map(car => ({
+      name: car,
+      position: 0,
+    }));
+  }
+
 }
 
 export default App;
