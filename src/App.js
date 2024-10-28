@@ -24,7 +24,6 @@ class App {
         (input) => {
           try {
             const carNames = this.validateCarNames(input);
-            Console.print(`입력된 자동차 이름: ${carNames.join(", ")}`);
             resolve(carNames);
           } catch (error) {
             Console.print(`[ERROR] ${error.message}`);
@@ -48,7 +47,6 @@ class App {
       Console.readLine("시도할 횟수는 몇 회인가요?: ", (input) => {
         try {
           const attemptCount = this.validateAttemptCount(input);
-          Console.print(`입력된 시도 횟수: ${attemptCount}`);
           resolve(attemptCount);
         } catch (error) {
           Console.print(`[ERROR] ${error.message}`);
