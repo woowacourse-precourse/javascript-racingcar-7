@@ -23,6 +23,21 @@ class Race {
     Console.print('');
   }
 
+  #getMaxPosition() {
+    return Math.max(...this.#cars.map((car) => car.position));
+  }
+
+  #getCarsAtPosition(position) {
+    return this.#cars.filter((car) => car.position === position);
+  }
+
+  #getWinners() {
+    const maxPosition = this.#getMaxPosition();
+    const winningCars = this.#getCarsAtPosition(maxPosition);
+
+    return winningCars.map((car) => car.name).join(', ');
+  }
+
   #runRounds() {
     for (let i = 0; i < this.#roundCount; i++) {
       this.#moveCars();
