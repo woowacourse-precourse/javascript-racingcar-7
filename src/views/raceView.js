@@ -8,6 +8,17 @@ const RACE_CONSOLE_VIEW = {
   getUserInputMaxRound() {
     return Console.readLineAsync(MESSAGES.INPUT_TRY_NUMBER);
   },
+  raceResult(raceResult) {
+    let output = `${MESSAGES.RACE_RESULT}\n`;
+
+    raceResult.forEach((round) => {
+      output += `${round.join("\n")}\n\n`;
+    });
+    Console.print(output);
+  },
+  winner(winnerList) {
+    Console.print(`${MESSAGES.WINNER} : ${winnerList.join(",")}`);
+  },
 };
 
 export default RACE_CONSOLE_VIEW;
