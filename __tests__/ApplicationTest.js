@@ -1,5 +1,7 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
+import { ERROR_MESSAGES } from "../src/constants.js";
+
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -46,15 +48,27 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트", async () => {
-    // given
+  test("예외 테스트 - 자동차 이름 입력 글자가 초과된 경우", async () => {
     const inputs = ["pobi,javaji"];
     mockQuestions(inputs);
-
-    // when
     const app = new App();
 
-    // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
+    await expect(app.run()).rejects.toThrow(ERROR_MESSAGES.INVALID_CAR_NAME);
+  });
+
+  test("예외 테스트 - 이동 횟수가 숫자가 아닌 경우", async () => {
+    const inputs = ["pobi,woni", "one"];
+    mockQuestions(inputs);
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(ERROR_MESSAGES.INVALID_RACE_COUNT);
+  });
+
+  test("예외 테스트 - 이동 횟수가 0인 경우", async () => {
+    const inputs = ["pobi,woni", "0"];
+    mockQuestions(inputs);
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(ERROR_MESSAGES.INVALID_RACE_COUNT_ZERO);
   });
 });
