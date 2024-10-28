@@ -1,5 +1,6 @@
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
+import carNameSplit from "../utils/carNameSplit.js";
 
 class Controller {
     #inputView;
@@ -11,7 +12,8 @@ class Controller {
     }
 
     async playRacingCar() {
-      this.#inputView.readInput();
+      const [carNameData, numberOfAttemptsData] = await this.#inputView.readInput();
+      const carNameArray = carNameSplit(carNameData);
       this.#outputView.printResult();
     }
 }
