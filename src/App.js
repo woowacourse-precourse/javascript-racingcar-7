@@ -86,6 +86,11 @@ class App {
     return cars.filter((car) => carsObject[car].length === maxDistance);
   }
 
+  printWinner(winnerList) {
+    const winner = winnerList.join(", ");
+    MissionUtils.Console.print(`최종 우승자 : ${winner}`);
+  }
+
   async run() {
     try {
       const carsName = await this.inputCars();
@@ -98,6 +103,7 @@ class App {
       MissionUtils.Console.print("\n실행 결과");
       const carsPosition = await this.playRace(carsList, attempt, carsObject);
       const winnerList = this.findWinner(carsList, carsPosition);
+      this.printWinner(winnerList);
     } catch (error) {
       throw new Error("[ERROR]");
     }
