@@ -21,6 +21,7 @@ class App {
     const parsedAttempts = this.inputHandler.parseAttempts(attempts);
 
     this.race = new Race(parsedCarNames);
+    this.race.attempt(parsedAttempts);
 
     // 제대로 작동하는지 확인
     Console.print(this.race);
