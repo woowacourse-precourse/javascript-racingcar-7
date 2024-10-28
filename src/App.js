@@ -32,6 +32,14 @@ class App {
     });
   }
 
+  printCurrentStatus(cars) {
+    cars.forEach(car => {
+      const track = car.position.join(''); // 위치 배열을 문자열로 변환
+      this.console.print(`${car.name} : ${track}`); // 빈 문자열로 출력하지 않도록 조정
+    });
+    this.console.print(''); // 줄바꿈 추가
+  }
+
   async run() {
     try {
       const input = await this.console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
