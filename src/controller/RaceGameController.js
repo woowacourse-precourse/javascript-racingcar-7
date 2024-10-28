@@ -3,7 +3,7 @@ import {
   carNameValidatePipe,
   iterationValidatePipe,
 } from '../utils/validationPipe.js';
-import { MESSAGE } from '../constants/UI.js';
+import { MESSAGE, ERROR_MESSAGE } from '../constants/UI.js';
 
 class RaceGameController {
   constructor (view, service) {
@@ -13,7 +13,7 @@ class RaceGameController {
 
   static onGetRaceCarNames (carNamesString) {
     if (!carNamesString) {
-      throw new Error('[ERROR] 입력이 잘못되었습니다.');
+      throw new Error(`${ERROR_MESSAGE.HEADER} ${ERROR_MESSAGE.WRONG_INPUT}`);
     }
     carNameValidatePipe(carNamesString);
     return parser.parseCarName(carNamesString);
@@ -21,7 +21,7 @@ class RaceGameController {
 
   static onGetIteration (iterationString) {
     if (!iterationString) {
-      throw new Error('[ERROR] 입력이 잘못 되었어요!');
+      throw new Error(`${ERROR_MESSAGE.HEADER} ${ERROR_MESSAGE.WRONG_INPUT}`);
     }
     iterationValidatePipe(iterationString);
     return parser.parseIteration(iterationString);
