@@ -10,13 +10,7 @@ class App {
 
       let carPositions = this.initializeCarPositions(carNames);
 
-      carNames.forEach(car => {
-        Console.print(`${car}의 이동 결과: `);
-        for(let i = 0; i < raceCount; i++) {
-          const isMoving = this.shouldMove();
-          this.carMovingCheck(car, isMoving);
-        }
-      })
+      this.runRace(carNames, carPositions, raceCount);
 
     } catch (error) {
       Console.print(`[ERROR] ${error.message}`);
@@ -68,8 +62,9 @@ class App {
    * @describe 선택한 자동차가 움직이는지 확인하는 함수
    * @parameter {carName: string, isMoving: boolean}
    */
-  carMovingCheck(car, isMoving) {
-    if(isMoving) {
+  carMovingCheck(car, isMoving, carPositions) {
+    if (isMoving) {
+      carPositions[car] += 1;
       Console.print(`${car} 전진`);
     } else {
       Console.print(`${car} 멈춤`);
@@ -89,6 +84,32 @@ class App {
     return carPositions;
   }
 
+  /**
+   * @author CWDll
+   * @describe 자동차 경주를 실행하는 함수
+   * @parameter {carNames: string[], carPositions: Object, raceCount: number}
+   */
+  runRace(carNames, carPositions, raceCount) {
+    for(let i=0 ; i < raceCount; i++) {
+      Console.print(`\n${i+1}회 경주 결과`);
+
+      carNames.forEach(car => {
+        const isMoving = this.shouldMove();
+        this.carMovingCheck(car, isMoving, carPositions);
+        this.showCarPosition(car, carPositions[car]);
+      })
+    }
+  }
+
+  /**
+   * @author CWDll
+   * @describe 자동차 현재 위치를 출력하는 함수
+   * @parameter {carName: string, position: number}
+   */
+  showCarPosition(car, position) {
+    const positionMark = "-".repeat(position);
+    Console.print(`${car} : ${positionMark}`);
+  }
 
 }
 
