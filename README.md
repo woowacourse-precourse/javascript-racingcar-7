@@ -1,4 +1,4 @@
-# javascript-calculator-precourse
+# javascript-racingcar-precourse
 
 # 자동차 경주
 
@@ -74,3 +74,6 @@ feat: 예외 처리 로직 추가(Promise reject)
 
 13. **README.md작성 및 프로젝트 설명 추가**:
 docs: 기능 목록 및 설명이 포함된 README.md 추가
+
+14. **README.md오타 수정**:
+docs: README.md오타 수정
