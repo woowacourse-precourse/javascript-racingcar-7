@@ -1,5 +1,5 @@
 import {MissionUtils} from "@woowacourse/mission-utils";
-import Utils from "./Utils.js";
+import RacingGameUtils from "./RacingGameUtils.js";
 
 class RacingGame {
   constructor() {
@@ -27,7 +27,7 @@ class RacingGame {
   }
 
   getRacingResult(tryCount) {
-    Utils.range(tryCount).forEach(() => {
+    RacingGameUtils.range(tryCount).forEach(() => {
       this.getRacingResultByRound();
     });
   }
