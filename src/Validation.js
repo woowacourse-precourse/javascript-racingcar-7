@@ -5,6 +5,7 @@ class Validation {
     CAR_NAME_DUPLICATE_ERROR: '차량 이름이 중복되었습니다!',
     ATTEMPT_COUNT_ERROR: '올바른 숫자를 입력해주세요!',
     ATTEMPT_COUNT_MINIMUM_ERROR: '1이상의 숫자를 입력해주세요!',
+    ATTEMPT_COUNT_POSITIVE_INTEGER_ERROR: '양의 정수를 입력해주세요!',
   };
 
   static validateCarNames(cars) {
@@ -22,6 +23,11 @@ class Validation {
     }
     if (attemptCount < 1) {
       throw Error(`[ERROR] ${this.ERROR_MESSAGE.ATTEMPT_COUNT_MINIMUM_ERROR}`);
+    }
+    if (!Number.isInteger(attemptCount)) {
+      throw Error(
+        `[ERROR] ${this.ERROR_MESSAGE.ATTEMPT_COUNT_POSITIVE_INTEGER_ERROR}`,
+      );
     }
   }
 
