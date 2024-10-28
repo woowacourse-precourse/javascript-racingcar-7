@@ -38,6 +38,7 @@ class Race {
       this.moveAllVehicles();
       this.displayCurrentPositions();
     }
+    this.displayWinner();
   }
 
   moveAllVehicles() {
@@ -47,6 +48,16 @@ class Race {
   displayCurrentPositions() {
     this.vehicles.forEach((vehicle) => vehicle.displayPosition());
   }
+  
+  displayWinner() {
+    const maxPosition = Math.max(...this.vehicles.map((vehicle) => vehicle.position));
+    const winners = this.vehicles
+      .filter((vehicle) => vehicle.position === maxPosition)
+      .map((vehicle) => vehicle.name)
+      .join(", ");
+
+    Console.print(`최종 우승자 : ${winners}`);
+  }
 }
 
 class App {
@@ -55,10 +66,9 @@ class App {
       const vehicleNames = await Console.readLineAsync(
         '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n'
       );
-      const vehicles = vehicleNames.split(",").map(name => new Vehicle(name.trim()));
-
       const roundCount = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
-      const race = new Race(vehicles);
+
+      const race = new Race(vehicleNames.split(",").map((name) => name.trim()));
       race.startRace(roundCount);
     } catch (error) {
       throw new Error(error.message);
