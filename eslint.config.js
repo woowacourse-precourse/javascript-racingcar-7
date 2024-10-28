@@ -25,6 +25,10 @@ export default [
     rules: {
       // package import를 제외한 모든 import 구문에 대해 확장자를 사용하도록 강제
       'import/extensions': ['error', 'ignorePackages'],
+      // 들여쓰기 depth 제한
+      'max-depth': ['error', 2],
+      // 3항 연산자 제한
+      'no-ternary': 'error',
     },
   },
   {
