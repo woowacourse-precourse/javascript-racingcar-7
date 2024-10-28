@@ -50,13 +50,10 @@ class App {
   
    // 8. 자동차경주 - 결과
    racing_result(racing_start) {
-    for (let i = 0; i <racing_start.length;i++) {
-      const car = racing_start[i];
+    racing_start.forEach(car => {
       Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
-
-    }
+    });
   }
-
 
 
 
@@ -71,11 +68,11 @@ class App {
 
 // 10. 에러검사 - 자동차이름 유효성
 check_name(cars) {
-  for (let i = 0; i < cars.length; i++) {
-    if (cars[i].length > 5) {
+  cars.forEach(car => {
+    if (car.length > 5) {
       throw new Error('[ERROR] 자동차 이름은 5자 이하여야 합니다.');
     }
-  }
+  });
 }
 }
 
