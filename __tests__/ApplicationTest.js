@@ -64,6 +64,24 @@ describe('자동차 경주', () => {
     });
   });
 
+  test('기능 테스트3', async () => {
+    const MOVING_FORWARD = 7;
+    const STOP = 1;
+    const inputs = ['jo, won, young', '1'];
+    const logs = ['jo : ', 'won : -', 'young : -', '최종 우승자 : won, young'];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([STOP, MOVING_FORWARD, MOVING_FORWARD]);
+
+    const app = new App();
+    await app.run();
+
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
   test('예외 테스트 - 이름의 길이가 5자를 초과', async () => {
     const inputs = ['pobi,javaji'];
     mockQuestions(inputs);
