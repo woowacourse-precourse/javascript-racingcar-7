@@ -1,3 +1,4 @@
+import { MissionUtils } from '@woowacourse/mission-utils';
 import { RANDOM_NUMBER_END, RANDOM_NUMBER_START } from '../constants';
 import IRandomNumberGenerateService from './Interfaces/IRandomNumberGenerateService';
 

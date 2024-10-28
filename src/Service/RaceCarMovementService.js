@@ -1,21 +1,14 @@
-import { MissionUtils } from '@woowacourse/mission-utils';
 import ICarMovementService from './Interfaces/ICarMovementService.js';
-import {
-  MOVE_FORWARD_THRESHOLD,
-  RANDOM_NUMBER_END,
-  RANDOM_NUMBER_START,
-} from '../constants.js';
+import { MOVE_FORWARD_THRESHOLD } from '../constants.js';
 
 class RaceCarMovementService extends ICarMovementService {
-  generateRandomNumber() {
-    return MissionUtils.Random.pickNumberInRange(
-      RANDOM_NUMBER_START,
-      RANDOM_NUMBER_END
-    );
+  constructor(randomNumberGenerator) {
+    super();
+    this.randomNumberGenerator = randomNumberGenerator;
   }
 
   decideMoveForward() {
-    return this.generateRandomNumber() >= MOVE_FORWARD_THRESHOLD;
+    return this.randomNumberGenerator.generate() >= MOVE_FORWARD_THRESHOLD;
   }
 
   moveCars(raceCars) {
