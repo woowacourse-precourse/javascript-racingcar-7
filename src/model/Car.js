@@ -1,3 +1,6 @@
+import { CONFIG } from '../constant/config.js';
+import { getRandomNumber } from '../util/Random.js';
+
 class Car {
   #name;
   #position;
@@ -13,6 +16,20 @@ class Car {
 
   getPosition() {
     return this.#position;
+  }
+
+  tryToMoveForward() {
+    const randomValue = getRandomNumber(
+      CONFIG.MIN_RANDOM_NUMBER,
+      CONFIG.MAX_RANDOM_NUMBER
+    );
+    if (randomValue >= CONFIG.CAR_MOVING_CONDITION) {
+      this.moveForward();
+    }
+  }
+
+  moveForward() {
+    this.#position += CONFIG.CAR_MOVE_DISTANCE;
   }
 }
 
