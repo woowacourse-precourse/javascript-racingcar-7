@@ -8,19 +8,22 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 //[] 7. 최대 값의 자동차 이름들 출력하기 (6. 7.)
 
 class App {
+  // 자동차 이름 5자 이하 확인 함수
+  onCheckName5(carList) {
+    for (let name of carList) {
+      if (name.length > 5) {
+        throw Error('Error');
+      }
+    }
+  }
   async run() {
     try {
       const carInput = await MissionUtils.Console.readLineAsync(
         '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)',
       );
       const carList = carInput.split(',').map((name) => name.trim());
+      onCheckName5(carList);
 
-      // 자동차 이름 5자 이하 확인 함수
-      for (let name of carList) {
-        if (name.length > 5) {
-          throw Error('Error');
-        }
-      }
       const tyyNumber =
         await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?');
 
