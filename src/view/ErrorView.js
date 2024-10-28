@@ -1,1 +1,5 @@
-export class ErrorView {}
+export class ErrorView {
+  printError(message) {
+    throw new Error(`[ERROR] ${message}`);
+  }
+}
