@@ -64,9 +64,9 @@
 
 ### Application Layer
  
-- [ ] 각 회차에 대한 결과를 **Presentation Layer**에 전달하는 기능
+- [x] 각 회차에 대한 결과를 **Presentation Layer**에 전달하는 기능
 
-- [ ] 우승자 정보를 **Presentation Layer**에 전달하는 기능
+- [x] 우승자 정보를 **Presentation Layer**에 전달하는 기능
 
 ### Presentation Layer
 
