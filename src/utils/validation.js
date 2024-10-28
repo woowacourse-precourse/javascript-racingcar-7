@@ -1,12 +1,21 @@
 const CARNAME_MIN_LENGTH = 1;
 const CARNAME_MAX_LENGTH = 5;
 
+const ERROR_MESSAGES = {
+  DUPLICATE_NAMES:
+    "[ERROR] 중복된 자동차 이름이 있습니다. 각 이름은 고유해야 합니다.",
+  INVALID_NAME_LENGTH: "[ERROR] 자동차 이름의 길이가 유효하지 않습니다.",
+  INVALID_POSITIVE_INTEGER: "[ERROR] 양의 정수만 가능합니다.",
+};
+
+const createError = (message) => {
+  throw new Error(message);
+};
+
 export function checkForDuplicates(carNames) {
   const uniqueCarNames = new Set(carNames);
   if (uniqueCarNames.size !== carNames.length) {
-    throw new Error(
-      "[ERROR] 중복된 자동차 이름이 있습니다. 각 이름은 고유해야 합니다."
-    );
+    createError(ERROR_MESSAGES.DUPLICATE_NAMES);
   }
 
   return true;
@@ -25,12 +34,12 @@ export const hasInvalidCarNameLength = (carNames) => {
         !isValidLength(carName, CARNAME_MIN_LENGTH, CARNAME_MAX_LENGTH)
     )
   ) {
-    throw new Error("[ERROR] 자동차 이름의 길이가 유효하지 않습니다.");
+    createError(ERROR_MESSAGES.INVALID_NAME_LENGTH);
   }
 };
 
 export const isPositiveInteger = (number) => {
   if (number <= 0 || !Number.isInteger(number)) {
-    throw new Error("[ERROR] 양의 정수만 가능합니다.");
+    createError(ERROR_MESSAGES.INVALID_POSITIVE_INTEGER);
   }
 };
