@@ -9,14 +9,14 @@ export const carRun = (carArr, RUN_TIMES) => {
 
     for (let i = 0; i < RUN_TIMES; i++) {
         randomRacing(carArr)
-        printRacing(carArr)
+        Console.print(raceResult(carArr))
     }
 
     Console.print(getWinner(carArr))
 
 }
 
-const randomRacing = (carArr) => {
+export const randomRacing = (carArr) => {
 
     for (let i = 1; i <= carArr.length; i += 2) {
         let isRun = MissionUtils.Random.pickNumberInRange(0, 9) >= 4
@@ -30,7 +30,7 @@ const randomRacing = (carArr) => {
 }
 
 
-const printRacing = (carArr) => {
+export const raceResult = (carArr) => {
     let result = ''
 
     for (let i = 0; i < carArr.length; i += 2) {
@@ -40,5 +40,5 @@ const printRacing = (carArr) => {
         result += `${CAR_NAME} : ${CAR_MOVE_NODE}\n`
     }
 
-    Console.print(result)
+    return result
 }

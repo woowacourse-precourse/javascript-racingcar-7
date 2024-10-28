@@ -8,7 +8,7 @@ export const getWinner = (carArr) => {
     return result
 }
 
-const getTopRate = (carArr) => {
+export const getTopRate = (carArr) => {
     let topRate = 0;
 
     for (let i = 1; i <= carArr.length; i += 2) {
@@ -31,7 +31,7 @@ const getTopRate = (carArr) => {
     return topRate
 }
 
-const getWinnerArr = (carArr) => {
+export const getWinnerArr = (carArr) => {
     const TOPRATE = getTopRate(carArr)
     let winnerArr = []
 
