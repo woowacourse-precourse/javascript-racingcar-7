@@ -30,9 +30,20 @@ class App {
     return cars;
   }
 
+  async readAttemptCount() {
+    let userAttemptCount = 0;
+    userAttemptCount = await Console.readLineAsync(
+      "시도할 횟수는 몇 회인가요?\n"
+    );
+
+    return userAttemptCount;
+  }
+
   async run() {
-    const output = await this.readCarNames();
-    Console.print(output);
+    const cars = await this.readCarNames();
+    const attemptCount = await this.readAttemptCount();
+    Console.print(cars);
+    Console.print(attemptCount);
   }
 }
 
