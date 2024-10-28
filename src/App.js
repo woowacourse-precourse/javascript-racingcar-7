@@ -4,6 +4,7 @@ class App {
     try {
       const carNames = await this.getCarNames();
       const attempts = await this.getAttempts();
+      this.racing(carNames, attempts);
     } catch (error) {
       MissionUtils.Console.print(error.message);
     }
@@ -32,6 +33,19 @@ class App {
       throw new Error('[ERROR] 시도 횟수는 양수만 가능합니다.');
     }
     return attemptNum;
+  }
+
+  racing(carNames, attempts) {
+    const cars = carNameArray.map((name) => ({ name, go: 0 }));
+
+    carNames.forEach((car) => {
+      for (let i = 0; i < attempts; i++) {
+        const randomNum = MissionUtils.Random.pickNumberInRange(0, 9);
+        if (randomNum > 3) {
+          car.go++;
+        }
+      }
+    });
   }
 }
 
