@@ -7,6 +7,7 @@ import {
   inputTrialNumber,
   isNumberValid,
   printCurrentResult,
+  shouldMoveForward,
 } from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
@@ -178,6 +179,23 @@ describe("printCurrentResult 함수", () => {
     expect(logSpy).toHaveBeenCalledWith("car3 : ---");
 
     logSpy.mockRestore(); // 스파이 복원
+  });
+});
+
+// shouldMoveForward 함수 테스트 코드
+describe("shouldMoveForward 함수 - 여러 번 호출 시", () => {
+  test("특정 랜덤 값 순서대로 반환", () => {
+    // given
+    const randomValues = [4, 3, 5, 2]; // 4와 5는 true, 3과 2는 false를 반환하도록 설정
+    mockRandoms(randomValues);
+
+    // when & then
+    expect(shouldMoveForward()).toBe(true);  // 4
+    expect(shouldMoveForward()).toBe(false); // 3
+    expect(shouldMoveForward()).toBe(true);  // 5
+    expect(shouldMoveForward()).toBe(false); // 2
+
+    MissionUtils.Random.pickNumberInRange.mockRestore(); // 모킹 복원
   });
 });
 

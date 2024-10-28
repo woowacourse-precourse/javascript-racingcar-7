@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, MissionUtils } from "@woowacourse/mission-utils";
 
 export async function inputCarsNameWithDelimeter() {
   const inputString = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
@@ -39,6 +39,13 @@ export function printCurrentResult(gameResult) {
     const progress = '-'.repeat(car.position);
     Console.print(`${car.name} : ${progress}`);
   });
+}
+
+export function shouldMoveForward() {
+  const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
+  
+  // 4 이상인 경우에만 전진할 수 있다.
+  return randomNumber >= 4;
 }
 
 class App {

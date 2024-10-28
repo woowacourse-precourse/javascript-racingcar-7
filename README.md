@@ -51,9 +51,8 @@ function printCurrentResult(gameResult) {}
 - 0~3: 정지
 - 4~9: 전진
 ```javascript
-// INPUT: 현재 경기 진행 현황
-// OUTPUT: 갱신된 경기 진행 현황 (gameResult)
-function selectMoveOrStop(gameResult) {}
+// 랜덤 숫자에 따라 전진해야 하는 경우 true를 반환합니다.
+function shouldMoveForward() {}
 ```
 ## 우승자 출력
 - 최종 우승자 명단을 쉼표(,)로 구분하여 출력합니다.
