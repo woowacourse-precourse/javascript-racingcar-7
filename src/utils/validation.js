@@ -9,7 +9,7 @@ function isRepeat(arr) {
 
 function isBlank(arr) {
   const isError = arr.some((element) => {
-    return element.length == 0;
+    return element.length === 0;
   });
   if (isError) throw Error(ERROR_MESSAGE.NAME_IS_BLANK);
 }
