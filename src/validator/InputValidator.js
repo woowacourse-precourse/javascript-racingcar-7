@@ -1,25 +1,27 @@
-class InputValidator {
-    static validateCars(cars) {
-        if (cars == "") {
-            throw new Error("[ERROR] 올바른 자동차 이름을 입력해주세요.");
-        }
+export default class InputValidator {
 
-        cars.forEach(carName => {
-            if (carName.length > 5) {
-                throw new Error("[ERROR] 자동차 이름의 길이가 5자를 초과합니다.");
-            }
-        })
-
-        return cars
+  static carValidatior(cars) {
+    if (cars.length === 0) {
+      throw new Error("[ERROR] 올바른 자동차 이름을 입력해주세요.");
     }
 
-    static validateTryNumber(tryNumber) {
-        if (isNaN(tryNumber) || tryNumber < 0) {
-            throw new Error("[ERROR] 올바른 시도 횟수를 입력해주세요.");
-        }
 
-        return tryNumber
+    cars.forEach(car => {
+      if (car.length > 5) {
+        throw new Error("[ERROR] 자동차의 이름은 5자를 초과할 수 없습니다.");
+      }
+    });
+
+    return cars
+  }
+
+  static tryNumberValidator(tryNumber) {
+    if (isNaN(tryNumber) || tryNumber < 0) {
+      throw new Error("[ERROR] 올바른 시도 횟수를 입력해주세요.");
     }
+
+    return tryNumber
+  }
+
 }
 
-export default InputValidator

@@ -1,15 +1,32 @@
-import { Console } from "@woowacourse/mission-utils";
+import {Console} from "@woowacourse/mission-utils"
+import InputValidator from "../validator/InputValidator.js";
 
-class InputUtils {
-    static async getCarNames() {
-        const cars = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
-        return cars.split(',')
+export default class InputUtils {
+
+    static async inputCarNames() {
+        return await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n')
     }
 
-    static async getTryNumber() {
-        const tryNumber = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
-        return Number(tryNumber)
+    static getCarNameList() {
+        const carNames = this.inputCarNames();
+
+        return carNames.split(',');
     }
+
+    static async inputTryNumber() {
+        return await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+    }
+
+    static getTryNumber() {
+        return Number(this.inputTryNumber())
+    }
+
+    static validateCarNameList() {
+        return InputValidator.validateCarNameList(this.getCarNameList())
+    }
+
+    static validateTryNumber() {
+        return InputValidator.validateTryNumber(this.getTryNumber())
+    }
+
 }
-
-export default InputUtils
