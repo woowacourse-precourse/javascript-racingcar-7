@@ -16,8 +16,8 @@ class App {
 
     for (let i = 0; i < tryNumber; i++) {
       this.randomMove(cars);
+      this.printResult(cars);
     }
-    Console.print(cars);
   }
 
   getRandomNumber() {
@@ -29,13 +29,18 @@ class App {
 
   randomMove(cars) {
     cars.forEach((car) => {
-      if (this.getRandomNumber() > NUMBER.LIMIT_NUMBER) {
+      const randomNumber = this.getRandomNumber();
+      if (randomNumber >= NUMBER.LIMIT_NUMBER) {
         car.move();
       }
     });
   }
 
-  printResult(cars) {}
+  printResult(cars) {
+    cars.forEach((car) => {
+      Console.print(`${car.getName()} : ${"-".repeat(car.getPosition())}`);
+    });
+  }
 }
 
 export default App;
