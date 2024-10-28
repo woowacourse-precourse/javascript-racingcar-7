@@ -25,7 +25,7 @@ const goAhead = (names, raceNum) => {
   }
 
   const winner = findWinner(raceRecord);
-  Console.print(`최종 우승자 : ${winner.join(',')}`);
+  Console.print(`최종 우승자 : ${winner.join(', ')}`);
 };
 
 const updateRaceStatus = (names, raceNum) => {
