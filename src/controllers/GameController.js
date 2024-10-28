@@ -14,13 +14,9 @@ class GameController {
   }
 
   async run() {
-    try {
-      await this.#initializeGame();
-      this.#playGame();
-      this.#announceWinners();
-    } catch (error) {
-      throw error;
-    }
+    await this.#initializeGame();
+    this.#playGame();
+    this.#announceWinners();
   }
 
   async #initializeGame() {
