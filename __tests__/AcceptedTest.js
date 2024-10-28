@@ -24,7 +24,7 @@ describe('정상 작동하는 App 테스트', () => {
     },
     {
       inputs: ['pobi,woni,jun', '1'],
-      randomValues: [VALUES.moveIfOrMore - 1, VALUES.moveIfOrMore, VALUES.moveIfOrMore],
+      randomValues: [VALUES.moveIfOrMore - 1, VALUES.moveIfOrMore, VALUES.moveIfOrMore - 1],
       logs: ['pobi : ', 'woni : -', 'jun : ', '최종 우승자 : woni'],
     },
   ])('단독 우승 케이스', async ({ inputs, randomValues, logs }) => {
