@@ -1,8 +1,8 @@
 import { MAGICNUMBER } from '../constants/index.js';
-import { Random } from '@woowacourse/mission-utils';
+import { MissionUtils } from '@woowacourse/mission-utils';
 
 const pickRandomNumber = () => {
-  return Random.pickNumberInRange(
+  return MissionUtils.Random.pickNumberInRange(
     MAGICNUMBER.STARTINCLUSIVE,
     MAGICNUMBER.ENDINCLUSIVE,
   );
