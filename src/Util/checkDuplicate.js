@@ -14,9 +14,7 @@
 export default function checkDuplicate(arr) {
   const seen = new Set();
   return arr.some((name) => {
-    if (seen.has(name)) {
-      return true;
-    }
+    if (seen.has(name)) return true;
     seen.add(name);
     return false;
   });
