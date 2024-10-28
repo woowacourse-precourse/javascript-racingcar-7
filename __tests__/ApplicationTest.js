@@ -57,4 +57,74 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
+  test("예외 테스트 : 자동차 이름 입력이 한개인 경우", async () => {
+    // given
+    const inputs = ["mer"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow(
+      "[ERROR] 자동차 이름을 두개 이상 입력해주세요"
+    );
+  });
+
+  test("예외 테스트 : 자동차 이름이 5자를 초과한 경우", async () => {
+    // given
+    const inputs = ["pobium,mer,json"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow(
+      "[ERROR] 자동차 이름은 5자 이하로 입력해주세요"
+    );
+  });
+
+  test("예외 테스트 : 시도횟수에 숫자가 아닌 수가 입력된 경우", async () => {
+    // given
+    const inputs = ["pobi,mer,json", "a"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow(
+      "[ERROR] 시도 횟수는 양의 정수로 입력해주세요"
+    );
+  });
+
+  test("예외 테스트 : 시도횟수에 음수가 입력된 경우", async () => {
+    // given
+    const inputs = ["pobi,mer,json", "-1"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow(
+      "[ERROR] 시도 횟수는 양의 정수로 입력해주세요"
+    );
+  });
+
+  test("예외 테스트 : 시도횟수에 소수가 입력된 경우", async () => {
+    // given
+    const inputs = ["pobi,mer,json", "2.2"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow(
+      "[ERROR] 시도 횟수는 양의 정수로 입력해주세요"
+    );
+  });
 });
