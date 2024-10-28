@@ -16,7 +16,7 @@
   
   * [x] 쉼표(,)를 기준으로 자동차 이름을 분리하는 기능 (utils)
 
-- [ ] 처리한 입력값을 **Domain Layer**에 전달하는 기능
+- [x] 처리한 입력값을 **Domain Layer**에 전달하는 기능
 
 ### Domain Layer
 
