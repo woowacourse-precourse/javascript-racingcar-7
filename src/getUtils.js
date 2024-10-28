@@ -17,6 +17,17 @@ const getMaxDistance = (carArray) => {
       }
     }
     return maxDistance;
-  };
+};
 
-export { getCarArray, getMaxDistance };
+const getWinnerNames = (carArray, maxDistance) => {
+    const winners = [];
+    for (let i = 0; i < carArray.length; i++) {
+      if (carArray[i].distance === maxDistance) {
+        winners.push(carArray[i].name);
+      }
+    }
+    return winners;
+  };
+  
+
+export { getCarArray, getMaxDistance, getWinnerNames };

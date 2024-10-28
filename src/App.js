@@ -1,5 +1,5 @@
 import { Console, Random } from "@woowacourse/mission-utils";
-import { getCarArray, getMaxDistance } from "./getUtils.js";
+import { getCarArray, getMaxDistance, getWinnerNames } from "./getUtils.js";
 
 class App {
   async run() {
@@ -23,6 +23,8 @@ class App {
     }
 
     const maxDistance = getMaxDistance(carArray);
+
+    const winners = getWinnerNames(carArray, maxDistance);
 
   }
 }
