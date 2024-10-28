@@ -21,21 +21,25 @@ class IOProcess {
         }
     }   
     async checkCarNames(){
-        for(let candidate of this.carsNameList){
-            await this.checkNamingRules(candidate);
+        for(let carName of this.carsNameList){
+            await this.checkNamingRules(carName);
         }
     }
-    async checkNamingRules(inputName){
-        if(inputName.length > 5){
+    async checkNamingRules(carName){
+        if(carName.length > 5){
             throw new Error("[ERROR] 자동차 이름 에러. (5자 이상 자동차 이름 사용)");
         }
 
-        if(cs.SPECIALCHARACTER.test(inputName)){
-            throw new Error('[ERROR] 자동차 이름 에러. (특수문자 사용 불가)')
-        }   
+        if(cs.SPECIALCHARACTER.test(carName)){
+            throw new Error('[ERROR] 자동차 이름 에러. (특수문자 사용 불가)');
+        }  
+
+        if(await this.checkOverlapName(carName)){
+            throw new Error('[ERROR] 자동차 이름 에러. (중복된 자동차 이름 입력)');
+        }
     }   
-    async checkOverlapName(){
-        
+    async checkOverlapName(candidate){
+        return this.carsNameList.filter(element => element === candidate).length >= 2;
     }
     async viewAttemptResultMessage(){
         Console.print('실행 결과');
