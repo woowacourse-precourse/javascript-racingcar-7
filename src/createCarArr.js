@@ -11,6 +11,7 @@ export const createCarArr = (NAMESTR) => {
         }
 
         carArr[i] = car
+        carArr[i + 1] = 0
 
         nameStr = nameStr.slice(separatorIndex)
         if (nameStr[0] === ',') {
