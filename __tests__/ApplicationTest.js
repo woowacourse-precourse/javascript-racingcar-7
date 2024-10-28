@@ -1,17 +1,20 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
-import { getUserCarName, displayRaceState } from '../src/views/View.js';
+import {
+  getUserCarName,
+  displayRaceState,
+} from '../src/views/UserInterface.js';
 import {
   splitCarNamesByDelimiter,
   createCarDataArray,
   updateCarDataPositions,
   formatAllCarPositions,
   findCarWinners,
-} from '../src/models/Model.js';
+} from '../src/models/CarModel.js';
 import App from '../src/App.js';
 import {
   validateCarNames,
   validateRaceCountInput,
-} from '../src/models/ErrorHandler.js';
+} from '../src/models/Validation.js';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();

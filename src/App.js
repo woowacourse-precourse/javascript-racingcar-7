@@ -4,18 +4,18 @@ import {
   getUserRaceAttempts,
   displayRaceState,
   displayWinners,
-} from './views/View.js';
+} from './views/UserInterface.js';
 import {
   splitCarNamesByDelimiter,
   createCarDataArray,
   updateCarDataPositions,
   formatAllCarPositions,
   findCarWinners,
-} from './models/Model.js';
+} from './models/CarModel.js';
 import {
   validateCarNames,
   validateRaceCountInput,
-} from './models/ErrorHandler.js';
+} from './models/Validation.js';
 
 class App {
   async run() {
