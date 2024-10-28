@@ -3,8 +3,8 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 export function processRace(names, tries) {
   const carNames = initializeCars(names); // initialize cars with empty arrays
   console.log("\n실행 결과");
-  const totalDistance = performRace(carNames, tries);
-  console.log('total distance:', totalDistance);
+  performRace(carNames, tries);
+  announceWinner(carNames);
 }
 
 function generateRandomNumbers() {
@@ -14,7 +14,7 @@ function generateRandomNumbers() {
 function initializeCars(names) {
   let carNames = {};
   names.forEach(name => {
-    carNames[name] = [];
+    carNames[name] = 0;
   });
   return carNames;
 }
@@ -24,15 +24,16 @@ function performRace(carNames, tries) {
     const moves = updateCarNamesForTries(carNames);
     displayRoundResult(moves);
   };
-  return carNames;
+  // return carNames;
 }
 
 function updateCarNamesForTries(carNames) {
   const moves = {};
   Object.keys(carNames).forEach(carName => {
     const randomNumber = generateRandomNumbers();
-    const moveCount = randomNumber > 4 ? randomNumber - 4 : 0;
+    const moveCount = randomNumber >= 4 ? randomNumber - 3 : 0;
     moves[carName] = moveCount;
+    carNames[carName] += moveCount;
   });
   return moves;
 }
@@ -43,4 +44,15 @@ function displayRoundResult(moves) {
     console.log(`${carName} : ${moveDisplay}`);
   })
   console.log("");
+}
+
+function announceWinner(carNames) {
+
+  const maxDistance = Math.max(...Object.values(carNames));
+
+  const winners = Object.keys(carNames).filter(
+    carName => carNames[carName] === maxDistance
+  );
+
+  console.log(`최종 우승자 : ${winners.join(", ")}`);
 }
