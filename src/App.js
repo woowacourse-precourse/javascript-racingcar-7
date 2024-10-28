@@ -14,13 +14,17 @@ class App {
     });
 
     const rounds = await getInput(INFO_MESSAGE.QUESTION_TRAIL);
-
     for (let i = 0; i < rounds; i++) {
-      cars.forEach((car) => {
+      cars.map((car) => {
         car.attemptMove();
         printResult(`${car.name} : ${car.position}`);
+        return { name: car.name, position: car.position };
       });
+      printResult("\n");
     }
+    const maxPosition = Math.max(...cars.map((racer) => racer.position));
+    const finalWinner = cars.filter((car) => car.position === maxPosition).map((car) => car.name);
+    printResult(INFO_MESSAGE.ANSWER_FINAL_WINNER + finalWinner);
   }
 }
 
