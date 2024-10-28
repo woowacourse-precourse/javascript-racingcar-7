@@ -269,3 +269,10 @@ class WinnerDeterminer {
 ## 고민해 볼 사항
 
 -   CarManager 클래스의 moveCars 메서드와 #moveCar 메서드를 분리할 필요가 있을까?
+
+---
+
+## 학습 키워드
+
+-   객체 지향 프로그래밍
+-   Jest 테스트 코드
