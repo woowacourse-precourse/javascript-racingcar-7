@@ -1,23 +1,20 @@
 import { Console } from "@woowacourse/mission-utils";
-import { validateCarNames, validateTryCount } from "./utils/validator.js";
+import { ERROR_MESSAGE, IO_MESSAGE } from "./constants/message.js";
 
 async function getUserInput() {
-  let vehicleNames = await Console.readLineAsync(
-    "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
-  );
+  let vehicleNames = await Console.readLineAsync(IO_MESSAGE.INPUT_CAR);
   vehicleNames = vehicleNames.split(",");
-  if (!validateCarNames(vehicleNames)) {
-    throw new Error(
-      "[ERROR] 자동차 이름은 쉼표(,)를 기준으로 구분하며 이름은 5자 이하로 2개 이상 입력해주세요."
-    );
+  if (
+    vehicleNames.length < 2 ||
+    vehicleNames.some((name) => name.trim() === "" || name.length > 5)
+  ) {
+    throw new Error(ERROR_MESSAGE.ERROR_CAR);
   }
 
-  let attemptCount = await Console.readLineAsync(
-    "시도할 횟수는 몇 회인가요?\n"
-  );
+  let attemptCount = await Console.readLineAsync(IO_MESSAGE.INPUT_TRY);
   attemptCount = Number(attemptCount);
-  if (!validateTryCount(attemptCount)) {
-    throw new Error("[ERROR] 시도할 횟수를 입력해주세요.");
+  if (isNaN(attemptCount) || attemptCount <= 0) {
+    throw new Error(ERROR_MESSAGE.ERROR_TRY);
   }
 
   return { vehicleNames, attemptCount };
