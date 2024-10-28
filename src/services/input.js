@@ -12,3 +12,9 @@ export const getCarNames = async () => {
 
   return input.split(',');
 };
+
+export const getRoundCount = async () => {
+  const input = await getInput(INPUT_MESSAGES.roundCount);
+
+  return Number(input);
+};
