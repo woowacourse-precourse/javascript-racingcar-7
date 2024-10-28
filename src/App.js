@@ -5,7 +5,13 @@ class App {
     this.total = 0;
   }
   checkCarNames(inputString) {
-    return inputString.includes(",");
+    const carNames = inputString.split(",");
+    for (const name of carNames) {
+      if (name.length > 5) {
+        return false;
+      }
+    }
+    return true;
   }
   async inputCarNames() {
     try {
@@ -16,7 +22,9 @@ class App {
       if (this.checkCarNames(names)) {
         this.carNames = names.split(",");
       } else {
-        throw new Error("[ERROR] 쉼표(,)를 구분자로 두어서 입력해야 합니다.");
+        throw new Error(
+          "[ERROR] 쉼표(,)를 구분자로 두어서 각 5자 이하로 입력해야 합니다."
+        );
       }
     } catch (error) {
       throw error;
@@ -24,6 +32,7 @@ class App {
   }
   async run() {
     this.inputCarNames();
+    this.input;
   }
 }
 
