@@ -62,4 +62,15 @@ moveCars(carNames, carScores) {
     }
   });
 }
+printRoundResults(carScores) {
+  for (const [car, score] of Object.entries(carScores)) {
+    Console.print(`${car} : ${score}`);
+  }
+  Console.print("");
+}
+findWinners(carScores) {
+  const maxScoreLength = Math.max(...Object.values(carScores).map(score => score.length));
+  return Object.keys(carScores).filter(car => carScores[car].length === maxScoreLength);
+}
+
 }
