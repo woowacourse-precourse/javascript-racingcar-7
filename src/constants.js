@@ -4,4 +4,6 @@ const INPUT_MESSAGE = Object.freeze({
   INPUT_COUNT: '시도할 횟수는 몇 회인가요?\n',
 });
 
-export { INPUT_MESSAGE };
+const DELEMETER = ',';
+
+export { INPUT_MESSAGE, DELEMETER };
