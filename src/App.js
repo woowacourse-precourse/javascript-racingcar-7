@@ -6,6 +6,19 @@ class App {
     const cars = this.getCars();
     const attemptCnt = this.getAttemptCount();
 
+    Console.print("");
+    Console.print("실행 결과");
+
+    const carsState = Array.from({length: cars.length}, ()=>'');
+
+    for(let i=0;i<attemptCnt; i++){
+      startRound();
+    }
+
+  }
+
+  startRound(){
+    //1라운드 씩 진행
   }
 
   async getCars(){
