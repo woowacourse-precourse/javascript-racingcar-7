@@ -9,8 +9,17 @@ export const inputValidator = {
     return true;
   },
 
+  checkTryNumberValidate(value) {
+    this.checkEmptyInput(value);
+    const numericTryNumber = Number(value);
+    this.checkIsNumeric(numericTryNumber);
+    this.checkIsPositive(numericTryNumber);
+    this.checkIsInteger(numericTryNumber);
+    return true;
+  },
+
   checkEmptyInput(text) {
-    if (!text) {
+    if (!text.trim()) {
       throw new Error('[ERROR] 입력이 비어 있습니다.');
     }
   },
@@ -43,5 +52,25 @@ export const inputValidator = {
         throw new Error('[ERROR] 이름의 글자수가 1~5자가 아닙니다.');
       }
     });
+  },
+
+  checkIsNumeric(value) {
+    if (!Number.isFinite(value)) {
+      throw new Error('[ERROR] 숫자 입력이 아닙니다.');
+    }
+  },
+
+  checkIsPositive(value) {
+    if (value < 0) {
+      throw new Error('[ERROR] 음수 입력은 불가합니다.');
+    } else if (value === 0) {
+      throw new Error('[ERROR] 0은 허용되지 않습니다.');
+    }
+  },
+
+  checkIsInteger(value) {
+    if (!Number.isInteger(value)) {
+      throw new Error('[ERROR] 정수가 아닙니다.');
+    }
   },
 };

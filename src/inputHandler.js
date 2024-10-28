@@ -16,6 +16,8 @@ export const inputHandler = {
     const tryNumber = await MissionUtils.Console.readLineAsync(
       messages.askTryNumber + messages.newLine
     );
-    return Number(tryNumber);
+    if (inputValidator.checkTryNumberValidate(tryNumber)) {
+      return Number(tryNumber);
+    }
   },
 };
