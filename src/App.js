@@ -12,6 +12,25 @@ function printResult(cars, cnt) {
     Console.print(cars[i] + " : " + "-".repeat(cnt[i]))
 }
 
+function findMax(cars, cnt) {
+  // const max = Math.max(...cnt);          cnt 리스트에 undefined 존재시 NaN 반환됨
+  let max = 0;
+  for (let i = 0; i < cnt.length; i++)
+    if (max < cnt[i])
+      max = cnt[i];
+  return max;
+}
+
+function findWinner(cars, cnt) {
+  const max = findMax(cars, cnt);
+  let winner = [];
+  for (let i = 0; i < cars.length; i++)
+    if (cnt[i] == max)
+      winner.push(" " + cars[i]);
+    
+  Console.print("최종 우승자 :" + winner);
+}
+
 class App {
   async run() {
     try {
@@ -32,8 +51,9 @@ class App {
         
         tryNum--;
       }
-      
+
       printResult(cars, cnt);
+      findWinner(cars, cnt);
     } catch(error) {
       throw new Error(`[ERROR]`);
     }
