@@ -91,7 +91,25 @@ class App {
     }
   }
 
-  
+  whoIsWinner(carNamesObjectArray) {
+    const maxForwardNum = Math.max(
+      ...carNamesObjectArray.map((result) => result.forwardNum)
+    );
+
+    const filteredCarNamesObjectArray = carNamesObjectArray.filter(
+      (result) => result.forwardNum === maxForwardNum
+    );
+
+    const extractWinnerCarNames = filteredCarNamesObjectArray.map((result) => {
+      return result.carName;
+    });
+
+    const winnerCarNames = extractWinnerCarNames
+      .map((member) => member)
+      .join(", ");
+
+    Console.print(`최종 우승자 : ${winnerCarNames}`);
+  }
 }
 
 export default App;
