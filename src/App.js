@@ -36,13 +36,20 @@ class App {
         car.positionHistory.push(car.position);
       });
     }
-
+    // 주행과정을 -로 출력
     for (let i = 0; i < ATTEMPTS; i++) {
+      Console.print("-------");
       RESULTS.forEach((car) => {
         const CURRENT_POSITION = car.positionHistory[i] || 0;
         Console.print(`${car.name} : ${"-".repeat(CURRENT_POSITION)}`);
       });
     }
+    // 우승자 출력
+    const MAX_RESULTS = Math.max(...RESULTS.map((car) => car.position));
+    const WINNERS = RESULTS.filter((car) => car.position === MAX_RESULTS).map(
+      (car) => car.name
+    );
+    Console.print(`최종 우승자 : ${WINNERS.join(",")}`);
   }
 }
 export default App;
