@@ -57,4 +57,40 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+  test("중복된 이름이 입력된 경우 예외 테스트", async () => {
+    // 자동차 이름이 중복된 경우
+    const inputs = ["pobi,woni,pobi"];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+  test("이동 횟수로 0를 입력한 경우 예외 테스트", async () => {
+    // 이동횟수가 0으로 입력된 경우
+    const inputs = ["pobi,woni", "0"];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+  test("이동 횟수로 음수를 입력한 경우 예외 테스트", async () => {
+    // 또는 음수로 입력된 경우
+    const inputs = ["pobi,woni", "-1"];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+  test("이동 횟수로 숫자가 아닌 값을 입력한 경우 예외 테스트", async () => {
+    // 이동 횟수로 입력된 것이 숫자가 아닌 경우
+    const inputs = ["pobi,woni", "three"];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
 });
