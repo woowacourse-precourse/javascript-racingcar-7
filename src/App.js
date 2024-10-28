@@ -5,9 +5,14 @@ class App {
     );
   }
 
+  splitCars(input) {
+    return input.split(",");
+  }
+
   async run() {
     try {
       const carsName = await this.inputCars();
+      const carsList = await this.splitCars(carsName);
     } catch (error) {
       throw new Error("[ERROR]");
     }
