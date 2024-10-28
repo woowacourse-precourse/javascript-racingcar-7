@@ -35,18 +35,21 @@ class Game {
     this.#progress();
   }
 
+  #raceCars() {
+    this.cars.map((car) => {
+      car.runRound();
+      const [name, forwardCount] = [car.name, car.forwardCount];
+      OutputView.printCurrentCarInfo(name, forwardCount);
+    });
+  }
+
   #progress() {
     let currentRound = 0;
 
     while (currentRound < this.#round) {
       if (currentRound === 0) OutputView.printExecutionResultMessage();
 
-      this.cars.map((car) => {
-        car.runRound();
-        const [name, forwardCount] = [car.name, car.forwardCount];
-        OutputView.printCurrentCarInfo(name, forwardCount);
-      });
-
+      this.#raceCars();
       OutputView.printEmptyLine();
 
       currentRound += 1;
