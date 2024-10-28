@@ -2,26 +2,31 @@ import {Console, MissionUtils} from "@woowacourse/mission-utils";
 import {OUTPUT_MESSAGE, PROMPT_MESSAGE} from "./constants/message.js";
 import {Car} from "./Car.js";
 import {getFirstPromptError, getSecondPromptError} from "./utils/errorMessageHandler.js";
+import {inputHandler} from "./utils/inputHandler.js";
 
 class RacingGame {
-    promptSequence = 1
-    carArr = []
-
+    promptSequence = 1 //이걸 명확하게? 스트링?
+    carArr = [] // race 클래스 생성자로 만들고
+    //코드를 갈자 걍 ㅋㅋ
     async handleRaceSequence(promptMessage) {
-        const prompt = await this.getInput(promptMessage)
-        if (this.promptSequence === 1) {
-            this.carArr = new Car().setCar(prompt)
+        const fistPrompt = await this.getInput(PROMPT_MESSAGE.FIRST)
+        this.promptSequence++
+        const secondPrompt = await this.getInput(PROMPT_MESSAGE.SECOND)
+
+        /*if (this.promptSequence === 1) {
+            this.carArr = new Car().setCar(prompt) //함수로?
             this.promptSequence++
             return this.handleRaceSequence(PROMPT_MESSAGE.SECOND)
         }
         if (this.promptSequence === 2) {
-            const tryNum = Number(prompt)
-            this.playRace(tryNum)
+            this.playRace(Number(prompt))
             this.promptSequence++
         }
         const result = this.setWinner()
-        this.getOutput(result)
+        this.getOutput(result)*/
     }
+
+    //입력, 출력, 에러 처리 제외한 게임 로직을 클래스로 분리하자
 
     playRace(tryNum) {
         // this.output("실행결과")
@@ -54,11 +59,10 @@ class RacingGame {
 
     async getInput(message) {
         const input = await Console.readLineAsync(message)
-        this.handleValid(input)
-        return input
+        return inputHandler(input)
     }
 
-    getOutput(data) {
+    getOutput(data) { //최소 단위니까 이것도 나눠야?
         if (this.promptSequence === 2) {
             this.carArr.map((car) => Console.print(`${car.carName} : ${"-".repeat(car.winCnt)}`))
             return Console.print("\n")
@@ -73,14 +77,14 @@ class RacingGame {
         throw new Error(OUTPUT_MESSAGE.ERROR.UNKNOWN)
     }
 
-    handleValid(string) {
-        if (this.promptSequence === 1) {
-            getFirstPromptError(string)
-        }
-        if (this.promptSequence === 2) {
-            getSecondPromptError(string)
-        }
-    }
+    /*    handleValid(string) {
+            if (this.promptSequence === 1) {
+                getFirstPromptError(string)
+            }
+            if (this.promptSequence === 2) {
+                getSecondPromptError(string)
+            }
+        }*/
 }
 
 export default RacingGame
