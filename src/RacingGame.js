@@ -19,14 +19,17 @@ class RacingGame {
     return randomNumber >= 4;
   }
 
-  getRacingRoundResult (array, count) {
-    Utils.range(count).forEach(() => {
-      this.scoreBoard.forEach((round) => {
-       const isMove = this.generateMove();
-       round.records.push(isMove);
-      });
+  getRacingResultByRound() {
+    this.scoreBoard.forEach((dashBoard) => {
+      const isMove = this.generateMove();
+      dashBoard.records.push(isMove);
     });
-    return this.scoreBoard;
+  }
+
+  getRacingResult(tryCount) {
+    Utils.range(tryCount).forEach(() => {
+      this.getRacingResultByRound();
+    });
   }
 
   getWinner(array) {

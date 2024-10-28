@@ -6,15 +6,14 @@ class App {
     const {carNames, tryCount} = await this.readLineGameInputs();
 
     const game = new RacingGame();
+
     game.getInitialBoard(carNames);
+    game.getRacingResult(tryCount);
 
     const scoreBoard = game.getScoreBoard();
-    const racingRoundResult = game.getRacingRoundResult(scoreBoard, tryCount);
+    View.printRoundScore(tryCount, scoreBoard);
 
-    View.printRoundScore(tryCount, racingRoundResult);
-
-    const finalWinner = game.getWinner(racingRoundResult);
-
+    const finalWinner = game.getWinner(scoreBoard);
     View.printFinalWinner(finalWinner);
   }
 
