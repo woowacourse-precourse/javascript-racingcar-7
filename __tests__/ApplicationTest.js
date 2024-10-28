@@ -26,26 +26,118 @@ const getLogSpy = () => {
 };
 
 describe('자동차 경주', () => {
-  test('기능 테스트', async () => {
-    // given
-    const MOVING_FORWARD = 4;
-    const STOP = 3;
-    const inputs = ['pobi,woni', '1'];
-    const logs = ['pobi : -', 'woni : ', '최종 우승자 : pobi'];
-    const logSpy = getLogSpy();
+  const MOVING_FORWARD = 4;
+  const STOP = 3;
 
-    mockQuestions(inputs);
-    mockRandoms([MOVING_FORWARD, STOP]);
+  test.each([
+    {
+      carNames: 'pobi,woni,jun',
+      gameCount: '3',
+      test: '최종 우승자 : pobi',
+      logs: [
+        '\n실행 결과',
+        'pobi : -',
+        'woni : -',
+        'jun : -',
+        '',
+        'pobi : --',
+        'woni : -',
+        'jun : --',
+        '',
+        'pobi : ---',
+        'woni : -',
+        'jun : --',
+        '',
+        '최종 우승자 : pobi',
+      ],
+      moves: [
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+        STOP,
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+        STOP,
+        STOP,
+      ],
+    },
+    {
+      carNames: 'pobi,woni,jun',
+      gameCount: '3',
+      test: '최종 우승자 : woni, jun',
+      logs: [
+        '\n실행 결과',
+        'pobi : -',
+        'woni : -',
+        'jun : -',
+        '',
+        'pobi : --',
+        'woni : --',
+        'jun : --',
+        '',
+        'pobi : --',
+        'woni : ---',
+        'jun : ---',
+        '',
+        '최종 우승자 : woni, jun',
+      ],
+      moves: [
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+        STOP,
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+      ],
+    },
+    {
+      carNames: 'pobi,woni,jun',
+      gameCount: '1',
+      test: '최종 우승자 : pobi, woni, jun',
+      logs: [
+        '\n실행 결과',
+        'pobi : ',
+        'woni : ',
+        'jun : ',
+        '',
+        '최종 우승자 : pobi, woni, jun',
+      ],
+      moves: [STOP, STOP, STOP],
+    },
+    {
+      carNames: 'pobi',
+      gameCount: '1',
+      test: '최종 우승자 : pobi',
+      logs: ['\n실행 결과', 'pobi : -', '', '최종 우승자 : pobi'],
+      moves: [MOVING_FORWARD],
+    },
+  ])(
+    '기능 테스트[$test]: ($carNames,$gameCount)',
+    async ({ carNames, gameCount, logs: expected, moves }) => {
+      // given
 
-    // when
-    const app = new App();
-    await app.run();
+      const inputs = [carNames, gameCount];
+      const logs = expected;
+      const logSpy = getLogSpy();
 
-    // then
-    logs.forEach((log) => {
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-    });
-  });
+      mockQuestions(inputs);
+      mockRandoms(moves);
+
+      // when
+      const app = new App();
+      await app.run();
+
+      // then
+      logs.forEach((log, index) => {
+        expect(logSpy).toHaveBeenNthCalledWith(index + 1, log);
+        // expect(logSpy).toHaveBeenNthCalledWith(expect.stringMatching(log));
+      });
+    },
+  );
 
   test('예외 테스트', async () => {
     // given
