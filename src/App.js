@@ -57,8 +57,18 @@ class Race{
 
 //3. 경주 실행 및 결과 출력
 class App {
-  async run() {
-  
+  async run(){
+    try {
+      const carNames = await this.getCarNames(); // 자동차 이름 입력 받기
+      const attempts = await this.getAttempts(); // 시도 횟수 입력 받기
+
+      this.validateInput(carNames, attempts); // 입력값 유효성 검사
+
+      const race = new Race(carNames, attempts); // 레이스 인스턴스 생성
+      race.run(); // 경주 시작
+    }catch (error) {
+      Console.print(error.message); // 에러 메시지 출력
+    }
   }
 
   // 자동차 이름을 입력받는 메서드
