@@ -29,9 +29,19 @@ class App {
     const ROUNDS_INPUT = await MissionUtils.Console.readLineAsync(
       "시도할 횟수는 몇 회인가요?\n"
     );
-    this.rounds = parseInt(ROUNDS_INPUT);
 
-    if (isNaN(this.rounds) || this.rounds <= 0) {
+    // 숫자 형식 검사 (1 이상의 정수만 허용)
+    if (!/^[1-9]\d*$/.test(ROUNDS_INPUT)) {
+      throw new Error("[ERROR] 라운드 횟수는 1 이상의 정수만 가능합니다.");
+    }
+
+    this.rounds = parseFloat(ROUNDS_INPUT);
+
+    if (
+      isNaN(this.rounds) ||
+      this.rounds <= 0 ||
+      !Number.isInteger(this.rounds)
+    ) {
       throw new Error("[ERROR] 라운드 횟수는 1 이상의 정수만 가능합니다.");
     }
   }
