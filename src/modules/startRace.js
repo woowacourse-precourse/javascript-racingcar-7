@@ -20,7 +20,7 @@ function getWinners(cars) {
   const maxDistance = Math.max(...cars.map((car) => car.distance));
 
   const winners = cars
-    .filter((car) => car.position === maxDistance)
+    .filter((car) => car.distance === maxDistance)
     .map((car) => car.name);
 
   return winners;
