@@ -1,3 +1,4 @@
+import { ONLY_NUMBER } from './constants';
 
 export const hasLongString = (array) => {
     for (let i = 0; i < array.length; i++) {
@@ -6,4 +7,9 @@ export const hasLongString = (array) => {
         }
     }
     return false;
+};
+
+
+export const isNumber = (string) => {
+    return ONLY_NUMBER.test(string);
 };
