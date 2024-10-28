@@ -70,8 +70,8 @@ export default class Controller {
 
     const input = await rawInput;
 
+    validateName(input);
     const names = input.split(',').map((name) => name.trim());
-    validateName(names);
 
     return names;
   }

@@ -1,4 +1,6 @@
-export const validateName = (names) => {
+export const validateName = (namesInput) => {
+  const names = namesInput.split(',').map((name) => name.trim());
+
   if (names.some((name) => name.length > 5)) {
     throw new Error('[ERROR] 자동차 이름은 5자 이하만 가능합니다.');
   }
