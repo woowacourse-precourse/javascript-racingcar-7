@@ -22,7 +22,7 @@ const validateInputSpecialCharacter = (input) => {
 
 const validateCarNameOverlap = (input) => {
   if (new Set(input).size !== input.length) {
-    throw new Error(ERROR_MESSAGE.carName.invalidOverlap);
+    throw new Error(ERROR_MESSAGE.carName.invalidName);
   }
 };
 

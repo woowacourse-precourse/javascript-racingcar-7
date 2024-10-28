@@ -66,7 +66,7 @@ describe('자동차 이름 입력 유효성 검사', () => {
     mockQuestions(input);
 
     await expect(async () => await app.getRacingCarName()).rejects.toThrow(
-      ERROR_MESSAGE.carName.invalidOverlap
+      ERROR_MESSAGE.carName.invalidName
     );
   });
 
@@ -77,7 +77,7 @@ describe('자동차 이름 입력 유효성 검사', () => {
     mockQuestions(input);
 
     await expect(async () => await app.getRacingCarName()).rejects.toThrow(
-      ERROR_MESSAGE.carName.invalidOverlap
+      ERROR_MESSAGE.carName.invalidName
     );
   });
 
