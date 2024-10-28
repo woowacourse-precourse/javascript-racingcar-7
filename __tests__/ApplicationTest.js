@@ -140,4 +140,14 @@ describe("입력 값 테스트", () => {
 
     await expect(app.run()).rejects.toThrow(ERROR_MESSAGES.CAR_NAME_LENGTH);
   });
+
+  test("중복된 자동차 이름이 존재하면 안된다.", async () => {
+    const inputs = ["a,a"];
+
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(ERROR_MESSAGES.SAME_CAR_NAME);
+  });
 });
