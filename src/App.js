@@ -1,7 +1,7 @@
 import createCars from './functions/createCars.js';
 import getValidatedCarNames from './functions/getValidatedCarNames.js';
 import getValidatedTryCount from './functions/getValidatedTryCount.js';
-import RacingGame from './racingGame/RacingGame.js';
+import RacingGame from './racinggame/RacingGame.js';
 import displayGameGuide from './utils/displayGameGuide.js';
 
 class App {

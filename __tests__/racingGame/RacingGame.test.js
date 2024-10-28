@@ -1,4 +1,4 @@
-import RacingGame from '../../src/racingGame/RacingGame';
+import RacingGame from '../../src/racinggame/RacingGame';
 import Car from '../../src/car/Car';
 
 const testCase = [
