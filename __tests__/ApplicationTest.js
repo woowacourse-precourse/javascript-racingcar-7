@@ -122,6 +122,29 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 
+  test("[예외]중복 자동차 이름 예외", async () => {
+    // given
+    const inputs = ["pobi,pobi,java"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+  test("[예외]대소문자 중복 자동차 이름 예외", async () => {
+    // given
+    const inputs = ["poBi,poBi,java"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
   test("[예외]이동횟수에 숫자가 0이면 예외", async () => {
     // given
     const inputs = ["pobi,woni", "0"];
