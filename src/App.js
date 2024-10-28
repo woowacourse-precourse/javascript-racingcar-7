@@ -3,21 +3,11 @@ import { Console, MissionUtils } from "@woowacourse/mission-utils";
 class App {
   async run() {
     const raceCars = await this.getRaceCars();
-
-    const inputNum = await Console.readLineAsync(
-      "시도할 횟수는 몇 회인가요?\n"
-    );
-
-    if (isNaN(inputNum)) {
-      throw new Error("[ERROR]: 숫자만 입력가능합니다.");
-    }
-    if (inputNum == 0) {
-      throw new Error("[ERROR]: 0은 입력할 수 없습니다.");
-    }
+    const attemptCount = await this.getAttemptCount();
 
     Console.print("\n실행 결과");
 
-    for (let i = 0; i < inputNum; i++) {
+    for (let i = 0; i < attemptCount; i++) {
       this.race(raceCars);
       this.printRoundResult(raceCars);
     }
@@ -51,6 +41,20 @@ class App {
       raceCars.push({ name: carName, location: "" });
     });
     return raceCars;
+  }
+
+  async getAttemptCount() {
+    const inputNum = await Console.readLineAsync(
+      "시도할 횟수는 몇 회인가요?\n"
+    );
+
+    if (isNaN(inputNum)) {
+      throw new Error("[ERROR]: 숫자만 입력가능합니다.");
+    }
+    if (inputNum == 0) {
+      throw new Error("[ERROR]: 0은 입력할 수 없습니다.");
+    }
+    return inputNum;
   }
   race(raceCars) {
     raceCars.forEach((raceCar) => {
