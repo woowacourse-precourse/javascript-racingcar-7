@@ -53,7 +53,7 @@ class App {
       if (this.moveOrStop()) this.carObject[carName]++;
     });
   }
-  //전진 or 멈춤 판단 함수
+
   moveOrStop() {
     return Random.pickNumberInRange(0, 9) >= App.MOVE_OR_STOP_FLAG;
   }
@@ -66,7 +66,6 @@ class App {
     Console.print("\n");
   }
 
-  //최종 우승자 판별 함수
   selectWinner() {
     const maxDistance = Math.max(...Object.values(this.carObject));
     const winners = Object.keys(this.carObject).filter(
@@ -101,7 +100,6 @@ class App {
       this.throwError(App.ERROR_MESSAGES.INVALID_NUMBER);
   }
 
-  // 공통 에러 처리 함수
   throwError(message) {
     throw new Error(`[ERROR] ${message}`);
   }
