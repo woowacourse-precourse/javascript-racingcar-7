@@ -11,7 +11,7 @@ class GetInput {
         throw new Error('[ERROR] : 5글자 이하로 입력해주세요.');
       }
     });
-    return carNames;
+    return carNamesArray;
   }
 
   static async getTryCount() {
