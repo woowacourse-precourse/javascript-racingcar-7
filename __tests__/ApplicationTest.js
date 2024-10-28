@@ -74,6 +74,17 @@ describe("자동차 경주", () => {
       await expect(app.run()).rejects.toThrow("[ERROR]");
     }
   });
+  test("소수가 횟수로 입력된 경우 에러", async () => {
+    // given
+    const inputs = ["pobi,woni", "3.5"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
 
   test("이름은 5글자 이하여야 합니다", async () => {
     // given
