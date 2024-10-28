@@ -9,6 +9,7 @@ export class Output {
 	}
 
 	static printFinalWinners(winners) {
-		Console.print(`\n최종 우승자 : ${winners}`);
+		if (Array.isArray(winners)) Console.print(`\n최종 우승자 : ${winners.join(", ")}`);
+		else Console.print(`\n최종 우승자 : ${winners}`);
 	}
 }
