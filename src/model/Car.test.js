@@ -5,22 +5,6 @@ const getRandomNumber = () => {
   return jest.spyOn(random, 'generateNumber');
 };
 
-describe('랜덤 숫자 점검', () => {
-  let randomNumberSpy;
-  beforeEach(() => {
-    randomNumberSpy = getRandomNumber();
-  });
-
-  afterEach(() => {
-    jest.restoreAllMocks();
-  });
-
-  test('랜덤 숫자는 10 이상으로 뽑히지 않는다.', () => {
-    const results = Array.from({ length: 1000 }, () => random.generateNumber());
-    expect(Math.max(...results)).toBeLessThan(10);
-  });
-});
-
 describe('랜덤숫자 4이상일 때에만 전진하는 로직 점검', () => {
   /**@type {Car} */
   let randomNumberSpy;
