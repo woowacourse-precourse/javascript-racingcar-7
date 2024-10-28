@@ -1,5 +1,5 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
-import { isValidName } from "./validation.js";
+import { isValidName } from "../utils/validation.js";
 
 export default class Car {
   constructor(name) {

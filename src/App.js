@@ -1,5 +1,5 @@
-import { inputCarName, inputTryTime } from "./inputHandler.js";
-import Car from "./Car.js"
+import { inputCarName, inputTryTime } from "./utils/inputHandler.js";
+import Car from "./models/Car.js"
 
 class App {
   async run() {

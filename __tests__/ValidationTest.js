@@ -1,6 +1,6 @@
-import Car from "../src/Car.js"
-import { isValidNumber } from "../src/validation.js";
-import { ERROR_MESSAGE } from "../src/constants.js";
+import Car from "../src/models/Car.js"
+import { isValidNumber } from "../src/utils/validation.js";
+import { ERROR_MESSAGE } from "../src/utils/constants.js";
 
 describe('자동차 이름 유효성 테스트', () => {
   test.each([
