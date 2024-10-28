@@ -24,22 +24,35 @@ function performRace(carNames, tries) {
     const moves = updateCarNamesForTries(carNames);
     displayRoundResult(moves);
   };
-  // return carNames;
 }
 
 function updateCarNamesForTries(carNames) {
   const moves = {};
+
   Object.keys(carNames).forEach(carName => {
     const randomNumber = generateRandomNumbers();
-    let moveCount = 0;
-    if (randomNumber >= 4) {
-      moveCount = randomNumber - 3;
-    }
-
-    moves[carName] = moveCount;
-    carNames[carName] += moveCount;
+    const moveCount = getMoveCount(randomNumber);
+    updateCarMove(moves, carName, moveCount);
+    updateCarTotalDistance(carNames, carName, moveCount);
   });
+
   return moves;
+}
+
+function getMoveCount(randomNumber) {
+  let moveCount = 0;
+  if (randomNumber >= 4) {
+    moveCount = randomNumber - 3;
+  }
+  return moveCount;
+}
+
+function updateCarMove(moves, carName, moveCount) {
+  moves[carName] = moveCount;
+}
+
+function updateCarTotalDistance(carNames, carName, moveCount) {
+  carNames[carName] += moveCount;
 }
 
 function displayRoundResult(moves) {
