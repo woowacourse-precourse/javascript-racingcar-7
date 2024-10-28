@@ -31,3 +31,5 @@ const validateInput = (input, type) => {
         }
     }
 };
+
+export { validateCarName, validateMoveCount, validateCarNamesUniqueness, validateInput };
