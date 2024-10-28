@@ -16,9 +16,7 @@ class CarNameParser {
   }
 
   validateNames() {
-    this.names.forEach(name => {
-      CarNameError.validateNameLength(name);
-    });
+    this.names.forEach(name => CarNameError.validateNameLength(name));
     CarNameError.validateDuplicateNames(this.names);
   }
 
@@ -62,11 +60,11 @@ class CarNameError {
 
 class TimeStringToNumber {
   static parse(times) {
-    TimeStringToNumber.isPositiveIntegar(times);
+    TimeStringToNumber.isPositiveInteger(times);
     return Number(times);
   }
 
-  static isPositiveIntegar(times) {
+  static isPositiveInteger(times) {
     const POSITIVE_INTEGER_REGEX = /^\d+$/;
     if (POSITIVE_INTEGER_REGEX.test(times) == false) {
       throw new Error("[ERROR]횟수는 양의 정수이어야 합니다.");
@@ -75,46 +73,72 @@ class TimeStringToNumber {
 }
 
 class CarRace {
-  forward(countArray, index) {
-    const carforward = MissionUtils.Random.pickNumberInRange(0, 9);
-    if (carforward >= 4) {
-      countArray[index] += 1;
+  constructor(playerNames) {
+    this.playerNames = playerNames;
+    this.countArray = new Array(playerNames.length).fill(0);
+  }
+
+  race(time) {
+    MissionUtils.Console.print("실행 결과\n");
+    for (let i = 0; i < time; i++) {
+      this.runRound();
+      MissionUtils.Console.print('\n');
     }
-    return carforward;
+  }
+
+  runRound() {
+    this.playerNames.forEach((playerName, index) => {
+      if (this.shouldMoveForward()) {
+        this.countArray[index] += 1;
+      }
+      this.printResult(playerName, this.countArray[index]);
+    });
+  }
+
+  shouldMoveForward() {
+    return MissionUtils.Random.pickNumberInRange(0, 9) >= 4;
   }
 
   printResult(playerName, forwardCount) {
     MissionUtils.Console.print(`${playerName} : ${'-'.repeat(forwardCount)}`);
   }
+
+  getWinners() {
+    const maxCount = Math.max(...this.countArray);
+    return this.playerNames.filter((_, index) => this.countArray[index] === maxCount);
+  }
 }
 
 class App {
   async run() {
+    const playerNames = await this.getPlayerNames();
+    const time = await this.getRaceTime();
+    
+    this.displayParticipants(playerNames);
+    
+    const race = new CarRace(playerNames);
+    race.race(time);
+    
+    this.displayWinners(race.getWinners());
+  }
+
+  async getPlayerNames() {
     const cars = await MissionUtils.Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,)기준으로 구분)\n");
     const players = new CarNameParser(cars);
+    return players.getNames();
+  }
+
+  async getRaceTime() {
     const times = await MissionUtils.Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
-    const time = TimeStringToNumber.parse(times);
+    return TimeStringToNumber.parse(times);
+  }
 
-    const playerNames = players.getNames();
-    MissionUtils.Console.print("\n참가자 명단: " + playerNames.join(', ') + "\n");
-    
-    let countArray = new Array(playerNames.length).fill(0);
-    const race = new CarRace();
+  displayParticipants(playerNames) {
+    MissionUtils.Console.print(`\n참가자 명단: ${playerNames.join(', ')}\n`);
+  }
 
-    MissionUtils.Console.print("실행 결과\n");
-    
-    for (let i = 0; i < time; i++) {
-      for (let j = 0; j < playerNames.length; j++) {
-        const forward = race.forward(countArray, j);
-        race.printResult(playerNames[j], countArray[j]);
-      }
-      MissionUtils.Console.print('\n');
-    }
-
-    const winnerCount = Math.max(...countArray);
-    const winners = playerNames.filter((_, index) => countArray[index] === winnerCount);
-    
-    MissionUtils.Console.print("최종 우승자 : " + winners.join(', '));
+  displayWinners(winners) {
+    MissionUtils.Console.print(`최종 우승자 : ${winners.join(', ')}`);
   }
 }
 
