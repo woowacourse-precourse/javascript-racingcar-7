@@ -17,6 +17,13 @@ class App {
     Console.print('\n실행 결과');
     await this.playGame(ATTEMPTS, SCORE, CARS_COUNT, CARS);
 
+    // 우승자 찾기
+    const MAX_SCORE =  await this.getMaxScore(SCORE);
+    const WINNERS = await this.getWinners(MAX_SCORE, SCORE, CARS);
+    
+    // 우승자 출력
+    this.printWinners(WINNERS);
+
 
     
   }
@@ -153,6 +160,28 @@ class App {
     }
 
     return MY_SCORE;
+  }
+
+  async getMaxScore(SCORE){
+    let MAX_SCORE = Math.max(...SCORE);
+    return MAX_SCORE;
+  }
+
+  async getWinners(MAX_SCORE, SCORE, CARS){
+    const WINNERS = [];
+    SCORE.map((score, index)=>{
+      if(score == MAX_SCORE){
+        WINNERS.push(CARS[index]);
+      }
+    })
+    
+    return WINNERS;
+  }
+
+  printWinners(WINNERS){
+    let RESULT = '최종 우승자 : ';
+    RESULT += WINNERS.map((winner)=>winner).join(', ');
+    Console.print(RESULT);
   }
 }
 
