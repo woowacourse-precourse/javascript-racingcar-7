@@ -1,6 +1,7 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import Input from "../src/view/Input.js";
 import InputValidation from "../src/validation/InputValidation.js";
+import { ERROR_HEADER, ERROR_BODY } from "../src/constants/errorMessage.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -32,7 +33,7 @@ describe("입력", () => {
 
       // when
       // then
-      await expect(Input.getCars(InputValidation.carString)).rejects.toThrow("[ERROR]");
+      await expect(Input.getCars(InputValidation.carString)).rejects.toThrow(`${ERROR_HEADER} ${ERROR_BODY.carNameLength}`);
     });
 
     test("중복된 이름 문자열을 입력으로 가지고 있는 경우,[ERROR]로 시작하는 메시지와 함께 애플리케이션을 종료한다.", async () => {
@@ -43,7 +44,7 @@ describe("입력", () => {
 
       // when
       // then
-      await expect(Input.getCars(InputValidation.carString)).rejects.toThrow("[ERROR]");
+      await expect(Input.getCars(InputValidation.carString)).rejects.toThrow(`${ERROR_HEADER} ${ERROR_BODY.carNameDuplicated}`);
     });
 
     test("빈 이름 문자열을 입력으로 가지고 있는 경우,[ERROR]로 시작하는 메시지와 함께 애플리케이션을 종료한다.", async () => {
@@ -54,7 +55,7 @@ describe("입력", () => {
 
       // when
       // then
-      await expect(Input.getCars(InputValidation.carString)).rejects.toThrow("[ERROR]");
+      await expect(Input.getCars(InputValidation.carString)).rejects.toThrow(`${ERROR_HEADER} ${ERROR_BODY.carNameEmpty}`);
     });
   });
 
@@ -71,7 +72,7 @@ describe("입력", () => {
       expect(MissionUtils.Console.readLineAsync).toHaveBeenCalledWith("시도할 횟수는 몇 회인가요?\n");
     });
 
-    test("양수가 아닌 문자를 입력으로 가지고 있는 경우, 실행 횟수[ERROR]로 시작하는 메시지와 함께 애플리케이션을 종료한다.", async () => {
+    test("양수가 아닌 문자를 입력으로 가지고 있는 경우, [ERROR]로 시작하는 메시지와 함께 애플리케이션을 종료한다.", async () => {
       // given
       const inputs = ["pobi,ham", "a"];
 
@@ -79,7 +80,7 @@ describe("입력", () => {
 
       // when
       // then
-      await expect(Input.getRepeatCount(InputValidation.repeatCountString)).rejects.toThrow("[ERROR]");
+      await expect(Input.getRepeatCount(InputValidation.repeatCountString)).rejects.toThrow(`${ERROR_HEADER} ${ERROR_BODY.repeatCount}`);
     });
   });
 });
