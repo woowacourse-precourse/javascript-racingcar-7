@@ -34,6 +34,13 @@ export function isNumberValid(number) {
   return Number.isInteger(number) && number >= 1;
 }
 
+export function printCurrentResult(gameResult) {
+  gameResult.forEach(car => {
+    const progress = '-'.repeat(car.position);
+    Console.print(`${car.name} : ${progress}`);
+  });
+}
+
 class App {
   async run() {}
 }

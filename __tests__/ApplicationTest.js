@@ -6,6 +6,7 @@ import {
   checkNameValid,
   inputTrialNumber,
   isNumberValid,
+  printCurrentResult,
 } from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
@@ -109,6 +110,7 @@ describe("자동차 경주", () => {
   });
 });
 
+// isNumberValid, inputTrialNumber 함수 테스트 코드
 describe("자동차 경주", () => {
   // isNumberValid 테스트
   test("isNumberValid - 1 이상의 정수를 입력받으면 true 반환", () => {
@@ -152,6 +154,30 @@ describe("자동차 경주", () => {
 
     // when, then
     await expect(inputTrialNumber()).rejects.toThrow("[ERROR]");
+  });
+});
+
+// printCurrentResult 함수 테스트 코드
+describe("printCurrentResult 함수", () => {
+  test("자동차 진행 상황이 예상대로 출력된다", () => {
+    // given
+    const gameResult = [
+      { name: "car1", position: 2 },
+      { name: "car2", position: 1 },
+      { name: "car3", position: 3 },
+    ];
+
+    const logSpy = getLogSpy(); // Console.print 감지
+
+    // when
+    printCurrentResult(gameResult);
+
+    // then
+    expect(logSpy).toHaveBeenCalledWith("car1 : --");
+    expect(logSpy).toHaveBeenCalledWith("car2 : -");
+    expect(logSpy).toHaveBeenCalledWith("car3 : ---");
+
+    logSpy.mockRestore(); // 스파이 복원
   });
 });
 
