@@ -6,12 +6,12 @@ let raceManager;
 beforeEach(() => (raceManager = new RaceManager()));
 
 describe('자동차 경주 시작', () => {
-  test('5글자 이상인 이름 에러 반환하는지 테스트', () => {
+  test('5글자 이상인 이름은 에러를 반환한다.', () => {
     expect(() => raceManager.makeCar('pobibibi')).toThrow();
   });
 
   test.each([['kim'], ['pobi'], ['pone'], ['jake']])(
-    '%s 이름의 자동차 객체 생성 되어 저장되었는지 확인',
+    '%s 이름의 자동차 객체가 생성되어 프로퍼티로 저장된다.',
     (first) => {
       raceManager.makeCar(first);
 
@@ -35,7 +35,7 @@ describe('자동차 경주 진행', () => {
   test.each([
     [5, 1],
     [3, 0],
-  ])('랜덤 숫자가 %s 일때 %s 칸 이동', (first, second) => {
+  ])('랜덤 숫자가 %s 일때 %s 칸을 이동한다.', (first, second) => {
     jest.spyOn(MissionUtils.Random, 'pickNumberInRange').mockReturnValue(first);
 
     raceManager.runRaceStep();
@@ -57,7 +57,7 @@ describe('자동차 경주 결과', () => {
     raceManager.makeCar();
   });
 
-  test('경주 한 단계 결과 출력', () => {
+  test('한 단계마다 각 자동차의 현재까지 이동한 거리를 - 로 보여준다.', () => {
     const spyFn = jest.spyOn(Console, 'print');
 
     raceManager.showRaceStep();
@@ -66,15 +66,15 @@ describe('자동차 경주 결과', () => {
     expect(spyFn).toHaveBeenNthCalledWith(2, 'pobi : ---');
   });
 
-  test('최장 이동거리는 4칸', () => {
+  test('최장 이동거리는 4칸이다.', () => {
     expect(raceManager.getMaxDistance()).toBe(4);
   });
 
-  test('우승자는 kim의 차', () => {
+  test('우승자는 kim의 차다.', () => {
     expect(raceManager.getWinnerCar(4)).toEqual([{ name: 'kim', distance: 4 }]);
   });
 
-  test('우승자 이름은 kim', () => {
+  test('우승자 이름은 kim이다.', () => {
     const spyFn = jest.spyOn(Console, 'print');
 
     raceManager.announceWinner([{ name: 'kim', distance: 4 }]);
