@@ -16,7 +16,7 @@ class App {
 
       this.validataNameInput(inputNames);
 
-      count = parseInt(await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n"), 10);
+      count = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
 
       this.validataCountInput(count);
     } catch (error) {
@@ -60,7 +60,8 @@ class App {
   }
 
   validataCountInput(count) {
-    if (!isNaN(count) || count <= 0) {
+    count = parseInt(count);
+    if (isNaN(count) || count <= 0) {
       throw new Error("[ERROR] : 시도 횟수는 양의 정수여야 합니다.");
     }
   }
