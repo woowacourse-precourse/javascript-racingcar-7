@@ -69,14 +69,18 @@ class App {
     return result;
   }
 
+  printResult(result) {
+    const resultString = result.map((car) => car.name).join(", ");
+    Console.print(`최종 우승자 : ${resultString}`);
+  }
+
   async run() {
     const cars = [];
     await this.readCarNames(cars);
     const attemptCount = await this.readAttemptCount();
     this.runRace(cars, attemptCount);
     const result = this.calculateResult(cars);
-    Console.print(result);
-    Console.print(attemptCount);
+    this.printResult(result);
   }
 }
 
