@@ -1,5 +1,5 @@
 import validation from './validation.js';
-import pickRandomNumber from './pickRandomNumber.js';
+import utils from './utils.js';
 import ERRORMESAGE from './errorMessage.js';
 import MAGICNUMBER from './magicnumber.js';
 
@@ -27,7 +27,8 @@ export default class Racingcar {
 
   play(board) {
     for (const car of this.#inputArr) {
-      if (pickRandomNumber() >= MAGICNUMBER.GOCONDITIONNUM) board[car] += '-';
+      if (utils.pickRandomNumber() >= MAGICNUMBER.GOCONDITIONNUM)
+        board[car] += '-';
     }
     return board;
   }
