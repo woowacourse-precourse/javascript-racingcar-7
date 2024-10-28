@@ -1,3 +1,3 @@
 export const trimSpaces = (string) => {
-  return string.trim();
+  return string.replace(/\s+/g, '');
 };
