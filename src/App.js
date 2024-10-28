@@ -8,6 +8,8 @@ class App {
       let raceCountInput = await Console.readLineAsync(`시도할 횟수는 몇 회인가요?\n`);
       let raceCount = parseInt(raceCountInput, 10);
 
+      let carPositions = this.initializeCarPositions(carNames);
+
       carNames.forEach(car => {
         Console.print(`${car}의 이동 결과: `);
         for(let i = 0; i < raceCount; i++) {
@@ -64,6 +66,7 @@ class App {
   /**
    * @author CWDll
    * @describe 선택한 자동차가 움직이는지 확인하는 함수
+   * @parameter {carName: string, isMoving: boolean}
    */
   carMovingCheck(car, isMoving) {
     if(isMoving) {
@@ -71,6 +74,19 @@ class App {
     } else {
       Console.print(`${car} 멈춤`);
     }
+  }
+
+  /**
+   * @author CWDll
+   * @describe 자동차 초기 위치(0)를 설정하는 함수
+   * @parameter {carNames: string[]}
+   */
+  initializeCarPositions(carNames) {
+    const carPositions = {};
+    carNames.forEach(car => {
+      carPositions[car] = 0;
+    });
+    return carPositions;
   }
 
 
