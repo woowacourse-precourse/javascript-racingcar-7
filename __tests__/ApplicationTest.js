@@ -1,5 +1,5 @@
-import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
+import App from "../src/App.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -49,6 +49,78 @@ describe("자동차 경주", () => {
   test("예외 테스트", async () => {
     // given
     const inputs = ["pobi,javaji"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("빈문자열 테스트", async () => {
+    // given
+    const inputs = [""];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("중복 테스트", async () => {
+    // given
+    const inputs = ["gitti, gitti"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("NaN 테스트", async () => {
+    // given
+    const inputs = ["gitti, gitti2", "gitti"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("0번 시도", async () => {
+    // given
+    const inputs = ["gitti, gitti2", 0];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("음수번 시도", async () => {
+    // given
+    const inputs = ["gitti, gitti2", -1];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("실수 시도", async () => {
+    // given
+    const inputs = ["gitti, gitti2", 0.2];
     mockQuestions(inputs);
 
     // when
