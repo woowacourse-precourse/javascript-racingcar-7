@@ -1,4 +1,5 @@
 import Accelerator from './Accelearator.js';
+import IOProcessor from './InputProcessor.js';
 
 /**
  *
@@ -15,6 +16,7 @@ class Car {
     this.setName(name);
     this.#position = 0;
     this.#accelerator = new Accelerator();
+    this.ioProcessor = new IOProcessor();
   }
 
   /**
@@ -31,6 +33,15 @@ class Car {
     if (this.#accelerator.isAccelerate()) {
       this.#position += 1;
     }
+  }
+
+  /**
+   *
+   */
+  printStatus() {
+    this.ioProcessor.processOutput(
+      `${this.#name} : ${'-'.repeat(this.#position)}`
+    );
   }
 }
 
