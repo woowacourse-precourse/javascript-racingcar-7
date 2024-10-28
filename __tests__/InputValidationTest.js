@@ -20,7 +20,7 @@ describe("자동차 경주 입력 관련 예외 테스트", () => {
   });
 
   test("자동차 이름의 길이가 공백 포함 5자 초과인 경우", async () => {
-    const inputs = ["멋진 자동차"];
+    const inputs = ["멋진 자동차", "1"];
     mockQuestions(inputs);
 
     const app = new App();
@@ -28,7 +28,7 @@ describe("자동차 경주 입력 관련 예외 테스트", () => {
   });
 
   test("자동차 이름이 공백으로만 이루어진 경우", async () => {
-    const inputs = ["자동차,   ,car"];
+    const inputs = ["자동차,   ,car", "1"];
     mockQuestions(inputs);
 
     const app = new App();
