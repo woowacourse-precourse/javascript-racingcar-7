@@ -1,9 +1,14 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, MissionUtils } from "@woowacourse/mission-utils";
 
 class App {
   constructor() {
     this.car_names = [];
     this.game_results = [];
+  }
+  
+  // 3. 게임에서 사용할 랜덤한 정수 함수 선언
+  random_number() {
+    return MissionUtils.Random.pickNumberInRange(0, 9);
   }
   
   async run() {
