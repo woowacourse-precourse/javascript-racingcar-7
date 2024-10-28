@@ -1,4 +1,5 @@
 import App from "../src/App.js";
+import { inputCarsNameWithDelimeter } from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 const mockQuestions = (inputs) => {
@@ -9,6 +10,21 @@ const mockQuestions = (inputs) => {
     return Promise.resolve(input);
   });
 };
+
+// inputCarsNameWithDelimeter 함수 테스트 코드
+describe("자동차 경주", () => {
+  test("inputCarsNameWithDelimeter - 자동차 이름을 쉼표로 구분하여 입력받기", async () => {
+    // given
+    const inputs = ["cars1,cars2,cars3"];
+    mockQuestions(inputs);
+
+    // when
+    const carNames = await inputCarsNameWithDelimeter(); // inputCarsNameWithDelimeter 함수를 직접 호출
+
+    // then
+    expect(carNames).toBe("cars1,cars2,cars3");
+  });
+});
 
 const mockRandoms = (numbers) => {
   MissionUtils.Random.pickNumberInRange = jest.fn();
