@@ -1,5 +1,6 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import App from '../src/App.js';
+import ERROR_MESSAGES from '../src/constants/ErrorMessage.js';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -66,9 +67,7 @@ describe('자동차 이름 에러 테스트', () => {
 
     const app = new App();
 
-    await expect(app.run()).rejects.toThrow(
-      '[ERROR] 자동차 이름은 5자 이하로 입력해야 합니다.'
-    );
+    await expect(app.run()).rejects.toThrow(ERROR_MESSAGES.CAR_NAME_TOO_LONG);
   });
 
   test('자동차 이름 0자 에러 테스트', async () => {
@@ -77,9 +76,7 @@ describe('자동차 이름 에러 테스트', () => {
 
     const app = new App();
 
-    await expect(app.run()).rejects.toThrow(
-      '[ERROR] 자동차 이름을 입력해주세요.'
-    );
+    await expect(app.run()).rejects.toThrow(ERROR_MESSAGES.CAR_NAME_EMPTY);
   });
 
   test('자동차 이름 중복 테스트', async () => {
@@ -88,9 +85,7 @@ describe('자동차 이름 에러 테스트', () => {
 
     const app = new App();
 
-    await expect(app.run()).rejects.toThrow(
-      '[ERROR] 자동차 이름은 중복될 수 없습니다.'
-    );
+    await expect(app.run()).rejects.toThrow(ERROR_MESSAGES.CAR_NAME_DUPLICATED);
   });
 });
 
@@ -101,9 +96,7 @@ describe('시도할 횟수 에러 테스트', () => {
 
     const app = new App();
 
-    await expect(app.run()).rejects.toThrow(
-      '[ERROR] 시도할 횟수는 숫자이어야 합니다.'
-    );
+    await expect(app.run()).rejects.toThrow(ERROR_MESSAGES.ATTEMPT_NOT_NUMBER);
   });
 
   test('사도할 횟수가 0일 때 테스트', async () => {
@@ -113,7 +106,7 @@ describe('시도할 횟수 에러 테스트', () => {
     const app = new App();
 
     await expect(app.run()).rejects.toThrow(
-      '[ERROR] 시도할 횟수는 양수이어야 합니다.'
+      ERROR_MESSAGES.ATTEMPT_NOT_POSITIVE
     );
   });
 
@@ -124,7 +117,7 @@ describe('시도할 횟수 에러 테스트', () => {
     const app = new App();
 
     await expect(app.run()).rejects.toThrow(
-      '[ERROR] 시도할 횟수는 양수이어야 합니다.'
+      ERROR_MESSAGES.ATTEMPT_NOT_POSITIVE
     );
   });
 });

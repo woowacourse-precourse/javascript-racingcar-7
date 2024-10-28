@@ -1,4 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
+import ERROR_MESSAGES from '../constants/ErrorMessage.js';
 import { Car } from '../model/Car.js';
 import { Race } from '../model/Race.js';
 import { View } from '../view/View.js';
@@ -35,13 +36,13 @@ export class Controller {
 
     carNames.forEach((name) => {
       if (name.length > 5) {
-        throw new Error('[ERROR] 자동차 이름은 5자 이하로 입력해야 합니다.');
+        throw new Error(ERROR_MESSAGES.CAR_NAME_TOO_LONG);
       }
       if (name.length === 0) {
-        throw new Error('[ERROR] 자동차 이름을 입력해주세요.');
+        throw new Error(ERROR_MESSAGES.CAR_NAME_EMPTY);
       }
       if (nameSet.has(name)) {
-        throw new Error('[ERROR] 자동차 이름은 중복될 수 없습니다.');
+        throw new Error(ERROR_MESSAGES.CAR_NAME_DUPLICATED);
       }
       nameSet.add(name);
     });
@@ -49,10 +50,10 @@ export class Controller {
 
   validateAttempt(attempt) {
     if (isNaN(attempt)) {
-      throw new Error('[ERROR] 시도할 횟수는 숫자이어야 합니다.');
+      throw new Error(ERROR_MESSAGES.ATTEMPT_NOT_NUMBER);
     }
     if (attempt <= 0) {
-      throw new Error('[ERROR] 시도할 횟수는 양수이어야 합니다.');
+      throw new Error(ERROR_MESSAGES.ATTEMPT_NOT_POSITIVE);
     }
   }
 }
