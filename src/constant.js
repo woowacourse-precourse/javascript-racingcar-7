@@ -15,6 +15,7 @@ export const ERROR_MESSAGES = Object.freeze({
   emptyRoundCount: '시도 횟수를 입력해주세요.',
   invalidDelimiter:
     '쉼표(,) 이외의 특수문자, 공백은 구분자로 사용할 수 없습니다.',
+  duplicateCarName: '자동차 이름은 중복될 수 없습니다.',
   invalidCarNameFormat:
     '자동차 이름은 1~5자 이하의 문자로 구성되어야 하며, 쉼표(,)로 구분되어야 합니다.',
   invalidRoundCountFormat: '시도 횟수는 1 이상의 숫자를 입력해야 합니다.',

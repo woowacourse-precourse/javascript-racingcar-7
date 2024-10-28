@@ -16,6 +16,15 @@ const validateDelimiter = (input) => {
   }
 };
 
+const validateDuplication = (input) => {
+  const carNames = input.split(',');
+  const uniqueCarNames = new Set(carNames);
+
+  if (uniqueCarNames.size !== carNames.length) {
+    throwValidationError(ERROR_MESSAGES.duplicateCarName);
+  }
+};
+
 const validateNameInputFormat = (input) => {
   if (!REGEX.isValidCarNameFormat.test(input)) {
     throwValidationError(ERROR_MESSAGES.invalidCarNameFormat);
@@ -31,6 +40,7 @@ const validateRoundCountFormat = (input) => {
 export const validateCarNames = (input) => {
   validateInputExists(input, ERROR_MESSAGES.emptyCarName);
   validateDelimiter(input);
+  validateDuplication(input);
   validateNameInputFormat(input);
 };
 
