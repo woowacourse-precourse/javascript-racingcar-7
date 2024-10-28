@@ -14,6 +14,7 @@ class App {
 
     this.createCars(carNames);
     this.tryToMoveCars(turnCount);
+    this.determineWinners();
   }
 
   createCars(carNames) {
@@ -33,6 +34,13 @@ class App {
     for (let i = 0; i < turnCount; i++) {
       this.moveCars();
     }
+  }
+
+  determineWinners() {
+    const winners = this.carList
+      .filter((car) => car.getPosition() === this.position)
+      .map((car) => car.getName());
+    OutputView.printRaceWinner(winners);
   }
 }
 
