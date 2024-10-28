@@ -1,3 +1,6 @@
+import UserInput from './UserInput.js'
+import RacingSession from './RacingSession.js'
+
 class App {
   async run() {
     const userInput = new UserInput();
@@ -10,3 +13,4 @@ class App {
   }
 }
 
+export default App;

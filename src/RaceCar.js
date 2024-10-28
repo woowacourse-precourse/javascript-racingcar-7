@@ -18,3 +18,5 @@ class RaceCar {
         }
     }
 }
+
+export default RaceCar;

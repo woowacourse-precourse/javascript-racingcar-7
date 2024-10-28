@@ -1,3 +1,5 @@
+import RaceCar from './RaceCar.js'
+
 class RacingSession {
     // 자동차 이름과 시도 횟수를 받아 각 자동차 객체를 생성하고 시도 횟수를 저장
     constructor(carNames, attempts) {
@@ -25,3 +27,4 @@ class RacingSession {
         console.log(`\\n최종 우승자 : ${winners.join(', ')}`);
     }
 }
+export default RacingSession;
