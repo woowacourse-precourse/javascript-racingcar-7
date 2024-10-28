@@ -111,6 +111,7 @@ describe('Custom Test', () => {
     } else {
       // 정상적인 경우
       const input = await fn();
+
       expect(input).toBe(expectedOutput);
     }
 
