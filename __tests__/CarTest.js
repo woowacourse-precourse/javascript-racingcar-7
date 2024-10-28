@@ -1,12 +1,5 @@
 import Car from '../src/model/Car.js';
 import { CONFIG } from '../src/constant/config.js';
-import { getRandomNumber } from '../src/utils/random.js';
-
-jest.mock('../src/utils/random.js');
-
-beforeEach(() => {
-  jest.clearAllMocks();
-});
 
 describe('자동차 클래스 테스트', () => {
   test('자동차 이름 설정 및 위치 확인', () => {
@@ -18,17 +11,17 @@ describe('자동차 클래스 테스트', () => {
 
   test('자동차가 전진하는지 확인', () => {
     const car = new Car('pobi');
-    getRandomNumber.mockReturnValue(CONFIG.CAR_MOVING_CONDITION);
+    const randomValue = CONFIG.CAR_MOVING_CONDITION;
+    car.tryToMoveForward(randomValue);
 
-    car.tryToMoveForward();
     expect(car.getPosition()).toBe(1);
   });
 
   test('자동차가 전진하지 않는지 확인', () => {
     const car = new Car('pobi');
-    getRandomNumber.mockReturnValue(CONFIG.CAR_MOVING_CONDITION - 1);
+    const randomValue = CONFIG.CAR_MOVING_CONDITION - 1;
+    car.tryToMoveForward(randomValue);
 
-    car.tryToMoveForward();
     expect(car.getPosition()).toBe(0);
   });
 });

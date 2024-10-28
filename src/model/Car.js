@@ -18,11 +18,7 @@ class Car {
     return this.#position;
   }
 
-  tryToMoveForward() {
-    const randomValue = getRandomNumber(
-      CONFIG.MIN_RANDOM_NUMBER,
-      CONFIG.MAX_RANDOM_NUMBER
-    );
+  tryToMoveForward(randomValue) {
     if (randomValue >= CONFIG.CAR_MOVING_CONDITION) {
       this.moveForward();
     }

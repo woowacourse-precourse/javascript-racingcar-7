@@ -1,8 +1,10 @@
 import Car from './model/Car.js';
 import InputView from './view/InputView.js';
 import OutputView from './view/OutputView.js';
-import { validateCarNamesInput, validateTurnCount } from './util/validation.js';
+import { CONFIG } from './constant/config.js';
 import { INPUT_MESSAGE } from './constant/message.js';
+import { getRandomNumber } from './util/Random.js';
+import { validateCarNamesInput, validateTurnCount } from './util/validation.js';
 
 class App {
   constructor() {
@@ -32,7 +34,11 @@ class App {
 
   moveCars() {
     this.carList.forEach((car) => {
-      car.tryToMoveForward();
+      const randomValue = getRandomNumber(
+        CONFIG.MIN_RANDOM_NUMBER,
+        CONFIG.MAX_RANDOM_NUMBER
+      );
+      car.tryToMoveForward(randomValue);
       this.position = Math.max(this.position, car.getPosition());
     });
     OutputView.printCarPositions(this.carList);
