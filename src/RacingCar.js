@@ -39,6 +39,15 @@ class RacingCar {
     printCarStatus(car) {
         Console.print(`${car.name} : ${"-".repeat(car.position)}`);
     }
+
+    getWinners() {
+        const maxPosition = this.getMaxPosition();
+        return this.cars.filter((car) => car.position === maxPosition).map((car) => car.name);
+    }
+
+    getMaxPosition() {
+        return Math.max(...this.cars.map((car) => car.position));
+    }
 }
 
 export default RacingCar;
