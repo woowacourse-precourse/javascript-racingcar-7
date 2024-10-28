@@ -17,7 +17,7 @@ class App {
       racing.race(n);
 
       const winners = racing.RacingResult();
-      Console.print(`최종 우승자 : ${winners}`);
+      Console.print(`최종 우승자 : ${winners.join(", ")}`);
     } catch (error) {
       Console.print(error);
       throw error;
