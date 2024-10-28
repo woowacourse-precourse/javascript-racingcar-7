@@ -9,8 +9,7 @@ class OutputView {
     }
   }
   async printWinner(winner) {
-    Console.print("\n");
-    Console.print(`최종 우승자 : ${winner}`);
+    Console.print(`\n최종 우승자 : ${winner}`);
   }
 }
 

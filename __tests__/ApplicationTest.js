@@ -2,6 +2,7 @@ import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 import SetCarMovementModel from "../src/model/SetCarMovementModel.js";
 import InputView from "../src/view/InputView.js";
+import CarRacingGameController from "../src/controller/CarRacingGameController.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -48,9 +49,42 @@ describe("자동차 경주", () => {
     expect(carMovement).toEqual(expectResult);
   });
 
-  test("자동차 별로 매 순간의 이동 거리를 계산할 수 있다", async () => {});
+  test("자동차 별로 매 try의 이동 거리를 연산하고 -로 출력할 수 있다", async () => {
+    //given
+    const carMovement = [
+      [1, 2],
+      [5, 6],
+    ];
+    const carNames = ["pobi", "woni"];
+    const logs = ["pobi : ", "woni : ", "pobi : -", "woni : -"];
+    const logSpy = getLogSpy();
 
-  test("전체 기능 테스트", async () => {
+    //when
+    const carRacingGameController = new CarRacingGameController();
+    carRacingGameController.setEachTemp(carMovement, carNames);
+
+    //then
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
+  test("우승자를 판별하고 출력할 수 있다", async () => {
+    //given
+    const carNames = ["pobi", "woni"];
+    const totalMovement = [3, 2];
+    const logs = "최종 우승자 : pobi";
+    const logSpy = getLogSpy();
+
+    //when
+    const carRacingGameController = new CarRacingGameController();
+    carRacingGameController.setWinner(carNames, totalMovement);
+
+    //then
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(logs));
+  });
+
+  test("자동차 경주 전체 기능 테스트", async () => {
     // given
     const MOVING_FORWARD = 4;
     const STOP = 3;

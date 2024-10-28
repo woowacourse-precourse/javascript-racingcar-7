@@ -1,3 +1,4 @@
+import { Console } from "@woowacourse/mission-utils";
 import SetCarMovementModel from "../model/SetCarMovementModel.js";
 import SetForwardCountModel from "../model/SetForwardCountModel.js";
 import SetWinnerModel from "../model/SetWinnerModel.js";
@@ -20,15 +21,12 @@ class CarRacingGameController {
       carNames,
       tryCount
     );
-
     const totalDistant = this.setEachTemp(carMovement, carNames);
-
-    const winner = this.SetWinnerModel.setWinner(carNames, totalDistant);
-    this.OutputView.printWinner(winner);
+    this.setWinner(carNames, totalDistant);
   }
   setEachTemp(carMovement, carNames) {
-    //각 try별 이동 거리 구하고 출력
     let totalDistant = Array(carNames.length).fill(0);
+    Console.print("\n실행 결과");
     for (let attempts of carMovement) {
       totalDistant = this.SetForwardCountModel.getTotalDistant(
         attempts,
@@ -38,6 +36,10 @@ class CarRacingGameController {
       this.OutputView.printEachTemp(carNames, totalDistant);
     }
     return totalDistant;
+  }
+  setWinner(carNames, totalDistant) {
+    const winner = this.SetWinnerModel.setWinner(carNames, totalDistant);
+    this.OutputView.printWinner(winner);
   }
 }
 
