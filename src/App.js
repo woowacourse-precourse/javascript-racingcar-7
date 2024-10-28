@@ -1,6 +1,7 @@
 import { Console, Random } from "@woowacourse/mission-utils";
 // Console.readLineAsync() / Console.print() / Random.pickNumberInRange()
 import Validate from "./Validate.js";
+import Race from "./Race.js";
 
 // 사용자가 잘못된 값을 입력할 경우 "[ERROR]"로 시작하는 메시지와 함께 Error를 발생시킨 후 애플리케이션은 종료되어야 한다.
 
@@ -23,23 +24,7 @@ class App {
     car.name.forEach(Validate.nameValidate);
 
     Console.print("\n실행 결과");
-    // for 반복문이 적절한가?
-    for (var j = maxAttempts; j > 0; j--){
-      for (var i = 0; i < CAR_NAME_ARRAY.length; i++){
-        let randomNum = Random.pickNumberInRange(0, 9);
-
-        if (randomNum >= 4){
-          // 전진 -> depth 3. 수정할 것.
-          car.position[i] += 1;
-        }
-
-        // 진행과정 출력 메서드 분리 필요
-        const RACE_PROGRESS_BAR = '-'.repeat(car.position[i]);
-        const RACE_PROGRESS_MESSAGE = `${car.name[i]} : ${RACE_PROGRESS_BAR}`;
-        Console.print(RACE_PROGRESS_MESSAGE);
-      }
-      Console.print("");
-    }  
+    Race.roundProgress(maxAttempts, car);
 
     const WINNER_POSITION = Math.max(...car.position);
     
