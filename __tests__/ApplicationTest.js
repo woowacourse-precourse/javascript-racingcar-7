@@ -46,15 +46,32 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트", async () => {
-    // given
-    const inputs = ["pobi,javaji"];
-    mockQuestions(inputs);
+  const exceptionTestCases = [
+    { name: "예외 테스트", inputs: ["pobi,javaji"] },
+    { name: "자동차 이름 공백 포함 예외 테스트", inputs: ["pobi, woni"] },
+    { name: "자동차 이름 중복 예외 테스트", inputs: ["pobi,pobi"] },
+    {
+      name: "자동차 이름 길이 초과 예외 테스트",
+      inputs: ["pobi,javada"],
+    },
+    { name: "시도 횟수 문자열 예외 테스트", inputs: ["pobi,woni", "abc"] },
+    { name: "시도 횟수 음수 예외 테스트", inputs: ["pobi,woni", "-1"] },
+    { name: "시도 횟수 소수 예외 테스트", inputs: ["pobi,woni", "1.5"] },
+  ];
 
-    // when
-    const app = new App();
+  exceptionTestCases.forEach(({ name, inputs }) => {
+    test(name, async () => {
+      // given
+      mockQuestions(inputs);
 
-    // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
+      // when
+      const app = new App();
+
+      // then
+      await expect(app.run()).rejects.toThrow("[ERROR]");
+    });
   });
 });
+
+
+test.each()();
