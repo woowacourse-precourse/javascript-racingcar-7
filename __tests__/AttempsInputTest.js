@@ -16,7 +16,7 @@ describe("입력한 횟수 유효성 검사", () => {
     expect(moveAttempts).toBe(7);
   });
 
-  test("시도 횟수가 0 이하일 경우 에러 발생", async () => {
+  test("시도 횟수가 1보다 작은지 검사", async () => {
     mockConsoleInput("0");
 
     await expect(getAttempts()).rejects.toThrow(
@@ -24,7 +24,7 @@ describe("입력한 횟수 유효성 검사", () => {
     );
   });
 
-  test("시도 횟수가 숫자가 아닐 경우 에러 발생", async () => {
+  test("시도 횟수가 숫자인지 검사", async () => {
     mockConsoleInput("test");
 
     await expect(getAttempts()).rejects.toThrow(
