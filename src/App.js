@@ -8,6 +8,7 @@ class App {
 
   async run() {
     await this.initGame();
+    this.playRounds();
   }
 
   // 1. 사용자 입력받기
@@ -38,6 +39,22 @@ class App {
       }
       return { name: name, position: 0 }; // 각 자동차의 초기 위치는 0으로 설정
     });
+  }
+
+  // 2. 게임 시작하기
+  playRounds() {
+    console.log("\n실행결과");
+    for (let i = 0; i < this.rounds; i++) {
+      this.cars.forEach((car) => {
+        const RANDOM_VALUE = MissionUtils.Random.pickNumberInRange(0, 9);
+
+        if (RANDOM_VALUE >= 4) {
+          // 랜덤 값이 4 이상일 경우에만 움직이기
+          car.position++;
+        }
+      });
+      this.printRoundResult();
+    }
   }
 }
 
