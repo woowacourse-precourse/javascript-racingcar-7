@@ -32,3 +32,9 @@ export function validateTrial(trialCount) {
         throw new Error('[ERROR] 횟수는 자연수로 입력해야합니다.');
     }
 }
+
+export function isTrialEmpty(trialCount) {
+    if (trialCount.trim() === '') {
+        throw new Error('[ERROR] 횟수를 입력하지 않았습니다.');
+    }
+}
