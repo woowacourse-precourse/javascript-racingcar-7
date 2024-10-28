@@ -45,7 +45,7 @@ class App {
 
   // 2. 게임 시작하기
   playRounds() {
-    console.log("\n실행결과");
+    MissionUtils.Console.print("\n실행결과");
     for (let i = 0; i < this.rounds; i++) {
       this.cars.forEach((car) => {
         const RANDOM_VALUE = MissionUtils.Random.pickNumberInRange(0, 9);
@@ -62,9 +62,9 @@ class App {
   // 3. 각 라운드별 결과 출력하기
   printRoundResult() {
     this.cars.forEach((car) => {
-      console.log(`${car.name} : ${"-".repeat(car.position)}`);
+      MissionUtils.Console.print(`${car.name} : ${"-".repeat(car.position)}`);
     });
-    console.log("");
+    MissionUtils.Console.print("");
   }
 
   // 4. 최종 우승자 출력하기
@@ -73,7 +73,7 @@ class App {
     const WINNERS = this.cars
       .filter((car) => car.position === MAX_POSITION)
       .map((car) => car.name);
-    console.log(`최종 우승자 : ${WINNERS.join(", ")}`);
+    MissionUtils.Console.print(`최종 우승자 : ${WINNERS.join(", ")}`);
   }
 }
 
