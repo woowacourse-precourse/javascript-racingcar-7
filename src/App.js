@@ -38,6 +38,12 @@ class App {
       }
     }
 
+    // 자동차 전진 상태 출력
+    function displayCarProgress(car) {
+      const progress = "-".repeat(carObj[car]);
+      Console.print(`${car} : ${progress}`);
+    }
+
 }
 
 export default App;
