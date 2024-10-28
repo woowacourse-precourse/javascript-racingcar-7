@@ -36,6 +36,11 @@ class App {
         '[ERROR] 시도할 횟수가 공백이거나 음수입니다. 다시 확인해주세요.'
       );
     }
+    if (isNaN(raceRounds)) {
+      throw new Error(
+        '[ERROR] 시도할 횟수가 숫자가 아닙니다. 다시 확인해주세요.'
+      );
+    }
 
     await MissionUtils.Console.print('\n실행 결과');
 
