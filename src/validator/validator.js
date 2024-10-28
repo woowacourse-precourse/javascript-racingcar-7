@@ -62,7 +62,7 @@ const checkValidRange = function checkValidRangeFunc(inputForTryCount) {
 };
 
 const checkIsNull = function checkIsNullFunc(inputString) {
-  if (!inputString) {
+  if (!inputString || inputString.trim() === '') {
     throw new Error(ERROR_MESSAGE.NULL_INPUT);
   }
 
