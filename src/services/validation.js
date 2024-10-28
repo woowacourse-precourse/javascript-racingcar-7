@@ -22,6 +22,12 @@ const validateNameInputFormat = (input) => {
   }
 };
 
+const validateRoundCountFormat = (input) => {
+  if (!REGEX.isValidRoundCountFormat.test(input)) {
+    throwValidationError(ERROR_MESSAGES.invalidRoundCountFormat);
+  }
+};
+
 export const validateCarNames = (input) => {
   validateInputExists(input, ERROR_MESSAGES.emptyCarName);
   validateDelimiter(input);
@@ -30,4 +36,5 @@ export const validateCarNames = (input) => {
 
 export const validateRoundCount = (input) => {
   validateInputExists(input, ERROR_MESSAGES.emptyRoundCount);
+  validateRoundCountFormat(input);
 };
