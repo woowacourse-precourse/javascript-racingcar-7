@@ -46,9 +46,53 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트", async () => {
+  test("우승자 쉼표 구분 테스트", async () => {
+    // given
+    const MOVING_FORWARD = 4;
+    const inputs = ["pobi,woni", "1"];
+    const logs = ["pobi : -", "woni : -", "최종 우승자 : pobi, woni"];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([MOVING_FORWARD, MOVING_FORWARD]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
+  test("이름 글자 수 5 초과 예외 테스트", async () => {
     // given
     const inputs = ["pobi,javaji"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("이름 글자 수 0 예외 테스트", async () => {
+    // given
+    const inputs = [""];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("이동 횟수 예외 테스트", async () => {
+    // given
+    const inputs = ['NaN'];
     mockQuestions(inputs);
 
     // when
