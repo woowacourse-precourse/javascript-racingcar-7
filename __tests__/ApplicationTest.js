@@ -124,6 +124,8 @@ describe("자동차 경주", () => {
     });
   });
 
+  // 자동차 이름 목록 입력 유효성 검증 테스트
+
   test("자동차 이름이 5자를 초과하는 경우", async () => {
     // given
     const inputs = ["파이썬,자바,자바스크립트"];
@@ -139,6 +141,44 @@ describe("자동차 경주", () => {
   test("중복된 자동차 이름을 입력한 경우", async () => {
     // given
     const inputs = ["수학,대머리,대머리,빛"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  // 경주 횟수 입력 유효성 테스트
+
+  test("경주 횟수가 숫자가 아닌 경우", async () => {
+    // given
+    const inputs = ["참치,김치,김밥", "#$"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("경주 횟수가 0 또는 음수인 경우", async () => {
+    // given
+    const inputs = ["지코바,자메이카,블랙마요", "0"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("경주 횟수가 정수가 아닌 양의 소수인 경우", async () => {
+    // given
+    const inputs = ["계란,달걀,EGG", "1.5"];
     mockQuestions(inputs);
 
     // when
