@@ -17,9 +17,9 @@ describe('Simulator class', () => {
 
     expect(printOutput).toHaveBeenCalledWith(MESSAGE.EXECUTE_OUTPUT);
     expect(simulator.state).toStrictEqual([
-      { Car1: 0 },
-      { Car2: 0 },
-      { Car3: 0 },
+      { name: 'Car1', count: 0 },
+      { name: 'Car2', count: 0 },
+      { name: 'Car3', count: 0 },
     ]);
   });
 
@@ -27,11 +27,14 @@ describe('Simulator class', () => {
     const names = ['Car1'];
     const simulator = new Simulator(names);
     pickRandomNumberInRange.mockReturnValue(5);
+    console.log(simulator.state);
 
     simulator.simulate();
     console.log(simulator.state);
-    expect(simulator.state).toStrictEqual([{ Car1: 1 }]);
-    expect(printOutput).toHaveBeenCalledWith('Car1 : -\n');
+    expect(simulator.state).toStrictEqual([{ name: 'Car1', count: 1 }]);
+    expect(printOutput).toHaveBeenCalledWith(MESSAGE.EXECUTE_OUTPUT);
+    expect(printOutput).toHaveBeenCalledWith('Car1 : -');
+    expect(printOutput).toHaveBeenCalledWith('');
   });
 
   test('#canMoveForward가 false일 때 상태 업데이트 확인하기', () => {
@@ -41,8 +44,10 @@ describe('Simulator class', () => {
 
     simulator.simulate();
 
-    expect(simulator.state).toStrictEqual([{ Car1: 0 }]);
-    expect(printOutput).toHaveBeenCalledWith('Car1 : \n');
+    expect(simulator.state).toStrictEqual([{ name: 'Car1', count: 0 }]);
+    expect(printOutput).toHaveBeenCalledWith(MESSAGE.EXECUTE_OUTPUT);
+    expect(printOutput).toHaveBeenCalledWith('Car1 : ');
+    expect(printOutput).toHaveBeenCalledWith('');
   });
 
   test('자동차가 여러 개일 때 상태 업데이트 확인하기', () => {
@@ -52,7 +57,11 @@ describe('Simulator class', () => {
 
     simulator.simulate();
 
-    expect(simulator.state).toStrictEqual([{ Car1: 1 }, { Car2: 0 }]);
+    expect(simulator.state).toStrictEqual([
+      { name: 'Car1', count: 1 },
+      { name: 'Car2', count: 0 },
+    ]);
+    expect(printOutput).toHaveBeenCalledWith(MESSAGE.EXECUTE_OUTPUT);
     expect(printOutput).toHaveBeenCalledWith('Car1 : -');
     expect(printOutput).toHaveBeenCalledWith('Car2 : ');
     expect(printOutput).toHaveBeenCalledWith('');

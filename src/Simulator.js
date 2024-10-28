@@ -7,7 +7,7 @@ class Simulator {
   constructor(names) {
     printOutput(MESSAGE.EXECUTE_OUTPUT);
     this.state = names.reduce((arr, name) => {
-      arr.push({ [name]: 0 });
+      arr.push({ name, count: 0 });
       return arr;
     }, []);
   }
