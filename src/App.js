@@ -48,9 +48,11 @@ class App {
     cars.forEach((car) => {
       Console.print(`${car.name} : ${"-".repeat(car.distance)}`);
     });
+    Console.print(`\n`);
   }
 
   runRace(cars, attemptCount) {
+    Console.print("\n실행 결과");
     for (let i = 0; i < attemptCount; i++) {
       this.excuteAttempt(cars);
       this.printProgress(cars);
