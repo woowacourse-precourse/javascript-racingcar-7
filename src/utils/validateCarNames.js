@@ -10,7 +10,6 @@ const validateCarNames = (carNames) => {
   }
 
   carNames.forEach((name) => {
-    console.log(name.trim());
     if (name.trim().length === 0 || name.length > 5) {
       throw new CustomError(
         ERROR.INVALID_CAR_NAMES.message,
