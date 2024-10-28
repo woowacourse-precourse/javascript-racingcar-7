@@ -1,5 +1,9 @@
 import App from '../src/App.js';
-import { getLogSpy, mockQuestions, mockRandoms } from '../utils/testUtils.js';
+import {
+  getLogSpy,
+  mockQuestions,
+  mockRandoms,
+} from '../src/utils/testUtils.js';
 
 const MOVING_FORWARD = 4;
 const STOP = 3;

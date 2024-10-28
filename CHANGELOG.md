@@ -7,7 +7,7 @@
 - docs(readme): add exception cases for test codes
 - docs(readme): update implementation checklist status
 - docs(readme): update implementation goals and feature list
-- docs: reorganize directory structure
+- docs(readme): reorganize directory structure
 - docs(readme): add detailed requirements
 
 ## New Features

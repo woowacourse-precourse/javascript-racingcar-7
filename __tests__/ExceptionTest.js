@@ -1,5 +1,5 @@
 import App from '../src/App.js';
-import { mockQuestions } from '../utils/testUtils.js';
+import { mockQuestions } from '../src/utils/testUtils.js';
 
 describe('예외 케이스', () => {
   test.each([
