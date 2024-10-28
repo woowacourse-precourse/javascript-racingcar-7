@@ -98,6 +98,32 @@ describe("자동차 경주", () => {
     });
   });
 
+  test("모든 자동차가 득점하지 못한 경우", async () => {
+    // given
+    // const MOVING_FORWARD = 4;
+    // const STOP = 3;
+    const inputs = ["카카포,케아,코카투", "2"];
+    const logs = [
+      "카카포 : ",
+      "케아 : ",
+      "코카투 : ",
+      "아무도 득점하지 못했습니다.",
+    ];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([2, 3, 1, 1, 2, 3]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
   test("자동차 이름이 5자를 초과하는 경우", async () => {
     // given
     const inputs = ["우테코,우테콩콩,우테꽁꽁꽁꽁"];
