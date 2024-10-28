@@ -15,10 +15,7 @@ class App {
     const inputCarNames = await Console.readLineAsync(
       "경주할 자동차 이름(이름은 쉽표(,) 기준으로 구분)\n"
     );
-
-    if (inputCarNames === "") {
-      throw new Error("[ERROR]: 빈 문자열은 입력할 수 없습니다.");
-    }
+    this.validateCarNames(inputCarNames);
 
     const carNames = inputCarNames.split(",");
     return this.createRaceCars(carNames);
@@ -87,6 +84,12 @@ class App {
     const winners = longestRaceCars.map((raceCar) => raceCar.name).join(", ");
 
     Console.print("최종 우승자 : " + winners);
+  }
+
+  validateCarNames(inputCarNames) {
+    if (inputCarNames === "") {
+      throw new Error("[ERROR]: 빈 문자열은 입력할 수 없습니다.");
+    }
   }
 }
 
