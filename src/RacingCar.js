@@ -12,11 +12,20 @@ class RacingCar {
     this.#status = [];
   }
 
+  printForward() {
+    this.#cars.forEach((car, index) => {
+      Console.print(`${car} : ${this.#status[index]}`);
+    });
+    Console.print('');
+  }
+
   moveForward() {
     this.#cars.forEach((car, index) => {
       const number = Random.pickNumberInRange(0, 9);
       if (number >= 4) this.#status[index] += '-';
     });
+
+    this.printForward();
   }
 
   async receiveInput() {
@@ -26,8 +35,7 @@ class RacingCar {
     const count = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
 
     cars.split(',').forEach((car) => {
-      car.trim();
-      this.#cars.push(car);
+      this.#cars.push(car.trim());
       this.#status.push('');
     });
 
