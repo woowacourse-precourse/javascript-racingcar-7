@@ -77,6 +77,10 @@ class App {
     return carsObject;
   }
 
+  findMaxDist(carsObject) {
+    return Math.max(...Object.values(carsObject).map((pos) => pos.length));
+  }
+
   async run() {
     try {
       const carsName = await this.inputCars();
