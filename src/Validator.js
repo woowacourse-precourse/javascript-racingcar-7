@@ -1,6 +1,6 @@
-import { MAX_NAME_LENGTH, MIN_CARS } from "./constants";
+import { MAX_NAME_LENGTH, MIN_CARS } from "./constants.js";
 
-class Validator {
+export class Validator {
   static #validateNotEmptyName(name) {
     if (!name.trim()) {
       throw new Error("[ERROR] 자동차 이름은 빈 문자열일 수 없습니다.");
