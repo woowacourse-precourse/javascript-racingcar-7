@@ -1,8 +1,8 @@
-import { Random } from '@woowacourse/mission-utils';
 import OutputView from './View/OutputView.js';
 import InputView from './View/InputView.js';
 import CarModel from './CarModel.js';
 import { validateName, validateTryCount } from './validation.js';
+import { getRandomNumber } from './utils/getRandomNumber.js';
 
 export default class Controller {
   constructor() {
@@ -54,17 +54,13 @@ export default class Controller {
   }
 
   canMoveForward() {
-    const randomNumber = this.getRandomNumber();
+    const randomNumber = getRandomNumber();
 
     if (randomNumber >= 4) {
       return true;
     }
 
     return false;
-  }
-
-  getRandomNumber() {
-    return Random.pickNumberInRange(0, 9);
   }
 
   async getNames() {
