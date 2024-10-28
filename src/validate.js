@@ -24,6 +24,10 @@ export const validateUserAttempts = (attempts) => {
     throw new Error(ATTEMPT_COUNT_ERROR_MESSAGE.attemptCountNotNumber);
   }
 
+  if (FORMAT_ATTEMPT === 0) {
+    throw new Error(ATTEMPT_COUNT_ERROR_MESSAGE.attemptCountZero);
+  }
+
   if (FORMAT_ATTEMPT < 0) {
     throw new Error(ATTEMPT_COUNT_ERROR_MESSAGE.attemptCountNegative);
   }
