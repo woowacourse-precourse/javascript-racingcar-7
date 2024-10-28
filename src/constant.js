@@ -7,10 +7,10 @@ export const MESSAGE = Object.freeze({
 });
 
 export const ERROR_MESSAGE = Object.freeze({
-  EMPTY_INPUT: '[Error] 입력값이 없습니다.',
-  NAME_TOO_LONG: '[Error] 이름은 5자 이하로 입력해야 합니다.',
-  DUPLICATE_NAME: '[Error] 자동차 이름은 중복될 수 없습니다.',
-  INVALID_TRY_COUNT: '[Error] 시도 횟수는 양수여야 합니다.',
+  EMPTY_INPUT: '[ERROR] 입력값이 없습니다.',
+  NAME_TOO_LONG: '[ERROR] 이름은 5자 이하로 입력해야 합니다.',
+  DUPLICATE_NAME: '[ERROR] 자동차 이름은 중복될 수 없습니다.',
+  INVALID_TRY_COUNT: '[ERROR] 시도 횟수는 양수여야 합니다.',
 });
 
 export const RANGE = Object.freeze({
@@ -18,3 +18,5 @@ export const RANGE = Object.freeze({
   END: 9,
   VALID: 4,
 });
+
+export const MAX_INPUT_LENGTH = 5;
