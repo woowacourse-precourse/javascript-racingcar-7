@@ -1,4 +1,5 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
+import { CONSTANTS } from "./constants/constants.js";
 import RacingGameUtils from "./RacingGameUtils.js";
 
 class RacingGame {
@@ -16,7 +17,7 @@ class RacingGame {
 
   generateMove() {
     const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
-    return randomNumber >= 4;
+    return randomNumber >= CONSTANTS.MOVING_FORWARD_NUMBER;
   }
 
   getRacingResultByRound() {

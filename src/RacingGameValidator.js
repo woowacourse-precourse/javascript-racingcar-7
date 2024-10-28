@@ -1,14 +1,15 @@
 import { ERROR_MESSAGES } from "./constants/errorMessages.js";
+import { CONSTANTS } from "./constants/constants.js";
 
 class RacingGameValidator {
   static carNameLengthUnderSix(carNames) {
     carNames.forEach((car) => {
-      if (car.length > 5) throw Error(ERROR_MESSAGES.CAR_NAME_LENGTH_OVER_FIVE);
+      if (car.length > CONSTANTS.MAXIMUM_CAR_NAME_NUMBER) throw Error(ERROR_MESSAGES.CAR_NAME_LENGTH_OVER_FIVE);
     });
   }
 
   static carNumberOverOne(carNames) {
-    if (carNames.length < 2) throw Error(ERROR_MESSAGES.CAR_NUMBER_UNDER_TWO);
+    if (carNames.length < CONSTANTS.MINIMUM_CAR_NUMBER) throw Error(ERROR_MESSAGES.CAR_NUMBER_UNDER_TWO);
   }
 
   static tryCountIsNumber(tryCount) {
