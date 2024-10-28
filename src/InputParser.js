@@ -2,14 +2,13 @@ import { ERROR_MESSAGES } from './constants.js';
 
 class InputParser {
   constructor(carNamesStr, tryCntStr) {
-    this.carNamesStr = carNamesStr;
+    this.carNamesArr = this.parseCarNames(carNamesStr);
     this.tryCnt = +tryCntStr;
-    this.carNamesArr = this.parseCarNames();
   }
 
   parse() {
     this.validateCarNames();
-    this.validateAttempCnt();
+    this.validateTryCnt();
 
     return {
       carNamesArr: this.carNamesArr,
@@ -17,11 +16,11 @@ class InputParser {
     };
   }
 
-  parseCarNames() {
-    return this.carNamesStr.split(',');
+  parseCarNames(carNamesStr) {
+    return carNamesStr.split(',');
   }
 
-  validateAttempCnt() {
+  validateTryCnt() {
     if (this.tryCnt === 0 || !Number.isInteger(this.tryCnt)) {
       this.printError(ERROR_MESSAGES.TRY_CNT_MUST_BE_POSITIVE_INTEGER);
     }
