@@ -3,6 +3,7 @@ import { getRandomNumber } from './Constants.js';
 
 export class Car {
   constructor(name) {
+    nameLimitTest(name);
     this.name = name;
     this.location = 0;
   }
@@ -19,7 +20,6 @@ export class Car {
   }
 
   getName() {
-    nameLimitTest(this.name);
     return this.name;
   }
 }
