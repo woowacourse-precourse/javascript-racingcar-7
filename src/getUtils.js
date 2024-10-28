@@ -9,4 +9,14 @@ const getCarArray = (splittedCarNames) => {
     return carArray;
 };
 
-export {getCarArray};
+const getMaxDistance = (carArray) => {
+    let maxDistance = 0;
+    for (let i = 0; i < carArray.length; i++) {
+      if (carArray[i].distance > maxDistance) {
+        maxDistance = carArray[i].distance;
+      }
+    }
+    return maxDistance;
+  };
+
+export { getCarArray, getMaxDistance };
