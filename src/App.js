@@ -10,7 +10,9 @@ class App {
     const duplicateCheckedNames = this.duplicateCheckName(inputCheckedNames);
     // 경주 횟수 입력
     const playCount = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
-    const racingCars = duplicateCheckedNames.map((name) => {name: 0});
+    const racingCars = duplicateCheckedNames.map((name) => {
+      return { name: name, score: 0 }
+    });
     // 경주 단계별로 실행 후 출력
     Console.print("\n실행 결과");
     for (let i = 0; i < playCount; i++) {
@@ -33,6 +35,7 @@ class App {
     } else if (name.length > 5) {
       throw new Error("[ERROR] 자동차 이름은 5자 이하만 가능합니다.");
     }
+    return name;
   }
 
   duplicateCheckName(names) {
@@ -44,6 +47,30 @@ class App {
     return names;
   }
 
+  randomForward(car) {
+    const randomNum = MissionUtils.Random.pickNumberInRange(0, 9);
+    if (randomNum >= 4) {
+      car.score += 1;
+    }
+  }
+
+  printRacingCarForward(car) {
+    Console.print(`${car.name} : ${"-".repeat(car.score)}`);
+  }
+
+  getWinnerList(cars) {
+    let winner = cars.reduce((acc, car) => {
+      if (acc.length === 0) {
+        return [car];
+      } else if (acc[0].score === car.score) {
+        return acc.concat(car);
+      } else if (acc[0].score < car.score) {
+        return [car];
+      }
+      return acc;
+    }, []);
+    return winner;
+  }
 }
 
 export default App;
