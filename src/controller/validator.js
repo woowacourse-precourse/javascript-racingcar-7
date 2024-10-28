@@ -2,7 +2,7 @@ import { ERROR_MESSAGE } from "../constants/messages.js";
 
 class Validator {
   static #MIN_NAME_LENGTH = 1;
-  static #MAX_NAME_LENGTH = 5;
+  static #MAX_NAME_LENGTH = 20;
   static #SPECIAL_CHAR_REGEX = /[!@#$%^&*(),.?":{}|<>~`]/;
   static #NAME_LANGUAGE_REGEX = /^[a-zA-Z가-힣ㄱ-ㅎㅏ-ㅣ0-9\s]+$/;
   static #MIN_CAR_LIST_SIZE = 2;
@@ -70,7 +70,7 @@ class Validator {
   }
 
   static #checkEmptyInput(attempts) {
-    if (attempts.length === Validator.#EMPTY_STRING) {
+    if (attempts === Validator.#EMPTY_STRING) {
       throw new Error(ERROR_MESSAGE.EMPTY_INPUT_NOT_ALLOWED);
     }
   }

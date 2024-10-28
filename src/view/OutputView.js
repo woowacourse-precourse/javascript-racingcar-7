@@ -18,7 +18,7 @@ class OutputView {
       const distance = OutputView.#DASH.repeat(car.position);
       OutputView.#printMessage(`${carName} : ${distance}`);
     });
-    return OutputView.#printMessage("\n");
+    return OutputView.printBlankLine();
   }
 
   static printFinalWinner(winnerString) {
