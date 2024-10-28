@@ -2,7 +2,7 @@ import { Console, Random } from "@woowacourse/mission-utils";
 
 class Car {
   constructor(carName) {
-    if (carName.length > 5) {
+    if (carName.length > 5 || !carName || carName.trim() === "") {
       throw new Error("[ERROR]");
     }
     this.name = carName;
@@ -26,7 +26,7 @@ class RacingGame {
 
   play(number) {
     const rounds = Number(number);
-    if (isNaN(rounds)) {
+    if (isNaN(rounds) || rounds <= 0) {
       throw new Error("[ERROR]");
     }
     for (let i = 0; i < rounds; i++) {
