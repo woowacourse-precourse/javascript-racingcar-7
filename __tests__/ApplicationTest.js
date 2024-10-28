@@ -46,9 +46,78 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트", async () => {
+  test("기능 테스트 - 동점자 출력", async () => {
+    // given
+    const MOVING_FORWARD = 4;
+    const STOP = 3;
+    const inputs = ["pobi,woni,java", "1"];
+    const logs = ["pobi : -", "woni : -", "최종 우승자 : pobi, woni"];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([MOVING_FORWARD, MOVING_FORWARD, STOP]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
+  test("예외 테스트 - 긴 자동차 이름", async () => {
     // given
     const inputs = ["pobi,javaji"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 - 공백 자동차 이름", async () => {
+    // given
+    const inputs = ["pobi,,java"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 - 같은 자동차 이름", async () => {
+    // given
+    const inputs = ["pobi,pobi"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 - 숫자가 아닌 시도 횟수", async () => {
+    // given
+    const inputs = ["pobi,java", "number"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 - 음수 시도 횟수", async () => {
+    // given
+    const inputs = ["pobi,java", "-1"];
     mockQuestions(inputs);
 
     // when
