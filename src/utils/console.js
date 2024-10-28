@@ -6,3 +6,8 @@ export const getCarNames = async () => {
   );
   return carName.split(",").map((carName) => carName.trim());
 };
+
+export const getTryCount = async () => {
+  const tryCount = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+  return Number(tryCount);
+};

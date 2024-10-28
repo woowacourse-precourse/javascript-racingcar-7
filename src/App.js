@@ -3,6 +3,7 @@ import {
   getCarNames,
   checkForDuplicates,
   hasInvalidCarNameLength,
+  getTryCount,
 } from "./utils/index.js";
 
 class App {
@@ -11,6 +12,8 @@ class App {
       const carNames = await getCarNames();
       checkForDuplicates(carNames);
       hasInvalidCarNameLength(carNames);
+
+      const tryCount = await getTryCount();
     } catch (error) {
       console.error(error.message);
     }
