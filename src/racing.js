@@ -10,7 +10,7 @@ export function progressRacing(carList) {
     if (randomNum >= 4) {
       flag = 1;
     }
-    progressResult.push(value);
+    progressResult.push(flag);
     
   });
   return progressResult;
