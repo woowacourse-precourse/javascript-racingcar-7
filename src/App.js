@@ -40,6 +40,9 @@ class App {
       Console.print('\n실행 결과');
       //자동차 전진 기능
       this.moveCars(cars, tryCount);
+
+      // 우승자 출력 기능
+      this.printWinners(cars);
     } catch (error) {
       throw error;
     }
@@ -91,6 +94,19 @@ class App {
       Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
     }
     Console.print('');
+  }
+
+  printWinners(cars) {
+    // 최대 이동거리 찾기
+    const maxPosition = Math.max(...cars.map((car) => car.position));
+
+    // 승자 선정
+    const winners = cars
+      .filter((car) => car.position === maxPosition)
+      .map((car) => car.name);
+
+    // 결과 출력
+    Console.print(`최종 우승자 : ${winners.join(', ')}`);
   }
 }
 
