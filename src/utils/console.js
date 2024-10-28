@@ -11,3 +11,10 @@ export const getTryCount = async () => {
   const tryCount = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
   return Number(tryCount);
 };
+
+export function printRaceStatus(cars) {
+  cars.forEach((car) => {
+    console.log(`${car.name}: ${"-".repeat(car.position)}`);
+  });
+  console.log("");
+}
