@@ -1,4 +1,6 @@
 import Car from './Car.js';
+import IOProcessor from './IOProcessor.js';
+import { OUTPUT_MESSAGE } from './constants.js';
 
 /**
  *
@@ -11,6 +13,7 @@ class RacingController {
    *
    */
   setCars(cars) {
+    this.ioProcessor = new IOProcessor();
     this.#cars = cars.map((car) => new Car(car));
   }
 
@@ -25,8 +28,12 @@ class RacingController {
    *
    */
   run() {
+    this.ioProcessor.processOutput(OUTPUT_MESSAGE.RESULT);
+
     for (let i = 0; i < this.#count; i++) {
       this.#cars.forEach((car) => car.accelerate());
+      this.#cars.forEach((car) => car.printStatus());
+      this.ioProcessor.processOutput('');
     }
   }
 }

@@ -4,6 +4,11 @@ const INPUT_MESSAGE = Object.freeze({
   INPUT_COUNT: '시도할 횟수는 몇 회인가요?\n',
 });
 
+const OUTPUT_MESSAGE = Object.freeze({
+  RESULT: '실행 결과',
+  WINNER: '최종 우승자 : ',
+});
+
 const DELEMETER = ',';
 
 const RANDOM_NUMBER = Object.freeze({
@@ -12,4 +17,4 @@ const RANDOM_NUMBER = Object.freeze({
   THRESHOLD: 4,
 });
 
-export { INPUT_MESSAGE, DELEMETER, RANDOM_NUMBER };
+export { INPUT_MESSAGE, OUTPUT_MESSAGE, DELEMETER, RANDOM_NUMBER };
