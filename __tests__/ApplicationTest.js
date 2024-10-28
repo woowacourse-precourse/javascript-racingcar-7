@@ -84,4 +84,13 @@ describe("자동차 경주", () => {
       ERROR_MESSAGES.INVALID_CAR_NAME_LENGTH
     );
   });
+
+  test("시도 횟수가 숫자가 아닐 때 예외 테스트", async () => {
+    const inputs = ["ho,ho1", "abc"];
+    mockQuestions(inputs);
+    const app = new App();
+    await expect(app.run()).rejects.toThrow(
+      ERROR_MESSAGES.INVALID_ATTEMPT_COUNT
+    );
+  });
 });
