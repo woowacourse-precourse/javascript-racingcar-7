@@ -1,4 +1,4 @@
-import CAR_NAME_SPLITER from '../../constants/Rule.js';
+import { CAR_NAME_SPLITER } from '../../constants/Rule.js';
 
 const parse = function (rawCarNames) {
   const carNames = rawCarNames.split(CAR_NAME_SPLITER);
