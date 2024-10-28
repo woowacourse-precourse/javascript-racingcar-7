@@ -58,3 +58,13 @@ describe('자동차 이름 입력 받기', () => {
     await expect(app.run()).rejects.toThrow('[ERROR]');
   });
 });
+
+describe('경기 횟수 입력 받기', () => {
+  test('경기 횟수 입력 값이 문자일 시 에러를 던진다.', async () => {
+    const racingCountInput = ['One'];
+    mockQuestions(racingCountInput);
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+});
