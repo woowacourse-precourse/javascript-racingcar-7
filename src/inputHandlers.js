@@ -8,3 +8,8 @@ export async function getCarNames() {
   validateCarNames(inputCarNames);
   return inputCarNames;
 }
+
+export async function getAttempts() {
+  const attemps = await Console.readLineAsync(MESSAGES.ATTEMPTS_INPUT);
+  return attemps;
+}
