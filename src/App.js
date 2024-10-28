@@ -1,4 +1,3 @@
-import MainTest from './controllers/MainTest.js';
 import { StartMessage } from './view/ConsoleView.js';
 import { userInput } from './controllers/userInput.js';
 import gameController from './controllers/gameController.js';
