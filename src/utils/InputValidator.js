@@ -1,4 +1,4 @@
-import MESSAGES from "../constants/Message.js";
+import MESSAGES from '../constants/Message.js';
 
 const InputValidator = {
   isEmpty: (input) => {

@@ -1,6 +1,6 @@
-import CarList from "../models/CarList.js";
-import Parser from "./Parser.js";
-import { validateCarNames } from "./validateCarNames.js";
+import CarList from '../models/CarList.js';
+import Parser from './Parser.js';
+import { validateCarNames } from './validateCarNames.js';
 
 export const createCarList = (carNames) => {
   const carList = new CarList();

@@ -1,1 +1,1 @@
-export const generateAdvanceSymbol = (advance) => "-".repeat(advance);
+export const generateAdvanceSymbol = (advance) => '-'.repeat(advance);

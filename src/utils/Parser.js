@@ -1,10 +1,6 @@
 const Parser = {
-  splitSpring: (input) => {
-    return input.split(",").map((name) => name.trim());
-  },
-  parseNumber: (input) => {
-    return Number(input);
-  },
+  splitSpring: (input) => input.split(',').map((name) => name.trim()),
+  parseNumber: (input) => Number(input),
 };
 
 export default Parser;

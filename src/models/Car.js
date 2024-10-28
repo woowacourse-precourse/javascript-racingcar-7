@@ -5,7 +5,7 @@ class Car {
   }
 
   addAdvance() {
-    this.advance++;
+    this.advance += 1;
   }
 }
 

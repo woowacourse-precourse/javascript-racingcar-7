@@ -1,5 +1,5 @@
-import raceRound from "./rounds/raceRound.js";
-import resultRound from "./rounds/resultRound.js";
+import raceRound from './rounds/raceRound.js';
+import resultRound from './rounds/resultRound.js';
 
 const raceController = (carList) => {
   carList.cars.forEach((car) => {
