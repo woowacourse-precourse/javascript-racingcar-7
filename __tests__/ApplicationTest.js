@@ -46,43 +46,20 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트 - 자동차 이름이 5자 초과", async () => {
-    const inputs = ["pobi,javaji"];
+  test.each([
+    { inputs: ["pobi,javaji"], description: "자동차 이름이 5자 초과" },
+    { inputs: ["pobi,woni", "-1"], description: "이동 횟수가 음수" },
+    { inputs: ["pobi,woni", "2.5"], description: "이동 횟수가 소수" },
+    { inputs: ["pobi,woni", "abc"], description: "이동 횟수 숫자 x" },
+    { inputs: [""], description: "빈 문자열 입력" },
+  ])("예외 테스트 - $description", async ({ inputs }) => {
+    // given
     mockQuestions(inputs);
 
+    // when
     const app = new App();
-    await expect(app.run()).rejects.toThrow("[ERROR]");
-  });
 
-  test("예외 테스트 - 이동 횟수가 음수", async () => {
-    const inputs = ["pobi,woni", "-1"];
-    mockQuestions(inputs);
-
-    const app = new App();
-    await expect(app.run()).rejects.toThrow("[ERROR]");
-  });
-
-  test("예외 테스트 - 이동 횟수가 소수", async () => {
-    const inputs = ["pobi,woni", "2.5"];
-    mockQuestions(inputs);
-
-    const app = new App();
-    await expect(app.run()).rejects.toThrow("[ERROR]");
-  });
-
-  test("예외 테스트 - 이동 횟수 숫자 x", async () => {
-    const inputs = ["pobi,woni", "abc"];
-    mockQuestions(inputs);
-
-    const app = new App();
-    await expect(app.run()).rejects.toThrow("[ERROR]");
-  });
-
-  test("예외 테스트 - 빈 문자열 입력", async () => {
-    const inputs = [""];
-    mockQuestions(inputs);
-
-    const app = new App();
+    // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 });
