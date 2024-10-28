@@ -13,6 +13,19 @@ class Vehicle {
   }
 }
 
+class Race {
+  constructor(vehicleNames) {
+    this.vehicles = vehicleNames.map((name) => new Vehicle(name));
+  }
+
+  startRace(rounds) {
+    const attemptCount = Number(rounds);
+    if (isNaN(attemptCount) || attemptCount <= 0) {
+      throw new Error("[ERROR] 이동 횟수는 1 이상의 정수여야 합니다.");
+    }
+  }
+}
+
 class App {
   async run() {
     try {
@@ -22,7 +35,8 @@ class App {
       const vehicles = vehicleNames.split(",").map(name => new Vehicle(name.trim()));
 
       const roundCount = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
-
+      const race = new Race(vehicles);
+      race.startRace(roundCount);
     } catch (error) {
       throw new Error(error.message);
     }
