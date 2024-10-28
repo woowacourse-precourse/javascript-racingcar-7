@@ -7,10 +7,18 @@ class App {
     const carNames = await MissionUtils.Console.readLineAsync(
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n'
     );
-    const trimmedCarNames = carNames.split(',').map((name) => name.trim());
+    if (!carNames.includes(',')) {
+      throw new Error(
+        '[ERROR] 2명 이상을 입력해야하며 구분자(,)가 있어야 합니다.'
+      );
+    } else {
+      const validateInputCarNames = carNames
+        .split(',')
+        .map((name) => name.trim());
 
-    for (const carName of trimmedCarNames) {
-      if (carName) map.set(carName, '');
+      for (const carName of validateInputCarNames) {
+        if (carName) map.set(carName, '');
+      }
     }
 
     const raceRounds = await MissionUtils.Console.readLineAsync(
