@@ -89,4 +89,16 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
+  test("이름에 공백 입력 시 오류", async () => {
+    // given
+    const inputs = [" "];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
 });
