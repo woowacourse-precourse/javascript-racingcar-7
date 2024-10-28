@@ -27,6 +27,12 @@ class InputValidator {
       throw new Error('[ERROR] 자동차 이름은 중복될 수 없습니다.');
     }
 
+    names.forEach((name) => {
+      if (name.length > 5) {
+        throw new Error('[ERROR] 자동차 이름은 5자 이하이어야 합니다.');
+      }
+    });
+
     return names;
   }
 
