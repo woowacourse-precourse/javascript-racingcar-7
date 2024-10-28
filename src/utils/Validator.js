@@ -3,6 +3,7 @@ import { errorMessage } from '../constants.js'
 
 export default class Validator {
 
+    // 글자 길이 체크
     static isFiveOrLess(inputCarName) {
         inputCarName.forEach(carName => {
             if(carName.length == 0||carName.length > 5)

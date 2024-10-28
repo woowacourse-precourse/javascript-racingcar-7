@@ -7,6 +7,7 @@ import Calculator from '../utils/Calculator.js';
 import Validator from '../utils/Validator.js';
 
 export default class AppController {
+
     carList = [];
 
     async control() {
@@ -35,6 +36,7 @@ export default class AppController {
         Validator.isEmpty(inputCarName);
         const carNameList = Parser.separateCarName(inputCarName);
         Validator.isFiveOrLess(carNameList);
+        
         return carNameList;
     }
 
