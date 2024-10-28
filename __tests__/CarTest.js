@@ -35,4 +35,18 @@ describe('Car 클래스 테스트', () => {
     expect(randomNumber).toBeGreaterThanOrEqual(minNumber);
     expect(randomNumber).toBeLessThanOrEqual(maxNumber);
   });
+
+  test('랜덤 수가 4이상인 경우 자동차의 전진 횟수를 1증가할 수 있다.', () => {
+    const randomNumber = 6;
+    const carName = 'minji';
+
+    const car = new Car(carName);
+    const beforeMoveCount = car.forwardCount;
+
+    car.moveForward(randomNumber);
+
+    const currentMoveCount = car.forwardCount;
+
+    expect(currentMoveCount).toBe(beforeMoveCount + 1);
+  });
 });
