@@ -1,9 +1,6 @@
 import { startedCar } from './startedCar.js';
 
-export const getRace = async (cars) => {
-  for (const car of cars) {
-    await startedCar(car);
-  }
-
+export const getRace = (cars) => {
+  cars.forEach((car) => startedCar(car));
   return cars;
 };
