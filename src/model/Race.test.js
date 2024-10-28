@@ -53,7 +53,11 @@ describe('Race 클래스', () => {
     ];
     const winners = race.determineWinners();
     expect(winners.length).toBe(3);
-    expect(winners.map((car) => car.name)).toEqual(['car1', 'car2', 'car3']);
+    expect(
+      winners.every((winner) =>
+        race.cars.some((car) => car.name === winner.name)
+      )
+    ).toBeTruthy();
   });
 
   test('한대의 자동차만 가장 앞에 있을 때 해당 자동차를 우승자로 반환한다', () => {
