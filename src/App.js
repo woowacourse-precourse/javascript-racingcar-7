@@ -12,7 +12,11 @@ class App {
             }
 
             Console.print('시도할 횟수는 몇 회인가요?');
-            const tryNum = await Console.readLineAsync('');
+            const tryNum = parseInt(await Console.readLineAsync(''));
+            // 입력한 시도 횟수 예외 처리
+            if (isNaN(tryNum)) this.throwError('시도 횟수가 숫자가 아님');
+            else if (!chkTryNum(tryNum)) this.throwError('시도 횟수가 0이거나 음수');
+
             const count = Array(carArray.length).fill(0);
 
             // 경주 게임
@@ -48,6 +52,10 @@ function chkCarName(cars) {
     return true;
 }
 
+function chkTryNum(num) {
+    return num > 0;
+}
+
 function moveCar(cars, count) {
     for (let i = 0; i < cars.length; i++) {
         var randomNum = MissionUtils.Random.pickNumberInRange(0, 9);
@@ -55,7 +63,6 @@ function moveCar(cars, count) {
             count[i]++;
         }
     }
-    return cars, count;
 }
 
 function winnerCar(carArray, count, max) {
