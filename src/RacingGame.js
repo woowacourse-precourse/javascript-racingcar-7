@@ -11,6 +11,7 @@ class RacingGame {
     try {
       await this.initializeGame();
       await this.race();
+      this.announceWinners();
     } catch (error) {
       Console.print(error.message);
     }
@@ -77,6 +78,15 @@ class RacingGame {
       const position = '-'.repeat(car.getPosition());
       Console.print(`${car.getName()} : ${position}`);
     });
+  }
+
+  announceWinners() {
+    const maxPosition = Math.max(...this.cars.map((car) => car.getPosition()));
+    const winners = this.cars
+      .filter((car) => car.getPosition() === maxPosition)
+      .map((car) => car.getName());
+
+    Console.print(`최종 우승자 : ${winners.join(', ')}`);
   }
 }
 
