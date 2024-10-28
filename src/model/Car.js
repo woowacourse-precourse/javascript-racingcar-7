@@ -1,3 +1,5 @@
+import { MOVE_DISTANCE } from '../constants/Config.js';
+
 class Car {
   #name;
   #moveCount;
@@ -16,7 +18,7 @@ class Car {
   }
 
   move () {
-    this.#moveCount += 1;
+    this.#moveCount += MOVE_DISTANCE;
   }
 }
 

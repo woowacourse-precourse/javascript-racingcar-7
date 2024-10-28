@@ -1,6 +1,7 @@
-import { MissionUtils } from '@woowacourse/mission-utils';
 import Car from '../model/Car.js';
 import GAME_STATUS from '../constants/gameStatus.js';
+import { MissionUtils } from '@woowacourse/mission-utils';
+import { MOVE_DETERMINING_NUMBER, RANDOM_NUMBER } from '../constants/Config.js';
 
 class RaceGameService {
   #status;
@@ -64,7 +65,9 @@ class RaceGameService {
 
   #canMove () {
     return (this.#status === GAME_STATUS.PLAYING
-      && MissionUtils.Random.pickNumberInRange(0, 9) >= 4);
+      && MissionUtils.Random
+        .pickNumberInRange(RANDOM_NUMBER.LOWER_BOUND, RANDOM_NUMBER.UPPER_BOUND)
+        >= MOVE_DETERMINING_NUMBER);
   }
 }
 
