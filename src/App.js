@@ -57,9 +57,7 @@ class App {
   validateCarName(name) {
     if (name.length < 1 || name.length > 5) {
       throw new Error("[ERROR] 자동차 이름은 1자 이상 5자 이하만 가능합니다.");
-    } else if (/[^a-zA-Zㄱ-힣,]/g.test(name)) {
-      console.log(name, /[^a-zA-Zㄱ-힣,]/g.test(name));
-
+    } else if (/[^a-zA-Zㄱ-힣,1-9]/g.test(name)) {
       throw new Error(
         "[ERROR] 자동차 이름은 영어 혹은 한글만 가능하며, 자동차간 구분자는 ,(컴마)로만 가능합니다."
       );
