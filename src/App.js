@@ -5,8 +5,8 @@ class App {
 
   async run() {
 
-    const carNameList = InputUtils.validateCarNameList();
-    const tryNumber = InputUtils.validateTryNumber();
+    const carNameList = await InputUtils.validateCarNameList();
+    const tryNumber = await InputUtils.validateTryNumber();
 
     const game = new RacingGame(carNameList, tryNumber);
 
@@ -14,6 +14,6 @@ class App {
   }
 
 }
-
+ 
 export default App;
 
