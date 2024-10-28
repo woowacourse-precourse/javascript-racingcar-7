@@ -21,6 +21,8 @@ class App {
       );
       const vehicles = vehicleNames.split(",").map(name => new Vehicle(name.trim()));
 
+      const roundCount = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+
     } catch (error) {
       throw new Error(error.message);
     }
