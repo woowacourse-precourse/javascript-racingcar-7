@@ -23,10 +23,11 @@ class App {
 
       racing(tryNum, carrArr);
     } catch (error) {
-      Console.print(`[ERROR] ${error.message}`);
+      Console.print(`${error.message}`);
+      throw error;
     }
   }
 }
 const app = new App();
-app.run();
+
 export default App;
