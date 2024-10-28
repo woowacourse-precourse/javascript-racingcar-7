@@ -13,7 +13,13 @@ class RacingController {
    *
    */
   run(carsString, count) {
-    this.setCars(carsString);
+    try {
+      this.setCars(carsString);
+    } catch (error) {
+      this.ioProcessor.processOutput(error.message);
+      return;
+    }
+
     this.setCount(count);
 
     this.ioProcessor.processOutput('');

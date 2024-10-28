@@ -17,4 +17,18 @@ const RANDOM_NUMBER = Object.freeze({
   THRESHOLD: 4,
 });
 
-export { INPUT_MESSAGE, OUTPUT_MESSAGE, DELEMETER, RANDOM_NUMBER };
+const MAX_NAME_LENGTH = 5;
+
+const ERROR_TAG = '[ERROR] ';
+const ERROR_MESSAGE = Object.freeze({
+  INVALID_NAME_LENGTH: ERROR_TAG.concat('이름은 5자 이하로 입력해주세요.'),
+});
+
+export {
+  INPUT_MESSAGE,
+  OUTPUT_MESSAGE,
+  DELEMETER,
+  RANDOM_NUMBER,
+  MAX_NAME_LENGTH,
+  ERROR_MESSAGE,
+};

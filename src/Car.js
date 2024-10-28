@@ -1,5 +1,6 @@
 import Accelerator from './Accelearator.js';
 import IOProcessor from './IOProcessor.js';
+import { MAX_NAME_LENGTH, ERROR_MESSAGE } from './constants.js';
 
 /**
  *
@@ -23,6 +24,10 @@ class Car {
    *
    */
   setName(name) {
+    if (name.length < 1 || name.length > MAX_NAME_LENGTH) {
+      throw new Error(ERROR_MESSAGE.INVALID_NAME_LENGTH);
+    }
+
     this.#name = name;
   }
 
