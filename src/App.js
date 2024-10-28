@@ -88,13 +88,6 @@ class App {
     return currentRace;
   }
 
-  getRaceResult(arr, scoreArray) {
-    return arr.map((car, index) => ({
-      car,
-      score: "-".repeat(scoreArray[index]),
-    }));
-  }
-
   //우승자 판별 로직 메서드 분리
   determineWinner(arr, scoreArray) {
     //scoreArr에서 최댓값을 찾고 그와 index가 같은 우승자를 arr에서 가져오자
