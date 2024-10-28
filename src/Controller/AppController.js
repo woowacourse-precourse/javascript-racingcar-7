@@ -12,13 +12,9 @@ export default class AppController {
 
     async control() {
         const [carNameList, inputTime] = await this.userInput();
-
         this.createCar(carNameList);
-
         this.playRacingCar(inputTime);
-
         this.selectWinners();
- 
     }
 
     async userInput() {
@@ -35,7 +31,9 @@ export default class AppController {
     checkCarName(inputCarName) {
         Validator.isEmpty(inputCarName);
         const carNameList = Parser.separateCarName(inputCarName);
-        Validator.isFiveOrLess(carNameList);
+        carNameList.forEach(carName => {
+            Validator.isFiveOrLess(carName);
+        });
         
         return carNameList;
     }
@@ -58,9 +56,8 @@ export default class AppController {
 
     // 레이스 반복
     repeatRace(inputTime) {
-        for (let i = 0; i < inputTime; i++) {
+        for (let i = 0; i < inputTime; i++)
             this.moveCar();
-        }
     }
 
     // 자동차 이동
