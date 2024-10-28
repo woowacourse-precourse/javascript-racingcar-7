@@ -17,7 +17,7 @@ describe('Simulator simulate test', () => {
     pickRandomNumberInRange.mockReturnValue(5);
     console.log(simulator.state);
 
-    simulator.simulate();
+    simulator.simulate(1);
     expect(printOutput).toHaveBeenCalledWith(MESSAGE.EXECUTE_OUTPUT);
     expect(printOutput).toHaveBeenCalledWith('Car1 : -');
     expect(printOutput).toHaveBeenCalledWith('');
@@ -28,7 +28,7 @@ describe('Simulator simulate test', () => {
     const simulator = new Simulator(names);
     pickRandomNumberInRange.mockReturnValue(3);
 
-    simulator.simulate();
+    simulator.simulate(1);
 
     expect(printOutput).toHaveBeenCalledWith(MESSAGE.EXECUTE_OUTPUT);
     expect(printOutput).toHaveBeenCalledWith('Car1 : ');
@@ -40,7 +40,7 @@ describe('Simulator simulate test', () => {
     const simulator = new Simulator(names);
     pickRandomNumberInRange.mockReturnValueOnce(5).mockReturnValueOnce(3);
 
-    simulator.simulate();
+    simulator.simulate(1);
 
     expect(printOutput).toHaveBeenCalledWith(MESSAGE.EXECUTE_OUTPUT);
     expect(printOutput).toHaveBeenCalledWith('Car1 : -');
@@ -61,7 +61,7 @@ describe('Simulator printWinner test', () => {
     pickRandomNumberInRange.mockReturnValueOnce(5);
     pickRandomNumberInRange.mockReturnValue(3);
 
-    simulator.simulate();
+    simulator.simulate(1);
     simulator.printWinner();
 
     expect(printOutput).toHaveBeenCalledWith(`${MESSAGE.FINAL_OUTPUT} : Car1`);
@@ -75,7 +75,7 @@ describe('Simulator printWinner test', () => {
     pickRandomNumberInRange.mockReturnValueOnce(5);
     pickRandomNumberInRange.mockReturnValue(3);
 
-    simulator.simulate();
+    simulator.simulate(1);
     simulator.printWinner();
 
     expect(printOutput).toHaveBeenCalledWith(

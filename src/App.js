@@ -15,9 +15,7 @@ class App {
     Validator.validate(+attemptCount);
 
     const simulator = new Simulator(cars);
-    for (let i = 0; i < attemptCount; i++) {
-      simulator.simulate();
-    }
+    simulator.simulate(attemptCount);
     simulator.printWinner();
   }
 }

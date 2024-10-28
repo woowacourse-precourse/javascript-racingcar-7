@@ -20,13 +20,15 @@ class Simulator {
     return false;
   }
 
-  simulate() {
-    this.#state = this.#state.map(({ name, count }) => {
-      if (this.#canMoveForward()) count++;
-      printSimulate(name, count);
-      return { name, count };
-    });
-    printOutput('');
+  simulate(attemptCount) {
+    for (let i = 0; i < attemptCount; i++) {
+      this.#state = this.#state.map(({ name, count }) => {
+        if (this.#canMoveForward()) count++;
+        printSimulate(name, count);
+        return { name, count };
+      });
+      printOutput('');
+    }
   }
 
   printWinner() {
