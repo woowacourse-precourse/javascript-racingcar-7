@@ -1,6 +1,7 @@
 import ErrorMessage from '../src/resources/ErrorMessage';
 import validateNames from '../src/utils/validation/validateNames';
 import validateRepetitionString from '../src/utils/validation/validateRepetitionString';
+import validateTimeComplexity from '../src/utils/validation/validateTimeComplexity';
 
 describe('validateNames 함수 테스트', () => {
   test('이름이 하나만 입력되었을 때 예외를 발생시킨다.', () => {
@@ -67,5 +68,21 @@ describe('validateRepetitionString 함수 테스트', () => {
     expect(() => validateRepetitionString('3.5')).toThrow(
       ErrorMessage.DECIMAL_NUMBER_INPUT,
     );
+  });
+});
+
+describe('validateTimeComplexity 함수 테스트', () => {
+  test('시간 복잡도가 허용된 한계를 초과할 때 예외를 발생시킨다.', () => {
+    const names = 'car1,car2';
+    const repetitionString = '12345678';
+    expect(() => validateTimeComplexity(names, repetitionString)).toThrow(
+      ErrorMessage.OVER_VALID_TIMECOMPLEXITY,
+    );
+  });
+
+  test('시간 복잡도가 허용된 한계를 초과하지 않을 때 예외가 발생하지 않는다.', () => {
+    const names = 'car1,car2';
+    const repetitionString = '1234567';
+    expect(() => validateTimeComplexity(names, repetitionString)).not.toThrow();
   });
 });
