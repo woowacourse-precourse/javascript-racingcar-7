@@ -2,6 +2,10 @@ import { CHAR_REGEX } from "../constants/charRegex.js";
 import { COMMA } from "../constants/delimiter.js";
 import { CAR_NAME } from "../constants/error.js";
 
+export const isNumber = (value) => {
+  return !isNaN(value) && typeof value === "number";
+};
+
 export const isEmptyCarName = (carNames) => {
   return !carNames;
 };
