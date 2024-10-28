@@ -72,11 +72,53 @@ class App {
       throw new Error("[ERROR]");
     }
   }
+  validateInput(input) {
+    const cars = input.split(",").map((item) => item.trim());
+    this.validateEmptyCarNames(cars);
+    this.validateCarNameLength(cars);
+    this.validateDuplicateCarNames(cars);
+    this.validateMinimumCarNames(cars);
+  }
+
+  validateEmptyCarNames(cars) {
+    if (cars.length === 0 || cars.some((car) => car === "")) {
+      MissionUtils.Console.print(
+        "[ERROR] 자동차 이름은 공백이 아니어야 합니다."
+      );
+      throw new Error("[ERROR]");
+    }
+  }
+
+  validateCarNameLength(cars) {
+    if (cars.some((car) => car.length >= 6)) {
+      MissionUtils.Console.print(
+        "[ERROR] 자동차 이름은 5자 이하만 가능합니다."
+      );
+      throw new Error("[ERROR]");
+    }
+  }
+
+  validateDuplicateCarNames(cars) {
+    const uniqueCars = new Set(cars);
+    if (uniqueCars.size !== cars.length) {
+      MissionUtils.Console.print("[ERROR] 자동차 이름은 중복될 수 없습니다.");
+      throw new Error("[ERROR]");
+    }
+  }
+
+  validateMinimumCarNames(cars) {
+    if (cars.length < 2) {
+      MissionUtils.Console.print(
+        "[ERROR] 자동차 이름은 최소 2개 이상 입력해주셔야 합니다."
+      );
+      throw new Error("[ERROR]");
+    }
+  }
+
   validateCount(count) {
     this.validateCountIsNumber(count);
     this.validateCountIsPositive(count);
     this.validateCountIsInteger(count);
-    return;
   }
 
   // count가 숫자가 아닐 경우
