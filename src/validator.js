@@ -21,3 +21,11 @@ export function validateCarNames(names) {
     throw new Error(ERROR_MESSAGES.SAME_CAR_NAME);
   }
 }
+
+export function validateAttempts(input) {
+  const attempts = parseInt(input, 10);
+  if (isNaN(attempts) || attempts < 1 || attempts > 9) {
+    throw new Error(ERROR_MESSAGES.ATTEMPTS_INVALID);
+  }
+  return attempts;
+}
