@@ -8,10 +8,10 @@ export const INPUT_MESSAGES = {
 export const OUTPUT_MESSAGES = {
   RUN_RESULT: "\n실행 결과",
   FINAL_WINNER_PREFIX: "최종 우승자 : ",
-  ERROR_MESSAGE_PREFIX: "[ERROR]",
 };
 
 export const ERROR_MESSAGE = {
+  ERROR_MESSAGE_PREFIX: "[ERROR]",
   CAR_NAME_LENGTH: "자동차 이름은 1자 이상 5자 이하만 가능합니다.",
   DUPLICATE_NAME: "자동차 이름은 중복될 수 없습니다.",
   TRY_COUNT: "시도 횟수는 1 이상의 숫자만 가능합니다.",

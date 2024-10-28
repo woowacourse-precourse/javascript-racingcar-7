@@ -14,12 +14,16 @@ class Verify {
 
     if (hasInvalidName) {
       OutputView.printErrorMessage(ERROR_MESSAGE.CAR_NAME_LENGTH);
-      return false;
+      throw new Error(
+        `${ERROR_MESSAGE.ERROR_MESSAGE_PREFIX} ${ERROR_MESSAGE.CAR_NAME_LENGTH}`
+      );
     }
 
     if (hasDuplicateName) {
       OutputView.printErrorMessage(ERROR_MESSAGE.DUPLICATE_NAME);
-      return false;
+      throw new Error(
+        `${ERROR_MESSAGE.ERROR_MESSAGE_PREFIX} ${ERROR_MESSAGE.DUPLICATE_NAME}`
+      );
     }
 
     return carNames;
