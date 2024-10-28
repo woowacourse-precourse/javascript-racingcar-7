@@ -150,4 +150,14 @@ describe("입력 값 테스트", () => {
 
     await expect(app.run()).rejects.toThrow(ERROR_MESSAGES.SAME_CAR_NAME);
   });
+
+  test(`시도 횟수가 ${CAR_RACE.MIN_ROUND_COUNT}미만이면 에러 메시지를 띄운다.`, async () => {
+    const inputs = ["a,b", "0"];
+
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(ERROR_MESSAGES.TRY_COUNT_MIN);
+  });
 });
