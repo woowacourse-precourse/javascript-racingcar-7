@@ -58,6 +58,23 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 
+  test("빈 문자열이나 공백문자가 횟수로 입력된 경우 에러", async () => {
+    // given
+    const invalidLapInputs = ["", " ", "0", "-1", "false"];
+    const carNameInputs = ["poni, woni", ""];
+
+    for (const lap of invalidLapInputs) {
+
+      mockQuestions([carNameInputs, lap]);
+
+      // when
+      const app = new App();
+
+      // then
+      await expect(app.run()).rejects.toThrow("[ERROR]");
+    }
+  });
+
   test("이름은 5글자 이하여야 합니다", async () => {
     // given
     const inputs = ["pobi,javaji", "1"];
