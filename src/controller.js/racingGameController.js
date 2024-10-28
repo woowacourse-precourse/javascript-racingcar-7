@@ -40,7 +40,7 @@ class RacingGameController {
   }
 
   handleInitError(error) {
-    Console.print(error.message);
+    this.view.printError(error.message);
   }
 
   checkCarName(names) {
