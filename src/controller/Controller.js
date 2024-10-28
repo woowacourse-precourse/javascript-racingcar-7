@@ -1,7 +1,6 @@
 import Car from "../model/Car.js";
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
-import carNameSplit from "../utils/carNameSplit.js";
 import winnerDetermine from "../utils/winnerDetermine.js";
 
 class Controller {
@@ -28,20 +27,17 @@ class Controller {
     }
 
     async playRacingCar() {
-      const [carNameData, numberOfAttemptsData] = await this.#inputView.readInput();
-      const carNameArray = carNameSplit(carNameData);
+      const [carNameArray, numberOfAttemptsData] = await this.#inputView.readInput();
 
       this.settingCar(carNameArray);
 
       this.#outputView.printResultPrefix();
-
       for (let attempts = 0; attempts < numberOfAttemptsData; attempts++) {
         this.moveCar();
         this.#outputView.printResult(this.car);
       }
 
       const winner = winnerDetermine(this.car);
-
       this.#outputView.printWinner(winner);
     }
 }
