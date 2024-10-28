@@ -1,60 +1,58 @@
-import App from "../src/App.js";
-import { MissionUtils } from "@woowacourse/mission-utils";
+import App from '../src/App.js';
+import { getLogSpy, mockQuestions, mockRandoms } from '../utils/testUtils.js';
+import { MOVING_FORWARD, STOP } from '../constants.js';
 
-const mockQuestions = (inputs) => {
-  MissionUtils.Console.readLineAsync = jest.fn();
+describe('자동차 경주', () => {
+    test.each([
+        [
+            '단독 우승 테스트',
+            ['pobi,woni', '1'],
+            ['pobi : -', 'woni : ', '최종 우승자 : pobi'],
+            [MOVING_FORWARD, STOP],
+        ],
+        [
+            '공동 우승 테스트',
+            ['pobi,woni', '2'],
+            [
+                'pobi : -',
+                'woni : -',
+                'pobi : --',
+                'woni : --',
+                '최종 우승자 : pobi,woni',
+            ],
+            [MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD],
+        ],
+        [
+            '3대 이상 자동차 테스트',
+            ['pobi,woni,jun', '2'],
+            [
+                'pobi : -',
+                'woni : -',
+                'jun : -',
+                'pobi : --',
+                'woni : --',
+                'jun : -',
+                '최종 우승자 : pobi,woni',
+            ],
+            [
+                MOVING_FORWARD,
+                MOVING_FORWARD,
+                MOVING_FORWARD,
+                MOVING_FORWARD,
+                MOVING_FORWARD,
+                STOP,
+            ],
+        ],
+    ])('%s', async (testName, inputs, logs, random) => {
+        const logSpy = getLogSpy();
+        mockQuestions(inputs);
+        mockRandoms(random);
 
-  MissionUtils.Console.readLineAsync.mockImplementation(() => {
-    const input = inputs.shift();
-    return Promise.resolve(input);
-  });
-};
+        const app = new App();
+        await app.run();
 
-const mockRandoms = (numbers) => {
-  MissionUtils.Random.pickNumberInRange = jest.fn();
-
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, MissionUtils.Random.pickNumberInRange);
-};
-
-const getLogSpy = () => {
-  const logSpy = jest.spyOn(MissionUtils.Console, "print");
-  logSpy.mockClear();
-  return logSpy;
-};
-
-describe("자동차 경주", () => {
-  test("기능 테스트", async () => {
-    // given
-    const MOVING_FORWARD = 4;
-    const STOP = 3;
-    const inputs = ["pobi,woni", "1"];
-    const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
-    const logSpy = getLogSpy();
-
-    mockQuestions(inputs);
-    mockRandoms([MOVING_FORWARD, STOP]);
-
-    // when
-    const app = new App();
-    await app.run();
-
-    // then
-    logs.forEach((log) => {
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+        logs.forEach((log) => {
+            expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+        });
     });
-  });
-
-  test("예외 테스트", async () => {
-    // given
-    const inputs = ["pobi,javaji"];
-    mockQuestions(inputs);
-
-    // when
-    const app = new App();
-
-    // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
-  });
 });
