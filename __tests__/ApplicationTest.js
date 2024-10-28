@@ -93,4 +93,11 @@ describe("자동차 경주", () => {
       ERROR_MESSAGES.INVALID_ATTEMPT_COUNT
     );
   });
+
+  test("시도 횟수가 0일 때 예외 테스트", async () => {
+    const inputs = ["pobi,woni", 0];
+    mockQuestions(inputs);
+    const app = new App();
+    await expect(app.run()).rejects.toThrow(ERROR_MESSAGES.ZERO_ATTEMPT_COUNT);
+  });
 });
