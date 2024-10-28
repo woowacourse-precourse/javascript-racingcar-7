@@ -26,6 +26,12 @@ class App {
     const carNames = input.split(',').map((name) => name.trim());
 
     carNames.forEach((name) => {
+      if (name.length < 1) {
+        const errorMessage = '[ERROR] 자동차 이름은 1자 이상이어야 합니다.';
+        Console.print(errorMessage);
+        throw new Error(errorMessage);
+      }
+
       if (name.length > 5) {
         const errorMessage = '[ERROR] 자동차 이름은 5자 이하여야 합니다.';
         Console.print(errorMessage);
