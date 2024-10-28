@@ -36,13 +36,16 @@ export const expectError = async (input, errorMessage) => {
 };
 
 export const expectResult = async (inputs, randomValues, logs) => {
+  // given
   const logSpy = getLogSpy();
 
   mockQuestions(inputs);
   mockRandoms(randomValues);
 
+  // when
   const app = new App();
   await app.run();
 
-  logs.forEach((log) => expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log)));
+  // then
+  logs.forEach((log) => expect(logSpy).toHaveBeenCalledWith(log));
 };
