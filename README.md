@@ -10,7 +10,7 @@
 
 - [ ] **Presentation Layer**의 입력값을 처리하는 기능 
 
-  * [ ] 입력된 Raw Input의 유효성을 검증하는 기능 (validation)
+  * [x] 입력된 Raw Input의 유효성을 검증하는 기능 (validation)
     +  입력값은 공백이 될 수 없다.
     +  이를 만족하지 못한 경우, '[ERROR]'로 시작하는 에러 메세지를 출력하며 프로그램을 종료한다. 
   
