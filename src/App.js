@@ -14,20 +14,20 @@ class App {
     let maxAttempts = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
     maxAttempts = Validate.attemptsValidate(maxAttempts, '시도 횟수'); // 유효성 체크 및 숫자로 타입 변경
 
-    //, 기준으로 이름 분리와 함께 car(이름, 위치) 오브젝트 생성.
+    //, 기준으로 이름 분리와 함께 CAR(이름, 위치) 오브젝트 생성.
     const CAR_NAME_ARRAY = CAR_NAME.split(',');
     const CAR_POSITION_ARRAY = CAR_NAME_ARRAY.map(n => 0);
-    const car = {
+    const CAR = {
       name: CAR_NAME_ARRAY,
       position: CAR_POSITION_ARRAY,
     };
 
-    car.name.forEach(Validate.nameValidate);
+    CAR.name.forEach(Validate.nameValidate);
 
     Console.print("\n실행 결과");
-    Race.roundProgress(maxAttempts, car);
+    Race.roundProgress(maxAttempts, CAR);
 
-    const WINNER_ARRAY = Winner.findWinner(car);
+    const WINNER_ARRAY = Winner.findWinner(CAR);
     Winner.printWinner(WINNER_ARRAY);
 
   }

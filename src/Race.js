@@ -3,20 +3,20 @@ import { Console, Random } from "@woowacourse/mission-utils";
 class Race {
     constructor() {}
 
-    static roundProgress(attempts, car) {
+    static roundProgress(attempts, myObject) {
         for (let i = attempts; i > 0; i--){
-            Race.carProgress(car);
+            Race.carProgress(myObject);
             Console.print("");
         }
     }
 
-    static carProgress(car) {
-        for (let i = 0; i < car.name.length; i++){
+    static carProgress(myObject) {
+        for (let i = 0; i < myObject.name.length; i++){
             let randomNum = Random.pickNumberInRange(0, 9);
     
-            car.position[i] += Race.carMovement(randomNum);
+            myObject.position[i] += Race.carMovement(randomNum);
     
-            Race.printProgress(car.name[i], car.position[i]);
+            Race.printProgress(myObject.name[i], myObject.position[i]);
         }
     }
 
