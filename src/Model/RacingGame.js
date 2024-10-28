@@ -16,11 +16,9 @@
             this.cars.forEach(car => {
                 car.move();
             });
+            OutputUtils.printNowRacing(this.cars);
         }
-
-        OutputUtils.printNowRacing(this.cars);
         OutputUtils.printWinner(this.cars);
-
     }
   }
   
