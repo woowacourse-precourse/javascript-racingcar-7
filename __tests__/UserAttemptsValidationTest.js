@@ -9,7 +9,7 @@ const mockQuestions = (inputs) => {
     return Promise.resolve(input);
   });
 };
-describe("예외 테스트", () => {
+describe("자동차 경주 시도 횟수", () => {
   test("시도 횟수가 입력되지 않았거나 공백인 경우", async () => {
     // given
     const inputs = ["pobi,woni", ""];
