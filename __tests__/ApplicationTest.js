@@ -1,5 +1,6 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
+import { ErrorMessages } from "../src/Constant.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -56,5 +57,75 @@ describe("자동차 경주", () => {
 
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+});
+
+describe("정상 동작하는 경우", () => {
+  test.each([
+    {
+      inputs: ["pobi,woni", "1"],
+      randoms: [4, 3],
+      logs: ["pobi : -", "woni : ", ""],
+      expects: "최종 우승자 : pobi"
+    },
+    {
+      inputs: ["pobi   ,woni", "1"],
+      randoms: [4, 3],
+      logs: ["pobi : -", "woni : ", ""],
+      expects: "최종 우승자 : pobi"
+    }, {
+      inputs: ["pobi   ,woni", "2"],
+      randoms: [4, 4, 4, 4],
+      logs: ["pobi : -", "woni : -", "", "pobi : --", "woni : --", ""],
+      expects: "최종 우승자 : pobi, woni"
+    }
+  ])("input : $inputs\n randoms : $randoms\n expects : $expects", async ({ inputs, randoms, logs, expects }) => {
+    mockQuestions(inputs);
+    mockRandoms(randoms);
+    const logSpy = getLogSpy();
+    const app = new App();
+    await app.run();
+
+    logs.forEach((log, index) => {
+      expect(logSpy.mock.calls[index][0]).toBe(log);
+    });
+    expect(logSpy.mock.calls[logSpy.mock.calls.length - 1][0]).toBe(expects);
+  });
+});
+
+
+describe("에러나는 경우", () => {
+  test.each([
+    {
+      case: "문자열의 크기가 0 인 경우",
+      inputs: ["pobi,", "1"],
+      expects: ErrorMessages.INVALID_CAR_NAMES_ERROR
+    },
+    {
+      case: "문자열의 크기가 5 보다 큰 경우",
+      inputs: ["pobi,123456", "1"],
+      expects: ErrorMessages.INVALID_CAR_NAMES_ERROR
+    },
+    {
+      case: "주어진 횟수가 양수가 아닌 경우 1",
+      inputs: ["pobi,12345", "-1"],
+      expects: ErrorMessages.INVALID_TIMES_ERROR
+    },
+    {
+      case: "주어진 횟수가 양수가 아닌 경우 2",
+      inputs: ["pobi,12345", "abc"],
+      expects: ErrorMessages.INVALID_TIMES_ERROR
+    },
+    {
+      case: "주어진 횟수가 양수가 아닌 경우 3",
+      inputs: ["pobi,12345", "0.1"],
+      expects: ErrorMessages.INVALID_TIMES_ERROR
+    }
+  ])("case : $case\ninput : $inputs\nexpects : $expects", async ({ inputs, expects }) => {
+    mockQuestions(inputs);
+    const logSpy = getLogSpy();
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(expects);
   });
 });
