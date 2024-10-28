@@ -27,7 +27,10 @@ class App {
       const oneCycle = () => {
         dashArray = dashArray.map((element) => element + giveDash());
         let onlyDash = [];
-        onlyDash = dashArray.map((element) => element.match(/-/g) || '');
+        onlyDash = dashArray.map((element, index) => {
+          const dashes = element.slice(namesArray[index].length);
+          return dashes || '';
+        });
         for (let i = 0; i < dashArray.length; i++) {
           MissionUtils.Console.print(`${namesArray[i]} : ${onlyDash[i]}`);
         }
