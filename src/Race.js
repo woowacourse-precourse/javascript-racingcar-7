@@ -57,6 +57,22 @@ class Race {
     return maxDistance;
   }
 
+  #determineWinner() {
+    const winners = [];
+    const winnerDistance = this.#getMaxDistance();
+
+    for (let car of this.#carInstance) {
+      const distance = car.getDistance();
+
+      if (distance === winnerDistance) {
+        const carName = car.getName();
+        winners.push(carName);
+      }
+    }
+
+    return winners;
+  }
+
   #validateAttempt(attempt) {
     const validator = new Validator();
     return validator.validateAttempt(attempt);
