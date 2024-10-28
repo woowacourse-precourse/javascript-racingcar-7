@@ -1,5 +1,5 @@
-import RandomNum from './RandomNum.js';
-import Car from './Car.js'
+import RandomNum from '../utils/RandomNum.js';
+import Car from '../Model/Car.js';
 
 export default class CarController {
 

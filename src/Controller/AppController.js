@@ -1,10 +1,10 @@
-import { gameMessage } from './constants.js';
+import { gameMessage } from '../constants.js';
 import { Console } from '@woowacourse/mission-utils';
-import Parser from './Parser.js';
+import Parser from '../utils/Parser.js';
 import CarController from './CarController.js';
-import ViewOutput from './ViewOutput.js';
-import Calculator from './Calculator.js';
-import Validator from './Validator.js';
+import ViewOutput from '../ViewOutput.js';
+import Calculator from '../utils/Calculator.js';
+import Validator from '../utils/Validator.js';
 
 export default class AppController {
     carList = [];

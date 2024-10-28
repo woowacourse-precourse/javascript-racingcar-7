@@ -1,4 +1,4 @@
-import Validator from '../src/Validator'
+import Validator from '../src/utils/Validator'
 import { errorMessage } from '../src/constants';
 
 describe('Validator', () => {

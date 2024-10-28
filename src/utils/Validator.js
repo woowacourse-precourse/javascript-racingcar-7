@@ -1,5 +1,5 @@
 import CauseError from './CauseError.js';
-import { errorMessage } from './constants.js'
+import { errorMessage } from '../constants.js'
 
 export default class Validator {
 
