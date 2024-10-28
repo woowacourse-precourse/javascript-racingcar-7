@@ -10,6 +10,9 @@ const mockQuestions = (inputs) => {
   });
 };
 
+const MOVING_FORWARD = 4;
+const STOP = 3;
+
 const mockRandoms = (numbers) => {
   MissionUtils.Random.pickNumberInRange = jest.fn();
 
@@ -26,9 +29,7 @@ const getLogSpy = () => {
 
 describe("자동차 경주", () => {
   test("기능 테스트", async () => {
-    // given
-    const MOVING_FORWARD = 4;
-    const STOP = 3;
+
     const inputs = ["pobi,woni", "1"];
     const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
     const logSpy = getLogSpy();
@@ -36,17 +37,49 @@ describe("자동차 경주", () => {
     mockQuestions(inputs);
     mockRandoms([MOVING_FORWARD, STOP]);
 
-    // when
+
     const app = new App();
     await app.run();
 
-    // then
+
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
-  });
+  })
+  test("기능 테스트2", async () => {
+    const inputs = ["pobi,juni,wooa", "3"];
+    const logs = ["pobi : -", "juni : ", "wooa : ", "최종 우승자 : pobi"];
+    const logSpy = getLogSpy();
 
-  test("예외 테스트", async () => {
+    mockQuestions(inputs)
+    mockRandoms([MOVING_FORWARD, STOP, STOP]);
+
+    const app = new App();
+    await app.run();
+
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    })
+  })
+  test("공동 우승자 테스트",async ()=>{
+    const inputs = ["pobi,juni,wooa", "1"];
+    const logs = ["pobi : -", "juni : -", "wooa : -", "최종 우승자 : pobi, juni, wooa"];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs)
+    mockRandoms([MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD]);
+
+    const app = new App();
+    await app.run();
+
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    })
+  })
+})
+
+describe("예외 테스트", () => {
+  test("사용자의 이름이 5자를 넘어가는 경우", async () => {
     // given
     const inputs = ["pobi,javaji"];
     mockQuestions(inputs);
@@ -55,6 +88,21 @@ describe("자동차 경주", () => {
     const app = new App();
 
     // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
+    await expect(app.run()).rejects.toThrow("[ERROR] : 자동차 이름은 5자 이하만 가능합니다.");
+  });
+  test("사용자의 이름이 공백인 경우", async () => {
+    const inputs = ["pobi, ,jun"];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR] : 자동차 이름은 공백일 수 없습니다. ");
+  });
+
+  test("시도 횟수가 공백인 경우", async () => {
+    const inputs = ["pobi,jun,woni", ""];
+    mockQuestions(inputs);
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR] : 시도 횟수는 공백일 수 없습니다.");
   });
 });
