@@ -26,6 +26,10 @@ class RacingGamePlayer {
     MissionUtils.Console.print(''); //라운드 간 개행
   }
 
+  findMaxMovingDistance() {
+    return Math.max(...this.cars.map((car) => car.dist));
+  }
+
   play() {
     MissionUtils.Console.print(messages.newLine + messages.showRoundResults);
     this.moveCars();
