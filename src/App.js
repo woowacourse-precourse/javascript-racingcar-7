@@ -1,43 +1,39 @@
-import { Console } from "@woowacourse/mission-utils";
+import ConsoleView from "./View/ConsoleView.js";
 import CarList from "./Model/CarList.js";
 import Winners from "./Model/Winners.js";
 
 class App {
   async run() {
-    // 1. 자동차 이름 입력
-    const carNameInput = await Console.readLineAsync(
-      "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
-    );
-    const carNameArray = carNameInput.trim().split(",");
+    try {
+      // 1. 자동차 이름 입력
+      const carNameInput = await ConsoleView.readCarNames();
+      const carNameArray = carNameInput.trim().split(",");
 
-    // 2. 자동차 이름 유효성 검증
-    this.validateCarName(carNameArray);
+      // 2. 자동차 이름 유효성 검증
+      this.validateCarName(carNameArray);
 
-    // 3. 시도할 횟수 입력
-    const tryNumberInput = await Console.readLineAsync(
-      "시도할 횟수는 몇 회인가요?\n"
-    );
+      // 3. 시도할 횟수 입력
+      const tryNumberInput = await ConsoleView.readTryNumber();
 
-    // 4. 시도할 횟수 유효성 검증
-    const tryNumber = this.validateTryNumber(tryNumberInput);
+      // 4. 시도할 횟수 유효성 검증
+      const tryNumber = this.validateTryNumber(tryNumberInput);
 
-    const carList = new CarList(carNameArray); // 자동차 이름 배열 바탕으로 거리 정보 초기화
+      const carList = new CarList(carNameArray); // 자동차 이름 배열 바탕으로 거리 정보 초기화
 
-    // 5. 본 게임, 6. 실행 결과 출력
-    Console.print("\n실행 결과");
-    for (let i = 0; i < tryNumber; i++) {
-      carList.moveCars();
-      carList.getCars().forEach(car => {
-        Console.print(`${car.name} : ${"-".repeat(car.getDistance())}`);
-      });
-      Console.print("\n");
+      // 5. 본 게임, 6. 실행 결과 출력
+      ConsoleView.printMessage("\n실행 결과");
+      for (let i = 0; i < tryNumber; i++) {
+        carList.moveCars();
+        ConsoleView.printRaceResult(carList);
+      }
+
+      // 7. 최종 우승자 판정 및 출력
+      const winner = new Winners(carList);
+      const winnersNameList = winner.decideWinners();
+      ConsoleView.printWinners(winnersNameList);
+    } catch (error) {
+      ConsoleView.printError(error.message);
     }
-
-    // 7. 최종 우승자 판정 및 출력
-    const winner = new Winners(carList);
-    const winnersNameList = winner.decideWinners();
-
-    Console.print("최종 우승자 : " + winnersNameList.join(", "));
   }
 
   validateCarName(carNameArray) {
