@@ -23,18 +23,14 @@ export function hasDuplicateNames(carNames) {
 
 export function isTrialCountZero(trialCount) {
     if (trialCount <= 0) {
-        throw new Error('[ERROR] 횟수로 0을 입력할 수 없습니다.');
+        throw new Error(
+            '[ERROR] 횟수로 0또는 음수를 입력하였거나 횟수를 입력하지 않았습니다.'
+        );
     }
 }
 
 export function validateTrial(trialCount) {
     if (!Number.isInteger(trialCount)) {
         throw new Error('[ERROR] 횟수는 자연수로 입력해야합니다.');
-    }
-}
-
-export function isTrialEmpty(trialCount) {
-    if (trialCount.trim() === '') {
-        throw new Error('[ERROR] 횟수를 입력하지 않았습니다.');
     }
 }
