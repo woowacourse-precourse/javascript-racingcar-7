@@ -3,6 +3,7 @@ import App from '../src/App.js';
 import {
   CAR_NAME_TEST_CASES,
   GAME_ROUNDS_TEST_CASES,
+  TEST_DESCRIPTIONS,
 } from '../src/utils/constants.js';
 
 const mockQuestions = (inputs) => {
@@ -29,8 +30,8 @@ const getLogSpy = () => {
   return logSpy;
 };
 
-describe('자동차 경주', () => {
-  test('기능 테스트', async () => {
+describe(TEST_DESCRIPTIONS.MAIN, () => {
+  test(TEST_DESCRIPTIONS.BASE.FEATURE, async () => {
     // given
     const MOVING_FORWARD = 4;
     const STOP = 3;
@@ -51,7 +52,7 @@ describe('자동차 경주', () => {
     });
   });
 
-  test('예외 테스트', async () => {
+  test(TEST_DESCRIPTIONS.BASE.EXCEPTION, async () => {
     // given
     const inputs = ['pobi,javaji'];
     mockQuestions(inputs);
@@ -63,142 +64,44 @@ describe('자동차 경주', () => {
     await expect(app.run()).rejects.toThrow('[ERROR]');
   });
 
-  describe('자동차 이름 검증', () => {
-    test('자동차 이름이 빈 문자열인 경우 에러 발생', async () => {
-      // given
-      const { input, errorMessage } = CAR_NAME_TEST_CASES.EMPTY_NAME;
-      const carNames = input.join(',');
-      const rounds = GAME_ROUNDS_TEST_CASES.VALID_NUMBER.input;
-      mockQuestions([carNames, rounds]);
+  describe(TEST_DESCRIPTIONS.CAR_NAME.GROUP, () => {
+    test.each(TEST_DESCRIPTIONS.CAR_NAME.CASES)(
+      '%s',
+      async (description, testCase) => {
+        // given
+        const { input, errorMessage } = CAR_NAME_TEST_CASES[testCase];
+        const carNames = input.join(',');
+        const validRounds = String(
+          GAME_ROUNDS_TEST_CASES.VALID_NUMBER.expected,
+        );
+        mockQuestions([carNames, validRounds]);
 
-      // when
-      const app = new App();
+        // when
+        const app = new App();
 
-      // then
-      await expect(app.run()).rejects.toThrow(errorMessage);
-    });
-
-    test('자동차 이름이 공백인 경우 에러 발생', async () => {
-      // given
-      const { input, errorMessage } = CAR_NAME_TEST_CASES.EMPTY_NAME_WITH_SPACE;
-      const carNames = input.join(',');
-      const rounds = GAME_ROUNDS_TEST_CASES.VALID_NUMBER.input;
-      mockQuestions([carNames, rounds]);
-
-      // when
-      const app = new App();
-
-      // then
-      await expect(app.run()).rejects.toThrow(errorMessage);
-    });
-
-    test('자동차 이름이 5자를 초과하는 경우 에러 발생', async () => {
-      // given
-      const { input, errorMessage } = CAR_NAME_TEST_CASES.NAME_TOO_LONG;
-      const carNames = input.join(',');
-      const rounds = GAME_ROUNDS_TEST_CASES.VALID_NUMBER.input;
-      mockQuestions([carNames, rounds]);
-
-      // when
-      const app = new App();
-
-      // then
-      await expect(app.run()).rejects.toThrow(errorMessage);
-    });
-
-    test('중복된 자동차 이름이 있는 경우 에러 발생', async () => {
-      // given
-      const { input, errorMessage } = CAR_NAME_TEST_CASES.DUPLICATE_NAME;
-      const carNames = input.join(',');
-      const rounds = GAME_ROUNDS_TEST_CASES.VALID_NUMBER.input;
-      mockQuestions([carNames, rounds]);
-
-      // when
-      const app = new App();
-
-      // then
-      await expect(app.run()).rejects.toThrow(errorMessage);
-    });
+        // then
+        await expect(app.run()).rejects.toThrow(errorMessage);
+      },
+    );
   });
 
-  describe('시도 횟수 검증', () => {
-    test('시도 횟수가 빈 값이나 공백이 입력된 경우 에러 발생', async () => {
-      // given
-      const { input: carNames } = CAR_NAME_TEST_CASES.VALID_NAMES;
-      const { input, errorMessage } =
-        GAME_ROUNDS_TEST_CASES.EMPTY_ROUNDS_WITH_SPACE;
-      mockQuestions([carNames.join(','), input]);
+  describe(TEST_DESCRIPTIONS.GAME_ROUNDS.GROUP, () => {
+    test.each(TEST_DESCRIPTIONS.GAME_ROUNDS.CASES)(
+      '%s',
+      async (description, testCase) => {
+        // given
+        const { input, errorMessage } = GAME_ROUNDS_TEST_CASES[testCase];
+        const validCarNames = CAR_NAME_TEST_CASES.VALID_NAMES.input
+          .slice(0, 2)
+          .join(',');
+        mockQuestions([validCarNames, input]);
 
-      // when
-      const app = new App();
+        // when
+        const app = new App();
 
-      // then
-      await expect(app.run()).rejects.toThrow(errorMessage);
-    });
-
-    test('시도 횟수가 숫자가 아닌 값이 입력된 경우 에러 발생', async () => {
-      // given
-      const { input: carNames } = CAR_NAME_TEST_CASES.VALID_NAMES;
-      const { input, errorMessage } = GAME_ROUNDS_TEST_CASES.NOT_A_NUMBER;
-      mockQuestions([carNames.join(','), input]);
-
-      // when
-      const app = new App();
-
-      // then
-      await expect(app.run()).rejects.toThrow(errorMessage);
-    });
-
-    test('시도 횟수가 음수가 입력된 경우 에러 발생', async () => {
-      // given
-      const { input: carNames } = CAR_NAME_TEST_CASES.VALID_NAMES;
-      const { input, errorMessage } = GAME_ROUNDS_TEST_CASES.NEGATIVE_NUMBER;
-      mockQuestions([carNames.join(','), input]);
-
-      // when
-      const app = new App();
-
-      // then
-      await expect(app.run()).rejects.toThrow(errorMessage);
-    });
-
-    test('시도 횟수가 0이 입력된 경우 에러 발생', async () => {
-      // given
-      const { input: carNames } = CAR_NAME_TEST_CASES.VALID_NAMES;
-      const { input, errorMessage } = GAME_ROUNDS_TEST_CASES.ZERO_ROUNDS;
-      mockQuestions([carNames.join(','), input]);
-
-      // when
-      const app = new App();
-
-      // then
-      await expect(app.run()).rejects.toThrow(errorMessage);
-    });
-
-    test('시도 횟수가 소수가 입력된 경우 에러 발생', async () => {
-      // given
-      const { input: carNames } = CAR_NAME_TEST_CASES.VALID_NAMES;
-      const { input, errorMessage } = GAME_ROUNDS_TEST_CASES.NOT_INTEGER;
-      mockQuestions([carNames.join(','), input]);
-
-      // when
-      const app = new App();
-
-      // then
-      await expect(app.run()).rejects.toThrow(errorMessage);
-    });
-
-    test('시도 횟수가 오버플로우를 발생시키는 값이 입력된 경우 에러 발생', async () => {
-      // given
-      const { input: carNames } = CAR_NAME_TEST_CASES.VALID_NAMES;
-      const { input, errorMessage } = GAME_ROUNDS_TEST_CASES.OVERFLOW;
-      mockQuestions([carNames.join(','), input]);
-
-      // when
-      const app = new App();
-
-      // then
-      await expect(app.run()).rejects.toThrow(errorMessage);
-    });
+        // then
+        await expect(app.run()).rejects.toThrow(errorMessage);
+      },
+    );
   });
 });
