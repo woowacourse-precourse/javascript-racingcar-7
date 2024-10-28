@@ -68,6 +68,15 @@ class App {
     MissionUtils.Console.print("");
   }
 
+  async playRace(carsList, attempt, carsObject) {
+    for (let games = 0; games < attempt; games++) {
+      const goAheadObject = await this.game(carsList, carsObject);
+      carsObject = { ...goAheadObject };
+      this.printCarPositions(carsList, goAheadObject);
+    }
+    return carsObject;
+  }
+
   async run() {
     try {
       const carsName = await this.inputCars();
@@ -78,6 +87,7 @@ class App {
       const attempt = await this.inputAttempts();
       const carsObject = this.initializeCarsObject(carsList);
       MissionUtils.Console.print("\n실행 결과");
+      const carsPosition = await this.playRace(carsList, attempt, carsObject);
     } catch (error) {
       throw new Error("[ERROR]");
     }
