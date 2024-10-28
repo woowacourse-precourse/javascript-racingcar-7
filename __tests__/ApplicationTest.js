@@ -57,4 +57,51 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
+  // 추가 테스트
+  test.each([[["가나다,test"]], [["test1,longTest"]], [["test,test"]]])(
+      "자동차 이름 오류 테스트",
+      async (inputs) => {
+        // given
+        mockQuestions(inputs);
+
+        // when
+        const app = new App();
+
+        // then
+        await expect(app.run()).rejects.toThrow("[ERROR]");
+      }
+  );
+
+  test.each([[["pobi,woni,jun"], "t"], [["pobi,woni,jun"], -1]])(
+      "시도 횟수 입력 오류 테스트",
+      async (inputs) => {
+        // given
+        mockQuestions(inputs);
+
+        // when
+        const app = new App();
+
+        // then
+        await expect(app.run()).rejects.toThrow("[ERROR]");
+      }
+  );
+
+  test("최종 우승자 `,` 확인", async () => {
+    // given
+    const MOVING_FORWARD = 9;
+    const STOP = 9;
+    const inputs = ["pobi,woni", "1"];
+    const randoms = [MOVING_FORWARD, STOP];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([...randoms]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining("최종 우승자 : pobi, woni"));
+  });
 });
