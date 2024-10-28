@@ -1,7 +1,7 @@
 import { OUTPUT_MESSAGE_WINNER } from './lib/constants.js';
+import { print } from './lib/utils.js';
 import Input from './Input.js';
 import Race from './Race.js';
-import { print } from './lib/utils.js';
 
 class App {
   #carArray;
@@ -9,6 +9,12 @@ class App {
   #tryCount;
 
   #winnerCarArray;
+
+  constructor() {
+    this.#carArray = [];
+    this.#tryCount = [];
+    this.#winnerCarArray = [];
+  }
 
   async run() {
     await this.#getInput();
