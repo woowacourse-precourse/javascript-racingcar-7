@@ -19,6 +19,7 @@ const ERROR_MESSAGE = {
 
 const OUTPUT_MESSAGE = {
   EXECUTION_RESULT: "실행 결과",
+  FINAL_WINNER: "최종 우승자 :",
 };
 
 export { INPUT_MESSAGE, ERROR_MESSAGE, OUTPUT_MESSAGE };

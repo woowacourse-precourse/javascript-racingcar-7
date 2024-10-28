@@ -17,6 +17,12 @@ class OutputView {
     return OutputView.printMessage("\n");
   }
 
+  static finalWinner(winnerString) {
+    return OutputView.printMessage(
+      `${OUTPUT_MESSAGE.FINAL_WINNER} ${winnerString}`
+    );
+  }
+
   static printMessage(outPut) {
     return Console.print(outPut);
   }
