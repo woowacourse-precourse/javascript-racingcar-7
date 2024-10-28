@@ -7,7 +7,7 @@ class App {
   async run() {
     const input = await readUserInput(MESSAGE.PROMPT_NAME_USER_INPUT);
     const cars = splitByComma(input);
-    const simulator = Simulator(cars);
+    const simulator = new Simulator(cars);
     const attemptCount = await readUserInput(MESSAGE.PROMPT_COUNT_USER_INPUT);
     for (let i = 0; i < attemptCount; i++) {
       simulator.simulate();
