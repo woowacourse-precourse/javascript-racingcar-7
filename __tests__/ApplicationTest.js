@@ -36,6 +36,7 @@ const runAppAndCheckLogs = async (inputs, randomNumbers, expectedLogs) => {
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
   });
 };
+
 describe("자동차 경주", () => {
   test("기능 테스트", async () => {
     const inputs = ["pobi,woni", "1"];
@@ -52,10 +53,7 @@ describe("자동차 경주", () => {
   });
 });
 
-
-
 describe("App 추가 테스트", () => {
-
   test("자동차 이름이 한 글자인 경우", async () => {
     const MOVING_FORWARD = 4;
     const STOP = 3;
