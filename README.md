@@ -1,12 +1,17 @@
 # javascript-racingcar-precourse
+
 - 미션은 과제 진행 요구 사항, 기능 요구 사항, 프로그래밍 요구 사항으로 구성되어 있다.
 - 세 개의 요구 사항을 만족하기 위해 노력한다. 특히 기능을 구현하기 전에 기능 목록을 만들고, 기능 단위로 커밋 하는 방식으로 진행한다.
 - 기능 요구 사항에 기재되지 않은 내용은 스스로 판단하여 구현한다.
 
 # 자동차 경주 구현할 기능 목록 정리 - turtlehwan
 
+- [ ] 입력 받기
+  - [ ] 올바른 입력인지 검증
+  - [ ]
 
 ## 기능 요구 사항
+
 초간단 자동차 경주 게임을 구현한다.
 
 - 주어진 횟수 동안 n대의 자동차는 전진 또는 멈출 수 있다.
@@ -19,14 +24,18 @@
 - 사용자가 잘못된 값을 입력할 경우 "[ERROR]"로 시작하는 메시지와 함께 Error를 발생시킨 후 애플리케이션은 종료되어야 한다.
 
 ### 입출력 요구 사항
+
 #### 입력
+
 - 경주할 자동차 이름, 시도할 횟수 : 이름은 쉼표(,) 기준으로 구분
+
 ```shell
 pobi,woni,jun   # 경주할 자동차 이름
 5               # 시도할 횟수
 ```
 
 #### 출력
+
 ```shell
 # 차수별 실행 결과
 pobi : --
@@ -41,6 +50,7 @@ jun : ---
 ```
 
 #### 실행 결과 예시
+
 ```shell
 경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)
 pobi,woni,jun
@@ -49,7 +59,7 @@ pobi,woni,jun
 
 실행 결과
 pobi : -
-woni : 
+woni :
 jun : -
 
 pobi : --
@@ -71,18 +81,21 @@ jun : -----
 최종 우승자 : pobi, jun
 ```
 
-
 ## Test Case Checklist
 
 # 참고사항
 
 ## 과제 진행 요구 사항
+
 - 기능을 구현하기 전 README.md에 구현할 기능 목록을 정리해 추가한다.
 - Git 커밋 단위 목록은 기능 단위이며, [AngularJS Git Commit Message Convention](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 참고한다.
 
 ## 프로그래밍 요구 사항 1
+
 - 1주차 미션과 동일
-##  프로그래밍 요구 사항 2
+
+## 프로그래밍 요구 사항 2
+
 - indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
   - 예를 들어 while문 안에 if문이 있으면 들여쓰기는 2이다.
   - 힌트: indent(인덴트, 들여쓰기) depth를 줄이는 좋은 방법은 함수(또는 메서드)를 분리하면 된다.
@@ -95,6 +108,7 @@ jun : -----
     - Jest로 파라미터화 테스트하기: test.each(), describe.each()
 
 ### 라이브러리
+
 - @woowacourse/mission-utils에서 제공하는 Random 및 Console API를 사용하여 구현해야 한다.
   - Random 값 추출은 Random.pickNumberInRange()를 활용한다.
   - 사용자의 값을 입력 및 출력하려면 Console.readLineAsync()와 Console.print()를 활용한다.
