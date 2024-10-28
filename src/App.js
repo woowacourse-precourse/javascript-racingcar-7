@@ -20,13 +20,19 @@ class App {
       );
     }
 
-    // 자동차 이름 5문자 초과일 경우 예외 발생
+    // 자동차 이름 5자 초과일 경우 예외 발생
     const invalidName = carNamesArray.find((carName) => carName.length > 5);
     if (invalidName) {
       throw new Error("[ERROR] 자동차 이름은 5자 이하로 작성해야 합니다.");
     }
 
-    // 테스트 코드
+    // 중복된 자동차 이름 예외 처리
+    const uniqueNames = new Set(carNamesArray);
+    if (uniqueNames.size !== carNamesArray.length) {
+      throw new Error("[ERROR] 중복된 자동차 이름은 입력할 수 없습니다.");
+    }
+
+    // 테스트 코드: 유효한 경우 자동차 이름 배열 출력
     Console.print(carNamesArray);
   }
 }
