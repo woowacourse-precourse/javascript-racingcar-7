@@ -22,4 +22,17 @@ describe('Car 클래스 테스트', () => {
     expect(cars[1]).toBeInstanceOf(Car);
     expect(carNames).toEqual(expectedCarNames);
   });
+
+  test('0에서 9사이의 값을 랜덤 추출할 수 있다.', () => {
+    const carName = 'minji';
+    const minNumber = 0;
+    const maxNumber = 9;
+
+    const car = new Car(carName);
+
+    const randomNumber = car.getRandomNumber();
+
+    expect(randomNumber).toBeGreaterThanOrEqual(minNumber);
+    expect(randomNumber).toBeLessThanOrEqual(maxNumber);
+  });
 });
