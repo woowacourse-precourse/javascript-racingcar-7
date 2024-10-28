@@ -13,8 +13,10 @@ const ERROR_MESSAGE = {
     "[ERROR] 자동차 이름의 언어는 한글이나 영어만 사용 가능합니다.",
   DUPLICATE_NAME_NOT_ALLOWED: "[ERROR] 자동차 이름은 중복이 불가능합니다.",
   CAR_LIST_TOO_SMALL: "[ERROR] 자동차 개수는 2대 이상이어야 합니다.",
+  CAR_LIST_TOO_BIG: "[ERROR] 자동차 개수는 최대 100대까지 가능합니다.",
   EMPTY_INPUT_NOT_ALLOWED: "[ERROR] 입력 내용이 없습니다.",
   ONLY_POSITIVE_NUMBER_ALLOWED: "[ERROR] 양수만 입력 가능합니다.",
+  MOVE_ATTEMPTS_TOO_BIG: "[ERROR] 이동 시도 횟수는 최대 100회까지 가능합니다.",
 };
 
 const OUTPUT_MESSAGE = {

@@ -48,11 +48,16 @@ class Validator {
     if (carList.length < 2) {
       throw new Error(ERROR_MESSAGE.CAR_LIST_TOO_SMALL);
     }
+
+    if (carList.length > 100) {
+      throw new Error(ERROR_MESSAGE.CAR_LIST_TOO_BIG);
+    }
   }
 
   static checkMoveAttempts(attempts) {
     Validator.#checkEmptyInput(attempts);
     Validator.#checkPositiveNumber(attempts);
+    Validator.#checkNumberSize(attempts);
   }
 
   static #checkEmptyInput(attempts) {
@@ -64,6 +69,12 @@ class Validator {
   static #checkPositiveNumber(attempts) {
     if (!/^\d+$/.test(attempts)) {
       throw new Error(ERROR_MESSAGE.ONLY_POSITIVE_NUMBER_ALLOWED);
+    }
+  }
+
+  static #checkNumberSize(attempts) {
+    if (attempts > 100) {
+      throw new Error(ERROR_MESSAGE.MOVE_ATTEMPTS_TOO_BIG);
     }
   }
 }
