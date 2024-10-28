@@ -12,7 +12,7 @@ class App {
       game.getRacingResult(tryCount);
 
       const scoreBoard = game.getScoreBoard();
-      View.printRoundScore(tryCount, scoreBoard);
+      View.printRoundScore(scoreBoard, tryCount);
 
       const finalWinner = game.getWinner(scoreBoard);
       View.printFinalWinner(finalWinner);

@@ -28,7 +28,7 @@ class View {
     MissionUtils.Console.print('');
   }
 
-  static printRoundScore(tryCount, scoreBoard) {
+  static printRoundScore(scoreBoard, tryCount) {
     this.printNewLine();
     MissionUtils.Console.print(`실행 결과`);
 
