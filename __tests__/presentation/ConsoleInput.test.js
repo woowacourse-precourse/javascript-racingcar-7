@@ -1,5 +1,6 @@
 import ConsoleInput from '../../src/presentation/ConsoleInput.js';
 import { MissionUtils } from '@woowacourse/mission-utils';
+import PROMPT from '../../src/constants/Prompt.js';
 
 describe('ConsoleInput Class 테스트', () => {
   const mockReadLineAsync = (input) => {
@@ -10,7 +11,7 @@ describe('ConsoleInput Class 테스트', () => {
     test('readCarsName 메서드가 올바른 프롬프트 메시지를 출력하는지 확인', async () => {
       // given
       const input = 'pobi, woni , jun';
-      const expectedPrompt = '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n';
+      const expectedPrompt = PROMPT.INPUT_CAR_NAME;
       mockReadLineAsync(input);
 
       // when
@@ -46,7 +47,7 @@ describe('ConsoleInput Class 테스트', () => {
     test('readTargetRound 메서드가 올바른 프롬프트 메시지를 출력하는지 확인', async () => {
       // given
       const input = '5';
-      const expectedPrompt = '시도할 횟수는 몇 회인가요?\n';
+      const expectedPrompt = PROMPT.INPUT_TARGET_ROUND;
       mockReadLineAsync(input);
 
       // when
