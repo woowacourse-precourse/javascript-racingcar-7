@@ -8,7 +8,8 @@ class App {
       const attempts = await this.getAttempts();
 
       const game = new Race(carNames);
-      // TODO: 게임 실행 로직 구현
+      MissionUtils.Console.print('\n실행 결과');
+      await game.race(attempts);
     } catch (error) {
       MissionUtils.Console.print(error.message);
       throw error;
