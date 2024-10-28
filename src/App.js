@@ -7,12 +7,15 @@ class App {
         "경주할 자동차 이름을 쉼표로 구분하여 입력해주세요. \n"
       );
 
-      //자동차 목록 입력 검증
+      //자동차 목록 입력 유효성 검증
       this.validateInput(input);
 
       const count = await MissionUtils.Console.readLineAsync(
         "시도할 횟수는 몇 회인가요? \n"
       );
+
+      //횟수 입력 유효성 검증
+      this.validateCount(count);
 
       const { resultList, parsed } = this.racing(input, count);
 
@@ -61,6 +64,26 @@ class App {
     }
 
     return;
+  }
+
+  validateCount(count) {
+    //count가 숫자가 아닌 경우
+    if (isNaN(count)) {
+      MissionUtils.Console.print("[ERROR] 경주 횟수는 숫자여야 합니다.");
+      throw new Error("[ERROR]");
+    }
+    // count가 0또는 음수일 경우
+    if (count <= 0) {
+      MissionUtils.Console.print("[ERROR] 경주 횟수는 1회 이상이어야 합니다.");
+      throw new Error("[ERROR]");
+    }
+
+    //count가 양수이지만 정수가 아닌 소수일 경우
+    //Number.inInteger로 확인하자
+    if (!Number.isInteger(Number(count))) {
+      MissionUtils.Console.print("[ERROR] 경주 횟수는 정수여야 합니다.");
+      throw new Error("[ERROR]");
+    }
   }
 
   racing(input, count) {
