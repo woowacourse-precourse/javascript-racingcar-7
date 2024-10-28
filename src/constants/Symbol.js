@@ -1,0 +1,20 @@
+export const GAME_SETTINGS = Object.freeze({
+  INITIAL_POSITION: 0,
+  MIN_RANDOM_NUMBER: 0,
+  MAX_RANDOM_NUMBER: 9,
+  FORWARD_POINT: 4,
+  INCREASE_POSISION: 1,
+  MINIMUM_ATTEMPT: 1,
+  MAX_NAME_LENGTH: 5,
+  MINIMUM_CARS: 2,
+  RACING_START_POINT: 0,
+});
+
+export const SYMBOLS = Object.freeze({
+  EMPTY: '',
+  LINE_BREAK: '',
+  SPACE: ' ',
+  CAR_DELIMITER: ',',
+  WINER_DELIMITER: ', ',
+  RACE_PROGRESS: '-',
+});
