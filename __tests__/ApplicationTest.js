@@ -76,4 +76,17 @@ describe("자동차 경주", () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
+
+  test("자동차 이름을 공백으로 입력했을 때 예외 테스트", async () => {
+    // given
+    const inputs = [""]; // 빈 문자열을 입력합니다.
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR] 이름은 공백이 올 수 없습니다.");
+  });
+
 });
