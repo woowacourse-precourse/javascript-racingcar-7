@@ -2,6 +2,7 @@ import { Console, Random } from "@woowacourse/mission-utils";
 // Console.readLineAsync() / Console.print() / Random.pickNumberInRange()
 import Validate from "./Validate.js";
 import Race from "./Race.js";
+import Winner from "./Winner.js";
 
 // 사용자가 잘못된 값을 입력할 경우 "[ERROR]"로 시작하는 메시지와 함께 Error를 발생시킨 후 애플리케이션은 종료되어야 한다.
 
@@ -26,25 +27,8 @@ class App {
     Console.print("\n실행 결과");
     Race.roundProgress(maxAttempts, car);
 
-    const WINNER_POSITION = Math.max(...car.position);
-    
-    let position = 0;
-    const WINNER_ARRAY = []
-    while (true){
-      let WINNER_INDEX = car.position.indexOf(WINNER_POSITION, position);
-      
-      if (WINNER_INDEX == -1){
-        break;
-      }
-
-      WINNER_ARRAY.push(car.name[WINNER_INDEX]);
-      position = WINNER_INDEX + 1;
-    }
-
-    const WINNER_MESSAGE = WINNER_ARRAY.join(', ');
-    Console.print(`최종 우승자 : ${WINNER_MESSAGE}`);
-
-
+    const WINNER_ARRAY = Winner.findWinner(car);
+    Winner.printWinner(WINNER_ARRAY);
 
   }
 }
