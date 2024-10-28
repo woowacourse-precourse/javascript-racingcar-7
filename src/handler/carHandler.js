@@ -1,9 +1,11 @@
 function carHandler(carNames) {
   const temptArray = new Set(carNames);
-  const newArr = [...temptArray];
+  if (carNames.length !== temptArray.size) {
+    throw new Error('[ERROR] 중복된 이름이 존재합니다.');
+  }
 
-  carNames.map((name) => {
-    if (name.length >= 5) {
+  carNames.forEach((name) => {
+    if (name.length > 5) {
       throw new Error('[ERROR] 자동차 이름은 5글자 이하만 가능합니다.');
     }
 
@@ -15,9 +17,7 @@ function carHandler(carNames) {
       throw new Error('[ERROR] 이름에는 공백이 포함될 수 없습니다.');
     }
 
-    if (carNames.length !== newArr.length) {
-      throw new Error('[ERROR] 중복된 이름이 존재합니다.');
-    }
+    
   });
 }
 
