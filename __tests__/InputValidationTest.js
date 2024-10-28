@@ -34,4 +34,60 @@ describe("자동차 경주 입력 관련 예외 테스트", () => {
     const app = new App();
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
+  test("자동차 이름이 중국어(간체)인 경우", async () => {
+    const inputs = ["자동차,car,汽车", "1"];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("자동차 이름이 중국어(번체)인 경우", async () => {
+    const inputs = ["자동차,car,汽車", "1"];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("자동차 이름이 불어인 경우", async () => {
+    const inputs = ["자동차,car,café", "1"];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("자동차 이름이 스페인어인 경우", async () => {
+    const inputs = ["자동차,car,móvil", "1"];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("자동차 이름이 일본어(히라가나)인 경우", async () => {
+    const inputs = ["자동차,car,くるま", "1"];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("자동차 이름이 일본어(가타카나)인 경우", async () => {
+    const inputs = ["자동차,car,ジドウシャ", "1"];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("자동차 이름이 러시아어인 경우", async () => {
+    const inputs = ["자동차,car,ашина", "1"];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
 });
