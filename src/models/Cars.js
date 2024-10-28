@@ -1,5 +1,6 @@
-import { Car, UserInterface } from './index.js';
-import { SCRIPT } from '../constants/interfaceScript.js';
+import { Car } from './index.js';
+import { UserInterface } from '../utils/index.js';
+import { UI_MESSAGES } from '../constants/uiMessages.js';
 
 class Cars {
   constructor(names) {
@@ -7,7 +8,7 @@ class Cars {
   }
 
   race(counts) {
-    UserInterface.print(SCRIPT.EXECUTION_RESULT);
+    UserInterface.print(UI_MESSAGES.EXECUTION_RESULT);
     for (let i = 0; i < counts; i += 1) {
       this.attemptMoveAllCars();
       UserInterface.printNewline();

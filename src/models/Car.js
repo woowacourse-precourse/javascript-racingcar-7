@@ -1,4 +1,4 @@
-import { GameUtils, UserInterface } from './index.js';
+import { GameUtils, UserInterface } from '../utils/index.js';
 
 class Car {
   constructor(name) {
