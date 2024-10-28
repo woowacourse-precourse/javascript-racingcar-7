@@ -42,18 +42,14 @@ function printProgress(carNames, number){
 }
 
 function numberException(input){
-  if(!input) throw new Error("[ERROR] 시도 횟수가 입력되지 않았습니다");
+  if(isNaN(input)) throw new Error("[ERROR] 시도 횟수를 숫자로 입력해주세요.");
   if(Number(input) <= 0) throw new Error("[ERROR] 시도 횟수는 1 이상의 수만 가능합니다.");
 }
 
 async function getNumber() {
   const input = await MissionUtils.Console.readLineAsync("시도할 횟수는 몇 회인가요? \n");
-
   numberException(input);
-
-  const blank = /(\s*)/g;
-  const integerInput = Number(input.replace(blank,''));
-  return integerInput;
+  return Number(input.trim());
 }
 
 function carNameException(input) {
@@ -62,7 +58,7 @@ function carNameException(input) {
 
   const inputArray = input.split(',');
   const checkDuplication = new Set(inputArray);
-  
+
   if(inputArray.length !== checkDuplication.size) throw new Error("[ERROR] 자동차 이름이 중복되었습니다.")
 
   const checkLength = inputArray;
@@ -73,12 +69,10 @@ function carNameException(input) {
 
 async function getCarname() {
   const input = await MissionUtils.Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분) \n");
-
   carNameException(input);
-
   const blank = /(\s*)/g;
-  const splitInput = input.replace(blank,'').split(',');
-  return splitInput;
+  const inputArray = input.replace(blank, '').split(',');
+  return inputArray;
 }
 
 class App {

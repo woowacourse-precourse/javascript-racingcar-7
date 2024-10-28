@@ -75,9 +75,9 @@ describe("자동차 이름 입력 예외", () => {
 });
 
 describe("시도 횟수 입력 예외", () => {
-  test("비어있는 입력값", async () => {
+  test("잘못된 시도 횟수 입력", async () => {
     // given
-    const inputs = [""];
+    const inputs = ["1o"];
     mockQuestions(inputs);
 
     // when
@@ -90,18 +90,6 @@ describe("시도 횟수 입력 예외", () => {
   test("0 이하의 수 입력", async () => {
     // given
     const inputs = ["-3"];
-    mockQuestions(inputs);
-
-    // when
-    const app = new App();
-
-    // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
-  });
-
-  test("자동차 이름 중복", async () => {
-    // given
-    const inputs = ["pobi, pobi, pobi, nobi"];
     mockQuestions(inputs);
 
     // when
