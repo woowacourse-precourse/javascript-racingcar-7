@@ -1,4 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
+import { RACE_MESSAGES } from './constant.js';
 import Car from './Car.js';
 
 class Race {
@@ -46,8 +47,13 @@ class Race {
   }
 
   start() {
-    Console.print('\n실행 결과');
+    Console.print(RACE_MESSAGES.resultTitle);
     this.#runRounds();
+  }
+
+  printWinner() {
+    const winners = this.#getWinners();
+    Console.print(`${RACE_MESSAGES.finalWinner}${winners}`);
   }
 }
 
