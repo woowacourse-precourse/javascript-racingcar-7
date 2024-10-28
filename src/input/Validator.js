@@ -3,3 +3,7 @@ export function validateCarNames(carNames) {
     const isUniqueNames = new Set(carNames).size === carNames.length;
     return isValidLength && isUniqueNames;
   }
+
+  export function validateAttemptCount(attemptCount) {
+    return Number.isInteger(attemptCount) && attemptCount > 0;
+  }
