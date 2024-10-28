@@ -1,7 +1,7 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import {
   separateCarList,
-  playGame,
+  startGame,
   printWinner,
   checkNameError,
   checkNumberError,
@@ -27,7 +27,7 @@ class App {
     checkNumberError(try_number);
 
     MissionUtils.Console.print(ENTER + ANSWER_START);
-    const carDistance = playGame(car_list, try_number);
+    const carDistance = startGame(car_list, try_number);
     printWinner(car_list, carDistance);
   }
 }

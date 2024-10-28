@@ -29,15 +29,16 @@ export const printWinner = (carList, carDistance) => {
     }
   });
 
-  let winnerCar = winner[0];
+  let winnerCarList = winner[0];
   for (let i = 1; i < winner.length; i++) {
-    winnerCar += COMMA + SPACE + winner[i];
+    winnerCarList += COMMA + SPACE + winner[i];
   }
-  MissionUtils.Console.print(WINNER_CAR + winnerCar);
+  MissionUtils.Console.print(WINNER_CAR + winnerCarList);
 };
 
 const checkMoveForward = () => {
   const try_move = MissionUtils.Random.pickNumberInRange(0, 9);
+
   if (try_move >= 4) {
     return true;
   }
@@ -46,25 +47,35 @@ const checkMoveForward = () => {
 
 const makeMoveCarList = (carList) => {
   const move_car_list = [];
+
   for (let i = 0; i < carList.length; i++) {
     const try_move = checkMoveForward();
     move_car_list.push(try_move);
   }
+
   return move_car_list;
 };
+const tryGame = (carList, carDistance) => {
+  const move_car_list = makeMoveCarList(carList);
 
-export const playGame = (carList, tryNumber) => {
-  const carDistance = new Array(carList.length).fill(EMPTY);
-  for (let j = 0; j < tryNumber; j++) {
-    const moveCarList = makeMoveCarList(carList);
-    for (let i = 0; i < carList.length; i++) {
-      if (moveCarList[i] == true) {
-        carDistance[i] += DASH;
-      }
-      MissionUtils.Console.print(`${carList[i]} ${COLON} ${carDistance[i]}`);
+  for (let i = 0; i < carList.length; i++) {
+    if (move_car_list[i] == true) {
+      carDistance[i] += DASH;
     }
-    MissionUtils.Console.print(SPACE);
+
+    MissionUtils.Console.print(`${carList[i]} ${COLON} ${carDistance[i]}`);
   }
+  MissionUtils.Console.print(SPACE);
+
+  return carDistance;
+};
+export const startGame = (carList, tryNumber) => {
+  let carDistance = new Array(carList.length).fill(EMPTY);
+
+  for (let i = 0; i < tryNumber; i++) {
+    carDistance = tryGame(carList, carDistance);
+  }
+
   return carDistance;
 };
 
