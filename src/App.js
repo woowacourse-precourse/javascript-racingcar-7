@@ -21,22 +21,22 @@ class App {
   }
 
   validateSplitCarNames(splitCarNames) {
-    const uniqueNames = new Set();
+    const UNIQUE_NAME = new Set();
   
     splitCarNames.forEach(name => {
       if (name.length > 5) {
         throw new Error('[ERROR] 이름은 5글자를 넘을 수 없습니다!');
       }
-      if (uniqueNames.has(name)) {
+      if (UNIQUE_NAME.has(name)) {
         throw new Error('[ERROR] 이름은 중복으로 설정할 수 없습니다!');
       }
-      if (uniqueNames.has('')) {
+      if (UNIQUE_NAME.has('')) {
         throw new Error('[ERROR] 이름은 공백으로 설정할 수 없습니다!');
       }
-      uniqueNames.add(name);
+      UNIQUE_NAME.add(name);
     });
 
-    return Array.from(uniqueNames);
+    return Array.from(UNIQUE_NAME);
   }
 
   createCars(validSplitCarName) {
@@ -44,20 +44,16 @@ class App {
   }
 
   validateRoundNumber(roundNumber) {
-    if(roundNumber === ''){
-      throw new Error('[ERROR] 공백을 입력할 수 없습니다!')
+    const NUMBER = parseInt(roundNumber)
+
+    if(isNaN(NUMBER)){
+      throw new Error('[ERROR] 숫자를 입력해야 합니다!');
     }
-    if(isNaN(roundNumber)){
-      throw new Error('[ERROR] 숫자를 입력해야 합니다!')
-    }
-    if(roundNumber <= 0){
-      throw new Error('[ERROR] 0보다 적은 값은 입력할 수 없습니다.')
-    }
-    if(!Number.isInteger(roundNumber)){
-      throw new Error('[ERROR] 소수는 입력할 수 없습니다.');
+    if(NUMBER <= 0){
+      throw new Error('[ERROR] 1보다 적은 값은 입력할 수 없습니다.');
     }
 
-    return roundNumber;
+    return NUMBER;
   }
 
   async run() {
