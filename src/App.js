@@ -23,6 +23,16 @@ class App{
       throw new Error("[ERROR]")
     }
 
+    // 2-예외 : 정수가 아닌 문자열이 입력된 경우
+    if(isNaN(Number(number_input))){
+      throw new Error("[ERROR]")
+    }
+
+    // 2-예외 : 0이 입력된 경우
+    if(number_input==0){
+      throw new Error("[ERROR]")
+    }
+
     // 5. 예외 처리 1 : 모든 자동차 이름 검사 함수
     function car_name_length(cars){
       for (const car of cars){
@@ -79,6 +89,12 @@ class App{
     // 7. 게임 함수 실행 및 게임 최종 결과 출력
     Console.print("실행 결과");
     game(Number(number_input));
+
+    // 3-예외 : 모든 자동차의 모든 라운드 결과가 0일 경우
+    if (game_results.every(result => result === 0)) {
+      throw new Error("[ERROR]"); 
+    }
+
     const max_score=Math.max(...game_results);
     const winners=[];
     game_results.forEach((score,index)=>{

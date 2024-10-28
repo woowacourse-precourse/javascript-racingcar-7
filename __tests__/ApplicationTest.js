@@ -98,13 +98,15 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR]");
   })
 
-  // 5. 예외 테스트 : 모든 자동차에 모든 라운드가 다 0일 경우
-  test("예외 테스트 : 모든 자동차에 모든 라운드가 다 0일 경우",async()=>{
+  // 5. 예외 테스트 : 모든 자동차의 모든 라운드 결과가 0일 경우
+  test("예외 테스트 : 모든 자동차의 모든 라운드 결과가 0일 경우",async()=>{
     const inputs=["flee,pobi","3"];
     const round=0;
 
     mockQuestions(inputs);
     mockRandoms([round,round,round]);
+
+    const app = new App();
 
     await expect(app.run()).rejects.toThrow("[ERROR]")
   })
