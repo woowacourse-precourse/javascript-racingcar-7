@@ -4,6 +4,7 @@ const printRacerAndRacingOutput = (carNamesInput, progressionLengthForRacers) =>
   for (let i = 0; i < carNamesInput.length; i += 1) {
     Console.print(`${carNamesInput[i]} : ${progressionLengthForRacers[i]}`);
   }
+
   Console.print('\n');
 };
 
