@@ -35,7 +35,7 @@ export function moveCarForward(car) {
   }
 }
 
-export function repeat(carList, number) {
+export function raceCars(carList, number) {
   MissionUtils.Console.print(GREETING_RESULT_PROMPT);
   for (let i = 0; i < number; i++) {
     carList.forEach((car) => {

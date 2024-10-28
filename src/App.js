@@ -1,5 +1,5 @@
 import {
-  makeCars, repeat, getMaxPosition, findWinnerCars,
+  makeCars, raceCars, getMaxPosition, findWinnerCars,
 } from './services/RacingGameService.js';
 
 import {
@@ -22,7 +22,7 @@ class App {
     validateAttemptCount(attemptCount);
 
     this.carList = makeCars(splittedCarName);
-    repeat(this.carList, attemptCount);
+    raceCars(this.carList, attemptCount);
 
     const maxPosition = getMaxPosition(this.carList);
     const winnerNames = findWinnerCars(this.carList, maxPosition);
