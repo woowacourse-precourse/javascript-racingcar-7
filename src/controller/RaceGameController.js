@@ -1,5 +1,8 @@
 import parser from "../utils/parser.js";
-import { carNameValidatePipe } from '../utils/validationPipe.js'
+import {
+  carNameValidatePipe,
+  iterationValidatePipe,
+} from "../utils/validationPipe.js";
 class RaceGameController {
   constructor(view, service) {
     this.view = view;
@@ -26,11 +29,8 @@ class RaceGameController {
 
   onGetIteration(iterationString){
   if(!iterationString)
-    throw new Error('[ERROR] 입력이 잘못 되었어요!');
-  if(isNaN(iterationString)){
-    throw new Error('[ERROR] 입력된 반복 횟수가 숫자가 아니에요!');
-  }
-  
+    throw new Error('[ERROR] 입력이 잘못 되었어요!'); 
+  iterationValidatePipe(iterationString);
   return parser.parseIteration(iterationString);
   }
 

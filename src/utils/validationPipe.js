@@ -1,20 +1,32 @@
-import { isEmptyString, isNotEmptyString, isShorterThan } from "./validator.js";
+import { isEmptyString, isLongerThan } from './validator.js';
 
 
-function conditionPipe(data, ...fn){
-  return fn.every(fn => fn(data));
+function someConditionPipe(data, ...fn){
+  return fn.some(fn => fn(data));
 }
 
 export function carNameValidatePipe(carNameString){
   const carNames = carNameString.split(',');
   for (const carName of carNames) {
-    if(!conditionPipe(carName, isNotEmptyString, isShorterThan(5)))
-      throw new Error('[ERROR] 차이름이 잘못 되었습니다');
+    if(someConditionPipe(carName, isEmptyString, isLongerThan(5)))
+      throw new Error('[ERROR] 차 이름이 잘못 되었어요');
   }
   const carSet = new Set(carNames.map(carname=>carname.trim()));
   if (carSet.size !== carNames.length){
-    throw new Error('[ERROR] 차이름이 중복되었어요!');
+    throw new Error('[ERROR] 차 이름이 중복되었어요!');
   }
 
   return true; 
+}
+
+export function iterationValidatePipe(iterationString){
+  if (isNaN(iterationString)) {
+    throw new Error('[ERROR] 입력된 반복 횟수가 숫자가 아니에요!');
+  }
+  const parsedNumber = parseInt(iterationString, 10);
+
+  if (parsedNumber !== Number(iterationString)) {
+    throw new Error('[ERROR] 정수로 입력해주세요!:)');
+  }
+  return true;
 }
