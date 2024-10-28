@@ -3,8 +3,10 @@ import Car from "./Car.js";
 export default class RacingGame {
   #repeatCount;
 
+  /** @type { Car[] } */
   #cars;
 
+  /** @type { { name: string, dist: number }[] } */
   #raceLogs;
 
   constructor() {

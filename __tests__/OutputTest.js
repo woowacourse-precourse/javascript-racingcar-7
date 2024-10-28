@@ -1,15 +1,5 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
-import RacingGame from "../src/model/RacingGame.js";
 import Output from "../src/view/Output";
-
-const mockRandoms = (numbers) => {
-  MissionUtils.Random.pickNumberInRange = jest.fn();
-
-  numbers.reduce(
-    (acc, number) => acc.mockReturnValueOnce(number),
-    MissionUtils.Random.pickNumberInRange,
-  );
-};
 
 const getLogSpy = () => {
   const logSpy = jest.spyOn(MissionUtils.Console, "print");
@@ -18,39 +8,26 @@ const getLogSpy = () => {
 };
 
 describe("출력", () => {
-  let game;
-
-  beforeEach(() => {
-    game = new RacingGame();
-  });
-
   describe("자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다.", () => {
-    test("경주 게임이 있고 우승자가 한명인 경우, 경주 게임이 끝나고 우승자를 출력하면, 단독 우승자 안내 문구를 출력한다.", () => {
+    test("우승자 배열에 자동차 하나가 있을 때, 우승자를 출력하면, 단독 우승자 안내 문구를 출력한다.", () => {
       // given
-      const REPEAT_COUNT = 2;
-      const CARS = ["ham"];
-      game.setGame(CARS, REPEAT_COUNT);
+      const cars = ["ham"];
       const logSpy = getLogSpy();
 
       // when
-      game.start();
-      Output.printWinners(game.getWinners());
+      Output.printWinners(cars);
 
       // then
       expect(logSpy).toHaveBeenCalledWith("최종 우승자 : ham");
     });
 
-    test("경주 게임이 있고 우승자가 두명인 경우, 경주 게임이 끝나고 우승자를 출력하면, 공동 우승자 안내 문구를 출력한다.", () => {
+    test("우승자 배열에 자동차 두개가 있을 때, 우승자를 출력하면, 공동 우승자 안내 문구를 출력한다.", () => {
       // given
-      const REPEAT_COUNT = 1;
-      const CARS = ["ham", "pobi"];
-      game.setGame(CARS, REPEAT_COUNT);
-      mockRandoms([1, 1]);
+      const cars = ["ham", "pobi"];
       const logSpy = getLogSpy();
 
       // when
-      game.start();
-      Output.printWinners(game.getWinners());
+      Output.printWinners(cars);
 
       // then
       expect(logSpy).toHaveBeenCalledWith("최종 우승자 : ham, pobi");
@@ -58,18 +35,17 @@ describe("출력", () => {
   });
 
   describe("차수별 실행 결과를 출력한다.", () => {
-    test("경주 게임이 있고 게임을 2번 반복하는 경우, 경주 게임의 로그를 출력하면, 실행 결과를 출력한다.", () => {
+    test("경주 게임 로그 배열이 있을 때, 경주 게임의 로그를 출력하면, 차수별 실행 결과를 출력한다.", () => {
       // given
-      const REPEAT_COUNT = 2;
-      const CARS = ["ham", "pobi"];
-      game.setGame(CARS, REPEAT_COUNT);
-      mockRandoms([1, 4, 1, 4]);
-      const logs = ["ham : ", "pobi : -", "", "ham : ", "pobi : --", ""];
+      const raceLogs = [
+        [{ name: "pobi", dist: 1 }, { name: "ham", dist: 0 }],
+        [{ name: "pobi", dist: 2 }, { name: "ham", dist: 1 }],
+      ];
+      const logs = ["\n실행 결과", "pobi : -", "ham : ", "pobi : --", "ham : -"];
       const logSpy = getLogSpy();
 
       // when
-      game.start();
-      Output.printResults(game.getRaceLogs());
+      Output.printResults(raceLogs);
 
       // then
       logs.forEach((log) => {
