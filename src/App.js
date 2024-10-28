@@ -7,6 +7,7 @@ import Validator from './Validator';
 class App {
   async run() {
     const input = await readUserInput(MESSAGE.PROMPT_NAME_USER_INPUT);
+    Validator.validate(input);
     const cars = splitByComma(input);
     Validator.validate(cars);
 
