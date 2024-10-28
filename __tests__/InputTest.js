@@ -1,4 +1,4 @@
-import { validation } from '../src/utils/index.js';
+import validation from '../src/validation.js';
 
 describe('입력에 대한 테스트', () => {
   test('자동차 이름의 길이가 5를 넘는지', () => {

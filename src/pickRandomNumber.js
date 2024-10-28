@@ -1,4 +1,4 @@
-import { MAGICNUMBER } from '../constants/index.js';
+import MAGICNUMBER from './magicnumber.js';
 import { MissionUtils } from '@woowacourse/mission-utils';
 
 const pickRandomNumber = () => {

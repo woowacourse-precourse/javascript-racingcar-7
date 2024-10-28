@@ -1,5 +1,5 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
-import { IOMESSAGE } from '../constants/index.js';
+import IOMESSAGE from './ioMessage.js';
 
 const ioMethod = {
   inputCarName: async () => {

@@ -1,4 +1,4 @@
-import Racingcar from '../src/components/Racingcar.js';
+import Racingcar from '../src/Racingcar.js';
 
 const [inputArr, tryNum] = [['pobi', 'jun', 'woni', 'moo'], 7];
 const racingcar = new Racingcar(inputArr, tryNum);

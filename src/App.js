@@ -1,6 +1,8 @@
-import Racingcar from './components/Racingcar.js';
-import { ioMethod, validation } from './utils/index.js';
-import { MAGICNUMBER, ERRORMESAGE } from './constants/index.js';
+import Racingcar from './Racingcar.js';
+import ioMethod from './inputoutputMethod.js';
+import MAGICNUMBER from './magicnumber.js';
+import ERRORMESAGE from './errorMessage.js';
+import validation from './validation.js';
 
 class App {
   #racingcar;
