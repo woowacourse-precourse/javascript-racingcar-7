@@ -10,7 +10,11 @@ class OutputView {
 
     printResult() {
         this.#print(OUTPUT_MESSAGE.executionResult);
+    }
+
+    printWinner(winner) {
         this.#print(OUTPUT_MESSAGE.finalWinner);
+        this.#print(winner);
     }
 }
 
