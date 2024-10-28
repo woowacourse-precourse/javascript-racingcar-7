@@ -10,6 +10,12 @@ class App {
       .trim()
       .split(",");
 
+    cars.forEach((car) => {
+      if (5 < car.length) {
+        throw new Error("[ERROR] 자동차 이름은 5자 이하만 가능합니다.");
+      }
+    });
+
     const tries = await Console.readLineAsync("시도할 회수는 몇 회인가요?\n");
 
     Console.print(`경주할 자동차: ${cars.join(", ")} 시도할 횟수: ${tries}`);
