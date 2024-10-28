@@ -33,4 +33,24 @@ describe('CarNameValidator 테스트', () => {
       });
     });
   });
+
+  describe('validateCarNamesDuplication 메서드 테스트', () => {
+    test('중복된 이름이 있을 경우 에러가 발생한다', () => {
+      // given
+      const duplicateNames = ['pobi', 'crong', 'pobi'];
+
+      // when & then
+      expect(() => CarNameValidator.validateCarNamesDuplication(duplicateNames))
+        .toThrow('[ERROR] 자동차 이름은 중복될 수 없습니다.');
+    });
+
+    test('중복된 이름이 없는 경우 검증을 통과한다', () => {
+      // given
+      const uniqueNames = ['pobi', 'crong', 'jun'];
+
+      // when & then
+      expect(() => CarNameValidator.validateCarNamesDuplication(uniqueNames))
+        .not.toThrow();
+    });
+  });
 });
