@@ -8,7 +8,7 @@ class Validator {
 
   static validateCarNamesInput(input) {
     if (input.length < 2) {
-      throw new Error(this.MESSAGE.CAR_NAME_NOT_MORE_THAN_ONE);
+      throw new Error(this.MESSAGE.CAR_NAME_MIN_TWO);
     }
     input.forEach((el) => {
       if (el.length > 5) {
