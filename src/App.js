@@ -6,6 +6,7 @@ class App {
       const INPUT = await MissionUtils.Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
       const { PLAYERS, GOING } = setPlayer(INPUT);
       const INPUT2 = await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+      MissionUtils.Console.print("");
       printRace(INPUT2, PLAYERS, GOING);
       setWinner(PLAYERS, GOING);
     } catch (error) {
@@ -30,10 +31,10 @@ function printRace(INPUT2, PLAYERS, GOING) {
     throw new Error("숫자가 아닙니다.");
   } else if (Number(INPUT2) < 0) {
     throw new Error("숫자가 음수입니다.");
-  } else if (!Number.isInteger(INPUT2)) {
+  } else if (!Number.isInteger(Number(INPUT2))) {
     throw new Error("숫자가 정수가 아닙니다.");
   }
-  MissionUtils.Console.print("실행 결과\n");
+  MissionUtils.Console.print("실행 결과");
   for (let i = 0; i < INPUT2; i++) {
     setGoing(GOING);
     for (let j = 0; j < PLAYERS.length; j++) {
