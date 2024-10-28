@@ -13,7 +13,7 @@ class Car {
     }
   }
 
-  getStatus() {
+  printStatus() {
     let movedDraw = "";
     for (let i = 0; i < this.movedDistance; i++) {
       movedDraw += "-";
