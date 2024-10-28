@@ -6,6 +6,7 @@ const calculateWinner = (car, carMovements) => {
     if (maxMovement === carMovements[index]) {
       acc.push(index);
     }
+    
     return acc;
   }, []);
 
