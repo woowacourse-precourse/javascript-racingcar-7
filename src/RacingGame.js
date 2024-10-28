@@ -3,6 +3,7 @@ import {OUTPUT_MESSAGE, PROMPT_MESSAGE} from "./constants/message.js";
 import {Car} from "./Car.js";
 import {getFirstPromptError, getSecondPromptError} from "./utils/errorMessageHandler.js";
 import {inputHandler} from "./utils/inputHandler.js";
+import {setWinner, winCounter} from "./utils/raceHandler.js";
 
 class RacingGame {
     promptSequence = 1 //이걸 명확하게? 스트링?
@@ -13,8 +14,7 @@ class RacingGame {
         this.promptSequence++
         this.createCarList(fistPrompt)
         const secondPrompt = await this.getInput(PROMPT_MESSAGE.SECOND)
-        this.playRace(secondPrompt)
-        const result = this.setWinner()
+        const result = this.playRace(secondPrompt)
         this.getOutput(result)
     }
 
@@ -27,30 +27,13 @@ class RacingGame {
     playRace(tryNum) {
         // this.output("실행결과")
         for (let i = 0; i < tryNum; i++) {
-            this.winCounter(this.carArr)
-            this.getOutput()
+            this.aggregationResult()
         }
+        return winCounter(this.carArr)
     }
 
-    winCounter(carArr) {
-        for (const car of carArr) {
-            const randomNum = this.setRandomNum()
-            if (randomNum >= 4) {
-                car.winCnt++
-            }
-        }
-    }
-
-    setWinner() {
-        return this.carArr
-            .sort((a, b) => b.winCnt - a.winCnt)
-            .filter((elem) => elem.winCnt === this.carArr[0].winCnt)
-            .map((elem) => elem.carName)
-            .join(", ")
-    }
-
-    setRandomNum() {
-        return MissionUtils.Random.pickNumberInRange(0, 9);
+    aggregationResult() {
+        return this.getOutput()
     }
 
     async getInput(message) {
