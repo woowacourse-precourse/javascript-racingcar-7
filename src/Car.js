@@ -27,6 +27,10 @@ class Car {
   getDistance() {
     return this.#distance;
   }
+
+  moveForward() {
+    this.#distance++;
+  }
 }
 
 export default Car;
