@@ -4,3 +4,12 @@ export const gameMessage = {
     runResultMessage: '실행 결과',
     finalWinnerMessage: '최종 우승자 :',
 }
+
+export const errorMessage = {
+    inputEmptyErrorMessage: '[Error] 값이 입력되지 않았습니다.',
+}
+
+export const number = {
+    startNum: 0,
+    endNum: 9,
+}
