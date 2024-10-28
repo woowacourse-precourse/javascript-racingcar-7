@@ -9,7 +9,8 @@ class App {
 
     Console.print("실행 결과");
     const raceResultMap = this.raceHanlder(nameMap, count);
-    Console.print(raceResultMap);
+    
+    this.displayFinalRaceResultHandler(nameMap);
   }
 
   separateNameHandler(names){
@@ -45,6 +46,23 @@ class App {
     }
 
     Console.print('');
+  }
+
+  // 최종 결과 출력 함수
+  displayFinalRaceResultHandler(nameMap){
+    let maxCount = 0;
+    let winners = [];
+
+    for (let [name, count] of nameMap.entries()) {
+      if (count > maxCount) {
+        maxCount = count;
+        winners = [name];  // 새로운 우승자 갱신
+      } else if (count === maxCount) {
+        winners.push(name);  // 공동 우승자 추가
+      }
+    }
+
+    Console.print(`최종 우승자 : ${winners.join(', ')}`)
   }
 }
 
