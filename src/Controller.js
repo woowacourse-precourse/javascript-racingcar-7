@@ -17,10 +17,14 @@ export class raceController {
   raceResult() {
     this.cars.forEach((car) => {
       car.move();
-      const displayPosition = '-'.repeat(car.getPosition());
-      Console.print(`${car.getName()} : ${displayPosition}`);
+      this.printCarPosition(car);
     });
     Console.print('\n');
+  }
+
+  printCarPosition(car) {
+    const printPosition = '-'.repeat(car.getPosition());
+    Console.print(`${car.getName()} : ${printPosition}`);
   }
 
   raceAttemps() {
