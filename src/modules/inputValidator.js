@@ -1,4 +1,4 @@
-import throwError from "../utils/throwError";
+import throwError from "../utils/throwError.js";
 
 export function carNameArrayValidate(carNameArray) {
   const carNameSet = new Set(carNameArray);

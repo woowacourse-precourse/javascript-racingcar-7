@@ -1,5 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
-import getRandomDigit from "../utils/getRandomDigit";
+import getRandomDigit from "../utils/getRandomDigit.js";
 
 function moveCarRandomly(car) {
   const randomDigit = getRandomDigit();

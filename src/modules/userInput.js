@@ -1,6 +1,6 @@
 import { Console } from "@woowacourse/mission-utils";
-import { carNameArrayValidate, countValidate } from "./inputValidator";
-import Car from "../models/car";
+import { carNameArrayValidate, countValidate } from "./inputValidator.js";
+import Car from "../models/car.js";
 
 export async function getValidatedCars() {
   const carNameInput = await Console.readLineAsync(
