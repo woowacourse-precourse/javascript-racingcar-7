@@ -60,16 +60,8 @@ class RacingGame {
   }
 
   getWinner() {
-    const winnerList = this.carList.reduce((winners, car) => {
-      if (winners.length <= 0 || car.position === winners[0].position) {
-        winners.push(car);
-      } else if (car.position > winners[0].position) {
-        winners.splice(0, winners.length);
-        winners.push(car);
-      }
-      return winners;
-    }, []);
-
+    const maxPosition = Math.max(...this.carList.map((car) => car.position));
+    const winnerList = this.carList.filter((car) => car.position === maxPosition);
     return winnerList.map((car) => car.name).join(', ');
   }
 }
