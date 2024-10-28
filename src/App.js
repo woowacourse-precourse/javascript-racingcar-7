@@ -13,6 +13,8 @@ class App {
     this.createCarObejct(carNames);
 
     await this.getMoveCount();
+
+    this.startRace();
   }
 
   async getCarNames() {
@@ -43,6 +45,29 @@ class App {
     }
 
     this.moveCount = moveCount;
+  }
+
+
+  startRace() {
+    Console.print('\n실행결과');
+
+    for (let i = 0; i < this.moveCount; i++) {
+      this.cars.forEach((car) => {
+
+        if (Random.pickNumberInRange(0, 9) >= 4) {
+          car.position += 1;
+        }
+      });
+
+      this.carMoveState();
+    }
+  }
+
+  carMoveState() {
+    this.cars.forEach((car) => {
+      Console.print(`${car.name} : ${'-'.repeat(car.position)}`);
+    });
+    Console.print('');
   }
 
 
