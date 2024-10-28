@@ -25,6 +25,12 @@ class App {
       throw new Error("[ERROR] 숫자가 잘못된 형식입니다.");
     }
     maxCount = parseInt(maxCount, 10);
+
+    Console.print("실행 결과");
+
+    for (let i = 0; i < maxCount; i++) {
+      cargame.runRace(userNames, userCounts);
+    }
   }
 }
 
