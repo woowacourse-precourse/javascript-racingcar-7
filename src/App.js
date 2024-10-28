@@ -1,8 +1,8 @@
 import RandomUtil from './utils/Random.js';
 import RacingCar from './Models/RacingCar.js';
 import { SERVICE_CONSTSANSTS } from './assets/constants.js';
-import { Validator } from './utils/Validator.js';
 import { IOManager } from './utils/IOManager.js';
+import { ValidateModule } from './utils/validate/validateModule.js';
 
 class App {
   #moveCarWithRandomNumber(car) {
@@ -65,15 +65,11 @@ class App {
       // 자동차 이름 받기
       const userInput = await IOManager.InputManager(
         `경주할 자동차 이름을 입력하세요.(이름은 쉼표(${SERVICE_CONSTSANSTS.DELIMITER}) 기준으로 구분)\n`,
-        Validator.isEmptyString,
+        ValidateModule.validateCarName,
       );
 
       // 자동차 이름 분리
       const carNameArr = userInput.split(SERVICE_CONSTSANSTS.DELIMITER);
-
-      Validator.hasDuplicatedName(carNameArr);
-      Validator.isOverMinmalNumberOfCar(carNameArr);
-      Validator.isSatisfiedCarNameLength(carNameArr);
 
       // 자동차 인스턴스 생성
       const carInstanceArr = carNameArr.map((name) => new RacingCar(name));
@@ -81,12 +77,7 @@ class App {
       // 시도 횟수 받기
       let tryCount = await IOManager.InputManager(
         '시도할 횟수는 몇 회인가요?\n',
-        (value) => {
-          const num = Number(value);
-          Validator.isNumber(num);
-          Validator.isInteger(num);
-          Validator.isPositive(num);
-        },
+        ValidateModule.validateTryAttemptionNumber,
       );
 
       tryCount = Number(tryCount);
