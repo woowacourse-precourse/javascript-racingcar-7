@@ -5,6 +5,7 @@ import splitByComma from "./utils/splitByComma.js";
 import Car from "./domains/car.js";
 import car from "./validators/car.js";
 import carRace from "./validators/carRace.js";
+import output from "./view/output.js";
 
 class App {
   #carInstance;
@@ -21,6 +22,7 @@ class App {
   async run() {
     try {
       await this.init();
+      this.#printRaceResult();
     } catch (error) {
       Console.print(error.message);
       throw error;
@@ -31,6 +33,7 @@ class App {
     try {
       await this.#inputCarName();
       await this.#inputTryCount();
+      this.#raceResultStage();
     } catch (error) {
       throw error;
     }
@@ -61,6 +64,16 @@ class App {
     } catch (error) {
       throw error;
     }
+  }
+
+  #raceResultStage() {
+    this.#carRace.totalUnitRound(this.#tryCount);
+    this.#winner = this.#carRace.getWinner();
+  }
+
+  #printRaceResult() {
+    output.raceResultTitle();
+    output.carRaceResult(this.#carRace.result);
   }
 }
 

@@ -4,7 +4,7 @@ import Car from "../src/domains/car.js";
 import CarRace from "../src/domains/carRace.js";
 import CAR_RACE from "../src/constants/carRace.js";
 import CAR from "../src/constants/car.js";
-import { DEFAULT_ERROR, ERROR_MESSAGES } from "../src/constants/messages.js";
+import { ERROR_MESSAGES } from "../src/constants/messages.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -159,5 +159,25 @@ describe("입력 값 테스트", () => {
     const app = new App();
 
     await expect(app.run()).rejects.toThrow(ERROR_MESSAGES.TRY_COUNT_MIN);
+  });
+});
+
+describe("출력 값 테스트", () => {
+  test("전진하는 자동차를 출력할 때 자동차 이름을 같이 출력한다.", async () => {
+    const inputs = ["a", "1"];
+    const logs = ["", "실행 결과", "a : -", ""];
+    const logSpy = getLogSpy();
+    const MOVING_FORWARD = 4;
+    const STOP = 3;
+
+    mockQuestions(inputs);
+    mockRandoms([MOVING_FORWARD, STOP]);
+
+    const app = new App();
+    await app.run();
+
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
   });
 });

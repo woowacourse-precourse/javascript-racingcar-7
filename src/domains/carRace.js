@@ -38,7 +38,10 @@ export default class CarRace {
 
   #gameRound() {
     this.#cars.map((car) => {
-      const randomDigitFrom0to9 = Random.pickNumberInRange(0, 9);
+      const randomDigitFrom0to9 = Random.pickNumberInRange(
+        CAR_RACE.MIN_RANDOM_NUMBER,
+        CAR_RACE.MAX_RANDOM_NUMBER
+      );
       this.moveCar(car.name, randomDigitFrom0to9);
     });
   }

@@ -3,6 +3,7 @@ const CAR_RACE = {
   MAX_RANDOM_NUMBER: 9,
   MIN_RANDOM_NUMBER: 0,
   MIN_ROUND_COUNT: 1,
+  POSITION_SYMBOL: "-",
 };
 
 export default CAR_RACE;
