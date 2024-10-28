@@ -39,9 +39,20 @@ class App {
         throw new Error("[ERROR]");
       }
     }
+    // 에러 조건 2 : 입력된 이름 중 중복된 이름이 존재하는가?
+    if (new Set(car_names).size !== car_names.length) {
+      throw new Error("[ERROR]");
+    }
     Console.print("시도할 횟수는 몇 회인가요?");
     const loop = await Console.readLineAsync("");
-
+    // 에러 조건 3 : 시도할 횟수가 0또는 음수인가?
+    if (loop <= 0) {
+      throw new Error("[ERROR]");
+    }
+    // 에러 조건 4 : 시도할 횟수로 숫자가 아닌 것이 입력되었는가?
+    if (isNaN(loop)) {
+      throw new Error("[ERROR]");
+    }
     // 자동차 이동 출력
     for (let i = 0; i < loop; i++) {
       plus_point(car_names);
