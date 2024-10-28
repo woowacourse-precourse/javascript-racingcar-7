@@ -43,11 +43,31 @@ class App {
     }
 
     const carsMap = this.createCarPositionMap(carNames);
+
+    MissionUtils.Console.print("\n실행 결과");
+
     for (let i = 0; i < roundCount; i++) {
-      for (const car of carsMap) {
-        if (MissionUtils.Random.pickNumberInRange(0, 9) > 3) {
-          car.position++;
-        }
+      // roundCount 라운드 만큼,
+      this.moveOneStepRandomly(carsMap); // car들 돌며 4이상시 position++하는 함수
+
+      let positionStr;
+      this.printOneRound(carsMap, positionStr); // car들 돌며 그 라운드 결과 출력
+
+      MissionUtils.Console.print(""); // 라운드 끝 마다 한줄 띄움
+    }
+  }
+
+  printOneRound(carsMap, positionStr) {
+    for (const car of carsMap) {
+      positionStr = "-".repeat(car.position);
+      MissionUtils.Console.print(`${car.name} : ${positionStr}`);
+    }
+  }
+
+  moveOneStepRandomly(carsMap) {
+    for (const car of carsMap) {
+      if (MissionUtils.Random.pickNumberInRange(0, 9) > 3) {
+        car.position++;
       }
     }
   }
