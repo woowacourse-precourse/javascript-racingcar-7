@@ -19,6 +19,12 @@ const OutputView = {
     });
     Console.print("");
   },
+
+  printWinners(winners) {
+    Console.print(
+      `${OUTPUT_MESSAGES.FINAL_WINNER_PREFIX} ${winners.join(", ")}`
+    );
+  },
 };
 
 export default OutputView;

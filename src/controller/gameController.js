@@ -17,6 +17,8 @@ export default class GameController {
 
     this.initializeGame(validCarNames, validRoundCount);
     this.executeGameRounds(validRoundCount);
+
+    this.winnerAnnouncement();
   }
 
   initializeGame(carNames, rounds) {
@@ -30,5 +32,10 @@ export default class GameController {
       const currentStatus = RacingGame.getCarsStatus();
       OutputView.printRoundStatus(currentStatus);
     }
+  }
+
+  winnerAnnouncement() {
+    const winners = RacingGame.findWinners();
+    OutputView.printWinners(winners);
   }
 }
