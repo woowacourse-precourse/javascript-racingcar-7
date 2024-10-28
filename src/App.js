@@ -1,6 +1,6 @@
 import { Console, MissionUtils } from "@woowacourse/mission-utils";
 
-const ERROR_MESSAGES = {
+export const ERROR_MESSAGES = {
   EMPTY_CAR_NAMES: "[ERROR]: 빈 문자열은 입력할 수 없습니다.",
   DUPLICATE_CAR_NAME: "[ERROR]: 같은 이름은 불가능합니다.",
   INVALID_CAR_NAME_LENGTH: "[ERROR]: 이름은 5자 이하만 가능합니다.",

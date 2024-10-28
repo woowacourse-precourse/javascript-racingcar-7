@@ -1,6 +1,6 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
-
+import { ERROR_MESSAGES } from "../src/App.js";
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
 
@@ -64,15 +64,15 @@ describe("자동차 경주", () => {
 
     const app = new App();
 
-    await expect(app.run()).rejects.toThrow("[ERROR]");
+    await expect(app.run()).rejects.toThrow(ERROR_MESSAGES.EMPTY_CAR_NAMES);
   });
 
   test("자동차 이름 중복 예외 테스트", async () => {
-    const inputs = ["ho1,ho2"];
+    const inputs = ["ho2,ho2"];
     mockQuestions(inputs);
 
     const app = new App();
 
-    await expect(app.run()).rejects.toThrow("[ERROR]");
+    await expect(app.run()).rejects.toThrow(ERROR_MESSAGES.DUPLICATE_CAR_NAME);
   });
 });
