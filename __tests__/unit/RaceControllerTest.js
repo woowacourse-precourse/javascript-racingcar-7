@@ -40,10 +40,9 @@ describe("setAttemptCount() 테스트", () => {
 describe("runRaceRounds() 테스트", () => {
   test("시도 횟수만큼 레이스 라운드가 실행되어야 한다", async () => {
     const raceController = new RaceController();
-    await raceController.setCarName();
-    await raceController.setAttemptCount();
+    await raceController.setAttemptCount(); 
+    const attemptCount = raceController.race.attemptCount; 
     const printRaceStatusSpy = jest.spyOn(raceController, 'printRaceStatus');
-    const attemptCount = raceController.race.attemptCount;
     
     raceController.runRaceRounds();
 
