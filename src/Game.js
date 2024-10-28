@@ -3,6 +3,7 @@
 import Car from "./Car.js";
 import { generateRandomNumber } from "./random.js";
 import { ERROR_MESSAGES } from "./constants.js";
+import { Console } from "@woowacourse/mission-utils";
 
 class Game {
   constructor(carNames, raceCount) {
@@ -32,7 +33,6 @@ class Game {
     return raceCountNumber;
   }
 
-
   startRace() {
     for (let i = 0; i < this.raceCount; i++) {
       this.cars.forEach(car => car.move(generateRandomNumber()));
@@ -41,10 +41,8 @@ class Game {
   }
 
   printRaceStatus() {
-    this.cars.forEach(car => {
-      console.log(car.getDisplayPosition());
-    });
-    console.log("");
+    const raceStatus = this.cars.map(car => car.getDisplayPosition()).join("\n");
+    Console.print(raceStatus + "\n");
   }
 
   getWinners() {
