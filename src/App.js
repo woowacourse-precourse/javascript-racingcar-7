@@ -9,6 +9,12 @@ function Forward_Judgment() {  // 랜덤 돌리고 결과값 boolean 값으로 �
     return false;
 }
 
+function IncreaseCount(decision, cnt) {  // boolean 값으로 cnt 증가시킴
+  if (decision === true)
+    cnt += 1
+  return cnt
+}
+
 class App {
   async run() {
     let input_name = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
@@ -24,7 +30,8 @@ class App {
 
       for (let j=0; j<car_name.length; j++) {
         let forward_decision = Forward_Judgment();
-        Console.print(forward_decision);
+        forward_cnt[j] = await IncreaseCount(forward_decision, forward_cnt[j]);
+        Console.print(forward_cnt[j]);
       }
       Console.print('');
     }
