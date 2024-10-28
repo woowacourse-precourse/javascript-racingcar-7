@@ -15,16 +15,16 @@ const createCar = (name) => ({
 
 const validateCarNames = (names) => {
   if (names.length <= 1) {
-    throw new Error("자동차는 2대 이상이어야 합니다.");
+    throw new Error("[ERROR] 자동차는 2대 이상이어야 합니다.");
   }
   if (new Set(names).size < names.length) {
-    throw new Error("자동차 이름은 중복될 수 없습니다.");
+    throw new Error("[ERROR] 자동차 이름은 중복될 수 없습니다.");
   }
   if (names.some((name) => name.length > 5)) {
-    throw new Error("자동차 이름은 5자 이하만 가능합니다.");
+    throw new Error("[ERROR] 자동차 이름은 5자 이하만 가능합니다.");
   }
   if (names.some((name) => name.length === 0)) {
-    throw new Error("자동차 이름은 1자 이상이어야 합니다.");
+    throw new Error("[ERROR] 자동차 이름은 1자 이상이어야 합니다.");
   }
   return names;
 };
@@ -36,7 +36,7 @@ const parseCarNames = (input) => {
 const parseAttempts = (input) => {
   const ATTEMPTS = Number(input);
   if (isNaN(ATTEMPTS) || ATTEMPTS <= 0) {
-    throw new Error("시도 횟수는 1 이상의 숫자여야 합니다.");
+    throw new Error("[ERROR] 시도 횟수는 1 이상의 숫자여야 합니다.");
   }
   return ATTEMPTS;
 };
@@ -108,7 +108,8 @@ class App {
       const WINNERS = findWinners(RACE_RESULT);
       announceWinners(WINNERS);
     } catch (error) {
-      Console.print(`[ERROR] ${error.message}`);
+      Console.print(error.message);
+      throw error
     }
   }
 }
