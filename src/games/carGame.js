@@ -1,5 +1,7 @@
 import printResultTitle from '../outputHandlers/printResultTitle';
 import printRoundResults from '../outputHandlers/printRoundResults';
+import getObjectValueLengths from '../utils/getObjectValueLengths';
+import findWinnersCar from './findWinnersCar';
 import getRandomValue from './getRandomValue'
 import moveCarForward from './moveCarForward';
 
@@ -21,7 +23,11 @@ const carGame=(carObject,tryNumber)=>{
     for(let i =0; i<tryNumber; i++){
         updateCarPositions(carObject);
         printRoundResults(carObject);
-    } 
+    }
+    const carMoveLengths = getObjectValueLengths(carObject);
+    const winnersCar = findWinnersCar(carObject,carMoveLengths);
+
+    return winnersCar
 }
 
 export default carGame
