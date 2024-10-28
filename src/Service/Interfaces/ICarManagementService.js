@@ -2,7 +2,7 @@ class ICarManagementService {
   constructor() {
     if (new.target === ICarManagementService) {
       throw new Error(
-        'CarManagementServiceInterface는 인스턴스화할 수 없는 추상 클래스입니다.'
+        'ICarManagementService는 인스턴스화할 수 없는 추상 클래스입니다.'
       );
     }
   }

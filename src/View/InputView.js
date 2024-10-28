@@ -1,5 +1,10 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import IInputView from './Interfaces/IInputView.js';
+import {
+  CAR_NAME_DELIMITER,
+  ERROR_MESSAGES,
+  INPUT_PROMPTS,
+} from '../constants.js';
 
 class InputView extends IInputView {
   async readInput(string) {
