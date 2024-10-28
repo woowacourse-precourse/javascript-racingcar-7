@@ -6,20 +6,25 @@ class Race {
     this.rounds = rounds;
   }
 
-  // 레이스 시작
   start() {
     for (let i = 0; i < this.rounds; i++) {
       this.playRound();
-      Console.print('');  // 각 라운드마다 줄바꿈
+      Console.print('');
     }
+    this.printWinners();
   }
 
-  // 각 라운드에서 자동차 움직임 처리
   playRound() {
     this.cars.forEach((car) => {
       car.move();
       car.printPosition();
     });
+  }
+
+  printWinners() {
+    const maxPosition = Math.max(...this.cars.map((car) => car.position));
+    const winners = this.cars.filter((car) => car.position === maxPosition).map((car) => car.name);
+    Console.print(`최종 우승자 : ${winners.join(', ')}`);
   }
 }
 
