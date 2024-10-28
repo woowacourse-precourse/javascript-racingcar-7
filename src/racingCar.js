@@ -1,5 +1,4 @@
-import { MissionUtils } from '@woowacourse/mission-utils';
-import { Console } from '@woowacourse/mission-utils';
+import { MissionUtils, Console } from '@woowacourse/mission-utils';
 
 export function separateCarNames(carNames) {
     return carNames.split(',').map((carName) => carName.trim());
