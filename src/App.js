@@ -29,7 +29,7 @@ class App {
 
     const racingRoundResult = getRacingRoundResult(scoreBoard, tryCount);
 
-    MissionUtils.Console.print('');
+    View.printNewLine();
     MissionUtils.Console.print(`실행 결과`);
 
     Utils.range(tryCount).forEach((_, index) => {
@@ -39,7 +39,7 @@ class App {
         const scoreChangeToDash = Utils.range(recordsRound).map(() => '-').join('');
         MissionUtils.Console.print(`${count.name} : ${scoreChangeToDash}`);
       });
-      MissionUtils.Console.print('');
+      View.printNewLine();
     });
 
     const getWinner = (array) => {
@@ -59,8 +59,9 @@ class App {
     }
 
     const finalWinner = getWinner(racingRoundResult);
-    MissionUtils.Console.print(`최종 우승자 : ${finalWinner}`)
+    View.printFinalWinner(finalWinner);
   }
+
   async readLineGameInputs() {
     const carNames = await View.readLineCarNames();
     const tryCount = await View.readLineTryCount();

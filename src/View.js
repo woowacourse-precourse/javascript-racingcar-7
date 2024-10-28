@@ -24,6 +24,14 @@ class View {
 
     return tryCount;
   }
+
+  static printNewLine() {
+    MissionUtils.Console.print('');
+  }
+
+  static printFinalWinner(winners) {
+    MissionUtils.Console.print(`최종 우승자 : ${winners}`)
+  }
 }
 
 export default View;
