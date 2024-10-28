@@ -86,6 +86,7 @@ describe('Game 클래스', () => {
     validateAttemptsSpy.mockImplementation(() => {
       throw new Error(ERROR_PREFIX);
     });
+
     await expect(game.process()).rejects.toThrow(ERROR_PREFIX);
     expect(raceSpy).not.toHaveBeenCalled();
   });

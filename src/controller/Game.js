@@ -16,7 +16,7 @@ class Game {
     this.raceModel.initializeCars(carNameInput.split(','));
 
     const attempts = await this.user.readUserInput(GAME_MESSAGE.ATTEMPTS);
-    validateAttempts(attempts - 0);
+    validateAttempts(attempts);
 
     outputView.printMessage(`\n${GAME_MESSAGE.RESULT}`);
     this.raceModel.race(Number(attempts));
