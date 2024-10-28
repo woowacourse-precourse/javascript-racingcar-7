@@ -14,6 +14,13 @@ class IOProcessor {
     const count = await Console.readLineAsync(INPUT_COUNT);
     return { cars, count };
   }
+
+  /**
+   *
+   */
+  processOutput(result) {
+    Console.print(result);
+  }
 }
 
 export default IOProcessor;
