@@ -42,6 +42,20 @@ describe('사용자 입력 테스트', () => {
 
       expect(carNames).toEqual(expectedInput);
     });
+
+    describe('자동차 이름 입력 예외 테스트', () => {
+      test('자동차 이름이 6자 이상인 경우 에러를 발생한다.', () => {
+        const input = 'minhyuk';
+
+        expect(() => validateCarName(input)).toThrow('[ERROR]');
+      });
+
+      test('자동차 이름이 0자인 경우 에러를 발생한다.', () => {
+        const input = '';
+
+        expect(() => validateCarName(input)).toThrow('[ERROR]');
+      });
+    });
   });
 
   describe('이동 시도 횟수 입력 테스트', () => {
