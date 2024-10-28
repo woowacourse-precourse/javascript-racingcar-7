@@ -21,6 +21,7 @@ const ERROR_MESSAGE = {
 };
 
 const OUTPUT_MESSAGE = {
+  BLANK_LINE: "\n",
   EXECUTION_RESULT: "실행 결과",
   FINAL_WINNER: "최종 우승자 :",
 };

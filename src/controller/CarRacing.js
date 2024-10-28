@@ -9,15 +9,17 @@ class CarRacing {
   async init() {
     const racingCars = new RacingCars();
     await this.registerRacingCars(racingCars);
-    this.startRace(racingCars, racingCars.getAllCars());
+    this.startRace(racingCars);
   }
 
-  async startRace(racingCars, racingCarArray) {
+  async startRace(racingCars) {
     const moveAttempts = await this.setMoveAttempts();
+    OutputView.blankLine();
     OutputView.executionResult();
+    const racingCarList = racingCars.getAllCars();
     for (let i = 0; i < moveAttempts; i++) {
       racingCars.moveAllCars();
-      OutputView.raceProgress(racingCarArray);
+      OutputView.raceProgress(racingCarList);
     }
     this.printWinner(racingCars);
   }

@@ -22,6 +22,10 @@ class OutputView {
     );
   }
 
+  static blankLine() {
+    OutputView.printMessage(OUTPUT_MESSAGE.BLANK_LINE);
+  }
+
   static printMessage(outPut) {
     return Console.print(outPut);
   }
