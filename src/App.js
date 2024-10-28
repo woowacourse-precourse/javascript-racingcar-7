@@ -40,30 +40,36 @@ class App {
 
   validateInput(input) {
     const cars = input.split(",").map((item) => item.trim());
+    this.validateEmptyCarNames(cars);
+    this.validateCarNameLength(cars);
+    this.validateDuplicateCarNames(cars);
 
-    //자동차 이름이 공백일 경우
+    return;
+  }
+
+  validateEmptyCarNames(cars) {
     if (cars.length === 0 || cars.some((car) => car === "")) {
-      MissionUtils.Console.print("[ERROR] 자동차 이름을 입력해야 합니다.");
+      MissionUtils.Console.print(
+        "[ERROR] 자동차 이름은 공백이 아니어야 합니다."
+      );
       throw new Error("[ERROR]");
     }
-
-    //자동차 이름이 5자 초과일 경우
+  }
+  validateCarNameLength(cars) {
     if (cars.some((car) => car.length >= 6)) {
       MissionUtils.Console.print(
         "[ERROR] 자동차 이름은 5자 이하만 가능합니다."
       );
       throw new Error("[ERROR]");
     }
+  }
 
-    //자동차 이름 중에 중복되는 것이 있을 경우
-    // Set 객체는 중복된 값을 허용하지 않는다, 같은 값을 두 번 이상 추가하면 첫 번째 값 이후로는 무시된다. 즉 Set 객체와 길이가 다르다면 중복된 값이 있는 것!
+  validateDuplicateCarNames(cars) {
     const uniqueCars = new Set(cars);
     if (uniqueCars.size !== cars.length) {
       MissionUtils.Console.print("[ERROR] 자동차 이름은 중복될 수 없습니다.");
       throw new Error("[ERROR]");
     }
-
-    return;
   }
 
   validateCount(count) {
@@ -77,13 +83,14 @@ class App {
       MissionUtils.Console.print("[ERROR] 경주 횟수는 1회 이상이어야 합니다.");
       throw new Error("[ERROR]");
     }
-
     //count가 양수이지만 정수가 아닌 소수일 경우
     //Number.inInteger로 확인하자
     if (!Number.isInteger(Number(count))) {
       MissionUtils.Console.print("[ERROR] 경주 횟수는 정수여야 합니다.");
       throw new Error("[ERROR]");
     }
+
+    return;
   }
 
   racing(input, count) {
@@ -103,12 +110,11 @@ class App {
       const currentRace = this.updateCurrentRace(arr, scoreArray);
       raceResult.push(currentRace);
     }
-
     const parsed = this.determineWinner(arr, scoreArray);
     return { resultList: raceResult, parsed };
   }
 
-  //현재 경기를 업데이트하는 메서드 분리
+  //매번 경기를 업데이트하는 메서드
   updateCurrentRace(arr, scoreArray) {
     const currentRace = {};
 
@@ -123,7 +129,7 @@ class App {
     return currentRace;
   }
 
-  //우승자 판별 로직 메서드 분리
+  //우승자 판별 로직 메서드
   determineWinner(arr, scoreArray) {
     //scoreArr에서 최댓값을 찾고 그와 index가 같은 우승자를 arr에서 가져오자
     const max = Math.max(...scoreArray);
