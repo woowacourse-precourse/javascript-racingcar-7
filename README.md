@@ -26,25 +26,27 @@
   ```
 - 자동차 랜덤계산 후 이동(carRun.js)
   ```js
-  export const carRun = (carArr, RUN_TIMES) =>{
+  carRun = (carArr, RUN_TIMES) =>{
     ...
   }
-  
+  //이하 내부함수
   randomRacing = (carArr) =>{
     ...
   }
   
-  printRacing = (carArr) =>{
+  raseResult = (carArr) =>{
     ...
+    return result
   }
 
   ```
 - 우승자 판별(getWinner.js)
   ```js
-  export const getWinner = (carArr) =>{
+  getWinner = (carArr) =>{
     ...
     return result // 최종 우승자 : a, b
   }
+  //이하 내부함수
   getTopRate = (carArr) =>{
 
   }
