@@ -69,6 +69,14 @@ export function playGame(inputNumber, cars) {
   return gameResult;
 }
 
+export function findWinners(gameResult) {
+  // 최대 도달 위치
+  const maxPosition = Math.max(...gameResult.map(car => car.position));
+  return gameResult
+    .filter(car => car.position === maxPosition)
+    .map(car => car.name);
+}
+
 class App {
   async run() {}
 }

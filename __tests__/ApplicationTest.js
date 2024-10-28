@@ -10,6 +10,7 @@ import {
   shouldMoveForward,
   updateCarPosition,
   playGame,
+  findWinners,
 } from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
@@ -261,6 +262,38 @@ describe("playGame 함수", () => {
     // 스파이 복원
     MissionUtils.Random.pickNumberInRange.mockRestore();
     logSpy.mockRestore();
+  });
+});
+
+describe("findWinners 함수", () => {
+  test("가장 멀리 이동한 자동차가 우승자로 선택된다", () => {
+    // given
+    const gameResult = [
+      { name: "car1", position: 3 },
+      { name: "car2", position: 1 },
+      { name: "car3", position: 3 }
+    ];
+
+    // when
+    const winners = findWinners(gameResult);
+
+    // then
+    expect(winners).toEqual(["car1", "car3"]);
+  });
+
+  test("우승자가 한 명인 경우", () => {
+    // given
+    const gameResult = [
+      { name: "car1", position: 2 },
+      { name: "car2", position: 5 },
+      { name: "car3", position: 3 }
+    ];
+
+    // when
+    const winners = findWinners(gameResult);
+
+    // then
+    expect(winners).toEqual(["car2"]);
   });
 });
 
