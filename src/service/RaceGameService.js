@@ -7,33 +7,34 @@ class RaceGameService {
   #maxRound;
   #currentRound;
   #onEndRound;
-  #onBeforeEnd;
+  #onBeforeStart;
 
-  constructor() {
-    this.#status = "created";
+  constructor () {
+    this.#status = 'created';
     this.#currentRound = 0;
   }
 
-  start() {
-    this.#onBeforeEnd();
+  start () {
+    this.#onBeforeStart();
     while (this.#currentRound < this.#maxRound) {
-      this.#currentRound++;
+      this.#currentRound += 1;
       this.playRound();
     }
-    this.#status = "end";
+    this.#status = 'end';
   }
 
-  ready(carNames, maxRound, onEndRound, onBeforeEnd) {
-    this.#status = "ready";
+  ready (carNames, maxRound, onEndRound, onBeforeStart) {
+    this.#status = 'ready';
     const cars = carNames.map((name) => new Car(name));
     this.#cars = cars;
     this.#maxRound = maxRound;
-    this.#onBeforeEnd = onBeforeEnd;
+    console.log(onBeforeStart.name);
+    this.#onBeforeStart = onBeforeStart;
     this.#onEndRound = onEndRound;
   }
 
-  playRound() {
-    this.#status = "playing";
+  playRound () {
+    this.#status = 'playing';
     for (const car of this.#cars) {
       if (this.#canMove()) {
         car.move();
@@ -42,14 +43,14 @@ class RaceGameService {
     this.#onEndRound(this.status);
   }
 
-  get status() {
+  get status () {
     return {
       status: this.#status,
       cars: this.#cars.map((participants) => participants.status),
     };
   }
 
-  getResult() {
+  getResult () {
     const { cars } = this.status;
     const winnersPosition = Math.max(...cars.map((car) => car.move));
     const winners = cars
@@ -61,10 +62,10 @@ class RaceGameService {
     };
   }
 
-  #canMove() {
-    return MissionUtils.Random.pickNumberInRange(0, 9) >= 4;
+  #canMove () {
+    return (this.#status === 'playing'
+      && MissionUtils.Random.pickNumberInRange(0, 9) >= 4);
   }
 }
-
 
 export default RaceGameService;

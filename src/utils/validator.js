@@ -1,19 +1,19 @@
-export function isNumber(string){
+export const isNumber = function (string) {
   return !isNaN(string);
-}
+};
 
-export function isEmptyString(string){
+export const isEmptyString = function (string) {
   return string.trim() === '';
-}
+};
 
-export function isNotEmptyString(string){
+export const isNotEmptyString = function (string) {
   return string.length !== 0;
-}
+};
 
-export function isShorterThan(maxLength){
+export const isShorterThan = function (maxLength) {
   return (str) => str.length <= maxLength;
-}
+};
 
-export function isLongerThan(len){
+export const isLongerThan = function (len) {
   return (str) => str.length >= len;
-}
+};

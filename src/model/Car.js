@@ -1,31 +1,23 @@
-// @ts-check
-
-/**
- * @private {string} name
- * @private {stirng} moveCount
- */
 class Car {
   #name;
   #moveCount;
-  constructor(name) {
+
+  constructor (name) {
     this.#name = name;
     this.#moveCount = 0;
   }
-  
-  get name() {
+
+  get name () {
     return this.#name;
   }
 
-  get status() {
-    return {name: this.#name, move: this.#moveCount};
+  get status () {
+    return { name: this.#name, move: this.#moveCount };
   }
 
-  move() {
-    this.#moveCount++;
+  move () {
+    this.#moveCount += 1;
   }
-
-
 }
-
 
 export default Car;
