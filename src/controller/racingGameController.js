@@ -1,10 +1,6 @@
-import { Console, MissionUtils } from "@woowacourse/mission-utils";
+import { MissionUtils } from "@woowacourse/mission-utils";
 import Car from "../model/car.js";
-import {
-  validateCarName,
-  validateCount,
-  resetCarSet,
-} from "../utils/validation.js";
+import { validateCarName, validateCount } from "../utils/validation.js";
 import RacingGameView from "../view/racingGameView.js";
 class RacingGameController {
   constructor() {
