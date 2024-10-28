@@ -3,9 +3,10 @@ import { Random } from '@woowacourse/mission-utils';
 
 const mockRandoms = (numbers) => {
   Random.pickNumberInRange = jest.fn();
-  Random.pickNumberInRange.mockImplementation(() => {
-    return numbers.shift();
-  });
+
+  numbers.reduce((acc, number) => {
+    return acc.mockReturnValueOnce(number);
+  }, Random.pickNumberInRange);
 };
 
 describe('Car', () => {
