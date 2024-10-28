@@ -57,4 +57,28 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
+  test("자동차 이름 중복 테스트", async()=>{
+    // given
+    const inputs = ["pobi,gaga,pobi"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  })
+
+  test("자동차 이름 생략 테스트", async()=>{
+    // given
+    const inputs = ["pobi,,eric"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  })
 });
