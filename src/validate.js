@@ -1,8 +1,5 @@
-import { ERROR_MESSAGE, NAME_SEPARATOR, REGEX } from './constants';
-
-const splitCarNames = (value) => {
-  return value.split(NAME_SEPARATOR);
-};
+import { ERROR_MESSAGE, REGEX } from './constants.js';
+import { splitCarNames } from './utils/splitCarNames.js';
 
 export const validateCarName = (value) => {
   const carNames = splitCarNames(value);
