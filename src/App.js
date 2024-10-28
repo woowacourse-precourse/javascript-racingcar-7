@@ -3,7 +3,7 @@ class App {
   constructor() {
     this.carNames = [];
     this.total = 0;
-    this.moveForwardCount = {};
+    this.moveForwardCount = {}; // { 차이름:전진횟수 }
     this.winnerOutput = "";
   }
 
@@ -41,7 +41,7 @@ class App {
         );
       }
       if (this.includeSameNames(names)) {
-        throw new Error("[ERROR] 동명이인은 입력하실 수 없습니다.");
+        throw new Error("[ERROR] 같은 이름은 입력하실 수 없습니다.");
       }
     } catch (error) {
       throw error;
