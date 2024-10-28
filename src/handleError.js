@@ -1,6 +1,10 @@
-export function validateNameLength() {}
+export function validateNameLength(carNames) {
+    if (!carNames.every((carName) => carName.length <= 5)) {
+        throw new Error('[ERROR] 자동차 이름은 5자 이하만 가능합니다.');
+    }
+}
 
-export function isCarNameEmpty() {}
+export function isCarNameEmpty(carNames) {}
 
 export function hasDuplicateNames() {}
 
@@ -10,4 +14,4 @@ export function isTrialCountZero(trialCount) {
     }
 }
 
-export function validateTrial(trialCount) {}
+export function validateTrial() {}
