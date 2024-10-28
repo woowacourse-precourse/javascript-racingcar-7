@@ -1,6 +1,6 @@
 import { Console, MissionUtils } from '@woowacourse/mission-utils';
 
-async function InputValue() {
+async function InputCarName() {
   const inputName = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
   const carName = inputName.split(',');
 
@@ -8,14 +8,20 @@ async function InputValue() {
     if (index.length > 5) throw new Error("[ERROR] 잘못된 입력입니다.");
   })
 
-  if (carName[carName.length - 1] == '') throw new Error("[ERROR] 잘못된 입력입니다.");
+  if (carName[carName.length - 1] == '')
+    throw new Error("[ERROR] 잘못된 입력입니다.");
 
+  return carName;
+}
+
+async function InputTime() {
   const inputTimes = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
   const times = Number(inputTimes);  // 숫자가 아닌 무언가가 들어가면 NaN 반환
 
-  if (Number.isNaN(times)) throw new Error("[ERROR] 잘못된 입력입니다.");
+  if (Number.isNaN(times))
+    throw new Error("[ERROR] 잘못된 입력입니다.");
 
-  return [carName, inputTimes];
+  return inputTimes
 }
 
 function Forward_Judgment() {  // 랜덤 돌리고 결과값 boolean 값으로 반환
@@ -27,7 +33,7 @@ function Forward_Judgment() {  // 랜덤 돌리고 결과값 boolean 값으로 �
     return false;
 }
 
-function IncreaseCount(decision, count) {  // boolean 값으로 cnt 증가시킴
+function IncreaseCount(decision, count) {  // boolean 값으로 count 증가시킴
   if (decision === true)
     count += 1
   return count
@@ -65,7 +71,9 @@ function WinnerPrint(carArr, winArr) {  // 우승자 출력
 class App {
   async run() {
 
-    const [carName, inputTimes] = await InputValue();
+    const carName = await InputCarName();
+    const inputTimes = await InputTime();
+
     const forwardCount = Array.from({ length: carName.length }, () => 0);
 
     Console.print("\n실행 결과");
