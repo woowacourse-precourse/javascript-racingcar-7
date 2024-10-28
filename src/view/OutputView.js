@@ -20,8 +20,7 @@ class OutputView {
     }
 
     printWinner(winner) {
-        this.#print(OUTPUT_MESSAGE.finalWinner);
-        this.#print(winner);
+        this.#print(OUTPUT_MESSAGE.finalWinner + winner);
     }
 }
 
