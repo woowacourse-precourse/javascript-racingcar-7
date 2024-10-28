@@ -2,7 +2,7 @@ import { Console } from '@woowacourse/mission-utils';
 import { MESSAGES } from '../constants/messages.js';
 import CarModel from '../model/CarModel.js';
 import GameModel from '../model/GameModel.js';
-import { InputView } from '../view/InputView.js';
+import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 
 class GameController {

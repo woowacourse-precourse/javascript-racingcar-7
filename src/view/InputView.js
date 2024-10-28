@@ -2,7 +2,7 @@ import { Console } from '@woowacourse/mission-utils';
 import { MESSAGES } from '../constants/messages.js';
 import { InputValidator } from '../utils/validator.js';
 
-export class InputView {
+class InputView {
 	async getCarNames() {
 		const input = await Console.readLineAsync(MESSAGES.getCarNames);
 		const carNames = input.split(',');
@@ -16,3 +16,5 @@ export class InputView {
 		return Number(rounds);
 	}
 }
+
+export default InputView;
