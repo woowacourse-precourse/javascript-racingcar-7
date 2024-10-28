@@ -2,11 +2,11 @@ import { INPUT } from '../constants/message.js';
 import { Console } from '@woowacourse/mission-utils';
 
 export default class ViewIn {
-	static async getCars() {
+	static async cars() {
 		return Console.readLineAsync(`${INPUT.CARS}\n`);
 	}
 
-	static async getCount() {
+	static async count() {
 		return Console.readLineAsync(`${INPUT.COUNT}\n`);
 	}
 }

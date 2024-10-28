@@ -14,8 +14,8 @@ export default class Race {
 	#winner;
 
 	async init() {
-		const cars = await ViewIn.getCars();
-		const count = await ViewIn.getCount();
+		const cars = await ViewIn.cars();
+		const count = await ViewIn.count();
 
 		const carsArray = parseCars(cars);
 
