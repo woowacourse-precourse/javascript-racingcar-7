@@ -25,6 +25,14 @@ class Validator {
       throw new Error('[ERROR] 이름은 한글 또는 영어만 가능합니다.');
     }
   }
+
+  #checkNumber(attempt) {
+    const isNumber = typeof attempt === 'number' && !isNaN(attempt);
+
+    if (!isNumber) {
+      throw new Error('[ERROR] 횟수는 숫자만 입력 가능합니다.');
+    }
+  }
 }
 
 export default Validator;
