@@ -16,3 +16,8 @@ function oneCarMove(moveResult) {
     }
     return moveResult;
 }
+
+function carMovePrint(carName, moveResult) {
+    const DASHES = '-'.repeat(moveResult);
+    Console.print(carName + ' : ' + DASHES);
+}
