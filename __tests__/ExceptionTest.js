@@ -11,6 +11,8 @@ describe('예외 케이스', () => {
     ['게임 횟수가 숫자가 아닌 경우', ['car1,car12', 'abc']],
     ['게임 횟수가 음수인 경우', ['car1,car12', '-2']],
     ['게임 횟수가 소수인 경우', ['car1,car12', '1.5']],
+    ['게임 횟수가 숫자와 문자인 경우', ['car1,car12', '1a']],
+    ['게임 횟수가 공백인 경우', ['car1,car12', ' ']],
   ])('%s', async (_testName, inputs) => {
     mockQuestions(inputs);
     const app = new App();
