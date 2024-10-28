@@ -7,15 +7,14 @@ class App {
     const userInput = new UserInput();
     await userInput.inputCarNames();
     await userInput.inputAttempts();
-    
+
     const validator = new InputValidator();
-    validator.validateCarNames(userInput.carNames); 
+    validator.validateCarNames(userInput.carNames);
     validator.validateAttempts(userInput.attempts);
-  
+
     const racingSession = new RacingSession(userInput.carNames, userInput.attempts);
     racingSession.startRace();
   }
 }
-
 
 export default App;
