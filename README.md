@@ -177,16 +177,17 @@ MissionUtils.Random.pickNumberInRange(0, 9);
 - **carCountLimitCheck()**을 사용해 자동차를 최대 5대만 받는다.
 - **carNameLimitCheck()**을 사용해 자동차 이름의 길이를 5자 이하로 받는다
 - **checkSpace()** 공백을 확인한다.
-- **duplicateCheck()** 중복 검사는 `includes()`으로 한다.
-- **checkTryNum()**`/^[1-9]+$/.test()` 1~9인지 확인한다.
+- **duplicateCheck()** 이름이 중복되는지 확인한다.
+- **checkTryNum()** 숫자인지 확인한다.
 - **limitingNum()**로 시도 횟수가 1~10 사이의 숫자인지 확인한다.
 - **changeInt()**숫자로 변환한다.
 
 #### reacingCar
 
-- 전진 조건의 무작위 값은 `Random.pickNumberInRange()`로 구한다.
-- 무작위 값이 4이상일 경우 해당 자동차의 value값에 '-'을 추가한다.
+- **tryCount()** 시도 횟수 만큼 `startRace()`를 실행한다.
+- **startRace()** 무작위 값은 `Random.pickNumberInRange()`로 구한 뒤 4 이상일 경우 전진
+- **drivingResults()** 제일 멀리 간 자동차의 이름을 출력한다.
 
 #### content
 
-- `Object.freeze({})`로 메세지를 선언한다.
+- Log message, Error message 메세지를 담는다.
