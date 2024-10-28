@@ -100,4 +100,13 @@ describe("자동차 경주", () => {
     const app = new App();
     await expect(app.run()).rejects.toThrow(ERROR_MESSAGES.ZERO_ATTEMPT_COUNT);
   });
+
+  test("시도 횟수가 음수일 때 예외 테스트", async () => {
+    const inputs = ["pobi,woni", -1];
+    mockQuestions(inputs);
+    const app = new App();
+    await expect(app.run()).rejects.toThrow(
+      ERROR_MESSAGES.NEGATIVE_ATTEMPT_COUNT
+    );
+  });
 });
