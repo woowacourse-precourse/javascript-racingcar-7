@@ -42,6 +42,10 @@ class View {
   static printFinalWinner(winners) {
     MissionUtils.Console.print(`최종 우승자 : ${winners}`)
   }
+
+  static printErrorMessage(errorMessages) {
+    MissionUtils.Console.print(`${errorMessages}`);
+  }
 }
 
 export default View;
