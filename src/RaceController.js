@@ -1,7 +1,7 @@
 import Race from './Race.js';
 import { getCarName, getAttempt, splitByDelimiter, printMessage } from './common/utils.js';
 import { validateCarName, validateAttemptCount } from './common/validators.js';
-import { GAME_RULES } from './common/constants.js';
+import { GAME_RULES, LOG_MESSAGE } from './common/constants.js';
 
 class RaceController {
   constructor() {
@@ -46,7 +46,7 @@ class RaceController {
 
   printWinners() {
     const winners = this.race.getWinners();
-    printMessage(`최종 우승자 : ${winners.join(', ')}`);
+    printMessage(LOG_MESSAGE.WINNERS_ANNOUNCEMENT + winners.join(', '));
   }
 }
 
