@@ -10,7 +10,10 @@ class App {
     console.log("\n실행 결과")
     for (let i = 0; i < inputCount; i++) {
       this.tryRacing(carsList);
+      console.log("\n");
     }
+
+    this.printFinalResult(carsList);
   }
 
   getCarList(str) {
@@ -43,7 +46,21 @@ class App {
     for (const [key, value] of Object.entries(cars)) {
       console.log(`${key} : ${"-".repeat(value)}`);
     }
-    console.log("/n");
+  }
+
+  printFinalResult(cars) {
+    let maxValue = 0;
+    let winnerCars = [];
+    Object.entries(cars).forEach(([key, value]) => {
+      if (maxValue < value) {
+        winnerCars = [];
+        winnerCars.push(key);
+        maxValue = value;
+      } else if (maxValue == value) {
+          winnerCars.push(key);
+      }
+    })
+    console.log(`최종 우승자 : ${winnerCars.join(", ")}`);
   }
 
   throwError(message) {
