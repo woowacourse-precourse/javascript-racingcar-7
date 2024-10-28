@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/hyunyeee/javascript-racingcar-7/compare/v0.0.4...v0.0.5) (2024-10-28)
+
+
+### Features
+
+* **car:** Car 클래스의 매개변수로 이름이 공백으로 전달되면 에러를 던진다 ([a6587c5](https://github.com/hyunyeee/javascript-racingcar-7/commit/a6587c51949ec46b540b99d5ee2f5eeb4e35d596))
+* **game:** Game 클래스의 매개변수로 Car가 전달되지 않으면 에러를 발생시킨다 ([fa4870e](https://github.com/hyunyeee/javascript-racingcar-7/commit/fa4870ed51c435d71a55a6f2031087f8b8053e76))
+
 ### [0.0.4](https://github.com/hyunyeee/javascript-racingcar-7/compare/v0.0.3...v0.0.4) (2024-10-28)
 
 ### [0.0.3](https://github.com/hyunyeee/javascript-racingcar-7/compare/v0.0.2...v0.0.3) (2024-10-25)
