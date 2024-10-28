@@ -1,7 +1,5 @@
 # javascript-racingcar-precourse
 
-# javascript-calculator-precourse
-
 ## 기능 목록 정리
 
 자동차 경주를 진행하여 우승자를 알려주는 게임을 구현한다.
