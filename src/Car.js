@@ -16,6 +16,9 @@ class Car {
 
   move() {
     const randomNumber = this.getRandomNumber();
+    if (this.canMove(randomNumber)) {
+      this.dist++;
+    }
   }
 }
 
