@@ -53,6 +53,14 @@ class App {
     }
   }
 
+  game(cars, carObject) {
+    const updatedCarObject = { ...carObject };
+    for (let car of cars) {
+      this.updateCarPosition(car, updatedCarObject);
+    }
+    return updatedCarObject;
+  }
+
   async run() {
     try {
       const carsName = await this.inputCars();
