@@ -2,7 +2,7 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 import Car from '../src/models/Car';
 import RaceGame from '../src/models/RaceGame';
 
-describe('RaceGame 클래스', () => {
+describe('RaceGame 클래스 테스트', () => {
   let participants;
   const gameAttempts = 5;
   let raceGame;
