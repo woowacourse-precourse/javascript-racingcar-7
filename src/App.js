@@ -4,7 +4,8 @@ class App {
     async run() {
         try {
             const carNames = await this.getCarNames();
-            Console.print(`자동차 이름: ${carNames.join(", ")}`);
+            const tryCount = await this.getTryCount();
+            Console.print(`시도 횟수: ${tryCount}`);
         } catch (error) {
             Console.print(error.message);
         }
@@ -29,6 +30,19 @@ class App {
         if (carNames.some((name) => name.length > 5) || carNames.length === 0) {
             throw new Error("[ERROR] 자동차 이름은 1자 이상 5자 이하만 가능합니다.");
         }
+    }
+
+    async getTryCount() {
+        const input = await this.promptTryCount();
+        return this.parseTryCount(input);
+    }
+
+    async promptTryCount() {
+        return await Console.readLineAsync("시도할 횟수는 몇 회인가요?");
+    }
+
+    parseTryCount(input) {
+        return parseInt(input, 10);
     }
 }
 
