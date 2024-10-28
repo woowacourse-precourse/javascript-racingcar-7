@@ -33,13 +33,18 @@ class App {
       return acc;
     }, {});
 
+    Console.print("");
+    Console.print("실행 결과");
     for (let i = 0; i < tryNumber; i++) {
       for (const car in carObj) {
         if (canCarMove()) {
           carObj[car].position++;
         }
+        Console.print(
+          `${carObj[car].name} : ${"-".repeat(carObj[car].position)}`
+        );
       }
-      Console.print(carObj);
+      Console.print("");
     }
 
     const maxPosition = Math.max(
@@ -49,7 +54,7 @@ class App {
       .filter((car) => car.position === maxPosition)
       .map((car) => car.name)
       .join(", ");
-    Console.print(winner);
+    Console.print(`최종 우승자 : ${winner}`);
   }
 }
 
