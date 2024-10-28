@@ -24,5 +24,6 @@ export function DrawRound(names, roundCount) {
     updateWinCounts(names, randomCounts, winCounts);
   }
   const finalWinners = FinalWinner(names, winCounts);
+
   MissionUtils.Console.print(`최종 우승자 : ${finalWinners.join(", ")}`);
 }
