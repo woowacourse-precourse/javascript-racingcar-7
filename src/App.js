@@ -4,29 +4,34 @@ import Race from './Race.js';
 import { print } from './lib/utils.js';
 
 class App {
+  #carArray;
+
+  #tryCount;
+
+  #winnerCarArray;
+
   async run() {
-    const [carArray, tryCount] = await App.#getInput();
-    const winnerCarArray = App.#runRace(carArray, tryCount);
-    App.#printOutput(winnerCarArray);
+    await this.#getInput();
+    this.#runRace();
+    this.#printOutput();
   }
 
-  static async #getInput() {
+  async #getInput() {
     const input = new Input();
+
     await input.getUserInput();
-    const carArray = input.parseCars();
-    const tryCount = input.parseTryCount();
-
-    return [carArray, tryCount];
+    this.#carArray = input.parseCars();
+    this.#tryCount = input.parseTryCount();
   }
 
-  static #runRace(carArray, tryCount) {
-    const race = new Race(carArray, tryCount);
-    const winnerCarArray = race.run();
-    return winnerCarArray;
+  #runRace() {
+    const race = new Race(this.#carArray, this.#tryCount);
+
+    this.#winnerCarArray = race.run();
   }
 
-  static #printOutput(winnerCarArray) {
-    print(`${OUTPUT_MESSAGE_WINNER}${winnerCarArray.join(', ')}`);
+  #printOutput() {
+    print(`${OUTPUT_MESSAGE_WINNER}${this.#winnerCarArray.join(', ')}`);
   }
 }
 
