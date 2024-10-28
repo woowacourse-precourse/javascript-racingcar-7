@@ -24,7 +24,7 @@ async function InputTime() {
   return inputTimes
 }
 
-function Forward_Judgment() {  // 랜덤 돌리고 결과값 boolean 값으로 반환
+function ForwardJudgment() {  // 랜덤 돌리고 결과값 boolean 값으로 반환
   const randomNum = MissionUtils.Random.pickNumberInRange(0, 9);
   
   if (randomNum >= 4)
@@ -80,7 +80,7 @@ class App {
     
     for (let i=0; i<inputTimes; i++) {
       for (let j=0; j<carName.length; j++) {
-        const forwardDecision = Forward_Judgment();
+        const forwardDecision = ForwardJudgment();
         forwardCount[j] = IncreaseCount(forwardDecision, forwardCount[j]);
         const drawing = DrawForward(carName[j], forwardCount[j]);
       }
