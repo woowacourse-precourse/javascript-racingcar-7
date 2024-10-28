@@ -84,8 +84,7 @@ class App {
   }
 
   updateWinners(distanceLength, maxDistanceLength, winners, car) {
-    if (distanceLength > maxDistanceLength) {
-      winners.length = 0;
+    if (distanceLength >= maxDistanceLength) {
       winners.push(car.name);
     } else if (distanceLength === maxDistanceLength) {
       winners.push(car.name);
