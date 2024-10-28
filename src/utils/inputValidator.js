@@ -19,6 +19,11 @@ export const validateCarNames = (carNames) => {
     }
   });
 
+  const uniqueNames = new Set(carNameList);
+  if (uniqueNames.size !== carNameList.length) {
+    throw new Error(ERROR_MESSAGE.DUPLICATE_NAME);
+  }
+
   return carNameList;
 };
 
