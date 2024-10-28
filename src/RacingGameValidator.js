@@ -16,6 +16,11 @@ class RacingGameValidator {
   static validateTryCountOverZero(tryCount) {
     if (tryCount === 0) throw Error('[ERROR] 0회 이상의 시도 횟수를 입력해 주세요.');
   }
+
+  static validateTryCountIsPositiveNumber(tryCount) {
+    if (tryCount < 0) throw Error('[ERROR] 음수는 입력할 수 없습니다.');
+  }
+
 }
 
 export default RacingGameValidator;

@@ -19,6 +19,7 @@ class View {
 
     RacingGameValidator.validateTryCountIsNumber(tryCount);
     RacingGameValidator.validateTryCountOverZero(tryCount);
+    RacingGameValidator.validateTryCountIsPositiveNumber(tryCount);
 
     return tryCount;
   }
