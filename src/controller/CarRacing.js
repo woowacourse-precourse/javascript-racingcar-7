@@ -13,11 +13,11 @@ class CarRacing {
   }
 
   async startRace(racingCars) {
-    const moveAttempts = await this.setMoveAttempts();
+    const raceRound = await this.setRaceRound();
     OutputView.printBlankLine();
     OutputView.printExecutionResult();
     const racingCarList = racingCars.getAllCars();
-    for (let i = 0; i < moveAttempts; i++) {
+    for (let i = 0; i < raceRound; i++) {
       racingCars.moveAllCars();
       OutputView.printRaceProgress(racingCarList);
     }
@@ -62,7 +62,7 @@ class CarRacing {
     });
   }
 
-  async setMoveAttempts() {
+  async setRaceRound() {
     return await this.getMoveAttemptsFromUserInput();
   }
 }
