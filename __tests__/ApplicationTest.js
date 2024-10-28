@@ -58,3 +58,21 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 });
+
+test("테스트 - 공백 있을 때", async () => {
+  const MOVING_FORWARD = 4;
+  const STOP = 3;
+  const inputs = ["  pobi  , woni ", "1"];
+  const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
+  const logSpy = getLogSpy();
+
+  mockQuestions(inputs);
+  mockRandoms([MOVING_FORWARD, STOP]);
+
+  const app = new App();
+  await app.run();
+
+  logs.forEach((log) => {
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+  });
+});
