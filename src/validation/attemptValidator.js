@@ -6,5 +6,9 @@ export const attemptValidator = (count) => {
     throw new Error(ERROR_MESSAGE + ATTEMPT.EMPTY_TRY);
   }
 
+  if (!isNumber(Number(count))) {
+    throw new Error(ERROR_MESSAGE + ATTEMPT.NOT_NUMBER);
+  }
+
   return Number(count);
 };
