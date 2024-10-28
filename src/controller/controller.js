@@ -1,13 +1,17 @@
-import { verifyTryNumber } from '../model/verifyTryNumber.js';
-import { verifyRacingCarName } from '../model/verifyRacingCarName.js';
-import { isWinner } from '../model/isWinner.js';
-import { getRace } from '../model/getRace.js';
+import {
+  verifyRacingCarName,
+  verifyTryNumber,
+  isWinner,
+  getRace,
+} from '../model/model.js';
 
-import { inputRacingCarName } from '../view/inputRacingCarName.js';
-import { inputTryNumber } from '../view/inputTryNumber.js';
-import { printWinner } from '../view/printWinner.js';
-import { progressRacingCar } from '../view/progressRacingCar.js';
-import { printRunRacingCar } from '../view/printRunRacingCar.js';
+import {
+  inputRacingCarName,
+  inputTryNumber,
+  printWinner,
+  progressRacingCar,
+  printRunRacingCar,
+} from '../view/view.js';
 
 class Controller {
   async run() {
@@ -28,6 +32,7 @@ class Controller {
     }
 
     const winner = isWinner(cars);
+
     printWinner(winner);
   }
 }
