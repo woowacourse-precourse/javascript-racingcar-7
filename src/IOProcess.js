@@ -15,6 +15,7 @@ class IOProcess {
     }
     async separateCarsNameString(){
         this.carsNameList = this.carsNameString.split(',');
+
         for(let nameIndex in this.carsNameList) {
             this.carsNameList[nameIndex] = this.carsNameList[nameIndex].trim();
         }
@@ -33,26 +34,31 @@ class IOProcess {
             throw new Error('[ERROR] 자동차 이름 에러. (특수문자 사용 불가)')
         }   
     }   
+    async checkOverlapName(){
+        
+    }
     async viewAttemptResultMessage(){
         Console.print('실행 결과');
     }
     async attemptResult(cars){
         for(let car of cars){
-            let printString = String(car.name + ' : ' + await this.makeDistanceHyphen(car));
-            Console.print(printString);
+            let attemptResultString = car.name + ' : ' + await this.makeDistanceHyphen(car);
+            Console.print(attemptResultString);
         }
     }
     async makeDistanceHyphen(car){
         let hyphens = '';
+
         for(let index = 0; index < car.distance; index++){
             hyphens += '-';
         }
+        
         return hyphens;
     }
     async viewRacingResult(cars){
-        let printString = '최종 우승자 : ';
-        printString += cars.join(', ');
-        Console.print(printString);
+        let finalWinners = '최종 우승자 : ';
+        finalWinners += cars.join(', ');
+        Console.print(finalWinners);
     }
 }
 
