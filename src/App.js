@@ -14,6 +14,7 @@ class App {
     for (let i = 0; i < tryCount; i++) {
       for (let j = 0; j < carArray.length; j++) {
         const randomNumber = Random.pickNumberInRange(0, 9);
+        carArray[j].goIfNumberOverFour(randomNumber);
       }
     }
 
