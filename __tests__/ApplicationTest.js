@@ -26,10 +26,10 @@ const getLogSpy = () => {
 };
 
 describe("자동차 경주", () => {
-  test("기능 테스트", async () => {
-    // given
-    const MOVING_FORWARD = 4;
-    const STOP = 3;
+  const MOVING_FORWARD = 4;
+  const STOP = 3;
+
+  test("기능 테스트 1: 우승자가 1명인 경우", async () => {
     const inputs = ["pobi,woni", "1"];
     const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
     const logSpy = getLogSpy();
@@ -37,11 +37,33 @@ describe("자동차 경주", () => {
     mockQuestions(inputs);
     mockRandoms([MOVING_FORWARD, STOP]);
 
-    // when
     const app = new App();
-    await app.run();
 
-    // then
+    await app.run();
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
+  test("기능 테스트 2: 우승자가 여려명인 경우", async () => {
+    const inputs = ["pobi,woni,jun", "2"];
+    const logs = [
+      "pobi : -",
+      "woni : -",
+      "jun : ",
+      "pobi : --",
+      "woni : --",
+      "jun : -",
+      "최종 우승자 : pobi, woni"
+    ];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([MOVING_FORWARD, MOVING_FORWARD, STOP, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD]);
+
+    const app = new App();
+
+    await app.run();
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
