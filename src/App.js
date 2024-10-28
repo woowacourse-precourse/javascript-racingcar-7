@@ -41,4 +41,15 @@ class App {
     });
     Console.print("");
   }
+
+  decideWinner(cars) {
+    const headCar = Math.max.apply(
+      null,
+      cars.map((car) => car.distance)
+    );
+    const winners = cars
+      .filter((car) => car.distance === headCar)
+      .map((car) => car.name);
+    Console.print("최종 우승자 : " + winners.join(", "));
+  }
 }
