@@ -40,10 +40,10 @@ pobi,woni,jun
 
 ## 프로그래밍 요구사항
 
-- [ ] Indent 2 이하 확인
-- [ ] 3항 연산자 사용 X
-- [ ] 함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들기
-- [ ] Jest를 이용하여 정리한 기능 목록이 정상적으로 작동하는지 테스트 코드로 확인한다.
+- [x] Indent 2 이하 확인
+- [x] 3항 연산자 사용 X
+- [x] 함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들기
+- [x] Jest를 이용하여 정리한 기능 목록이 정상적으로 작동하는지 테스트 코드로 확인한다.
   - 테스트 도구 사용법이 익숙하지 않다면 아래 문서를 참고하여 학습한 후 테스트를 구현한다.
     - [Using Matchers](https://jestjs.io/docs/using-matchers)
     - [Testing Asynchronous Code](https://jestjs.io/docs/asynchronous)

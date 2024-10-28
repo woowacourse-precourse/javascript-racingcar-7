@@ -3,7 +3,6 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
-
   MissionUtils.Console.readLineAsync.mockImplementation(() => {
     const input = inputs.shift();
     return Promise.resolve(input);
@@ -12,7 +11,6 @@ const mockQuestions = (inputs) => {
 
 const mockRandoms = (numbers) => {
   MissionUtils.Random.pickNumberInRange = jest.fn();
-
   numbers.reduce((acc, number) => {
     return acc.mockReturnValueOnce(number);
   }, MissionUtils.Random.pickNumberInRange);
@@ -25,36 +23,59 @@ const getLogSpy = () => {
 };
 
 describe("자동차 경주", () => {
-  test("기능 테스트", async () => {
+  test.each([
+    [
+      "기능 테스트",
+      ["pobi,woni", "1"],
+      [4, 3],
+      ["pobi : -", "woni : ", "최종 우승자 : pobi"],
+      false
+    ],
+    [
+      "예외 테스트",
+      ["pobi,javaji"],
+      [],
+      [],
+      true
+    ],
+    [
+      "숫자 테스트",
+      ["pobi,woni", "a"],
+      [],
+      [],
+      true
+    ],
+    [
+      "음수 테스트",
+      ["pobi,woni", "-1"],
+      [],
+      [],
+      true
+    ],
+    [
+      "정수 테스트",
+      ["pobi,woni", "6.4"],
+      [],
+      [],
+      true
+    ]
+  ])("%s", async (testName, inputs, randoms, expectedLogs, expectError) => {
     // given
-    const MOVING_FORWARD = 4;
-    const STOP = 3;
-    const inputs = ["pobi,woni", "1"];
-    const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
+    mockQuestions(inputs);
+    if (randoms.length > 0) mockRandoms(randoms);
     const logSpy = getLogSpy();
 
-    mockQuestions(inputs);
-    mockRandoms([MOVING_FORWARD, STOP]);
-
-    // when
-    const app = new App();
-    await app.run();
-
-    // then
-    logs.forEach((log) => {
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-    });
-  });
-
-  test("예외 테스트", async () => {
-    // given
-    const inputs = ["pobi,javaji"];
-    mockQuestions(inputs);
-
     // when
     const app = new App();
 
     // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
+    if (expectError) {
+      await expect(app.run()).rejects.toThrow("[ERROR]");
+    } else {
+      await app.run();
+      expectedLogs.forEach((log) => {
+        expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+      });
+    }
   });
 });
