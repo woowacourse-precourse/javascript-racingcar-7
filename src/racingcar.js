@@ -32,6 +32,19 @@ class Racingcar {
 
 
 
+  validateCarNames() {
+    for (const name of this.carNames) {
+      if (name.length > 5) {
+        Console.print(`[ERROR] 자동차 이름은 최대 5글자까지 가능합니다: "${name}"`);
+        throw new Error("[ERROR]");
+      }
+    }
+  }
+
+
+
+
+
   async getTrialCount() {
     const trialInput = await Console.readLineAsync("시도할 횟수는 몇 회인가요?");
     this.trialCount = parseInt(trialInput, 10);
