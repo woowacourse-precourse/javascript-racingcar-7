@@ -10,3 +10,12 @@ export const TRY_NUMBER_ERROR = {
   IS_NOT_INTEGER: "[ERROR] 시도할 횟수로 실수를 입력할 수 없습니다.",
   IS_NOT_POSITIVE: "[ERROR] 시도할 횟수로 음수 및 0을 입력할 수 없습니다.",
 };
+
+export const MESSAGE = {
+  CAR_NAME_INPUT:
+    "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n",
+  TRY_NUMBER_INPUT: "시도할 횟수는 몇 회인가요?\n",
+  RESULT: "\n실행 결과",
+  FORWARD_CHAR: "-",
+  FINAL_WINNER: "최종 우승자 : ",
+};

@@ -3,6 +3,7 @@ import CarNameValidator from "./Controller/CarNameValidator.js";
 import TryNumberValidator from "./Controller/TryNumberValidator.js";
 import CarList from "./Model/CarList.js";
 import Winners from "./Model/Winners.js";
+import { MESSAGE } from "./Message/Message.js";
 
 class App {
   async run() {
@@ -24,7 +25,7 @@ class App {
       const carList = new CarList(carNameArray); // 자동차 이름 배열 바탕으로 거리 정보 초기화
 
       // 5. 본 게임, 6. 실행 결과 출력
-      ConsoleView.printMessage("\n실행 결과");
+      ConsoleView.printMessage(MESSAGE.RESULT);
       for (let i = 0; i < tryNumber; i++) {
         carList.moveCars();
         ConsoleView.printRaceResult(carList);
