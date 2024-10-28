@@ -1,5 +1,29 @@
 import { Console } from '@woowacourse/mission-utils';
-import Validator from './Validator.js';
+import { ERROR_MSG } from './Validator.js';
+
+function isInvalid(userInputString) {
+  if (
+    userInputString === undefined ||
+    userInputString === 'undefined' ||
+    userInputString === null ||
+    userInputString === 'null' ||
+    userInputString === '' ||
+    userInputString.length === 0
+  ) {
+    throw Error(ERROR_MSG.INVALID_INPUT_DATA);
+  }
+}
+
+function existWriteSpace(userInputString) {
+  if (userInputString.includes(' ')) {
+    throw Error(ERROR_MSG.EXSIT_WHITE_SPACE);
+  }
+}
+
+function validate(userInputString) {
+  isInvalid(userInputString);
+  existWriteSpace(userInputString);
+}
 
 class ViewIn {
   INPUT_CAR_MSG =
@@ -13,17 +37,17 @@ class ViewIn {
       gameCount: '',
     };
 
-    inputObject.carList = await Console.readLineAsync(this.INPUT_CAR_MSG);
-    Validator.isInvalid(inputObject.carList);
-    Validator.existWriteSpace(inputObject.carList);
-
-    inputObject.gameCount = await Console.readLineAsync(
-      this.INPUT_GAME_COUNT_MSG,
-    );
-    Validator.isInvalid(inputObject.gameCount);
-    Validator.existWriteSpace(inputObject.gameCount);
+    inputObject.carList = await this.getUserInput(this.INPUT_CAR_MSG);
+    inputObject.gameCount = await this.getUserInput(this.INPUT_GAME_COUNT_MSG);
 
     return inputObject;
+  }
+
+  async getUserInput(inputMessage) {
+    const userInputString = await Console.readLineAsync(inputMessage);
+    validate(userInputString);
+
+    return userInputString;
   }
 }
 
