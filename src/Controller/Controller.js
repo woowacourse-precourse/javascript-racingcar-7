@@ -1,8 +1,8 @@
-import OutputView from './View/OutputView.js';
-import InputView from './View/InputView.js';
-import CarModel from './Model/CarModel.js';
-import { validateName, validateTryCount } from './validation.js';
-import { getRandomNumber } from './utils/getRandomNumber.js';
+import OutputView from '../View/OutputView.js';
+import InputView from '../View/InputView.js';
+import CarModel from '../Model/CarModel.js';
+import { validateName, validateTryCount } from '../validation.js';
+import { getRandomNumber } from '../utils/getRandomNumber.js';
 
 export default class Controller {
   constructor() {
