@@ -7,3 +7,7 @@ export const isEmptyCarName = (carNames) => {
 export const isCarNameEndingWithComma = (carNames) => {
   return carNames.endsWith(COMMA);
 };
+
+export const hasDoubleComma = (carNames) => {
+  return carNames.includes(COMMA.repeat(2));
+};
