@@ -7,10 +7,7 @@ class App {
     this.nameExceptionHandler(nameMap);
 
     const count = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n")
-    
     this.countExceptionHandler(names, count);
-
-
 
     Console.print("실행 결과");
     this.raceHanlder(nameMap, count);
