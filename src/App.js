@@ -33,4 +33,15 @@ validCarNameLengthAndBlank(carNames) {
     throw new Error("자동차 이름은 5자 이하만 가능하며, 공백이 불가합니다.");
   }
 }
+async getUserTryNumbers() {
+  Console.print("시도할 횟수는 몇 회인가요?");
+  const input = await Console.readLineAsync("");
+  const tryNumber = parseInt(input, 10);
+
+  if (isNaN(tryNumber) || tryNumber <= 0) {
+    throw new Error("시도 횟수는 양수가 아닌 다른 입력값을 받아들일 수 없습니다.");
+  }
+
+  return tryNumber;
+}
 }
