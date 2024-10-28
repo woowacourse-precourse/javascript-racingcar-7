@@ -1,12 +1,16 @@
 import { Racing } from "../models/Racing";
+import { Validate } from "../utils/Validate";
 import { Input } from "../views/Input";
 import { Output } from "../views/Output";
 
 export class RaceController {
-	run() {
+	async run() {
 		try {
-			const carNames = Input.getCarNames();
-			const rounds = Input.getMoveCount();
+			const carNames = await Input.getCarNames();
+			Validate.validateNames(carNames);
+
+			const rounds = await Input.getMoveCount();
+			Validate.validateRounds(rounds);
 
 			const race = new Racing(carNames, rounds);
 
@@ -18,7 +22,7 @@ export class RaceController {
 			const winners = race.getWinners();
 			Output.printFinalWinners(winners);
 		} catch (error) {
-			throw new Error("[ERROR] 자동차 경주 실행에 오류가 발생했습니다.");
+			throw error;
 		}
 	}
 }
