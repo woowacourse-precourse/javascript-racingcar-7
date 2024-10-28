@@ -3,6 +3,7 @@ const MIN_CAR_NAME_LENGTH=5;
 
 const ERROR_MESSAGES={
     CAR_NAME_LENGTH: ERROR_PREFIX+`자동차의 이름은 ${MIN_CAR_NAME_LENGTH}자 이하만 가능합니다.`,
+    INVALID_ATTEMPT_COUNT: "시도 횟수는 양의 정수여야 합니다.",
 }
 
 export {MIN_CAR_NAME_LENGTH, ERROR_MESSAGES}

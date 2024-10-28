@@ -13,3 +13,14 @@ export async function getValidatedCarNames() {
 
   return carNames;
 }
+
+export async function getValidatedAttemptCount() {
+    const ATTEMPT_COUNT_INPUT = await Console.readLineAsync('시도할 횟수는 몇 회인가요?.\n');
+    const ATTEMPT_COUNT = Number(ATTEMPT_COUNT_INPUT);
+    
+    if (isNaN(ATTEMPT_COUNT ) || ATTEMPT_COUNT  <= 0 || !Number.isInteger(ATTEMPT_COUNT )) {
+      throw new Error(ERROR_MESSAGES.INVALID_ATTEMPT_COUNT);
+    }
+  
+    return ATTEMPT_COUNT;
+  }
