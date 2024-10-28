@@ -1,4 +1,5 @@
-import { Random, Console } from "@woowacourse/mission-utils";
+import { Console } from "@woowacourse/mission-utils";
+import Car from "./Car.js";
 
 export default class CarRacingModel {
   constructor(carNames) {
@@ -22,26 +23,5 @@ export default class CarRacingModel {
     return this.cars
       .filter((car) => car.distance === maxDistanceCarsName)
       .map((car) => car.carName);
-  }
-}
-
-class Car {
-  constructor(carName) {
-    this.carName = carName;
-    this.distance = 0;
-  }
-
-  move() {
-    if (this.getRandomNumber() >= 4) {
-      this.distance += 1;
-    }
-  }
-
-  getRandomNumber() {
-    return Random.pickNumberInRange(0, 9);
-  }
-
-  moveProgress() {
-    return "-".repeat(this.distance);
   }
 }
