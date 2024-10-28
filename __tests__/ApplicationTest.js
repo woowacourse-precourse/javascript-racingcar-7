@@ -80,6 +80,24 @@ describe("자동차 경주", () => {
     });
   });
 
+  test("기능 테스트 - 자동차 이름 양 끝에 공백 있을 때", async () => {
+    const MOVING_FORWARD = 4;
+    const STOP = 3;
+    const inputs = ["  pobi, woni ", "1"];
+    const logs = ["pobi : -", "woni : ", "최종 우승자 : pobi"];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([MOVING_FORWARD, STOP]);
+
+    const app = new App();
+    await app.run();
+
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
   test("예외 테스트 - 자동차 이름 5자 초과", async () => {
     // given
     const inputs = ["pobi,javaji"];
