@@ -8,7 +8,7 @@ export const carRun = (carArr, RUN_TIMES) => {
     Console.print("실행 결과")
 
     for (let i = 0; i < RUN_TIMES; i++) {
-        racing(carArr)
+        randomRacing(carArr)
         printRacing(carArr)
     }
 
@@ -16,7 +16,7 @@ export const carRun = (carArr, RUN_TIMES) => {
 
 }
 
-const racing = (carArr) => {
+const randomRacing = (carArr) => {
 
     for (let i = 1; i <= carArr.length; i += 2) {
         let isRun = MissionUtils.Random.pickNumberInRange(0, 9) >= 4
