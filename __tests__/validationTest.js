@@ -69,7 +69,7 @@ describe("시도 횟수 유효성 검사 테스트", () => {
   test.each(negativeInputs)("음수인 경우", async (input) => {
     expect(isTrialInputValid(input)).toEqual({
       isTrialValid: false,
-      errTrialMessage: ERROR_MESSAGES.NOT_NEGATIVE,
+      errTrialMessage: ERROR_MESSAGES.NO_NEGATIVE,
     });
   });
 

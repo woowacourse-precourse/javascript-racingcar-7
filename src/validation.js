@@ -34,7 +34,7 @@ export function isTrialInputValid(input) {
   if (numInput < 0) {
     return {
       isTrialValid: false,
-      errTrialMessage: ERROR_MESSAGES.NOT_NEGATIVE,
+      errTrialMessage: ERROR_MESSAGES.NO_NEGATIVE,
     };
   }
 
