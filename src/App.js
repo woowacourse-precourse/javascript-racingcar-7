@@ -1,17 +1,21 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 
-class App {
+class RacingCarApp {
   constructor() {
     this.carNames = [];
-    this.attempts = 0;
+    this.attemptCount = 0;
+    this.carsProgress = {};
   }
 
   async run() {
     try {
       await this.getCarNamesFromUser();
-      await this.getAttemptsFromUser();
+      await this.getAttemptCountFromUser();
+      this.initializeCarsProgress();
+      this.runRaceRounds();
+      this.announceWinners();
     } catch (error) {
-      console.error(error.message);
+      throw error; 
     }
   }
 
@@ -42,20 +46,56 @@ class App {
     }
   }
 
-  async getAttemptsFromUser() {
-    const attemptsInput = await Console.readLineAsync('시도할 횟수를 입력하세요: ');
+  async getAttemptCountFromUser() {
+    const attemptCountInput = await Console.readLineAsync('시도할 횟수를 입력하세요: ');
+    const attemptCount = Number(attemptCountInput);
+    this.validateAttemptCount(attemptCount);
 
-    const attempts = Number(attemptsInput);
-    this.validateAttempts(attempts);
-
-    this.attempts = attempts;
+    this.attemptCount = attemptCount;
   }
 
-  validateAttempts(attempts) {
-    if (!Number.isInteger(attempts) || attempts < 1) {
+  validateAttemptCount(attemptCount) {
+    if (!Number.isInteger(attemptCount) || attemptCount < 1) {
       throw new Error('[ERROR] 시도 횟수는 1 이상의 자연수여야 합니다.');
     }
   }
+
+  initializeCarsProgress() {
+    this.carsProgress = this.carNames.reduce((progress, name) => {
+      progress[name] = ''; // 각 자동차의 초기 진행 상태를 빈 문자열로 설정
+      return progress;
+    }, {});
+  }
+
+  runRaceRounds() {
+    Console.print('\n실행 결과');
+
+    for (let round = 0; round < this.attemptCount; round++) {
+      this.carNames.forEach(name => {
+        const randomValue = Random.pickNumberInRange(0, 9);
+        if (randomValue >= 4) {
+          this.carsProgress[name] += '-';
+        }
+      });
+
+      this.printRoundResult();
+    }
+  }
+
+  printRoundResult() {
+    this.carNames.forEach(name => {
+      Console.print(`${name} : ${this.carsProgress[name]}`);
+    });
+
+    Console.print('');
+  }
+
+  announceWinners() {
+    const maxDistance = Math.max(...Object.values(this.carsProgress).map(progress => progress.length));
+    const winners = this.carNames.filter(name => this.carsProgress[name].length === maxDistance);
+
+    Console.print(`최종 우승자 : ${winners.join(', ')}`);
+  }
 }
 
-export default App;
+export default RacingCarApp;
