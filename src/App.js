@@ -34,8 +34,26 @@ class App {
     let carNames = carNamesInput.split(",");
 
     carNames.forEach((carName) => {
+      this.checkCarName(carName);
       this.carDistanceMap.set(carName, 0);
     });
+  }
+
+  /**
+   * 1~5글자 사이인지 확인
+   * 영문만 허락한다.
+   * 중복을 걸러낸다.
+   * @param {*} carName
+   */
+  checkCarName(carName) {
+    const regex = new RegExp("^[A-Za-z]{1,5}$");
+    if (!regex.test(carName)) {
+      throw new Error("[ERROR]");
+    }
+
+    if (this.carDistanceMap.has(carName)) {
+      throw new Error("[ERROR]");
+    }
   }
 
   /**
