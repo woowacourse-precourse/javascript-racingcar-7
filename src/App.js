@@ -17,6 +17,7 @@ class App {
         this.race(arr);
         this.print(arr, CARS);
       }
+      this.winner(arr, CARS);
     } catch(error) {
       console.error(error.message);
     }
@@ -38,6 +39,19 @@ class App {
       result += '-'.repeat(arr[i]); // 전진 횟수만큼 '-'를 추가
       Console.print(result);
     }
+  }
+
+  winner(arr,cars){
+
+    let winnerArr = [];
+    const MAXCOUNT = Math.max(...arr);
+
+    for(let i = 0; i < arr.length; i++){
+      if(arr[i] === MAXCOUNT){
+        winnerArr.push(cars[i]);
+      }
+    }
+    Console.print(`최종 우승자 : ${winnerArr.join(', ')}`);
   }
 }
 
