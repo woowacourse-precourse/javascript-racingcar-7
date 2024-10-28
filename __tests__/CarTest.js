@@ -49,4 +49,18 @@ describe('Car 클래스 테스트', () => {
 
     expect(currentMoveCount).toBe(beforeMoveCount + 1);
   });
+
+  test('자동차 이름과 현재까지의 전진 횟수를 구할 수 있다.', () => {
+    const carName = 'minji';
+    const randomNumbers = [4, 2, 7];
+    const expectedCarName = 'minji';
+    const expectedForwardCount = 2;
+
+    const car = new Car(carName);
+
+    randomNumbers.map((randomNumber) => car.moveForward(randomNumber));
+
+    expect(car.name).toBe(expectedCarName);
+    expect(car.forwardCount).toBe(expectedForwardCount);
+  });
 });
