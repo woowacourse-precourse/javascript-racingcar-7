@@ -1,10 +1,10 @@
 export const INPUT_PROMPT = {
-  readCarNames: '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)',
-  readRoundCount: '시도할 횟수는 몇 회인가요?',
+  readCarNames: '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
+  readRoundCount: '시도할 횟수는 몇 회인가요?\n',
 };
 
 export const REGEX = {
-  carName: /^.{1,5}$/g,
+  carName: /^.{1,5}$/,
   roundCount: /[^0-9]/g,
 };
 
