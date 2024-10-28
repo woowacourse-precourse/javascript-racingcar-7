@@ -24,12 +24,12 @@ export default class RacingGame {
 
   start() {
     for (let i = 0; i < this.#repeatCount; i += 1) {
-      this.play();
+      this.#play();
       this.#raceLogs.push(this.#cars.map((car) => ({ name: car.getName(), dist: car.getDist() })));
     }
   }
 
-  play() {
+  #play() {
     this.#cars.forEach((car) => {
       car.move();
     });

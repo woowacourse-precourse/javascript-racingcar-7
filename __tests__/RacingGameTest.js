@@ -4,7 +4,6 @@ import RacingGame from "../src/model/RacingGame.js";
 const mockGame = (repeatCount, cars) => {
   const game = new RacingGame();
   game.setGame(cars, repeatCount);
-  game.play = jest.spyOn(game, "play");
   return game;
 };
 
@@ -29,7 +28,7 @@ describe("경주 게임", () => {
       game.start();
 
       // then
-      expect(game.play).toBeCalledTimes(REPEAT_COUNT);
+      expect(game.getRaceLogs().length).toBe(REPEAT_COUNT);
     });
   });
 
