@@ -13,7 +13,7 @@ function printRaceResult(car, position) {
     Console.print(`${car} : ${positionDisplay}`);
 }
 
-function printWinner(winner){
+function printWinner(winner) {
     const winnerList = winner.join(', ');
     Console.print(`최종 우승자 : ${winnerList}`);
 }

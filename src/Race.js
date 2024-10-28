@@ -3,40 +3,43 @@ import { printEmptyLine, printHeader, printRaceResult, printWinner } from './fun
 
 class Race {
 
-    raceCar(tryNumber, carList, positionList){
+    raceCar(tryNumber, carList, positionList) {
         printHeader();
-        for(let i = 0; i < tryNumber; i++){
+
+        for (let i = 0; i < tryNumber; i++) {
             this.getRaceResult(carList, positionList);
         }
+        
         const winner = this.findWinner(carList, positionList);
         printWinner(winner);
     }
 
-    getRaceResult(carList, positionList){
+    getRaceResult(carList, positionList) {
         carList.forEach((car, idx) => {
-            if(this.moveForward()){
+            if (this.moveForward()) {
                 positionList[idx] += 1;
             }
             printRaceResult(car, positionList[idx]);
         });
+
         printEmptyLine();
     }
 
-    moveForward(){
+    moveForward() {
         const randomNum = Random.pickNumberInRange(0, 9);
         return randomNum >= 4;
     }
 
-    findWinner(carList, positionList){
+    findWinner(carList, positionList) {
         const maxPosition = this.getMaxPosition(positionList);
         return this.getWinner(carList, positionList, maxPosition);
     }
 
-    getMaxPosition(positionList){
+    getMaxPosition(positionList) {
         return Math.max(...positionList);
     }
 
-    getWinner(carList, positionList, maxPosition){
+    getWinner(carList, positionList, maxPosition) {
         return carList.filter((_, index) => positionList[index] === maxPosition);
     }
 }
