@@ -1,5 +1,15 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
-import { COMMA, DASH, SPACE, EMPTY, COLON, WINNER_CAR } from "./Constant.js";
+import {
+  COMMA,
+  DASH,
+  SPACE,
+  EMPTY,
+  COLON,
+  WINNER_CAR,
+  ERROR_NAME,
+  ERROR_NUMBER,
+  ERROR_PLUS_NUMBER,
+} from "./Constant.js";
 
 export const separateCarList = (carName) => {
   const car_list = carName.split(COMMA);
@@ -56,4 +66,20 @@ export const playGame = (carList, tryNumber) => {
     MissionUtils.Console.print(SPACE);
   }
   return carDistance;
+};
+
+export const checkNameError = (carList) => {
+  for (let i = 0; i < carList.length; i++) {
+    if (carList[i].length > 5) {
+      throw new Error(ERROR_NAME);
+    }
+  }
+};
+export const checkNumberError = (tryNumber) => {
+  if (isNaN(tryNumber)) {
+    throw new Error(ERROR_NUMBER);
+  }
+  if (tryNumber <= 0) {
+    throw new Error(ERROR_PLUS_NUMBER);
+  }
 };

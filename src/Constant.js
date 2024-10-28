@@ -10,3 +10,7 @@ export const COMMA = ",";
 export const SPACE = " ";
 export const COLON = ":";
 export const DASH = "-";
+
+export const ERROR_NAME = "[ERROR]: 5자 이하의 이름을 입력해주세요. ";
+export const ERROR_NUMBER = "[ERROR]: 숫자를 입력해주세요. ";
+export const ERROR_PLUS_NUMBER = "[ERROR]: 양의 정수를 입력해주세요. ";
