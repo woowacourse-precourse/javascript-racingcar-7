@@ -17,6 +17,23 @@ class Race {
     const validAttempt = this.#validateAttempt(raceAttempt);
   }
 
+  #canMoveForward() {
+    const randomNumber = generateRandomNumber();
+
+    if (randomNumber < MOVE_THRESHOLD) return false;
+    return true;
+  }
+
+  #executeRound() {
+    for (let car of this.#carInstance) {
+      const isMove = this.#canMoveForward();
+
+      if (isMove) {
+        car.moveForward();
+      }
+    }
+  }
+
   #validateAttempt(attempt) {
     const validator = new Validator();
     return validator.validateAttempt(attempt);
