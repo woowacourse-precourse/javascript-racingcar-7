@@ -35,7 +35,7 @@ function moveCar(carPositions, car) {
   const randomNumber = Random.pickNumberInRange(0, 9);
 
   if (randomNumber >= 4) {
-    carPositions[car] += "-".repeat(randomNumber);
+    carPositions[car] += "-";
   }
 }
 
