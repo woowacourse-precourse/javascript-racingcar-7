@@ -42,6 +42,7 @@ describe('자동차 경주 기능 테스트', () => {
     });
   });
 
+  test('정상적인 이동 및 우승자 복수 출력 테스트', async () => {
     // given
     const inputs = ['pobi,woni,jun', '5'];
     const logs = [
@@ -93,6 +94,7 @@ describe('자동차 경주 기능 테스트', () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
+});
 
   test("예외 테스트", async () => {
     // given
