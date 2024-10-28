@@ -46,9 +46,57 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트", async () => {
+  test("예외 테스트_자동차_이름 5자 초과", async () => {
     // given
     const inputs = ["pobi,javaji"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트_자동차_이름 공백", async () => {
+    // given
+    const inputs = ["pobi, "];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트_자동차_2대 미만", async () => {
+    // given
+    const inputs = ["pobi"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트_시도 횟수_0 또는 음수", async () => {
+    // given
+    const inputs = ["pobi,woni", "-1"];
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트_시도 횟수_문자열", async () => {
+    // given
+    const inputs = ["pobi,woni", "a"];
     mockQuestions(inputs);
 
     // when
