@@ -54,7 +54,6 @@ class App {
 
     const input = await getInput();
     const count = await getCount();
-
     const result = await tryRace(input, count);
     await getWinner(result);
   }
