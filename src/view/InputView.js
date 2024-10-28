@@ -1,5 +1,6 @@
 import { Console } from "@woowacourse/mission-utils";
 import CheckValid from "./CheckValid.js";
+import { MESSAGE_INPUT } from "../Constant.js";
 
 class InputView {
   constructor() {
@@ -7,9 +8,7 @@ class InputView {
   }
 
   async getCarName() {
-    const carArrStr = await Console.readLineAsync(
-      "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n"
-    );
+    const carArrStr = await Console.readLineAsync(MESSAGE_INPUT.CAR_NAME_INPUT);
     const carArr = carArrStr.split(",");
 
     this.checkValid.carNameException(carArr);
@@ -17,7 +16,8 @@ class InputView {
   }
 
   async getMoveCnt() {
-    let moveCnt = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+    let moveCnt = await Console.readLineAsync(MESSAGE_INPUT.MOVE_CNT_INPUT);
+
     this.checkValid.moveCntCheckValid(moveCnt);
     return Number(moveCnt);
   }

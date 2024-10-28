@@ -1,4 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
+import { MESSAGE_OUTPUT } from "../Constant.js";
 
 class OutputView {
   printCurRacing(carArr, carIdx, moveCntArr) {
@@ -10,7 +11,7 @@ class OutputView {
   }
 
   printWinner(winner) {
-    Console.print(`최종 우승자 : ${winner.join(", ")}`);
+    Console.print(MESSAGE_OUTPUT(winner).WINNER_CAR);
   }
 }
 

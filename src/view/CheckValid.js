@@ -1,19 +1,21 @@
+import { ERROR_MESSAGE } from "../Constant.js";
+
 class CheckValid {
   carNameException(carArr) {
     carArr.forEach((car) => {
       if (car.length > 5) {
-        throw new Error("[ERROR] 자동차 이름은 5자 이하만 가능합니다.");
+        throw new Error(ERROR_MESSAGE.CAR_NAME_5_LESS);
       } else if (car.trim().length == 0) {
-        throw new Error("[ERROR] 자동차 이름을 1자 이상 입력해주세요.");
+        throw new Error(ERROR_MESSAGE.CAR_NAME_1_MORE);
       }
     });
   }
 
   moveCntCheckValid(moveCnt) {
     if (isNaN(moveCnt)) {
-      throw new Error("[ERROR] 시도 횟수를 숫자로 입력해주세요.");
+      throw new Error(ERROR_MESSAGE.ATTEMPT_CNT_NUMBER);
     } else if (!Number.isInteger(Number(moveCnt)) || moveCnt <= 0) {
-      throw new Error("[ERROR] 시도 횟수를 양수로 입력해주세요.");
+      throw new Error(ERROR_MESSAGE.ATTEMPT_CNT_POSITIVE);
     }
   }
 }
