@@ -7,12 +7,12 @@ export default class Racingcar {
    *
    * @param {Array} inputArr
    */
-  constructor(inputArr, tryNum) {
-    this.#validate(inputArr, tryNum);
+  constructor(inputArr) {
+    this.#validate(inputArr);
     this.#inputArr = inputArr;
   }
 
-  #validate(inputArr, tryNum) {
+  #validate(inputArr) {
     if (!validation.isLengthBelowFive(inputArr))
       throw new Error(`${ERRORMESAGE.WRONG_NAME_LENGTH}`);
     if (validation.hasSpace(inputArr))
@@ -21,6 +21,8 @@ export default class Racingcar {
       throw new Error(`${ERRORMESAGE.WRONG_NAME_FORM_EMPTY}`);
     if (!validation.isNotDuplicate(inputArr))
       throw new Error(`${ERRORMESAGE.NOT_DUPLICATE_NAME}`);
+  }
+  #tryNumvalidate(tryNum) {
     if (!validation.isPositiveInteger(tryNum))
       throw new Error(`${ERRORMESAGE.NOT_POSITIVE_INTEGER}`);
   }

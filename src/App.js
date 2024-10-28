@@ -1,5 +1,5 @@
 import Racingcar from './components/Racingcar.js';
-import { ioMethod } from './utils/index.js';
+import { ioMethod, validation } from './utils/index.js';
 import { MAGICNUMBER } from './constants/index.js';
 
 class App {
@@ -16,10 +16,16 @@ class App {
   async #gameSetting() {
     const inputs = await ioMethod.inputCarName();
     const inputArr = inputs.split(MAGICNUMBER.SEPARATOR);
+    this.#racingcar = new Racingcar(inputArr);
     this.#tryNum = Number(await ioMethod.inputTryNum());
-    this.#racingcar = new Racingcar(inputArr, this.#tryNum);
+    this.#tryNumvalidation(this.#tryNum);
     this.#board = this.#createBoard(inputArr);
     ioMethod.printProgressResult();
+  }
+
+  #tryNumvalidation(tryNum) {
+    if (!validation.isPositiveInteger(tryNum))
+      throw new Error(`${ERRORMESAGE.NOT_POSITIVE_INTEGER}`);
   }
 
   #createBoard(inputArr) {
