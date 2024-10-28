@@ -57,4 +57,28 @@ describe("자동차 경주", () => {
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
+  test("시도 횟수가 음수일 경우 예외 처리", async () => {
+    // given
+    const inputs = ["pobi,woni", "-1"]; // 음수 시도 횟수
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("시도 횟수가 숫자가 아닐 경우 예외 처리", async () => {
+    // given
+    const inputs = ["pobi,woni", "abc"]; // 음수 시도 횟수
+    mockQuestions(inputs);
+
+    // when
+    const app = new App();
+
+    // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
 });
