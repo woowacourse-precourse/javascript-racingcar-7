@@ -7,9 +7,9 @@ import { Console } from '@woowacourse/mission-utils';
  * @param {Object} cumulativeResults - 누적 결과 객체
  */
 export function printSingleAttemptResult(attemptResult, carNames, cumulativeResults) {
-    carNames.forEach((car) => {
-        cumulativeResults[car] += attemptResult[car]; // 누적 결과 갱신
-        Console.print(`${car} : ${cumulativeResults[car]}`);
-    });
-    Console.print('');
+	carNames.forEach((car) => {
+		cumulativeResults[car] += attemptResult[car]; // 누적 결과 갱신
+		Console.print(`${car} : ${cumulativeResults[car]}`);
+	});
+	Console.print('');
 }

@@ -4,9 +4,9 @@
  * @returns {Object} - 초기화된 누적 결과 객체
  */
 export function initializeCumulativeResults(carNames) {
-    return carNames.reduce((acc, car) => {
-        acc[car] = '';
+	return carNames.reduce((acc, car) => {
+		acc[car] = '';
 
-        return acc;
-    }, {});
+		return acc;
+	}, {});
 }

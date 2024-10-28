@@ -8,11 +8,11 @@ import { printSingleAttemptResult } from './printSingleAttemptResult.js';
  * @param {Array} carNames - 자동차 이름 배열
  */
 export function printRacingResult(resultsPerAttempt, carNames) {
-    Console.print('\n실행 결과');
+	Console.print('\n실행 결과');
 
-    const cumulativeResults = initializeCumulativeResults(carNames);
+	const cumulativeResults = initializeCumulativeResults(carNames);
 
-    resultsPerAttempt.forEach((attemptResult) => {
-        printSingleAttemptResult(attemptResult, carNames, cumulativeResults);
-    });
+	resultsPerAttempt.forEach((attemptResult) => {
+		printSingleAttemptResult(attemptResult, carNames, cumulativeResults);
+	});
 }

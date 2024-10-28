@@ -5,9 +5,9 @@ import { Random } from '@woowacourse/mission-utils';
  * @returns {string} - 전진하면 '-', 멈추면 ''
  */
 function getCarMovement() {
-    const randomValue = Random.pickNumberInRange(0, 9);
+	const randomValue = Random.pickNumberInRange(0, 9);
 
-    return randomValue >= 4 ? '-' : '';
+	return randomValue >= 4 ? '-' : '';
 }
 
 /**
@@ -16,13 +16,13 @@ function getCarMovement() {
  * @returns {Object} - 현재 시도의 결과 객체
  */
 function generateSingleAttemptResult(carNames) {
-    const currentResult = {};
+	const currentResult = {};
 
-    carNames.forEach((car) => {
-        currentResult[car] = getCarMovement();
-    });
+	carNames.forEach((car) => {
+		currentResult[car] = getCarMovement();
+	});
 
-    return currentResult;
+	return currentResult;
 }
 
 /**
@@ -32,12 +32,12 @@ function generateSingleAttemptResult(carNames) {
  * @returns {Array} - 각 시도별 경주 결과 배열
  */
 export function calculateCarRacing(carNames, attempts) {
-    const resultsPerAttempt = [];
+	const resultsPerAttempt = [];
 
-    for (let i = 0; i < attempts; i++) {
-        const attemptResult = generateSingleAttemptResult(carNames);
-        resultsPerAttempt.push(attemptResult);
-    }
+	for (let i = 0; i < attempts; i++) {
+		const attemptResult = generateSingleAttemptResult(carNames);
+		resultsPerAttempt.push(attemptResult);
+	}
 
-    return resultsPerAttempt;
+	return resultsPerAttempt;
 }
