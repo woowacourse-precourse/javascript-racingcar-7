@@ -15,4 +15,10 @@ export default class CarController {
                 car.updateProgress(random);
         });
     }
+
+    // 최종 우승자 선정
+    static finalWinner(carList, maxProgress) {
+        return carList.filter((car) => car.getProgress() === maxProgress)
+        .map((car) => car.getName());
+    }
 }
