@@ -1,4 +1,4 @@
-import { NAME_LENGTH_ERROR_MESSAGE } from "./constants/Messages.js";
+import { INPUT_ERROR_MESSAGE, NAME_LENGTH_ERROR_MESSAGE } from "./constants/Messages.js";
 import { MAX_NAME_LENGTH } from "./constants/Constants.js";
 
 export class Car {
@@ -10,8 +10,18 @@ export class Car {
     this.#validateName(name);
   }
 
+
   #validateName(name) {
+    this.#checkLength(name);
+    this.#checkEmpty(name);
+  }
+
+  #checkLength(name) {
     if (name.length > MAX_NAME_LENGTH) throw new Error(NAME_LENGTH_ERROR_MESSAGE);
+  }
+
+  #checkEmpty(name) {
+    if (name.trim() === '') throw new Error(INPUT_ERROR_MESSAGE);
   }
 
   move(distance) {
