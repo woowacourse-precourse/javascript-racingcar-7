@@ -24,6 +24,14 @@ class App {
       nameSet.add(name);
       race.addCar(new Car(name));
     });
+
+    const attempt = await view.promptAttempt();
+    if (isNaN(attempt)) {
+      throw new Error('[ERROR] 시도할 횟수는 숫자이어야 합니다.');
+    }
+    if (attempt <= 0) {
+      throw new Error('[ERROR] 시도할 횟수는 양수이어야 합니다.');
+    }
   }
 }
 
