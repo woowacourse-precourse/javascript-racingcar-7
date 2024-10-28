@@ -45,7 +45,15 @@ class App {
           car.go++;
         }
       });
+      this.displayRaceProgress(cars);
     }
+  }
+
+  displayRaceProgress(cars) {
+    cars.forEach((car) => {
+      MissionUtils.Console.print(`${car.name} : ${'-'.repeat(car.go)}`);
+    });
+    MissionUtils.Console.print('');
   }
 }
 
