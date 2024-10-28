@@ -26,4 +26,14 @@ describe('실행 결과 출력 테스트', () => {
 
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(expectedLog));
   });
+
+  test('경주의 공동 우승자를 출력할 수 있다.', () => {
+    const winners = ['zu', 'hyori'];
+    const expectedLog = '최종 우승자 : zu,hyori';
+    const logSpy = getLogSpy();
+
+    OutputView.printWinners(winners);
+
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(expectedLog));
+  });
 });
