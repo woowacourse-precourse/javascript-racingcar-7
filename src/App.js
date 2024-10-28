@@ -17,6 +17,10 @@ class Vehicle {
       this.position++;
     }
   }
+  
+  displayPosition() {
+    Console.print(`${this.name} : ${"-".repeat(this.position)}`);
+  }
 }
 
 class Race {
@@ -32,11 +36,16 @@ class Race {
 
     for (let i = 0; i < attemptCount; i++) {
       this.moveAllVehicles();
+      this.displayCurrentPositions();
     }
   }
 
   moveAllVehicles() {
     this.vehicles.forEach((vehicle) => vehicle.move());
+  }
+  
+  displayCurrentPositions() {
+    this.vehicles.forEach((vehicle) => vehicle.displayPosition());
   }
 }
 
