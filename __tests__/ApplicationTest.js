@@ -46,7 +46,7 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("우승자가 두명일 경우", async () => {
+  test("우승자가 두 명일 경우", async () => {
     // given
     const MOVING_FORWARD = 4;
     const inputs = ["pobi,woni", "1"];
@@ -55,6 +55,46 @@ describe("자동차 경주", () => {
 
     mockQuestions(inputs);
     mockRandoms([MOVING_FORWARD, MOVING_FORWARD]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+
+  test("우승자가 여러명일 경우", async () => {
+    // given
+    const MOVING_FORWARD = 4;
+    const STOP = 3;
+    const inputs = ["pobi,woni,jason,dobi", "2"];
+    const logs = [
+      "pobi : -",
+      "woni : -",
+      "jason : -",
+      "dobi : -",
+      "pobi : --",
+      "woni : -",
+      "jason : --",
+      "dobi : --",
+      "최종 우승자 : pobi, jason, dobi",
+    ];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([
+      MOVING_FORWARD,
+      MOVING_FORWARD,
+      MOVING_FORWARD,
+      MOVING_FORWARD,
+      MOVING_FORWARD,
+      STOP,
+      MOVING_FORWARD,
+      MOVING_FORWARD,
+    ]);
 
     // when
     const app = new App();
