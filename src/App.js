@@ -12,10 +12,10 @@ class App {
     if(inputCarString.length<1){
       throw new Error("[ERROR] 자동차의 개수가 2개이상이어야 합니다.  어플리케이션이 종료됩니다. ");
     }
-    if(hasLongString){
+    const carList = splitByComma(inputCarString);
+    if(hasLongString(carList)){
       throw new Error("[ERROR] 자동차의 이름의길이가 5이하여야합니다. 어플리케이션이 종료됩니다. ");
     }
-    const carList = splitByComma(inputCarString);
     const tryNumber = await getNumber();
     if(!isNumber(tryNumber)){
       throw new Error("[ERROR] 시도하는 횟수는 숫자이여야합니다. 어플리케이션이 종료됩니다. ");
