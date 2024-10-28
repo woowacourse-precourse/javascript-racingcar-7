@@ -14,4 +14,23 @@ async getUserCarNames(){
 
   return carNames;
 }
+
+checkMinCars(carNames) {
+  if (carNames.length < 2 || carNames.includes("")) {
+    throw new Error("자동차는 최소 2대 이상이어야 합니다.");
+  }
+}
+
+checkDuplicateNames(carNames) {
+  const uniqueNames = new Set(carNames);
+  if (uniqueNames.size !== carNames.length) {
+    throw new Error("자동차 이름은 중복될 수 없습니다.");
+  }
+}
+
+validCarNameLengthAndBlank(carNames) {
+  if (carNames.some(name => name.length > 5 || name.length === 0)) {
+    throw new Error("자동차 이름은 5자 이하만 가능하며, 공백이 불가합니다.");
+  }
+}
 }
