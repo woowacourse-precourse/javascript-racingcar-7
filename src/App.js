@@ -43,6 +43,14 @@ class App {
   initializeCars(carNames) {
     return carNames.map((name) => ({ name, position: 0 })); // 초기 위치 설정
   }
+
+  // 3. 경기 진행
+  raceOnce(cars) {
+    cars.forEach((car) => {
+      const move = Random.pickNumberInRange(0, 9); // 무작위 값 생성
+      if (move >= 4) car.position += 1; // 전진 조건 확인 후 이동
+    });
+  }
 }
 
 export default App;
