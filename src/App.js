@@ -1,10 +1,8 @@
 import { Console, Random } from "@woowacourse/mission-utils";
 // Console.readLineAsync() / Console.print() / Random.pickNumberInRange()
 
-// 주어진 횟수 동안 n대의 자동차는 전진 또는 멈출 수 있다.
 // 전진하는 자동차를 출력할 때 자동차 이름을 같이 출력한다.
 // 이름은 5자 이하만 가능하다.
-// 전진하는 조건은 0에서 9 사이에서 무작위 값을 구한 후 무작위 값이 4 이상일 경우이다.
 // 자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다. 우승자는 한 명 이상일 수 있다.
 // 우승자가 여러 명일 경우 쉼표(,)를 이용하여 구분한다.
 // 사용자가 잘못된 값을 입력할 경우 "[ERROR]"로 시작하는 메시지와 함께 Error를 발생시킨 후 애플리케이션은 종료되어야 한다.
@@ -22,6 +20,19 @@ class App {
       position: CAR_POSITION_ARRAY,
     };
     // 이름 5자 이하인지 유효성 체크 필요하다.
+
+    // for 반복문이 적절한가?
+    for (var j = MAX_ATTEMPTS; j > 0; j--){
+      for (var i = 0; i < CAR_NAME_ARRAY.length; i++){
+        let randomNum = Random.pickNumberInRange(0, 9);
+        
+        if (randomNum >= 4){
+          //전진
+          car.position[i] += 1;
+        }
+      }
+    }  
+
 
 
   }
