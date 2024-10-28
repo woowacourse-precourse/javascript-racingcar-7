@@ -55,6 +55,33 @@ class App {
 
       MissionUtils.Console.print("");
     }
+
+    this.printWinners(this.getWinners(carsMap)); // 우승자 가려내기
+    // 우승자 출력하기
+  }
+
+  getWinners(carsMap) {
+    // 최종 우승자 계산 함수
+    const winners = []; // 공동우승자를 저장할 배열
+    let maxPosition = -1; // ?? 얘는 뭐지? 꼭 필요한가??? (보류)
+
+    for (const car of carsMap) {
+      if (car.position > maxPosition) {
+        maxPosition = car.position; // 가장 고점인 애가 나타나면 maxPosition을 갱신함
+        winners.length = 0; // 새로운 우승자를 발견하면 기존 우승자 배열을 초기화
+        winners.push(car); // 새로운 우승자 정보를 차례대로 배열에 집어넣음
+      } else if (car.position === maxPosition) winners.push(car); // 공동우승자 추가
+    }
+    return winners;
+  }
+
+  printWinners(winners) {
+    if (winners.length === 1)
+      MissionUtils.Console.print(`최종 우승자 : ${winners[0].name}`);
+    else {
+      const winnerNames = winners.map((winner) => winner.name).join(", ");
+      MissionUtils.Console.print(`최종 우승자 : ${winnerNames}`);
+    }
   }
 
   printOneRound(carsMap) {
