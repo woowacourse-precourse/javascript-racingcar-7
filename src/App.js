@@ -5,6 +5,7 @@ class App {
     this.carDistanceMap = new Map();
     this.attemptCount = 0;
     this.maxDistance = -1;
+    this.MOVING_FORWARD = 4;
   }
 
   async run() {
@@ -17,6 +18,10 @@ class App {
       "시도할 횟수는 몇 회인가요?\n"
     );
     this.attemptCount = Number(attemptCountInput);
+
+    this.playRacing();
+
+    this.racingResult();
   }
 
   /**
@@ -31,6 +36,54 @@ class App {
     carNames.forEach((carName) => {
       this.carDistanceMap.set(carName, 0);
     });
+  }
+
+  /**
+   * 레이싱 게임을 진행
+   * 시도할 횟수만큼 반복한다.
+   * random을 통해 4(MOVING_FORWARD)이상일때만 이동을 진행한다.
+   */
+  playRacing() {
+    if (this.attemptCount === 0) return;
+
+    Console.print("실행 결과");
+    this.carDistanceMap.forEach((moveDistance, carName) => {
+      const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
+      //MOVING_FORWARD이상이면 이동
+      if (randomNumber >= this.MOVING_FORWARD) {
+        this.carDistanceMap.set(carName, moveDistance + 1);
+        this.maxDistance = Math.max(moveDistance + 1, this.maxDistance);
+      }
+      this.printCar(carName);
+    });
+
+    this.attemptCount--;
+    this.playRacing();
+  }
+
+  /**
+   * 현재 자동차의 상태 출력
+   */
+  printCar(carName) {
+    let moveDistance = this.carDistanceMap.get(carName);
+
+    //n번 반복
+    Console.print(`${carName} : ${"-".repeat(moveDistance)}`);
+  }
+
+  racingResult() {
+    let winnerCarNames = [];
+    this.carDistanceMap.forEach((moveDistance, carName) => {
+      if (this.maxDistance === moveDistance) {
+        winnerCarNames.push(carName);
+      }
+    });
+
+    if (winnerCarNames.length === 0) {
+      Console.print(`최종 우승자 : 없음`);
+    } else {
+      Console.print(`최종 우승자 : ${winnerCarNames.join(", ")}`);
+    }
   }
 }
 
