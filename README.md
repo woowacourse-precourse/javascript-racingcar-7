@@ -3,40 +3,53 @@
 
 이 프로젝트는 우아한테크코스 프리코스 2주차 과제인 **초간단 자동차 경주 게임**입니다.
 
-#### 변수 목록
-- NAMESTR: 입력받은 자동차 이름 문자열
-- RUNTIMES: 입력받은 경주 횟수
-- carArr: 자동차 이름과 이동결과가 담긴 arr
-- WINNER: 우승자(복수 가능)
+#### 상수 목록
+- NAME_STR: 입력받은 자동차 이름 문자열
+- RUN_TIMES: 입력받은 경주 횟수
 
 ### 기능 목록
-- 사용자의 입력이 ERROR CASE에 해당하는지 확인
+- 사용자의 입력이 ERROR CASE에 해당하는지 확인(Valid.js)
   ```js
-  nameStrValid = (NAMESTR) =>{
+  nameStrValid = (NAME_STR) =>{
     ...
   }
-  runTimesValid = (RUNTIMES)=>{
+  runTimesValid = (RUN_TIMES)=>{
     ...
   }
   ```
-- NAMESTR을 배열에 대입
+- NAMESTR을 배열에 대입(createCarArr.js)
   ```js
-  creatCarArr = (NAMESTR) =>{
+  createCarArr = (NAME_STR) =>{
     ...
     return carArr
   }
   ```
-- 자동차 랜덤계산 후 이동
+- 자동차 랜덤계산 후 이동(carRun.js)
   ```js
-  carRun = () =>{
+  export const carRun = (carArr, RUN_TIMES) =>{
     ...
   }
-  ```
-- 우승자 판별
-  ```js
-  getWinner = () =>c{
+  
+  randomRacing = (carArr) =>{
     ...
-    return WINNER
+  }
+  
+  printRacing = (carArr) =>{
+    ...
+  }
+
+  ```
+- 우승자 판별(getWinner.js)
+  ```js
+  export const getWinner = (carArr) =>{
+    ...
+    return result // 최종 우승자 : a, b
+  }
+  getTopRate = (carArr) =>{
+
+  }
+  getWinnerArr = (carArr) =>{
+
   }
   ```
      
@@ -46,6 +59,7 @@
   - 쉼표 기준으로 구분되지 않음(다른 특수문자)
   - 쉼표가 연달아 나옴 
   - 입력 없음
+  - 이름에 공백이 포함되어 있음
 - RUNTIMES
   - 숫자 아님
   - 입력 없음
@@ -61,7 +75,7 @@
 - [오류를 찾을 때 출력 함수 대신 디버거를 사용한다.](https://code.visualstudio.com/docs/editor/debugging)
 - 이름을 통해 의도를 드러낸다.
   - 숫자 덧붙이기X(aN), 불용어X(Info, data, a, an, the)  
-  - 사용할 변수 이름, 함수 이름, 클래스 이름을 `README.md`에 미리 작성한다.
+  - 사용할 상수 이름, 함수 이름, 클래스 이름을 `README.md`에 미리 작성한다.
 - 축약하지 않는다.
   - 클래스와 메서드 이름을 한 두 단어로 유지하려고 노력한다.
   - 문맥을 중복하는 이름을 자제하자.
