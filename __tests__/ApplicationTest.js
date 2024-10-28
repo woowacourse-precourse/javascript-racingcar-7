@@ -46,15 +46,27 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트", async () => {
-    // given
-    const inputs = ["pobi,javaji"];
-    mockQuestions(inputs);
+  test("예외 테스트 - 여러 입력 값 검사", async () => {
+    const invalidInputs = [
+      ["","1"],             // 빈 이름
+      ["pobi,javaji", "1"], // 이름 5자 초과
+      ["pobi,,", "1"],      // 빈 이름 포함
+      ["pobi,pobi", "1"],   // 중복 이름 포함
+      ["pobi", "다섯번"],   // 시도 횟수에 숫자 외 문자 포함
+      ["pobi", "1.5"],      // 시도 횟수에 소수 포함
+      ["pobi", "101"],      // 시도 횟수에 1 ~ 100 범위를 넘는 숫자 포함
+      ["pobi", ""]          // 빈 시도 횟수
+    ];
 
-    // when
-    const app = new App();
+    for (const inputs of invalidInputs) { 
+      // given
+      mockQuestions(inputs);
 
-    // then
-    await expect(app.run()).rejects.toThrow("[ERROR]");
+      // when
+      const app = new App();
+
+      // then
+      await expect(app.run()).rejects.toThrow("[ERROR]");
+    }
   });
 });
