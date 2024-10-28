@@ -46,13 +46,13 @@ class RaceGame {
       ...this.carList.map((car) => car.getMoveHistory.length),
     );
 
-    const winner = this.carList
+    const winnerName = this.carList
       .filter(
         (car) => parseInt(car.getMoveHistory.length, 10) === maxMoveLength,
       )
       .map((car) => car.getName);
 
-    Console.print(`${USER.WINNER_MESSAGE}${winner.join(', ')}`);
+    Console.print(`${USER.WINNER_MESSAGE}${winnerName.join(', ')}`);
   }
 }
 
