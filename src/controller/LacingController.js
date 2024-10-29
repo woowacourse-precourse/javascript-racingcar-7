@@ -87,7 +87,7 @@ class LacingController {
   computeWinner(racingResult) {
     const round = this.getRound();
     const result = racingResult[round - 1];
-    const maxTrack = result.reduce((max, car) => Math.max(max, car.track), 0);
+    const maxTrack = Math.max(...result.map((car) => car.track));
 
     return result.reduce((winner, car) => {
       if (car.track === maxTrack) return [...winner, car.name];
