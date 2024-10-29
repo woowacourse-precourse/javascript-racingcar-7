@@ -34,11 +34,15 @@ class RacingGame {
 
     runRound() {
         this.#cars.forEach(car => {
-            const randomNumber = generatorRandomPickNumber();
-            if(randomNumber >= RacingGame.MINIMUM_MOVE_NUMBER) {
-                this.#racingStatus[car] += 1;
-            }
+            this.randomMoveForwardOneStep(car);
         });
+    }
+
+    randomMoveForwardOneStep(car) {
+        const randomNumber = generatorRandomPickNumber();
+        if(randomNumber >= RacingGame.MINIMUM_MOVE_NUMBER) {
+            this.#racingStatus[car] += 1;
+        }        
     }
 
     getRacingWinners() {
