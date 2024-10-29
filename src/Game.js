@@ -11,14 +11,16 @@ class Game {
     this.maxPosition = 0;
     this.winners = [];
     for (let i = 0; i < rounds; i++) {
-      this.cars.forEach((car) => {
-        const randomValue = MissionUtils.Random.pickNumberInRange(0, 9);
-        if (randomValue >= 4) {
-          car.move();
-          this.updateWinners(car); // 우승자 리스트 갱신
-        }
-      });
+      this.cars.forEach((car) => this.moveCar(car));
       OutputView.printPositions(this.cars);
+    }
+  }
+
+  moveCar(car) {
+    const randomValue = MissionUtils.Random.pickNumberInRange(0, 9);
+    if (randomValue >= 4) {
+      car.move();
+      this.updateWinners(car);
     }
   }
 
