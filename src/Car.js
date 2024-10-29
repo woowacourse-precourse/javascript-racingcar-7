@@ -1,7 +1,7 @@
 class Car {
   constructor(name) {
     if (name.length > 5) {
-      throw new Error('[ERROR]'); // 이름 길이가 5자를 초과하면 에러 발생
+      throw new Error('[ERROR] 이름 길이는 최대 5자까지 가능합니다.');
     }
     this.name = name;
     this.position = 0;

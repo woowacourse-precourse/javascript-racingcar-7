@@ -26,14 +26,14 @@ const InputView = {
 
   validateCarName(name) {
     if (name.length > 5) {
-      throw new Error('[ERROR]');
+      throw new Error('[ERROR] 이름 길이는 최대 5자까지 가능합니다.');
     }
     return name;
   },
 
   validateRounds(rounds) {
     if (isNaN(rounds) || rounds <= 0) {
-      throw new Error('[ERROR]');
+      throw new Error('[ERROR] 유효한 숫자를 입력하세요.');
     }
   },
 };
