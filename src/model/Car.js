@@ -3,8 +3,8 @@ import { RANDOM_RANGE, FORWARD_CRITERIA } from './Car.constant.js';
 
 class Car {
   /** @type {number[]} */
-  road = [];
-  name = '';
+  #road = [];
+  #name = '';
 
   /**
    * @param {string} name
@@ -18,7 +18,7 @@ class Car {
    * @returns {Car}
    */
   setName(name) {
-    this.name = name;
+    this.#name = name;
     return this;
   }
 
@@ -26,7 +26,7 @@ class Car {
    * @returns {string}
    */
   getName() {
-    return this.name;
+    return this.#name;
   }
 
   /**
@@ -34,15 +34,15 @@ class Car {
    * @returns {number}
    */
   getTrack(round) {
-    return this.road[round];
+    return this.#road[round];
   }
 
   /**
    * @param {number} track
    * @returns {Car}
    */
-  addTrack(track) {
-    this.road.push(track);
+  #addTrack(track) {
+    this.#road.push(track);
     return this;
   }
 
@@ -52,12 +52,12 @@ class Car {
    */
   stop(round) {
     if (!round) {
-      this.addTrack(0);
+      this.#addTrack(0);
       return;
     }
 
     const track = this.getTrack(round - 1);
-    this.addTrack(track);
+    this.#addTrack(track);
   }
 
   /**
@@ -66,12 +66,12 @@ class Car {
    */
   forward(round) {
     if (!round) {
-      this.addTrack(1);
+      this.#addTrack(1);
       return;
     }
 
     const track = this.getTrack(round - 1);
-    this.addTrack(track + 1);
+    this.#addTrack(track + 1);
   }
 
   /**
