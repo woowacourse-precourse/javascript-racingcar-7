@@ -93,6 +93,9 @@ class LacingController {
       .map((car) => car.name);
   }
 
+  /**
+   * @returns {void}
+   */
   printResult() {
     const result = this.getRacingResult();
     const winner = this.computeWinner(result);
@@ -101,6 +104,9 @@ class LacingController {
     Output.printWinner(winner);
   }
 
+  /**
+   * @returns {Promise<void>}
+   */
   async run() {
     const carNames = await Input.readCarNames();
     const times = await Input.readTimes();
