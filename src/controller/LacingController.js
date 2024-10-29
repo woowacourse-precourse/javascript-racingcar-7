@@ -4,14 +4,14 @@ import Car from '../model/Car.js';
 
 class LacingController {
   /** @type {Car[]} */
-  cars = [];
-  round = 0;
+  #cars = [];
+  #round = 0;
 
   /**
    * @returns {number}
    */
   getRound() {
-    return this.round;
+    return this.#round;
   }
 
   /**
@@ -19,23 +19,23 @@ class LacingController {
    * @returns {LacingController}
    */
   setRound(round) {
-    this.round = round;
+    this.#round = round;
     return this;
   }
 
   /**
    * @returns {Car[]}
    */
-  getCars() {
-    return this.cars;
+  #getCars() {
+    return this.#cars;
   }
 
   /**
    * @param {Car[]} cars
    * @returns {LacingController}
    */
-  setCars(cars) {
-    this.cars = cars;
+  #setCars(cars) {
+    this.#cars = cars;
     return this;
   }
 
@@ -46,7 +46,7 @@ class LacingController {
    */
   init(carNames, times) {
     const cars = Array.from(carNames, (name) => new Car(name));
-    this.setCars(cars);
+    this.#setCars(cars);
     this.setRound(times);
     return this;
   }
@@ -55,7 +55,7 @@ class LacingController {
    * @returns {LacingController}
    */
   play() {
-    const cars = this.getCars();
+    const cars = this.#getCars();
     const round = this.getRound();
 
     for (let r = 0; r < round; r += 1) {
@@ -69,7 +69,7 @@ class LacingController {
    * @returns {Array<{ name: string; track: number; }[]>}
    */
   getRacingResult() {
-    const cars = this.getCars();
+    const cars = this.#getCars();
     const length = this.getRound();
 
     return Array.from({ length }, (_, round) => {
