@@ -7,10 +7,10 @@ class App {
     let carsList = this.getCarList(inputCars);
     this.checkInputCount(inputCount);
 
-    console.log("\n실행 결과")
+    Console.print("\n실행 결과")
     for (let i = 0; i < inputCount; i++) {
       this.tryRacing(carsList);
-      console.log("");
+      Console.print("");
     }
 
     this.printFinalResult(carsList);
@@ -51,7 +51,7 @@ class App {
 
   printGameResult(cars) {
     for (const [key, value] of Object.entries(cars)) {
-      console.log(`${key} : ${"-".repeat(value)}`);
+      Console.print(`${key} : ${"-".repeat(value)}`);
     }
   }
 
@@ -67,7 +67,7 @@ class App {
           winnerCars.push(key);
       }
     })
-    console.log(`최종 우승자 : ${winnerCars.join(", ")}`);
+    Console.print(`최종 우승자 : ${winnerCars.join(", ")}`);
   }
 
   throwError(message) {
