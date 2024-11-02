@@ -34,7 +34,7 @@ class Race {
     Console.print('');
   }
 
-  Winner() {
+  getWinner() {
     let max = 0;
     this.#cars.forEach(car => {
       let forwardCount = car.getForwardCount();

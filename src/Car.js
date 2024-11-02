@@ -1,5 +1,5 @@
 class Car {
-  #forwadCount=0;
+  #forwardCount=0;
   #name;
 
   constructor(name) {
@@ -8,7 +8,7 @@ class Car {
 
   forward(random) {
     if (random >= 4) {
-      this.#forwadCount++;
+      this.#forwardCount++;
     }
   }
 
@@ -17,7 +17,7 @@ class Car {
   }
 
   getForwardCount() {
-    return this.#forwadCount;
+    return this.#forwardCount;
   }
 }
 

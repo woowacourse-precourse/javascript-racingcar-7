@@ -9,7 +9,7 @@ class App {
   async run() {
     const carNames = await this.#input.readInputCar();
     const raceCount = await this.#input.readInputRaceCount();
-    
+
     this.#race.setRaceCount(raceCount);
 
     // Race 객체에 Car객체 추가
@@ -17,15 +17,15 @@ class App {
       this.#race.addRacingCar(new Car(carName));
     });
 
-    for (let count=0; count < this.#race.getRaceCount(); count ++){
+    for (let count = 0; count < this.#race.getRaceCount(); count++) {
       this.#race.racing();
       this.#race.showRacingResult();
-      
+
     }
 
     this.#race.Winner();
     this.#race.showWinner();
-    
+
   }
 }
 
