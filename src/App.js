@@ -1,10 +1,12 @@
 import View from "./View.js";
 import Car from "./Car.js";
 import Race from "./Race.js";
+import OutView from "./OutView.js";
 
 class App {
   #input = new View();
   #race = new Race();
+  #output = new OutView();
 
   async run() {
     const carNames = await this.#input.readInputCar();
@@ -25,7 +27,9 @@ class App {
 
     this.#race.determineWinner();
     this.#race.showWinner();
+    const winners = this.#race.getWinner();
 
+    this.#output.showWinner(winners);
   }
 }
 

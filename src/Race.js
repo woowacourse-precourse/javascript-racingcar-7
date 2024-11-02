@@ -44,8 +44,8 @@ class Race {
     })
   }
 
-  showWinner() {
-    Console.print('최종 우승자 : ' + this.#winners.join(','));
+  getWinner() {
+    return this.#winners;
   }
 
 }
