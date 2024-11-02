@@ -20,7 +20,7 @@ class View {
   async readInputRaceCount() {
     const raceCountStr = await Console.readLineAsync(this.#raceCount);
     const raceCount = Number(raceCountStr);
-    if (raceCount==NaN || raceCount <= 0){
+    if (raceCount.isNaN() || raceCount <= 0){
       throw new Error("[ERROR] : 잘못된 숫자 입력\n");
     }
 

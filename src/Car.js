@@ -8,7 +8,7 @@ class Car {
 
   forward(random) {
     if (random >= 4) {
-      this.#forwardCount++;
+      this.#forwardCount += 1;
     }
   }
 
