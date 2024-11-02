@@ -23,7 +23,7 @@ class App {
 
     }
 
-    this.#race.Winner();
+    this.#race.determineWinner();
     this.#race.showWinner();
 
   }

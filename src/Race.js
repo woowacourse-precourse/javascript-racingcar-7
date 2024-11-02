@@ -34,17 +34,11 @@ class Race {
     Console.print('');
   }
 
-  getWinner() {
-    let max = 0;
-    this.#cars.forEach(car => {
-      let forwardCount = car.getForwardCount();
-      if (max < forwardCount) {
-        max = forwardCount;
-      }
-    })
+  determineWinner() {
+    const max = Math.max(...this.#cars.map(car => car.getForwardCount()));
 
     this.#cars.forEach(car => {
-      if (car.getForwardCount() == max){
+      if (car.getForwardCount() === max){
         this.#winners.push(car.getName());
       }
     })
