@@ -13,8 +13,11 @@ class GameController {
   race(names, tryNumber) {
     const car = new Car();
     car.addCar(names);
+
+    for (let i = 0; i <= tryNumber; i++) {
+      car.roundAdvance();
+    }
     car.printCars();
-    car.isAdvance();
   }
 }
 

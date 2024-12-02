@@ -40,11 +40,17 @@ class Car {
   isAdvance() {
     const randomNumber = this.pickRandomValue();
     if (randomNumber >= DEFINITION.CONDITION.MINIMUM_ADVANCE) {
-      return true;
+      return 1;
     }
     if (randomNumber < DEFINITION.CONDITION.MINIMUM_ADVANCE) {
-      return false;
+      return 0;
     }
+  }
+
+  roundAdvance() {
+    this.#cars.forEach((i) => {
+      i.advance += this.isAdvance();
+    });
   }
 }
 
