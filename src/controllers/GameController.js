@@ -18,6 +18,7 @@ class GameController {
       car.roundAdvance();
     }
     car.printCars();
+    car.pickWinnerName();
   }
 }
 

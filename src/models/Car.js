@@ -52,6 +52,18 @@ class Car {
       i.advance += this.isAdvance();
     });
   }
+
+  pickWinnerName() {
+    const winnerNames = [];
+    const isAdanceArray = this.#cars.map((i) => i.advance);
+    const isMaxAdvance = Math.max(...isAdanceArray);
+    const isWinners = this.#cars.filter((i) => i.advance === isMaxAdvance);
+    isWinners.forEach((i) => {
+      winnerNames.push(i.name);
+    });
+
+    return winnerNames;
+  }
 }
 
 export default Car;
