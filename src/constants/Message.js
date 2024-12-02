@@ -13,6 +13,11 @@ const MESSAGE = {
     IS_NOT_RANDOM_RANGE:
       '[ERROR] 무작위 값의 결과가 예상값에서 벗어나는 오류가 발생했습니다.',
   },
+  RESULT: {
+    ROUND: (name, advance) => `${name} : ${advance}`,
+    GAME: (names) => `최종 우승자 : ${names}`,
+    BREAK_POINT: '',
+  },
 };
 
 export default MESSAGE;

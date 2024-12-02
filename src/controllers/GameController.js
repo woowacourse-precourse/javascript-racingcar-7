@@ -2,23 +2,36 @@ import { Console } from '@woowacourse/mission-utils';
 import InputView from '../views/InputView.js';
 import { InputParser } from '../utils/Parser.js';
 import Car from '../models/Car.js';
+import OutputView from '../views/OutputView.js';
 
 class GameController {
+  #car;
+
+  constructor() {
+    this.#car = new Car();
+  }
+
   async start() {
     const CarNames = await InputView.inputCarNames();
     const tryNumber = await InputView.inputTryNumber();
     this.race(CarNames, tryNumber);
+    this.raceResult();
   }
 
   race(names, tryNumber) {
-    const car = new Car();
-    car.addCar(names);
-
+    this.#car.addCar(names);
     for (let i = 0; i <= tryNumber; i++) {
-      car.roundAdvance();
+      const roundResult = this.#car.roundProcess();
+      roundResult.forEach(({ name, advance }) => {
+        OutputView.printRoundResult(name, advance);
+      });
+      OutputView.printBreakPoint();
     }
-    car.printCars();
-    car.pickWinnerName();
+  }
+
+  raceResult() {
+    const winnerNamesArray = this.#car.pickWinnerNames();
+    OutputView.printGameResult(winnerNamesArray);
   }
 }
 

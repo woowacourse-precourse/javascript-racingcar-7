@@ -7,6 +7,9 @@ const DEFINITION = {
     RANDOM_NUMBER_MAXIMUM: 9,
     MINIMUM_ADVANCE: 4,
   },
+  SYMBOL: {
+    ADVANCE: '-',
+  },
 };
 
 export default DEFINITION;

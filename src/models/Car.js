@@ -1,6 +1,7 @@
 import { Console, Random } from '@woowacourse/mission-utils';
 import DEFINITION from '../constants/Definition.js';
 import MESSAGE from '../constants/Message.js';
+import OutputView from '../views/OutputView.js';
 
 class Car {
   #cars;
@@ -10,9 +11,9 @@ class Car {
   }
 
   addCar(names) {
-    names.forEach((i) => {
+    names.forEach((car) => {
       const carList = {
-        name: i,
+        name: car,
         advance: 0,
       };
       this.#cars.push(carList);
@@ -47,13 +48,21 @@ class Car {
     }
   }
 
-  roundAdvance() {
-    this.#cars.forEach((i) => {
-      i.advance += this.isAdvance();
+  roundProcess() {
+    const roundResult = [];
+    this.#cars.forEach((car) => {
+      car.advance += this.isAdvance();
+      const carResult = {
+        name: car.name,
+        advance: this.generateAdvanceSymbol(car.advance),
+      };
+      roundResult.push(carResult);
     });
+
+    return roundResult;
   }
 
-  pickWinnerName() {
+  pickWinnerNames() {
     const winnerNames = [];
     const isAdanceArray = this.#cars.map((i) => i.advance);
     const isMaxAdvance = Math.max(...isAdanceArray);
@@ -63,6 +72,10 @@ class Car {
     });
 
     return winnerNames;
+  }
+
+  generateAdvanceSymbol(advance) {
+    return DEFINITION.SYMBOL.ADVANCE.repeat(advance);
   }
 }
 
