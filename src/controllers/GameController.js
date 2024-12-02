@@ -1,4 +1,3 @@
-import { Console } from '@woowacourse/mission-utils';
 import InputView from '../views/InputView.js';
 import { InputParser } from '../utils/Parser.js';
 import Car from '../models/Car.js';
@@ -20,7 +19,7 @@ class GameController {
 
   race(names, tryNumber) {
     this.#car.addCar(names);
-    for (let i = 0; i <= tryNumber; i++) {
+    for (let i = 0; i < tryNumber; i++) {
       const roundResult = this.#car.roundProcess();
       roundResult.forEach(({ name, advance }) => {
         OutputView.printRoundResult(name, advance);
