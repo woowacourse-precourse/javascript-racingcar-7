@@ -20,10 +20,6 @@ class Car {
     });
   }
 
-  printCars() {
-    Console.print(this.#cars);
-  }
-
   pickRandomValue() {
     const randomValue = Random.pickNumberInRange(
       DEFINITION.CONDITION.RANDOM_NUMBER_MINIMUM,
