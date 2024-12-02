@@ -11,4 +11,14 @@ export const InputValidator = {
       throw new Error(MESSAGE.ERROR.IS_MAX_LENGTH);
     }
   },
+  isMaxTryNumber: (input) => {
+    if (input >= 10000) {
+      throw new Error(MESSAGE.ERROR.IS_MAX_TRY);
+    }
+  },
+  isNaturalNumber: (input) => {
+    if (input <= 0 || !Number.isInteger(input) || isNaN(Number(input))) {
+      throw new Error(MESSAGE.ERROR.NOT_NATURAL_NUMBER);
+    }
+  },
 };

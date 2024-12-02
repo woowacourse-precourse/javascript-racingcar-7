@@ -4,9 +4,8 @@ import { InputParser } from '../utils/Parser.js';
 
 class GameController {
   async start() {
-    const carName = await InputView.inputCarNames();
-    const parse = InputParser.parseNamesToArray(carName);
-    Console.print(parse);
+    const CarNames = await InputView.inputCarNames();
+    const tryNumber = await InputView.inputTryNumber();
   }
 }
 
