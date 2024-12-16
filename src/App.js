@@ -20,7 +20,7 @@ class App {
   moveCars() {
     this.cars = this.cars.map((car) => {
       const shouldMove = MissionUtils.Random.pickNumberInRange(0, 9) >= 4;
-      if (shouldMove) {
+      if (shouldMove) {dfdfd
         return { ...car, distance: car.distance + 1 };
       } else {
         return car;
