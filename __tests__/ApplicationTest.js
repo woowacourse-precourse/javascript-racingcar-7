@@ -1,5 +1,5 @@
 import App from "../src/App.js";
-import { MissionUtils } from "@woowacourse/mission-utils";
+import { MissionUtils } from '@woowacourse/mission-utils';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -46,7 +46,7 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트", async () => {
+  test("예외 테스트 > 자동차 이름이 5자를 넘는 경우", async () => {
     // given
     const inputs = ["pobi,javaji"];
     mockQuestions(inputs);
@@ -55,6 +55,42 @@ describe("자동차 경주", () => {
     const app = new App();
 
     // then
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 > 자동차 이름이 입력되지 않는 경우", async () => {
+    const inputs = [",,pobi"];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 > 자동차 입력이 없는 경우", async () => {
+    const inputs = [" "];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 > 실행 라운드 수가 음수일 경우", async () => {
+    const inputs = ["pobi,woni,jun", "-1"];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("예외 테스트 > 실행 라운드 수가 숫자가 아닐 경우", async () => {
+    const inputs = ["pobi,woni,jun", "!"];
+    mockQuestions(inputs);
+
+    const app = new App();
+
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 });
